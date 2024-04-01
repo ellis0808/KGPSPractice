@@ -164,7 +164,7 @@ III. TIMER
 */
 
 let time;
-const roundTime = 7;
+const roundTime = 20;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
@@ -801,10 +801,10 @@ function activateEventListeners() {
   const startTargets = document
     .querySelectorAll(".start-target")
     .forEach((target) => {
-      target.addEventListener("mousedown", onMouseDown);
+      target.addEventListener("pointerdown", onMouseDown);
     });
-  grid.addEventListener("mouseup", onMouseUp);
-  grid.addEventListener("mousemove", onMouseMove);
+  grid.addEventListener("pointerup", onMouseUp);
+  grid.addEventListener("pointermove", onMouseMove);
 }
 
 function endApp() {
