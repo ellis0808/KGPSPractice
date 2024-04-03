@@ -179,7 +179,7 @@ III. TIMER
 */
 
 let time;
-const roundTime = 3;
+const roundTime = 60;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
