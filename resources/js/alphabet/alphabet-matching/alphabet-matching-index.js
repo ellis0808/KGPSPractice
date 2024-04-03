@@ -10,10 +10,13 @@ import { particles } from "./fx.js";
 import { BufferLoader } from "../../../utilities/buffer-loader.js";
 import { audioContext, finishedLoading } from "../alphabet-card-touch/audio.js";
 import { score } from "../../../utilities/score-object.js";
-import { updateCount } from "../../../utilities/update-score.js";
+import {
+  updateNegativeCount,
+  updatePositiveCount,
+} from "../../../utilities/update-score.js";
 import { scoreDisplay } from "../alphabet-card-touch/alphabet-card-touch.js";
 import { speak } from "./audio.js";
-import { startMainApp } from "../../general/start-main-app.js";
+import { displayMainPage, startMainApp } from "../../general/start-main-app.js";
 import {
   removeMenuPage,
   restoreMainMenu,
@@ -88,6 +91,11 @@ function alphabetMatchingApp() {
 
   stylesheet.setAttribute("href", "../../resources/css/alphabet-matching.css");
   displayStartBtn();
+
+  score.resetScore();
+  resetTimer();
+  scoreDisplay.innerText = score.currentScore;
+  appContainer.classList.remove("hide");
 }
 
 /*
@@ -105,9 +113,10 @@ function displayStartBtn() {
   score.resetScore();
 }
 function endSession() {
+  clearBoard();
+  appContainer.classList.add("hide");
   score.resetScore();
   document.querySelector(".end-messages-container").remove();
-  clearBoard();
 }
 function startSession() {
   startBtn.classList.add("no-touch");
@@ -126,6 +135,8 @@ function startNewSession() {
     score.resetScore();
     scoreDisplay.innerText = score.currentScore;
     grid.classList.remove("blur");
+    timer.classList.remove("blur");
+    scoreDisplay.classList.remove("blur");
   }, 50);
 
   setTimeout(startSession, 300);
@@ -137,6 +148,10 @@ function startNewSession() {
 }
 
 function startNewRound() {
+  grid.classList.remove("blur");
+  timer.classList.remove("blur");
+  scoreDisplay.classList.remove("blur");
+
   letterSetGenerator();
   const shuffledAlphabetCapitals = shuffle(alphabetCapitals);
   generateLetterDivsForMatching(shuffledAlphabetCapitals);
@@ -164,7 +179,7 @@ III. TIMER
 */
 
 let time;
-const roundTime = 20;
+const roundTime = 3;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
@@ -189,6 +204,11 @@ function displayTimer() {
       roundOver();
     }
   }, 1000);
+}
+
+function resetTimer() {
+  timer.innerText = "1:00";
+  timer.classList.remove("wobble");
 }
 function disableTouch() {
   const allTargets = document.querySelectorAll(".dot,.dot-enclosure");
@@ -218,6 +238,8 @@ function roundOver() {
   setTimeout(disableTouch, 1000);
   displayTryAgainAndFinishBtns();
   grid.classList.add("blur");
+  timer.classList.add("blur");
+  scoreDisplay.classList.add("blur");
 }
 
 /*
@@ -238,6 +260,10 @@ function clearBoard() {
       item.remove();
     });
   }, 400);
+  //   while (grid.firstChild) {
+  //     grid.removeChild(grid.firstChild);
+  //   }
+  // }, 400);
 }
 
 /*
@@ -425,14 +451,14 @@ function correctMatch(event) {
       finishedLoading
     );
     bufferLoader.load();
-    updateCount(1);
+    updatePositiveCount(1);
     scoreDisplay.classList.add("pulse");
     checkAllCorrect();
   } else {
     event.target.removeAttribute("line-id");
     event.target.classList.remove("correctPulse");
     removeCorrectPulse();
-    score.decreaseScore();
+    updateNegativeCount(1);
   }
 }
 
@@ -803,14 +829,24 @@ function activateEventListeners() {
     .forEach((target) => {
       target.addEventListener("pointerdown", onMouseDown);
     });
+  // const endTargets = document
+  //   .querySelectorAll(".end-target")
+  //   .forEach((target) => {
+  //     target.addEventListener("pointerup", onMouseUp);
+  //   });
   grid.addEventListener("pointerup", onMouseUp);
   grid.addEventListener("pointermove", onMouseMove);
 }
 
 function endApp() {
   endSession();
-  appContainer.remove();
-  restoreMainMenu();
-  setTimeout(startMainApp, 500);
+  setTimeout(() => {
+    appContainer.removeChild(scoreDisplay);
+    appContainer.removeChild(timer);
+    mainContainer.removeChild(appContainer);
+    stylesheet.setAttribute("href", "../resources/css/styles.css");
+    displayMainPage();
+    setTimeout(restoreMainMenu, 600);
+  }, 500);
 }
 export { alphabetMatchingApp };

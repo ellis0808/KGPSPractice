@@ -15,7 +15,10 @@ import { alphabet } from "./alphabet.js";
 import { wobble, spinfade, newRoundCardFlip, particles } from "./FX.js";
 // import { endCurrentApp } from "../../general/end-app.js";
 import { score } from "../../../utilities/score-object.js";
-import { updateCount } from "../../../utilities/update-score.js";
+import {
+  updateNegativeCount,
+  updatePositiveCount,
+} from "../../../utilities/update-score.js";
 import { startMainApp } from "../../general/start-main-app.js";
 import {
   removeMenuPage,
@@ -305,12 +308,11 @@ function touchCard(e) {
   if (parseInt(currentCardID) === correctCardID) {
     console.log(e);
     correctCard(e);
-    updateCount(5);
+    updatePositiveCount(5);
     disableCardsAndRepeatBtn();
   } else {
     wobble(e);
-    score.decreaseScore(2);
-    scoreDisplay.textContent = `${score.currentScore}`;
+    updateNegativeCount(2);
   }
 }
 

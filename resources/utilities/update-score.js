@@ -6,7 +6,7 @@ import {
 } from "../js/alphabet/alphabet-card-touch/FX.js";
 import { newRoundCardFlip } from "../js/alphabet/alphabet-matching/fx.js";
 
-const updateCount = (amount) => {
+const updatePositiveCount = (amount) => {
   const points = amount;
   const increment = 1;
   let initialValue = score.currentScore;
@@ -21,10 +21,29 @@ const updateCount = (amount) => {
     }
 
     scoreDisplay.textContent = `${initialValue}`;
-  }, 70);
+  }, 80);
   setTimeout(() => {
     score.increaseScore(amount);
   }, 600);
 };
+const updateNegativeCount = (amount) => {
+  const points = amount;
+  const increment = 1;
+  let initialValue = score.currentScore;
+  let target = score.currentScore - points;
 
-export { updateCount };
+  const decreaseCount = setInterval(() => {
+    initialValue -= increment;
+    if (initialValue < target) {
+      scoreDisplay.textContent = `${score.currentScore - points}`;
+      clearInterval(decreaseCount);
+      return;
+    }
+    scoreDisplay.textContent = `${initialValue}`;
+  }, 80);
+  setTimeout(() => {
+    score.decreaseScore(amount);
+  }, 600);
+};
+
+export { updateNegativeCount, updatePositiveCount };

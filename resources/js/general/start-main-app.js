@@ -79,7 +79,6 @@ function returnToMainMenu() {
   alphabetCardTouchAppMenuItem.remove();
   alphabetMatchingAppMenuItem.remove();
   displayMainPage();
-  // setTopMenuVariables();
 }
 body.appendChild(navBar);
 
@@ -110,10 +109,6 @@ function hideParentsInfoBtn() {
   parentsInfo.classList.add("hidden");
 }
 function setTopMenuVariables() {
-  // abcMenu.classList.remove("hidden");
-  // numbersMenu.classList.remove("hidden");
-  // div3.classList.remove("hidden");
-  // div4.classList.remove("hidden");
   menuContainer.appendChild(abcMenu);
   menuContainer.appendChild(numbersMenu);
   menuContainer.appendChild(div3);
