@@ -831,12 +831,12 @@ function activateEventListeners() {
     .forEach((target) => {
       target.addEventListener("pointerdown", onMouseDown);
     });
-  const endTargets = document
-    .querySelectorAll(".end-target")
-    .forEach((target) => {
-      target.addEventListener("pointerup", onMouseUp);
-    });
-  grid.addEventListener("pointerup", onMouseUpGrid);
+  // const endTargets = document
+  //   .querySelectorAll(".end-target")
+  //   .forEach((target) => {
+  //     target.addEventListener("pointerup", onMouseUp);
+  //   });
+  grid.addEventListener("pointerup", onMouseUp);
   grid.addEventListener("pointermove", onMouseMove);
 }
 
