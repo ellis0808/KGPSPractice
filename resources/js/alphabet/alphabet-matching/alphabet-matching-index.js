@@ -789,12 +789,10 @@ function onMouseUp(event) {
     } else if (!line.isPressed) {
       removeUnconnectedLines();
       lines.pop();
-      return;
     }
   } else if (!line.isPressed) {
     removeUnconnectedLines();
     lines.pop();
-    return;
   }
   correctMatch(event);
   console.log(currentDotId);
