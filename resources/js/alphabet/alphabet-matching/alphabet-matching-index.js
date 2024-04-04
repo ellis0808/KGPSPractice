@@ -721,6 +721,14 @@ function onMouseMove(event) {
   }
 }
 
+function onMouseUpGrid(event) {
+  line.buttonUp();
+  if (!event.target.classList.contains("end-target")) {
+    removeUnconnectedLines();
+    lines.pop();
+    return;
+  }
+}
 function onMouseUp(event) {
   line.buttonUp();
   if (!line.isPressed && !currentDotIdArray.includes(currentDotId)) {
@@ -789,10 +797,12 @@ function onMouseUp(event) {
     } else if (!line.isPressed) {
       removeUnconnectedLines();
       lines.pop();
+      return;
     }
   } else if (!line.isPressed) {
     removeUnconnectedLines();
     lines.pop();
+    return;
   }
   correctMatch(event);
 }
@@ -826,6 +836,7 @@ function activateEventListeners() {
     .forEach((target) => {
       target.addEventListener("pointerup", onMouseUp);
     });
+  grid.addEventListener("pointerup", onMouseUpGrid);
   grid.addEventListener("pointermove", onMouseMove);
 }
 
