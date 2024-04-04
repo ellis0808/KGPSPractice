@@ -723,11 +723,7 @@ function onMouseMove(event) {
 
 function onMouseUp(event) {
   line.buttonUp();
-  if (
-    !line.isPressed &&
-    event.target.classList.contains("end-target") &&
-    !currentDotIdArray.includes(currentDotId)
-  ) {
+  if (!line.isPressed && !currentDotIdArray.includes(currentDotId)) {
     getEndDotID(event);
     line.setLineEndDotId(endDotId);
     if (event.target.classList.contains("dot")) {
@@ -829,12 +825,11 @@ function activateEventListeners() {
     .forEach((target) => {
       target.addEventListener("pointerdown", onMouseDown);
     });
-  // const endTargets = document
-  //   .querySelectorAll(".end-target")
-  //   .forEach((target) => {
-  //     target.addEventListener("pointerup", onMouseUp);
-  //   });
-  grid.addEventListener("pointerup", onMouseUp);
+  const endTargets = document
+    .querySelectorAll(".end-target")
+    .forEach((target) => {
+      target.addEventListener("pointerup", onMouseUp);
+    });
   grid.addEventListener("pointermove", onMouseMove);
 }
 

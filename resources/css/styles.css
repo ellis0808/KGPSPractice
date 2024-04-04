@@ -105,11 +105,25 @@ body:not(:has(*)) {
   height: 175px;
   width: 100%;
   margin: auto;
-  font-size: 3rem;
+  font-size: 4rem;
   display: flex;
   place-content: center;
   place-items: center;
   animation: cardEntrance 1s ease-in-out forwards;
+}
+@media (width > 600px) {
+  .top-container {
+    grid-area: top-container;
+    height: 175px;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 50px;
+    font-size: 7rem;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    animation: cardEntrance 1s ease-in-out forwards;
+  }
 }
 .menu-container {
   grid-area: menu-container;
