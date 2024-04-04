@@ -795,8 +795,6 @@ function onMouseUp(event) {
     lines.pop();
   }
   correctMatch(event);
-  console.log(currentDotId);
-  console.log(currentDotIdArray);
 }
 
 function getCenterOfTarget(event) {
