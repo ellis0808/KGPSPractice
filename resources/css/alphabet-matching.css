@@ -20,9 +20,6 @@
   --hvr-opc: 0.7;
 }
 
-body {
-  overflow: hidden;
-}
 h2 {
   color: white;
 }
@@ -34,9 +31,22 @@ body {
   display: grid;
   place-content: center;
   grid-template-columns: 1fr;
-  grid-template-areas:
-    /* "navbar " */ "main-container";
+  grid-template-areas: "main-container";
   touch-action: none;
+  overflow: hidden;
+}
+@media (width > 600px) {
+  body {
+    background: white;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    place-content: center;
+    grid-template-columns: 1fr;
+    grid-template-areas: "main-container";
+    touch-action: none;
+    overflow: hidden;
+  }
 }
 body::-webkit-scrollbar {
   width: 0.25;
@@ -44,57 +54,6 @@ body::-webkit-scrollbar {
 body:not(:has(*)) {
   display: none;
 }
-/* NavBar */
-/* .navbar {
-  grid-area: navbar;
-  height: 35px;
-  width: 100%;
-  background: lightblue;
-  font-size: 3rem;
-  justify-content: right;
-  transition: 0.3s;
-  z-index: 10;
-  position: absolute;
-}
-.navbar-nav {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  list-style: none;
-  transition: 0.3s;
-}
-.nav-item {
-  height: 100%;
-  font-size: inherit;
-}
-.nav-item:nth-child(1) {
-  margin-left: 2rem;
-  font-size: 1rem;
-}
-.nav-item:last-child {
-  margin-left: auto;
-  margin-right: 2rem;
-}
-.navbar:hover {
-  height: 5rem;
-  font-size: 3rem;
-  transition: 0.3s;
-}
-.navbar-nav:hover {
-  font-size: 3rem;
-  transition: 0.3s;
-}
-#end-app-btn {
-  height: 28px;
-  width: 40px;
-  color: white;
-  background: rgb(161, 29, 29);
-  border-color: transparent;
-  border-radius: 5px;
-} */
 
 /*
 

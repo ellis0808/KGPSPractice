@@ -721,14 +721,6 @@ function onMouseMove(event) {
   }
 }
 
-function onMouseUpGrid(event) {
-  line.buttonUp();
-  if (!event.target.classList.contains("end-target")) {
-    removeUnconnectedLines();
-    lines.pop();
-    return;
-  }
-}
 function onMouseUp(event) {
   line.buttonUp();
   if (!line.isPressed && !currentDotIdArray.includes(currentDotId)) {
