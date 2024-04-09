@@ -25,21 +25,21 @@ h2 {
 }
 
 body {
+  height: 100vh;
+  width: 100vw;
   background: white;
-  margin: 0;
-  padding: 0;
   display: grid;
   place-content: center;
   grid-template-columns: 1fr;
   grid-template-areas: "main-container";
   touch-action: none;
-  overflow: hidden;
+  overflow-y: hidden;
 }
 @media (width > 600px) {
   body {
+    height: 100vh;
+    width: 100vw;
     background: white;
-    margin: 0;
-    padding: 0;
     display: grid;
     place-content: center;
     grid-template-columns: 1fr;
@@ -65,10 +65,10 @@ body:not(:has(*)) {
 
 .main-container {
   grid-area: main-container;
-  overflow: hidden;
-  background: #222;
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
+  background: #222;
 }
 .container {
   height: 100%;

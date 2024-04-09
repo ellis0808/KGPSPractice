@@ -172,6 +172,191 @@ function startNewRound() {
   }, 100);
 }
 
+/*
+A. Overall Function
+*/
+function roundOver() {
+  disableTouch();
+  displayFinalScore();
+  setTimeout(disableTouch, 500);
+  setTimeout(disableTouch, 1000);
+  displayTryAgainAndFinishBtns();
+  grid.classList.add("blur");
+  timer.classList.add("blur");
+  scoreDisplay.classList.add("blur");
+}
+
+/*
+B. Clearing the Grid & Resetting Arrays
+*/
+function clearBoard() {
+  setTimeout(() => {
+    grid.classList.add("gridHide");
+  }, 50);
+  setTimeout(() => {
+    currentDotIdArray.length = 0;
+    currentLinesIdArray.length = 0;
+    alphabetLowercase.length = 0;
+    alphabetCapitals.length = 0;
+    const dotsAndLines = document.querySelectorAll("[txt],.dot,.line");
+    dotsAndLines.forEach((item) => {
+      item.remove();
+    });
+  }, 400);
+}
+
+/*
+C. Displaying the Final Score Message Overlay
+*/
+function displayFinalScore() {
+  const endGameMessagesContainer = document.createElement("div");
+  endGameMessagesContainer.classList.add("end-messages-container");
+  appContainer.appendChild(endGameMessagesContainer);
+  const finalScoreAlert = document.createElement("div");
+  finalScoreAlert.classList.add("final-score-alert");
+  finalScoreAlert.innerText = `${score.currentScore} points!`;
+  setTimeout(() => {
+    endGameMessagesContainer.appendChild(finalScoreAlert);
+    setTimeout(() => {
+      finalScoreAlert.classList.add("flip");
+    });
+  }, 400);
+}
+
+/*
+D. Displaying the Try Again and Finish Buttons
+*/
+function displayTryAgainAndFinishBtns() {
+  const endGameMessagesContainer = document.querySelector(
+    ".end-messages-container"
+  );
+
+  setTimeout(() => {
+    endGameMessagesContainer.appendChild(tryAgainBtn);
+    tryAgainBtn.classList.add("slideinfromleft");
+    endGameMessagesContainer.appendChild(finishBtn);
+    finishBtn.classList.add("slideinfromright");
+  }, 1000);
+}
+
+/*
+*******
+. ANSWER EVALUATION
+*******
+*/
+
+/*
+A. Checking for Correct Answers
+*/
+function correctMatch(event) {
+  if (line.text === event.target.getAttribute("txt")) {
+    line.element.classList.add("correctPulse");
+    const correctEndDot = document.querySelectorAll(`[line-id="${line.id}"]`);
+    correctEndDot.forEach((item) => {
+      if (!item.classList.contains("dot-enclosure")) {
+        item.classList.add("correctPulse");
+      } else if (item.classList.contains("dot-enclosure")) {
+        item.children[0].classList.add("correctPulse");
+      }
+    });
+    const bufferLoader = new BufferLoader(
+      audioContext,
+      ["../../resources/audio/sfx/クイズ正解5.mp3"],
+      finishedLoading
+    );
+    bufferLoader.load();
+    updatePositiveCount(1);
+    scoreDisplay.classList.add("pulse");
+    checkAllCorrect();
+  } else {
+    event.target.removeAttribute("line-id");
+    event.target.classList.remove("correctPulse");
+    removeCorrectPulse();
+    updateNegativeCount(1);
+  }
+}
+
+/*
+B. Checking If All Letters Are Correctly Matched
+*/
+function checkAllCorrect() {
+  const allCorrectDots = document.querySelectorAll(".start-dot.correctPulse");
+  if (allCorrectDots.length === numberOfLettersToBeDisplayed) {
+    disableTouch();
+    continueToNextRound();
+  }
+}
+
+function continueToNextRound() {
+  setTimeout(() => {
+    clearBoard();
+  }, 1000);
+  setTimeout(() => {
+    startNewRound();
+  }, 1500);
+}
+
+/*
+C. Removing Classes & IDs for Unconnected Elements
+*/
+/*
+C.1 - Removing 'CorrectPulse' Class
+*/
+function removeCorrectPulse() {
+  const endDotsMarkedCorrect = document.querySelectorAll(
+    ".correctPulse.end-dot"
+  );
+  endDotsMarkedCorrect.forEach((item) => {
+    if (!item.hasAttribute("line-id")) {
+      item.classList.remove("correctPulse");
+    }
+    if (item.getAttribute("line-id")) {
+      const connectedStartDot = document.querySelector(
+        `[line-id="${item.getAttribute("line-id")}"].start-dot`
+      );
+      if (connectedStartDot !== null) {
+        if (
+          connectedStartDot.getAttribute("line-id") ===
+          item.getAttribute("line-id")
+        ) {
+          item.removeAttribute("line-id");
+          item.classList.remove("correctPulse");
+          return;
+        }
+      }
+    }
+  });
+  const startDotsMarkedCorrect = document.querySelectorAll(
+    ".correctPulse.start-dot"
+  );
+  startDotsMarkedCorrect.forEach((item) => {
+    if (item.hasAttribute("line-id")) {
+      if (
+        !currentDotIdArray.includes(item.getAttribute("line-id").slice(0, 5))
+      ) {
+        item.classList.remove("correctPulse");
+      }
+    }
+    if (!currentDotIdArray.includes(item.id)) {
+      item.classList.remove("correctPulse");
+    }
+  });
+  removeLineIdFromDot();
+}
+
+/*
+C.2 - Removing LineID
+*/
+function removeLineIdFromDot(event) {
+  const endDotsToBeRevertedToDefaultState =
+    document.querySelectorAll(`[line-id].end-dot`);
+  endDotsToBeRevertedToDefaultState.forEach((item) => {
+    if (!currentDotIdArray.includes(item.getAttribute("line-id").slice(0, 5))) {
+      item.removeAttribute("line-id");
+    }
+  });
+}
+
 /* 
 *******
 III. TIMER
@@ -227,78 +412,6 @@ function enableTouch() {
 IV. ROUND OVER
 *******
 */
-
-/*
-A. Overall Function
-*/
-function roundOver() {
-  disableTouch();
-  displayFinalScore();
-  setTimeout(disableTouch, 500);
-  setTimeout(disableTouch, 1000);
-  displayTryAgainAndFinishBtns();
-  grid.classList.add("blur");
-  timer.classList.add("blur");
-  scoreDisplay.classList.add("blur");
-}
-
-/*
-B. Clearing the Grid & Resetting Arrays
-*/
-function clearBoard() {
-  setTimeout(() => {
-    grid.classList.add("gridHide");
-  }, 50);
-  setTimeout(() => {
-    currentDotIdArray.length = 0;
-    currentLinesIdArray.length = 0;
-    alphabetLowercase.length = 0;
-    alphabetCapitals.length = 0;
-    const dotsAndLines = document.querySelectorAll("[txt],.dot,.line");
-    console.log(dotsAndLines);
-    dotsAndLines.forEach((item) => {
-      item.remove();
-    });
-  }, 400);
-  //   while (grid.firstChild) {
-  //     grid.removeChild(grid.firstChild);
-  //   }
-  // }, 400);
-}
-
-/*
-C. Displaying the Final Score Message Overlay
-*/
-function displayFinalScore() {
-  const endGameMessagesContainer = document.createElement("div");
-  endGameMessagesContainer.classList.add("end-messages-container");
-  appContainer.appendChild(endGameMessagesContainer);
-  const finalScoreAlert = document.createElement("div");
-  finalScoreAlert.classList.add("final-score-alert");
-  finalScoreAlert.innerText = `${score.currentScore} points!`;
-  setTimeout(() => {
-    endGameMessagesContainer.appendChild(finalScoreAlert);
-    setTimeout(() => {
-      finalScoreAlert.classList.add("flip");
-    });
-  }, 400);
-}
-
-/*
-D. Displaying the Try Again and Finish Buttons
-*/
-function displayTryAgainAndFinishBtns() {
-  const endGameMessagesContainer = document.querySelector(
-    ".end-messages-container"
-  );
-
-  setTimeout(() => {
-    endGameMessagesContainer.appendChild(tryAgainBtn);
-    tryAgainBtn.classList.add("slideinfromleft");
-    endGameMessagesContainer.appendChild(finishBtn);
-    finishBtn.classList.add("slideinfromright");
-  }, 1000);
-}
 
 /*
 V. GRID POPULATION
@@ -385,12 +498,14 @@ function createDots(array) {
       const endDotEnclosure = document.createElement("div");
       endDotEnclosure.setAttribute("id", `dot-${dotNumber}`);
       endDotEnclosure.setAttribute("txt", `${item.toUpperCase()}`);
+      // endDotEnclosure.addEventListener("pointerup", onMouseUp, false)
       endDotEnclosure.classList.add("dot-enclosure", "end-target");
       endDotsDiv.appendChild(endDotEnclosure);
       // Create dot for each Enclosure
       const dot = document.createElement("div");
       dot.setAttribute("id", `dot-${dotNumber}`);
       dot.setAttribute("txt", `${item.toUpperCase()}`);
+      dot.addEventListener("pointerup", onMouseUp, false);
       dot.classList.add("end-dot", "dot", "end-target");
       dot.style.zIndex = "30";
       let targetEnclosure = document.getElementById(
@@ -424,131 +539,6 @@ function revertToDefault(event) {
 }
 
 const correctArray = [];
-
-/*
-*******
-VI. ANSWER EVALUATION
-*******
-*/
-
-/*
-A. Checking for Correct Answers
-*/
-function correctMatch(event) {
-  if (line.text === event.target.getAttribute("txt")) {
-    line.element.classList.add("correctPulse");
-    const correctEndDot = document.querySelectorAll(`[line-id="${line.id}"]`);
-    correctEndDot.forEach((item) => {
-      if (!item.classList.contains("dot-enclosure")) {
-        item.classList.add("correctPulse");
-      } else if (item.classList.contains("dot-enclosure")) {
-        item.children[0].classList.add("correctPulse");
-      }
-    });
-    const bufferLoader = new BufferLoader(
-      audioContext,
-      ["../../resources/audio/sfx/クイズ正解5.mp3"],
-      finishedLoading
-    );
-    bufferLoader.load();
-    updatePositiveCount(1);
-    scoreDisplay.classList.add("pulse");
-    checkAllCorrect();
-  } else {
-    event.target.removeAttribute("line-id");
-    event.target.classList.remove("correctPulse");
-    removeCorrectPulse();
-    updateNegativeCount(1);
-  }
-}
-
-/*
-B. Checking If All Letters Are Correctly Matched
-*/
-function checkAllCorrect() {
-  const allCorrectDots = document.querySelectorAll(".start-dot.correctPulse");
-  if (allCorrectDots.length === numberOfLettersToBeDisplayed) {
-    continueToNextRound();
-  }
-}
-
-function continueToNextRound() {
-  setTimeout(() => {
-    clearBoard();
-  }, 1000);
-  setTimeout(() => {
-    startNewRound();
-  }, 1500);
-}
-
-function endSet() {
-  alert("good job");
-  return item.classList.contains("correctPulse");
-}
-
-/*
-C. Removing Classes & IDs for Unconnected Elements
-*/
-/*
-C.1 - Removing 'CorrectPulse' Class
-*/
-function removeCorrectPulse() {
-  const endDotsMarkedCorrect = document.querySelectorAll(
-    ".correctPulse.end-dot"
-  );
-  endDotsMarkedCorrect.forEach((item) => {
-    if (!item.hasAttribute("line-id")) {
-      console.log("testing");
-      item.classList.remove("correctPulse");
-    }
-    if (item.getAttribute("line-id")) {
-      const connectedStartDot = document.querySelector(
-        `[line-id="${item.getAttribute("line-id")}"].start-dot`
-      );
-      console.log(connectedStartDot);
-      if (connectedStartDot !== null) {
-        if (
-          connectedStartDot.getAttribute("line-id") ===
-          item.getAttribute("line-id")
-        ) {
-          console.log("testing");
-          item.removeAttribute("line-id");
-          item.classList.remove("correctPulse");
-          return;
-        }
-      }
-    }
-  });
-  const startDotsMarkedCorrect = document.querySelectorAll(
-    ".correctPulse.start-dot"
-  );
-  startDotsMarkedCorrect.forEach((item) => {
-    if (item.hasAttribute("line-id")) {
-      if (
-        !currentDotIdArray.includes(item.getAttribute("line-id").slice(0, 5))
-      ) {
-        item.classList.remove("correctPulse");
-      }
-    }
-    if (!currentDotIdArray.includes(item.id)) {
-      item.classList.remove("correctPulse");
-    }
-  });
-  removeLineIdFromDot();
-}
-
-/*
-C.2 - Removing LineID
-*/
-function removeLineIdFromDot(event) {
-  const endDotsToBeRevertedToDefaultState =
-    document.querySelectorAll(`[line-id].end-dot`);
-  endDotsToBeRevertedToDefaultState.forEach((item) => {
-    if (!currentDotIdArray.includes(item.getAttribute("line-id").slice(0, 5))) {
-      item.removeAttribute("line-id");
-    }
-  });
-}
 
 class Connector {
   constructor() {
@@ -675,7 +665,6 @@ function onMouseDown(event) {
     removeCorrectPulse();
     getEventTargetID(event);
     let allLines = document.querySelectorAll(".line");
-    console.log(currentDotId);
     allLines.forEach((item) => {
       if (currentDotIdArray.includes(currentDotId)) {
         if (item.id === `${currentDotId}-line`) {
@@ -687,7 +676,6 @@ function onMouseDown(event) {
           );
           removeCorrectPulse();
           currentLinesIdArray.splice(currentLineIdToBeRemoved, 1);
-          console.log(currentDotIdArray);
         }
         removeCorrectPulse();
       }
@@ -707,6 +695,7 @@ function onMouseDown(event) {
 }
 
 function onMouseMove(event) {
+  event.preventDefault();
   const bodyRect = grid.getBoundingClientRect();
   if (line.isPressed && !currentDotIdArray.includes(currentDotId)) {
     if (line.start) {
@@ -726,7 +715,7 @@ function onMouseUp(event) {
   if (!line.isPressed && !currentDotIdArray.includes(currentDotId)) {
     getEndDotID(event);
     line.setLineEndDotId(endDotId);
-    if (event.target.classList.contains("dot")) {
+    if (event.target.classList.contains("end-dot")) {
       event.target.setAttribute("line-id", `${line.id}`);
     } else if (event.target.classList.contains("dot-enclosure")) {
       event.target.children[0].setAttribute("line-id", `${line.id}`);
@@ -755,15 +744,13 @@ function onMouseUp(event) {
     line.element.classList.remove("unconnected");
     line.element.classList.add("connected");
     let allExtraLines = document.querySelectorAll(".connected");
-    let allFinalLines = document.querySelectorAll(".unconnected");
-
     allExtraLines.forEach((item) => {
       item.remove();
     });
     if (!finalLinesIdArray.includes(`${endDotId}-line`)) {
       draw();
       allExtraLines = document.querySelectorAll(".connected");
-      allFinalLines = document.querySelectorAll(".unconnected");
+      let allFinalLines = document.querySelectorAll(".unconnected");
       allFinalLines.forEach((item) => {
         item.classList.add("final");
         item.classList.remove("unconnected");
@@ -772,7 +759,7 @@ function onMouseUp(event) {
       allExtraLines.forEach((item) => {
         item.remove();
       });
-      allLines = document.querySelectorAll(".final");
+      let allLines = document.querySelectorAll(".final");
       allLines.forEach((item) => {
         if (item.dataset.id === event.target.id) {
           item.remove();
@@ -791,12 +778,21 @@ function onMouseUp(event) {
       lines.pop();
       return;
     }
-  } else if (!line.isPressed) {
+  }
+  correctMatch(event);
+}
+function onMouseUpFalse() {
+  line.buttonUp();
+  if (!line.isPressed) {
     removeUnconnectedLines();
     lines.pop();
     return;
   }
-  correctMatch(event);
+  if (!line.isPressed) {
+    removeUnconnectedLines();
+    lines.pop();
+    return;
+  }
 }
 
 function getCenterOfTarget(event) {
@@ -821,15 +817,17 @@ function activateEventListeners() {
   const startTargets = document
     .querySelectorAll(".start-target")
     .forEach((target) => {
-      target.addEventListener("pointerdown", onMouseDown);
+      target.addEventListener("pointerdown", onMouseDown, false);
     });
   // const endTargets = document
   //   .querySelectorAll(".end-target")
   //   .forEach((target) => {
-  //     target.addEventListener("pointerup", onMouseUp);
+  //     target.addEventListener("pointerup", onMouseUp, false);
   //   });
-  grid.addEventListener("pointerup", onMouseUp);
-  grid.addEventListener("pointermove", onMouseMove);
+  setTimeout(() => {
+    grid.addEventListener("pointerup", onMouseUpFalse, false);
+    grid.addEventListener("pointermove", onMouseMove, false);
+  }, 1500);
 }
 
 function endApp() {
