@@ -34,6 +34,7 @@ body {
   grid-template-areas: "main-container";
   touch-action: none;
   overflow-y: hidden;
+  cursor: pointer;
 }
 @media (width > 600px) {
   body {

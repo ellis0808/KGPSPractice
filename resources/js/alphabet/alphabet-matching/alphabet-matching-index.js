@@ -657,45 +657,74 @@ function removeUnconnectedLines() {
 }
 
 function onMouseDown(event) {
-  line.buttonDown();
-  currentDotId;
-  scoreDisplay.classList.remove("pulse");
+  if (event.isPrimary) {
+    // event.target.setPointerCapture(event.target.pointerId);
+    const currentPointerId = event.pointerId;
 
-  if (line.isPressed) {
-    removeCorrectPulse();
-    getEventTargetID(event);
-    let allLines = document.querySelectorAll(".line");
-    allLines.forEach((item) => {
-      if (currentDotIdArray.includes(currentDotId)) {
-        if (item.id === `${currentDotId}-line`) {
-          item.remove();
-          let currentDotIdToBeRemoved = currentDotIdArray.indexOf(currentDotId);
-          currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
-          let currentLineIdToBeRemoved = currentLinesIdArray.indexOf(
-            `${currentDotId}-line`
-          );
-          removeCorrectPulse();
-          currentLinesIdArray.splice(currentLineIdToBeRemoved, 1);
-        }
-        removeCorrectPulse();
+    const handlePointerMove = (moveEvent) => {
+      if (moveEvent.pointerId === currentPointerId) {
+        onMouseMove(moveEvent);
+      } else {
+        moveEvent.preventDefault();
       }
-    });
+    };
+
+    const handlePointerUp = (upEvent) => {
+      if (upEvent.pointerId === currentPointerId) {
+        onMouseUp(upEvent, currentPointerId);
+      } else {
+        upEvent.preventDefault();
+      }
+
+      document.removeEventListener("pointermove", handlePointerMove);
+      document.removeEventListener("pointerup", handlePointerUp);
+    };
+    document.addEventListener("pointermove", handlePointerMove);
+    document.addEventListener("pointerup", handlePointerUp);
+
+    line.buttonDown();
+    currentDotId;
+    scoreDisplay.classList.remove("pulse");
+
+    if (line.isPressed) {
+      removeCorrectPulse();
+      getEventTargetID(event);
+      let allLines = document.querySelectorAll(".line");
+      allLines.forEach((item) => {
+        if (currentDotIdArray.includes(currentDotId)) {
+          if (item.id === `${currentDotId}-line`) {
+            item.remove();
+            let currentDotIdToBeRemoved =
+              currentDotIdArray.indexOf(currentDotId);
+            currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
+            let currentLineIdToBeRemoved = currentLinesIdArray.indexOf(
+              `${currentDotId}-line`
+            );
+            removeCorrectPulse();
+            currentLinesIdArray.splice(currentLineIdToBeRemoved, 1);
+          }
+          removeCorrectPulse();
+        }
+      });
+    }
+    if (!currentDotIdArray.includes(currentDotId)) {
+      event.target.setAttribute("line-id", `${currentDotId}-line`);
+      line.text = event.target.getAttribute("txt");
+      line.start = {};
+      line.getStartPosition(event);
+      line.end = {};
+      line.getEndPosition(event);
+      draw();
+      line.setLineId(currentDotId);
+    }
+    removeCorrectPulse();
+  } else {
+    event.preventDefault();
   }
-  if (!currentDotIdArray.includes(currentDotId)) {
-    event.target.setAttribute("line-id", `${currentDotId}-line`);
-    line.text = event.target.getAttribute("txt");
-    line.start = {};
-    line.getStartPosition(event);
-    line.end = {};
-    line.getEndPosition(event);
-    draw();
-    line.setLineId(currentDotId);
-  }
-  removeCorrectPulse();
 }
 
 function onMouseMove(event) {
-  event.preventDefault();
+  // event.preventDefault();
   const bodyRect = grid.getBoundingClientRect();
   if (line.isPressed && !currentDotIdArray.includes(currentDotId)) {
     if (line.start) {
@@ -710,76 +739,87 @@ function onMouseMove(event) {
   }
 }
 
-function onMouseUp(event) {
-  line.buttonUp();
-  if (!line.isPressed && !currentDotIdArray.includes(currentDotId)) {
-    getEndDotID(event);
-    line.setLineEndDotId(endDotId);
-    if (event.target.classList.contains("end-dot")) {
-      event.target.setAttribute("line-id", `${line.id}`);
-    } else if (event.target.classList.contains("dot-enclosure")) {
-      event.target.children[0].setAttribute("line-id", `${line.id}`);
-    }
-    line.slope = line.getSlopeInDegrees(event);
-    line.end = getCenterOfTarget(event);
-    let allLines = document.querySelectorAll(".final");
-    allLines.forEach((item) => {
-      if (item.getAttribute("endLineId").slice(0, 5) === event.target.id) {
-        if (item.id !== `${currentDotId}-line`) {
-          item.remove();
-          let currentDotIdToBeRemoved = currentDotIdArray.indexOf(
-            item.id.slice(0, 5)
-          );
-          currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
-          let currentLinesIdToBeRemoved = currentLinesIdArray.indexOf(item.id);
-          currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
-          let finalLinesIdToBeRemoved = finalLinesIdArray.indexOf(
-            `${endDotId}-line`
-          );
-          finalLinesIdArray.splice(finalLinesIdToBeRemoved, 1);
-          draw();
-        }
+function onMouseUp(event, id) {
+  console.log("testing");
+  if (event.isPrimary) {
+    // event.stopPropagation();
+    event.target.releasePointerCapture(id);
+    console.log(id);
+    line.buttonUp();
+    if (!line.isPressed && !currentDotIdArray.includes(currentDotId)) {
+      getEndDotID(event);
+      line.setLineEndDotId(endDotId);
+      if (event.target.classList.contains("end-dot")) {
+        event.target.setAttribute("line-id", `${line.id}`);
+      } else if (event.target.classList.contains("dot-enclosure")) {
+        event.target.children[0].setAttribute("line-id", `${line.id}`);
       }
-    });
-    line.element.classList.remove("unconnected");
-    line.element.classList.add("connected");
-    let allExtraLines = document.querySelectorAll(".connected");
-    allExtraLines.forEach((item) => {
-      item.remove();
-    });
-    if (!finalLinesIdArray.includes(`${endDotId}-line`)) {
-      draw();
-      allExtraLines = document.querySelectorAll(".connected");
-      let allFinalLines = document.querySelectorAll(".unconnected");
-      allFinalLines.forEach((item) => {
-        item.classList.add("final");
-        item.classList.remove("unconnected");
-        item.classList.remove("connected");
+      line.slope = line.getSlopeInDegrees(event);
+      line.end = getCenterOfTarget(event);
+      let allLines = document.querySelectorAll(".final");
+      allLines.forEach((item) => {
+        if (item.getAttribute("endLineId").slice(0, 5) === event.target.id) {
+          if (item.id !== `${currentDotId}-line`) {
+            item.remove();
+            let currentDotIdToBeRemoved = currentDotIdArray.indexOf(
+              item.id.slice(0, 5)
+            );
+            currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
+            let currentLinesIdToBeRemoved = currentLinesIdArray.indexOf(
+              item.id
+            );
+            currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
+            let finalLinesIdToBeRemoved = finalLinesIdArray.indexOf(
+              `${endDotId}-line`
+            );
+            finalLinesIdArray.splice(finalLinesIdToBeRemoved, 1);
+            draw();
+          }
+        }
       });
+      line.element.classList.remove("unconnected");
+      line.element.classList.add("connected");
+      let allExtraLines = document.querySelectorAll(".connected");
       allExtraLines.forEach((item) => {
         item.remove();
       });
-      let allLines = document.querySelectorAll(".final");
-      allLines.forEach((item) => {
-        if (item.dataset.id === event.target.id) {
+      if (!finalLinesIdArray.includes(`${endDotId}-line`)) {
+        draw();
+        allExtraLines = document.querySelectorAll(".connected");
+        let allFinalLines = document.querySelectorAll(".unconnected");
+        allFinalLines.forEach((item) => {
+          item.classList.add("final");
+          item.classList.remove("unconnected");
+          item.classList.remove("connected");
+        });
+        allExtraLines.forEach((item) => {
           item.remove();
-          let currentDotIdToBeRemoved = currentDotIdArray.indexOf(currentDotId);
-          currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
-          let currentLinesIdToBeRemoved = currentLinesIdArray.indexOf(item.id);
-          currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
-        }
-      });
-      endDotsIdArray.push(`${endDotId}`);
-      currentDotIdArray.push(currentDotId);
-      currentLinesIdArray.push(line.id);
-      finalLinesIdArray.push(line.dataset);
-    } else if (!line.isPressed) {
-      removeUnconnectedLines();
-      lines.pop();
-      return;
+        });
+        let allLines = document.querySelectorAll(".final");
+        allLines.forEach((item) => {
+          if (item.dataset.id === event.target.id) {
+            item.remove();
+            let currentDotIdToBeRemoved =
+              currentDotIdArray.indexOf(currentDotId);
+            currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
+            let currentLinesIdToBeRemoved = currentLinesIdArray.indexOf(
+              item.id
+            );
+            currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
+          }
+        });
+        endDotsIdArray.push(`${endDotId}`);
+        currentDotIdArray.push(currentDotId);
+        currentLinesIdArray.push(line.id);
+        finalLinesIdArray.push(line.dataset);
+      } else if (!line.isPressed) {
+        removeUnconnectedLines();
+        lines.pop();
+        return;
+      }
     }
+    correctMatch(event);
   }
-  correctMatch(event);
 }
 function onMouseUpFalse() {
   line.buttonUp();
@@ -824,10 +864,10 @@ function activateEventListeners() {
   //   .forEach((target) => {
   //     target.addEventListener("pointerup", onMouseUp, false);
   //   });
-  setTimeout(() => {
-    grid.addEventListener("pointerup", onMouseUpFalse, false);
-    grid.addEventListener("pointermove", onMouseMove, false);
-  }, 1500);
+  // setTimeout(() => {
+  //   grid.addEventListener("pointerup", onMouseUpFalse, false);
+  //   grid.addEventListener("pointermove", onMouseMove, false);
+  // }, 1500);
 }
 
 function endApp() {
