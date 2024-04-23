@@ -70,6 +70,12 @@ let numberOfLettersToBeDisplayed = 4;
 const alphabetLowercase = [];
 const alphabetCapitals = [];
 
+let currentDotId = null;
+const currentDotIdArray = [];
+const endDotsIdArray = [];
+const currentLinesIdArray = [];
+const finalLinesIdArray = [];
+
 /*
 *******
 I. MAIN APP
@@ -202,9 +208,17 @@ function clearBoard() {
     dotsAndLines.forEach((item) => {
       item.remove();
     });
+    clearArrays();
   }, 400);
 }
 
+function clearArrays() {
+  currentDotId = null;
+  currentDotIdArray.length = 0;
+  endDotsIdArray.length = 0;
+  currentLinesIdArray.length = 0;
+  finalLinesIdArray.length = 0;
+}
 /*
 C. Displaying the Final Score Message Overlay
 */
@@ -489,6 +503,85 @@ C. Generating Start Dots, End Dots, and their Enclosures
   --> The dots are numbered from 0-7, with start-dots being 0-4, and end-dots 4-9. This is done dynamically.
   --> The dots are given several classes and ids, and given a zIndex of 30, to ensure they are on top when the lines are drawn.
 */
+// class Dot {
+//   constructor() {
+//     this.id = null;
+//     this.text = null;
+//     this.isConnected = false;
+//     this.connection = null;
+//     this.final = false;
+//   }
+//   createEndDot() {
+//     const newDot = document.createElement("div");
+
+//     newDot.classList.add("end-dot", "dot", "end-target");
+//     newDot.style.zIndex = "30";
+//   }
+//   isCorrect(event) {
+//     if (this.text === line.text) {
+//       line.element.classList.add("correctPulse");
+//       const correctEndDot = document.querySelectorAll(`[line-id="${line.id}"]`);
+//       correctEndDot.forEach((item) => {
+//         if (!item.classList.contains("dot-enclosure")) {
+//           item.classList.add("correctPulse");
+//         } else if (item.classList.contains("dot-enclosure")) {
+//           item.children[0].classList.add("correctPulse");
+//         }
+//       });
+//       const bufferLoader = new BufferLoader(
+//         audioContext,
+//         ["../../resources/audio/sfx/クイズ正解5.mp3"],
+//         finishedLoading
+//       );
+//       bufferLoader.load();
+//       updatePositiveCount(1);
+//       scoreDisplay.classList.add("pulse");
+//       checkAllCorrect();
+//     } else {
+//       event.target.removeAttribute("line-id");
+//       event.target.classList.remove("correctPulse");
+//       removeCorrectPulse();
+//       updateNegativeCount(1);
+//     }
+//   }
+//   connectDot() {
+//     this.connection = line.id;
+//     this.isConnected = true;
+//   }
+//   disconnectDot() {
+//     this.connection = null;
+//     this.isConnected = false;
+//   }
+// }
+
+// function createDots2(array) {
+//   let dotNumber = 0;
+//   if (array === alphabetLowercase) {
+//     dotNumber = 5;
+//     array.forEach((item) => {
+//       // Create dot Enclosures for a wider hit-map
+//       const endDotEnclosure = document.createElement("div");
+//       endDotEnclosure.setAttribute("id", `dot-${dotNumber}`);
+//       endDotEnclosure.setAttribute("txt", `${item.toUpperCase()}`);
+//       // endDotEnclosure.addEventListener("pointerup", onMouseUp, false)
+//       endDotEnclosure.classList.add("dot-enclosure", "end-target");
+//       endDotsDiv.appendChild(endDotEnclosure);
+//       // Create dot for each Enclosure
+//       const dot = new Dot();
+//       dot.createEndDot(dot);
+//       dot.id = `dot-${dotNumber}`;
+//       dot.text = `${item.toUpperCase()}`;
+//       // dot.addEventListener("pointerup", onMouseUp, false);
+//       let targetEnclosure = document.getElementById(
+//         `dotEnclosure-${dotNumber}`
+//       );
+//       endDotEnclosure.appendChild(dot);
+//       ++dotNumber;
+//     });
+//     return;
+//   }
+// }
+
 function createDots(array) {
   let dotNumber = 0;
   if (array === alphabetLowercase) {
@@ -505,7 +598,7 @@ function createDots(array) {
       const dot = document.createElement("div");
       dot.setAttribute("id", `dot-${dotNumber}`);
       dot.setAttribute("txt", `${item.toUpperCase()}`);
-      dot.addEventListener("pointerup", onMouseUp, false);
+      // dot.addEventListener("pointerup", onMouseUp, false);
       dot.classList.add("end-dot", "dot", "end-target");
       dot.style.zIndex = "30";
       let targetEnclosure = document.getElementById(
@@ -633,12 +726,6 @@ function draw(event) {
 // Creates new line
 const line = new Connector();
 
-let currentDotId = null;
-const currentDotIdArray = [];
-const endDotsIdArray = [];
-const currentLinesIdArray = [];
-const finalLinesIdArray = [];
-
 function getEventTargetID(event) {
   currentDotId = event.target.id;
   return currentDotId;
@@ -657,74 +744,50 @@ function removeUnconnectedLines() {
 }
 
 function onMouseDown(event) {
-  if (event.isPrimary) {
-    // event.target.setPointerCapture(event.target.pointerId);
-    const currentPointerId = event.pointerId;
+  event.preventDefault();
+  event.stopPropagation();
+  line.buttonDown();
+  currentDotId;
+  scoreDisplay.classList.remove("pulse");
 
-    const handlePointerMove = (moveEvent) => {
-      if (moveEvent.pointerId === currentPointerId) {
-        onMouseMove(moveEvent);
-      } else {
-        moveEvent.preventDefault();
-      }
-    };
-
-    const handlePointerUp = (upEvent) => {
-      if (upEvent.pointerId === currentPointerId) {
-        onMouseUp(upEvent, currentPointerId);
-      } else {
-        upEvent.preventDefault();
-      }
-
-      document.removeEventListener("pointermove", handlePointerMove);
-      document.removeEventListener("pointerup", handlePointerUp);
-    };
-    document.addEventListener("pointermove", handlePointerMove);
-    document.addEventListener("pointerup", handlePointerUp);
-
-    line.buttonDown();
-    currentDotId;
-    scoreDisplay.classList.remove("pulse");
-
-    if (line.isPressed) {
-      removeCorrectPulse();
-      getEventTargetID(event);
-      let allLines = document.querySelectorAll(".line");
-      allLines.forEach((item) => {
-        if (currentDotIdArray.includes(currentDotId)) {
-          if (item.id === `${currentDotId}-line`) {
-            item.remove();
-            let currentDotIdToBeRemoved =
-              currentDotIdArray.indexOf(currentDotId);
-            currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
-            let currentLineIdToBeRemoved = currentLinesIdArray.indexOf(
-              `${currentDotId}-line`
-            );
-            removeCorrectPulse();
-            currentLinesIdArray.splice(currentLineIdToBeRemoved, 1);
-          }
-          removeCorrectPulse();
-        }
-      });
-    }
-    if (!currentDotIdArray.includes(currentDotId)) {
-      event.target.setAttribute("line-id", `${currentDotId}-line`);
-      line.text = event.target.getAttribute("txt");
-      line.start = {};
-      line.getStartPosition(event);
-      line.end = {};
-      line.getEndPosition(event);
-      draw();
-      line.setLineId(currentDotId);
-    }
+  if (line.isPressed) {
     removeCorrectPulse();
-  } else {
-    event.preventDefault();
+    getEventTargetID(event);
+    let allLines = document.querySelectorAll(".line");
+    console.log(currentDotId);
+    allLines.forEach((item) => {
+      if (currentDotIdArray.includes(currentDotId)) {
+        if (item.id === `${currentDotId}-line`) {
+          item.remove();
+          let currentDotIdToBeRemoved = currentDotIdArray.indexOf(currentDotId);
+          currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
+          let currentLineIdToBeRemoved = currentLinesIdArray.indexOf(
+            `${currentDotId}-line`
+          );
+          removeCorrectPulse();
+          currentLinesIdArray.splice(currentLineIdToBeRemoved, 1);
+          console.log(currentDotIdArray);
+        }
+        removeCorrectPulse();
+      }
+    });
   }
+  if (!currentDotIdArray.includes(currentDotId)) {
+    event.target.setAttribute("line-id", `${currentDotId}-line`);
+    line.text = event.target.getAttribute("txt");
+    line.start = {};
+    line.getStartPosition(event);
+    line.end = {};
+    line.getEndPosition(event);
+    draw();
+    line.setLineId(currentDotId);
+  }
+  removeCorrectPulse();
 }
 
 function onMouseMove(event) {
-  // event.preventDefault();
+  event.preventDefault();
+  event.stopPropagation();
   const bodyRect = grid.getBoundingClientRect();
   if (line.isPressed && !currentDotIdArray.includes(currentDotId)) {
     if (line.start) {
@@ -739,87 +802,117 @@ function onMouseMove(event) {
   }
 }
 
-function onMouseUp(event, id) {
-  console.log("testing");
-  if (event.isPrimary) {
-    // event.stopPropagation();
-    event.target.releasePointerCapture(id);
-    console.log(id);
-    line.buttonUp();
-    if (!line.isPressed && !currentDotIdArray.includes(currentDotId)) {
-      getEndDotID(event);
-      line.setLineEndDotId(endDotId);
-      if (event.target.classList.contains("end-dot")) {
-        event.target.setAttribute("line-id", `${line.id}`);
-      } else if (event.target.classList.contains("dot-enclosure")) {
-        event.target.children[0].setAttribute("line-id", `${line.id}`);
-      }
-      line.slope = line.getSlopeInDegrees(event);
-      line.end = getCenterOfTarget(event);
-      let allLines = document.querySelectorAll(".final");
-      allLines.forEach((item) => {
-        if (item.getAttribute("endLineId").slice(0, 5) === event.target.id) {
-          if (item.id !== `${currentDotId}-line`) {
-            item.remove();
-            let currentDotIdToBeRemoved = currentDotIdArray.indexOf(
-              item.id.slice(0, 5)
-            );
-            currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
-            let currentLinesIdToBeRemoved = currentLinesIdArray.indexOf(
-              item.id
-            );
-            currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
-            let finalLinesIdToBeRemoved = finalLinesIdArray.indexOf(
-              `${endDotId}-line`
-            );
-            finalLinesIdArray.splice(finalLinesIdToBeRemoved, 1);
-            draw();
-          }
+function onMouseUp(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  line.buttonUp();
+  if (
+    !line.isPressed &&
+    event.target.classList.contains("end-target") &&
+    !currentDotIdArray.includes(currentDotId)
+  ) {
+    getEndDotID(event);
+    if (endDotsIdArray.includes(event.target.id)) {
+      endDotsIdArray.splice(endDotsIdArray.indexOf(event.target.id), 1);
+      finalLinesIdArray.splice(
+        finalLinesIdArray.indexOf(`${event.target.id}-line`),
+        1
+      );
+    }
+    // the following lines set the dataset line-id for dots and the enclosures separately
+    line.setLineEndDotId(endDotId);
+    if (event.target.classList.contains("dot")) {
+      event.target.setAttribute("line-id", `${line.id}`);
+    } else if (event.target.classList.contains("dot-enclosure")) {
+      event.target.children[0].setAttribute("line-id", `${line.id}`);
+    }
+
+    // these lines set the parameters for the line to be drawn in its final position; the slope and length of the line are calculated based on which event it lands on
+    line.slope = line.getSlopeInDegrees(event);
+    line.end = getCenterOfTarget(event);
+
+    // these lines select all the lines marked as 'final' then remove them from the DOM if any of the endLineIds are the same as the current target's id. this prevents multiple lines from being connected to the same end-dot
+    let allLines = document.querySelectorAll(".final");
+    allLines.forEach((item) => {
+      if (item.getAttribute("endLineId").slice(0, 5) === event.target.id) {
+        if (item.id !== `${currentDotId}-line`) {
+          item.remove();
+          let currentDotIdToBeRemoved = currentDotIdArray.indexOf(
+            item.id.slice(0, 5)
+          );
+          currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
+          let currentLinesIdToBeRemoved = currentLinesIdArray.indexOf(item.id);
+          currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
+          let finalLinesIdToBeRemoved = finalLinesIdArray.indexOf(
+            `${endDotId}-line`
+          );
+          finalLinesIdArray.splice(finalLinesIdToBeRemoved, 1);
+          draw();
         }
+      }
+    });
+
+    // these lines transfer a line from being unconnected and blue in color, to being 'connected' which is actually an intermediary step on the way to being 'final', and white in color; also, 'connected' essentially just means 'drawn' and are static on the board, as opposed to the 'unconnected' lines which are still being draged by the user
+    line.element.classList.remove("unconnected");
+    line.element.classList.add("connected");
+    let allExtraLines = document.querySelectorAll(".connected");
+    let allFinalLines = document.querySelectorAll(".unconnected");
+
+    // the 'connected' lines above are removed
+    allExtraLines.forEach((item) => {
+      item.remove();
+    });
+
+    // the 'final lines' are given the 'final' class and are made white in color; all others are removed
+    // this only works if the item is not included in the finalLinesIdArray
+    if (!finalLinesIdArray.includes(`${endDotId}-line`)) {
+      draw();
+      allExtraLines = document.querySelectorAll(".connected");
+      allFinalLines = document.querySelectorAll(".unconnected");
+      allFinalLines.forEach((item) => {
+        item.classList.add("final");
+        item.classList.remove("unconnected");
+        item.classList.remove("connected");
       });
-      line.element.classList.remove("unconnected");
-      line.element.classList.add("connected");
-      let allExtraLines = document.querySelectorAll(".connected");
+      // the below seems to be redundant...its necessity will have to be checked later (2024.4.21)
       allExtraLines.forEach((item) => {
         item.remove();
       });
-      if (!finalLinesIdArray.includes(`${endDotId}-line`)) {
-        draw();
-        allExtraLines = document.querySelectorAll(".connected");
-        let allFinalLines = document.querySelectorAll(".unconnected");
-        allFinalLines.forEach((item) => {
-          item.classList.add("final");
-          item.classList.remove("unconnected");
-          item.classList.remove("connected");
-        });
-        allExtraLines.forEach((item) => {
+
+      // these lines remove lines marked as 'final' from the DOM and from their associated arrays if their dataset id matches the target id
+      allLines = document.querySelectorAll(".final");
+      allLines.forEach((item) => {
+        if (item.dataset.id === event.target.id) {
+          console.log(item.dataset.id);
           item.remove();
-        });
-        let allLines = document.querySelectorAll(".final");
-        allLines.forEach((item) => {
-          if (item.dataset.id === event.target.id) {
-            item.remove();
-            let currentDotIdToBeRemoved =
-              currentDotIdArray.indexOf(currentDotId);
-            currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
-            let currentLinesIdToBeRemoved = currentLinesIdArray.indexOf(
-              item.id
-            );
-            currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
-          }
-        });
-        endDotsIdArray.push(`${endDotId}`);
-        currentDotIdArray.push(currentDotId);
-        currentLinesIdArray.push(line.id);
-        finalLinesIdArray.push(line.dataset);
-      } else if (!line.isPressed) {
-        removeUnconnectedLines();
-        lines.pop();
-        return;
-      }
+          let currentDotIdToBeRemoved = currentDotIdArray.indexOf(currentDotId);
+          currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
+          let currentLinesIdToBeRemoved = currentLinesIdArray.indexOf(item.id);
+          currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
+          let endDotsIdToBeRemoved = endDotsIdArray.indexOf(event.target.id);
+          endDotsIdArray.splice(endDotsIdToBeRemoved);
+          let finalLinesToBeRemoved = endDotsIdArray.indexOf(
+            `${event.target.id}-line`
+          );
+          finalLinesIdArray.splice(finalLinesToBeRemoved);
+        }
+      });
+      endDotsIdArray.push(endDotId);
+      currentDotIdArray.push(currentDotId);
+      currentLinesIdArray.push(line.id);
+      finalLinesIdArray.push(line.element.getAttribute("endlineid"));
+    } else if (!line.isPressed) {
+      removeUnconnectedLines();
+      lines.pop();
+      return;
     }
-    correctMatch(event);
   }
+  event.preventDefault();
+  console.log(currentDotIdArray);
+  console.log(currentLinesIdArray);
+  console.log(endDotsIdArray);
+  console.log(finalLinesIdArray);
+  correctMatch(event);
 }
 function onMouseUpFalse() {
   line.buttonUp();
@@ -859,15 +952,14 @@ function activateEventListeners() {
     .forEach((target) => {
       target.addEventListener("pointerdown", onMouseDown, false);
     });
-  // const endTargets = document
-  //   .querySelectorAll(".end-target")
-  //   .forEach((target) => {
-  //     target.addEventListener("pointerup", onMouseUp, false);
-  //   });
-  // setTimeout(() => {
-  //   grid.addEventListener("pointerup", onMouseUpFalse, false);
-  //   grid.addEventListener("pointermove", onMouseMove, false);
-  // }, 1500);
+  const endTargets = document
+    .querySelectorAll(".end-target")
+    .forEach((target) => {
+      target.addEventListener("pointerup", onMouseUp, false);
+    });
+
+  grid.addEventListener("pointerup", onMouseUpFalse, false);
+  grid.addEventListener("pointermove", onMouseMove, false);
 }
 
 function endApp() {

@@ -7,7 +7,14 @@ const score = {
     this.currentScore += amount;
   },
   decreaseScore: function (amount) {
-    this.currentScore -= amount;
+    if (this.currentScore > 0) {
+      if (this.currentScore === 0) {
+        amount = 0;
+        return amount;
+      }
+      this.currentScore -= amount;
+      return;
+    }
   },
   resetScore: function () {
     this.currentScore = 0;

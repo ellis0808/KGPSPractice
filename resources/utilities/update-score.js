@@ -27,6 +27,10 @@ const updatePositiveCount = (amount) => {
   }, 600);
 };
 const updateNegativeCount = (amount) => {
+  if (score.currentScore === 0) {
+    amount = 0;
+    return amount;
+  }
   const points = amount;
   const increment = 1;
   let initialValue = score.currentScore;
