@@ -18,7 +18,7 @@ import {
 function removeMenuPage() {
   alphabetCardTouchAppMenuItem.remove();
   alphabetMatchingAppMenuItem.remove();
-  navBar.classList.add("hidden");
+  // navBar.classList.add("hidden");
   topContainer.classList.add("hidden");
   menuContainer.classList.add("hidden");
   abcMenu.classList.add("hidden");
@@ -35,11 +35,11 @@ function removeMenuPage() {
 function restoreMainMenu() {
   // alphabetCardTouchAppMenuItem.classList.remove("hidden");
   // alphabetMatchingAppMenuItem.classList.remove("hidden");
-  body.appendChild(navBar);
+  // body.appendChild(navBar);
   body.appendChild(parentsInfo);
   mainContainer.appendChild(topContainer);
   mainContainer.appendChild(menuContainer);
-  navBar.classList.remove("hidden");
+  // navBar.classList.remove("hidden");
   topContainer.classList.remove("hidden");
   menuContainer.classList.remove("hidden");
   abcMenu.classList.remove("hidden");

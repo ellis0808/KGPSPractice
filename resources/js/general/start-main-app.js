@@ -80,7 +80,7 @@ function returnToMainMenu() {
   alphabetMatchingAppMenuItem.remove();
   displayMainPage();
 }
-body.appendChild(navBar);
+// body.appendChild(navBar);
 
 function displayMainPage() {
   const navBarDisplay = `${user}`;
@@ -88,7 +88,7 @@ function displayMainPage() {
   // const navItem = document.getElementById("nav-item");
   // navItem.innerHTML = ``;
 
-  navBar.innerHTML = navBarDisplay;
+  // navBar.innerHTML = navBarDisplay;
   topContainer.innerText = greeting;
 }
 
