@@ -71,6 +71,7 @@ const alphabetLowercase = [];
 const alphabetCapitals = [];
 
 let currentDotId = null;
+const correctDotsAndLines = [];
 const currentDotIdArray = [];
 const endDotsIdArray = [];
 const currentLinesIdArray = [];
@@ -200,6 +201,7 @@ function clearBoard() {
     grid.classList.add("gridHide");
   }, 50);
   setTimeout(() => {
+    correctDotsAndLines.length = 0;
     currentDotIdArray.length = 0;
     currentLinesIdArray.length = 0;
     alphabetLowercase.length = 0;
@@ -262,17 +264,52 @@ function displayTryAgainAndFinishBtns() {
 /*
 A. Checking for Correct Answers
 */
+
+function addCorrectPulseEffect() {
+  correctDotsAndLines.forEach((item) => {
+    let correctDot = document.getElementById(`${item}`);
+    if (!correctDot.classList.contains("dot-enclosure")) {
+      correctDot.classList.add("correctPulse");
+      // console.log(`Correct Dots: ${correctDot.id}`);
+    } else if (correctDot.classList.contains("dot-enclosure")) {
+      correctDot.children[0].classList.add("correctPulse");
+      // console.log(`Correct Dots: ${correctDot.id}`);
+    }
+  });
+}
+const incorrectDotsAndLines = [];
+function removeCorrectPulseEffect() {
+  const alldots = document.querySelectorAll(".correctPulse");
+  console.log(alldots);
+  alldots.forEach((item) => {
+    if (item.classList.contains("correctPulse")) {
+      item.classList.remove("correctPulse");
+    }
+  });
+  console.log(alldots);
+}
 function correctMatch(event) {
   if (line.text === event.target.getAttribute("txt")) {
     line.element.classList.add("correctPulse");
     const correctEndDot = document.querySelectorAll(`[line-id="${line.id}"]`);
     correctEndDot.forEach((item) => {
-      if (!item.classList.contains("dot-enclosure")) {
-        item.classList.add("correctPulse");
-      } else if (item.classList.contains("dot-enclosure")) {
-        item.children[0].classList.add("correctPulse");
+      if (!correctDotsAndLines.includes(item.id)) {
+        correctDotsAndLines.push(item.id);
+        console.log(`Correct Array: ${correctDotsAndLines}`);
       }
     });
+    // const correctStartDots = document.querySelectorAll(
+    //   ".start-dot.correctPulse"
+    // );
+    // console.log(correctStartDots);
+    // correctStartDots.forEach((item) => {
+    //   if (!correctDotsAndLines.includes(item.id)) {
+    //     correctDotsAndLines.push(item.id);
+    //   }
+    // });
+
+    addCorrectPulseEffect();
+
     const bufferLoader = new BufferLoader(
       audioContext,
       ["../../resources/audio/sfx/クイズ正解5.mp3"],
@@ -285,7 +322,6 @@ function correctMatch(event) {
   } else {
     event.target.removeAttribute("line-id");
     event.target.classList.remove("correctPulse");
-    removeCorrectPulse();
     updateNegativeCount(1);
   }
 }
@@ -750,11 +786,54 @@ function onMouseDown(event) {
   currentDotId;
   scoreDisplay.classList.remove("pulse");
 
+  getEventTargetID(event);
+  event.target.classList.remove("correctPulse");
+
+  if (finalLinesIdArray.includes(`${currentDotId}-line`)) {
+    finalLinesIdArray.splice(
+      finalLinesIdArray.indexOf(`${currentDotId}-line`),
+      1
+    );
+  }
+  if (currentLinesIdArray.includes(`${currentDotId}-line`)) {
+    currentLinesIdArray.splice(
+      currentLinesIdArray.indexOf(`${currentDotId}-line`),
+      1
+    );
+  }
+  const orphanedStartDots = document.querySelectorAll(
+    ".start-dot.correctPulse"
+  );
+  console.log(orphanedStartDots);
+  console.log(currentLinesIdArray);
+  orphanedStartDots.forEach((item) => {
+    if (!currentLinesIdArray.includes(`${item.id}-line`)) {
+      console.log(item.id);
+      correctDotsAndLines.splice(correctDotsAndLines.indexOf(item.id), 1);
+    }
+  });
+  if (correctDotsAndLines.includes(currentDotId)) {
+    removeCorrectPulseEffect();
+    correctDotsAndLines.splice(correctDotsAndLines.indexOf(currentDotId), 1);
+    const receivingDot = document.querySelectorAll(
+      `[line-id="${currentDotId}-line"].end-dot`
+    );
+    receivingDot.forEach((item) => {
+      if (!finalLinesIdArray.includes(`${item}-line`)) {
+        console.log(item.id.slice(0, 5));
+        correctDotsAndLines.splice(
+          correctDotsAndLines.indexOf(item.id.slice(0, 5)),
+          1
+        );
+      }
+    });
+
+    addCorrectPulseEffect();
+  }
+
   if (line.isPressed) {
-    removeCorrectPulse();
     getEventTargetID(event);
     let allLines = document.querySelectorAll(".line");
-    console.log(currentDotId);
     allLines.forEach((item) => {
       if (currentDotIdArray.includes(currentDotId)) {
         if (item.id === `${currentDotId}-line`) {
@@ -764,11 +843,20 @@ function onMouseDown(event) {
           let currentLineIdToBeRemoved = currentLinesIdArray.indexOf(
             `${currentDotId}-line`
           );
-          removeCorrectPulse();
           currentLinesIdArray.splice(currentLineIdToBeRemoved, 1);
-          console.log(currentDotIdArray);
+          if (correctDotsAndLines.includes(currentDotId)) {
+            console.log(currentLinesIdArray);
+            removeCorrectPulseEffect();
+            console.log(`CorrectArray: ${correctDotsAndLines}`);
+            correctDotsAndLines.splice(
+              correctDotsAndLines.indexOf(currentDotId),
+              1
+            );
+
+            addCorrectPulseEffect();
+            console.log(`CorrectArray: ${correctDotsAndLines}`);
+          }
         }
-        removeCorrectPulse();
       }
     });
   }
@@ -782,7 +870,6 @@ function onMouseDown(event) {
     draw();
     line.setLineId(currentDotId);
   }
-  removeCorrectPulse();
 }
 
 function onMouseMove(event) {
@@ -843,10 +930,26 @@ function onMouseUp(event) {
           currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
           let currentLinesIdToBeRemoved = currentLinesIdArray.indexOf(item.id);
           currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
+
+          const orphanedStartDots = document.querySelectorAll(
+            ".start-dot.correctPulse"
+          );
+
+          orphanedStartDots.forEach((item) => {
+            if (!currentLinesIdArray.includes(`${item.id}-line`)) {
+              item.classList.remove("correctPulse");
+              correctDotsAndLines.splice(
+                correctDotsAndLines.indexOf(item.id),
+                1
+              );
+            }
+          });
+
           let finalLinesIdToBeRemoved = finalLinesIdArray.indexOf(
             `${endDotId}-line`
           );
           finalLinesIdArray.splice(finalLinesIdToBeRemoved, 1);
+
           draw();
         }
       }
@@ -883,7 +986,6 @@ function onMouseUp(event) {
       allLines = document.querySelectorAll(".final");
       allLines.forEach((item) => {
         if (item.dataset.id === event.target.id) {
-          console.log(item.dataset.id);
           item.remove();
           let currentDotIdToBeRemoved = currentDotIdArray.indexOf(currentDotId);
           currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
@@ -895,12 +997,28 @@ function onMouseUp(event) {
             `${event.target.id}-line`
           );
           finalLinesIdArray.splice(finalLinesToBeRemoved);
+
+          const orphanedEndDots = document.querySelectorAll(
+            ".end-dot.correctPulse"
+          );
+
+          orphanedEndDots.forEach((item) => {
+            if (!finalLinesIdArray.includes(`${item.id}-line`)) {
+              console.log(item.id);
+              item.classList.remove("correctPulse");
+              correctDotsAndLines.splice(
+                correctDotsAndLines.indexOf(item.id),
+                1
+              );
+            }
+          });
         }
       });
       endDotsIdArray.push(endDotId);
       currentDotIdArray.push(currentDotId);
       currentLinesIdArray.push(line.id);
       finalLinesIdArray.push(line.element.getAttribute("endlineid"));
+      console.log(currentLinesIdArray);
     } else if (!line.isPressed) {
       removeUnconnectedLines();
       lines.pop();
@@ -908,12 +1026,9 @@ function onMouseUp(event) {
     }
   }
   event.preventDefault();
-  console.log(currentDotIdArray);
-  console.log(currentLinesIdArray);
-  console.log(endDotsIdArray);
-  console.log(finalLinesIdArray);
   correctMatch(event);
 }
+
 function onMouseUpFalse() {
   line.buttonUp();
   if (!line.isPressed) {

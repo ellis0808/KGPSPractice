@@ -503,7 +503,7 @@ body:not(:has(*)) {
 }
 
 .correctPulse {
-  animation: correct-pulse 1s ease-out forwards;
+  animation: correct-pulse 0.5s ease-out forwards;
   transition: var(--transition);
 }
 .newroundcardflip {
