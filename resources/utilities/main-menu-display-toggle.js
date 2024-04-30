@@ -2,7 +2,7 @@ import {
   abcMenu,
   alphabetCardTouchAppMenuItem,
   alphabetMatchingAppMenuItem,
-  div3,
+  spellingMenu,
   div4,
   numbersMenu,
 } from "../js/general/start-main-app.js";
@@ -23,7 +23,7 @@ function removeMenuPage() {
   menuContainer.classList.add("hidden");
   abcMenu.classList.add("hidden");
   numbersMenu.classList.add("hidden");
-  div3.classList.add("hidden");
+  spellingMenu.classList.add("hidden");
   div4.classList.add("hidden");
 
   // document.getElementById("navbar").remove();
@@ -44,7 +44,7 @@ function restoreMainMenu() {
   menuContainer.classList.remove("hidden");
   abcMenu.classList.remove("hidden");
   numbersMenu.classList.remove("hidden");
-  div3.classList.remove("hidden");
+  spellingMenu.classList.remove("hidden");
   div4.classList.remove("hidden");
 }
 
