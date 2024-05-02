@@ -14,14 +14,11 @@ import {
   startSpellingTouchApp,
 } from "./app-launcher.js";
 
-function startMainApp() {
-  stylesheet.setAttribute("href", "../resources/css/styles.css");
-  displayMainPage();
-
-  setTimeout(() => {
-    setTopMenuVariables();
-  }, 500);
-}
+/*
+**********
+Main Menu Items
+**********
+*/
 
 const abcMenu = document.createElement("div");
 abcMenu.setAttribute("id", "div1");
@@ -48,6 +45,64 @@ div4.setAttribute("id", "div4");
 
 div4.classList.add("div", "div-start-menu4");
 div4.innerText = "4";
+
+/* Top Page Menu Items Display Functions */
+
+let mainMenu = true;
+function startMainApp() {
+  stylesheet.setAttribute("href", "../resources/css/styles.css");
+  displayMainPage();
+
+  setTimeout(() => {
+    setTopMenuVariables();
+    displayGreeting();
+  }, 500);
+}
+
+function setTopMenuVariables() {
+  menuContainer.appendChild(abcMenu);
+  menuContainer.appendChild(numbersMenu);
+  menuContainer.appendChild(spellingMenu);
+  menuContainer.appendChild(div4);
+}
+function displayGreeting() {
+  const greeting = `Hi, ${user}!`;
+  topContainer.innerText = greeting;
+}
+function displayMainPage() {
+  mainMenu = true;
+  const navBarDisplay = `${user}`;
+  // const navItem = document.getElementById("nav-item");
+  // navItem.innerHTML = ``;
+
+  // navBar.innerHTML = navBarDisplay;
+  return mainMenu;
+}
+function hideParentsInfoBtn() {
+  parentsInfo.classList.add("hidden");
+}
+
+/*  Return to Main Page  */
+
+const returnToMainMenuBtn = document.createElement("button");
+returnToMainMenuBtn.innerText = `<--`;
+returnToMainMenuBtn.classList.add("returnToMainMenuBtn");
+returnToMainMenuBtn.setAttribute("id", "returnToMainMenuBtn");
+returnToMainMenuBtn.addEventListener("click", returnToMainMenu);
+
+function returnToMainMenu(mainMenu) {
+  abcMenu.classList.remove("hidden");
+  numbersMenu.classList.remove("hidden");
+  spellingMenu.classList.remove("hidden");
+  div4.classList.remove("hidden");
+  alphabetCardTouchAppMenuItem.remove();
+  alphabetMatchingAppMenuItem.remove();
+  spellingTouchAppMenuItem.remove();
+  spellingWritingAppMenuItem.remove();
+  displayMainPage();
+  returnToMainMenuToggle(mainMenu);
+}
+// body.appendChild(navBar);
 
 /*
 **********
@@ -95,7 +150,7 @@ spellingTouchAppMenuItem.addEventListener("click", startSpellingTouchApp);
 const spellingWritingAppMenuItem = document.createElement("div");
 spellingWritingAppMenuItem.setAttribute(
   "id",
-  "alphabet--matching-app-menu-item"
+  "spelling-handwriting-app-menu-item"
 );
 spellingWritingAppMenuItem.classList.add("div");
 spellingWritingAppMenuItem.innerText = "Writing";
@@ -104,6 +159,7 @@ spellingWritingAppMenuItem.innerText = "Writing";
 
 // Displays the Alphabet Menu
 function displayAbcMenu() {
+  mainMenu = false;
   topContainer.innerText = "Alphabet";
   abcMenu.classList.add("hidden");
   numbersMenu.classList.add("hidden");
@@ -114,10 +170,19 @@ function displayAbcMenu() {
   menuContainer.appendChild(returnToMainMenuBtn);
   alphabetCardTouchAppMenuItem.classList.remove("hidden");
   alphabetMatchingAppMenuItem.classList.remove("hidden");
+  return mainMenu;
 }
 
+function returnToMainMenuToggle(mainMenu) {
+  if (mainMenu === false) {
+    returnToMainMenuBtn.classList.remove("hidden");
+  } else if (mainMenu === true) {
+    returnToMainMenuBtn.classList.add("hidden");
+  }
+}
 // Displays the Spelling Menu
 function displaySpellingMenu() {
+  mainMenu = false;
   topContainer.innerText = "Spelling";
   abcMenu.classList.add("hidden");
   numbersMenu.classList.add("hidden");
@@ -128,55 +193,11 @@ function displaySpellingMenu() {
   menuContainer.appendChild(returnToMainMenuBtn);
   spellingTouchAppMenuItem.classList.remove("hidden");
   spellingWritingAppMenuItem.classList.remove("hidden");
+  return mainMenu;
 }
-
-/*
-**********
-Top Page Menu Items
-**********
-*/
-
-function hideParentsInfoBtn() {
-  parentsInfo.classList.add("hidden");
-}
-function setTopMenuVariables() {
-  menuContainer.appendChild(abcMenu);
-  menuContainer.appendChild(numbersMenu);
-  menuContainer.appendChild(spellingMenu);
-  menuContainer.appendChild(div4);
-}
-
-function displayMainPage() {
-  const navBarDisplay = `${user}`;
-  const greeting = `Hi, ${user}!`;
-  // const navItem = document.getElementById("nav-item");
-  // navItem.innerHTML = ``;
-
-  // navBar.innerHTML = navBarDisplay;
-  topContainer.innerText = greeting;
-}
-
-/*  Return to Main Page  */
-
-const returnToMainMenuBtn = document.createElement("button");
-returnToMainMenuBtn.innerText = `<--`;
-returnToMainMenuBtn.classList.add("returnToMainMenuBtn");
-returnToMainMenuBtn.setAttribute("id", "returnToMainMenuBtn");
-returnToMainMenuBtn.addEventListener("click", returnToMainMenu);
-function returnToMainMenu() {
-  abcMenu.classList.remove("hidden");
-  numbersMenu.classList.remove("hidden");
-  spellingMenu.classList.remove("hidden");
-  div4.classList.remove("hidden");
-  alphabetCardTouchAppMenuItem.remove();
-  alphabetMatchingAppMenuItem.remove();
-  spellingTouchAppMenuItem.remove();
-  spellingWritingAppMenuItem.remove();
-  displayMainPage();
-}
-// body.appendChild(navBar);
 
 export {
+  displayGreeting,
   displayMainPage,
   hideParentsInfoBtn,
   startMainApp,
@@ -184,6 +205,8 @@ export {
   abcMenu,
   alphabetCardTouchAppMenuItem,
   alphabetMatchingAppMenuItem,
+  spellingTouchAppMenuItem,
+  spellingWritingAppMenuItem,
   numbersMenu,
   spellingMenu,
   div4,

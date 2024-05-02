@@ -3,7 +3,7 @@
   padding: 0;
   user-select: none;
   font-size: 16px;
-  font-family: "Playpen Sans", sans-serif;
+  font-family: "Noto Sans", sans-serif;
   font-weight: 800;
   font-style: normal;
   -webkit-user-select: none; /* Safari */
@@ -39,58 +39,6 @@ body {
 body::-webkit-scrollbar {
   width: 0.25;
 }
-
-/* NavBar */
-/* .navbar {
-  grid-area: navbar;
-  height: 35px;
-  width: 100%;
-  background: lightblue;
-  font-size: 3rem;
-  justify-content: right;
-  transition: 0.3s;
-  z-index: 10;
-  position: absolute;
-}
-.navbar-nav {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  list-style: none;
-  transition: 0.3s;
-}
-.nav-item {
-  height: 100%;
-  font-size: inherit;
-}
-.nav-item:nth-child(1) {
-  margin-left: 2rem;
-  font-size: 1rem;
-}
-.nav-item:last-child {
-  margin-left: auto;
-  margin-right: 2rem;
-}
-.navbar:hover {
-  height: 5rem;
-  font-size: 3rem;
-  transition: 0.3s;
-}
-.navbar-nav:hover {
-  font-size: 3rem;
-  transition: 0.3s;
-}
-#end-app-btn {
-  height: 28px;
-  width: 40px;
-  color: white;
-  background: rgb(161, 29, 29);
-  border-color: transparent;
-  border-radius: 5px;
-} */
 
 /*
 
@@ -137,13 +85,15 @@ body::-webkit-scrollbar {
 .btn-container2 {
   width: 100%;
   height: 300px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "..... ..... ....."
+    "..... start-btn ....."
+    "..... exit-btn .....";
   position: absolute;
 }
-/* Info Column */
-/* #right-info-column {
-  grid-area: right-info-column;
-} */
 #grid {
   grid-area: card-grid;
   width: 100%;
@@ -186,43 +136,6 @@ body::-webkit-scrollbar {
   z-index: 1;
   animation: cardEntrance 0.3s ease-out;
   animation-fill-mode: backwards;
-}
-
-.card:nth-child(1) {
-  grid-area: a;
-  animation-delay: calc(1 * var(--stagger-delay));
-}
-.card:nth-child(2) {
-  grid-area: b;
-  animation-delay: calc(2 * var(--stagger-delay));
-}
-.card:nth-child(3) {
-  grid-area: c;
-  animation-delay: calc(3 * var(--stagger-delay));
-}
-.card:nth-child(4) {
-  grid-area: d;
-  animation-delay: calc(4 * var(--stagger-delay));
-}
-.card:nth-child(5) {
-  grid-area: e;
-  animation-delay: calc(5 * var(--stagger-delay));
-}
-.card:nth-child(6) {
-  grid-area: f;
-  animation-delay: calc(6 * var(--stagger-delay));
-}
-.card:nth-child(7) {
-  grid-area: g;
-  animation-delay: calc(7 * var(--stagger-delay));
-}
-.card:nth-child(8) {
-  grid-area: h;
-  animation-delay: calc(8 * var(--stagger-delay));
-}
-.card:nth-child(9) {
-  grid-area: i;
-  animation-delay: calc(9 * var(--stagger-delay));
 }
 
 .no-touch {
@@ -271,6 +184,7 @@ body::-webkit-scrollbar {
 }
 
 #start-btn {
+  grid-area: start-btn;
   height: 200px;
   width: 500px;
   margin: auto;
@@ -282,6 +196,24 @@ body::-webkit-scrollbar {
   font-size: 5rem;
   border-radius: 50px;
   border: transparent;
+
+  z-index: 10;
+  transition: 0.6s;
+}
+#exit-btn {
+  grid-area: exit-btn;
+  width: 75px;
+  height: 75px;
+  margin: auto;
+  margin-top: 13rem;
+  color: black;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  border-radius: 50%;
+  /* border: black solid 3px; */
 
   z-index: 10;
   transition: 0.6s;

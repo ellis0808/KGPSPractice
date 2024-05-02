@@ -19,50 +19,57 @@ import {
   updateNegativeCount,
   updatePositiveCount,
 } from "../../../utilities/update-score.js";
-import { startMainApp } from "../../general/start-main-app.js";
+import { displayMainPage, startMainApp } from "../../general/start-main-app.js";
 import {
   removeMenuPage,
   restoreMainMenu,
 } from "../../../utilities/main-menu-display-toggle.js";
 
+/* SCORING */
+const correctAnswerPoints = 2;
+const incorrectAnswerPoints = 1;
+
 function alphabetCardTouchApp() {
-  appContainer.appendChild(btnContainer1);
-
-  mainContainer.appendChild(appContainer);
-  appContainer.appendChild(btnContainer2);
-  btnContainer2.appendChild(startBtn);
-  startBtn.textContent = "Start";
-  appContainer.appendChild(grid);
-
-  removeMenuPage();
+  setTimeout(() => {
+    mainContainer.appendChild(appContainer);
+    appContainer.appendChild(btnContainer1);
+    appContainer.appendChild(btnContainer2);
+    btnContainer2.appendChild(startBtn);
+    startBtn.textContent = "Start";
+    btnContainer2.appendChild(exitBtn);
+    exitBtn.textContent = "\u2716";
+    appContainer.appendChild(grid);
+  }, 0);
 
   stylesheet.setAttribute(
     "href",
     "../../resources/css/alphabet-card-touch.css"
   );
-  displayStartBtn();
-}
-function displayStartBtn() {
-  startBtn.addEventListener("click", startRound);
+  removeMenuPage();
+
+  score.resetScore();
+  resetTimer();
+  scoreDisplay.innerText = score.currentScore;
+  appContainer.classList.remove("hide");
 }
 
-// endCurrentApp();
 const appContainer = document.createElement("div");
 appContainer.classList.add("container");
 appContainer.classList.add("card-touch-app");
 const grid = document.createElement("div");
 grid.classList.add("grid");
-grid.classList.add("card-touch-app");
 grid.setAttribute("id", "grid");
 const btnContainer2 = document.createElement("div");
 btnContainer2.classList.add("btn-container2");
-btnContainer2.classList.add("card-touch-app");
 const startBtn = document.createElement("button");
 startBtn.setAttribute("id", "start-btn");
 startBtn.classList.add("card-touch-app");
+const exitBtn = document.createElement("div");
+exitBtn.setAttribute("id", "exit-btn");
+exitBtn.classList.add("card-touch-app");
+exitBtn.addEventListener("click", endApp);
 const btnContainer1 = document.createElement("div");
 btnContainer1.classList.add("btn-container1");
-btnContainer1.classList.add("card-touch-app");
 btnContainer1.setAttribute("id", "btn-container1");
 const repeatBtn = document.createElement("div");
 repeatBtn.classList.add("repeat-btn");
@@ -73,23 +80,19 @@ repeatBtn.textContent = "Repeat";
 toggleRepeatBtnHide();
 const scoreDisplay = document.createElement("div");
 scoreDisplay.classList.add("score-display");
-scoreDisplay.classList.add("card-touch-app");
 scoreDisplay.setAttribute("id", "score-display");
 toggleScoreDisplayHide();
 scoreDisplay.textContent = `${score.currentScore}`;
 const timer = document.createElement("div");
 timer.classList.add("timer");
-timer.classList.add("card-touch-app");
 timer.textContent = "1:00";
 
 const tryAgainBtn = document.createElement("div");
 tryAgainBtn.classList.add("try-again-btn");
-tryAgainBtn.classList.add("card-touch-app");
 tryAgainBtn.innerText = "One More Time";
 tryAgainBtn.addEventListener("click", startNewRound);
 const finishBtn = document.createElement("div");
 finishBtn.classList.add("finish-btn");
-finishBtn.classList.add("card-touch-app");
 finishBtn.addEventListener("click", endApp);
 finishBtn.innerText = "Finish";
 
@@ -140,10 +143,21 @@ function enableCardsAndRepeatBtn() {
   repeatBtn.classList.remove("no-touch");
 }
 
+function displayStartBtn() {
+  if (startBtn.classList.contains("no-touch")) {
+    startBtn.classList.remove("no-touch");
+    startBtn.classList.remove("spinfade");
+  }
+  startBtn.addEventListener("click", startRound);
+  score.resetScore();
+}
+
 // Start Round
 function startRound() {
   startBtn.classList.add("spinfade");
   startBtn.classList.add("no-touch");
+  exitBtn.classList.add("no-touch");
+  exitBtn.classList.add("hide2");
   setTimeout(() => {
     enableCardsAndRepeatBtn();
     createBoard();
@@ -308,11 +322,11 @@ function touchCard(e) {
   if (parseInt(currentCardID) === correctCardID) {
     console.log(e);
     correctCard(e);
-    updatePositiveCount(5);
+    updatePositiveCount(correctAnswerPoints);
     disableCardsAndRepeatBtn();
   } else {
     wobble(e);
-    updateNegativeCount(2);
+    updateNegativeCount(incorrectAnswerPoints);
   }
 }
 
@@ -334,11 +348,15 @@ function endAppButton() {
 
 function endApp() {
   const everything = document.querySelectorAll(".card-touch-app");
+  console.log(everything);
   everything.forEach((item) => {
     item.remove();
   });
-  restoreMainMenu();
-  setTimeout(startMainApp, 500);
+  setTimeout(() => {
+    stylesheet.setAttribute("href", "../resources/css/styles.css");
+    displayMainPage();
+    setTimeout(restoreMainMenu, 600);
+  }, 500);
 }
 
 export {

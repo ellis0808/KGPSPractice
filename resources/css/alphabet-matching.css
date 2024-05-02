@@ -3,7 +3,7 @@
   padding: 0;
   user-select: none;
   font-size: 16px;
-  font-family: "Playpen Sans", sans-serif;
+  font-family: "Noto Sans", sans-serif;
   font-weight: 800;
   font-style: normal;
   -webkit-user-select: none; /* Safari */
@@ -13,7 +13,6 @@
 :root {
   --clr-or: hsl(43, 89%, 38%);
   --clr-ylw: rgb(248, 245, 56);
-  --font-fam: Arial, Helvetica, Sans-serif;
   --transition: all 0.25s ease-in-out;
   --clr-acc1: #006747;
   --clr-wht: #fff;

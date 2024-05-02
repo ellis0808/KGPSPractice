@@ -1,4 +1,4 @@
-import { cardText } from "./alphabet-card-touch.js";
+import { cardText } from "./alphabet-card-touch-index.js";
 
 // Audio
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();

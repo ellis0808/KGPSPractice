@@ -5,7 +5,11 @@ import {
   spellingMenu,
   div4,
   numbersMenu,
+  spellingTouchAppMenuItem,
+  spellingWritingAppMenuItem,
+  displayGreeting,
 } from "../js/general/start-main-app.js";
+import { spellingTouchApp } from "../js/spelling/spelling-touch-app/spelling-touch-index.js";
 import {
   body,
   mainContainer,
@@ -18,6 +22,8 @@ import {
 function removeMenuPage() {
   alphabetCardTouchAppMenuItem.remove();
   alphabetMatchingAppMenuItem.remove();
+  spellingTouchAppMenuItem.remove();
+  spellingWritingAppMenuItem.remove();
   // navBar.classList.add("hidden");
   topContainer.classList.add("hidden");
   menuContainer.classList.add("hidden");
@@ -33,14 +39,13 @@ function removeMenuPage() {
 }
 
 function restoreMainMenu() {
-  // alphabetCardTouchAppMenuItem.classList.remove("hidden");
-  // alphabetMatchingAppMenuItem.classList.remove("hidden");
   // body.appendChild(navBar);
   body.appendChild(parentsInfo);
   mainContainer.appendChild(topContainer);
   mainContainer.appendChild(menuContainer);
   // navBar.classList.remove("hidden");
   topContainer.classList.remove("hidden");
+  displayGreeting();
   menuContainer.classList.remove("hidden");
   abcMenu.classList.remove("hidden");
   numbersMenu.classList.remove("hidden");

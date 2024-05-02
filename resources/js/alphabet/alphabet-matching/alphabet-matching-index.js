@@ -14,13 +14,17 @@ import {
   updateNegativeCount,
   updatePositiveCount,
 } from "../../../utilities/update-score.js";
-import { scoreDisplay } from "../alphabet-card-touch/alphabet-card-touch.js";
+import { scoreDisplay } from "../alphabet-card-touch/alphabet-card-touch-index.js";
 import { speak } from "./audio.js";
 import { displayMainPage, startMainApp } from "../../general/start-main-app.js";
 import {
   removeMenuPage,
   restoreMainMenu,
 } from "../../../utilities/main-menu-display-toggle.js";
+
+/* SCORING */
+const correctAnswerPoints = 1;
+const incorrectAnswerPoints = 1;
 
 // Main App Container
 const appContainer = document.createElement("div");
@@ -298,15 +302,6 @@ function correctMatch(event) {
         console.log(`Correct Array: ${correctDotsAndLines}`);
       }
     });
-    // const correctStartDots = document.querySelectorAll(
-    //   ".start-dot.correctPulse"
-    // );
-    // console.log(correctStartDots);
-    // correctStartDots.forEach((item) => {
-    //   if (!correctDotsAndLines.includes(item.id)) {
-    //     correctDotsAndLines.push(item.id);
-    //   }
-    // });
 
     addCorrectPulseEffect();
 
@@ -316,13 +311,13 @@ function correctMatch(event) {
       finishedLoading
     );
     bufferLoader.load();
-    updatePositiveCount(1);
+    updatePositiveCount(correctAnswerPoints);
     scoreDisplay.classList.add("pulse");
     checkAllCorrect();
   } else {
     event.target.removeAttribute("line-id");
     event.target.classList.remove("correctPulse");
-    updateNegativeCount(1);
+    updateNegativeCount(incorrectAnswerPoints);
   }
 }
 
@@ -539,84 +534,6 @@ C. Generating Start Dots, End Dots, and their Enclosures
   --> The dots are numbered from 0-7, with start-dots being 0-4, and end-dots 4-9. This is done dynamically.
   --> The dots are given several classes and ids, and given a zIndex of 30, to ensure they are on top when the lines are drawn.
 */
-// class Dot {
-//   constructor() {
-//     this.id = null;
-//     this.text = null;
-//     this.isConnected = false;
-//     this.connection = null;
-//     this.final = false;
-//   }
-//   createEndDot() {
-//     const newDot = document.createElement("div");
-
-//     newDot.classList.add("end-dot", "dot", "end-target");
-//     newDot.style.zIndex = "30";
-//   }
-//   isCorrect(event) {
-//     if (this.text === line.text) {
-//       line.element.classList.add("correctPulse");
-//       const correctEndDot = document.querySelectorAll(`[line-id="${line.id}"]`);
-//       correctEndDot.forEach((item) => {
-//         if (!item.classList.contains("dot-enclosure")) {
-//           item.classList.add("correctPulse");
-//         } else if (item.classList.contains("dot-enclosure")) {
-//           item.children[0].classList.add("correctPulse");
-//         }
-//       });
-//       const bufferLoader = new BufferLoader(
-//         audioContext,
-//         ["../../resources/audio/sfx/クイズ正解5.mp3"],
-//         finishedLoading
-//       );
-//       bufferLoader.load();
-//       updatePositiveCount(1);
-//       scoreDisplay.classList.add("pulse");
-//       checkAllCorrect();
-//     } else {
-//       event.target.removeAttribute("line-id");
-//       event.target.classList.remove("correctPulse");
-//       removeCorrectPulse();
-//       updateNegativeCount(1);
-//     }
-//   }
-//   connectDot() {
-//     this.connection = line.id;
-//     this.isConnected = true;
-//   }
-//   disconnectDot() {
-//     this.connection = null;
-//     this.isConnected = false;
-//   }
-// }
-
-// function createDots2(array) {
-//   let dotNumber = 0;
-//   if (array === alphabetLowercase) {
-//     dotNumber = 5;
-//     array.forEach((item) => {
-//       // Create dot Enclosures for a wider hit-map
-//       const endDotEnclosure = document.createElement("div");
-//       endDotEnclosure.setAttribute("id", `dot-${dotNumber}`);
-//       endDotEnclosure.setAttribute("txt", `${item.toUpperCase()}`);
-//       // endDotEnclosure.addEventListener("pointerup", onMouseUp, false)
-//       endDotEnclosure.classList.add("dot-enclosure", "end-target");
-//       endDotsDiv.appendChild(endDotEnclosure);
-//       // Create dot for each Enclosure
-//       const dot = new Dot();
-//       dot.createEndDot(dot);
-//       dot.id = `dot-${dotNumber}`;
-//       dot.text = `${item.toUpperCase()}`;
-//       // dot.addEventListener("pointerup", onMouseUp, false);
-//       let targetEnclosure = document.getElementById(
-//         `dotEnclosure-${dotNumber}`
-//       );
-//       endDotEnclosure.appendChild(dot);
-//       ++dotNumber;
-//     });
-//     return;
-//   }
-// }
 
 function createDots(array) {
   let dotNumber = 0;
@@ -1087,5 +1004,8 @@ function endApp() {
     displayMainPage();
     setTimeout(restoreMainMenu, 600);
   }, 500);
+  score.resetScore();
+  resetTimer();
+  scoreDisplay.innerText = score.currentScore;
 }
 export { alphabetMatchingApp };

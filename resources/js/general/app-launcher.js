@@ -1,4 +1,4 @@
-import { alphabetCardTouchApp } from "../alphabet/alphabet-card-touch/alphabet-card-touch.js";
+import { alphabetCardTouchApp } from "../alphabet/alphabet-card-touch/alphabet-card-touch-index.js";
 import { alphabetMatchingApp } from "../alphabet/alphabet-matching/alphabet-matching-index.js";
 import { spellingTouchApp } from "../spelling/spelling-touch-app/spelling-touch-index.js";
 

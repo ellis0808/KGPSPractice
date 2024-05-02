@@ -1,6 +1,6 @@
 import { BufferLoader } from "../../../utilities/buffer-loader.js";
 import { audioContext, finishedLoading } from "./audio.js";
-import { scoreDisplay } from "./alphabet-card-touch.js";
+import { scoreDisplay } from "./alphabet-card-touch-index.js";
 
 function wobble(e) {
   e.currentTarget.preventDefault;

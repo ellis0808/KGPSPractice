@@ -1,11 +1,5 @@
 /* Imports */
-import {
-  menuContainer,
-  mainContainer,
-  navBar,
-  stylesheet,
-  body,
-} from "../../../utilities/variables.js";
+import { mainContainer, stylesheet } from "../../../utilities/variables.js";
 import { BufferLoader } from "../../../utilities/buffer-loader.js";
 import { audioContext, finishedLoading, speak } from "./audio.js";
 import { score } from "../../../utilities/score-object.js";
@@ -14,15 +8,10 @@ import {
   updatePositiveCount,
 } from "../../../utilities/update-score.js";
 
-import { scoreDisplay } from "../../alphabet/alphabet-card-touch/alphabet-card-touch.js";
+import { scoreDisplay } from "../../alphabet/alphabet-card-touch/alphabet-card-touch-index.js";
 import { alphabet } from "../../alphabet/alphabet-card-touch/alphabet.js";
 
-// import { speak } from "./audio.js";
-import {
-  displayMainPage,
-  div4,
-  startMainApp,
-} from "../../general/start-main-app.js";
+import { displayMainPage } from "../../general/start-main-app.js";
 import {
   removeMenuPage,
   restoreMainMenu,
@@ -35,23 +24,29 @@ GENERAL VARIABLES
 *****************
 */
 
-// Main App Container
+/* SCORING */
+const correctAnswerPoints = 5;
+const incorrectAnswerPoints = 2;
+
+/* Main App Container */
 const appContainer = document.createElement("div");
 appContainer.classList.add("container");
-appContainer.classList.add("letter-matching-app");
+appContainer.classList.add("spelling-touch-app");
 
-// Button Container 1 (Timer & Score Display)
+/* Common UI Elements */
 const timer = document.createElement("div");
 timer.classList.add("timer");
 timer.textContent = "1:00";
-
 const grid = document.createElement("div");
 grid.classList.add("grid");
 const btnContainer2 = document.createElement("div");
 btnContainer2.classList.add("btn-container2");
-btnContainer2.classList.add("card-touch-app");
 const startBtn = document.createElement("button");
 startBtn.setAttribute("id", "start-btn");
+const exitBtn = document.createElement("div");
+exitBtn.setAttribute("id", "exit-btn");
+exitBtn.classList.add("card-touch-app");
+exitBtn.addEventListener("click", endApp);
 const tryAgainBtn = document.createElement("div");
 tryAgainBtn.classList.add("try-again-btn");
 tryAgainBtn.innerText = "One More Time";
@@ -61,11 +56,20 @@ finishBtn.classList.add("finish-btn");
 finishBtn.addEventListener("click", endApp);
 finishBtn.innerText = "Finish";
 
-// const container = document.querySelector(".container");
+/* App Specific Display Elements */
 const letterDisplay = document.createElement("div");
-// const streakCount = document.createElement("streak");
-// streakCount.classList.add('streak')
-// let streak = 0;
+letterDisplay.classList.add("letter-display");
+const checkBtn = document.createElement("div");
+checkBtn.classList.add("check-btn");
+checkBtn.setAttribute("id", "check-btn");
+checkBtn.textContent = "Check";
+const repeatBtn = document.createElement("div");
+repeatBtn.classList.add("repeat-btn");
+repeatBtn.setAttribute("id", "repeat-btn");
+repeatBtn.textContent = "Repeat";
+
+/* Variables */
+
 const getBoxes = () => document.querySelectorAll(".box");
 const boxes = getBoxes();
 
@@ -91,18 +95,23 @@ Main App
 *****************
 */
 
+/* Starts Main App (exported to resources/js/general/app-launcher.js) */
 function spellingTouchApp() {
-  mainContainer.appendChild(appContainer);
-  appContainer.appendChild(btnContainer2);
-  btnContainer2.appendChild(startBtn);
-  startBtn.textContent = "Start";
-  appContainer.appendChild(grid);
-  grid.classList.add("gridHide");
-
-  removeMenuPage();
+  setTimeout(() => {
+    mainContainer.appendChild(appContainer);
+    appContainer.appendChild(btnContainer2);
+    btnContainer2.appendChild(startBtn);
+    startBtn.textContent = "Start";
+    btnContainer2.appendChild(exitBtn);
+    exitBtn.textContent = "\u2716";
+    appContainer.appendChild(grid);
+    grid.classList.add("gridHide");
+  }, 0);
 
   stylesheet.setAttribute("href", "../../resources/css/spelling-touch.css");
   displayStartBtn();
+
+  removeMenuPage();
 
   score.resetScore();
   resetTimer();
@@ -110,17 +119,27 @@ function spellingTouchApp() {
   appContainer.classList.remove("hide");
 }
 
+/* Removes Main App and Returns to Main Menu*/
 function endApp() {
   endSession();
   setTimeout(() => {
-    appContainer.removeChild(scoreDisplay);
-    appContainer.removeChild(timer);
+    if (appContainer.contains(letterDisplay)) {
+      appContainer.removeChild(letterDisplay);
+      appContainer.removeChild(repeatBtn);
+      appContainer.removeChild(checkBtn);
+      appContainer.removeChild(timer);
+      appContainer.removeChild(scoreDisplay);
+    }
     mainContainer.removeChild(appContainer);
     stylesheet.setAttribute("href", "../resources/css/styles.css");
     displayMainPage();
-    setTimeout(restoreMainMenu, 600);
+    setTimeout(restoreMainMenu, 100);
   }, 500);
+  score.resetScore();
+  resetTimer();
+  scoreDisplay.innerText = score.currentScore;
 }
+
 /* 
 *****************
 Sessions & Rounds
@@ -131,19 +150,27 @@ function displayStartBtn() {
   if (startBtn.classList.contains("no-touch")) {
     startBtn.classList.remove("no-touch");
     startBtn.classList.remove("spinfade");
+    exitBtn.classList.remove("no-touch");
+    exitBtn.classList.remove("hide2");
   }
   startBtn.addEventListener("click", startSession);
   score.resetScore();
 }
 function endSession() {
-  clearBoard();
+  clearGridAndEffects();
   appContainer.classList.add("hide");
   score.resetScore();
-  document.querySelector(".end-messages-container").remove();
+  if (document.querySelector(".end-messages-container")) {
+    document.querySelector(".end-messages-container").remove();
+  }
 }
 function startSession() {
   startBtn.classList.add("no-touch");
   startBtn.classList.add("spinfade");
+  startBtn.classList.remove("intro");
+  exitBtn.classList.add("no-touch");
+  exitBtn.classList.add("hide2");
+  exitBtn.classList.remove("intro");
   setTimeout(startNewRound, 950);
   setTimeout(() => {
     startTimer();
@@ -179,32 +206,40 @@ function startNewRound() {
 
   createGrid();
 
-  appContainer.appendChild(scoreDisplay);
-  appContainer.appendChild(timer);
-
-  getNewWord();
   setTimeout(() => {
+    appContainer.appendChild(scoreDisplay);
+    appContainer.appendChild(timer);
+    appContainer.appendChild(letterDisplay);
+    appContainer.appendChild(checkBtn);
+    appContainer.appendChild(repeatBtn);
+
+    getNewWord();
     updateBoxes();
     createFinalLettersArray();
     displayLetters();
     speak();
-  }, 1000);
+  }, 400);
 
   setTimeout(() => {
     enableTouch();
   }, 300);
   setTimeout(() => {
     grid.classList.remove("gridHide");
-  }, 100);
+  }, 300);
 }
-function start() {
-  clearAll();
-  createGrid();
-  getNewWord();
-  updateBoxes();
-  createFinalLettersArray();
-  displayLetters();
-  speak();
+
+function roundOver() {
+  disableTouch();
+  displayFinalScore();
+  setTimeout(disableTouch, 500);
+  setTimeout(disableTouch, 1000);
+  displayTryAgainAndFinishBtns();
+  grid.classList.add("blur");
+  timer.classList.add("blur");
+  scoreDisplay.classList.add("blur");
+  checkBtn.classList.add("blur");
+  repeatBtn.classList.add("blur");
+  letterDisplay.classList.add("blur");
 }
 
 function displayFinalScore() {
@@ -222,14 +257,27 @@ function displayFinalScore() {
   }, 400);
 }
 
+function displayTryAgainAndFinishBtns() {
+  const endGameMessagesContainer = document.querySelector(
+    ".end-messages-container"
+  );
+
+  setTimeout(() => {
+    endGameMessagesContainer.appendChild(tryAgainBtn);
+    tryAgainBtn.classList.add("slideinfromleft");
+    endGameMessagesContainer.appendChild(finishBtn);
+    finishBtn.classList.add("slideinfromright");
+  }, 1000);
+}
+
 /* 
 *******
-III. TIMER
+TIMER
 *******
 */
 
 let time;
-const roundTime = 60;
+const roundTime = 0;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
@@ -261,13 +309,13 @@ function resetTimer() {
   timer.classList.remove("wobble");
 }
 function disableTouch() {
-  const allTargets = document.querySelectorAll(".dot,.dot-enclosure");
+  const allTargets = document.querySelectorAll(".box");
   allTargets.forEach((target) => {
     target.classList.add("no-touch");
   });
 }
 function enableTouch() {
-  const allTargets = document.querySelectorAll(".dot,.dot-enclosure");
+  const allTargets = document.querySelectorAll(".box");
   allTargets.forEach((target) => {
     target.classList.remove("no-touch");
   });
@@ -301,7 +349,9 @@ function getNewWord() {
   return word;
 }
 
-// POPULATE GRID WORDS AND LETTERS
+/* POPULATE GRID WORDS AND LETTERS */
+
+//sends the target word letters and random letters to the final array to be displayed
 function createFinalLettersArray() {
   updateBoxes();
   console.log(boxes);
@@ -309,6 +359,7 @@ function createFinalLettersArray() {
   generateRandomLetter();
 }
 
+// clears the combined letters array and feeds in the letters of the latest word to it
 function pushTargetLetters() {
   combinedLettersArray.length = 0;
   for (let i = 0; i < currentLetters[0].split("").length; ++i) {
@@ -317,6 +368,8 @@ function pushTargetLetters() {
     );
   }
 }
+
+// generates random letters from the alphabet array to populate the remaining spaces in the grid
 function generateRandomLetter() {
   const maxElements = gridSize - currentLetters[0].split("").length;
   for (let i = 0; i < maxElements; i++) {
@@ -333,6 +386,7 @@ function generateRandomLetter() {
   }
 }
 
+// function for shuffling the arrays of letters so they don't come out in a predictable order
 function shuffleArray(array) {
   const shuffledArray = [...array];
   for (let i = shuffledArray.length - 1; i > 0; i--) {
@@ -343,6 +397,7 @@ function shuffleArray(array) {
   return shuffledArray;
 }
 
+// assigns letters from the final array to the boxes in the grid to be displayed; the boxes are given the data-id of the letter they display and an event listener that allows for touch functionality
 function displayLetters() {
   updateBoxes();
 
@@ -361,34 +416,38 @@ function displayLetters() {
   });
 }
 
-// TOUCH FUNCTIONALITY
+/*
+*******************
+TOUCH FUNCTIONALITY
+*******************
+*/
 
-// Buttons
-// startBtn.addEventListener("click", start);
-// checkBtn.addEventListener("click", checkSpelling);
-// repeatBtn.addEventListener("click", speak);
+/* BUTTONS */
+checkBtn.addEventListener("click", checkSpelling);
+repeatBtn.addEventListener("click", speak);
 
-// Letter Selection
+/* LETTER SELECTION */
+
 function letterTouch(e) {
   const oldBoxes = document.querySelectorAll(".newbox");
   const previousBoxes = document.querySelectorAll("[class^='previous']"); // selects every class that begins with 'previous'
 
   //  This takes the 'current selection' glow away
-  if (e.currentTarget.parentElement.classList.contains("current")) {
-    userSelectedLetters.pop(e.currentTarget.id);
+  if (e.currentTarget.classList.contains("current")) {
+    userSelectedLetters.pop(e.currentTarget.getAttribute("letter"));
     deselectBox(e);
     letterDisplay.textContent = `${userSelectedLetters.join("")}`;
-  } else if (!e.currentTarget.parentElement.classList.contains("current")) {
+  } else if (!e.currentTarget.classList.contains("current")) {
     oldBoxEffect(oldBoxes);
-    userSelectedLetters.push(e.currentTarget.id);
+    userSelectedLetters.push(e.currentTarget.getAttribute("letter"));
     letterDisplay.setAttribute("style", "max-width: 18ch;");
     letterDisplay.textContent = "";
     letterDisplay.textContent = `${userSelectedLetters.join("")}`;
     selectBox(e);
 
-    bufferLoader = new BufferLoader(
+    const bufferLoader = new BufferLoader(
       audioContext,
-      ["./SFX/カーソル移動1.mp3"],
+      ["resources/audio/sfx/カーソル移動1.mp3"],
       finishedLoading
     );
     bufferLoader.load();
@@ -441,7 +500,7 @@ function removeAllSelections() {
   });
 }
 
-// // moves current selection back to previous box
+// moves current selection back to previous box
 function reselectPreviousBox() {
   selectedBoxes = document.querySelectorAll("div[class*='selected'");
   let highestSelectedBox = document.querySelector(
@@ -560,20 +619,32 @@ function clearAll() {
   //   updateStreak();
   clearGridAndEffects();
 }
+
+/* ANSWER VALIDATION */
 function checkSpelling() {
   if (userSelectedLetters.join("") === word) {
-    correctSFX.play();
-    streak++;
+    const bufferLoader = new BufferLoader(
+      audioContext,
+      ["resources/audio/sfx/クイズ正解5.mp3"],
+      finishedLoading
+    );
+    bufferLoader.load();
+    // streak++;
     // updateStreak();
-    setTimeout(function () {
-      alert(`Correct! The word is ${word}!`);
-    }, 500);
-    setTimeout(newRound, 1500);
+    updatePositiveCount(correctAnswerPoints);
+    setTimeout(startNewRound, 1500);
   } else {
-    incorrectSFX.play();
-    alert(`Sorry, that is not the correct spelling. Listen again:`);
+    const bufferLoader = new BufferLoader(
+      audioContext,
+      ["resources/audio/sfx/クイズ不正解2.mp3"],
+      finishedLoading
+    );
+    bufferLoader.load();
+    updateNegativeCount(incorrectAnswerPoints);
+    setTimeout(function () {
+      alert(`Sorry, that is not the correct spelling. Listen again:`);
+    }, 800);
     speak();
-    streak = 0;
     clearDisplays();
     removeAllSelections();
   }
