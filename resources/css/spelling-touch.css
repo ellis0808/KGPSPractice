@@ -18,9 +18,7 @@
   --clr-acc1: #006747;
   --clr-wht: #fff;
   --hvr-opc: 0.7;
-  --box-width: 115px;
-  --margin-width: 5px;
-  --box-margin-width: calc(var(--box-width) + (var(--margin-width) * 2));
+
   --border-width: 1px;
 }
 
@@ -66,7 +64,7 @@ body:not(:has(*)) {
   02. Page Structure
   *****
   
-  */
+*/
 
 .main-container {
   grid-area: main-container;
@@ -80,12 +78,14 @@ body:not(:has(*)) {
   width: 100%;
   background: #222;
   display: grid;
-  grid-template-columns: 20px 200px 1fr 1fr 200px 20px;
-  grid-template-rows: 100px 100px 1fr;
+  grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
+  grid-template-rows: 0.1fr 0.25fr 0.25fr 0.25fr 1.25fr;
   grid-template-areas:
-    ".....  ..... timer  score-display .....  ....."
-    "..... repeat-btn letter-display letter-display check-btn ....."
-    ".....  .....  letter-grid letter-grid .....  .....";
+    "..... ..... ..... ....."
+    "..... timer score-display ....."
+    "..... letter-display letter-display ....."
+    "..... btn-container3 btn-container3 ....."
+    "..... letter-grid letter-grid .....";
   place-content: center;
   place-items: center;
   z-index: 0;
@@ -95,8 +95,14 @@ body:not(:has(*)) {
 }
 @media (width > 600px) {
   .container {
-    grid-template-columns: 0.25 175px 1fr 1fr 175px 0.25;
-    grid-template-rows: 100px 100px 1fr;
+    grid-template-columns: 0.25fr 175px 1fr 1fr 175px 0.25fr;
+    grid-template-rows: 0.1fr 0.2fr 0.25fr 0.2fr 1.25fr;
+    grid-template-areas:
+      "..... ..... ..... ..... ..... ....."
+      "..... ..... timer  score-display ..... ....."
+      "..... letter-display letter-display letter-display letter-display ....."
+      "..... .....  btn-container3  btn-container3 ..... ....."
+      ".....  .....  letter-grid letter-grid .....  .....";
   }
 }
 .btn-container1 {
@@ -121,17 +127,29 @@ body:not(:has(*)) {
   place-content: center;
   place-items: center;
 }
+.btn-container3 {
+  grid-area: btn-container3;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: "repeat-btn check-btn";
+  place-content: center;
+  place-items: center;
+  z-index: 50;
+}
 .grid {
   grid-area: letter-grid;
   max-width: 400px;
-  padding: 20px;
+  padding: 0px;
   /* border: solid 1px blue; */
-  border-radius: 15px;
+  /* border-radius: 15px; */
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  column-gap: 30px;
-  row-gap: 30px;
+  column-gap: 7px;
+  row-gap: 7px;
   grid-template-areas: "0 1 2 3 4" "5 6 7 8 9" "10 11 12 13 14" "15 16 17 18 19" "20 21 22 23 24";
   place-content: center;
   place-items: center;
@@ -139,6 +157,27 @@ body:not(:has(*)) {
   overflow: hidden;
   --stagger-delaay: 0.1s;
   transition: 0.3s;
+}
+@media (width > 600px) {
+  .grid {
+    grid-area: letter-grid;
+    max-width: 400px;
+    padding: 20px;
+    /* border: solid 1px blue; */
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    column-gap: 30px;
+    row-gap: 30px;
+    grid-template-areas: "0 1 2 3 4" "5 6 7 8 9" "10 11 12 13 14" "15 16 17 18 19" "20 21 22 23 24";
+    place-content: center;
+    place-items: center;
+    perspective: 1000px;
+    overflow: hidden;
+    --stagger-delaay: 0.1s;
+    transition: 0.3s;
+  }
 }
 
 @media (width > 600px) {
@@ -159,7 +198,7 @@ body:not(:has(*)) {
   03. UI Elements
   *****
   
-  */
+*/
 
 .timer {
   grid-area: timer;
@@ -197,8 +236,6 @@ body:not(:has(*)) {
   border: transparent;
   z-index: 10;
   transition: 0.6s;
-
-  animation: cardEntrance 0.5s ease-out;
 }
 
 @media (width > 600px) {
@@ -361,49 +398,27 @@ body:not(:has(*)) {
   transform: scale(1.07);
   transition: 0.3s;
 }
-.check-btn {
-  grid-area: check-btn;
-  width: 160px;
-  height: 75px;
-  font-size: 2.5rem;
-  text-align: center;
-  color: white;
-  background: rgb(161, 29, 29);
-  border: none;
-  border-radius: 15px;
-}
-.repeat-btn {
-  grid-area: repeat-btn;
-  width: 160px;
-  height: 75px;
-  font-size: 2.5rem;
-  text-align: center;
-  color: white;
-  background: rgb(26, 26, 168);
-  border: none;
-  border-radius: 15px;
-}
 
 /*
   
   *****
-  04. Letters
+  04. App Specific Elements
   *****
   
   */
 
 .letter-display {
   grid-area: letter-display;
-  height: 68%;
+  height: 100%;
   width: 100%;
   text-overflow: ellipsis;
   /* white-space: pre-wrap; */
   word-break: break-all;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   /* margin-bottom: 1.75rem; */
   font-family: var(--font-fam);
   text-align: center;
-  font-size: 2em;
+  font-size: 3rem;
   letter-spacing: 3px;
   color: white;
   display: grid;
@@ -411,6 +426,7 @@ body:not(:has(*)) {
   grid-template-rows: 1fr;
   /* place-content: end; */
   position: relative;
+  align-self: center;
 }
 @media (width > 600px) {
   .letter-display {
@@ -424,7 +440,7 @@ body:not(:has(*)) {
     /* margin-bottom: 1.75rem; */
     font-family: var(--font-fam);
     text-align: center;
-    font-size: 4.5em;
+    font-size: 5em;
     letter-spacing: 10px;
     color: white;
     display: grid;
@@ -434,36 +450,101 @@ body:not(:has(*)) {
     position: relative;
   }
 }
-.letter-display::after {
-  width: 100%;
-  height: 2px;
-  border: transparent solid 1px;
-  border-radius: 10px;
-  background: white;
-  align-self: end;
-  margin-bottom: -1.25rem;
-  content: "";
-  position: absolute;
+
+/* @media (width > 600px) {
+  .letter-display::after {
+    width: 100%;
+    height: 2px;
+    border: transparent solid 1px;
+    border-radius: 10px;
+    background: white;
+    align-self: end;
+    margin-bottom: -1.25rem;
+    content: "";
+    position: absolute;
+  }
+} */
+.check-btn {
+  grid-area: check-btn;
+  width: 110px;
+  height: 50px;
+  font-size: 1.8rem;
+  text-align: center;
+  color: white;
+  background: rgb(161, 29, 29);
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  place-items: center;
+  place-content: center;
+}
+@media (width > 600px) {
+  .check-btn {
+    width: 160px;
+    height: 75px;
+    font-size: 2.5rem;
+    border-radius: 15px;
+  }
+}
+.repeat-btn {
+  grid-area: repeat-btn;
+  width: 110px;
+  height: 50px;
+  font-size: 1.8rem;
+  text-align: center;
+  color: white;
+  background: rgb(26, 26, 168);
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  place-items: center;
+  place-content: center;
+}
+
+@media (width > 600px) {
+  .repeat-btn {
+    width: 160px;
+    height: 75px;
+    font-size: 2.5rem;
+    border-radius: 15px;
+  }
+}
+:root {
+  --box-width: 115px;
+  --box-width2: 65px;
+  --margin-width: 5px;
+  --box-margin-width: calc(var(--box-width) + (var(--margin-width) * 2));
+  --box-margin-width2: calc(var(--box-width2) + (var(--margin-width) * 2));
 }
 
 .box {
-  height: var(--box-width);
-  width: var(--box-width);
-  margin: var(--margin-width);
+  height: var(--box-width2);
+  width: var(--box-width2);
+  margin: var(--margin-width2);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  /* border: solid red 1px; */
   place-content: center;
   place-items: center;
   background: transparent;
 }
-/* span {
-  position: relative;
-} */
+@media (width > 600px) {
+  .box {
+    height: var(--box-width);
+    width: var(--box-width);
+    margin: var(--margin-width);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    place-content: center;
+    place-items: center;
+    background: transparent;
+  }
+}
+
 .letter {
   font-family: var(--font-fam);
-  font-size: 80px;
+  font-size: 55px;
   margin: auto;
   color: white;
 
@@ -471,6 +552,19 @@ body:not(:has(*)) {
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+}
+@media (width > 600px) {
+  .letter {
+    font-family: var(--font-fam);
+    font-size: 90px;
+    margin: auto;
+    color: white;
+
+    transition: 0.3s;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+  }
 }
 .letter:hover {
   transform: scale(1.2);
@@ -515,6 +609,10 @@ body:not(:has(*)) {
 
 .spinfade {
   animation: spin-and-fade 1.5s ease-in-out forwards;
+  transition: var(--transition);
+}
+.intro {
+  animation: cardEntrance 0.5s ease-out forwards;
   transition: var(--transition);
 }
 
@@ -730,7 +828,8 @@ body:not(:has(*)) {
     scale: 1.1;
   }
   100% {
-    scale: 1.2;
+    scale: 1.1;
+    border-radius: 0px;
   }
 }
 @keyframes boxmove {

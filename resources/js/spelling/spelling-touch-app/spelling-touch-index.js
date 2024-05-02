@@ -41,7 +41,9 @@ const grid = document.createElement("div");
 grid.classList.add("grid");
 const btnContainer2 = document.createElement("div");
 btnContainer2.classList.add("btn-container2");
-const startBtn = document.createElement("button");
+const btnContainer3 = document.createElement("div");
+btnContainer3.classList.add("btn-container3");
+const startBtn = document.createElement("div");
 startBtn.setAttribute("id", "start-btn");
 const exitBtn = document.createElement("div");
 exitBtn.setAttribute("id", "exit-btn");
@@ -63,10 +65,12 @@ const checkBtn = document.createElement("div");
 checkBtn.classList.add("check-btn");
 checkBtn.setAttribute("id", "check-btn");
 checkBtn.textContent = "Check";
+checkBtn.addEventListener("click", checkSpelling);
 const repeatBtn = document.createElement("div");
 repeatBtn.classList.add("repeat-btn");
 repeatBtn.setAttribute("id", "repeat-btn");
 repeatBtn.textContent = "Repeat";
+repeatBtn.addEventListener("click", speak);
 
 /* Variables */
 
@@ -166,8 +170,8 @@ function endSession() {
 }
 function startSession() {
   startBtn.classList.add("no-touch");
-  startBtn.classList.add("spinfade");
   startBtn.classList.remove("intro");
+  startBtn.classList.add("spinfade");
   exitBtn.classList.add("no-touch");
   exitBtn.classList.add("hide2");
   exitBtn.classList.remove("intro");
@@ -210,8 +214,9 @@ function startNewRound() {
     appContainer.appendChild(scoreDisplay);
     appContainer.appendChild(timer);
     appContainer.appendChild(letterDisplay);
-    appContainer.appendChild(checkBtn);
-    appContainer.appendChild(repeatBtn);
+    appContainer.appendChild(btnContainer3);
+    btnContainer3.appendChild(checkBtn);
+    btnContainer3.appendChild(repeatBtn);
 
     getNewWord();
     updateBoxes();
@@ -277,7 +282,7 @@ TIMER
 */
 
 let time;
-const roundTime = 0;
+const roundTime = 1000;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
@@ -354,7 +359,6 @@ function getNewWord() {
 //sends the target word letters and random letters to the final array to be displayed
 function createFinalLettersArray() {
   updateBoxes();
-  console.log(boxes);
   pushTargetLetters();
   generateRandomLetter();
 }
@@ -404,11 +408,7 @@ function displayLetters() {
   const shuffledArray = shuffleArray(combinedLettersArray);
   let boxes = document.querySelectorAll(".box");
   boxes.forEach((box, i) => {
-    console.log("test");
-    // const span = document.createElement("span");
-    // const letter = box.appendChild(span);
     const randomLetter = shuffledArray[i];
-
     box.classList.add("letter");
     box.setAttribute("letter", randomLetter);
     box.textContent = randomLetter;
@@ -421,10 +421,6 @@ function displayLetters() {
 TOUCH FUNCTIONALITY
 *******************
 */
-
-/* BUTTONS */
-checkBtn.addEventListener("click", checkSpelling);
-repeatBtn.addEventListener("click", speak);
 
 /* LETTER SELECTION */
 
