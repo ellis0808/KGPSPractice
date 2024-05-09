@@ -159,6 +159,9 @@ body:not(:has(*)) {
   animation: fadeIn 0.25s ease-in backwards;
   /* animation-delay: 0.75s; */
 }
+.test {
+  margin: auto;
+}
 .menu-container {
   grid-area: menu-container;
   width: 100%;
