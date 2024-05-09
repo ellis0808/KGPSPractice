@@ -13,7 +13,6 @@ import {
 } from "./audio.js";
 import { alphabet } from "./alphabet.js";
 import { wobble, spinfade, newRoundCardFlip, particles } from "./FX.js";
-// import { endCurrentApp } from "../../general/end-app.js";
 import { score } from "../../../utilities/score-object.js";
 import {
   updateNegativeCount,
@@ -64,6 +63,7 @@ btnContainer2.classList.add("btn-container2");
 const startBtn = document.createElement("button");
 startBtn.setAttribute("id", "start-btn");
 startBtn.classList.add("card-touch-app");
+startBtn.addEventListener("click", startRound);
 const exitBtn = document.createElement("div");
 exitBtn.setAttribute("id", "exit-btn");
 exitBtn.classList.add("card-touch-app");
@@ -127,7 +127,10 @@ function displayTimer() {
     }
   }, 1000);
 }
-
+function resetTimer() {
+  timer.innerText = "1:00";
+  timer.classList.remove("wobble");
+}
 function disableCardsAndRepeatBtn() {
   const allCards = document.querySelectorAll(".card");
   allCards.forEach((card) => {
@@ -147,6 +150,8 @@ function displayStartBtn() {
   if (startBtn.classList.contains("no-touch")) {
     startBtn.classList.remove("no-touch");
     startBtn.classList.remove("spinfade");
+    exitBtn.classList.remove("no-touch");
+    exitBtn.classList.remove("hide2");
   }
   startBtn.addEventListener("click", startRound);
   score.resetScore();
@@ -154,10 +159,12 @@ function displayStartBtn() {
 
 // Start Round
 function startRound() {
-  startBtn.classList.add("spinfade");
   startBtn.classList.add("no-touch");
+  startBtn.classList.remove("intro");
+  startBtn.classList.add("spinfade");
   exitBtn.classList.add("no-touch");
   exitBtn.classList.add("hide2");
+  exitBtn.classList.remove("intro");
   setTimeout(() => {
     enableCardsAndRepeatBtn();
     createBoard();
@@ -241,6 +248,7 @@ function displayFinalScore() {
       finalScoreAlert.classList.add("flip");
     });
   }, 400);
+  score.updateUserScore();
 }
 
 function displayTryAgainAndFinishBtns() {
@@ -306,8 +314,8 @@ function createBoard() {
     cardText.push(newCardText);
     ++i;
   });
-  btnContainer1.appendChild(repeatBtn);
-  btnContainer1.appendChild(scoreDisplay);
+  appContainer.appendChild(repeatBtn);
+  appContainer.appendChild(scoreDisplay);
   speak();
   setTimeout(toggleRepeatBtnHide, 2000);
   // }
@@ -320,7 +328,6 @@ let currentCardID;
 function touchCard(e) {
   currentCardID = this.getAttribute("data-id");
   if (parseInt(currentCardID) === correctCardID) {
-    console.log(e);
     correctCard(e);
     updatePositiveCount(correctAnswerPoints);
     disableCardsAndRepeatBtn();
@@ -348,7 +355,6 @@ function endAppButton() {
 
 function endApp() {
   const everything = document.querySelectorAll(".card-touch-app");
-  console.log(everything);
   everything.forEach((item) => {
     item.remove();
   });

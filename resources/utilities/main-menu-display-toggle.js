@@ -8,8 +8,8 @@ import {
   spellingTouchAppMenuItem,
   spellingWritingAppMenuItem,
   displayGreeting,
+  numberFluency1to20AppMenuItem,
 } from "../js/general/start-main-app.js";
-import { spellingTouchApp } from "../js/spelling/spelling-touch-app/spelling-touch-index.js";
 import {
   body,
   mainContainer,
@@ -22,6 +22,7 @@ import {
 function removeMenuPage() {
   alphabetCardTouchAppMenuItem.remove();
   alphabetMatchingAppMenuItem.remove();
+  numberFluency1to20AppMenuItem.remove();
   spellingTouchAppMenuItem.remove();
   spellingWritingAppMenuItem.remove();
   // navBar.classList.add("hidden");

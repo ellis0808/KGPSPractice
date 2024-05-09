@@ -1,3 +1,4 @@
+import { score } from "../../utilities/score-object.js";
 import {
   body,
   navBar,
@@ -11,6 +12,7 @@ import {
 import {
   startAlphabetCardTouchApp,
   startAlphabetMatchingApp,
+  startNumberFluency1to20App,
   startSpellingTouchApp,
 } from "./app-launcher.js";
 
@@ -31,7 +33,7 @@ numbersMenu.setAttribute("id", "div2");
 // abcMenu.setAttribute("page-id", "mainMenu");
 numbersMenu.classList.add("div", "div-start-menu2");
 numbersMenu.innerText = "1,2,3";
-
+numbersMenu.addEventListener("click", displayNumbersMenu);
 const spellingMenu = document.createElement("div");
 spellingMenu.setAttribute("id", "div3");
 // abcMenu.setAttribute("page-id", "mainMenu");
@@ -65,9 +67,19 @@ function setTopMenuVariables() {
   menuContainer.appendChild(spellingMenu);
   menuContainer.appendChild(div4);
 }
+
+const greetingDisplay = document.createElement("div");
+const pointsDisplay = document.createElement("div");
+greetingDisplay.classList.add("greeting-display");
+pointsDisplay.classList.add("points-display");
+
 function displayGreeting() {
   const greeting = `Hi, ${user}!`;
-  topContainer.innerText = greeting;
+  const userScore = `${score.userScore} pts`;
+  topContainer.appendChild(greetingDisplay);
+  topContainer.appendChild(pointsDisplay);
+  greetingDisplay.textContent = greeting;
+  pointsDisplay.textContent = userScore;
 }
 function displayMainPage() {
   mainMenu = true;
@@ -173,13 +185,6 @@ function displayAbcMenu() {
   return mainMenu;
 }
 
-function returnToMainMenuToggle(mainMenu) {
-  if (mainMenu === false) {
-    returnToMainMenuBtn.classList.remove("hidden");
-  } else if (mainMenu === true) {
-    returnToMainMenuBtn.classList.add("hidden");
-  }
-}
 // Displays the Spelling Menu
 function displaySpellingMenu() {
   mainMenu = false;
@@ -189,11 +194,54 @@ function displaySpellingMenu() {
   spellingMenu.classList.add("hidden");
   div4.classList.add("hidden");
   menuContainer.appendChild(spellingTouchAppMenuItem);
-  menuContainer.appendChild(spellingWritingAppMenuItem);
+  // menuContainer.appendChild(spellingWritingAppMenuItem);
   menuContainer.appendChild(returnToMainMenuBtn);
   spellingTouchAppMenuItem.classList.remove("hidden");
-  spellingWritingAppMenuItem.classList.remove("hidden");
+  // spellingWritingAppMenuItem.classList.remove("hidden");
   return mainMenu;
+}
+
+/* "Number" Menu Items  (1) */
+
+// 1. Number Fluency 1-20 App Menu Item
+const numberFluency1to20AppMenuItem = document.createElement("div");
+numberFluency1to20AppMenuItem.setAttribute(
+  "id",
+  "number-fluency-1-to-20-app-menu-item"
+);
+numberFluency1to20AppMenuItem.classList.add("div");
+numberFluency1to20AppMenuItem.innerText = "Touch 1-20";
+numberFluency1to20AppMenuItem.addEventListener(
+  "click",
+  startNumberFluency1to20App
+);
+
+// 2. Alphabet Matching App Menu Item
+
+/* Number menu items fin */
+
+// Displays the Numbers Menu
+function displayNumbersMenu() {
+  mainMenu = false;
+  topContainer.innerText = "Numbers";
+  abcMenu.classList.add("hidden");
+  numbersMenu.classList.add("hidden");
+  spellingMenu.classList.add("hidden");
+  div4.classList.add("hidden");
+  menuContainer.appendChild(numberFluency1to20AppMenuItem);
+  // menuContainer.appendChild(alphabetMatchingAppMenuItem);
+  menuContainer.appendChild(returnToMainMenuBtn);
+  numberFluency1to20AppMenuItem.classList.remove("hidden");
+  // alphabetMatchingAppMenuItem.classList.remove("hidden");
+  return mainMenu;
+}
+
+function returnToMainMenuToggle(mainMenu) {
+  if (mainMenu === false) {
+    returnToMainMenuBtn.classList.remove("hidden");
+  } else if (mainMenu === true) {
+    returnToMainMenuBtn.classList.add("hidden");
+  }
 }
 
 export {
@@ -205,6 +253,7 @@ export {
   abcMenu,
   alphabetCardTouchAppMenuItem,
   alphabetMatchingAppMenuItem,
+  numberFluency1to20AppMenuItem,
   spellingTouchAppMenuItem,
   spellingWritingAppMenuItem,
   numbersMenu,

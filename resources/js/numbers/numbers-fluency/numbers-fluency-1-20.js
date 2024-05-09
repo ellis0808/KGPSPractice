@@ -1,7 +1,5 @@
 /* Imports */
 import { mainContainer, stylesheet } from "../../../utilities/variables.js";
-import { BufferLoader } from "../../../utilities/buffer-loader.js";
-import { audioContext, finishedLoading, speak } from "./audio.js";
 import { score } from "../../../utilities/score-object.js";
 import {
   updateNegativeCount,
@@ -9,14 +7,119 @@ import {
 } from "../../../utilities/update-score.js";
 
 import { scoreDisplay } from "../../alphabet/alphabet-card-touch/alphabet-card-touch-index.js";
-import { alphabet } from "../../alphabet/alphabet-card-touch/alphabet.js";
 
 import { displayMainPage } from "../../general/start-main-app.js";
 import {
   removeMenuPage,
   restoreMainMenu,
 } from "../../../utilities/main-menu-display-toggle.js";
-import { targetWordsArray } from "./target-words.js";
+import { BufferLoader } from "../../../utilities/buffer-loader.js";
+import { finishedLoading } from "./audio.js";
+
+let interval = 3000; // initial condition
+let run;
+function startInterval() {
+  run = setInterval(speakingInterval, interval); // start setInterval as "run"
+  return run;
+}
+
+let currentArray = [];
+let round = 3;
+let currentItem;
+let randNumber;
+function arrayGenerator() {
+  currentArray.length = 0;
+  if (round === 1) {
+    for (let i = 0; i < 7; ++i) {
+      randNumber = Math.floor(Math.random() * 10 + 1);
+      currentArray.push(randNumber);
+    }
+    ++round;
+    return;
+  }
+  if (round === 2) {
+    for (let i = 0; i < 10; ++i) {
+      randNumber = Math.floor(Math.random() * 10 + 1);
+      currentArray.push(randNumber);
+    }
+    ++round;
+    return;
+  }
+  if (round === 3) {
+    for (let i = 0; i < 17; ++i) {
+      randNumber = Math.floor(Math.random() * 10 + 1);
+      currentArray.push(randNumber);
+    }
+    ++round;
+    return;
+  }
+  if (round === 4) {
+    for (let i = 0; i < 25; ++i) {
+      randNumber = Math.floor(Math.random() * 10 + 1);
+      currentArray.push(randNumber);
+    }
+    ++round;
+    return;
+  }
+}
+let loop = 0;
+function speakingInterval() {
+  getCurrentItem();
+  clearInterval(run);
+
+  // change interval
+  interval = interval - 300;
+  if (interval < 1500) {
+    interval = 1500;
+  }
+
+  speak(currentItem);
+  run = setInterval(speakingInterval, interval, currentItem);
+  ++loop;
+
+  //stop interval
+  if (loop === currentArray.length) {
+    clearInterval(run);
+  }
+}
+// function chooseCurrentItem() {
+//   return randNumber;
+// }
+
+/* AUDIO */
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+let source = null;
+
+function getCurrentItem() {
+  let newRandNumber = Math.floor(Math.random() * currentArray.length);
+  currentItem = currentArray[newRandNumber].toString();
+  return currentItem;
+}
+function speak(currentItem) {
+  const synth = window.speechSynthesis;
+  let itemToBeSpoken = new SpeechSynthesisUtterance(currentItem);
+  synth.speak(itemToBeSpoken);
+}
+
+/* GRID */
+
+function createGrid() {
+  for (let i = 0; i < gridSize; ++i) {
+    const box = document.createElement("div");
+    box.classList.add("box", "btn");
+    box.setAttribute("id", `box${i}`);
+    if (i < 10) {
+      box.classList.add("item", "under11");
+    } else {
+      box.classList.add("item", "under21");
+    }
+    box.setAttribute("item", `${i + 1}`);
+    box.textContent = `${i + 1}`;
+    box.addEventListener("click", userTouch);
+    grid.appendChild(box);
+  }
+}
 
 /* 
 *****************
@@ -25,8 +128,8 @@ GENERAL VARIABLES
 */
 
 /* SCORING */
-const correctAnswerPoints = 5;
-const incorrectAnswerPoints = 2;
+const correctAnswerPoints = 1;
+const incorrectAnswerPoints = 1;
 
 /* Main App Container */
 const appContainer = document.createElement("div");
@@ -59,77 +162,12 @@ finishBtn.addEventListener("click", endApp);
 finishBtn.innerText = "Finish";
 
 /* App Specific Display Elements */
-const letterDisplay = document.createElement("div");
-letterDisplay.classList.add("letter-display");
-const checkBtn = document.createElement("div");
-checkBtn.classList.add("check-btn");
-checkBtn.setAttribute("id", "check-btn");
-checkBtn.textContent = "Check";
-checkBtn.addEventListener("click", checkSpelling);
-const repeatBtn = document.createElement("div");
-repeatBtn.classList.add("repeat-btn");
-repeatBtn.setAttribute("id", "repeat-btn");
-repeatBtn.textContent = "Repeat";
-repeatBtn.addEventListener("click", speak);
-const deleteBtn = document.createElement("div");
-deleteBtn.classList.add("delete-btn");
-deleteBtn.setAttribute("id", "delete-btn");
-deleteBtn.textContent = "Erase";
-deleteBtn.addEventListener("click", deleteLastEntry);
-// const clearBtn = document.createElement("div");
-// clearBtn.classList.add("clear-btn");
-// clearBtn.setAttribute("id", "clear-btn");
-// clearBtn.textContent = "Erase All";
-// clearBtn.addEventListener("click", deleteAllEntries);
+const mainDisplay = document.createElement("div");
+mainDisplay.classList.add("main-display");
 
 /* Variables */
 
-const getBoxes = () => document.querySelectorAll(".box");
-const boxes = getBoxes();
-
-function updateBoxes() {
-  const updatedBoxes = getBoxes();
-}
-let selectedBoxes = document.querySelectorAll("[class^='selected']");
-
-let word =
-  targetWordsArray[Math.floor(Math.random() * targetWordsArray.length)];
-
-const gridSize = 25;
-const targetWord = [];
-const userWord = [];
-const userSelectedLetters = [];
-const combinedLettersArray = [];
-const currentLetters = [];
-const comma = ",";
-const vowelsAndConsonants = [
-  "a",
-  "e",
-  "i",
-  "o",
-  "u",
-  "b",
-  "c",
-  "d",
-  "f",
-  "g",
-  "h",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
-];
+const gridSize = 20;
 
 /* 
 *****************
@@ -138,7 +176,7 @@ Main App
 */
 
 /* Starts Main App (exported to resources/js/general/app-launcher.js) */
-function spellingTouchApp() {
+function numberFluency1to20App() {
   setTimeout(() => {
     mainContainer.appendChild(appContainer);
     appContainer.appendChild(btnContainer2);
@@ -150,7 +188,10 @@ function spellingTouchApp() {
     grid.classList.add("gridHide");
   }, 0);
 
-  stylesheet.setAttribute("href", "../../resources/css/spelling-touch.css");
+  stylesheet.setAttribute(
+    "href",
+    "../../resources/css/number-fluency-1-20.css"
+  );
   displayStartBtn();
 
   removeMenuPage();
@@ -165,11 +206,8 @@ function spellingTouchApp() {
 function endApp() {
   endSession();
   setTimeout(() => {
-    if (appContainer.contains(letterDisplay)) {
-      appContainer.removeChild(letterDisplay);
-      btnContainer3.removeChild(repeatBtn);
-      btnContainer3.removeChild(checkBtn);
-      btnContainer3.removeChild(deleteBtn);
+    if (appContainer.contains(mainDisplay)) {
+      appContainer.removeChild(mainDisplay);
       appContainer.removeChild(timer);
       appContainer.removeChild(scoreDisplay);
     }
@@ -199,7 +237,6 @@ function displayStartBtn() {
   score.resetScore();
 }
 function endSession() {
-  clearGridAndEffects();
   appContainer.classList.add("hide");
   score.updateUserScore();
   if (document.querySelector(".end-messages-container")) {
@@ -228,7 +265,6 @@ function startNewSession() {
     scoreDisplay.innerText = score.currentScore;
     grid.classList.remove("blur");
     timer.classList.remove("blur");
-    btnContainer3.classList.remove("blur");
     scoreDisplay.classList.remove("blur");
   }, 50);
 
@@ -241,29 +277,19 @@ function startNewSession() {
 }
 
 function startNewRound() {
-  clearAll();
-
   grid.classList.remove("blur");
   timer.classList.remove("blur");
-  btnContainer3.classList.remove("blur");
   scoreDisplay.classList.remove("blur");
 
   createGrid();
-
+  arrayGenerator();
+  startInterval();
   setTimeout(() => {
     appContainer.appendChild(scoreDisplay);
     appContainer.appendChild(timer);
-    appContainer.appendChild(letterDisplay);
+    appContainer.appendChild(mainDisplay);
     appContainer.appendChild(btnContainer3);
-    btnContainer3.appendChild(checkBtn);
-    btnContainer3.appendChild(repeatBtn);
-    btnContainer3.appendChild(deleteBtn);
-
-    getNewWord();
-    updateBoxes();
-    speak();
-  }, 400);
-
+  }, 600);
   setTimeout(() => {
     enableTouch();
   }, 300);
@@ -281,8 +307,6 @@ function roundOver() {
   grid.classList.add("blur");
   timer.classList.add("blur");
   scoreDisplay.classList.add("blur");
-  btnContainer3.classList.add("blur");
-  letterDisplay.classList.add("blur");
 }
 
 function displayFinalScore() {
@@ -320,7 +344,7 @@ TIMER
 */
 
 let time;
-const roundTime = 60;
+const roundTime = 30;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
@@ -364,114 +388,13 @@ function enableTouch() {
   });
 }
 
-// CREATE GRID
-function createGrid() {
-  for (let i = 0; i < gridSize; ++i) {
-    const box = document.createElement("div");
-    box.classList.add("box");
-    box.setAttribute("id", `box${i}`);
-    if (i > 4) {
-      box.classList.add("letter", "vowel");
-    } else {
-      box.classList.add("letter", "consonant");
-    }
-    box.setAttribute("letter", `${vowelsAndConsonants[i]}`);
-    box.textContent = `${vowelsAndConsonants[i]}`;
-    box.addEventListener("click", letterTouch);
-    grid.appendChild(box);
-  }
+function userTouch(event) {
+  let currentAnswer = event.target.getAttribute("item");
+  checkAnswer(currentAnswer);
 }
 
-// GET WORDS
-
-function getNewWord() {
-  targetWord.length = 0;
-  currentLetters.length = 0;
-  word = targetWordsArray[Math.floor(Math.random() * targetWordsArray.length)];
-  targetWord.push(word);
-  currentLetters.push(...targetWord[0].split(comma));
-  return word;
-}
-
-/* POPULATE GRID WORDS AND LETTERS */
-
-//sends the target word letters and random letters to the final array to be displayed
-function createFinalLettersArray() {
-  pushVowelLetters();
-  updateBoxes();
-}
-
-// clears the combined letters array and feeds in the letters of the latest word to it
-function pushVowelLetters() {
-  let i;
-  for (i = 0; i < vowelsAndConsonants.length; ++i) {
-    let box = document.getElementById(`box${i}`);
-    box.classList.add("letter");
-    box.setAttribute("letter", `${vowels[i]}`);
-    box.textContent = `${vowels[i]}`;
-    console.log(box);
-    box.addEventListener("click", letterTouch);
-  }
-}
-/*
-*******************
-TOUCH FUNCTIONALITY
-*******************
-*/
-
-/* LETTER SELECTION */
-
-function letterTouch(e) {
-  userSelectedLetters.push(e.currentTarget.getAttribute("letter"));
-
-  letterDisplay.textContent = "";
-  letterDisplay.textContent = `${userSelectedLetters.join("")}`;
-  const bufferLoader = new BufferLoader(
-    audioContext,
-    ["resources/audio/sfx/カーソル移動1.mp3"],
-    finishedLoading
-  );
-  bufferLoader.load();
-}
-
-/* LETTER DELETION */
-function deleteLastEntry() {
-  userSelectedLetters.pop();
-  letterDisplay.textContent = `${userSelectedLetters.join("")}`;
-  const bufferLoader = new BufferLoader(
-    audioContext,
-    ["resources/audio/sfx/カーソル移動2.mp3"],
-    finishedLoading
-  );
-  bufferLoader.load();
-}
-
-function clearGrid() {
-  const oldLetters = document.querySelectorAll(".letter");
-  oldLetters.forEach((item) => {
-    item.remove();
-  });
-  userSelectedLetters.length = 0;
-}
-
-function clearDisplays() {
-  clearUserSelectedLetters();
-}
-function clearUserSelectedLetters() {
-  userSelectedLetters.length = 0;
-  letterDisplay.textContent = "";
-}
-function clearGridAndEffects() {
-  clearGrid();
-  clearUserSelectedLetters();
-}
-function clearAll() {
-  clearGridAndEffects();
-}
-
-/* ANSWER VALIDATION */
-function checkSpelling() {
-  if (userSelectedLetters.join("") === word) {
+function checkAnswer(currentAnswer) {
+  if (currentAnswer === currentItem) {
     const bufferLoader = new BufferLoader(
       audioContext,
       ["resources/audio/sfx/クイズ正解5.mp3"],
@@ -480,7 +403,6 @@ function checkSpelling() {
     bufferLoader.load();
 
     updatePositiveCount(correctAnswerPoints);
-    setTimeout(startNewRound, 1500);
   } else {
     const bufferLoader = new BufferLoader(
       audioContext,
@@ -489,13 +411,7 @@ function checkSpelling() {
     );
     bufferLoader.load();
     updateNegativeCount(incorrectAnswerPoints);
-    setTimeout(function () {
-      alert(`Sorry, that is not the correct spelling. Listen again:`);
-    }, 800);
-    speak();
-    clearDisplays();
-    removeAllSelections();
   }
 }
 
-export { word, spellingTouchApp };
+export { numberFluency1to20App };

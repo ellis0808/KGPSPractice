@@ -1,5 +1,6 @@
 import { alphabetCardTouchApp } from "../alphabet/alphabet-card-touch/alphabet-card-touch-index.js";
 import { alphabetMatchingApp } from "../alphabet/alphabet-matching/alphabet-matching-index.js";
+import { numberFluency1to20App } from "../numbers/numbers-fluency/numbers-fluency-1-20.js";
 import { spellingTouchApp } from "../spelling/spelling-touch-app/spelling-touch-index.js";
 
 function startAlphabetCardTouchApp() {
@@ -14,8 +15,8 @@ function startSpellingTouchApp() {
 function startSpellingWritingApp() {
   spellingWritingApp();
 }
-function startNumberFluencyApp() {
-  numberFluencyApp();
+function startNumberFluency1to20App() {
+  numberFluency1to20App();
 }
 function startNumberRecognitionApp() {
   numberRecognitionApp();
@@ -31,4 +32,5 @@ export {
   startAlphabetCardTouchApp,
   startAlphabetMatchingApp,
   startSpellingTouchApp,
+  startNumberFluency1to20App,
 };

@@ -71,16 +71,6 @@ repeatBtn.classList.add("repeat-btn");
 repeatBtn.setAttribute("id", "repeat-btn");
 repeatBtn.textContent = "Repeat";
 repeatBtn.addEventListener("click", speak);
-const deleteBtn = document.createElement("div");
-deleteBtn.classList.add("delete-btn");
-deleteBtn.setAttribute("id", "delete-btn");
-deleteBtn.textContent = "Erase";
-deleteBtn.addEventListener("click", deleteLastEntry);
-// const clearBtn = document.createElement("div");
-// clearBtn.classList.add("clear-btn");
-// clearBtn.setAttribute("id", "clear-btn");
-// clearBtn.textContent = "Erase All";
-// clearBtn.addEventListener("click", deleteAllEntries);
 
 /* Variables */
 
@@ -102,34 +92,6 @@ const userSelectedLetters = [];
 const combinedLettersArray = [];
 const currentLetters = [];
 const comma = ",";
-const vowelsAndConsonants = [
-  "a",
-  "e",
-  "i",
-  "o",
-  "u",
-  "b",
-  "c",
-  "d",
-  "f",
-  "g",
-  "h",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z",
-];
 
 /* 
 *****************
@@ -167,9 +129,8 @@ function endApp() {
   setTimeout(() => {
     if (appContainer.contains(letterDisplay)) {
       appContainer.removeChild(letterDisplay);
-      btnContainer3.removeChild(repeatBtn);
-      btnContainer3.removeChild(checkBtn);
-      btnContainer3.removeChild(deleteBtn);
+      appContainer.removeChild(repeatBtn);
+      appContainer.removeChild(checkBtn);
       appContainer.removeChild(timer);
       appContainer.removeChild(scoreDisplay);
     }
@@ -178,6 +139,7 @@ function endApp() {
     displayMainPage();
     setTimeout(restoreMainMenu, 100);
   }, 500);
+  score.resetScore();
   resetTimer();
   scoreDisplay.innerText = score.currentScore;
 }
@@ -201,7 +163,7 @@ function displayStartBtn() {
 function endSession() {
   clearGridAndEffects();
   appContainer.classList.add("hide");
-  score.updateUserScore();
+  score.resetScore();
   if (document.querySelector(".end-messages-container")) {
     document.querySelector(".end-messages-container").remove();
   }
@@ -228,7 +190,6 @@ function startNewSession() {
     scoreDisplay.innerText = score.currentScore;
     grid.classList.remove("blur");
     timer.classList.remove("blur");
-    btnContainer3.classList.remove("blur");
     scoreDisplay.classList.remove("blur");
   }, 50);
 
@@ -245,7 +206,6 @@ function startNewRound() {
 
   grid.classList.remove("blur");
   timer.classList.remove("blur");
-  btnContainer3.classList.remove("blur");
   scoreDisplay.classList.remove("blur");
 
   createGrid();
@@ -257,10 +217,11 @@ function startNewRound() {
     appContainer.appendChild(btnContainer3);
     btnContainer3.appendChild(checkBtn);
     btnContainer3.appendChild(repeatBtn);
-    btnContainer3.appendChild(deleteBtn);
 
     getNewWord();
     updateBoxes();
+    createFinalLettersArray();
+    displayLetters();
     speak();
   }, 400);
 
@@ -281,7 +242,8 @@ function roundOver() {
   grid.classList.add("blur");
   timer.classList.add("blur");
   scoreDisplay.classList.add("blur");
-  btnContainer3.classList.add("blur");
+  checkBtn.classList.add("blur");
+  repeatBtn.classList.add("blur");
   letterDisplay.classList.add("blur");
 }
 
@@ -320,7 +282,7 @@ TIMER
 */
 
 let time;
-const roundTime = 60;
+const roundTime = 1000;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
@@ -364,20 +326,19 @@ function enableTouch() {
   });
 }
 
+// BUTTON VARIABLES
+
+// const startBtn = document.createElement("button");
+// startBtn.setAttribute("id", "start-btn");
+// const checkBtn = document.querySelector(".check-btn");
+// const repeatBtn = document.querySelector(".repeat-btn");
+
 // CREATE GRID
 function createGrid() {
   for (let i = 0; i < gridSize; ++i) {
     const box = document.createElement("div");
     box.classList.add("box");
     box.setAttribute("id", `box${i}`);
-    if (i > 4) {
-      box.classList.add("letter", "vowel");
-    } else {
-      box.classList.add("letter", "consonant");
-    }
-    box.setAttribute("letter", `${vowelsAndConsonants[i]}`);
-    box.textContent = `${vowelsAndConsonants[i]}`;
-    box.addEventListener("click", letterTouch);
     grid.appendChild(box);
   }
 }
@@ -397,22 +358,64 @@ function getNewWord() {
 
 //sends the target word letters and random letters to the final array to be displayed
 function createFinalLettersArray() {
-  pushVowelLetters();
   updateBoxes();
+  pushTargetLetters();
+  generateRandomLetter();
 }
 
 // clears the combined letters array and feeds in the letters of the latest word to it
-function pushVowelLetters() {
-  let i;
-  for (i = 0; i < vowelsAndConsonants.length; ++i) {
-    let box = document.getElementById(`box${i}`);
-    box.classList.add("letter");
-    box.setAttribute("letter", `${vowels[i]}`);
-    box.textContent = `${vowels[i]}`;
-    console.log(box);
-    box.addEventListener("click", letterTouch);
+function pushTargetLetters() {
+  combinedLettersArray.length = 0;
+  for (let i = 0; i < currentLetters[0].split("").length; ++i) {
+    combinedLettersArray.push(
+      currentLetters[0].split("")[i].split(comma).toString()
+    );
   }
 }
+
+// generates random letters from the alphabet array to populate the remaining spaces in the grid
+function generateRandomLetter() {
+  const maxElements = gridSize - currentLetters[0].split("").length;
+  for (let i = 0; i < maxElements; i++) {
+    combinedLettersArray.push(
+      `${
+        alphabet[
+          Math.floor(
+            Math.random() *
+              (alphabet.length - currentLetters[0].split("").length)
+          )
+        ]
+      }`
+    );
+  }
+}
+
+// function for shuffling the arrays of letters so they don't come out in a predictable order
+function shuffleArray(array) {
+  const shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+
+  return shuffledArray;
+}
+
+// assigns letters from the final array to the boxes in the grid to be displayed; the boxes are given the data-id of the letter they display and an event listener that allows for touch functionality
+function displayLetters() {
+  updateBoxes();
+
+  const shuffledArray = shuffleArray(combinedLettersArray);
+  let boxes = document.querySelectorAll(".box");
+  boxes.forEach((box, i) => {
+    const randomLetter = shuffledArray[i];
+    box.classList.add("letter");
+    box.setAttribute("letter", randomLetter);
+    box.textContent = randomLetter;
+    box.addEventListener("click", letterTouch);
+  });
+}
+
 /*
 *******************
 TOUCH FUNCTIONALITY
@@ -422,28 +425,155 @@ TOUCH FUNCTIONALITY
 /* LETTER SELECTION */
 
 function letterTouch(e) {
-  userSelectedLetters.push(e.currentTarget.getAttribute("letter"));
+  const oldBoxes = document.querySelectorAll(".newbox");
+  const previousBoxes = document.querySelectorAll("[class^='previous']"); // selects every class that begins with 'previous'
 
-  letterDisplay.textContent = "";
-  letterDisplay.textContent = `${userSelectedLetters.join("")}`;
-  const bufferLoader = new BufferLoader(
-    audioContext,
-    ["resources/audio/sfx/カーソル移動1.mp3"],
-    finishedLoading
-  );
-  bufferLoader.load();
+  //  This takes the 'current selection' glow away
+  if (e.currentTarget.classList.contains("current")) {
+    userSelectedLetters.pop(e.currentTarget.getAttribute("letter"));
+    deselectBox(e);
+    letterDisplay.textContent = `${userSelectedLetters.join("")}`;
+  } else if (!e.currentTarget.classList.contains("current")) {
+    oldBoxEffect(oldBoxes);
+    userSelectedLetters.push(e.currentTarget.getAttribute("letter"));
+    letterDisplay.setAttribute("style", "max-width: 18ch;");
+    letterDisplay.textContent = "";
+    letterDisplay.textContent = `${userSelectedLetters.join("")}`;
+    selectBox(e);
+
+    const bufferLoader = new BufferLoader(
+      audioContext,
+      ["resources/audio/sfx/カーソル移動1.mp3"],
+      finishedLoading
+    );
+    bufferLoader.load();
+  }
 }
 
-/* LETTER DELETION */
-function deleteLastEntry() {
-  userSelectedLetters.pop();
-  letterDisplay.textContent = `${userSelectedLetters.join("")}`;
-  const bufferLoader = new BufferLoader(
-    audioContext,
-    ["resources/audio/sfx/カーソル移動2.mp3"],
-    finishedLoading
+//
+
+function selectBox(e) {
+  current(e);
+  addSelectedClassToBox(e);
+}
+function deselectBox(e) {
+  removeCurrent(e);
+  removeSelectedClassFromBox(e);
+  reselectPreviousBox();
+}
+
+function current(e) {
+  e.currentTarget.classList.add("current");
+  pulse(e);
+  newBoxEffect(e);
+}
+
+function removeCurrent(e) {
+  e.currentTarget.classList.remove("current");
+  noPulse(e);
+  noGlow(e);
+}
+
+function addSelectedClassToBox(e) {
+  selectedBoxes = document.querySelectorAll("div[class*='selected'");
+  e.currentTarget.classList.add(`selected${selectedBoxes.length + 1}`);
+  return selectedBoxes;
+}
+
+function removeSelectedClassFromBox(e) {
+  selectedBoxes = document.querySelectorAll("div[class*='selected'");
+  e.currentTarget.classList.remove(`selected${selectedBoxes.length}`);
+  selectedBoxes = document.querySelectorAll("div[class*='selected'");
+  return selectedBoxes;
+}
+
+function removeAllSelections() {
+  selectedBoxes = document.querySelectorAll("div[class*='selected'");
+  selectedBoxes.forEach((box) => {
+    for (let i = 0; i < 25; i++) {
+      box.classList.remove(`selected${i}`);
+    }
+  });
+}
+
+// moves current selection back to previous box
+function reselectPreviousBox() {
+  selectedBoxes = document.querySelectorAll("div[class*='selected'");
+  let highestSelectedBox = document.querySelector(
+    `.selected${selectedBoxes.length}`
   );
-  bufferLoader.load();
+  selectedBoxes = document.querySelectorAll("div[class*='selected'");
+  if (highestSelectedBox) {
+    highestSelectedBox.classList.remove("oldbox");
+    highestSelectedBox.classList.remove("oldboxglow");
+    highestSelectedBox.classList.add("current");
+    highestSelectedBox.classList.add("newbox");
+  }
+
+  return selectedBoxes;
+}
+
+// Add effects
+
+// Letter Pulse Effect
+function pulse(e) {
+  e.currentTarget.preventDefault;
+  e.currentTarget.classList.remove("pulse");
+  void e.currentTarget.offsetWidth;
+  e.currentTarget.classList.add("pulse");
+}
+
+// Last Selected Box Glow Effect
+function newBoxEffect(e) {
+  e.currentTarget.preventDefault;
+  e.currentTarget.classList.remove("newbox");
+  void e.currentTarget.offsetWidth;
+  e.currentTarget.classList.add("newbox");
+  e.currentTarget.classList.add("current");
+}
+
+// Previously Selected Box(es) Glow Effect
+function oldBoxEffect(oldBoxes) {
+  oldBoxes.forEach((oldBox) => {
+    oldBox.preventDefault;
+    oldBox.classList.remove("current");
+    oldBox.classList.remove("newbox");
+    void oldBox.offsetWidth;
+    oldBox.classList.add("oldbox");
+    oldBox.classList.add("oldboxglow");
+  });
+}
+// Remove effects
+function noPulse(e) {
+  e.currentTarget.preventDefault;
+  e.currentTarget.classList.remove("pulse");
+}
+function noGlow(e) {
+  if (e.currentTarget.classList.contains("newbox")) {
+    e.currentTarget.preventDefault;
+    e.currentTarget.classList.remove("newbox");
+  } else if (e.currentTarget.classList.contains("oldbox")) {
+    e.currentTarget.preventDefault;
+    e.currentTarget.classList.remove("oldbox");
+  }
+}
+
+function clearEffects() {
+  removeAllSelections();
+  const letters = document.querySelectorAll(".letter");
+  letters.forEach((item) => {
+    item.classList.remove("pulse");
+    item.classList.remove("oldbox");
+    item.classList.remove("oldboxglow");
+    item.classList.remove("newbox");
+    item.classList.remove("current");
+  });
+  boxes.forEach((box) => {
+    box.classList.remove("oldbox");
+    box.classList.remove("newbox");
+    box.classList.remove("current");
+    box.classList.remove("oldboxglow");
+  });
 }
 
 function clearGrid() {
@@ -452,20 +582,37 @@ function clearGrid() {
     item.remove();
   });
   userSelectedLetters.length = 0;
+  removeAllSelections();
 }
 
+function newRound() {
+  clearGridAndEffects();
+  getNewWord();
+  updateBoxes();
+  createFinalLettersArray();
+  displayLetters();
+  speak();
+}
+
+function updateStreak() {
+  streakCount.textContent = streak;
+}
 function clearDisplays() {
+  //   updateStreak();
   clearUserSelectedLetters();
+  clearEffects();
 }
 function clearUserSelectedLetters() {
   userSelectedLetters.length = 0;
   letterDisplay.textContent = "";
 }
 function clearGridAndEffects() {
+  clearEffects();
   clearGrid();
   clearUserSelectedLetters();
 }
 function clearAll() {
+  //   updateStreak();
   clearGridAndEffects();
 }
 
@@ -478,7 +625,8 @@ function checkSpelling() {
       finishedLoading
     );
     bufferLoader.load();
-
+    // streak++;
+    // updateStreak();
     updatePositiveCount(correctAnswerPoints);
     setTimeout(startNewRound, 1500);
   } else {

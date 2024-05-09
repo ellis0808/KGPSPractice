@@ -15,46 +15,63 @@
   --clr-ylw: rgb(248, 245, 56);
   --font-fam: "Noto Sans", sans-serif;
   --transition: all 0.25s ease-in-out;
-  --clr-acc1: rgb(0, 103, 71);
+  --clr-acc1: #006747;
   --clr-wht: #fff;
   --hvr-opc: 0.7;
+
+  --border-width: 1px;
 }
 
-body {
-  overflow: hidden;
-}
 h2 {
   color: white;
 }
 
 body {
+  height: 100vh;
+  width: 100vw;
   background: white;
-  margin: 0;
-  padding: 0;
   display: grid;
   place-content: center;
   grid-template-columns: 1fr;
-  grid-template-areas:
-    /* "navbar " */ "main-container";
+  grid-template-areas: "main-container";
+  touch-action: none;
+  overflow-y: hidden;
+  cursor: pointer;
+}
+@media (width > 600px) {
+  body {
+    height: 100vh;
+    width: 100vw;
+    background: white;
+    display: grid;
+    place-content: center;
+    grid-template-columns: 1fr;
+    grid-template-areas: "main-container";
+    touch-action: none;
+    overflow: hidden;
+  }
 }
 body::-webkit-scrollbar {
   width: 0.25;
 }
+body:not(:has(*)) {
+  display: none;
+}
 
 /*
-
-*****
-02. Page Structure
-*****
-
+  
+  *****
+  02. Page Structure
+  *****
+  
 */
 
 .main-container {
   grid-area: main-container;
-  overflow: hidden;
-  background: #222;
   height: 100vh;
   width: 100vw;
+  overflow: hidden;
+  background: #222;
 }
 .container {
   height: 100%;
@@ -62,39 +79,42 @@ body::-webkit-scrollbar {
   background: #222;
   display: grid;
   grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
-  grid-template-rows: 0.1fr 0.2fr 0.05fr 1fr 0.1fr;
+  grid-template-rows: 0.1fr 0.25fr 0.25fr 0.25fr 1.25fr;
   grid-template-areas:
     "..... ..... ..... ....."
     "..... timer score-display ....."
-    "..... repeat-btn repeat-btn ....."
-    ".....  card-grid card-grid ....."
-    "..... ..... ..... .....";
+    "..... letter-display letter-display ....."
+    "..... btn-container3 btn-container3 ....."
+    "..... letter-grid letter-grid .....";
   place-content: center;
   place-items: center;
+  z-index: 0;
+  /* position: absolute; */
   margin: auto;
   overflow: hidden;
 }
 @media (width > 600px) {
   .container {
-    height: 100%;
-    width: 100%;
-    background: #222;
-    display: grid;
-    grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
-    grid-template-rows: 0.1fr 0.2fr 0.1fr 1fr 0.1fr;
+    grid-template-columns: 0.25fr 0.25fr 1fr 1fr 0.25fr 0.25fr;
+    grid-template-rows: 0.1fr 100px 120px 90px 50px 1fr 0.1fr;
     grid-template-areas:
-      "..... ..... ..... ....."
-      "..... timer score-display ....."
-      "..... repeat-btn repeat-btn ....."
-      ".....  card-grid card-grid ....."
-      "..... ..... ..... .....";
-    place-content: center;
-    place-items: center;
-    margin: auto;
-    overflow: hidden;
+      "..... ..... ..... ..... ..... ....."
+      "..... ..... timer  score-display ..... ....."
+      "..... letter-display letter-display letter-display letter-display ....."
+      "..... .....  btn-container3  btn-container3 ..... ....."
+      "..... ..... ..... ..... ..... ....."
+      ".....  .....  grid grid .....  ....."
+      "..... ..... ..... ..... ..... .....";
   }
 }
-
+.btn-container1 {
+  grid-area: btn-container1;
+  width: 100%;
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "timer  score-display";
+}
 .btn-container2 {
   width: 100%;
   height: 100%;
@@ -109,96 +129,73 @@ body::-webkit-scrollbar {
   place-content: center;
   place-items: center;
 }
-#grid {
-  grid-area: card-grid;
+.btn-container3 {
+  grid-area: btn-container3;
   width: 100%;
   height: 100%;
-  /* padding: 20px; */
-  /* margin-top: 6rem; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-areas: "a   b   c" "d  e  f" "g  h  i";
-  gap: 25px;
+  grid-template-rows: 1fr;
+  grid-template-areas: "answer-display answer-display answer-display";
+  place-content: center;
+  place-items: center;
+  z-index: 50;
+}
+.grid {
+  grid-area: letter-grid;
+  max-width: 400px;
+  padding: 0px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  column-gap: 12px;
+  row-gap: 17px;
+  grid-template-areas:
+    "vowels vowels vowels vowels vowels"
+    "consonants consonants consonants consonants consonants"
+    "consonants consonants consonants consonants consonants"
+    "consonants consonants consonants consonants consonants"
+    "consonants consonants consonants consonants consonants";
   place-content: center;
   place-items: center;
   perspective: 1000px;
+  overflow: hidden;
   --stagger-delaay: 0.1s;
+  transition: 0.3s;
 }
 @media (width > 600px) {
-  #grid {
-    grid-area: card-grid;
-    width: 100%;
-    height: 100%;
+  .grid {
+    grid-area: grid;
+    max-width: 1000px;
+    max-height: 1000px;
+    padding: 20px;
+    /* border: solid 1px blue; */
+    border-radius: 15px;
     display: grid;
-    grid-template-columns: repeat(3, minmax(75px, 200px));
-    grid-template-rows: repeat(3, minmax(75px, 200px));
-    grid-template-areas: "a   b   c" "d  e  f" "g  h  i";
-    gap: 40px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    /* column-gap: 30px;
+    row-gap: 30px; */
+    grid-template-areas: "0 1 2 3 4" "5 6 7 8 9" "10 11 12 13 14" "15 16 17 18 19" "20 21 22 23 24";
     place-content: center;
     place-items: center;
     perspective: 1000px;
+    overflow: hidden;
     --stagger-delaay: 0.1s;
+    transition: 0.3s;
   }
 }
 
-/*
-
-*****
-03. Cards
-*****
-
-*/
-.card {
-  width: 90px;
-  height: 90px;
-  background: white;
-  /* border: var(--clr-acc1) 10px solid; */
-  border-radius: 15px;
-  font-size: 3rem;
-  letter-spacing: 5px;
-  display: flex;
-  flex: 1 1 auto;
-  place-content: center;
-  place-items: center;
-  transform-style: preserve-3d;
-  opacity: 1;
-  transition: opacity 0.5s;
-  z-index: 1;
-  animation: cardEntrance 0.3s ease-out;
-  animation-fill-mode: backwards;
-}
-@media (width > 600px) {
-  .card {
-    width: 150px;
-    height: 150px;
-    background: white;
-    /* border: var(--clr-acc1) 10px solid; */
-    border-radius: 15px;
-    font-size: 5rem;
-    letter-spacing: 5px;
-    display: flex;
-    flex: 1 1 auto;
-    place-content: center;
-    place-items: center;
-    transform-style: preserve-3d;
-    opacity: 1;
-    transition: opacity 0.5s;
-    z-index: 1;
-    animation: cardEntrance 0.3s ease-out;
-    animation-fill-mode: backwards;
-  }
-}
 .no-touch {
   pointer-events: none;
 }
 
 /*
-
-*****
-04. UI Elements
-*****
-
+  
+  *****
+  03. UI Elements
+  *****
+  
 */
 
 .timer {
@@ -207,55 +204,19 @@ body::-webkit-scrollbar {
   font-size: 5rem;
   display: flex;
   place-content: center;
-  justify-self: start;
 }
 .score-display {
   grid-area: score-display;
   color: rgb(248, 245, 56);
-  font-size: 6rem;
-  text-align: right;
+  font-size: 5rem;
   display: flex;
   place-content: center;
-  justify-self: end;
+  margin-left: 40px;
 }
-#repeat-btn {
-  grid-area: repeat-btn;
-  width: 115px;
-  height: 60px;
-  border: transparent;
-  border-radius: 15px;
-  color: white;
-  display: flex;
-  place-items: center;
-  place-content: center;
-  font-size: 1.75rem;
-  text-align: center;
-  margin: auto;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  padding: 0 0px;
-  background: rgb(26, 26, 168);
-  transition: 0.75s;
-}
+
 @media (width > 600px) {
-  #repeat-btn {
-    grid-area: repeat-btn;
-    width: 150px;
-    height: 75px;
-    border: transparent;
-    border-radius: 20px;
-    color: white;
-    display: flex;
-    place-items: center;
-    place-content: center;
-    font-size: 2rem;
-    text-align: center;
-    margin: auto;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    padding: 0 0px;
-    background: rgb(26, 26, 168);
-    transition: 0.75s;
+  .score-display {
+    font-size: 6rem;
   }
 }
 #start-btn {
@@ -382,6 +343,7 @@ body::-webkit-scrollbar {
   height: 100%;
   width: 100%;
   margin: auto;
+  /* padding: 20px; */
   display: flex;
   place-content: center;
   place-items: center;
@@ -434,13 +396,149 @@ body::-webkit-scrollbar {
   transform: scale(1.07);
   transition: 0.3s;
 }
+
 /*
+  
+  *****
+  04. App Specific Elements
+  *****
+  
+  */
 
-*****
-05. FX
-*****
+.answer-display {
+  grid-area: answer-display;
+  height: 100%;
+  width: 100%;
+  text-overflow: ellipsis;
+  /* white-space: pre-wrap; */
+  word-break: break-all;
+  /* margin-top: 2rem; */
+  /* margin-bottom: 1.75rem; */
+  font-family: var(--font-fam);
+  text-align: center;
+  font-size: 3rem;
+  letter-spacing: 3px;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  /* place-content: end; */
+  position: relative;
+  align-self: center;
+}
+@media (width > 600px) {
+  .answer-display {
+    grid-area: answer-display;
+    height: 100px;
+    width: 100%;
+    text-overflow: ellipsis;
+    /* white-space: pre-wrap; */
+    word-break: break-all;
+    margin-top: 2rem;
+    /* margin-bottom: 1.75rem; */
+    font-family: var(--font-fam);
+    text-align: center;
+    font-size: 5em;
+    letter-spacing: 10px;
+    color: white;
+    display: grid;
+    align-self: center;
+  }
+}
 
-*/
+:root {
+  --box-width: 115px;
+  --box-width2: 65px;
+  --margin-width: 5px;
+  --box-margin-width: calc(var(--box-width) + (var(--margin-width) * 2));
+  --box-margin-width2: calc(var(--box-width2) + (var(--margin-width) * 2));
+}
+
+.box {
+  height: var(--box-width2);
+  width: var(--box-width2);
+  margin: var(--margin-width2);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  place-content: center;
+  place-items: center;
+  background: transparent;
+}
+@media (width > 600px) {
+  .box {
+    height: var(--box-width);
+    width: var(--box-width);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    place-content: center;
+    place-items: center;
+    background: rgb(238, 238, 238);
+    font-size: 4rem;
+    transition: 0.25s;
+    border-radius: 7px;
+    box-shadow: 0 9px #999;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .box:hover {
+    scale: 1.05;
+    transition: 0.25s;
+  }
+  .box:active {
+    scale: 1;
+    transform: translateY(4px);
+    z-index: -10;
+    transition: 0.1s;
+  }
+}
+
+.letter {
+  font-family: var(--font-fam);
+  font-size: 55px;
+  margin: auto;
+  color: white;
+  transition: 0.3s;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+@media (width > 600px) {
+  .letter {
+    font-family: var(--font-fam);
+    font-size: 90px;
+    margin: auto;
+    color: white;
+
+    transition: 0.25s ease-out;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+  }
+}
+
+.vowel {
+  background-color: rgb(253, 156, 156);
+}
+.consonant {
+  background-color: rgb(156, 179, 253);
+}
+
+.letter:hover {
+  transform: scale(1.1);
+  transition: 0.2s ease-out;
+  /* text-shadow: white 0px 0 20px, blue 0px 0 20px, white 0px 0 30px, blue 0px 0 30px; */
+}
+
+/*
+  
+  *****
+  05. FX
+  *****
+  
+  */
 
 .blur {
   filter: blur(3px);
@@ -457,6 +555,12 @@ body::-webkit-scrollbar {
   pointer-events: none;
   /* z-index: -10; */
 }
+.gridHide {
+  opacity: 0;
+  transition: 0.25s;
+  pointer-events: none;
+  /* z-index: -10; */
+}
 .wobble {
   animation: wobble 0.5s ease-in-out backwards;
   transition: var(--transition);
@@ -467,18 +571,25 @@ body::-webkit-scrollbar {
   animation: spin-and-fade 1.5s ease-in-out forwards;
   transition: var(--transition);
 }
-
 .intro {
   animation: cardEntrance 0.5s ease-out forwards;
   transition: var(--transition);
 }
 
+.correctPulse {
+  animation: correct-pulse 0.5s ease-out forwards;
+  transition: var(--transition);
+}
 .newroundcardflip {
   animation: new-round-card-flip 0.6s ease-in-out forwards;
   transition: var(--transition);
 }
 .flip {
   animation: flip 0.6s ease-in-out forwards;
+  transition: var(--transition);
+}
+.pulse {
+  animation: pulse 0.4s ease-in-out forwards;
   transition: var(--transition);
 }
 .slideinfromleft {
@@ -515,6 +626,29 @@ body::-webkit-scrollbar {
     transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
   }
 }
+@keyframes correct-pulse {
+  0% {
+    background: white;
+  }
+  50% {
+    background: blue;
+  }
+  100% {
+    background: white;
+  }
+}
+@keyframes pulse {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.3;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
 @keyframes spin-and-fade {
   5% {
     transform: rotateY(0deg) scale(0.9);
@@ -601,46 +735,85 @@ body::-webkit-scrollbar {
   }
 }
 
-/* Particle Effect*/
+.hidden {
+  display: none;
+}
 
-div #particles {
-  position: absolute;
-  width: 50px;
-  height: 50px;
+.streak {
+  font-family: var(--font-fam);
+  font-size: 4rem;
+  font-weight: 700;
+  color: rgb(190, 7, 7);
+  letter-spacing: 3px;
 }
-#divparticles {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background: transparent;
+.letter-glow {
+  font-family: var(--font-fam);
+  font-size: 80px;
 }
-span {
-  display: block;
-  width: 4px;
-  height: 50px;
-  border-radius: 4px;
-  background: white;
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
-  position: absolute;
-  left: 50%;
-  bottom: 50%;
-  transform-origin: center bottom;
-  transition: transform 0.2s, opacity 0.45s;
-  transition-timing-function: ease-out;
+
+.pulse {
+  animation: pulse 0.5s ease-in-out forwards;
 }
-#newspanparticles {
-  display: block;
-  width: 4px;
-  height: 50px;
-  border-top-left-radius: 50%;
-  border-top-right-radius: 50%;
-  border-bottom-right-radius: 50%;
-  background: white;
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
-  position: absolute;
-  left: 50%;
-  bottom: 50%;
-  transform-origin: center bottom;
-  transition: transform 0.5s, opacity 0.45s;
-  transition-timing-function: ease-out;
+
+.newbox {
+  background: rgb(71, 71, 238);
+  border-radius: 15px;
+  animation: boxmove 3s linear forwards;
+  animation-iteration-count: infinite;
+  animation-composition: add;
+}
+.oldbox {
+  background: rgb(28, 28, 190);
+  border-radius: 15px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+.oldboxglow {
+  box-shadow: white 0px, 0px, 10px, blue 0px 0 10px, white 0px, 0px, 10px,
+    blue 0px 0 10px;
+}
+
+/* ANIMATIONS */
+@keyframes pulse {
+  50% {
+    scale: 1.5;
+  }
+  80% {
+    scale: 1;
+  }
+  88% {
+    scale: 1.3;
+  }
+  95% {
+    scale: 1.1;
+  }
+  100% {
+    scale: 1.1;
+    border-radius: 0px;
+  }
+}
+@keyframes boxmove {
+  /* 0% {
+        transform: rotateZ(0deg);
+    } */
+  25% {
+    transform: rotateZ(8deg);
+  }
+  75% {
+    transform: rotateZ(-8deg);
+  }
+  /* 100% {
+        transform: rotateZ(0deg);
+    } */
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

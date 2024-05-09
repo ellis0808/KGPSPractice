@@ -109,6 +109,20 @@ function alphabetMatchingApp() {
   appContainer.classList.remove("hide");
 }
 
+function endApp() {
+  endSession();
+  setTimeout(() => {
+    appContainer.removeChild(scoreDisplay);
+    appContainer.removeChild(timer);
+    mainContainer.removeChild(appContainer);
+    stylesheet.setAttribute("href", "../resources/css/styles.css");
+    displayMainPage();
+    setTimeout(restoreMainMenu, 600);
+  }, 500);
+  resetTimer();
+  scoreDisplay.innerText = score.currentScore;
+}
+
 /*
 *******
 II. SESSIONS & ROUNDS
@@ -126,7 +140,7 @@ function displayStartBtn() {
 function endSession() {
   clearBoard();
   appContainer.classList.add("hide");
-  score.resetScore();
+  score.updateUserScore();
   document.querySelector(".end-messages-container").remove();
 }
 function startSession() {
@@ -293,13 +307,15 @@ function removeCorrectPulseEffect() {
   console.log(alldots);
 }
 function correctMatch(event) {
-  if (line.text === event.target.getAttribute("txt")) {
+  if (correctDotsAndLines.includes(event.target.id)) {
+    event.preventDefault();
+    return;
+  } else if (line.text === event.target.getAttribute("txt")) {
     line.element.classList.add("correctPulse");
     const correctEndDot = document.querySelectorAll(`[line-id="${line.id}"]`);
     correctEndDot.forEach((item) => {
       if (!correctDotsAndLines.includes(item.id)) {
         correctDotsAndLines.push(item.id);
-        console.log(`Correct Array: ${correctDotsAndLines}`);
       }
     });
 
@@ -705,7 +721,12 @@ function onMouseDown(event) {
 
   getEventTargetID(event);
   event.target.classList.remove("correctPulse");
-
+  console.log(correctDotsAndLines);
+  if (correctDotsAndLines.includes(`${currentDotId}`)) {
+    event.target.classList.add("correctPulse");
+    event.preventDefault();
+    return;
+  }
   if (finalLinesIdArray.includes(`${currentDotId}-line`)) {
     finalLinesIdArray.splice(
       finalLinesIdArray.indexOf(`${currentDotId}-line`),
@@ -718,35 +739,33 @@ function onMouseDown(event) {
       1
     );
   }
-  const orphanedStartDots = document.querySelectorAll(
-    ".start-dot.correctPulse"
-  );
-  console.log(orphanedStartDots);
-  console.log(currentLinesIdArray);
-  orphanedStartDots.forEach((item) => {
-    if (!currentLinesIdArray.includes(`${item.id}-line`)) {
-      console.log(item.id);
-      correctDotsAndLines.splice(correctDotsAndLines.indexOf(item.id), 1);
-    }
-  });
-  if (correctDotsAndLines.includes(currentDotId)) {
-    removeCorrectPulseEffect();
-    correctDotsAndLines.splice(correctDotsAndLines.indexOf(currentDotId), 1);
-    const receivingDot = document.querySelectorAll(
-      `[line-id="${currentDotId}-line"].end-dot`
-    );
-    receivingDot.forEach((item) => {
-      if (!finalLinesIdArray.includes(`${item}-line`)) {
-        console.log(item.id.slice(0, 5));
-        correctDotsAndLines.splice(
-          correctDotsAndLines.indexOf(item.id.slice(0, 5)),
-          1
-        );
-      }
-    });
+  // const orphanedStartDots = document.querySelectorAll(
+  //   ".start-dot.correctPulse"
+  // );
+  // orphanedStartDots.forEach((item) => {
+  //   if (!currentLinesIdArray.includes(`${item.id}-line`)) {
+  //     console.log(item.id);
+  //     correctDotsAndLines.splice(correctDotsAndLines.indexOf(item.id), 1);
+  //   }
+  // });
+  // if (correctDotsAndLines.includes(currentDotId)) {
+  //   removeCorrectPulseEffect();
+  //   correctDotsAndLines.splice(correctDotsAndLines.indexOf(currentDotId), 1);
+  //   const receivingDot = document.querySelectorAll(
+  //     `[line-id="${currentDotId}-line"].end-dot`
+  //   );
+  //   receivingDot.forEach((item) => {
+  //     if (!finalLinesIdArray.includes(`${item}-line`)) {
+  //       console.log(item.id.slice(0, 5));
+  //       correctDotsAndLines.splice(
+  //         correctDotsAndLines.indexOf(item.id.slice(0, 5)),
+  //         1
+  //       );
+  //     }
+  //   });
 
-    addCorrectPulseEffect();
-  }
+  //   addCorrectPulseEffect();
+  // }
 
   if (line.isPressed) {
     getEventTargetID(event);
@@ -994,18 +1013,4 @@ function activateEventListeners() {
   grid.addEventListener("pointermove", onMouseMove, false);
 }
 
-function endApp() {
-  endSession();
-  setTimeout(() => {
-    appContainer.removeChild(scoreDisplay);
-    appContainer.removeChild(timer);
-    mainContainer.removeChild(appContainer);
-    stylesheet.setAttribute("href", "../resources/css/styles.css");
-    displayMainPage();
-    setTimeout(restoreMainMenu, 600);
-  }, 500);
-  score.resetScore();
-  resetTimer();
-  scoreDisplay.innerText = score.currentScore;
-}
 export { alphabetMatchingApp };
