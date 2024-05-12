@@ -27,7 +27,7 @@ let currentArray = [];
 let round = 1;
 let currentItem;
 let randNumber;
-function arrayGenerator(round) {
+function arrayGenerator() {
   currentArray.length = 0;
   if (round === 1) {
     for (let i = 0; i < 7; ++i) {
@@ -35,6 +35,7 @@ function arrayGenerator(round) {
       currentArray.push(randNumber);
     }
     ++round;
+    arrayGenerator();
     return;
   }
   if (round === 2) {
