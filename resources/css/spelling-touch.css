@@ -96,11 +96,12 @@ body:not(:has(*)) {
 @media (width > 600px) {
   .container {
     grid-template-columns: 0.25fr 0.25fr 1fr 1fr 0.25fr 0.25fr;
-    grid-template-rows: 0.1fr 100px 120px 90px 50px 1fr 0.1fr;
+    grid-template-rows: 0.1fr 100px 90px 20px 90px 50px 1fr 0.1fr;
     grid-template-areas:
       "..... ..... ..... ..... ..... ....."
       "..... ..... timer  score-display ..... ....."
       "..... letter-display letter-display letter-display letter-display ....."
+      "..... ..... ..... ..... ..... ....."
       "..... .....  btn-container3  btn-container3 ..... ....."
       "..... ..... ..... ..... ..... ....."
       ".....  .....  letter-grid letter-grid .....  ....."
@@ -139,6 +140,7 @@ body:not(:has(*)) {
   grid-template-areas: "repeat-btn delete-btn check-btn";
   place-content: center;
   place-items: center;
+  z-index: 50;
 }
 .grid {
   grid-area: letter-grid;
@@ -150,7 +152,7 @@ body:not(:has(*)) {
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
   column-gap: 7px;
-  row-gap: 7px;
+  row-gap: 15px;
   grid-template-areas:
     "vowels vowels vowels vowels vowels"
     "consonants consonants consonants consonants consonants"
@@ -171,7 +173,6 @@ body:not(:has(*)) {
     max-height: 1000px;
     padding: 20px;
     /* border: solid 1px blue; */
-    border-radius: 15px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
@@ -426,6 +427,8 @@ body:not(:has(*)) {
   /* place-content: end; */
   position: relative;
   align-self: center;
+  place-content: center;
+  place-items: stretch;
 }
 @media (width > 600px) {
   .letter-display {
@@ -433,7 +436,8 @@ body:not(:has(*)) {
     height: 100px;
     width: 100%;
     text-overflow: ellipsis;
-    /* white-space: pre-wrap; */
+    white-space: nowrap;
+    overflow: hidden;
     word-break: break-all;
     margin-top: 2rem;
     /* margin-bottom: 1.75rem; */
@@ -442,8 +446,10 @@ body:not(:has(*)) {
     font-size: 5em;
     letter-spacing: 10px;
     color: white;
-    display: grid;
+    display: flex;
     align-self: center;
+    z-index: 51;
+    padding-bottom: 2rem;
   }
 }
 
@@ -470,6 +476,18 @@ body:not(:has(*)) {
     border-radius: 15px;
   }
 }
+@media (hover: hover) and (pointer: fine) {
+  .check-btn:hover {
+    scale: 1.05;
+    transition: 0.25s;
+  }
+  .check-btn:active {
+    scale: 1;
+    transform: translateY(4px);
+    z-index: -10;
+    transition: 0.1s;
+  }
+}
 .repeat-btn {
   grid-area: repeat-btn;
   width: 110px;
@@ -494,7 +512,18 @@ body:not(:has(*)) {
     border-radius: 15px;
   }
 }
-
+@media (hover: hover) and (pointer: fine) {
+  .repeat-btn:hover {
+    scale: 1.05;
+    transition: 0.25s;
+  }
+  .repeat-btn:active {
+    scale: 1;
+    transform: translateY(4px);
+    z-index: -10;
+    transition: 0.1s;
+  }
+}
 .delete-btn {
   grid-area: delete-btn;
   width: 110px;
@@ -519,8 +548,20 @@ body:not(:has(*)) {
     border-radius: 15px;
   }
 }
+@media (hover: hover) and (pointer: fine) {
+  .delete-btn:hover {
+    scale: 1.05;
+    transition: 0.25s;
+  }
+  .delete-btn:active {
+    scale: 1;
+    transform: translateY(4px);
+    z-index: -10;
+    transition: 0.1s;
+  }
+}
 :root {
-  --box-width: 115px;
+  --box-width: 110px;
   --box-width2: 65px;
   --margin-width: 5px;
   --box-margin-width: calc(var(--box-width) + (var(--margin-width) * 2));
@@ -537,6 +578,8 @@ body:not(:has(*)) {
   place-content: center;
   place-items: center;
   background: transparent;
+  border-radius: 7px;
+  font-size: 4rem;
 }
 @media (width > 600px) {
   .box {
@@ -551,7 +594,18 @@ body:not(:has(*)) {
     background: transparent;
   }
 }
-
+@media (hover: hover) and (pointer: fine) {
+  .box:hover {
+    scale: 1.05;
+    transition: 0.25s;
+  }
+  .box:active {
+    scale: 1;
+    transform: translateY(4px);
+    z-index: -10;
+    transition: 0.1s;
+  }
+}
 .letter {
   font-family: var(--font-fam);
   font-size: 55px;
@@ -565,7 +619,7 @@ body:not(:has(*)) {
 @media (width > 600px) {
   .letter {
     font-family: var(--font-fam);
-    font-size: 90px;
+    font-size: 5rem;
     margin: auto;
     color: white;
 
@@ -578,15 +632,11 @@ body:not(:has(*)) {
 
 .vowel {
   background-color: rgb(253, 156, 156);
+  box-shadow: 0 9px rgb(160, 98, 98);
 }
 .consonant {
   background-color: rgb(156, 179, 253);
-}
-
-.letter:hover {
-  transform: scale(1.1);
-  transition: 0.2s ease-out;
-  /* text-shadow: white 0px 0 20px, blue 0px 0 20px, white 0px 0 30px, blue 0px 0 30px; */
+  box-shadow: 0 9px rgb(112, 129, 184);
 }
 
 /*

@@ -139,6 +139,8 @@ Main App
 
 /* Starts Main App (exported to resources/js/general/app-launcher.js) */
 function spellingTouchApp() {
+  stylesheet.setAttribute("href", "../../resources/css/spelling-touch.css");
+
   setTimeout(() => {
     mainContainer.appendChild(appContainer);
     appContainer.appendChild(btnContainer2);
@@ -150,7 +152,6 @@ function spellingTouchApp() {
     grid.classList.add("gridHide");
   }, 0);
 
-  stylesheet.setAttribute("href", "../../resources/css/spelling-touch.css");
   displayStartBtn();
 
   removeMenuPage();
@@ -214,16 +215,14 @@ function startSession() {
   exitBtn.classList.add("hide2");
   exitBtn.classList.remove("intro");
   setTimeout(startNewRound, 950);
-  setTimeout(() => {
-    startTimer();
-  }, 1000);
+  setTimeout(resetTimer, 500);
+  setTimeout(startTimer, 1000);
 }
 function startNewSession() {
   tryAgainBtn.classList.add("no-touch");
   finishBtn.classList.add("no-touch");
   setTimeout(() => {
     document.querySelector(".end-messages-container").remove();
-    clearBoard();
     score.resetScore();
     scoreDisplay.innerText = score.currentScore;
     grid.classList.remove("blur");
@@ -247,6 +246,7 @@ function startNewRound() {
   timer.classList.remove("blur");
   btnContainer3.classList.remove("blur");
   scoreDisplay.classList.remove("blur");
+  letterDisplay.classList.remove("blur");
 
   createGrid();
 
@@ -494,7 +494,6 @@ function checkSpelling() {
     }, 800);
     speak();
     clearDisplays();
-    removeAllSelections();
   }
 }
 

@@ -24,14 +24,14 @@ function startInterval() {
 }
 
 let currentArray = [];
-let round = 3;
+let round = 1;
 let currentItem;
 let randNumber;
-function arrayGenerator() {
+function arrayGenerator(round) {
   currentArray.length = 0;
   if (round === 1) {
     for (let i = 0; i < 7; ++i) {
-      randNumber = Math.floor(Math.random() * 10 + 1);
+      randNumber = Math.floor(Math.random() * 20 + 1);
       currentArray.push(randNumber);
     }
     ++round;
@@ -39,7 +39,7 @@ function arrayGenerator() {
   }
   if (round === 2) {
     for (let i = 0; i < 10; ++i) {
-      randNumber = Math.floor(Math.random() * 10 + 1);
+      randNumber = Math.floor(Math.random() * 20 + 1);
       currentArray.push(randNumber);
     }
     ++round;
@@ -47,7 +47,7 @@ function arrayGenerator() {
   }
   if (round === 3) {
     for (let i = 0; i < 17; ++i) {
-      randNumber = Math.floor(Math.random() * 10 + 1);
+      randNumber = Math.floor(Math.random() * 20 + 1);
       currentArray.push(randNumber);
     }
     ++round;
@@ -55,7 +55,7 @@ function arrayGenerator() {
   }
   if (round === 4) {
     for (let i = 0; i < 25; ++i) {
-      randNumber = Math.floor(Math.random() * 10 + 1);
+      randNumber = Math.floor(Math.random() * 20 + 1);
       currentArray.push(randNumber);
     }
     ++round;
@@ -139,7 +139,6 @@ appContainer.classList.add("spelling-touch-app");
 /* Common UI Elements */
 const timer = document.createElement("div");
 timer.classList.add("timer");
-timer.textContent = "1:00";
 const grid = document.createElement("div");
 grid.classList.add("grid");
 const btnContainer2 = document.createElement("div");
@@ -251,9 +250,6 @@ function startSession() {
   exitBtn.classList.add("hide2");
   exitBtn.classList.remove("intro");
   setTimeout(startNewRound, 950);
-  setTimeout(() => {
-    startTimer();
-  }, 1000);
 }
 function startNewSession() {
   tryAgainBtn.classList.add("no-touch");
@@ -261,6 +257,7 @@ function startNewSession() {
   setTimeout(() => {
     document.querySelector(".end-messages-container").remove();
     clearBoard();
+    displayRound(round);
     score.resetScore();
     scoreDisplay.innerText = score.currentScore;
     grid.classList.remove("blur");
@@ -277,6 +274,7 @@ function startNewSession() {
 }
 
 function startNewRound() {
+  displayRound(round);
   grid.classList.remove("blur");
   timer.classList.remove("blur");
   scoreDisplay.classList.remove("blur");
@@ -339,36 +337,12 @@ function displayTryAgainAndFinishBtns() {
 
 /* 
 *******
-TIMER
+ROUND DISPLAY
 *******
 */
 
-let time;
-const roundTime = 30;
-function startTimer() {
-  time = roundTime;
-  setTimeout(displayTimer, 500);
-}
-function displayTimer() {
-  const countDown = setInterval(() => {
-    --time;
-    if (time < 10) {
-      timer.textContent = `0:0${time}`;
-    } else {
-      timer.textContent = `0:${time}`;
-    }
-    if (time < 0) {
-      timer.textContent = "0:00";
-      clearInterval(countDown);
-      disableTouch();
-      timer.classList.add("wobble");
-      timer.classList.remove("wobble");
-      timer.classList.add("wobble");
-      timer.classList.remove("wobble");
-      timer.classList.add("wobble");
-      roundOver();
-    }
-  }, 1000);
+function displayRound(round) {
+  timer.textContent = `Round ${round}`;
 }
 
 function resetTimer() {
