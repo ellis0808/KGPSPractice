@@ -41,6 +41,7 @@ function removeMenuPage() {
 
 function restoreMainMenu() {
   // body.appendChild(navBar);
+  topContainer.innerText = "";
   body.appendChild(parentsInfo);
   mainContainer.appendChild(topContainer);
   mainContainer.appendChild(menuContainer);

@@ -65,7 +65,7 @@ function setTopMenuVariables() {
   menuContainer.appendChild(abcMenu);
   menuContainer.appendChild(numbersMenu);
   menuContainer.appendChild(spellingMenu);
-  menuContainer.appendChild(div4);
+  // menuContainer.appendChild(div4);
 }
 
 const greetingDisplay = document.createElement("div");
@@ -75,7 +75,7 @@ pointsDisplay.classList.add("points-display");
 
 function displayGreeting() {
   const greeting = `Hi, ${user}!`;
-  const userScore = `${score.userScore} pts`;
+  const userScore = `You have ${score.userScore} pts`;
   topContainer.appendChild(greetingDisplay);
   topContainer.appendChild(pointsDisplay);
   greetingDisplay.textContent = greeting;
@@ -103,6 +103,8 @@ returnToMainMenuBtn.setAttribute("id", "returnToMainMenuBtn");
 returnToMainMenuBtn.addEventListener("click", returnToMainMenu);
 
 function returnToMainMenu(mainMenu) {
+  topContainer.innerText = "";
+  displayGreeting();
   abcMenu.classList.remove("hidden");
   numbersMenu.classList.remove("hidden");
   spellingMenu.classList.remove("hidden");

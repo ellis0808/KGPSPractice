@@ -33,6 +33,7 @@ function alphabetCardTouchApp() {
     mainContainer.appendChild(appContainer);
     appContainer.appendChild(btnContainer1);
     appContainer.appendChild(btnContainer2);
+    appContainer.appendChild(btnContainer3);
     btnContainer2.appendChild(startBtn);
     startBtn.textContent = "Start";
     btnContainer2.appendChild(exitBtn);
@@ -71,6 +72,9 @@ exitBtn.addEventListener("click", endApp);
 const btnContainer1 = document.createElement("div");
 btnContainer1.classList.add("btn-container1");
 btnContainer1.setAttribute("id", "btn-container1");
+const btnContainer3 = document.createElement("div");
+btnContainer3.classList.add("btn-container3");
+btnContainer3.setAttribute("id", "btn-container3");
 const repeatBtn = document.createElement("div");
 repeatBtn.classList.add("repeat-btn");
 repeatBtn.classList.add("card-touch-app");
@@ -170,7 +174,7 @@ function startRound() {
     createBoard();
     disableCardsAndRepeatBtn();
     // toggleScoreDisplayHide();
-    appContainer.appendChild(timer);
+    btnContainer1.appendChild(timer);
   }, 1450);
   setTimeout(startTimer, 1950);
   setTimeout(enableCardsAndRepeatBtn, 2950);
@@ -314,8 +318,8 @@ function createBoard() {
     cardText.push(newCardText);
     ++i;
   });
-  appContainer.appendChild(repeatBtn);
-  appContainer.appendChild(scoreDisplay);
+  btnContainer3.appendChild(repeatBtn);
+  btnContainer1.appendChild(scoreDisplay);
   speak();
   setTimeout(toggleRepeatBtnHide, 2000);
   // }

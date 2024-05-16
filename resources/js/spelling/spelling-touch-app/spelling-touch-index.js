@@ -39,6 +39,8 @@ timer.classList.add("timer");
 timer.textContent = "1:00";
 const grid = document.createElement("div");
 grid.classList.add("grid");
+const btnContainer1 = document.createElement("div");
+btnContainer1.classList.add("btn-container1");
 const btnContainer2 = document.createElement("div");
 btnContainer2.classList.add("btn-container2");
 const btnContainer3 = document.createElement("div");
@@ -171,8 +173,7 @@ function endApp() {
       btnContainer3.removeChild(repeatBtn);
       btnContainer3.removeChild(checkBtn);
       btnContainer3.removeChild(deleteBtn);
-      appContainer.removeChild(timer);
-      appContainer.removeChild(scoreDisplay);
+      appContainer.removeChild(btnContainer1);
     }
     mainContainer.removeChild(appContainer);
     stylesheet.setAttribute("href", "../resources/css/styles.css");
@@ -251,8 +252,9 @@ function startNewRound() {
   createGrid();
 
   setTimeout(() => {
-    appContainer.appendChild(scoreDisplay);
-    appContainer.appendChild(timer);
+    appContainer.appendChild(btnContainer1);
+    btnContainer1.appendChild(scoreDisplay);
+    btnContainer1.appendChild(timer);
     appContainer.appendChild(letterDisplay);
     appContainer.appendChild(btnContainer3);
     btnContainer3.appendChild(checkBtn);

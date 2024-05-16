@@ -83,7 +83,7 @@ body:not(:has(*)) {
   grid-template-areas:
     "..... ..... ..... ....."
     "..... timer score-display ....."
-    "..... letter-display letter-display ....."
+    "..... main-display main-display ....."
     "..... btn-container3 btn-container3 ....."
     "..... letter-grid letter-grid .....";
   place-content: center;
@@ -100,7 +100,7 @@ body:not(:has(*)) {
     grid-template-areas:
       "..... ..... ..... ..... ..... ....."
       "..... ..... timer  score-display ..... ....."
-      "..... letter-display letter-display letter-display letter-display ....."
+      "..... main-display main-display main-display main-display ....."
       "..... .....  btn-container3  btn-container3 ..... ....."
       "..... ..... ..... ..... ..... ....."
       ".....  .....  grid grid .....  ....."
@@ -418,7 +418,7 @@ body:not(:has(*)) {
   text-align: center;
   font-size: 3rem;
   letter-spacing: 3px;
-  color: white;
+  color: rgb(180, 4, 4);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -439,10 +439,9 @@ body:not(:has(*)) {
     font-family: var(--font-fam);
     text-align: center;
     font-size: 5em;
-    letter-spacing: 10px;
-    color: white;
+    letter-spacing: 15px;
     display: grid;
-    align-self: center;
+    align-self: start;
   }
 }
 
