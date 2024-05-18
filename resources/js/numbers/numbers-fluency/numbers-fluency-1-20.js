@@ -16,20 +16,12 @@ import {
 import { BufferLoader } from "../../../utilities/buffer-loader.js";
 import { finishedLoading } from "./audio.js";
 
-function determineInterval() {
-  console.log(round);
-  if (round === 1) {
-    interval = interval;
-  } else if (round > 1) {
-    interval = interval * 0.9;
-  }
-  // return interval;
-}
 let interval = 2500;
 let run;
+let isPaused = false;
 let currentArray = [];
 let round = 0;
-let maxRounds = 10;
+let maxRounds = 30;
 let currentItem;
 let randNumber;
 let loop = 0;
@@ -37,30 +29,30 @@ let arrayItemCounter = 0;
 let numberOfWrongAnswers = 0;
 let numberOfRightAnswers = 0;
 let maxWrongAnswers = 5;
+let correctAnswerPoints;
+let incorrectAnswerPoints;
 
 function startInterval() {
-  // run = setInterval(speakingInterval, interval); // start setInterval as "run"
-  // return run;
-  // if (round === 1) {
-  //   interval = round1Ineterval;
-  // }
-  // if (round === 2) {
-  //   interval = round2Ineterval;
-  // }
-  // if (round === 3) {
-  //   interval = round3Ineterval;
-  // }
-  // if (round === 4) {
-  //   interval = round4Ineterval;
-  // }
-  // if (round === 5) {
-  //   interval = round5Ineterval;
-  // }
   console.log(interval);
-  run = setInterval(speakingInterval, interval); // start setInterval as "run"
+  if (!isPaused) {
+    run = setInterval(speakingInterval, interval); // start setInterval as "run"
+  }
   return run;
 }
-
+function determineInterval() {
+  console.log(round);
+  if (round === 1) {
+    interval = interval;
+  } else if (round > 1 && round < 6) {
+    interval = interval * 0.9;
+  } else if (round > 5 && round < 11) {
+    interval = interval * 0.95;
+  } else if (round > 10 && round < 16) {
+    interval = interval * 0.97;
+  } else if (round > 16 && round < 21) {
+    interval = interval * 0.98;
+  }
+}
 function arrayGenerator() {
   currentArray.length = 0;
   // if (round === 1) {
@@ -71,58 +63,25 @@ function arrayGenerator() {
   }
   console.log(currentArray);
   return;
-  // }
-  // if (round === 2) {
-  //   console.log("test 2");
-  //   currentArray.length = 0;
-  //   for (let i = 0; i < 10; ++i) {
-  //     randNumber = Math.floor(Math.random() * 20 + 1);
-  //     currentArray.push(randNumber);
-  //   }
-  //   console.log(currentArray);
-  //   return;
-  // }
-  // if (round === 3) {
-  //   console.log("test 3");
-  //   currentArray.length = 0;
-  //   for (let i = 0; i < 17; ++i) {
-  //     randNumber = Math.floor(Math.random() * 20 + 1);
-  //     currentArray.push(randNumber);
-  //   }
-  //   console.log(currentArray);
-  //   return;
-  // }
-  // if (round === 4) {
-  //   console.log("test 4");
-  //   currentArray.length = 0;
-  //   for (let i = 0; i < 25; ++i) {
-  //     randNumber = Math.floor(Math.random() * 20 + 1);
-  //     currentArray.push(randNumber);
-  //   }
-  //   console.log(currentArray);
-  //   return;
-  // }
 }
 function speakingInterval() {
-  getCurrentItem();
-  // clearInterval(run);
+  if (!isPaused) {
+    getCurrentItem();
+    if (!isPaused) {
+      speak(currentItem);
 
-  // change interval
-  // interval = interval - 300;
-  // if (interval < 1500) {
-  //   interval = 1500;
-  // }
+      ++loop;
 
-  speak(currentItem);
-  // run = setInterval(speakingInterval, interval, currentItem);
-  ++loop;
-
-  //stop interval
-  if (loop === currentArray.length) {
-    clearInterval(run);
-    setTimeout(newRound, 3000);
+      //stop interval
+      if (loop === currentArray.length) {
+        clearInterval(run);
+        setTimeout(newRound, 3000);
+      }
+    }
   }
 }
+
+// Reset Functions
 function resetLoop() {
   loop = 0;
   return loop;
@@ -136,12 +95,13 @@ function resetPenalties() {
   return numberOfWrongAnswers;
 }
 function resetInterval() {
-  interval = 0;
+  interval = 2500;
   return interval;
 }
-// function chooseCurrentItem() {
-//   return randNumber;
-// }
+function resetCorrectAnswerPoints() {
+  correctAnswerPoints = 0;
+  return correctAnswerPoints;
+}
 
 /* AUDIO */
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -185,13 +145,56 @@ GENERAL VARIABLES
 */
 
 /* SCORING */
-const correctAnswerPoints = 1;
-const incorrectAnswerPoints = 1;
+function determineCorrectAnswerPoints() {
+  if (round >= 1 && round < 10) {
+    correctAnswerPoints = 1;
+  } else if (round > 9 && round < 13) {
+    correctAnswerPoints = 2;
+  } else if (round > 12 && round < 16) {
+    correctAnswerPoints = 3;
+  } else if (round > 15 && round < 20) {
+    correctAnswerPoints = 4;
+  } else if (round > 19 && round < 23) {
+    correctAnswerPoints = 6;
+  } else if (round > 22 && round < 27) {
+    correctAnswerPoints = 8;
+  } else if (round > 26 && round < 28) {
+    correctAnswerPoints = 12;
+  } else if (round > 27 && round < 29) {
+    correctAnswerPoints = 15;
+  } else if (round > 28 && round < 30) {
+    correctAnswerPoints = 20;
+  } else if (round === 30) {
+    correctAnswerPoints = 25;
+  }
+}
 
 /* Main App Container */
 const appContainer = document.createElement("div");
 appContainer.classList.add("container");
 appContainer.classList.add("spelling-touch-app");
+const homeBtnContainer = document.createElement("div");
+homeBtnContainer.classList.add("home-btn-container", "hide");
+const homeBtn = document.createElement("button");
+homeBtn.classList.add("home-btn");
+homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
+homeBtn.addEventListener("click", goHome);
+appContainer.appendChild(homeBtnContainer);
+homeBtnContainer.appendChild(homeBtn);
+const reallyGoHomeContainer = document.createElement("div");
+reallyGoHomeContainer.classList.add("go-home-container");
+const reallyGoHomeMessageContainer = document.createElement("div");
+reallyGoHomeMessageContainer.classList.add("go-home-message");
+reallyGoHomeMessageContainer.textContent = "Go back to Menu?";
+reallyGoHomeContainer.appendChild(reallyGoHomeMessageContainer);
+const reallyGoHomeBtn = document.createElement("button");
+reallyGoHomeBtn.classList.add("go-home-btn");
+reallyGoHomeBtn.textContent = "Yes";
+reallyGoHomeBtn.addEventListener("click", endApp);
+const cancelGoHomeBtn = document.createElement("button");
+cancelGoHomeBtn.classList.add("cancel-go-home-btn");
+cancelGoHomeBtn.textContent = "Cancel";
+cancelGoHomeBtn.addEventListener("click", returnToApp);
 
 /* Common UI Elements */
 const timer = document.createElement("div");
@@ -199,6 +202,8 @@ timer.classList.add("timer");
 timer.textContent = `Round 1`;
 const grid = document.createElement("div");
 grid.classList.add("grid");
+const btnContainer1 = document.createElement("div");
+btnContainer1.classList.add("btn-container1");
 const btnContainer2 = document.createElement("div");
 btnContainer2.classList.add("btn-container2");
 const btnContainer3 = document.createElement("div");
@@ -208,6 +213,7 @@ startBtn.setAttribute("id", "start-btn");
 const exitBtn = document.createElement("div");
 exitBtn.setAttribute("id", "exit-btn");
 exitBtn.classList.add("card-touch-app");
+exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
 exitBtn.addEventListener("click", endApp);
 const tryAgainBtn = document.createElement("div");
 tryAgainBtn.classList.add("try-again-btn");
@@ -242,7 +248,6 @@ function numberFluency1to20App() {
     btnContainer2.appendChild(startBtn);
     startBtn.textContent = "Start";
     btnContainer2.appendChild(exitBtn);
-    exitBtn.textContent = "\u2716";
     appContainer.appendChild(grid);
     grid.classList.add("gridHide");
   }, 0);
@@ -266,8 +271,7 @@ function endApp() {
   setTimeout(() => {
     if (appContainer.contains(mainDisplay)) {
       appContainer.removeChild(mainDisplay);
-      appContainer.removeChild(timer);
-      appContainer.removeChild(scoreDisplay);
+      appContainer.removeChild(btnContainer1);
     }
     mainContainer.removeChild(appContainer);
     stylesheet.setAttribute("href", "../resources/css/styles.css");
@@ -276,7 +280,34 @@ function endApp() {
   }, 500);
   scoreDisplay.innerText = score.currentScore;
 }
-
+// pauses app
+function pause() {
+  disableTouch();
+  btnContainer1.classList.add("strong-blur");
+  btnContainer3.classList.add("strong-blur");
+  grid.classList.add("strong-blur");
+  isPaused = true;
+}
+function unPause() {
+  enableTouch();
+  btnContainer1.classList.remove("strong-blur");
+  btnContainer3.classList.remove("strong-blur");
+  grid.classList.remove("strong-blur");
+  isPaused = false;
+}
+function goHome() {
+  pause();
+  displayGoHomeConfirmation();
+}
+function displayGoHomeConfirmation() {
+  appContainer.appendChild(reallyGoHomeContainer);
+  reallyGoHomeContainer.appendChild(reallyGoHomeBtn);
+  reallyGoHomeContainer.appendChild(cancelGoHomeBtn);
+}
+function returnToApp() {
+  appContainer.removeChild(reallyGoHomeContainer);
+  unPause();
+}
 /* 
 *****************
 Sessions & Rounds
@@ -299,6 +330,9 @@ function endSession() {
   if (document.querySelector(".end-messages-container")) {
     document.querySelector(".end-messages-container").remove();
   }
+  if (document.querySelector(".go-home-container")) {
+    document.querySelector(".go-home-container").remove();
+  }
 }
 function startSession() {
   startBtn.classList.add("no-touch");
@@ -310,6 +344,7 @@ function startSession() {
   setTimeout(startNewRound, 950);
 }
 function startNewSession() {
+  score.currentScore = 0;
   tryAgainBtn.classList.add("no-touch");
   finishBtn.classList.add("no-touch");
   resetRoundNumberAndRoundDisplay();
@@ -323,6 +358,10 @@ function startNewSession() {
   }, 50);
   resetPenalties();
   resetInterval();
+  resetRoundNumberAndRoundDisplay();
+  resetLoop();
+  resetDisplayWrongAnswercount();
+  resetCorrectAnswerPoints();
   setTimeout(newRound, 300);
   setTimeout(() => {
     enableTouch();
@@ -341,7 +380,8 @@ function newRound() {
   resetLoop();
   ++round;
   determineInterval();
-
+  determineCorrectAnswerPoints();
+  reduceWrongAnswercount();
   if (round > maxRounds) {
     sessionOver();
     return;
@@ -357,8 +397,9 @@ function startNewRound() {
   timer.classList.remove("blur");
   scoreDisplay.classList.remove("blur");
 
-  appContainer.appendChild(scoreDisplay);
-  appContainer.appendChild(timer);
+  appContainer.appendChild(btnContainer1);
+  btnContainer1.appendChild(scoreDisplay);
+  btnContainer1.appendChild(timer);
   appContainer.appendChild(mainDisplay);
   appContainer.appendChild(btnContainer3);
   btnContainer3.appendChild(answerDisplay);
@@ -369,6 +410,7 @@ function startNewRound() {
   }, 300);
   setTimeout(() => {
     grid.classList.remove("gridHide");
+    homeBtnContainer.classList.remove("hide");
   }, 300);
 }
 
@@ -387,9 +429,12 @@ function gameOver() {
     setTimeout(() => {
       disableTouch();
     }, 300);
+    clearInterval(run);
     setTimeout(() => {
       alert("GAME OVER. Sorry, you missed more than five answers");
-    }, 1000);
+    }, 700);
+    displayFinalScore();
+    displayTryAgainAndFinishBtns();
   }
 }
 
@@ -429,6 +474,14 @@ ROUND DISPLAY
 
 function displayRound(round) {
   timer.textContent = `Round ${round}`;
+  roundEffect();
+}
+
+function roundEffect() {
+  timer.classList.add("wobble-pulse");
+  setTimeout(() => {
+    timer.classList.remove("wobble-pulse");
+  }, 500);
 }
 
 function disableTouch() {
@@ -457,7 +510,6 @@ function checkAnswer(currentAnswer) {
       finishedLoading
     );
     bufferLoader.load();
-
     updatePositiveCount(correctAnswerPoints);
     ++numberOfRightAnswers;
   } else {
@@ -476,6 +528,14 @@ function checkAnswer(currentAnswer) {
 let wrongAnswerCountArray = [];
 function displayWrongAnswerCount() {
   answerDisplay.textContent = `${wrongAnswerCountArray.join("")}`;
+}
+function resetDisplayWrongAnswercount() {
+  wrongAnswerCountArray.length = 0;
+  displayWrongAnswerCount();
+}
+function reduceWrongAnswercount() {
+  wrongAnswerCountArray.pop();
+  displayWrongAnswerCount();
 }
 
 export { numberFluency1to20App };

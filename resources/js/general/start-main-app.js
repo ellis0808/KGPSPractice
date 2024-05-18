@@ -50,7 +50,7 @@ div4.innerText = "4";
 
 /* Top Page Menu Items Display Functions */
 
-let mainMenu = true;
+let isMainMenu = true;
 function startMainApp() {
   stylesheet.setAttribute("href", "../resources/css/styles.css");
   displayMainPage();
@@ -82,13 +82,12 @@ function displayGreeting() {
   pointsDisplay.textContent = userScore;
 }
 function displayMainPage() {
-  mainMenu = true;
+  isMainMenu = true;
   const navBarDisplay = `${user}`;
   // const navItem = document.getElementById("nav-item");
   // navItem.innerHTML = ``;
 
   // navBar.innerHTML = navBarDisplay;
-  return mainMenu;
 }
 function hideParentsInfoBtn() {
   parentsInfo.classList.add("hidden");
@@ -102,7 +101,7 @@ returnToMainMenuBtn.classList.add("returnToMainMenuBtn");
 returnToMainMenuBtn.setAttribute("id", "returnToMainMenuBtn");
 returnToMainMenuBtn.addEventListener("click", returnToMainMenu);
 
-function returnToMainMenu(mainMenu) {
+function returnToMainMenu() {
   topContainer.innerText = "";
   displayGreeting();
   abcMenu.classList.remove("hidden");
@@ -113,8 +112,9 @@ function returnToMainMenu(mainMenu) {
   alphabetMatchingAppMenuItem.remove();
   spellingTouchAppMenuItem.remove();
   spellingWritingAppMenuItem.remove();
+  numberFluency1to20AppMenuItem.remove();
   displayMainPage();
-  returnToMainMenuToggle(mainMenu);
+  returnToMainMenuToggle();
 }
 // body.appendChild(navBar);
 
@@ -173,7 +173,7 @@ spellingWritingAppMenuItem.innerText = "Writing";
 
 // Displays the Alphabet Menu
 function displayAbcMenu() {
-  mainMenu = false;
+  isMainMenu = false;
   topContainer.innerText = "Alphabet";
   abcMenu.classList.add("hidden");
   numbersMenu.classList.add("hidden");
@@ -184,12 +184,12 @@ function displayAbcMenu() {
   menuContainer.appendChild(returnToMainMenuBtn);
   alphabetCardTouchAppMenuItem.classList.remove("hidden");
   alphabetMatchingAppMenuItem.classList.remove("hidden");
-  return mainMenu;
+  returnToMainMenuToggle();
 }
 
 // Displays the Spelling Menu
 function displaySpellingMenu() {
-  mainMenu = false;
+  isMainMenu = false;
   topContainer.innerText = "Spelling";
   abcMenu.classList.add("hidden");
   numbersMenu.classList.add("hidden");
@@ -200,7 +200,7 @@ function displaySpellingMenu() {
   menuContainer.appendChild(returnToMainMenuBtn);
   spellingTouchAppMenuItem.classList.remove("hidden");
   // spellingWritingAppMenuItem.classList.remove("hidden");
-  return mainMenu;
+  returnToMainMenuToggle();
 }
 
 /* "Number" Menu Items  (1) */
@@ -224,7 +224,7 @@ numberFluency1to20AppMenuItem.addEventListener(
 
 // Displays the Numbers Menu
 function displayNumbersMenu() {
-  mainMenu = false;
+  isMainMenu = false;
   topContainer.innerText = "Numbers";
   abcMenu.classList.add("hidden");
   numbersMenu.classList.add("hidden");
@@ -235,13 +235,13 @@ function displayNumbersMenu() {
   menuContainer.appendChild(returnToMainMenuBtn);
   numberFluency1to20AppMenuItem.classList.remove("hidden");
   // alphabetMatchingAppMenuItem.classList.remove("hidden");
-  return mainMenu;
+  returnToMainMenuToggle();
 }
 
-function returnToMainMenuToggle(mainMenu) {
-  if (mainMenu === false) {
+function returnToMainMenuToggle() {
+  if (!isMainMenu) {
     returnToMainMenuBtn.classList.remove("hidden");
-  } else if (mainMenu === true) {
+  } else if (isMainMenu) {
     returnToMainMenuBtn.classList.add("hidden");
   }
 }
