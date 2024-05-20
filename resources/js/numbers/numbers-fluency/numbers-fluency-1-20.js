@@ -297,7 +297,14 @@ function unPause() {
 }
 function goHome() {
   pause();
+  homeBtnEnlarge();
   displayGoHomeConfirmation();
+}
+function homeBtnEnlarge() {
+  homeBtn.classList.add("home-btn-enlarge");
+}
+function homeBtnReturnToNormal() {
+  homeBtn.classList.remove("home-btn-enlarge");
 }
 function displayGoHomeConfirmation() {
   appContainer.appendChild(reallyGoHomeContainer);
@@ -306,6 +313,7 @@ function displayGoHomeConfirmation() {
 }
 function returnToApp() {
   appContainer.removeChild(reallyGoHomeContainer);
+  homeBtnReturnToNormal();
   unPause();
 }
 /* 
@@ -327,12 +335,23 @@ function displayStartBtn() {
 function endSession() {
   appContainer.classList.add("hide");
   score.updateUserScore();
+  const allBoxes = document.querySelectorAll(".box");
+  allBoxes.forEach((box) => {
+    box.remove();
+  });
   if (document.querySelector(".end-messages-container")) {
     document.querySelector(".end-messages-container").remove();
   }
   if (document.querySelector(".go-home-container")) {
     document.querySelector(".go-home-container").remove();
   }
+  resetPenalties();
+  resetInterval();
+  resetRoundNumberAndRoundDisplay();
+  resetLoop();
+  resetDisplayWrongAnswercount();
+  resetCorrectAnswerPoints();
+  grid.remove();
 }
 function startSession() {
   startBtn.classList.add("no-touch");

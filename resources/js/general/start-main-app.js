@@ -74,6 +74,8 @@ greetingDisplay.classList.add("greeting-display");
 pointsDisplay.classList.add("points-display");
 
 function displayGreeting() {
+  isMainMenu = true;
+  returnToMainMenuToggle();
   const greeting = `Hi, ${user}!`;
   const userScore = `You have ${score.userScore} pts`;
   topContainer.appendChild(greetingDisplay);
