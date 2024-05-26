@@ -68,6 +68,7 @@ function speakingInterval() {
   if (!isPaused) {
     getCurrentItem();
     if (!isPaused) {
+      enableTouch();
       speak(currentItem);
 
       ++loop;
@@ -179,8 +180,11 @@ const homeBtn = document.createElement("button");
 homeBtn.classList.add("home-btn");
 homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
 homeBtn.addEventListener("click", goHome);
+const pauseBtn = document.createElement("div");
+pauseBtn.classList.add("pause-btn");
+pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
+pauseBtn.addEventListener("click", pause);
 appContainer.appendChild(homeBtnContainer);
-homeBtnContainer.appendChild(homeBtn);
 const reallyGoHomeContainer = document.createElement("div");
 reallyGoHomeContainer.classList.add("go-home-container");
 const reallyGoHomeMessageContainer = document.createElement("div");
@@ -281,24 +285,76 @@ function endApp() {
   scoreDisplay.innerText = score.currentScore;
 }
 // pauses app
-function pause() {
-  disableTouch();
-  btnContainer1.classList.add("strong-blur");
-  btnContainer3.classList.add("strong-blur");
-  grid.classList.add("strong-blur");
-  isPaused = true;
+function removeBlur() {
+  if (document.querySelector(".blur")) {
+    let blurredItems = document.querySelectorAll(".blur").forEach((item) => {
+      item.classList.remove("blur");
+    });
+  }
+  if (document.querySelector(".strong-blur")) {
+    let stronglyBlurredItems = document
+      .querySelectorAll(".strong-blur")
+      .forEach((item) => {
+        item.classList.remove("strong-blur");
+      });
+  }
 }
-function unPause() {
+
+function pause() {
+  isPaused = true;
+  disableTouch();
+  pauseBtn.removeEventListener("click", pause);
+  setTimeout(() => {
+    btnContainer1.classList.add("strong-blur");
+    btnContainer3.classList.add("strong-blur");
+    grid.classList.add("strong-blur");
+  }, 50);
+  pauseBtn.addEventListener("click", unpause);
+}
+function unpause() {
+  pauseBtn.removeEventListener("click", unpause);
+  enableTouch();
+  removeBlur();
+  setTimeout(() => {
+    isPaused = false;
+  }, 500);
+  pauseBtn.addEventListener("click", pause);
+}
+function unpause2() {
+  pauseBtn.removeEventListener("click", unpause);
   enableTouch();
   btnContainer1.classList.remove("strong-blur");
   btnContainer3.classList.remove("strong-blur");
   grid.classList.remove("strong-blur");
-  isPaused = false;
+  setTimeout(() => {
+    isPaused = false;
+  }, 500);
+  pauseBtn.addEventListener("click", pause);
+}
+let homeBtnIsGoHome = true;
+let pauseBtnPauses = true;
+
+function resetNavigationBtns() {
+  homeBtnIsGoHome = true;
+  pauseBtnPauses = true;
+  homeBtn.removeEventListener("click", returnToApp);
+  homeBtn.addEventListener("click", goHome);
+  pauseBtn.removeEventListener("click", returnToApp);
+  pauseBtn.addEventListener("click", pause);
+  homeBtnReturnToNormal();
 }
 function goHome() {
   pause();
   homeBtnEnlarge();
   displayGoHomeConfirmation();
+  if (homeBtnIsGoHome) {
+    homeBtnIsGoHome = false;
+    pauseBtnPauses = false;
+    homeBtn.removeEventListener("click", goHome);
+    homeBtn.addEventListener("click", returnToApp);
+    pauseBtn.removeEventListener("click", unpause);
+    pauseBtn.addEventListener("click", returnToApp);
+  }
 }
 function homeBtnEnlarge() {
   homeBtn.classList.add("home-btn-enlarge");
@@ -314,7 +370,13 @@ function displayGoHomeConfirmation() {
 function returnToApp() {
   appContainer.removeChild(reallyGoHomeContainer);
   homeBtnReturnToNormal();
-  unPause();
+  unpause();
+  homeBtnIsGoHome = true;
+  pauseBtnPauses = true;
+  homeBtn.removeEventListener("click", returnToApp);
+  homeBtn.addEventListener("click", goHome);
+  pauseBtn.removeEventListener("click", returnToApp);
+  pauseBtn.addEventListener("click", pause);
 }
 /* 
 *****************
@@ -334,6 +396,7 @@ function displayStartBtn() {
 }
 function endSession() {
   appContainer.classList.add("hide");
+  homeBtnContainer.classList.add("hide");
   score.updateUserScore();
   const allBoxes = document.querySelectorAll(".box");
   allBoxes.forEach((box) => {
@@ -351,6 +414,7 @@ function endSession() {
   resetLoop();
   resetDisplayWrongAnswercount();
   resetCorrectAnswerPoints();
+  resetNavigationBtns();
   grid.remove();
 }
 function startSession() {
@@ -429,6 +493,8 @@ function startNewRound() {
   }, 300);
   setTimeout(() => {
     grid.classList.remove("gridHide");
+    homeBtnContainer.appendChild(homeBtn);
+    homeBtnContainer.appendChild(pauseBtn);
     homeBtnContainer.classList.remove("hide");
   }, 300);
 }
@@ -518,10 +584,10 @@ function enableTouch() {
 
 function userTouch(event) {
   let currentAnswer = event.target.getAttribute("item");
-  checkAnswer(currentAnswer);
+  checkAnswer(currentAnswer, event);
 }
 
-function checkAnswer(currentAnswer) {
+function checkAnswer(currentAnswer, event) {
   if (currentAnswer === currentItem) {
     const bufferLoader = new BufferLoader(
       audioContext,
@@ -531,7 +597,9 @@ function checkAnswer(currentAnswer) {
     bufferLoader.load();
     updatePositiveCount(correctAnswerPoints);
     ++numberOfRightAnswers;
+    disableTouch();
   } else {
+    // addWrongAnswerRed(event);
     const bufferLoader = new BufferLoader(
       audioContext,
       ["resources/audio/sfx/クイズ不正解2.mp3"],
@@ -542,8 +610,20 @@ function checkAnswer(currentAnswer) {
     wrongAnswerCountArray.push("\u2716");
     displayWrongAnswerCount();
     gameOver();
+    // removeWrongAnswerRed(event);
   }
 }
+function addWrongAnswerRed(event) {
+  event.target.classList.add("red");
+  event.target.classList.add("fast-wobble");
+}
+function removeWrongAnswerRed(event) {
+  setTimeout(() => {
+    event.target.classList.remove("red");
+    event.target.classList.remove("fast-wobble");
+  }, 200);
+}
+
 let wrongAnswerCountArray = [];
 function displayWrongAnswerCount() {
   answerDisplay.textContent = `${wrongAnswerCountArray.join("")}`;

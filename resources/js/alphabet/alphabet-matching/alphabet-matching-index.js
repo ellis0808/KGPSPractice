@@ -28,8 +28,7 @@ const incorrectAnswerPoints = 1;
 
 // Main App Container
 const appContainer = document.createElement("div");
-appContainer.classList.add("container");
-appContainer.classList.add("letter-matching-app");
+appContainer.classList.add("container", "letter-matching-app");
 
 // Button Container 1 (Timer & Score Display)
 const timer = document.createElement("div");
@@ -41,11 +40,17 @@ scoreDisplay.textContent = `${score.currentScore}`;
 
 const grid = document.createElement("div");
 grid.classList.add("grid");
+const btnContainer1 = document.createElement("div");
+btnContainer1.classList.add("btn-container1");
 const btnContainer2 = document.createElement("div");
 btnContainer2.classList.add("btn-container2");
-btnContainer2.classList.add("card-touch-app");
 const startBtn = document.createElement("button");
 startBtn.setAttribute("id", "start-btn");
+startBtn.textContent = "Start";
+const exitBtn = document.createElement("div");
+exitBtn.setAttribute("id", "exit-btn");
+exitBtn.classList.add("letter-matching-app");
+exitBtn.addEventListener("click", endApp);
 const capitalLettersDiv = document.createElement("div");
 capitalLettersDiv.classList.add("capitals");
 const lowercaseLetterDiv = document.createElement("div");
@@ -64,11 +69,39 @@ finishBtn.classList.add("finish-btn");
 finishBtn.addEventListener("click", endApp);
 finishBtn.innerText = "Finish";
 
+const homeBtnContainer = document.createElement("div");
+homeBtnContainer.classList.add("home-btn-container", "hide");
+const homeBtn = document.createElement("button");
+homeBtn.classList.add("home-btn");
+homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
+homeBtn.addEventListener("click", goHome);
+appContainer.appendChild(homeBtnContainer);
+const reallyGoHomeContainer = document.createElement("div");
+reallyGoHomeContainer.classList.add("go-home-container", "card-touch-app");
+const reallyGoHomeMessageContainer = document.createElement("div");
+reallyGoHomeMessageContainer.classList.add("go-home-message");
+reallyGoHomeMessageContainer.textContent = "Go back to Menu?";
+reallyGoHomeContainer.appendChild(reallyGoHomeMessageContainer);
+const reallyGoHomeBtn = document.createElement("button");
+reallyGoHomeBtn.classList.add("go-home-btn");
+reallyGoHomeBtn.textContent = "Yes";
+reallyGoHomeBtn.addEventListener("click", endApp);
+const cancelGoHomeBtn = document.createElement("button");
+cancelGoHomeBtn.classList.add("cancel-go-home-btn");
+cancelGoHomeBtn.textContent = "Cancel";
+cancelGoHomeBtn.addEventListener("click", returnToApp);
+const pauseBtn = document.createElement("div");
+pauseBtn.classList.add("pause-btn");
+pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
+pauseBtn.addEventListener("click", pause);
+
 let endDotId;
 
 function toggleScoreDisplayHide() {
   scoreDisplay.classList.toggle("hide2");
 }
+
+let isPaused = false;
 
 let numberOfLettersToBeDisplayed = 4;
 const alphabetLowercase = [];
@@ -88,16 +121,17 @@ I. MAIN APP
 */
 function alphabetMatchingApp() {
   mainContainer.appendChild(appContainer);
+  appContainer.appendChild(btnContainer1);
   appContainer.appendChild(btnContainer2);
   btnContainer2.appendChild(startBtn);
-  startBtn.textContent = "Start";
+  btnContainer2.appendChild(exitBtn);
   appContainer.appendChild(grid);
   grid.classList.add("gridHide");
   grid.appendChild(capitalLettersDiv);
   grid.appendChild(lowercaseLetterDiv);
   grid.appendChild(startDotsDiv);
   grid.appendChild(endDotsDiv);
-
+  exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
   removeMenuPage();
 
   stylesheet.setAttribute("href", "../../resources/css/alphabet-matching.css");
@@ -112,8 +146,6 @@ function alphabetMatchingApp() {
 function endApp() {
   endSession();
   setTimeout(() => {
-    appContainer.removeChild(scoreDisplay);
-    appContainer.removeChild(timer);
     mainContainer.removeChild(appContainer);
     stylesheet.setAttribute("href", "../resources/css/styles.css");
     displayMainPage();
@@ -121,6 +153,100 @@ function endApp() {
   }, 500);
   resetTimer();
   scoreDisplay.innerText = score.currentScore;
+}
+
+// pauses app
+function pause() {
+  isPaused = true;
+  disableTouch();
+  pauseBtn.removeEventListener("click", pause);
+  setTimeout(() => {
+    btnContainer1.classList.add("strong-blur");
+    grid.classList.add("strong-blur");
+  }, 50);
+  pauseBtn.addEventListener("click", unpause);
+}
+function unpause() {
+  pauseBtn.removeEventListener("click", unpause);
+  enableTouch();
+  btnContainer1.classList.remove("strong-blur");
+  grid.classList.remove("strong-blur");
+  setTimeout(() => {
+    isPaused = false;
+  }, 500);
+  pauseBtn.addEventListener("click", pause);
+}
+function unpause2() {
+  pauseBtn.removeEventListener("click", unpause);
+  enableTouch();
+  btnContainer1.classList.remove("strong-blur");
+  grid.classList.remove("strong-blur");
+  setTimeout(() => {
+    isPaused = false;
+  }, 500);
+  pauseBtn.addEventListener("click", pause);
+}
+let homeBtnIsGoHome = true;
+let pauseBtnPauses = true;
+
+function resetNavigationBtns() {
+  homeBtnIsGoHome = true;
+  pauseBtnPauses = true;
+  homeBtn.removeEventListener("click", returnToApp);
+  homeBtn.addEventListener("click", goHome);
+  pauseBtn.removeEventListener("click", returnToApp);
+  pauseBtn.addEventListener("click", pause);
+  homeBtnReturnToNormal();
+}
+function goHome() {
+  pause();
+  homeBtnEnlarge();
+  displayGoHomeConfirmation();
+  if (homeBtnIsGoHome) {
+    homeBtnIsGoHome = false;
+    pauseBtnPauses = false;
+    homeBtn.removeEventListener("click", goHome);
+    homeBtn.addEventListener("click", returnToApp);
+    pauseBtn.removeEventListener("click", unpause);
+    pauseBtn.addEventListener("click", returnToApp);
+  }
+}
+function homeBtnEnlarge() {
+  homeBtn.classList.add("home-btn-enlarge");
+}
+function homeBtnReturnToNormal() {
+  homeBtn.classList.remove("home-btn-enlarge");
+}
+function displayGoHomeConfirmation() {
+  appContainer.appendChild(reallyGoHomeContainer);
+  reallyGoHomeContainer.appendChild(reallyGoHomeBtn);
+  reallyGoHomeContainer.appendChild(cancelGoHomeBtn);
+}
+function returnToApp() {
+  appContainer.removeChild(reallyGoHomeContainer);
+  homeBtnReturnToNormal();
+  unpause();
+  homeBtnIsGoHome = true;
+  pauseBtnPauses = true;
+  homeBtn.removeEventListener("click", returnToApp);
+  homeBtn.addEventListener("click", goHome);
+  pauseBtn.removeEventListener("click", returnToApp);
+  pauseBtn.addEventListener("click", pause);
+}
+
+function removeBlur() {
+  if (document.querySelector(".blur")) {
+    let blurredItems = document.querySelectorAll(".blur").forEach((item) => {
+      item.classList.remove("blur");
+    });
+  }
+  if (document.querySelector(".blur")) {
+    let stronglyBlurredItems = document
+      .querySelectorAll(".strong-blur")
+      .forEach((item) => {
+        item.classList.remove("strong-blur");
+      });
+  }
 }
 
 /*
@@ -133,19 +259,35 @@ function displayStartBtn() {
   if (startBtn.classList.contains("no-touch")) {
     startBtn.classList.remove("no-touch");
     startBtn.classList.remove("spinfade");
+    exitBtn.classList.remove("no-touch");
+    exitBtn.classList.remove("hide2");
   }
   startBtn.addEventListener("click", startSession);
   score.resetScore();
 }
 function endSession() {
+  unpause2();
   clearBoard();
+  homeBtnReturnToNormal();
+  resetNavigationBtns();
   appContainer.classList.add("hide");
+  homeBtnContainer.classList.add("hide");
   score.updateUserScore();
-  document.querySelector(".end-messages-container").remove();
+  if (document.querySelector(".end-messages-container")) {
+    document.querySelector(".end-messages-container").remove();
+  }
+  if (document.querySelector(".go-home-container")) {
+    document.querySelector(".go-home-container").remove();
+  }
+  removeBlur();
 }
 function startSession() {
   startBtn.classList.add("no-touch");
   startBtn.classList.add("spinfade");
+  exitBtn.classList.remove("intro");
+  exitBtn.classList.add("no-touch");
+  exitBtn.classList.add("hide2");
+  exitBtn.classList.remove("intro");
   setTimeout(startNewRound, 950);
   setTimeout(() => {
     startTimer();
@@ -173,6 +315,7 @@ function startNewSession() {
 }
 
 function startNewRound() {
+  homeBtnContainer.classList.remove("hide");
   grid.classList.remove("blur");
   timer.classList.remove("blur");
   scoreDisplay.classList.remove("blur");
@@ -183,8 +326,11 @@ function startNewRound() {
   generateLetterDivsForMatching(alphabetLowercase);
   createDots(shuffledAlphabetCapitals);
   createDots(alphabetLowercase);
-  appContainer.appendChild(scoreDisplay);
-  appContainer.appendChild(timer);
+  btnContainer1.appendChild(timer);
+  btnContainer1.appendChild(scoreDisplay);
+  appContainer.appendChild(homeBtnContainer);
+  homeBtnContainer.appendChild(homeBtn);
+  homeBtnContainer.appendChild(pauseBtn);
 
   setTimeout(() => {
     activateEventListeners();
@@ -425,36 +571,42 @@ III. TIMER
 */
 
 let time;
-const roundTime = 60;
+let countDown;
+const roundTime = 10;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
 }
 function displayTimer() {
-  const countDown = setInterval(() => {
-    --time;
-    if (time < 10) {
-      timer.textContent = `0:0${time}`;
-    } else {
-      timer.textContent = `0:${time}`;
-    }
-    if (time < 0) {
-      timer.textContent = "0:00";
-      clearInterval(countDown);
-      disableTouch();
-      timer.classList.add("wobble");
-      timer.classList.remove("wobble");
-      timer.classList.add("wobble");
-      timer.classList.remove("wobble");
-      timer.classList.add("wobble");
-      roundOver();
+  countDown = setInterval(() => {
+    if (!isPaused) {
+      --time;
+      if (time < 10) {
+        timer.textContent = `0:0${time}`;
+      } else {
+        timer.textContent = `0:${time}`;
+      }
+      if (time < 0) {
+        timer.textContent = "0:00";
+        clearInterval(countDown);
+        disableTouch();
+        timer.classList.add("wobble");
+        timer.classList.remove("wobble");
+        timer.classList.add("wobble");
+        timer.classList.remove("wobble");
+        timer.classList.add("wobble");
+        roundOver();
+      }
     }
   }, 1000);
+  return countDown;
 }
 
 function resetTimer() {
   timer.innerText = "1:00";
   timer.classList.remove("wobble");
+  time = roundTime;
+  clearInterval(countDown);
 }
 function disableTouch() {
   const allTargets = document.querySelectorAll(".dot,.dot-enclosure");
@@ -551,8 +703,38 @@ C. Generating Start Dots, End Dots, and their Enclosures
   --> The dots are given several classes and ids, and given a zIndex of 30, to ensure they are on top when the lines are drawn.
 */
 
+class StartDot {
+  constructor(txt) {
+    this.txt = txt;
+    this.id = null;
+    this.connection = null;
+    this.connected = false; //is this redundant?
+    this.locked = false;
+    this.element = document.createElement("div");
+  }
+  connect() {}
+  markAsCorrect() {}
+  markAsIncorrect() {}
+}
+class EndDot {
+  constructor(txt) {
+    this.txt = txt;
+    this.id = null;
+    this.connection = null;
+    this.connected = false; //is this redundant?
+    this.locked = false;
+    this.element = document.createElement("div");
+  }
+  connect() {}
+  markAsCorrect() {}
+  markAsIncorrect() {}
+}
+
+const endDot = [];
+const startDot = [];
 function createDots(array) {
   let dotNumber = 0;
+  let i = dotNumber;
   if (array === alphabetLowercase) {
     dotNumber = 5;
     array.forEach((item) => {
@@ -564,16 +746,16 @@ function createDots(array) {
       endDotEnclosure.classList.add("dot-enclosure", "end-target");
       endDotsDiv.appendChild(endDotEnclosure);
       // Create dot for each Enclosure
-      const dot = document.createElement("div");
-      dot.setAttribute("id", `dot-${dotNumber}`);
-      dot.setAttribute("txt", `${item.toUpperCase()}`);
+      endDot[i] = new EndDot();
+      endDot[i].element.setAttribute("id", `dot-${dotNumber}`);
+      endDot[i].element.setAttribute("txt", `${item.toUpperCase()}`);
       // dot.addEventListener("pointerup", onMouseUp, false);
-      dot.classList.add("end-dot", "dot", "end-target");
-      dot.style.zIndex = "30";
+      endDot[i].element.classList.add("end-dot", "dot", "end-target");
+      endDot[i].element.style.zIndex = "30";
       let targetEnclosure = document.getElementById(
         `dotEnclosure-${dotNumber}`
       );
-      endDotEnclosure.appendChild(dot);
+      endDotEnclosure.appendChild(endDot[i].element);
       ++dotNumber;
     });
     return;
@@ -585,11 +767,11 @@ function createDots(array) {
     startDotEnclosure.setAttribute("txt", `${item}`);
     startDotEnclosure.classList.add("dot-enclosure", "start-target");
     startDotsDiv.appendChild(startDotEnclosure);
-    const dot = document.createElement("div");
-    dot.setAttribute("id", `dot-${dotNumber}`);
-    dot.setAttribute("txt", `${item}`);
-    dot.classList.add("start-dot", "dot", "start-target");
-    startDotEnclosure.appendChild(dot);
+    startDot[i] = new StartDot();
+    startDot[i].element.setAttribute("id", `dot-${dotNumber}`);
+    startDot[i].element.setAttribute("txt", `${item}`);
+    startDot[i].element.classList.add("start-dot", "dot", "start-target");
+    startDotEnclosure.appendChild(startDot[i].element);
     ++dotNumber;
   });
   setTimeout(disableTouch, 300);

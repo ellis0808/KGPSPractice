@@ -80,7 +80,7 @@ body:not(:has(*)) {
   grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
   grid-template-rows: 0.1fr 0.25fr 0.25fr 0.25fr 1.25fr;
   grid-template-areas:
-    "..... ..... ..... ....."
+    "..... home-btn-container home-btn-container ....."
     "..... btn-container1 btn-container1 ....."
     "..... letter-display letter-display ....."
     "..... btn-container3 btn-container3 ....."
@@ -94,10 +94,10 @@ body:not(:has(*)) {
 @media (width > 600px), (height > 800px) {
   .container {
     grid-template-columns: 0.25fr 0.25fr 1fr 1fr 0.25fr 0.25fr;
-    grid-template-rows: 0.05fr 0.15fr 0.15fr 0.075fr 0.15fr 0.05fr 1.25fr 0.1fr;
+    grid-template-rows: 0.05fr 0.15fr 0.15fr 0.075fr 0.15fr 0.1fr 1.25fr 0.1fr;
     grid-template-areas:
-      "..... ..... ..... ..... ..... ....."
-      "..... ..... btn-container1 btn-container1 ..... ....."
+      "home-btn-container ..... ..... ..... ..... ....."
+      "home-btn-container ..... btn-container1 btn-container1 ..... ....."
       "..... letter-display letter-display letter-display letter-display ....."
       "..... ..... ..... ..... ..... ....."
       "..... .....  btn-container3  btn-container3 ..... ....."
@@ -166,15 +166,14 @@ body:not(:has(*)) {
 @media (width > 600px), (height > 800px) {
   .grid {
     grid-area: letter-grid;
-    max-width: 1000px;
-    max-height: 1000px;
-    padding: 20px;
+    max-width: 800px;
+    max-height: 800px;
+    /* margin-top: 2rem; */
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
     place-content: center;
     place-items: center;
-    perspective: 1000px;
     overflow: hidden;
     --stagger-delaay: 0.1s;
     transition: 0.3s;
@@ -193,6 +192,149 @@ body:not(:has(*)) {
   
 */
 
+.home-btn-container {
+  grid-area: home-btn-container;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: "home-btn pause-btn";
+  place-content: center;
+  place-items: center;
+  transition: 0.25s ease-in-out;
+}
+@media (width > 600px) {
+  .home-btn-container {
+    grid-area: home-btn-container;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.home-btn {
+  grid-area: home-btn;
+  width: 35px;
+  height: 35px;
+  background-color: transparent;
+  color: var(--clr-acc1);
+  border: transparent;
+  font-size: 1.3rem;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  z-index: 50;
+  transition: 0.1s ease-in;
+}
+@media (width > 600px) {
+  .home-btn {
+    grid-area: home-btn;
+    grid-row: 1/3;
+    width: 25px;
+    height: 25px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-btn:hover {
+    scale: 1.75;
+    transition: 0.2s ease-in;
+  }
+  .home-btn:active {
+    scale: 1.55;
+    transition: 0.1s ease-in;
+  }
+}
+.home-btn-enlarge {
+  scale: 1.75;
+  transition: 0.2s ease-in;
+}
+.go-home-container {
+  width: 375px;
+  height: 175px;
+  background-color: var(--clr-acc1);
+  color: white;
+  font-size: 2rem;
+  border-radius: 15px;
+  position: absolute;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.75fr 1fr;
+  grid-template-areas:
+    "go-home-message go-home-message"
+    "cancel-go-home-btn go-home-btn";
+  place-content: center;
+  place-items: center;
+  z-index: 50;
+  box-shadow: rgba(2, 8, 20, 0.5) 0px 15px 15px 7px,
+    rgba(2, 8, 20, 0.3) 0px 20px 20px 10px;
+}
+.go-home-message {
+  grid-area: go-home-message;
+  width: 80%;
+  height: 80%;
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+  place-content: center;
+  place-items: center;
+}
+.cancel-go-home-btn,
+.go-home-btn {
+  grid-area: go-home-btn;
+  width: 120px;
+  height: 55px;
+  font-size: 2rem;
+  color: white;
+  position: absolute;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  border: none;
+  border-radius: 15px;
+  box-shadow: rgba(2, 8, 20, 0.35) 0px 15px 20px 5px;
+}
+.cancel-go-home-btn {
+  grid-area: cancel-go-home-btn;
+  background: rgb(180, 4, 4);
+}
+.go-home-btn {
+  grid-area: go-home-btn;
+  background: rgb(26, 26, 168);
+}
+.pause-btn {
+  grid-area: pause-btn;
+  width: 25px;
+  height: 25px;
+  background-color: transparent;
+  color: var(--clr-acc1);
+  font-size: 1.5rem;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  z-index: 50;
+  transition: 0.1s ease-in;
+}
+@media (hover: hover) and (pointer: fine) {
+  .pause-btn:hover {
+    /* transform: translateY(7px); */
+    scale: 1.75;
+    transition: 0.2s ease-in;
+  }
+  .pause-btn:active {
+    /* transform: translateY(8px); */
+    scale: 1.55;
+    transition: 0.1s ease-in;
+  }
+}
+.pause-btn-enlarge {
+  scale: 1.75;
+  /* transform: translateY(7px); */
+  transition: 0.2s ease-in;
+}
 .timer {
   grid-area: timer;
   color: white;
@@ -218,7 +360,6 @@ body:not(:has(*)) {
   grid-area: start-btn;
   height: 125px;
   width: 250px;
-  /* margin: auto; */
   color: white;
   background: rgb(161, 29, 29);
   display: flex;
@@ -231,36 +372,48 @@ body:not(:has(*)) {
   transition: 0.6s;
 }
 
-@media (width > 600px), (height > 800px) {
+@media (width > 600px) {
   #start-btn {
     height: 200px;
     width: 500px;
   }
 }
 #exit-btn {
+  transition: 0.1s ease-in;
   grid-area: exit-btn;
   width: 40px;
   height: 40px;
   margin: auto;
   margin-top: 10rem;
-  color: black;
-  background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.5rem;
+  color: var(--clr-acc1);
+  background-color: white;
+  border: 2px solid var(--clr-acc1);
   border-radius: 50%;
-  /* border: black solid 3px; */
-
+  display: flex;
+  place-content: center;
+  place-items: center;
+  font-size: 1.9rem;
   z-index: 10;
   transition: 0.6s;
   animation: cardEntrance 0.5s ease-out;
 }
-@media (width > 600px), (height > 800px) {
+@media (width > 600px) {
   #exit-btn {
     width: 75px;
     height: 75px;
-    font-size: 4rem;
+    font-size: 2.5rem;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  #exit-btn:hover {
+    transform: translateY(5px);
+    scale: 1.3;
+    transition: 0.2s ease-in;
+  }
+  #exit-btn:active {
+    scale: 1;
+    transform: translateY(6px);
+    transition: 0.1s;
   }
 }
 .end-messages-container {
@@ -405,10 +558,7 @@ body:not(:has(*)) {
   height: 100%;
   width: 100%;
   text-overflow: ellipsis;
-  /* white-space: pre-wrap; */
   word-break: break-all;
-  /* margin-top: 2rem; */
-  /* margin-bottom: 1.75rem; */
   font-family: var(--font-fam);
   text-align: center;
   font-size: 3rem;
@@ -417,7 +567,6 @@ body:not(:has(*)) {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  /* place-content: end; */
   position: relative;
   align-self: center;
   place-content: center;
@@ -432,8 +581,8 @@ body:not(:has(*)) {
     white-space: nowrap;
     overflow: hidden;
     word-break: break-all;
-    margin-top: 2rem;
-    /* margin-bottom: 1.75rem; */
+    margin-top: 20px;
+    /* margin-bottom: 20px; */
     font-family: var(--font-fam);
     text-align: center;
     font-size: 5em;
@@ -498,10 +647,12 @@ body:not(:has(*)) {
 }
 
 @media (width > 600px), (height > 800px) {
-  .repeat-btn {
+  .repeat-btn,
+  .check-btn,
+  .delete-btn {
     width: 160px;
-    height: 75px;
-    font-size: 2.5rem;
+    height: 50px;
+    font-size: 2rem;
     border-radius: 15px;
   }
 }
@@ -533,14 +684,6 @@ body:not(:has(*)) {
   place-content: center;
 }
 
-@media (width > 600px), (height > 800px) {
-  .delete-btn {
-    width: 160px;
-    height: 75px;
-    font-size: 2.5rem;
-    border-radius: 15px;
-  }
-}
 @media (hover: hover) and (pointer: fine) {
   .delete-btn:hover {
     scale: 1.05;
@@ -551,6 +694,16 @@ body:not(:has(*)) {
     transform: translateY(4px);
     z-index: -10;
     transition: 0.1s;
+  }
+}
+@media (width > 600px), (height > 800px) {
+  .repeat-btn,
+  .check-btn,
+  .delete-btn {
+    width: 130px;
+    height: 50px;
+    font-size: 2rem;
+    border-radius: 5px;
   }
 }
 :root {
@@ -565,7 +718,7 @@ body:not(:has(*)) {
   height: var(--box-width2);
   width: var(--box-width2);
   margin: var(--margin-width2);
-  display: grid;
+  display: flex;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   place-content: center;
@@ -580,7 +733,7 @@ body:not(:has(*)) {
     height: var(--box-width);
     width: var(--box-width);
     /* margin: var(--margin-width); */
-    display: grid;
+    display: f;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     place-content: center;
@@ -636,6 +789,9 @@ body:not(:has(*)) {
 
 .blur {
   filter: blur(3px);
+}
+.strong-blur {
+  filter: blur(16px);
 }
 .hide {
   opacity: 0;

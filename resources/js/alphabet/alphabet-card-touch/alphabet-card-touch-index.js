@@ -30,25 +30,24 @@ const incorrectAnswerPoints = 1;
 
 function alphabetCardTouchApp() {
   setTimeout(() => {
+    resetTimer();
     mainContainer.appendChild(appContainer);
     appContainer.appendChild(btnContainer1);
     appContainer.appendChild(btnContainer2);
     appContainer.appendChild(btnContainer3);
     btnContainer2.appendChild(startBtn);
-    startBtn.textContent = "Start";
     btnContainer2.appendChild(exitBtn);
-    exitBtn.textContent = "\u2716";
-    appContainer.appendChild(grid);
   }, 0);
 
   stylesheet.setAttribute(
     "href",
     "../../resources/css/alphabet-card-touch.css"
   );
+  displayStartBtn();
+
   removeMenuPage();
 
   score.resetScore();
-  resetTimer();
   scoreDisplay.innerText = score.currentScore;
   appContainer.classList.remove("hide");
 }
@@ -56,6 +55,35 @@ function alphabetCardTouchApp() {
 const appContainer = document.createElement("div");
 appContainer.classList.add("container");
 appContainer.classList.add("card-touch-app");
+
+/* Main App Container */
+const homeBtnContainer = document.createElement("div");
+homeBtnContainer.classList.add("home-btn-container", "hide");
+const homeBtn = document.createElement("button");
+homeBtn.classList.add("home-btn");
+homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
+homeBtn.addEventListener("click", goHome);
+const pauseBtn = document.createElement("div");
+pauseBtn.classList.add("pause-btn");
+pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
+pauseBtn.addEventListener("click", pause);
+appContainer.appendChild(homeBtnContainer);
+const reallyGoHomeContainer = document.createElement("div");
+reallyGoHomeContainer.classList.add("go-home-container", "card-touch-app");
+const reallyGoHomeMessageContainer = document.createElement("div");
+reallyGoHomeMessageContainer.classList.add("go-home-message");
+reallyGoHomeMessageContainer.textContent = "Go back to Menu?";
+reallyGoHomeContainer.appendChild(reallyGoHomeMessageContainer);
+const reallyGoHomeBtn = document.createElement("button");
+reallyGoHomeBtn.classList.add("go-home-btn");
+reallyGoHomeBtn.textContent = "Yes";
+reallyGoHomeBtn.addEventListener("click", endApp);
+const cancelGoHomeBtn = document.createElement("button");
+cancelGoHomeBtn.classList.add("cancel-go-home-btn");
+cancelGoHomeBtn.textContent = "Cancel";
+cancelGoHomeBtn.addEventListener("click", returnToApp);
+
+/* Common UI Elements */
 const grid = document.createElement("div");
 grid.classList.add("grid");
 grid.setAttribute("id", "grid");
@@ -64,16 +92,18 @@ btnContainer2.classList.add("btn-container2");
 const startBtn = document.createElement("button");
 startBtn.setAttribute("id", "start-btn");
 startBtn.classList.add("card-touch-app");
-startBtn.addEventListener("click", startRound);
+startBtn.textContent = "Start";
+startBtn.addEventListener("click", startSession);
 const exitBtn = document.createElement("div");
 exitBtn.setAttribute("id", "exit-btn");
 exitBtn.classList.add("card-touch-app");
+exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
 exitBtn.addEventListener("click", endApp);
 const btnContainer1 = document.createElement("div");
-btnContainer1.classList.add("btn-container1");
+btnContainer1.classList.add("btn-container1", "hide");
 btnContainer1.setAttribute("id", "btn-container1");
 const btnContainer3 = document.createElement("div");
-btnContainer3.classList.add("btn-container3");
+btnContainer3.classList.add("btn-container3", "hide");
 btnContainer3.setAttribute("id", "btn-container3");
 const repeatBtn = document.createElement("div");
 repeatBtn.classList.add("repeat-btn");
@@ -94,127 +124,151 @@ timer.textContent = "1:00";
 const tryAgainBtn = document.createElement("div");
 tryAgainBtn.classList.add("try-again-btn");
 tryAgainBtn.innerText = "One More Time";
-tryAgainBtn.addEventListener("click", startNewRound);
+tryAgainBtn.addEventListener("click", startSession);
 const finishBtn = document.createElement("div");
 finishBtn.classList.add("finish-btn");
 finishBtn.addEventListener("click", endApp);
 finishBtn.innerText = "Finish";
 
+let isPaused = false;
 let cardText = [];
 let newCardText;
-
+let countDown;
 // TIMER
 let time;
-const roundTime = 60;
+const roundTime = 30;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
 }
 function displayTimer() {
-  const countDown = setInterval(() => {
-    --time;
-    if (time < 10) {
-      timer.textContent = `0:0${time}`;
-    } else {
-      timer.textContent = `0:${time}`;
-    }
-    if (time < 0) {
-      timer.textContent = "0:00";
-      clearInterval(countDown);
-      disableCardsAndRepeatBtn();
-      timer.classList.add("wobble");
-      timer.classList.remove("wobble");
-      timer.classList.add("wobble");
-      timer.classList.remove("wobble");
-      timer.classList.add("wobble");
-      roundOver();
+  countDown = setInterval(() => {
+    if (!isPaused) {
+      --time;
+      if (time < 10) {
+        timer.textContent = `0:0${time}`;
+      } else {
+        timer.textContent = `0:${time}`;
+      }
+      if (time < 0) {
+        timer.textContent = "0:00";
+        clearInterval(countDown);
+        disableTouch();
+        timer.classList.add("wobble");
+        timer.classList.remove("wobble");
+        timer.classList.add("wobble");
+        timer.classList.remove("wobble");
+        timer.classList.add("wobble");
+        roundOver();
+      }
     }
   }, 1000);
+  return countDown;
 }
 function resetTimer() {
   timer.innerText = "1:00";
   timer.classList.remove("wobble");
+  time = roundTime;
+  clearInterval(countDown);
 }
-function disableCardsAndRepeatBtn() {
+function disableTouch() {
   const allCards = document.querySelectorAll(".card");
   allCards.forEach((card) => {
     card.classList.add("no-touch");
   });
-  repeatBtn.classList.add("no-touch");
+  // repeatBtn.classList.add("no-touch");
 }
-function enableCardsAndRepeatBtn() {
+function enableTouch() {
   const allCards = document.querySelectorAll(".card");
   allCards.forEach((card) => {
     card.classList.remove("no-touch");
   });
-  repeatBtn.classList.remove("no-touch");
+  // repeatBtn.classList.remove("no-touch");
 }
 
 function displayStartBtn() {
   if (startBtn.classList.contains("no-touch")) {
     startBtn.classList.remove("no-touch");
     startBtn.classList.remove("spinfade");
+    startBtn.classList.remove("hide");
     exitBtn.classList.remove("no-touch");
     exitBtn.classList.remove("hide2");
   }
-  startBtn.addEventListener("click", startRound);
+  startBtn.addEventListener("click", startSession);
   score.resetScore();
 }
 
 // Start Round
-function startRound() {
+function startSession() {
+  removeEndMessagesContainer();
   startBtn.classList.add("no-touch");
-  startBtn.classList.remove("intro");
   startBtn.classList.add("spinfade");
+  startBtn.classList.remove("intro");
   exitBtn.classList.add("no-touch");
   exitBtn.classList.add("hide2");
   exitBtn.classList.remove("intro");
-  setTimeout(() => {
-    enableCardsAndRepeatBtn();
-    createBoard();
-    disableCardsAndRepeatBtn();
-    // toggleScoreDisplayHide();
-    btnContainer1.appendChild(timer);
-  }, 1450);
-  setTimeout(startTimer, 1950);
-  setTimeout(enableCardsAndRepeatBtn, 2950);
+  clearBoardFast();
+  setTimeout(resetTimer, 750);
+  setTimeout(startNewSession, 1000);
 }
 
-function startNewRound() {
-  tryAgainBtn.classList.add("no-touch");
-  finishBtn.classList.add("no-touch");
-  setTimeout(() => {
-    // document.querySelector(".final-score-alert").remove();
-    // document.querySelector(".try-again-btn").remove();
-    // document.querySelector(".finish-btn").remove();
+function removeEndMessagesContainer() {
+  if (document.querySelector(".end-messages-container")) {
+    tryAgainBtn.classList.add("no-touch");
+    finishBtn.classList.add("no-touch");
     document.querySelector(".end-messages-container").remove();
+  }
+}
 
-    score.resetScore();
-    scoreDisplay.innerText = score.currentScore;
-    grid.classList.remove("blur");
-    btnContainer1.classList.remove("blur");
-  }, 1800);
+function removeBlur() {
+  if (document.querySelector(".blur")) {
+    let blurredItems = document.querySelectorAll(".blur").forEach((item) => {
+      item.classList.remove("blur");
+    });
+  }
+  if (document.querySelector(".strong-blur")) {
+    let stronglyBlurredItems = document
+      .querySelectorAll(".strong-blur")
+      .forEach((item) => {
+        item.classList.remove("strong-blur");
+      });
+  }
+}
+function startNewSession() {
+  appContainer.appendChild(grid);
+  score.resetScore();
+  scoreDisplay.innerText = score.currentScore;
+  removeBlur();
+  homeBtnContainer.classList.remove("no-touch");
+  createBoard();
   setTimeout(() => {
-    clearBoard();
-  }, 100);
-  setTimeout(() => {
-    createBoard();
-  }, 2200);
-  setTimeout(() => {
-    enableCardsAndRepeatBtn();
+    enableTouch();
     startTimer();
     tryAgainBtn.classList.remove("no-touch");
     finishBtn.classList.remove("no-touch");
-  }, 4000);
+  }, 500);
+  btnContainer1.appendChild(timer);
+  btnContainer1.appendChild(scoreDisplay);
+  homeBtnContainer.appendChild(homeBtn);
+  homeBtnContainer.appendChild(pauseBtn);
+  btnContainer1.classList.remove("hide");
+  btnContainer3.classList.remove("hide");
+  homeBtnContainer.classList.remove("hide");
+}
+function startNewRound() {
+  // reset functions
+  setTimeout(createBoard, 200);
 }
 
 function roundOver() {
   displayFinalScore();
-  setTimeout(disableCardsAndRepeatBtn, 500);
-  setTimeout(disableCardsAndRepeatBtn, 1000);
+  setTimeout(disableTouch, 500);
+  setTimeout(disableTouch, 1000);
   displayTryAgainAndFinishBtns();
   grid.classList.add("blur");
   btnContainer1.classList.add("blur");
+  homeBtnContainer.classList.add("blur");
+  homeBtnContainer.classList.add("no-touch");
 }
 
 // Clear away all cards
@@ -233,6 +287,22 @@ function clearBoard() {
     // reset text to be displayed on cards
     cardText = [];
   }, 2000);
+  newCardText;
+}
+
+function clearBoardFast() {
+  // remove all cards from grid, then generate new cards
+  setTimeout(function (e) {
+    grid.classList.toggle("hide");
+    repeatBtn.classList.add("hide2");
+  }, 200);
+  setTimeout(function (e) {
+    while (grid.firstChild) {
+      grid.removeChild(grid.firstChild);
+    }
+    // reset text to be displayed on cards
+    cardText = [];
+  }, 500);
   newCardText;
 }
 
@@ -281,7 +351,7 @@ function repeat() {
   let speakLetter = new SpeechSynthesisUtterance(randomLetter);
   setTimeout(function () {
     synth.speak(speakLetter);
-  }, 200);
+  }, 30);
 }
 
 // BOARD GENERATION
@@ -321,7 +391,7 @@ function createBoard() {
   btnContainer3.appendChild(repeatBtn);
   btnContainer1.appendChild(scoreDisplay);
   speak();
-  setTimeout(toggleRepeatBtnHide, 2000);
+  setTimeout(toggleRepeatBtnHide, 1500);
   // }
 }
 
@@ -334,7 +404,7 @@ function touchCard(e) {
   if (parseInt(currentCardID) === correctCardID) {
     correctCard(e);
     updatePositiveCount(correctAnswerPoints);
-    disableCardsAndRepeatBtn();
+    disableTouch();
   } else {
     wobble(e);
     updateNegativeCount(incorrectAnswerPoints);
@@ -346,27 +416,132 @@ function correctCard(e) {
   particles(e);
   clearBoard();
   setTimeout(createBoard, 2000);
+  enableTouch();
 }
 
 function startAlphabetCardTouchApp() {
   alphabetCardTouchApp();
-  // endCurrentApp();
 }
 
-function endAppButton() {
-  const endBtn = document.createElement("button");
+function endSession() {
+  unpause2();
+  homeBtnReturnToNormal();
+  resetNavigationBtns();
+  appContainer.classList.add("hide");
+  homeBtnContainer.classList.add("hide");
+  score.updateUserScore();
+  const allBoxes = document.querySelectorAll(".box");
+  allBoxes.forEach((box) => {
+    box.remove();
+  });
+  if (document.querySelector(".end-messages-container")) {
+    document.querySelector(".end-messages-container").remove();
+  }
+  if (document.querySelector(".go-home-container")) {
+    document.querySelector(".go-home-container").remove();
+  }
+  // clearBoard();
+  removeBlur();
+  grid.remove();
 }
 
 function endApp() {
+  endSession();
+
   const everything = document.querySelectorAll(".card-touch-app");
-  everything.forEach((item) => {
-    item.remove();
-  });
   setTimeout(() => {
-    stylesheet.setAttribute("href", "../resources/css/styles.css");
-    displayMainPage();
-    setTimeout(restoreMainMenu, 600);
+    everything.forEach((item) => {
+      item.remove();
+    });
+    setTimeout(() => {
+      // mainContainer.removeChild(appContainer);
+      stylesheet.setAttribute("href", "../resources/css/styles.css");
+      displayMainPage();
+      setTimeout(restoreMainMenu, 100);
+    }, 500);
   }, 500);
+  scoreDisplay.innerText = score.currentScore;
+  resetTimer();
+}
+// pauses app
+function pause() {
+  isPaused = true;
+  disableTouch();
+  pauseBtn.removeEventListener("click", pause);
+  setTimeout(() => {
+    btnContainer1.classList.add("strong-blur");
+    btnContainer3.classList.add("strong-blur");
+    grid.classList.add("strong-blur");
+  }, 50);
+  pauseBtn.addEventListener("click", unpause);
+}
+function unpause() {
+  pauseBtn.removeEventListener("click", unpause);
+  enableTouch();
+  removeBlur();
+  setTimeout(() => {
+    isPaused = false;
+  }, 500);
+  setTimeout(repeat, 200);
+  pauseBtn.addEventListener("click", pause);
+}
+function unpause2() {
+  pauseBtn.removeEventListener("click", unpause);
+  enableTouch();
+  btnContainer1.classList.remove("strong-blur");
+  btnContainer3.classList.remove("strong-blur");
+  grid.classList.remove("strong-blur");
+  setTimeout(() => {
+    isPaused = false;
+  }, 500);
+  pauseBtn.addEventListener("click", pause);
+}
+let homeBtnIsGoHome = true;
+let pauseBtnPauses = true;
+
+function resetNavigationBtns() {
+  homeBtnIsGoHome = true;
+  pauseBtnPauses = true;
+  homeBtn.removeEventListener("click", returnToApp);
+  homeBtn.addEventListener("click", goHome);
+  pauseBtn.removeEventListener("click", returnToApp);
+  pauseBtn.addEventListener("click", pause);
+  homeBtnReturnToNormal();
+}
+function goHome() {
+  pause();
+  homeBtnEnlarge();
+  displayGoHomeConfirmation();
+  if (homeBtnIsGoHome) {
+    homeBtnIsGoHome = false;
+    pauseBtnPauses = false;
+    homeBtn.removeEventListener("click", goHome);
+    homeBtn.addEventListener("click", returnToApp);
+    pauseBtn.removeEventListener("click", unpause);
+    pauseBtn.addEventListener("click", returnToApp);
+  }
+}
+function homeBtnEnlarge() {
+  homeBtn.classList.add("home-btn-enlarge");
+}
+function homeBtnReturnToNormal() {
+  homeBtn.classList.remove("home-btn-enlarge");
+}
+function displayGoHomeConfirmation() {
+  appContainer.appendChild(reallyGoHomeContainer);
+  reallyGoHomeContainer.appendChild(reallyGoHomeBtn);
+  reallyGoHomeContainer.appendChild(cancelGoHomeBtn);
+}
+function returnToApp() {
+  appContainer.removeChild(reallyGoHomeContainer);
+  homeBtnReturnToNormal();
+  unpause();
+  homeBtnIsGoHome = true;
+  pauseBtnPauses = true;
+  homeBtn.removeEventListener("click", returnToApp);
+  homeBtn.addEventListener("click", goHome);
+  pauseBtn.removeEventListener("click", returnToApp);
+  pauseBtn.addEventListener("click", pause);
 }
 
 export {

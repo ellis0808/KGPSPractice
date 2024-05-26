@@ -30,9 +30,7 @@ function spinfade(e) {
 }
 
 function newRoundCardFlip() {
-  const remainingCards = document.querySelectorAll(".card");
-  const byeByeCards = [...remainingCards];
-  byeByeCards.forEach((item) => {
+  const remainingCards = document.querySelectorAll(".card").forEach((item) => {
     if (!item.classList.contains("spinfade")) {
       item.classList.toggle("newroundcardflip");
     }

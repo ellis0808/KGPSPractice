@@ -98,10 +98,10 @@ body:not(:has(*)) {
 @media (width > 600px) {
   .container {
     grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
-    grid-template-rows: 0.05fr 0.15fr 0.15fr 0.2fr 0.05fr 1fr 0.1fr;
+    grid-template-rows: 0.1fr 0.15fr 0.15fr 0.2fr 0.05fr 1fr 0.1fr;
     grid-template-areas:
       "home-btn-container  ..... ..... ....."
-      "..... btn-container1 btn-container1 ....."
+      "home-btn-container btn-container1 btn-container1 ....."
       "..... main-display main-display ....."
       ".....  btn-container3  btn-container3 ....."
       "..... ..... ..... ....."
@@ -193,40 +193,62 @@ body:not(:has(*)) {
   grid-area: home-btn-container;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: "home-btn pause-btn";
   place-content: center;
   place-items: center;
   transition: 0.25s ease-in-out;
 }
+@media (width > 600px) {
+  .home-btn-container {
+    grid-area: home-btn-container;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
 .home-btn {
-  width: 25px;
-  height: 25px;
+  grid-area: home-btn;
+  width: 35px;
+  height: 35px;
+  background-color: transparent;
   color: var(--clr-acc1);
-  border: 2px solid var(--clr-acc1);
-  border-radius: 50%;
-  font-size: 0.75rem;
+  border: transparent;
+  font-size: 1.3rem;
   display: flex;
   place-content: center;
   place-items: center;
   z-index: 50;
   transition: 0.1s ease-in;
 }
+@media (width > 600px) {
+  .home-btn {
+    grid-area: home-btn;
+    width: 25px;
+    height: 25px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+}
 
 @media (hover: hover) and (pointer: fine) {
   .home-btn:hover {
-    transform: translateY(7px);
+    /* transform: translateY(7px); */
     scale: 1.75;
     transition: 0.2s ease-in;
   }
   .home-btn:active {
-    transform: translateY(8px);
+    /* transform: translateY(8px); */
     scale: 1.55;
     transition: 0.1s ease-in;
   }
 }
 .home-btn-enlarge {
   scale: 1.75;
-  transform: translateY(7px);
+  /* transform: translateY(7px); */
   transition: 0.2s ease-in;
 }
 .go-home-container {
@@ -281,6 +303,36 @@ body:not(:has(*)) {
 .go-home-btn {
   grid-area: go-home-btn;
   background: rgb(26, 26, 168);
+}
+.pause-btn {
+  grid-area: pause-btn;
+  width: 25px;
+  height: 25px;
+  background-color: transparent;
+  color: var(--clr-acc1);
+  font-size: 1.5rem;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  z-index: 50;
+  transition: 0.1s ease-in;
+}
+@media (hover: hover) and (pointer: fine) {
+  .pause-btn:hover {
+    /* transform: translateY(7px); */
+    scale: 1.75;
+    transition: 0.2s ease-in;
+  }
+  .pause-btn:active {
+    /* transform: translateY(8px); */
+    scale: 1.55;
+    transition: 0.1s ease-in;
+  }
+}
+.pause-btn-enlarge {
+  scale: 1.75;
+  /* transform: translateY(7px); */
+  transition: 0.2s ease-in;
 }
 .timer {
   grid-area: timer;
@@ -595,18 +647,19 @@ body:not(:has(*)) {
   opacity: 0;
   transition: 0.75s;
   pointer-events: none;
-  /* z-index: -10; */
 }
 .gridHide {
   opacity: 0;
   transition: 0.25s;
   pointer-events: none;
-  /* z-index: -10; */
 }
 .wobble {
   animation: wobble 0.5s ease-in-out backwards;
   transition: var(--transition);
   z-index: 10;
+}
+.fast-wobble {
+  animation: wobble 0.3s backwards;
 }
 
 .spinfade {
@@ -641,6 +694,9 @@ body:not(:has(*)) {
 .slideinfromright {
   animation: slide-in-from-right 0.6s ease-in-out forwards;
   transition: var(--transition);
+}
+.red {
+  animation: red 0.3s backwards;
 }
 
 /* Animations */
@@ -757,6 +813,12 @@ body:not(:has(*)) {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+@keyframes red {
+  to {
+    background-color: rgb(196, 51, 51);
+    box-shadow: 0 9px rgb(150, 38, 38);
   }
 }
 

@@ -32,6 +32,31 @@ const incorrectAnswerPoints = 2;
 const appContainer = document.createElement("div");
 appContainer.classList.add("container");
 appContainer.classList.add("spelling-touch-app");
+const homeBtnContainer = document.createElement("div");
+homeBtnContainer.classList.add("home-btn-container", "hide");
+const homeBtn = document.createElement("button");
+homeBtn.classList.add("home-btn");
+homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
+homeBtn.addEventListener("click", goHome);
+const pauseBtn = document.createElement("div");
+pauseBtn.classList.add("pause-btn");
+pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
+pauseBtn.addEventListener("click", pause);
+appContainer.appendChild(homeBtnContainer);
+const reallyGoHomeContainer = document.createElement("div");
+reallyGoHomeContainer.classList.add("go-home-container", "card-touch-app");
+const reallyGoHomeMessageContainer = document.createElement("div");
+reallyGoHomeMessageContainer.classList.add("go-home-message");
+reallyGoHomeMessageContainer.textContent = "Go back to Menu?";
+reallyGoHomeContainer.appendChild(reallyGoHomeMessageContainer);
+const reallyGoHomeBtn = document.createElement("button");
+reallyGoHomeBtn.classList.add("go-home-btn");
+reallyGoHomeBtn.textContent = "Yes";
+reallyGoHomeBtn.addEventListener("click", endApp);
+const cancelGoHomeBtn = document.createElement("button");
+cancelGoHomeBtn.classList.add("cancel-go-home-btn");
+cancelGoHomeBtn.textContent = "Cancel";
+cancelGoHomeBtn.addEventListener("click", returnToApp);
 
 /* Common UI Elements */
 const timer = document.createElement("div");
@@ -47,9 +72,11 @@ const btnContainer3 = document.createElement("div");
 btnContainer3.classList.add("btn-container3");
 const startBtn = document.createElement("div");
 startBtn.setAttribute("id", "start-btn");
+startBtn.textContent = "Start";
 const exitBtn = document.createElement("div");
 exitBtn.setAttribute("id", "exit-btn");
 exitBtn.classList.add("card-touch-app");
+exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
 exitBtn.addEventListener("click", endApp);
 const tryAgainBtn = document.createElement("div");
 tryAgainBtn.classList.add("try-again-btn");
@@ -85,7 +112,7 @@ deleteBtn.addEventListener("click", deleteLastEntry);
 // clearBtn.addEventListener("click", deleteAllEntries);
 
 /* Variables */
-
+let isPaused = false;
 const getBoxes = () => document.querySelectorAll(".box");
 const boxes = getBoxes();
 
@@ -147,9 +174,7 @@ function spellingTouchApp() {
     mainContainer.appendChild(appContainer);
     appContainer.appendChild(btnContainer2);
     btnContainer2.appendChild(startBtn);
-    startBtn.textContent = "Start";
     btnContainer2.appendChild(exitBtn);
-    exitBtn.textContent = "\u2716";
     appContainer.appendChild(grid);
     grid.classList.add("gridHide");
   }, 0);
@@ -180,8 +205,91 @@ function endApp() {
     displayMainPage();
     setTimeout(restoreMainMenu, 100);
   }, 500);
+
   resetTimer();
+  resetNavigationBtns();
   scoreDisplay.innerText = score.currentScore;
+}
+
+// pauses app
+function pause() {
+  isPaused = true;
+  disableTouch();
+  pauseBtn.removeEventListener("click", pause);
+  setTimeout(() => {
+    btnContainer1.classList.add("strong-blur");
+    btnContainer3.classList.add("strong-blur");
+    grid.classList.add("strong-blur");
+  }, 50);
+  pauseBtn.addEventListener("click", unpause);
+}
+function unpause() {
+  pauseBtn.removeEventListener("click", unpause);
+  enableTouch();
+  removeBlur();
+  setTimeout(() => {
+    isPaused = false;
+  }, 500);
+  setTimeout(speak, 200);
+  pauseBtn.addEventListener("click", pause);
+}
+function unpause2() {
+  pauseBtn.removeEventListener("click", unpause);
+  enableTouch();
+  btnContainer1.classList.remove("strong-blur");
+  btnContainer3.classList.remove("strong-blur");
+  grid.classList.remove("strong-blur");
+  setTimeout(() => {
+    isPaused = false;
+  }, 500);
+  pauseBtn.addEventListener("click", pause);
+}
+let homeBtnIsGoHome = true;
+let pauseBtnPauses = true;
+
+function resetNavigationBtns() {
+  homeBtnIsGoHome = true;
+  pauseBtnPauses = true;
+  homeBtn.removeEventListener("click", returnToApp);
+  homeBtn.addEventListener("click", goHome);
+  pauseBtn.removeEventListener("click", returnToApp);
+  pauseBtn.addEventListener("click", pause);
+  homeBtnReturnToNormal();
+}
+function goHome() {
+  pause();
+  homeBtnEnlarge();
+  displayGoHomeConfirmation();
+  if (homeBtnIsGoHome) {
+    homeBtnIsGoHome = false;
+    pauseBtnPauses = false;
+    homeBtn.removeEventListener("click", goHome);
+    homeBtn.addEventListener("click", returnToApp);
+    pauseBtn.removeEventListener("click", unpause);
+    pauseBtn.addEventListener("click", returnToApp);
+  }
+}
+function homeBtnEnlarge() {
+  homeBtn.classList.add("home-btn-enlarge");
+}
+function homeBtnReturnToNormal() {
+  homeBtn.classList.remove("home-btn-enlarge");
+}
+function displayGoHomeConfirmation() {
+  appContainer.appendChild(reallyGoHomeContainer);
+  reallyGoHomeContainer.appendChild(reallyGoHomeBtn);
+  reallyGoHomeContainer.appendChild(cancelGoHomeBtn);
+}
+function returnToApp() {
+  appContainer.removeChild(reallyGoHomeContainer);
+  homeBtnReturnToNormal();
+  unpause();
+  homeBtnIsGoHome = true;
+  pauseBtnPauses = true;
+  homeBtn.removeEventListener("click", returnToApp);
+  homeBtn.addEventListener("click", goHome);
+  pauseBtn.removeEventListener("click", returnToApp);
+  pauseBtn.addEventListener("click", pause);
 }
 
 /* 
@@ -201,11 +309,16 @@ function displayStartBtn() {
   score.resetScore();
 }
 function endSession() {
+  unpause2();
   clearGridAndEffects();
   appContainer.classList.add("hide");
+  homeBtnContainer.classList.add("hide");
   score.updateUserScore();
   if (document.querySelector(".end-messages-container")) {
     document.querySelector(".end-messages-container").remove();
+  }
+  if (document.querySelector(".go-home-container")) {
+    document.querySelector(".go-home-container").remove();
   }
 }
 function startSession() {
@@ -226,10 +339,7 @@ function startNewSession() {
     document.querySelector(".end-messages-container").remove();
     score.resetScore();
     scoreDisplay.innerText = score.currentScore;
-    grid.classList.remove("blur");
-    timer.classList.remove("blur");
-    btnContainer3.classList.remove("blur");
-    scoreDisplay.classList.remove("blur");
+    removeBlur();
   }, 50);
 
   setTimeout(startSession, 300);
@@ -241,13 +351,9 @@ function startNewSession() {
 }
 
 function startNewRound() {
+  numberOfAttempts = 0;
   clearAll();
-
-  grid.classList.remove("blur");
-  timer.classList.remove("blur");
-  btnContainer3.classList.remove("blur");
-  scoreDisplay.classList.remove("blur");
-  letterDisplay.classList.remove("blur");
+  removeBlur();
 
   createGrid();
 
@@ -260,7 +366,9 @@ function startNewRound() {
     btnContainer3.appendChild(checkBtn);
     btnContainer3.appendChild(repeatBtn);
     btnContainer3.appendChild(deleteBtn);
-
+    homeBtnContainer.appendChild(homeBtn);
+    homeBtnContainer.appendChild(pauseBtn);
+    homeBtnContainer.classList.remove("hide");
     getNewWord();
     updateBoxes();
     speak();
@@ -322,36 +430,42 @@ TIMER
 */
 
 let time;
+let countDown;
 const roundTime = 60;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
 }
 function displayTimer() {
-  const countDown = setInterval(() => {
-    --time;
-    if (time < 10) {
-      timer.textContent = `0:0${time}`;
-    } else {
-      timer.textContent = `0:${time}`;
-    }
-    if (time < 0) {
-      timer.textContent = "0:00";
-      clearInterval(countDown);
-      disableTouch();
-      timer.classList.add("wobble");
-      timer.classList.remove("wobble");
-      timer.classList.add("wobble");
-      timer.classList.remove("wobble");
-      timer.classList.add("wobble");
-      roundOver();
+  countDown = setInterval(() => {
+    if (!isPaused) {
+      --time;
+      if (time < 10) {
+        timer.textContent = `0:0${time}`;
+      } else {
+        timer.textContent = `0:${time}`;
+      }
+      if (time < 0) {
+        timer.textContent = "0:00";
+        clearInterval(countDown);
+        disableTouch();
+        timer.classList.add("wobble");
+        timer.classList.remove("wobble");
+        timer.classList.add("wobble");
+        timer.classList.remove("wobble");
+        timer.classList.add("wobble");
+        roundOver();
+      }
     }
   }, 1000);
+  return countDown;
 }
 
 function resetTimer() {
   timer.innerText = "1:00";
   timer.classList.remove("wobble");
+  time = roundTime;
+  clearInterval(countDown);
 }
 function disableTouch() {
   const allTargets = document.querySelectorAll(".box");
@@ -366,6 +480,20 @@ function enableTouch() {
   });
 }
 
+function removeBlur() {
+  if (document.querySelector(".blur")) {
+    let blurredItems = document.querySelectorAll(".blur").forEach((item) => {
+      item.classList.remove("blur");
+    });
+  }
+  if (document.querySelector(".strong-blur")) {
+    let stronglyBlurredItems = document
+      .querySelectorAll(".strong-blur")
+      .forEach((item) => {
+        item.classList.remove("strong-blur");
+      });
+  }
+}
 // CREATE GRID
 function createGrid() {
   for (let i = 0; i < gridSize; ++i) {
@@ -471,6 +599,7 @@ function clearAll() {
   clearGridAndEffects();
 }
 
+let numberOfAttempts;
 /* ANSWER VALIDATION */
 function checkSpelling() {
   if (userSelectedLetters.join("") === word) {
@@ -484,6 +613,7 @@ function checkSpelling() {
     updatePositiveCount(correctAnswerPoints);
     setTimeout(startNewRound, 1500);
   } else {
+    ++numberOfAttempts;
     const bufferLoader = new BufferLoader(
       audioContext,
       ["resources/audio/sfx/クイズ不正解2.mp3"],
@@ -491,11 +621,16 @@ function checkSpelling() {
     );
     bufferLoader.load();
     updateNegativeCount(incorrectAnswerPoints);
-    setTimeout(function () {
-      alert(`Sorry, that is not the correct spelling. Listen again:`);
-    }, 800);
-    speak();
-    clearDisplays();
+    if (numberOfAttempts < 3) {
+      setTimeout(function () {
+        alert(`Sorry, that is not the correct spelling. Listen again:`);
+      }, 800);
+      speak();
+      clearDisplays();
+    } else if (numberOfAttempts === 3) {
+      setTimeout(startNewRound, 1500);
+    }
+    return numberOfAttempts;
   }
 }
 

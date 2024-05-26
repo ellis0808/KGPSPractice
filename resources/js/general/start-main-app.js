@@ -98,7 +98,7 @@ function hideParentsInfoBtn() {
 /*  Return to Main Page  */
 
 const returnToMainMenuBtn = document.createElement("button");
-returnToMainMenuBtn.innerText = `<--`;
+returnToMainMenuBtn.innerText = `<- Back`;
 returnToMainMenuBtn.classList.add("returnToMainMenuBtn");
 returnToMainMenuBtn.setAttribute("id", "returnToMainMenuBtn");
 returnToMainMenuBtn.addEventListener("click", returnToMainMenu);

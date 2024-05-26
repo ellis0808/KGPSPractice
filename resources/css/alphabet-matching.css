@@ -65,8 +65,8 @@ body:not(:has(*)) {
 
 .main-container {
   grid-area: main-container;
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
   overflow: hidden;
   background: #222;
 }
@@ -76,20 +76,27 @@ body:not(:has(*)) {
   background: #222;
   display: grid;
   grid-template-columns: 0.25fr 2fr 2fr 0.25fr;
-  grid-template-rows: 100px 1fr;
+  grid-template-rows: 50px 100px 1fr;
   grid-template-areas:
+    "..... home-btn-container home-btn-container ....."
     "..... timer  score-display ....."
     ".....  matching-grid matching-grid .....";
   place-content: center;
   place-items: center;
   z-index: 0;
-  /* position: absolute; */
   margin: auto;
   overflow: hidden;
 }
 @media (width > 600px) {
   .container {
-    grid-template-rows: 200px 1fr;
+    grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
+    grid-template-rows: 0.1fr 0.15fr 0.1fr 1fr 0.1fr;
+    grid-template-areas:
+      "home-btn-container ..... ..... ....."
+      "home-btn-container btn-container1 btn-container1 ....."
+      "..... ..... ..... ....."
+      ".....  matching-grid matching-grid ....."
+      "..... ..... ..... .....";
   }
 }
 .btn-container1 {
@@ -98,14 +105,21 @@ body:not(:has(*)) {
   min-height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-areas: "repeat-btn  score-display";
-  /* position: absolute; */
+  grid-template-areas: "timer  score-display";
 }
 .btn-container2 {
   width: 100%;
-  min-height: 300px;
-  display: flex;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "..... ..... ....."
+    "..... start-btn ....."
+    "..... exit-btn .....";
   position: absolute;
+  place-content: center;
+  place-items: center;
 }
 .grid {
   grid-area: matching-grid;
@@ -116,7 +130,6 @@ body:not(:has(*)) {
   grid-template-areas: "capitals  start-dot-div ..... end-dot-div lowercase";
   place-content: center;
   place-items: center;
-  perspective: 1000px;
   overflow: hidden;
   --stagger-delaay: 0.1s;
   transition: 0.3s;
@@ -124,9 +137,9 @@ body:not(:has(*)) {
 
 @media (width > 600px) {
   .grid {
-    max-width: 1000px;
-    min-height: 800px;
-    padding: 20px;
+    max-width: 600px;
+    max-height: 700px;
+    padding: 10px;
   }
 }
 .capitals {
@@ -184,8 +197,8 @@ body:not(:has(*)) {
 .lowercase- {
   width: 80px;
   height: 80px;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   color: black;
   background: white;
   border-radius: 10px;
@@ -278,10 +291,155 @@ body:not(:has(*)) {
 
 */
 
+.home-btn-container {
+  grid-area: home-btn-container;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: "home-btn pause-btn";
+  place-content: center;
+  place-items: center;
+  transition: 0.25s ease-in-out;
+}
+@media (width > 600px) {
+  .home-btn-container {
+    grid-area: home-btn-container;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.home-btn {
+  grid-area: home-btn;
+  width: 35px;
+  height: 35px;
+  background-color: transparent;
+  color: var(--clr-acc1);
+  border: transparent;
+  font-size: 1.3rem;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  z-index: 50;
+  transition: 0.1s ease-in;
+}
+@media (width > 600px) {
+  .home-btn {
+    grid-area: home-btn;
+    width: 25px;
+    height: 25px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-btn:hover {
+    /* transform: translateY(7px); */
+    scale: 1.75;
+    transition: 0.2s ease-in;
+  }
+  .home-btn:active {
+    /* transform: translateY(8px); */
+    scale: 1.55;
+    transition: 0.1s ease-in;
+  }
+}
+.home-btn-enlarge {
+  scale: 1.75;
+  /* transform: translateY(7px); */
+  transition: 0.2s ease-in;
+}
+.go-home-container {
+  width: 375px;
+  height: 175px;
+  background-color: var(--clr-acc1);
+  color: white;
+  font-size: 2rem;
+  border-radius: 15px;
+  position: absolute;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.75fr 1fr;
+  grid-template-areas:
+    "go-home-message go-home-message"
+    "cancel-go-home-btn go-home-btn";
+  place-content: center;
+  place-items: center;
+  z-index: 50;
+  box-shadow: rgba(2, 8, 20, 0.5) 0px 15px 15px 7px,
+    rgba(2, 8, 20, 0.3) 0px 20px 20px 10px;
+}
+.go-home-message {
+  grid-area: go-home-message;
+  width: 80%;
+  height: 80%;
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+  place-content: center;
+  place-items: center;
+}
+.cancel-go-home-btn,
+.go-home-btn {
+  grid-area: go-home-btn;
+  width: 120px;
+  height: 55px;
+  font-size: 2rem;
+  color: white;
+  position: absolute;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  border: none;
+  border-radius: 15px;
+  box-shadow: rgba(2, 8, 20, 0.35) 0px 15px 20px 5px;
+}
+.cancel-go-home-btn {
+  grid-area: cancel-go-home-btn;
+  background: rgb(180, 4, 4);
+}
+.go-home-btn {
+  grid-area: go-home-btn;
+  background: rgb(26, 26, 168);
+}
+.pause-btn {
+  grid-area: pause-btn;
+  width: 25px;
+  height: 25px;
+  background-color: transparent;
+  color: var(--clr-acc1);
+  font-size: 1.5rem;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  z-index: 50;
+  transition: 0.1s ease-in;
+}
+@media (hover: hover) and (pointer: fine) {
+  .pause-btn:hover {
+    /* transform: translateY(7px); */
+    scale: 1.75;
+    transition: 0.2s ease-in;
+  }
+  .pause-btn:active {
+    /* transform: translateY(8px); */
+    scale: 1.55;
+    transition: 0.1s ease-in;
+  }
+}
+.pause-btn-enlarge {
+  scale: 1.75;
+  /* transform: translateY(7px); */
+  transition: 0.2s ease-in;
+}
 .timer {
   grid-area: timer;
   color: white;
-  font-size: 4rem;
+  font-size: 5rem;
   display: flex;
   place-content: center;
 }
@@ -300,9 +458,9 @@ body:not(:has(*)) {
   }
 }
 #start-btn {
+  grid-area: start-btn;
   height: 150px;
-  width: 300px;
-  margin: auto;
+  width: 250px;
   color: white;
   background: rgb(161, 29, 29);
   display: flex;
@@ -311,7 +469,6 @@ body:not(:has(*)) {
   font-size: 5rem;
   border-radius: 25px;
   border: transparent;
-
   z-index: 10;
   transition: 0.6s;
 }
@@ -319,18 +476,44 @@ body:not(:has(*)) {
   #start-btn {
     height: 200px;
     width: 500px;
-    margin: auto;
-    color: white;
-    background: rgb(161, 29, 29);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 5rem;
-    border-radius: 50px;
-    border: transparent;
-
-    z-index: 10;
-    transition: 0.6s;
+  }
+}
+#exit-btn {
+  transition: 0.1s ease-in;
+  grid-area: exit-btn;
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  margin-top: 10rem;
+  color: var(--clr-acc1);
+  background-color: white;
+  border: 2px solid var(--clr-acc1);
+  border-radius: 50%;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  font-size: 1.9rem;
+  z-index: 10;
+  transition: 0.6s;
+  animation: cardEntrance 0.5s ease-out;
+}
+@media (width > 600px) {
+  #exit-btn {
+    width: 75px;
+    height: 75px;
+    font-size: 2.5rem;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  #exit-btn:hover {
+    transform: translateY(5px);
+    scale: 1.3;
+    transition: 0.2s ease-in;
+  }
+  #exit-btn:active {
+    scale: 1;
+    transform: translateY(6px);
+    transition: 0.1s;
   }
 }
 .end-messages-container {
@@ -461,6 +644,20 @@ body:not(:has(*)) {
   transform: scale(1.07);
   transition: 0.3s;
 }
+
+@media (hover: hover) and (pointer: fine) {
+  .try-again-btn:hover {
+    transform: scale(1.3);
+    transition: 0.3s ease-in;
+  }
+  .try-again-btn:active,
+  .finish-btn:active {
+    scale: 1.2;
+    /* transform: translateY(6px); */
+    transition: 0.1s;
+  }
+}
+
 /*
 
 *****
@@ -471,6 +668,9 @@ body:not(:has(*)) {
 
 .blur {
   filter: blur(3px);
+}
+.strong-blur {
+  filter: blur(16px);
 }
 .hide {
   opacity: 0;
@@ -498,6 +698,11 @@ body:not(:has(*)) {
 
 .spinfade {
   animation: spin-and-fade 1.5s ease-in-out forwards;
+  transition: var(--transition);
+}
+
+.intro {
+  animation: cardEntrance 0.5s ease-out forwards;
   transition: var(--transition);
 }
 

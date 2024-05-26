@@ -50,22 +50,24 @@ body::-webkit-scrollbar {
 
 .main-container {
   grid-area: main-container;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   background: #222;
-  height: 100vh;
-  width: 100vw;
 }
 .container {
   height: 100%;
   width: 100%;
   background: #222;
   display: grid;
-  grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
-  grid-template-rows: 0.1fr 0.2fr 0.05fr 1fr 0.1fr;
+  grid-template-columns: 0.15fr 1fr 1fr 0.15fr;
+  grid-template-rows: 0.2fr 0.05fr 0.2fr 0.05fr 0.05fr 1fr 0.5fr;
   grid-template-areas:
-    "..... ..... ..... ....."
+    "..... home-btn-container home-btn-container ....."
     "..... btn-container1 btn-container1 ....."
+    "..... ..... ..... ....."
     "..... btn-container3 btn-container3 ....."
+    "..... ..... ..... ....."
     ".....  card-grid card-grid ....."
     "..... ..... ..... .....";
   place-content: center;
@@ -75,22 +77,14 @@ body::-webkit-scrollbar {
 }
 @media (width > 600px) {
   .container {
-    height: 100%;
-    width: 100%;
-    background: #222;
-    display: grid;
     grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
     grid-template-rows: 0.1fr 0.2fr 0.1fr 1fr 0.1fr;
     grid-template-areas:
-      "..... ..... ..... ....."
-      "..... btn-container1 btn-container1 ....."
+      "home-btn-container ..... ..... ....."
+      "home-btn-container btn-container1 btn-container1 ....."
       "..... btn-container3 btn-container3 ....."
       ".....  card-grid card-grid ....."
       "..... ..... ..... .....";
-    place-content: center;
-    place-items: center;
-    margin: auto;
-    overflow: hidden;
   }
 }
 .btn-container1 {
@@ -131,13 +125,11 @@ body::-webkit-scrollbar {
   grid-area: card-grid;
   width: 100%;
   height: 100%;
-  /* padding: 20px; */
-  /* margin-top: 6rem; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-template-areas: "a   b   c" "d  e  f" "g  h  i";
-  gap: 25px;
+  gap: 10px;
   place-content: center;
   place-items: center;
   perspective: 1000px;
@@ -145,18 +137,10 @@ body::-webkit-scrollbar {
 }
 @media (width > 600px) {
   #grid {
-    grid-area: card-grid;
-    width: 100%;
-    height: 100%;
-    display: grid;
     grid-template-columns: repeat(3, minmax(75px, 200px));
     grid-template-rows: repeat(3, minmax(75px, 200px));
     grid-template-areas: "a   b   c" "d  e  f" "g  h  i";
     gap: 40px;
-    place-content: center;
-    place-items: center;
-    perspective: 1000px;
-    --stagger-delaay: 0.1s;
   }
 }
 
@@ -219,22 +203,164 @@ body::-webkit-scrollbar {
 
 */
 
+.home-btn-container {
+  grid-area: home-btn-container;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: "home-btn pause-btn";
+  place-content: center;
+  place-items: center;
+  transition: 0.25s ease-in-out;
+}
+@media (width > 600px) {
+  .home-btn-container {
+    grid-area: home-btn-container;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.home-btn {
+  grid-area: home-btn;
+  width: 35px;
+  height: 35px;
+  background-color: transparent;
+  color: var(--clr-acc1);
+  border: transparent;
+  font-size: 1.3rem;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  z-index: 50;
+  transition: 0.1s ease-in;
+}
+@media (width > 600px) {
+  .home-btn {
+    grid-area: home-btn;
+    width: 25px;
+    height: 25px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .home-btn:hover {
+    scale: 1.75;
+    transition: 0.2s ease-in;
+  }
+  .home-btn:active {
+    scale: 1.55;
+    transition: 0.1s ease-in;
+  }
+}
+.home-btn-enlarge {
+  scale: 1.75;
+  transition: 0.2s ease-in;
+}
+.go-home-container {
+  width: 375px;
+  height: 175px;
+  background-color: var(--clr-acc1);
+  color: white;
+  font-size: 2rem;
+  border-radius: 15px;
+  position: absolute;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.75fr 1fr;
+  grid-template-areas:
+    "go-home-message go-home-message"
+    "cancel-go-home-btn go-home-btn";
+  place-content: center;
+  place-items: center;
+  z-index: 50;
+  box-shadow: rgba(2, 8, 20, 0.5) 0px 15px 15px 7px,
+    rgba(2, 8, 20, 0.3) 0px 20px 20px 10px;
+}
+.go-home-message {
+  grid-area: go-home-message;
+  width: 80%;
+  height: 80%;
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+  place-content: center;
+  place-items: center;
+}
+.cancel-go-home-btn,
+.go-home-btn {
+  grid-area: go-home-btn;
+  width: 120px;
+  height: 55px;
+  font-size: 2rem;
+  color: white;
+  position: absolute;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  border: none;
+  border-radius: 15px;
+  box-shadow: rgba(2, 8, 20, 0.35) 0px 15px 20px 5px;
+}
+.cancel-go-home-btn {
+  grid-area: cancel-go-home-btn;
+  background: rgb(180, 4, 4);
+}
+.go-home-btn {
+  grid-area: go-home-btn;
+  background: rgb(26, 26, 168);
+}
+.pause-btn {
+  grid-area: pause-btn;
+  width: 25px;
+  height: 25px;
+  background-color: transparent;
+  color: var(--clr-acc1);
+  font-size: 1.5rem;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  z-index: 50;
+  transition: 0.1s ease-in;
+}
+@media (hover: hover) and (pointer: fine) {
+  .pause-btn:hover {
+    /* transform: translateY(7px); */
+    scale: 1.75;
+    transition: 0.2s ease-in;
+  }
+  .pause-btn:active {
+    /* transform: translateY(8px); */
+    scale: 1.55;
+    transition: 0.1s ease-in;
+  }
+}
+.pause-btn-enlarge {
+  scale: 1.75;
+  /* transform: translateY(7px); */
+  transition: 0.2s ease-in;
+}
 .timer {
   grid-area: timer;
   color: white;
   font-size: 5rem;
   display: flex;
   place-content: center;
-  justify-self: start;
+  justify-self: center;
 }
 .score-display {
   grid-area: score-display;
   color: rgb(248, 245, 56);
-  font-size: 6rem;
+  font-size: 5rem;
   text-align: right;
   display: flex;
   place-content: center;
-  justify-self: end;
+  justify-self: center;
 }
 #repeat-btn {
   grid-area: repeat-btn;
@@ -278,7 +404,6 @@ body::-webkit-scrollbar {
   grid-area: start-btn;
   height: 125px;
   width: 250px;
-  /* margin: auto; */
   color: white;
   background: rgb(161, 29, 29);
   display: flex;
@@ -298,20 +423,20 @@ body::-webkit-scrollbar {
   }
 }
 #exit-btn {
+  transition: 0.1s ease-in;
   grid-area: exit-btn;
   width: 40px;
   height: 40px;
   margin: auto;
   margin-top: 10rem;
-  color: black;
-  background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.5rem;
+  color: var(--clr-acc1);
+  background-color: white;
+  border: 2px solid var(--clr-acc1);
   border-radius: 50%;
-  /* border: black solid 3px; */
-
+  display: flex;
+  place-content: center;
+  place-items: center;
+  font-size: 1.9rem;
   z-index: 10;
   transition: 0.6s;
   animation: cardEntrance 0.5s ease-out;
@@ -320,7 +445,19 @@ body::-webkit-scrollbar {
   #exit-btn {
     width: 75px;
     height: 75px;
-    font-size: 4rem;
+    font-size: 2.5rem;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  #exit-btn:hover {
+    transform: translateY(5px);
+    scale: 1.3;
+    transition: 0.2s ease-in;
+  }
+  #exit-btn:active {
+    scale: 1;
+    transform: translateY(6px);
+    transition: 0.1s;
   }
 }
 .end-messages-container {
@@ -445,11 +582,20 @@ body::-webkit-scrollbar {
   background: rgb(26, 26, 168);
   margin-left: 600px;
 }
-.try-again-btn:hover,
-.finish-btn:hover {
-  transform: scale(1.07);
-  transition: 0.3s;
+
+@media (hover: hover) and (pointer: fine) {
+  .try-again-btn:hover {
+    transform: scale(1.3);
+    transition: 0.3s ease-in;
+  }
+  .try-again-btn:active,
+  .finish-btn:active {
+    scale: 1.2;
+    /* transform: translateY(6px); */
+    transition: 0.1s;
+  }
 }
+
 /*
 
 *****
@@ -460,6 +606,9 @@ body::-webkit-scrollbar {
 
 .blur {
   filter: blur(3px);
+}
+.strong-blur {
+  filter: blur(16px);
 }
 .hide {
   opacity: 0;
