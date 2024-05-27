@@ -49,7 +49,7 @@ startBtn.setAttribute("id", "start-btn");
 startBtn.textContent = "Start";
 const exitBtn = document.createElement("div");
 exitBtn.setAttribute("id", "exit-btn");
-exitBtn.classList.add("letter-matching-app");
+exitBtn.classList.add("letter-matching-app", "hide");
 exitBtn.addEventListener("click", endApp);
 const capitalLettersDiv = document.createElement("div");
 capitalLettersDiv.classList.add("capitals");
@@ -173,6 +173,9 @@ function unpause() {
   grid.classList.remove("strong-blur");
   setTimeout(() => {
     isPaused = false;
+    if (!grid.hasChildNodes()) {
+      startNewRound();
+    }
   }, 500);
   pauseBtn.addEventListener("click", pause);
 }
@@ -262,6 +265,7 @@ function displayStartBtn() {
     exitBtn.classList.remove("no-touch");
     exitBtn.classList.remove("hide2");
   }
+  exitBtn.classList.remove("hide");
   startBtn.addEventListener("click", startSession);
   score.resetScore();
 }
@@ -495,12 +499,14 @@ function checkAllCorrect() {
 }
 
 function continueToNextRound() {
-  setTimeout(() => {
-    clearBoard();
-  }, 1000);
-  setTimeout(() => {
-    startNewRound();
-  }, 1500);
+  if (!isPaused) {
+    setTimeout(() => {
+      clearBoard();
+    }, 1000);
+    setTimeout(() => {
+      startNewRound();
+    }, 1500);
+  }
 }
 
 /*

@@ -75,7 +75,7 @@ startBtn.setAttribute("id", "start-btn");
 startBtn.textContent = "Start";
 const exitBtn = document.createElement("div");
 exitBtn.setAttribute("id", "exit-btn");
-exitBtn.classList.add("card-touch-app");
+exitBtn.classList.add("card-touch-app", "hide");
 exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
 exitBtn.addEventListener("click", endApp);
 const tryAgainBtn = document.createElement("div");
@@ -305,6 +305,7 @@ function displayStartBtn() {
     exitBtn.classList.remove("no-touch");
     exitBtn.classList.remove("hide2");
   }
+  exitBtn.classList.remove("hide");
   startBtn.addEventListener("click", startSession);
   score.resetScore();
 }

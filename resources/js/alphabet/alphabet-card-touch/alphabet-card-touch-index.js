@@ -96,7 +96,7 @@ startBtn.textContent = "Start";
 startBtn.addEventListener("click", startSession);
 const exitBtn = document.createElement("div");
 exitBtn.setAttribute("id", "exit-btn");
-exitBtn.classList.add("card-touch-app");
+exitBtn.classList.add("card-touch-app", "hide");
 exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
 exitBtn.addEventListener("click", endApp);
 const btnContainer1 = document.createElement("div");
@@ -194,6 +194,7 @@ function displayStartBtn() {
     exitBtn.classList.remove("no-touch");
     exitBtn.classList.remove("hide2");
   }
+  exitBtn.classList.remove("hide");
   startBtn.addEventListener("click", startSession);
   score.resetScore();
 }
@@ -350,7 +351,9 @@ function repeat() {
 
   let speakLetter = new SpeechSynthesisUtterance(randomLetter);
   setTimeout(function () {
-    synth.speak(speakLetter);
+    if (!isPaused) {
+      synth.speak(speakLetter);
+    }
   }, 30);
 }
 
@@ -373,26 +376,26 @@ function createBoard() {
       }
     }
   }
-  cardGenerator();
-  // if (!repeatBtn.classList.contains("no-touch")) {
-  let i = 0;
-  lettersArray.forEach(() => {
-    const card = document.createElement("div");
-    card.setAttribute("txt", lettersArray[i]);
-    newCardText = card.getAttribute("txt");
-    card.textContent = newCardText;
-    card.setAttribute("data-id", i);
-    card.classList.add("card");
-    grid.append(card);
-    card.addEventListener("click", touchCard);
-    cardText.push(newCardText);
-    ++i;
-  });
-  btnContainer3.appendChild(repeatBtn);
-  btnContainer1.appendChild(scoreDisplay);
-  speak();
-  setTimeout(toggleRepeatBtnHide, 1500);
-  // }
+  if (!isPaused) {
+    cardGenerator();
+    let i = 0;
+    lettersArray.forEach(() => {
+      const card = document.createElement("div");
+      card.setAttribute("txt", lettersArray[i]);
+      newCardText = card.getAttribute("txt");
+      card.textContent = newCardText;
+      card.setAttribute("data-id", i);
+      card.classList.add("card");
+      grid.append(card);
+      card.addEventListener("click", touchCard);
+      cardText.push(newCardText);
+      ++i;
+    });
+    btnContainer3.appendChild(repeatBtn);
+    btnContainer1.appendChild(scoreDisplay);
+    speak();
+    setTimeout(toggleRepeatBtnHide, 1500);
+  }
 }
 
 // TOUCH FUNCTIONALITY
@@ -481,16 +484,20 @@ function unpause() {
   removeBlur();
   setTimeout(() => {
     isPaused = false;
+    if (grid.hasChildNodes()) {
+      setTimeout(repeat, 200);
+    }
+    //displays a new board in case the app is paused after a correct answer, but before a new board is generated
+    if (!grid.hasChildNodes()) {
+      createBoard();
+    }
   }, 500);
-  setTimeout(repeat, 200);
   pauseBtn.addEventListener("click", pause);
 }
 function unpause2() {
   pauseBtn.removeEventListener("click", unpause);
   enableTouch();
-  btnContainer1.classList.remove("strong-blur");
-  btnContainer3.classList.remove("strong-blur");
-  grid.classList.remove("strong-blur");
+  removeBlur();
   setTimeout(() => {
     isPaused = false;
   }, 500);
