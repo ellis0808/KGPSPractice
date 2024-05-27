@@ -136,7 +136,7 @@ let newCardText;
 let countDown;
 // TIMER
 let time;
-const roundTime = 30;
+const roundTime = 60;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);

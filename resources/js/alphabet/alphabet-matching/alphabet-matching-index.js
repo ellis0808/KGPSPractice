@@ -572,7 +572,7 @@ III. TIMER
 
 let time;
 let countDown;
-const roundTime = 10;
+const roundTime = 60;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
@@ -921,33 +921,6 @@ function onMouseDown(event) {
       1
     );
   }
-  // const orphanedStartDots = document.querySelectorAll(
-  //   ".start-dot.correctPulse"
-  // );
-  // orphanedStartDots.forEach((item) => {
-  //   if (!currentLinesIdArray.includes(`${item.id}-line`)) {
-  //     console.log(item.id);
-  //     correctDotsAndLines.splice(correctDotsAndLines.indexOf(item.id), 1);
-  //   }
-  // });
-  // if (correctDotsAndLines.includes(currentDotId)) {
-  //   removeCorrectPulseEffect();
-  //   correctDotsAndLines.splice(correctDotsAndLines.indexOf(currentDotId), 1);
-  //   const receivingDot = document.querySelectorAll(
-  //     `[line-id="${currentDotId}-line"].end-dot`
-  //   );
-  //   receivingDot.forEach((item) => {
-  //     if (!finalLinesIdArray.includes(`${item}-line`)) {
-  //       console.log(item.id.slice(0, 5));
-  //       correctDotsAndLines.splice(
-  //         correctDotsAndLines.indexOf(item.id.slice(0, 5)),
-  //         1
-  //       );
-  //     }
-  //   });
-
-  //   addCorrectPulseEffect();
-  // }
 
   if (line.isPressed) {
     getEventTargetID(event);
@@ -993,7 +966,7 @@ function onMouseDown(event) {
 function onMouseMove(event) {
   event.preventDefault();
   event.stopPropagation();
-  const bodyRect = grid.getBoundingClientRect();
+  const bodyRect = appContainer.getBoundingClientRect();
   if (line.isPressed && !currentDotIdArray.includes(currentDotId)) {
     if (line.start) {
       line.end = {
@@ -1191,8 +1164,8 @@ function activateEventListeners() {
       target.addEventListener("pointerup", onMouseUp, false);
     });
 
-  grid.addEventListener("pointerup", onMouseUpFalse, false);
-  grid.addEventListener("pointermove", onMouseMove, false);
+  appContainer.addEventListener("pointerup", onMouseUpFalse, false);
+  appContainer.addEventListener("pointermove", onMouseMove, false);
 }
 
 export { alphabetMatchingApp };
