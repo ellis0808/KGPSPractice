@@ -379,6 +379,7 @@ function clearBoard() {
       item.remove();
     });
     clearArrays();
+    dotCommand.clearArrays();
   }, 400);
 }
 
@@ -433,66 +434,79 @@ function displayTryAgainAndFinishBtns() {
 A. Checking for Correct Answers
 */
 
-function addCorrectPulseEffect() {
-  correctDotsAndLines.forEach((item) => {
-    let correctDot = document.getElementById(`${item}`);
-    if (!correctDot.classList.contains("dot-enclosure")) {
-      correctDot.classList.add("correctPulse");
-      // console.log(`Correct Dots: ${correctDot.id}`);
-    } else if (correctDot.classList.contains("dot-enclosure")) {
-      correctDot.children[0].classList.add("correctPulse");
-      // console.log(`Correct Dots: ${correctDot.id}`);
-    }
-  });
-}
-const incorrectDotsAndLines = [];
-function removeCorrectPulseEffect() {
-  const alldots = document.querySelectorAll(".correctPulse");
-  console.log(alldots);
-  alldots.forEach((item) => {
-    if (item.classList.contains("correctPulse")) {
-      item.classList.remove("correctPulse");
-    }
-  });
-  console.log(alldots);
-}
-function correctMatch(event) {
-  // if (correctDotsAndLines.includes(event.target.id)) {
-  //   event.preventDefault();
-  //   return;
-  // } else if (line.contentId === event.target.getAttribute("contentId")) {
-  //   line.element.classList.add("correctPulse");
-  //   const correctEndDot = document.querySelectorAll(`[line-id="${line.id}"]`);
-  //   correctEndDot.forEach((item) => {
-  //     if (!correctDotsAndLines.includes(item.id)) {
-  //       correctDotsAndLines.push(item.id);
-  //     }
-  //   });
-  //   addCorrectPulseEffect();
-  //   const bufferLoader = new BufferLoader(
-  //     audioContext,
-  //     ["../../resources/audio/sfx/クイズ正解5.mp3"],
-  //     finishedLoading
-  //   );
-  //   bufferLoader.load();
-  //   updatePositiveCount(correctAnswerPoints);
-  //   scoreDisplay.classList.add("pulse");
-  //   checkAllCorrect();
-  // } else {
-  //   event.target.removeAttribute("line-id");
-  //   event.target.classList.remove("correctPulse");
-  //   updateNegativeCount(incorrectAnswerPoints);
-  // }
-}
+// function addCorrectPulseEffect() {
+//   correctDotsAndLines.forEach((item) => {
+//     let correctDot = document.getElementById(`${item}`);
+//     if (!correctDot.classList.contains("dot-enclosure")) {
+//       correctDot.classList.add("correct-pulse");
+//       // console.log(`Correct Dots: ${correctDot.id}`);
+//     } else if (correctDot.classList.contains("dot-enclosure")) {
+//       correctDot.children[0].classList.add("correct-pulse");
+//       // console.log(`Correct Dots: ${correctDot.id}`);
+//     }
+//   });
+// }
+// const incorrectDotsAndLines = [];
+// function removeCorrectPulseEffect() {
+//   const alldots = document.querySelectorAll(".correct-pulse");
+//   console.log(alldots);
+//   alldots.forEach((item) => {
+//     if (item.classList.contains("correct-pulse")) {
+//       item.classList.remove("correct-pulse");
+//     }
+//   });
+//   console.log(alldots);
+// }
+// function correctMatch(event) {
+// if (correctDotsAndLines.includes(event.target.id)) {
+//   event.preventDefault();
+//   return;
+// } else if (line.contentId === event.target.getAttribute("contentId")) {
+//   line.element.classList.add("correct-pulse");
+//   const correctEndDot = document.querySelectorAll(`[line-id="${line.id}"]`);
+//   correctEndDot.forEach((item) => {
+//     if (!correctDotsAndLines.includes(item.id)) {
+//       correctDotsAndLines.push(item.id);
+//     }
+//   });
+//   addCorrectPulseEffect();
+//   const bufferLoader = new BufferLoader(
+//     audioContext,
+//     ["../../resources/audio/sfx/クイズ正解5.mp3"],
+//     finishedLoading
+//   );
+//   bufferLoader.load();
+//   updatePositiveCount(correctAnswerPoints);
+//   scoreDisplay.classList.add("pulse");
+//   checkAllCorrect();
+// } else {
+//   event.target.removeAttribute("line-id");
+//   event.target.classList.remove("correct-pulse");
+//   updateNegativeCount(incorrectAnswerPoints);
+// }
+// }
 
 /*
 B. Checking If All Letters Are Correctly Matched
 */
 function checkAllCorrect() {
-  const allCorrectDots = document.querySelectorAll(".start-dot.correctPulse");
+  const allCorrectDots = document.querySelectorAll(".start-dot.correct-pulse");
   if (allCorrectDots.length === numberOfLettersToBeDisplayed) {
-    disableTouch();
-    continueToNextRound();
+    setTimeout(() => {
+      updatePositiveCount(allCorrectDots.length * correctAnswerPoints);
+      scoreDisplay.classList.add("pulse");
+      // grid.classList.add("pulse");
+      const bufferLoader = new BufferLoader(
+        audioContext,
+        ["../../resources/audio/sfx/クイズ正解5.mp3"],
+        finishedLoading
+      );
+      bufferLoader.load();
+    }, 500);
+    setTimeout(() => {
+      disableTouch();
+      continueToNextRound();
+    }, 1000);
   }
 }
 
@@ -513,60 +527,60 @@ C. Removing Classes & IDs for Unconnected Elements
 /*
 C.1 - Removing 'CorrectPulse' Class
 */
-function removeCorrectPulse() {
-  const endDotsMarkedCorrect = document.querySelectorAll(
-    ".correctPulse.end-dot"
-  );
-  endDotsMarkedCorrect.forEach((item) => {
-    if (!item.hasAttribute("line-id")) {
-      item.classList.remove("correctPulse");
-    }
-    if (item.getAttribute("line-id")) {
-      const connectedStartDot = document.querySelector(
-        `[line-id="${item.getAttribute("line-id")}"].start-dot`
-      );
-      if (connectedStartDot !== null) {
-        if (
-          connectedStartDot.getAttribute("line-id") ===
-          item.getAttribute("line-id")
-        ) {
-          item.removeAttribute("line-id");
-          item.classList.remove("correctPulse");
-          return;
-        }
-      }
-    }
-  });
-  const startDotsMarkedCorrect = document.querySelectorAll(
-    ".correctPulse.start-dot"
-  );
-  startDotsMarkedCorrect.forEach((item) => {
-    if (item.hasAttribute("line-id")) {
-      if (
-        !currentDotIdArray.includes(item.getAttribute("line-id").slice(0, 5))
-      ) {
-        item.classList.remove("correctPulse");
-      }
-    }
-    if (!currentDotIdArray.includes(item.id)) {
-      item.classList.remove("correctPulse");
-    }
-  });
-  removeLineIdFromDot();
-}
+// function removeCorrectPulse() {
+//   const endDotsMarkedCorrect = document.querySelectorAll(
+//     ".correct-pulse.end-dot"
+//   );
+//   endDotsMarkedCorrect.forEach((item) => {
+//     if (!item.hasAttribute("line-id")) {
+//       item.classList.remove("correct-pulse");
+//     }
+//     if (item.getAttribute("line-id")) {
+//       const connectedStartDot = document.querySelector(
+//         `[line-id="${item.getAttribute("line-id")}"].start-dot`
+//       );
+//       if (connectedStartDot !== null) {
+//         if (
+//           connectedStartDot.getAttribute("line-id") ===
+//           item.getAttribute("line-id")
+//         ) {
+//           item.removeAttribute("line-id");
+//           item.classList.remove("correct-pulse");
+//           return;
+//         }
+//       }
+//     }
+//   });
+//   const startDotsMarkedCorrect = document.querySelectorAll(
+//     ".correct-pulse.start-dot"
+//   );
+//   startDotsMarkedCorrect.forEach((item) => {
+//     if (item.hasAttribute("line-id")) {
+//       if (
+//         !currentDotIdArray.includes(item.getAttribute("line-id").slice(0, 5))
+//       ) {
+//         item.classList.remove("correct-pulse");
+//       }
+//     }
+//     if (!currentDotIdArray.includes(item.id)) {
+//       item.classList.remove("correct-pulse");
+//     }
+//   });
+//   removeLineIdFromDot();
+// }
 
 /*
 C.2 - Removing LineID
 */
-function removeLineIdFromDot(event) {
-  const endDotsToBeRevertedToDefaultState =
-    document.querySelectorAll(`[line-id].end-dot`);
-  endDotsToBeRevertedToDefaultState.forEach((item) => {
-    if (!currentDotIdArray.includes(item.getAttribute("line-id").slice(0, 5))) {
-      item.removeAttribute("line-id");
-    }
-  });
-}
+// function removeLineIdFromDot(event) {
+//   const endDotsToBeRevertedToDefaultState =
+//     document.querySelectorAll(`[line-id].end-dot`);
+//   endDotsToBeRevertedToDefaultState.forEach((item) => {
+//     if (!currentDotIdArray.includes(item.getAttribute("line-id").slice(0, 5))) {
+//       item.removeAttribute("line-id");
+//     }
+//   });
+// }
 
 /* 
 *******
@@ -576,7 +590,7 @@ III. TIMER
 
 let time;
 let countDown;
-const roundTime = 60;
+const roundTime = 6000;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
@@ -712,6 +726,10 @@ class DotCommand {
     this.startDots = [];
     this.endDots = [];
   }
+  clearArrays() {
+    this.startDots.length = 0;
+    this.endDots.length = 0;
+  }
   registerStartDot(sDot) {
     this.startDots.push(sDot);
     sDot.setMediator(this);
@@ -729,36 +747,31 @@ class DotCommand {
   connect(dot1, dot2) {
     dot1.connect(dot1, dot2);
   }
-  disconnect(dot1) {
-    dot1.disconnect();
+  disconnect(dot1, dot2) {
+    dot1.disconnect(dot2);
   }
   markAsCorrect(dot1) {
     dot1.markAsCorrect();
   }
   markAsIncorrect(dot1) {
-    dot1.markAsCorrect();
+    dot1.markAsIncorrect();
+    dot1.disconnect();
   }
   notify(action, dot1, dot2) {
-    const stDot = this.startDots.find((sd) => sd.id === stDot.id);
-    if (stDot) {
-      if (action === "connect") {
-        this.connect(dot1, dot2);
-      }
+    if (action === "connect") {
+      this.connect(dot1, dot2);
       if (dot1.contentId === dot2.contentId) {
         this.markAsCorrect(dot1);
-        this.markAsCorrect(dot2);
       } else {
         this.markAsIncorrect(dot1);
-        this.markAsIncorrect(dot2);
       }
-      console.log(dot1, dot2);
     }
   }
 }
 const dotCommand = new DotCommand();
-
-const endDot = [];
 const startDot = [];
+const endDot = [];
+
 class StartDot {
   constructor(contentId) {
     this.contentId = contentId;
@@ -775,48 +788,48 @@ class StartDot {
   }
   makeActive() {
     this.isActive = true;
-    this.element.classList.add("active-dot");
-    this.element.classList.add("halo");
+    this.element.classList.add("active-dot", "halo");
   }
   makeInctive() {
     this.isActive = false;
-    this.element.classList.remove("active-dot");
-    this.element.classList.remove("halo");
-  }
-  update() {
-    if (this.mediator) {
-      this.mediator.notify("connect", this, endDot);
-    }
+    this.element.classList.remove("active-dot", "halo");
   }
   connect(sDot, endDot) {
     this.connected = true;
-    this.connectedTo = endDot.id;
-    if (this.contentId === endDot.contentId) {
-      console.log("the same");
-      line.element.classList.add("correctPulse");
-    } else {
+    if (this.connectedTo) {
+      this.connectedTo.removeCorrectPulse();
     }
+    this.connectedTo = endDot;
   }
-  disconnect() {
+  disconnect(sDot, endDot) {
     this.connected = false;
     this.connectedTo = null;
   }
+  addCorrectPulse() {
+    this.element.classList.add("correct-pulse", "white-ring");
+
+    // Force Reflow
+    void this.element.offsetWidth;
+  }
+  removeCorrectPulse() {
+    this.element.classList.remove("correct-pulse", "white-ring");
+
+    // Force Reflow
+    void this.element.offsetWidth;
+  }
   markAsCorrect() {
-    this.element.classList.add("correctPulse");
+    this.addCorrectPulse();
     const bufferLoader = new BufferLoader(
       audioContext,
-      ["../../resources/audio/sfx/クイズ正解5.mp3"],
+      ["resources/audio/sfx/パパッ.mp3"],
       finishedLoading
     );
     bufferLoader.load();
-    updatePositiveCount(correctAnswerPoints);
-    scoreDisplay.classList.add("pulse");
     checkAllCorrect();
   }
   markAsIncorrect() {
-    if (this.element.classList.contains("correctPulse")) {
-      this.element.classList.remove("correctPulse");
-    }
+    this.removeCorrectPulse();
+    this.disconnect();
   }
 }
 class EndDot {
@@ -835,36 +848,45 @@ class EndDot {
   }
   makeActive() {
     this.isActive = true;
-    this.element.classList.add("active-dot");
-    this.element.classList.add("halo");
+    this.element.classList.add("active-dot", "halo");
   }
   makeInctive() {
     this.isActive = false;
-    this.element.classList.remove("active-dot");
-    this.element.classList.remove("halo");
+    this.element.classList.remove("active-dot", "halo");
   }
-  update() {
-    if (this.mediator) this.mediator.notify("connect", this, sDot);
-  }
-  connect(sDot, endDot) {
-    this.connected = true;
-    this.connectedTo = sDot.id;
-    console.log("the same2");
-    if (this.contentId === sDot.contentId) {
-    } else {
+  update(sDot) {
+    if (this.mediator) {
+      this.mediator.notify("connect", this, sDot);
     }
+  }
+  connect(endDot, sDot) {
+    this.connected = true;
+    if (this.connectedTo) {
+      this.connectedTo.removeCorrectPulse();
+    }
+    this.connectedTo = sDot;
   }
   disconnect() {
     this.connected = false;
     this.connectedTo = null;
   }
+  addCorrectPulse() {
+    this.element.classList.add("correct-pulse", "white-ring");
+    // Force Reflow
+    void this.element.offsetWidth;
+  }
+  removeCorrectPulse() {
+    this.element.classList.remove("correct-pulse", "white-ring");
+
+    // Force Reflow
+    void this.element.offsetWidth;
+  }
   markAsCorrect() {
-    this.element.classList.add("correctPulse");
+    this.addCorrectPulse();
   }
   markAsIncorrect() {
-    if (this.element.classList.contains("correctPulse")) {
-      this.element.classList.remove("correctPulse");
-    }
+    this.removeCorrectPulse();
+    this.disconnect();
   }
 }
 
@@ -1004,9 +1026,9 @@ class Connector {
     if (this.contentId === endDot.contentId) {
       line.element.classList.remove("unconnected");
       line.element.classList.add("connected");
-      line.element.classList.add("correctPulse");
+      line.element.classList.add("correct-pulse");
     } else {
-      line.element.classList.remove("correctPulse");
+      line.element.classList.remove("correct-pulse");
     }
   }
   getText(startDot) {
@@ -1068,10 +1090,7 @@ function onMouseDown(event) {
   scoreDisplay.classList.remove("pulse");
 
   getEventTargetID(event);
-  event.target.classList.remove("correctPulse");
-  console.log(correctDotsAndLines);
   if (correctDotsAndLines.includes(`${currentDotId}`)) {
-    event.target.classList.add("correctPulse");
     event.preventDefault();
     return;
   }
@@ -1102,16 +1121,11 @@ function onMouseDown(event) {
           );
           currentLinesIdArray.splice(currentLineIdToBeRemoved, 1);
           if (correctDotsAndLines.includes(currentDotId)) {
-            console.log(currentLinesIdArray);
             removeCorrectPulseEffect();
-            console.log(`CorrectArray: ${correctDotsAndLines}`);
             correctDotsAndLines.splice(
               correctDotsAndLines.indexOf(currentDotId),
               1
             );
-
-            addCorrectPulseEffect();
-            console.log(`CorrectArray: ${correctDotsAndLines}`);
           }
         }
       }
@@ -1120,7 +1134,6 @@ function onMouseDown(event) {
   if (!currentDotIdArray.includes(currentDotId)) {
     event.target.setAttribute("line-id", `${currentDotId}-line`);
     line.getText(startDot[currentStartDot]);
-    // line.contentId = event.target.getAttribute("contentId");
     line.start = {};
     line.getStartPosition(event);
     line.end = {};
@@ -1168,7 +1181,6 @@ function onMouseUp(event) {
     startDot[currentStartDot]
   );
   line.connect(endDot[currentEndDot]);
-  console.log(line.element.classList);
   line.buttonUp();
   if (
     !line.isPressed &&
@@ -1209,12 +1221,11 @@ function onMouseUp(event) {
           currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
 
           const orphanedStartDots = document.querySelectorAll(
-            ".start-dot.correctPulse"
+            ".start-dot.correct-pulse"
           );
 
           orphanedStartDots.forEach((item) => {
             if (!currentLinesIdArray.includes(`${item.id}-line`)) {
-              item.classList.remove("correctPulse");
               correctDotsAndLines.splice(
                 correctDotsAndLines.indexOf(item.id),
                 1
@@ -1276,13 +1287,11 @@ function onMouseUp(event) {
           finalLinesIdArray.splice(finalLinesToBeRemoved);
 
           const orphanedEndDots = document.querySelectorAll(
-            ".end-dot.correctPulse"
+            ".end-dot.correct-pulse"
           );
 
           orphanedEndDots.forEach((item) => {
             if (!finalLinesIdArray.includes(`${item.id}-line`)) {
-              console.log(item.id);
-              item.classList.remove("correctPulse");
               correctDotsAndLines.splice(
                 correctDotsAndLines.indexOf(item.id),
                 1
@@ -1295,7 +1304,6 @@ function onMouseUp(event) {
       currentDotIdArray.push(currentDotId);
       currentLinesIdArray.push(line.id);
       finalLinesIdArray.push(line.element.getAttribute("endlineid"));
-      console.log(currentLinesIdArray);
     } else if (!line.isPressed) {
       removeUnconnectedLines();
       lines.pop();
