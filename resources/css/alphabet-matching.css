@@ -714,6 +714,10 @@ body:not(:has(*)) {
   -moz-box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 1);
   box-shadow: 0px 0px 0px 7px rgba(255, 255, 255, 1); */
   border: 7px solid white;
+  background-color: rgb(21, 21, 172);
+}
+.red-dot {
+  background-color: rgb(180, 4, 4);
 }
 .newroundcardflip {
   animation: new-round-card-flip 0.6s ease-in-out forwards;
