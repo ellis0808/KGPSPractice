@@ -9,6 +9,7 @@
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+  touch-action: none;
 }
 :root {
   --clr-or: hsl(43, 89%, 38%);
@@ -31,7 +32,6 @@ body {
   place-content: center;
   grid-template-columns: 1fr;
   grid-template-areas: "main-container";
-  touch-action: none;
   overflow-y: hidden;
   cursor: pointer;
 }
@@ -44,7 +44,6 @@ body {
     place-content: center;
     grid-template-columns: 1fr;
     grid-template-areas: "main-container";
-    touch-action: none;
     overflow: hidden;
   }
 }
@@ -528,6 +527,7 @@ body:not(:has(*)) {
   place-content: center;
   place-items: center;
   position: absolute;
+  z-index: 33;
 }
 @media (width > 600px) {
   .end-messages-container {

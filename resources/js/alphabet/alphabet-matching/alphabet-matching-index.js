@@ -1009,14 +1009,10 @@ function removeUnconnectedLines() {
 
 let currentStartDot;
 let currentEndDot;
-let activePointers = {};
 
 function onMouseDown(event) {
   event.preventDefault();
   event.stopPropagation();
-
-  let pointerId = event.pointerId;
-  activePointers[pointerId] = true;
 
   currentStartDot = null;
   currentStartDot = event.target.id.slice(4);
@@ -1086,9 +1082,6 @@ function onMouseMove(event) {
   event.preventDefault();
   event.stopPropagation();
 
-  let pointerId = event.pointerId;
-  if (!activePointers[pointerId]) return;
-
   const bodyRect = appContainer.getBoundingClientRect();
   if (line.isPressed && !currentDotIdArray.includes(currentDotId)) {
     if (line.start) {
@@ -1106,12 +1099,8 @@ function onMouseMove(event) {
 /*   MOUSE UP EVENT  */
 
 function onMouseUp(event) {
-  event.preventDefault();
+  // event.preventDefault();
   event.stopPropagation();
-
-  let pointerId = event.pointerId;
-  if (!activePointers[pointerId]) return;
-  delete activePointers[pointerId];
 
   currentEndDot = Number(event.target.id.slice(4)) - 5;
   startDot[currentStartDot].makeInctive();
@@ -1257,11 +1246,7 @@ function onMouseUp(event) {
 }
 
 /*   FALSE MOUSE UP EVENT  */
-function onMouseUpFalse(event) {
-  let pointerId = event.pointerId;
-  if (!activePointers[pointerId]) return;
-  delete activePointers[pointerId];
-
+function onMouseUpFalse() {
   if (line.isPressed) {
     startDot[currentStartDot].makeInctive();
     line.buttonUp();
