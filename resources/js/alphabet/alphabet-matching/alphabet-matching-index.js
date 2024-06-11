@@ -243,7 +243,7 @@ function removeBlur() {
       item.classList.remove("blur");
     });
   }
-  if (document.querySelector(".blur")) {
+  if (document.querySelector(".strong-blur")) {
     let stronglyBlurredItems = document
       .querySelectorAll(".strong-blur")
       .forEach((item) => {
@@ -276,7 +276,6 @@ function endSession() {
   resetNavigationBtns();
   appContainer.classList.add("hide");
   homeBtnContainer.classList.add("hide");
-  score.updateUserScore();
   if (document.querySelector(".end-messages-container")) {
     document.querySelector(".end-messages-container").remove();
   }
@@ -406,6 +405,7 @@ function displayFinalScore() {
       finalScoreAlert.classList.add("flip");
     });
   }, 400);
+  score.updateUserScore();
 }
 
 /*
@@ -677,14 +677,10 @@ class StartDot {
   }
   makeActive() {
     this.isActive = true;
-    // if (this.element.classList.contains("red-dot")) {
-    // this.removeRed();
-    // }
+
     if (this.connectedTo) {
       // this order must be maintained; if 'this' is made 'incorrect', it will no longer have anything connected to it
-      console.log(this);
 
-      this.connectedTo.removeRed();
       this.connectedTo.disconnect();
       this.disconnect();
     }
@@ -697,12 +693,10 @@ class StartDot {
   connect(sDot, endDot) {
     this.connected = true;
     if (this.connectedTo) {
-      // this.connectedTo.removeRed();
       this.connectedTo.removeCorrectPulse();
       this.connectedTo.disconnect();
     }
     this.connectedTo = endDot;
-    console.log(this.connectedTo);
   }
   disconnect(sDot, endDot) {
     // this.removeRed();
@@ -737,6 +731,10 @@ class StartDot {
       finishedLoading
     );
     bufferLoader.load();
+    setTimeout(() => {
+      speak(this.contentId);
+    }, 100);
+
     checkAllCorrect();
   }
   markAsIncorrect() {
@@ -770,7 +768,6 @@ class EndDot {
     this.isActive = true;
     if (this.connectedTo) {
       // this order must be maintained; if 'this' is made 'incorrect', it will no longer have anything connected to it
-      console.log(this);
       this.connectedTo.disconnect();
       this.disconnect();
     }
@@ -959,9 +956,9 @@ class Connector {
     if (this.contentId === endDot.contentId) {
       line.element.classList.remove("unconnected");
       line.element.classList.add("connected");
-      line.element.classList.add("correct-pulse");
+      line.element.classList.add("pulse");
     } else {
-      line.element.classList.remove("correct-pulse");
+      line.element.classList.remove("pulse");
     }
   }
   getText(startDot) {
@@ -1012,10 +1009,15 @@ function removeUnconnectedLines() {
 
 let currentStartDot;
 let currentEndDot;
+let activePointers = {};
 
 function onMouseDown(event) {
   event.preventDefault();
   event.stopPropagation();
+
+  let pointerId = event.pointerId;
+  activePointers[pointerId] = true;
+
   currentStartDot = null;
   currentStartDot = event.target.id.slice(4);
   startDot[currentStartDot].makeActive();
@@ -1083,6 +1085,10 @@ function onMouseDown(event) {
 function onMouseMove(event) {
   event.preventDefault();
   event.stopPropagation();
+
+  let pointerId = event.pointerId;
+  if (!activePointers[pointerId]) return;
+
   const bodyRect = appContainer.getBoundingClientRect();
   if (line.isPressed && !currentDotIdArray.includes(currentDotId)) {
     if (line.start) {
@@ -1102,6 +1108,11 @@ function onMouseMove(event) {
 function onMouseUp(event) {
   event.preventDefault();
   event.stopPropagation();
+
+  let pointerId = event.pointerId;
+  if (!activePointers[pointerId]) return;
+  delete activePointers[pointerId];
+
   currentEndDot = Number(event.target.id.slice(4)) - 5;
   startDot[currentStartDot].makeInctive();
   dotCommand.notify(
@@ -1154,9 +1165,8 @@ function onMouseUp(event) {
           let currentLinesIdToBeRemoved = currentLinesIdArray.indexOf(item.id);
           currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
 
-          const orphanedStartDots = document.querySelectorAll(
-            ".start-dot.correct-pulse"
-          );
+          const orphanedStartDots =
+            document.querySelectorAll(".start-dot.pulse");
 
           orphanedStartDots.forEach((item) => {
             if (!currentLinesIdArray.includes(`${item.id}-line`)) {
@@ -1220,9 +1230,7 @@ function onMouseUp(event) {
           );
           finalLinesIdArray.splice(finalLinesToBeRemoved);
 
-          const orphanedEndDots = document.querySelectorAll(
-            ".end-dot.correct-pulse"
-          );
+          const orphanedEndDots = document.querySelectorAll(".end-dot.pulse");
 
           orphanedEndDots.forEach((item) => {
             if (!finalLinesIdArray.includes(`${item.id}-line`)) {
@@ -1249,13 +1257,19 @@ function onMouseUp(event) {
 }
 
 /*   FALSE MOUSE UP EVENT  */
-function onMouseUpFalse() {
-  startDot[currentStartDot].makeInctive();
-  line.buttonUp();
-  if (!line.isPressed) {
-    removeUnconnectedLines();
-    lines.pop();
-    return;
+function onMouseUpFalse(event) {
+  let pointerId = event.pointerId;
+  if (!activePointers[pointerId]) return;
+  delete activePointers[pointerId];
+
+  if (line.isPressed) {
+    startDot[currentStartDot].makeInctive();
+    line.buttonUp();
+    if (!line.isPressed) {
+      removeUnconnectedLines();
+      lines.pop();
+      return;
+    }
   }
   currentStartDot = null;
 }

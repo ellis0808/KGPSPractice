@@ -314,7 +314,6 @@ function endSession() {
   clearGridAndEffects();
   appContainer.classList.add("hide");
   homeBtnContainer.classList.add("hide");
-  score.updateUserScore();
   if (document.querySelector(".end-messages-container")) {
     document.querySelector(".end-messages-container").remove();
   }
@@ -409,6 +408,7 @@ function displayFinalScore() {
       finalScoreAlert.classList.add("flip");
     });
   }, 400);
+  score.updateUserScore();
 }
 
 function displayTryAgainAndFinishBtns() {

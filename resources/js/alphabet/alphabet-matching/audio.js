@@ -15,12 +15,15 @@ function finishedLoading(bufferList) {
 
 function speak(event) {
   const synth = window.speechSynthesis;
-  // SpeechSynthesisVoice.name();
-  console.log(SpeechSynthesis.getVoices);
-
-  let letterToBeSpoken = new SpeechSynthesisUtterance(
-    event.target.getAttribute("txt")
-  );
+  let letterToBeSpoken;
+  if (event.target) {
+    letterToBeSpoken = new SpeechSynthesisUtterance(
+      event.target.getAttribute("contentId")
+    );
+  } else {
+    let dot = event;
+    letterToBeSpoken = new SpeechSynthesisUtterance(dot);
+  }
   synth.speak(letterToBeSpoken);
 }
 

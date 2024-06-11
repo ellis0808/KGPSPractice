@@ -432,7 +432,6 @@ function endSession() {
   resetNavigationBtns();
   appContainer.classList.add("hide");
   homeBtnContainer.classList.add("hide");
-  score.updateUserScore();
   const allBoxes = document.querySelectorAll(".box");
   allBoxes.forEach((box) => {
     box.remove();

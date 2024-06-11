@@ -33,14 +33,12 @@ let correctAnswerPoints;
 let incorrectAnswerPoints;
 
 function startInterval() {
-  console.log(interval);
   if (!isPaused) {
     run = setInterval(speakingInterval, interval); // start setInterval as "run"
   }
   return run;
 }
 function determineInterval() {
-  console.log(round);
   if (round === 1) {
     interval = interval;
   } else if (round > 1 && round < 6) {
@@ -61,7 +59,6 @@ function arrayGenerator() {
     randNumber = Math.floor(Math.random() * 20 + 1);
     currentArray.push(randNumber);
   }
-  console.log(currentArray);
   return;
 }
 function speakingInterval() {
@@ -211,7 +208,7 @@ btnContainer1.classList.add("btn-container1");
 const btnContainer2 = document.createElement("div");
 btnContainer2.classList.add("btn-container2");
 const btnContainer3 = document.createElement("div");
-btnContainer3.classList.add("btn-container3");
+btnContainer3.classList.add("btn-container3", "hide");
 const startBtn = document.createElement("div");
 startBtn.setAttribute("id", "start-btn");
 const exitBtn = document.createElement("div");
@@ -276,6 +273,7 @@ function endApp() {
     if (appContainer.contains(mainDisplay)) {
       appContainer.removeChild(mainDisplay);
       appContainer.removeChild(btnContainer1);
+      appContainer.removeChild(btnContainer3);
     }
     mainContainer.removeChild(appContainer);
     stylesheet.setAttribute("href", "../resources/css/styles.css");
@@ -398,7 +396,7 @@ function displayStartBtn() {
 function endSession() {
   appContainer.classList.add("hide");
   homeBtnContainer.classList.add("hide");
-  score.updateUserScore();
+  removeBlur();
   const allBoxes = document.querySelectorAll(".box");
   allBoxes.forEach((box) => {
     box.remove();
@@ -413,7 +411,6 @@ function endSession() {
   resetInterval();
   resetRoundNumberAndRoundDisplay();
   resetLoop();
-  resetDisplayWrongAnswercount();
   resetCorrectAnswerPoints();
   resetNavigationBtns();
   grid.remove();
@@ -444,7 +441,6 @@ function startNewSession() {
   resetInterval();
   resetRoundNumberAndRoundDisplay();
   resetLoop();
-  resetDisplayWrongAnswercount();
   resetCorrectAnswerPoints();
   setTimeout(newRound, 300);
   setTimeout(() => {
@@ -465,7 +461,9 @@ function newRound() {
   ++round;
   determineInterval();
   determineCorrectAnswerPoints();
-  reduceWrongAnswercount();
+  setHeartsArray();
+  displayHeartsArray();
+  restoreOneHeart();
   if (round > maxRounds) {
     sessionOver();
     return;
@@ -497,6 +495,7 @@ function startNewRound() {
     homeBtnContainer.appendChild(homeBtn);
     homeBtnContainer.appendChild(pauseBtn);
     homeBtnContainer.classList.remove("hide");
+    btnContainer3.classList.remove("hide");
   }, 300);
 }
 
@@ -537,6 +536,7 @@ function displayFinalScore() {
       finalScoreAlert.classList.add("flip");
     });
   }, 400);
+  score.updateUserScore();
 }
 
 function displayTryAgainAndFinishBtns() {
@@ -603,13 +603,12 @@ function checkAnswer(currentAnswer, event) {
     // addWrongAnswerRed(event);
     const bufferLoader = new BufferLoader(
       audioContext,
-      ["resources/audio/sfx/クイズ不正解2.mp3"],
+      ["resources/audio/sfx/キャンセル5.mp3"],
       finishedLoading
     );
     bufferLoader.load();
-    ++numberOfWrongAnswers;
-    wrongAnswerCountArray.push("\u2716");
-    displayWrongAnswerCount();
+    heartsArray.pop();
+    displayHeartsArray();
     gameOver();
     // removeWrongAnswerRed(event);
   }
@@ -626,16 +625,31 @@ function removeWrongAnswerRed(event) {
 }
 
 let wrongAnswerCountArray = [];
-function displayWrongAnswerCount() {
-  answerDisplay.textContent = `${wrongAnswerCountArray.join("")}`;
+let maxNumberOfHearts = 5;
+const heartsArray = [];
+
+function displayHeartsArray() {
+  answerDisplay.innerHTML = `${heartsArray.join("")}`;
 }
-function resetDisplayWrongAnswercount() {
-  wrongAnswerCountArray.length = 0;
-  displayWrongAnswerCount();
+function setHeartsArray() {
+  if (heartsArray.length === 0) {
+    let i;
+    for (i = 0; i < maxNumberOfHearts; ++i) {
+      heartsArray.push(`<i class="fa-solid fa-heart fa-1x"></i>`);
+    }
+  }
 }
-function reduceWrongAnswercount() {
-  wrongAnswerCountArray.pop();
-  displayWrongAnswerCount();
+function restoreOneHeart() {
+  if (heartsArray.length < maxNumberOfHearts) {
+    heartsArray.push(`<i class="fa-solid fa-heart fa-1x"></i>`);
+    const bufferLoader = new BufferLoader(
+      audioContext,
+      ["resources/audio/sfx/パパッ.mp3"],
+      finishedLoading
+    );
+    bufferLoader.load();
+    displayHeartsArray();
+  }
 }
 
 export { numberFluency1to20App };
