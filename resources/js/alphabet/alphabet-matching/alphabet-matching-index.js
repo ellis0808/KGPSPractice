@@ -479,7 +479,7 @@ III. TIMER
 
 let time;
 let countDown;
-const roundTime = 600;
+const roundTime = 60;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
@@ -1030,8 +1030,6 @@ let currentEndDot = null;
 function onPointerDown(event) {
   event.preventDefault();
   event.stopPropagation();
-  console.log("Pointer Down: ", event);
-  console.log("Pointer Down: ", event.pointerId);
   if (event.target.classList.contains("start-target")) {
     if (event.target.hasPointerCapture(event.pointerId)) {
       event.target.releasePointerCapture(event.pointerId);
@@ -1145,9 +1143,6 @@ function onPointerUp(event) {
         event.target.releasePointerCapture(event.pointerId);
       }
       currentEndDot = Number(event.target.id.slice(4)) - 4;
-      console.log(event);
-      console.log("start dot: ", currentStartDot);
-      console.log("end dot: ", currentEndDot);
     }
     startDot[currentStartDot].makeInctive();
     dotCommand.notify(
@@ -1332,8 +1327,6 @@ function setDistance() {
 // }
 
 function onPointerLeave(event) {
-  // console.log("Pointer Leave: ", event);
-  // console.log("Pointer Leave: ", event.pointerId);
   if (line.isPressed) {
     event.preventDefault();
     event.stopPropagation();
@@ -1383,11 +1376,26 @@ function activateEventListeners() {
   appContainer.addEventListener("pointerleave", onPointerLeave, false);
   // window.addEventListener("resize", updateLinePositions);
 }
-const eventParams = { passive: false };
-document.body.addEventListener("touchcancel", ignore, eventParams);
-document.body.addEventListener("touchend", ignore, eventParams);
+function createDoubleTapPreventer(timeout_ms) {
+  let dblTapTimer = 0;
+  let dblTapPressed = false;
 
-function ignore(e) {
-  e.preventDefault();
+  return function (e) {
+    clearTimeout(dblTapTimer);
+    if (dblTapPressed) {
+      e.preventDefault();
+      dblTapPressed = false;
+    } else {
+      dblTapPressed = true;
+      dblTapTimer = setTimeout(() => {
+        dblTapPressed = false;
+      }, timeout_ms);
+    }
+  };
 }
+
+document.body.addEventListener("touchstart", createDoubleTapPreventer(500), {
+  passive: false,
+});
+
 export { alphabetMatchingApp };
