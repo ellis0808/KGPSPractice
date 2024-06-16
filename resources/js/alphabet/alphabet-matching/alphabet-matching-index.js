@@ -1383,5 +1383,11 @@ function activateEventListeners() {
   appContainer.addEventListener("pointerleave", onPointerLeave, false);
   // window.addEventListener("resize", updateLinePositions);
 }
+const eventParams = { passive: false };
+document.body.addEventListener("touchcancel", ignore, eventParams);
+document.body.addEventListener("touchend", ignore, eventParams);
 
+function ignore(e) {
+  e.preventDefault();
+}
 export { alphabetMatchingApp };
