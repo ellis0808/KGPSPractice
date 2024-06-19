@@ -4,13 +4,7 @@ import {
   navBar,
   stylesheet,
 } from "../../../utilities/variables.js";
-import {
-  correctCardID,
-  randomNumber,
-  speak,
-  stopAudio,
-  finishedLoading,
-} from "./audio.js";
+import { correctCardID, randomNumber, speak } from "./audio.js";
 import { alphabet } from "./alphabet.js";
 import { wobble, spinfade, newRoundCardFlip, particles } from "./FX.js";
 import { score } from "../../../utilities/score-object.js";

@@ -1,17 +1,4 @@
 // Audio
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-let source = null;
-
-function stopAudio() {
-  source.stop();
-}
-
-function finishedLoading(bufferList) {
-  source = audioContext.createBufferSource();
-  source.buffer = bufferList[0];
-  source.connect(audioContext.destination);
-  source.start(0);
-}
 
 function speak(event) {
   const synth = window.speechSynthesis;
@@ -27,4 +14,19 @@ function speak(event) {
   synth.speak(letterToBeSpoken);
 }
 
-export { audioContext, speak, stopAudio, finishedLoading };
+const matchingSfx = {
+  validConnection: new Howl({
+    src: ["resources/audio/sfx/パパッ.mp3"],
+    volume: 0.8,
+  }),
+  invalidConnection: new Howl({
+    src: ["resources/audio/sfx/キャンセル5.mp3"],
+    volume: 0.8,
+  }),
+  allCorrect: new Howl({
+    src: ["resources/audio/sfx/クイズ正解5.mp3"],
+    volume: 0.8,
+  }),
+};
+
+export { matchingSfx, speak };

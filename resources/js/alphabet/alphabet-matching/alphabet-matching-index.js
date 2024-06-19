@@ -6,21 +6,28 @@ import {
   body,
 } from "../../../utilities/variables.js";
 import { alphabet } from "../alphabet-card-touch/alphabet.js";
-import { particles } from "./fx.js";
-import { BufferLoader } from "../../../utilities/buffer-loader.js";
-import { audioContext, finishedLoading } from "../alphabet-card-touch/audio.js";
 import { score } from "../../../utilities/score-object.js";
 import {
   updateNegativeCount,
   updatePositiveCount,
 } from "../../../utilities/update-score.js";
 import { scoreDisplay } from "../alphabet-card-touch/alphabet-card-touch-index.js";
-import { speak } from "./audio.js";
+import { matchingSfx, speak } from "./audio.js";
 import { displayMainPage, startMainApp } from "../../general/start-main-app.js";
 import {
   removeMenuPage,
   restoreMainMenu,
 } from "../../../utilities/main-menu-display-toggle.js";
+import {
+  dotCommand,
+  startDot,
+  endDot,
+  StartDot,
+  EndDot,
+  DotCommand,
+} from "./dot-objects-control.js";
+
+import { Connector } from "./connector.js";
 
 /* SCORING */
 const correctAnswerPoints = 1;
@@ -445,13 +452,7 @@ function checkAllCorrect() {
     setTimeout(() => {
       updatePositiveCount(allCorrectDots.length * correctAnswerPoints);
       scoreDisplay.classList.add("pulse");
-      // grid.classList.add("pulse");
-      const bufferLoader = new BufferLoader(
-        audioContext,
-        ["../../resources/audio/sfx/クイズ正解5.mp3"],
-        finishedLoading
-      );
-      bufferLoader.load();
+      matchingSfx.allCorrect.play();
     }, 500);
     setTimeout(() => {
       disableTouch();
@@ -479,7 +480,7 @@ III. TIMER
 
 let time;
 let countDown;
-const roundTime = 60;
+const roundTime = 600;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
@@ -610,227 +611,6 @@ C. Generating Start Dots, End Dots, and their Enclosures
   --> The dots are given several classes and ids, and given a zIndex of 30, to ensure they are on top when the lines are drawn.
 */
 
-class DotCommand {
-  constructor() {
-    this.startDots = [];
-    this.endDots = [];
-  }
-  clearArrays() {
-    this.startDots.length = 0;
-    this.endDots.length = 0;
-  }
-  registerStartDot(sDot) {
-    this.startDots.push(sDot);
-    sDot.setMediator(this);
-  }
-  registerEndDot(eDot) {
-    this.endDots.push(eDot);
-    eDot.setMediator(this);
-  }
-  makeActive(dot1) {
-    dot1.makeActive();
-  }
-  makeinactive(dot1) {
-    dot1.makeInctive();
-  }
-  connect(dot1, dot2) {
-    if (!dot1) {
-      return;
-    }
-    dot1.connect(dot1, dot2);
-  }
-  disconnect(dot1, dot2) {
-    if (!dot1) {
-      return;
-    } else {
-      dot1.disconnect();
-      dot2.disconnect();
-    }
-  }
-  markAsCorrect(dot1) {
-    dot1.markAsCorrect();
-  }
-  markAsIncorrect(dot1) {
-    dot1.markAsIncorrect();
-  }
-  notify(action, dot1, dot2) {
-    if (action === "connect") {
-      if (!dot2 || !dot1) {
-        return;
-      } else {
-        this.connect(dot1, dot2);
-        if (dot1.contentId === dot2.contentId) {
-          this.markAsCorrect(dot1);
-        } else {
-          this.markAsIncorrect(dot1);
-        }
-      }
-    }
-  }
-}
-const dotCommand = new DotCommand();
-const startDot = [];
-const endDot = [];
-
-class StartDot {
-  constructor(contentId) {
-    this.contentId = contentId;
-    this.id = null;
-    this.isActive = false;
-    this.connectedTo = null;
-    this.connected = false; //is this redundant?
-    this.locked = false;
-    this.element = document.createElement("div");
-    this.mediator = null;
-  }
-  setMediator(mediator) {
-    this.mediator = mediator;
-  }
-  makeActive() {
-    this.isActive = true;
-
-    if (this.connectedTo) {
-      // this order must be maintained; if 'this' is made 'incorrect', it will no longer have anything connected to it
-
-      this.connectedTo.disconnect();
-      this.disconnect();
-    }
-    this.element.classList.add("active-dot", "white-ring");
-  }
-  makeInctive() {
-    this.isActive = false;
-    this.element.classList.remove("active-dot", "white-ring");
-  }
-  connect(sDot, endDot) {
-    this.connected = true;
-    if (this.connectedTo) {
-      this.connectedTo.removeCorrectPulse();
-      this.connectedTo.disconnect();
-    }
-    this.connectedTo = endDot;
-  }
-  disconnect(sDot, endDot) {
-    // this.removeRed();
-    this.removeCorrectPulse();
-    this.connected = false;
-    this.connectedTo = null;
-  }
-  addCorrectPulse() {
-    this.element.classList.add("pulse", "white-ring");
-
-    // Force Reflow
-    void this.element.offsetWidth;
-  }
-  removeCorrectPulse() {
-    this.element.classList.remove("pulse", "white-ring");
-
-    // Force Reflow
-    void this.element.offsetWidth;
-  }
-  addRed() {
-    this.element.classList.add("red-dot");
-  }
-  removeRed() {
-    this.element.classList.remove("red-dot");
-  }
-  markAsCorrect() {
-    // this.removeRed();
-    this.addCorrectPulse();
-    const bufferLoader = new BufferLoader(
-      audioContext,
-      ["resources/audio/sfx/パパッ.mp3"],
-      finishedLoading
-    );
-    bufferLoader.load();
-    setTimeout(() => {
-      speak(this.contentId);
-    }, 100);
-
-    checkAllCorrect();
-  }
-  markAsIncorrect() {
-    this.addCorrectPulse();
-    const bufferLoader = new BufferLoader(
-      audioContext,
-      ["resources/audio/sfx/キャンセル5.mp3"],
-      finishedLoading
-    );
-    bufferLoader.load();
-    this.disconnect();
-    // this.addRed();
-    // this.removeRed();
-  }
-}
-class EndDot {
-  constructor(contentId) {
-    this.contentId = contentId;
-    this.id = null;
-    this.isActive = false;
-    this.connectedTo = null;
-    this.connected = false; //is this redundant?
-    this.locked = false;
-    this.element = document.createElement("div");
-    this.mediator = null;
-  }
-  setMediator(mediator) {
-    this.mediator = mediator;
-  }
-  makeActive() {
-    this.isActive = true;
-    if (this.connectedTo) {
-      // this order must be maintained; if 'this' is made 'incorrect', it will no longer have anything connected to it
-      this.connectedTo.disconnect();
-      this.disconnect();
-    }
-    this.element.classList.add("active-dot", "white-ring");
-  }
-  makeInctive() {
-    this.isActive = false;
-    this.element.classList.remove("active-dot", "white-ring");
-  }
-  connect(endDot, sDot) {
-    this.connected = true;
-    if (this.connectedTo) {
-      // this.connectedTo.removeRed();
-      this.connectedTo.disconnect();
-      this.connectedTo.removeCorrectPulse();
-    }
-    this.connectedTo = sDot;
-  }
-  disconnect() {
-    this.removeRed();
-    this.removeCorrectPulse();
-    this.connected = false;
-    this.connectedTo = null;
-  }
-  addCorrectPulse() {
-    this.element.classList.add("pulse", "white-ring");
-
-    // Force Reflow
-    void this.element.offsetWidth;
-  }
-  removeCorrectPulse() {
-    this.element.classList.remove("pulse", "white-ring");
-
-    // Force Reflow
-    void this.element.offsetWidth;
-  }
-  addRed() {
-    this.element.classList.add("red-dot");
-  }
-  removeRed() {
-    this.element.classList.remove("red-dot");
-  }
-  markAsCorrect() {
-    // this.removeRed();
-    this.addCorrectPulse();
-  }
-  markAsIncorrect() {
-    this.disconnect();
-    // this.addRed();
-  }
-}
-
 function createDots(array) {
   let dotNumber = 0;
   let i = 0;
@@ -888,100 +668,6 @@ function revertToDefault(event) {
 }
 
 const correctArray = [];
-
-class Connector {
-  constructor() {
-    this.isPressed = false;
-    this.start = null;
-    this.end = null;
-    this.distance = null;
-    this.slope = null;
-    this.element = null;
-    this.id = null;
-    this.endLineId = null;
-    this.contentId = null;
-    this.isActive = false;
-    this.connectedTo = null;
-    this.conncted = false;
-  }
-  buttonDown() {
-    this.isPressed = true;
-  }
-  buttonUp() {
-    this.isPressed = false;
-  }
-  getStartPosition(event) {
-    this.start = getCenterOfTarget(event);
-  }
-  getEndPosition(event) {
-    this.end = getCenterOfTarget(event);
-  }
-  drawLine(event) {
-    const newLine = document.createElement("div");
-    newLine.classList.add("line", "unconnected");
-    this.distance = setDistance();
-    this.slope = this.getSlopeInDegrees();
-    newLine.setAttribute("id", `${currentDotId}-line`);
-    newLine.style.position = `absolute`;
-    newLine.style.left = `${this.start.x}px`;
-    newLine.style.top = `${this.start.y}px`;
-    newLine.style.width = `${this.distance}px`;
-    newLine.style.transformOrigin = `-0%`;
-    newLine.style.transform = `rotate(${this.slope}deg)`;
-    grid.appendChild(newLine);
-    this.element = newLine;
-    newLine.setAttribute("lineId", `${currentDotId}-line`);
-    newLine.setAttribute("endLineId", `${endDotId}-line`);
-  }
-  removeLine() {
-    if (this.element) {
-      this.element.remove();
-      this.element = null;
-    }
-  }
-
-  getCenter(event) {
-    let center = {
-      x: event.target.offsetLeft + event.target.offsetWidth / 2,
-      y: event.target.offsetTop + event.target.offsetHeight / 2 - 5,
-    };
-    return center;
-  }
-  getSlopeInDegrees() {
-    let slopeInRadian = Math.atan2(
-      this.end.y - this.start.y,
-      this.end.x - this.start.x
-    );
-    this.slope = (slopeInRadian * 180) / Math.PI;
-    return this.slope;
-  }
-  setLineId(currentDotId) {
-    this.id = `${currentDotId}-line`;
-  }
-  setLineEndDotId(endDotId) {
-    this.endLineId = `${endDotId}-line`;
-  }
-  connect(endDot) {
-    if (!endDot) {
-      line.element.classList.remove("unconnected");
-      line.element.classList.remove("pulse");
-      return;
-    } else {
-      this.connected = true;
-      this.connectedTo = endDot.id;
-      if (this.contentId === endDot.contentId) {
-        line.element.classList.remove("unconnected");
-        line.element.classList.add("connected");
-        line.element.classList.add("pulse");
-      } else {
-        line.element.classList.remove("pulse");
-      }
-    }
-  }
-  getId(startDot) {
-    this.contentId = startDot.contentId;
-  }
-}
 
 // Functions
 
@@ -1137,157 +823,162 @@ function onPointerMove(event) {
 function onPointerUp(event) {
   event.preventDefault();
   event.stopPropagation();
-  if (event.target.classList.contains("end-target")) {
-    if (currentStartDot) {
-      if (event.target.hasPointerCapture(event.pointerId)) {
-        event.target.releasePointerCapture(event.pointerId);
-      }
-      currentEndDot = Number(event.target.id.slice(4)) - 4;
-    }
-    startDot[currentStartDot].makeInctive();
-    dotCommand.notify(
-      "connect",
-      startDot[currentStartDot],
-      endDot[currentEndDot]
-    );
-    dotCommand.notify(
-      "connect",
-      endDot[currentEndDot],
-      startDot[currentStartDot]
-    );
-    line.connect(endDot[currentEndDot]);
-    line.buttonUp();
-    if (
-      !line.isPressed &&
-      event.target.classList.contains("end-target") &&
-      !currentDotIdArray.includes(currentDotId)
-    ) {
-      getEndDotID(event);
-      if (endDotsIdArray.includes(event.target.id)) {
-        endDotsIdArray.splice(endDotsIdArray.indexOf(event.target.id), 1);
-        finalLinesIdArray.splice(
-          finalLinesIdArray.indexOf(`${event.target.id}-line`),
-          1
-        );
-      }
-      // the following lines set the dataset line-id for dots and the enclosures separately
-      line.setLineEndDotId(endDotId);
-      if (event.target.classList.contains("dot")) {
-        // event.target.setAttribute("line-id", `${line.id}`);
-      } else if (event.target.classList.contains("dot-enclosure")) {
-        // event.target.children[0].setAttribute("line-id", `${line.id}`);
-      }
-
-      // these lines set the parameters for the line to be drawn in its final position; the slope and length of the line are calculated based on which event it lands on
-      line.slope = line.getSlopeInDegrees(event);
-      line.end = getCenterOfTarget(event);
-
-      // these lines select all the lines marked as 'final' then remove them from the DOM if any of the endLineIds are the same as the current target's id. this prevents multiple lines from being connected to the same end-dot
-      let allLines = document.querySelectorAll(".final");
-      allLines.forEach((item) => {
-        if (item.getAttribute("endLineId").slice(0, 5) === event.target.id) {
-          if (item.id !== `${currentDotId}-line`) {
-            item.remove();
-            let currentDotIdToBeRemoved = currentDotIdArray.indexOf(
-              item.id.slice(0, 5)
-            );
-            currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
-            let currentLinesIdToBeRemoved = currentLinesIdArray.indexOf(
-              item.id
-            );
-            currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
-
-            const orphanedStartDots =
-              document.querySelectorAll(".start-dot.pulse");
-
-            orphanedStartDots.forEach((item) => {
-              if (!currentLinesIdArray.includes(`${item.id}-line`)) {
-                correctDotsAndLines.splice(
-                  correctDotsAndLines.indexOf(item.id),
-                  1
-                );
-              }
-            });
-
-            let finalLinesIdToBeRemoved = finalLinesIdArray.indexOf(
-              `${endDotId}-line`
-            );
-            finalLinesIdArray.splice(finalLinesIdToBeRemoved, 1);
-
-            draw();
-          }
+  if (currentStartDot) {
+    if (event.target.classList.contains("end-target")) {
+      if (currentStartDot) {
+        if (event.target.hasPointerCapture(event.pointerId)) {
+          event.target.releasePointerCapture(event.pointerId);
         }
-      });
+        currentEndDot = Number(event.target.id.slice(4)) - 4;
+      }
+      startDot[currentStartDot].makeInctive();
+      dotCommand.notify(
+        "connect",
+        startDot[currentStartDot],
+        endDot[currentEndDot]
+      );
+      dotCommand.notify(
+        "connect",
+        endDot[currentEndDot],
+        startDot[currentStartDot]
+      );
+      line.connect(endDot[currentEndDot]);
+      line.buttonUp();
+      if (
+        !line.isPressed &&
+        event.target.classList.contains("end-target") &&
+        !currentDotIdArray.includes(currentDotId)
+      ) {
+        getEndDotID(event);
+        if (endDotsIdArray.includes(event.target.id)) {
+          endDotsIdArray.splice(endDotsIdArray.indexOf(event.target.id), 1);
+          finalLinesIdArray.splice(
+            finalLinesIdArray.indexOf(`${event.target.id}-line`),
+            1
+          );
+        }
+        // the following lines set the dataset line-id for dots and the enclosures separately
+        line.setLineEndDotId(endDotId);
+        if (event.target.classList.contains("dot")) {
+          // event.target.setAttribute("line-id", `${line.id}`);
+        } else if (event.target.classList.contains("dot-enclosure")) {
+          // event.target.children[0].setAttribute("line-id", `${line.id}`);
+        }
 
-      // these lines transfer a line from being unconnected and blue in color, to being 'connected' which is actually an intermediary step on the way to being 'final', and white in color; also, 'connected' essentially just means 'drawn' and are static on the board, as opposed to the 'unconnected' lines which are still being draged by the user
-      line.element.classList.remove("unconnected");
-      line.element.classList.add("connected");
-      let allExtraLines = document.querySelectorAll(".connected");
-      let allFinalLines = document.querySelectorAll(".unconnected");
+        // these lines set the parameters for the line to be drawn in its final position; the slope and length of the line are calculated based on which event it lands on
+        line.slope = line.getSlopeInDegrees(event);
+        line.end = line.getCenter(event);
 
-      // the 'connected' lines above are removed
-      allExtraLines.forEach((item) => {
-        item.remove();
-      });
+        // these lines select all the lines marked as 'final' then remove them from the DOM if any of the endLineIds are the same as the current target's id. this prevents multiple lines from being connected to the same end-dot
+        let allLines = document.querySelectorAll(".final");
+        allLines.forEach((item) => {
+          if (item.getAttribute("endLineId").slice(0, 5) === event.target.id) {
+            if (item.id !== `${currentDotId}-line`) {
+              item.remove();
+              let currentDotIdToBeRemoved = currentDotIdArray.indexOf(
+                item.id.slice(0, 5)
+              );
+              currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
+              let currentLinesIdToBeRemoved = currentLinesIdArray.indexOf(
+                item.id
+              );
+              currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
 
-      // the 'final lines' are given the 'final' class and are made white in color; all others are removed
-      // this only works if the item is not included in the finalLinesIdArray
-      if (!finalLinesIdArray.includes(`${endDotId}-line`)) {
-        draw();
-        allExtraLines = document.querySelectorAll(".connected");
-        allFinalLines = document.querySelectorAll(".unconnected");
-        allFinalLines.forEach((item) => {
-          item.classList.add("final");
-          item.classList.remove("unconnected");
-          item.classList.remove("connected");
+              const orphanedStartDots =
+                document.querySelectorAll(".start-dot.pulse");
+
+              orphanedStartDots.forEach((item) => {
+                if (!currentLinesIdArray.includes(`${item.id}-line`)) {
+                  correctDotsAndLines.splice(
+                    correctDotsAndLines.indexOf(item.id),
+                    1
+                  );
+                }
+              });
+
+              let finalLinesIdToBeRemoved = finalLinesIdArray.indexOf(
+                `${endDotId}-line`
+              );
+              finalLinesIdArray.splice(finalLinesIdToBeRemoved, 1);
+
+              draw();
+            }
+          }
         });
-        // the below seems to be redundant...its necessity will have to be checked later (2024.4.21)
+
+        // these lines transfer a line from being unconnected and blue in color, to being 'connected' which is actually an intermediary step on the way to being 'final', and white in color; also, 'connected' essentially just means 'drawn' and are static on the board, as opposed to the 'unconnected' lines which are still being draged by the user
+        line.element.classList.remove("unconnected");
+        line.element.classList.add("connected");
+        let allExtraLines = document.querySelectorAll(".connected");
+        let allFinalLines = document.querySelectorAll(".unconnected");
+
+        // the 'connected' lines above are removed
         allExtraLines.forEach((item) => {
           item.remove();
         });
 
-        // these lines remove lines marked as 'final' from the DOM and from their associated arrays if their dataset id matches the target id
-        allLines = document.querySelectorAll(".final");
-        allLines.forEach((item) => {
-          if (item.dataset.id === event.target.id) {
+        // the 'final lines' are given the 'final' class and are made white in color; all others are removed
+        // this only works if the item is not included in the finalLinesIdArray
+        if (!finalLinesIdArray.includes(`${endDotId}-line`)) {
+          draw();
+          allExtraLines = document.querySelectorAll(".connected");
+          allFinalLines = document.querySelectorAll(".unconnected");
+          allFinalLines.forEach((item) => {
+            item.classList.add("final");
+            item.classList.remove("unconnected");
+            item.classList.remove("connected");
+          });
+          // the below seems to be redundant...its necessity will have to be checked later (2024.4.21)
+          allExtraLines.forEach((item) => {
             item.remove();
-            let currentDotIdToBeRemoved =
-              currentDotIdArray.indexOf(currentDotId);
-            currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
-            let currentLinesIdToBeRemoved = currentLinesIdArray.indexOf(
-              item.id
-            );
-            currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
-            let endDotsIdToBeRemoved = endDotsIdArray.indexOf(event.target.id);
-            endDotsIdArray.splice(endDotsIdToBeRemoved);
-            let finalLinesToBeRemoved = endDotsIdArray.indexOf(
-              `${event.target.id}-line`
-            );
-            finalLinesIdArray.splice(finalLinesToBeRemoved);
+          });
 
-            const orphanedEndDots = document.querySelectorAll(".end-dot.pulse");
+          // these lines remove lines marked as 'final' from the DOM and from their associated arrays if their dataset id matches the target id
+          allLines = document.querySelectorAll(".final");
+          allLines.forEach((item) => {
+            if (item.dataset.id === event.target.id) {
+              item.remove();
+              let currentDotIdToBeRemoved =
+                currentDotIdArray.indexOf(currentDotId);
+              currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
+              let currentLinesIdToBeRemoved = currentLinesIdArray.indexOf(
+                item.id
+              );
+              currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
+              let endDotsIdToBeRemoved = endDotsIdArray.indexOf(
+                event.target.id
+              );
+              endDotsIdArray.splice(endDotsIdToBeRemoved);
+              let finalLinesToBeRemoved = endDotsIdArray.indexOf(
+                `${event.target.id}-line`
+              );
+              finalLinesIdArray.splice(finalLinesToBeRemoved);
 
-            orphanedEndDots.forEach((item) => {
-              if (!finalLinesIdArray.includes(`${item.id}-line`)) {
-                correctDotsAndLines.splice(
-                  correctDotsAndLines.indexOf(item.id),
-                  1
-                );
-              }
-            });
-          }
-        });
-        endDotsIdArray.push(endDotId);
-        currentDotIdArray.push(currentDotId);
-        currentLinesIdArray.push(line.id);
-        finalLinesIdArray.push(line.element.getAttribute("endlineid"));
-      } else if (!line.isPressed) {
-        removeUnconnectedLines();
-        lines.pop();
-        return;
+              const orphanedEndDots =
+                document.querySelectorAll(".end-dot.pulse");
+
+              orphanedEndDots.forEach((item) => {
+                if (!finalLinesIdArray.includes(`${item.id}-line`)) {
+                  correctDotsAndLines.splice(
+                    correctDotsAndLines.indexOf(item.id),
+                    1
+                  );
+                }
+              });
+            }
+          });
+          endDotsIdArray.push(endDotId);
+          currentDotIdArray.push(currentDotId);
+          currentLinesIdArray.push(line.id);
+          finalLinesIdArray.push(line.element.getAttribute("endlineid"));
+        } else if (!line.isPressed) {
+          removeUnconnectedLines();
+          lines.pop();
+          return;
+        }
       }
+      event.preventDefault();
     }
-    event.preventDefault();
   }
 }
 
@@ -1295,10 +986,12 @@ function onPointerUp(event) {
 function onPointerUpFalse() {
   if (line.isPressed) {
     startDot[currentStartDot].makeInctive();
+    currentStartDot = null;
     line.buttonUp();
     if (!line.isPressed) {
       removeUnconnectedLines();
       lines.pop();
+      currentStartDot = null;
       return;
     }
   }
@@ -1398,4 +1091,4 @@ document.body.addEventListener("touchstart", createDoubleTapPreventer(500), {
   passive: false,
 });
 
-export { alphabetMatchingApp };
+export { alphabetMatchingApp, checkAllCorrect, currentDotId, endDotId, grid };

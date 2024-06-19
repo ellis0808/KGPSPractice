@@ -18,6 +18,33 @@ import {
 
 /*
 **********
+Pre-Load Audio
+**********
+*/
+
+const mainMenuSfx = {
+  select: new Howl({
+    src: ["resources/audio/sfx/決定ボタンを押す42.mp3"],
+    volume: 0.8,
+    onplayerror: function () {
+      sound.once("unlock", function () {
+        sound.play();
+      });
+    },
+  }),
+  back: new Howl({
+    src: ["resources/audio/sfx/ぷよん.mp3"],
+    volume: 0.5,
+    onplayerror: function () {
+      sound.once("unlock", function () {
+        sound.play();
+      });
+    },
+  }),
+};
+
+/*
+**********
 Main Menu Items
 **********
 */
@@ -104,6 +131,7 @@ returnToMainMenuBtn.setAttribute("id", "returnToMainMenuBtn");
 returnToMainMenuBtn.addEventListener("click", returnToMainMenu);
 
 function returnToMainMenu() {
+  mainMenuSfx.back.play();
   topContainer.innerText = "";
   displayGreeting();
   abcMenu.classList.remove("hidden");
@@ -175,6 +203,7 @@ spellingWritingAppMenuItem.innerText = "Writing";
 
 // Displays the Alphabet Menu
 function displayAbcMenu() {
+  mainMenuSfx.select.play();
   isMainMenu = false;
   topContainer.innerText = "Alphabet";
   abcMenu.classList.add("hidden");
@@ -191,6 +220,7 @@ function displayAbcMenu() {
 
 // Displays the Spelling Menu
 function displaySpellingMenu() {
+  mainMenuSfx.select.play();
   isMainMenu = false;
   topContainer.innerText = "Spelling";
   abcMenu.classList.add("hidden");
@@ -226,6 +256,7 @@ numberFluency1to20AppMenuItem.addEventListener(
 
 // Displays the Numbers Menu
 function displayNumbersMenu() {
+  mainMenuSfx.select.play();
   isMainMenu = false;
   topContainer.innerText = "Numbers";
   abcMenu.classList.add("hidden");

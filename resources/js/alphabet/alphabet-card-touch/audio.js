@@ -1,20 +1,6 @@
 import { cardText } from "./alphabet-card-touch-index.js";
 
-// Audio
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-let source = null;
 let correctCardID;
-
-function stopAudio() {
-  source.stop();
-}
-
-function finishedLoading(bufferList) {
-  source = audioContext.createBufferSource();
-  source.buffer = bufferList[0];
-  source.connect(audioContext.destination);
-  source.start(0);
-}
 
 let randomNumber;
 function updateRandomNumber() {
@@ -26,8 +12,6 @@ function speak() {
   updateRandomNumber();
 
   const synth = window.speechSynthesis;
-  // SpeechSynthesisVoice.name();
-  console.log(SpeechSynthesis.getVoices);
   const randomWord = cardText[randomNumber];
 
   let speakWord = new SpeechSynthesisUtterance(randomWord);
@@ -38,11 +22,13 @@ function speak() {
   return (correctCardID = randomNumber);
 }
 
-export {
-  audioContext,
-  correctCardID,
-  randomNumber,
-  speak,
-  stopAudio,
-  finishedLoading,
+const cardTouchSfx = {
+  correcCard: new Howl({
+    src: ["resources/audio/sfx/クイズ正解5.mp3"],
+  }),
+  incorrectCard: new Howl({
+    src: ["resources/audio/sfx/クイズ不正解2.mp3"],
+  }),
 };
+
+export { cardTouchSfx, correctCardID, randomNumber, speak };

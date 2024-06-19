@@ -1,5 +1,4 @@
-import { BufferLoader } from "../../../utilities/buffer-loader.js";
-import { audioContext, finishedLoading } from "./audio.js";
+import { cardTouchSfx } from "./audio.js";
 import { scoreDisplay } from "./alphabet-card-touch-index.js";
 
 function wobble(e) {
@@ -7,12 +6,7 @@ function wobble(e) {
   e.currentTarget.classList.remove("wobble");
   void e.currentTarget.offsetWidth;
   e.currentTarget.classList.add("wobble");
-  let bufferLoader = new BufferLoader(
-    audioContext,
-    ["../../resources/audio/sfx/クイズ不正解2.mp3"],
-    finishedLoading
-  );
-  bufferLoader.load();
+  cardTouchSfx.incorrectCard.play();
 }
 
 function spinfade(e) {
@@ -21,12 +15,7 @@ function spinfade(e) {
   void e.currentTarget.offsetWidth;
   e.currentTarget.classList.add("spinfade");
 
-  const bufferLoader = new BufferLoader(
-    audioContext,
-    ["../../resources/audio/sfx/クイズ正解5.mp3"],
-    finishedLoading
-  );
-  bufferLoader.load();
+  cardTouchSfx.correcCard.play();
 }
 
 function newRoundCardFlip() {
