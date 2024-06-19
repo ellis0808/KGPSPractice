@@ -480,7 +480,7 @@ III. TIMER
 
 let time;
 let countDown;
-const roundTime = 600;
+const roundTime = 60;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
