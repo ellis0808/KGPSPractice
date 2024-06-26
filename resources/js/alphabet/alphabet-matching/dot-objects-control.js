@@ -1,4 +1,5 @@
-import { speak, matchingSfx } from "./audio.js";
+import { matchingSfx } from "./audio.js";
+import { alphabetObject } from "../alphabet-audio-object.js";
 import { Connector } from "./connector.js";
 import { checkAllCorrect } from "./alphabet-matching-index.js";
 class DotCommand {
@@ -123,8 +124,8 @@ class StartDot {
     this.addCorrectPulse();
 
     setTimeout(() => {
-      speak(this.contentId);
-    }, 100);
+      alphabetObject[this.contentId.toLowerCase()].sound.play();
+    }, 200);
 
     checkAllCorrect();
   }

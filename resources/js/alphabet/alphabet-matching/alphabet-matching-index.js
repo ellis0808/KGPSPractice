@@ -18,6 +18,7 @@ import {
   removeMenuPage,
   restoreMainMenu,
 } from "../../../utilities/main-menu-display-toggle.js";
+import { alphabetObject } from "../alphabet-audio-object.js";
 import {
   dotCommand,
   startDot,
@@ -109,6 +110,7 @@ function toggleScoreDisplayHide() {
 }
 
 let isPaused = false;
+let appStarted = false;
 
 let numberOfLettersToBeDisplayed = 4;
 const alphabetLowercase = [];
@@ -276,6 +278,21 @@ function displayStartBtn() {
   startBtn.addEventListener("click", startSession);
   score.resetScore();
 }
+
+document.addEventListener("keydown", (event) => {
+  if (appStarted) {
+    if (event.key === "Escape") {
+      if (homeBtnIsGoHome) {
+        goHome();
+      } else {
+        returnToApp();
+      }
+    }
+  } else {
+    return;
+  }
+});
+
 function endSession() {
   unpause2();
   clearBoard();
@@ -289,9 +306,11 @@ function endSession() {
   if (document.querySelector(".go-home-container")) {
     document.querySelector(".go-home-container").remove();
   }
+  appStarted = false;
   removeBlur();
 }
 function startSession() {
+  matchingSfx.startApp.play();
   startBtn.classList.add("no-touch");
   startBtn.classList.add("spinfade");
   exitBtn.classList.remove("intro");
@@ -299,6 +318,9 @@ function startSession() {
   exitBtn.classList.add("hide2");
   exitBtn.classList.remove("intro");
   setTimeout(startNewRound, 950);
+  setTimeout(() => {
+    appStarted = true;
+  }, 1);
   setTimeout(() => {
     startTimer();
   }, 1000);
@@ -573,6 +595,7 @@ B. Generating Letter Divs for Matching
   --> A div 'card' is created for each of the letters in the two letter arrays.
   --> They are given two dataset ids, then attached to their respective group.
 */
+
 function generateLetterDivsForMatching(array) {
   let divGroup = "capitals-";
   if (array === alphabetLowercase) {
@@ -583,8 +606,8 @@ function generateLetterDivsForMatching(array) {
       letter.setAttribute("data-id", `${divGroup}${item}`);
       letter.classList.add(divGroup);
       letter.innerText = `${letter.getAttribute("contentId")}`;
-      letter.addEventListener("click", (event) => {
-        speak(event);
+      letter.addEventListener("click", () => {
+        alphabetObject[item].sound.play();
       });
       lowercaseLetterDiv.appendChild(letter);
     });
@@ -596,8 +619,8 @@ function generateLetterDivsForMatching(array) {
     letter.setAttribute("data-id", `${divGroup}${item}`);
     letter.classList.add(divGroup);
     letter.innerText = `${letter.getAttribute("contentId")}`;
-    letter.addEventListener("click", (event) => {
-      speak(event);
+    letter.addEventListener("click", () => {
+      alphabetObject[item.toLowerCase()].sound.play();
     });
     capitalLettersDiv.appendChild(letter);
   });

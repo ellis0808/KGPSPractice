@@ -18,14 +18,23 @@ import {
 
 /*
 **********
-Pre-Load Audio
+Enable Audio
 **********
 */
 
 const mainMenuSfx = {
-  select: new Howl({
+  select1: new Howl({
     src: ["resources/audio/sfx/決定ボタンを押す42.mp3"],
     volume: 0.8,
+    onplayerror: function () {
+      sound.once("unlock", function () {
+        sound.play();
+      });
+    },
+  }),
+  select2: new Howl({
+    src: ["resources/audio/sfx/決定ボタンを押す22.mp3"],
+    volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {
         sound.play();
@@ -203,7 +212,7 @@ spellingWritingAppMenuItem.innerText = "Writing";
 
 // Displays the Alphabet Menu
 function displayAbcMenu() {
-  mainMenuSfx.select.play();
+  mainMenuSfx.select2.play();
   isMainMenu = false;
   topContainer.innerText = "Alphabet";
   abcMenu.classList.add("hidden");
@@ -220,7 +229,7 @@ function displayAbcMenu() {
 
 // Displays the Spelling Menu
 function displaySpellingMenu() {
-  mainMenuSfx.select.play();
+  mainMenuSfx.select2.play();
   isMainMenu = false;
   topContainer.innerText = "Spelling";
   abcMenu.classList.add("hidden");
@@ -256,7 +265,7 @@ numberFluency1to20AppMenuItem.addEventListener(
 
 // Displays the Numbers Menu
 function displayNumbersMenu() {
-  mainMenuSfx.select.play();
+  mainMenuSfx.select2.play();
   isMainMenu = false;
   topContainer.innerText = "Numbers";
   abcMenu.classList.add("hidden");
@@ -294,4 +303,5 @@ export {
   numbersMenu,
   spellingMenu,
   div4,
+  mainMenuSfx,
 };

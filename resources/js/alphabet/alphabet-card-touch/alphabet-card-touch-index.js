@@ -4,8 +4,9 @@ import {
   navBar,
   stylesheet,
 } from "../../../utilities/variables.js";
-import { correctCardID, randomNumber, speak } from "./audio.js";
+import { cardTouchSfx, correctCardID, randomNumber, speak } from "./audio.js";
 import { alphabet } from "./alphabet.js";
+import { alphabetObject } from "../alphabet-audio-object.js";
 import { wobble, spinfade, newRoundCardFlip, particles } from "./FX.js";
 import { score } from "../../../utilities/score-object.js";
 import {
@@ -125,6 +126,8 @@ finishBtn.addEventListener("click", endApp);
 finishBtn.innerText = "Finish";
 
 let isPaused = false;
+let appStarted = false;
+let isSessionFinished = false;
 let cardText = [];
 let newCardText;
 let countDown;
@@ -145,6 +148,7 @@ function displayTimer() {
         timer.textContent = `0:${time}`;
       }
       if (time < 0) {
+        isSessionFinished = true;
         timer.textContent = "0:00";
         clearInterval(countDown);
         disableTouch();
@@ -195,6 +199,7 @@ function displayStartBtn() {
 
 // Start Round
 function startSession() {
+  cardTouchSfx.startApp.play();
   removeEndMessagesContainer();
   startBtn.classList.add("no-touch");
   startBtn.classList.add("spinfade");
@@ -203,6 +208,9 @@ function startSession() {
   exitBtn.classList.add("hide2");
   exitBtn.classList.remove("intro");
   clearBoardFast();
+  setTimeout(() => {
+    appStarted = true;
+  }, 1);
   setTimeout(resetTimer, 750);
   setTimeout(startNewSession, 1000);
 }
@@ -230,6 +238,7 @@ function removeBlur() {
   }
 }
 function startNewSession() {
+  isSessionFinished = false;
   appContainer.appendChild(grid);
   score.resetScore();
   scoreDisplay.innerText = score.currentScore;
@@ -343,10 +352,9 @@ function repeat() {
   const synth = window.speechSynthesis;
   const randomLetter = cardText[randomNumber];
 
-  let speakLetter = new SpeechSynthesisUtterance(randomLetter);
   setTimeout(function () {
     if (!isPaused) {
-      synth.speak(speakLetter);
+      alphabetObject[randomLetter].sound.play();
     }
   }, 30);
 }
@@ -370,25 +378,31 @@ function createBoard() {
       }
     }
   }
-  if (!isPaused) {
-    cardGenerator();
-    let i = 0;
-    lettersArray.forEach(() => {
-      const card = document.createElement("div");
-      card.setAttribute("txt", lettersArray[i]);
-      newCardText = card.getAttribute("txt");
-      card.textContent = newCardText;
-      card.setAttribute("data-id", i);
-      card.classList.add("card");
-      grid.append(card);
-      card.addEventListener("click", touchCard);
-      cardText.push(newCardText);
-      ++i;
-    });
-    btnContainer3.appendChild(repeatBtn);
-    btnContainer1.appendChild(scoreDisplay);
-    speak();
-    setTimeout(toggleRepeatBtnHide, 1500);
+  if (!isSessionFinished) {
+    if (!isPaused) {
+      cardGenerator();
+      let i = 0;
+      lettersArray.forEach(() => {
+        const card = document.createElement("div");
+        card.setAttribute("txt", lettersArray[i]);
+        newCardText = card.getAttribute("txt");
+        card.textContent = newCardText;
+        card.setAttribute("contentId", i);
+        card.classList.add("card");
+        grid.append(card);
+        card.addEventListener("click", touchCard);
+        cardText.push(newCardText);
+        ++i;
+      });
+      btnContainer3.appendChild(repeatBtn);
+      btnContainer1.appendChild(scoreDisplay);
+      if (!isSessionFinished) {
+        if (!isPaused) {
+          speak();
+        }
+      }
+      setTimeout(toggleRepeatBtnHide, 1500);
+    }
   }
 }
 
@@ -397,7 +411,7 @@ let currentCardID;
 
 // functions
 function touchCard(e) {
-  currentCardID = this.getAttribute("data-id");
+  currentCardID = this.getAttribute("contentId");
   if (parseInt(currentCardID) === correctCardID) {
     correctCard(e);
     updatePositiveCount(correctAnswerPoints);
@@ -420,6 +434,19 @@ function startAlphabetCardTouchApp() {
   alphabetCardTouchApp();
 }
 
+document.addEventListener("keydown", (event) => {
+  if (appStarted) {
+    if (event.key === "Escape") {
+      if (homeBtnIsGoHome) {
+        goHome();
+      } else {
+        returnToApp();
+      }
+    }
+  } else {
+    return;
+  }
+});
 function endSession() {
   unpause2();
   homeBtnReturnToNormal();
@@ -436,7 +463,7 @@ function endSession() {
   if (document.querySelector(".go-home-container")) {
     document.querySelector(".go-home-container").remove();
   }
-  // clearBoard();
+  appStarted = false;
   removeBlur();
   grid.remove();
 }

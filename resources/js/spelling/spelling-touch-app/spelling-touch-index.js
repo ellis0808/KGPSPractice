@@ -113,6 +113,7 @@ deleteBtn.addEventListener("click", deleteLastEntry);
 
 /* Variables */
 let isPaused = false;
+let appStarted = false;
 const getBoxes = () => document.querySelectorAll(".box");
 const boxes = getBoxes();
 
@@ -309,6 +310,21 @@ function displayStartBtn() {
   startBtn.addEventListener("click", startSession);
   score.resetScore();
 }
+
+document.addEventListener("keydown", (event) => {
+  if (appStarted) {
+    if (event.key === "Escape") {
+      if (homeBtnIsGoHome) {
+        goHome();
+      } else {
+        returnToApp();
+      }
+    }
+  } else {
+    return;
+  }
+});
+
 function endSession() {
   unpause2();
   clearGridAndEffects();
@@ -320,6 +336,8 @@ function endSession() {
   if (document.querySelector(".go-home-container")) {
     document.querySelector(".go-home-container").remove();
   }
+  appStarted = false;
+  removeBlur();
 }
 function startSession() {
   startBtn.classList.add("no-touch");
@@ -330,6 +348,9 @@ function startSession() {
   exitBtn.classList.remove("intro");
   setTimeout(startNewRound, 950);
   setTimeout(resetTimer, 500);
+  setTimeout(() => {
+    appStarted = true;
+  }, 1);
   setTimeout(startTimer, 1000);
 }
 function startNewSession() {

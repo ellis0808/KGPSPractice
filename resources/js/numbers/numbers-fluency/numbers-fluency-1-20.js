@@ -13,12 +13,11 @@ import {
   removeMenuPage,
   restoreMainMenu,
 } from "../../../utilities/main-menu-display-toggle.js";
-import { BufferLoader } from "../../../utilities/buffer-loader.js";
-import { finishedLoading } from "./audio.js";
-
+import { finishedLoading, numbersFluencySfx } from "./audio.js";
 let interval = 2500;
 let run;
 let isPaused = false;
+let appStarted = false;
 let currentArray = [];
 let round = 0;
 let maxRounds = 30;
@@ -33,8 +32,10 @@ let correctAnswerPoints;
 let incorrectAnswerPoints;
 
 function startInterval() {
-  if (!isPaused) {
-    run = setInterval(speakingInterval, interval); // start setInterval as "run"
+  if (!bannerDisplayed) {
+    if (!isPaused) {
+      run = setInterval(speakingInterval, interval); // start setInterval as "run"
+    }
   }
   return run;
 }
@@ -62,18 +63,20 @@ function arrayGenerator() {
   return;
 }
 function speakingInterval() {
-  if (!isPaused) {
-    getCurrentItem();
+  if (!bannerDisplayed) {
     if (!isPaused) {
-      enableTouch();
-      speak(currentItem);
+      getCurrentItem();
+      if (!isPaused) {
+        enableTouch();
+        speak(currentItem);
 
-      ++loop;
+        ++loop;
 
-      //stop interval
-      if (loop === currentArray.length) {
-        clearInterval(run);
-        setTimeout(newRound, 3000);
+        //stop interval
+        if (loop === currentArray.length) {
+          clearInterval(run);
+          setTimeout(newRound, 3000);
+        }
       }
     }
   }
@@ -102,9 +105,6 @@ function resetCorrectAnswerPoints() {
 }
 
 /* AUDIO */
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-let source = null;
 
 function getCurrentItem() {
   currentItem = currentArray[arrayItemCounter].toString();
@@ -393,9 +393,26 @@ function displayStartBtn() {
   startBtn.addEventListener("click", startSession);
   score.resetScore();
 }
+
+document.addEventListener("keydown", (event) => {
+  if (appStarted) {
+    console.log("test");
+    if (event.key === "Escape") {
+      if (homeBtnIsGoHome) {
+        goHome();
+      } else {
+        returnToApp();
+      }
+    }
+  } else {
+    return;
+  }
+});
+
 function endSession() {
   appContainer.classList.add("hide");
   homeBtnContainer.classList.add("hide");
+  clearInterval(run);
   removeBlur();
   const allBoxes = document.querySelectorAll(".box");
   allBoxes.forEach((box) => {
@@ -407,6 +424,7 @@ function endSession() {
   if (document.querySelector(".go-home-container")) {
     document.querySelector(".go-home-container").remove();
   }
+  appStarted = false;
   resetPenalties();
   resetInterval();
   resetRoundNumberAndRoundDisplay();
@@ -416,6 +434,7 @@ function endSession() {
   grid.remove();
 }
 function startSession() {
+  numbersFluencySfx.startApp.play();
   startBtn.classList.add("no-touch");
   startBtn.classList.remove("intro");
   startBtn.classList.add("spinfade");
@@ -423,6 +442,9 @@ function startSession() {
   exitBtn.classList.add("hide2");
   exitBtn.classList.remove("intro");
   setTimeout(startNewRound, 950);
+  setTimeout(() => {
+    appStarted = true;
+  }, 1);
 }
 function startNewSession() {
   score.currentScore = 0;
@@ -462,23 +484,27 @@ function newRound() {
   determineInterval();
   determineCorrectAnswerPoints();
   setHeartsArray();
+  // if (!isPaused) {
   displayHeartsArray();
+  if (round === 1) {
+    numbersFluencySfx.restoreHeartSFX.play();
+  }
   restoreOneHeart();
   if (round > maxRounds) {
     sessionOver();
     return;
   }
+  // if (!isPaused) {
   displayRound(round);
+  // }
+  // }
   currentArray.length = 0;
   arrayGenerator();
   startInterval();
 }
 
 function startNewRound() {
-  grid.classList.remove("blur");
-  timer.classList.remove("blur");
-  scoreDisplay.classList.remove("blur");
-
+  removeBlur();
   appContainer.appendChild(btnContainer1);
   btnContainer1.appendChild(scoreDisplay);
   btnContainer1.appendChild(timer);
@@ -487,6 +513,9 @@ function startNewRound() {
   btnContainer3.appendChild(answerDisplay);
   createGrid();
   setTimeout(newRound, 1000);
+  if (isPaused) {
+    unpause2();
+  }
   setTimeout(() => {
     enableTouch();
   }, 300);
@@ -557,10 +586,33 @@ function displayTryAgainAndFinishBtns() {
 ROUND DISPLAY
 *******
 */
-
+let bannerDisplayed = false;
 function displayRound(round) {
-  timer.textContent = `Round ${round}`;
-  roundEffect();
+  // if (!isPaused) {
+  setTimeout(() => {
+    bannerDisplayed = true;
+  }, 1);
+  let bannerContainer = document.createElement("div");
+  let roundBanner = document.createElement("div");
+  bannerContainer.classList.add("banner-container");
+  roundBanner.classList.add("round-banner", "banner-in");
+  setTimeout(() => {
+    appContainer.appendChild(bannerContainer);
+    bannerContainer.appendChild(roundBanner);
+    numbersFluencySfx.newRound.play();
+    roundBanner.textContent = `Round ${round}`;
+    timer.textContent = `Round ${round}`;
+  }, 1500);
+  setTimeout(() => {
+    roundBanner.classList.remove("banner-in");
+    roundBanner.classList.add("banner-out");
+  }, 3000);
+  setTimeout(() => {
+    bannerContainer.remove();
+    roundBanner.remove();
+    bannerDisplayed = false;
+  }, 4000);
+  // }
 }
 
 function roundEffect() {
@@ -590,27 +642,15 @@ function userTouch(event) {
 
 function checkAnswer(currentAnswer, event) {
   if (currentAnswer === currentItem) {
-    const bufferLoader = new BufferLoader(
-      audioContext,
-      ["resources/audio/sfx/クイズ正解5.mp3"],
-      finishedLoading
-    );
-    bufferLoader.load();
+    numbersFluencySfx.correct.play();
     updatePositiveCount(correctAnswerPoints);
     ++numberOfRightAnswers;
     disableTouch();
   } else {
-    // addWrongAnswerRed(event);
-    const bufferLoader = new BufferLoader(
-      audioContext,
-      ["resources/audio/sfx/キャンセル5.mp3"],
-      finishedLoading
-    );
-    bufferLoader.load();
+    numbersFluencySfx.incorrect.play();
     heartsArray.pop();
     displayHeartsArray();
     gameOver();
-    // removeWrongAnswerRed(event);
   }
 }
 function addWrongAnswerRed(event) {
@@ -629,7 +669,9 @@ let maxNumberOfHearts = 5;
 const heartsArray = [];
 
 function displayHeartsArray() {
+  answerDisplay.classList.remove("pulse");
   answerDisplay.innerHTML = `${heartsArray.join("")}`;
+  answerDisplay.classList.add("pulse");
 }
 function setHeartsArray() {
   if (heartsArray.length === 0) {
@@ -642,12 +684,7 @@ function setHeartsArray() {
 function restoreOneHeart() {
   if (heartsArray.length < maxNumberOfHearts) {
     heartsArray.push(`<i class="fa-solid fa-heart fa-1x"></i>`);
-    const bufferLoader = new BufferLoader(
-      audioContext,
-      ["resources/audio/sfx/パパッ.mp3"],
-      finishedLoading
-    );
-    bufferLoader.load();
+    numbersFluencySfx.restoreHeartSFX.play();
     displayHeartsArray();
   }
 }

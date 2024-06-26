@@ -27,6 +27,15 @@ const matchingSfx = {
     src: ["resources/audio/sfx/クイズ正解5.mp3"],
     volume: 0.8,
   }),
+  startApp: new Howl({
+    src: ["resources/audio/sfx/決定ボタンを押す43.mp3"],
+    volume: 0.5,
+    onplayerror: function () {
+      sound.once("unlock", function () {
+        sound.play();
+      });
+    },
+  }),
 };
 
 export { matchingSfx, speak };

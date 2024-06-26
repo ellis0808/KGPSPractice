@@ -1,186 +1,186 @@
-const alphabetAudio = {
+const alphabetObject = {
   a: {
-    letter: "a",
+    content: "a",
     sound: new Howl({
-      src: ["alphabet-a.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_a.mp3"],
+      volume: 0.5,
     }),
   },
   b: {
-    letter: "b",
+    content: "b",
     sound: new Howl({
-      src: ["alphabet-b.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_b.mp3"],
+      volume: 0.6,
     }),
   },
   c: {
-    letter: "c",
+    content: "c",
     sound: new Howl({
-      src: ["alphabet-c.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_c.mp3"],
+      volume: 0.8,
     }),
   },
   d: {
-    letter: "d",
+    content: "d",
     sound: new Howl({
-      src: ["alphabet-d.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_d.mp3"],
+      volume: 0.8,
     }),
   },
   e: {
-    letter: "e",
+    content: "e",
     sound: new Howl({
-      src: ["alphabet-e.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_e.mp3"],
+      volume: 0.9,
     }),
   },
   f: {
-    letter: "f",
+    content: "f",
     sound: new Howl({
-      src: ["alphabet-f.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_f.mp3"],
+      volume: 0.8,
     }),
   },
   g: {
-    letter: "g",
+    content: "g",
     sound: new Howl({
-      src: ["alphabet-g.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_g.mp3"],
+      volume: 0.8,
     }),
   },
   h: {
-    letter: "h",
+    content: "h",
     sound: new Howl({
-      src: ["alphabet-h.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_h.mp3"],
+      volume: 0.8,
     }),
   },
   i: {
-    letter: "i",
+    content: "i",
     sound: new Howl({
-      src: ["alphabet-i.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_i.mp3"],
+      volume: 0.8,
     }),
   },
   j: {
-    letter: "a",
+    content: "j",
     sound: new Howl({
-      src: ["alphabet-j.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_j.mp3"],
+      volume: 0.8,
     }),
   },
   k: {
-    letter: "k",
+    content: "k",
     sound: new Howl({
-      src: ["alphabet-k.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_k.mp3"],
+      volume: 0.8,
     }),
   },
   l: {
-    letter: "l",
+    content: "l",
     sound: new Howl({
-      src: ["alphabet-l.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_l.mp3"],
+      volume: 0.8,
     }),
   },
   m: {
-    letter: "m",
+    content: "m",
     sound: new Howl({
-      src: ["alphabet-m.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_m.mp3"],
+      volume: 0.8,
     }),
   },
   n: {
-    letter: "n",
+    content: "n",
     sound: new Howl({
-      src: ["alphabet-n.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_n.mp3"],
+      volume: 0.8,
     }),
   },
   o: {
-    letter: "o",
+    content: "o",
     sound: new Howl({
-      src: ["alphabet-o.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_o.mp3"],
+      volume: 0.8,
     }),
   },
   p: {
-    letter: "p",
+    content: "p",
     sound: new Howl({
-      src: ["alphabet-p.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_p.mp3"],
+      volume: 0.8,
     }),
   },
   q: {
-    letter: "q",
+    content: "q",
     sound: new Howl({
-      src: ["alphabet-q.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_q.mp3"],
+      volume: 0.8,
     }),
   },
   r: {
-    letter: "r",
+    content: "r",
     sound: new Howl({
-      src: ["alphabet-r.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_r.mp3"],
+      volume: 0.8,
     }),
   },
   s: {
-    letter: "s",
+    content: "s",
     sound: new Howl({
-      src: ["alphabet-s.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_s.mp3"],
+      volume: 0.8,
     }),
   },
   t: {
-    letter: "t",
+    content: "t",
     sound: new Howl({
-      src: ["alphabet-t.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_t.mp3"],
+      volume: 0.8,
     }),
   },
   u: {
-    letter: "u",
+    content: "u",
     sound: new Howl({
-      src: ["alphabet-u.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_u.mp3"],
+      volume: 0.8,
     }),
   },
   v: {
-    letter: "v",
+    content: "v",
     sound: new Howl({
-      src: ["alphabet-v.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_v.mp3"],
+      volume: 0.8,
     }),
   },
   w: {
-    letter: "w",
+    content: "w",
     sound: new Howl({
-      src: ["alphabet-w.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_w.mp3"],
+      volume: 0.8,
     }),
   },
   x: {
-    letter: "x",
+    content: "x",
     sound: new Howl({
-      src: ["alphabet-x.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_x.mp3"],
+      volume: 0.8,
     }),
   },
   y: {
-    letter: "y",
+    content: "y",
     sound: new Howl({
-      src: ["alphabet-y.mp3"],
+      src: ["resources/audio/alphabet-audio/v1_alphabet_y.mp3"],
       volume: 1,
     }),
   },
   z: {
-    letter: "z",
+    content: "z",
     sound: new Howl({
-      src: ["alphabet-z.mp3"],
-      volume: 1,
+      src: ["resources/audio/alphabet-audio/v1_alphabet_z.mp3"],
+      volume: 0.8,
     }),
   },
 };
 
-export { alphabetAudio };
+export { alphabetObject };
