@@ -13,7 +13,9 @@ import {
   removeMenuPage,
   restoreMainMenu,
 } from "../../../utilities/main-menu-display-toggle.js";
-import { finishedLoading, numbersFluencySfx } from "./audio.js";
+import { numbersFluencySfx } from "./audio.js";
+import { feedbackAudioObject } from "../../../utilities/feedback-object.js";
+import { numbersAudioObject } from "../../../utilities/numbers-audio-object.js";
 let interval = 2500;
 let run;
 let isPaused = false;
@@ -112,9 +114,7 @@ function getCurrentItem() {
   return currentItem;
 }
 function speak(currentItem) {
-  const synth = window.speechSynthesis;
-  let itemToBeSpoken = new SpeechSynthesisUtterance(currentItem);
-  synth.speak(itemToBeSpoken);
+  numbersAudioObject[currentItem].sound.play();
 }
 
 /* GRID */
@@ -478,29 +478,43 @@ function resetRoundNumberAndRoundDisplay() {
 }
 function newRound() {
   clearInterval(run);
-  resetArrayItemCounter();
-  resetLoop();
-  ++round;
-  determineInterval();
-  determineCorrectAnswerPoints();
-  setHeartsArray();
-  // if (!isPaused) {
-  displayHeartsArray();
-  if (round === 1) {
-    numbersFluencySfx.restoreHeartSFX.play();
-  }
-  restoreOneHeart();
-  if (round > maxRounds) {
+  if (numberOfRightAnswers === 10) {
+    feedbackAudioObject.greatJob.sound.play();
+  } else if (numberOfRightAnswers > 7 && numberOfRightAnswers < 10) {
+    feedbackAudioObject.goodJob.sound.play();
+  } else if (round !== 0 && numberOfRightAnswers < 5) {
     sessionOver();
+    feedbackAudioObject.betterLuckNextTime.sound.play();
     return;
   }
-  // if (!isPaused) {
-  displayRound(round);
-  // }
-  // }
-  currentArray.length = 0;
-  arrayGenerator();
-  startInterval();
+  setTimeout(() => {
+    resetArrayItemCounter();
+    resetLoop();
+    ++round;
+    determineInterval();
+    determineCorrectAnswerPoints();
+    setHeartsArray();
+    // if (!isPaused) {
+    displayHeartsArray();
+    if (round === 1) {
+      numbersFluencySfx.restoreHeartSFX.play();
+    }
+    if (numberOfRightAnswers > 5) {
+      restoreOneHeart();
+    }
+    numberOfRightAnswers = 0;
+    if (round > maxRounds) {
+      sessionOver();
+      return;
+    }
+    // if (!isPaused) {
+    displayRound(round);
+    // }
+    // }
+    currentArray.length = 0;
+    arrayGenerator();
+    startInterval();
+  }, 1000);
 }
 
 function startNewRound() {
@@ -539,16 +553,20 @@ function sessionOver() {
   scoreDisplay.classList.add("blur");
 }
 function gameOver() {
-  if (numberOfWrongAnswers === maxWrongAnswers) {
+  if (heartsArray.length === 0) {
     setTimeout(() => {
       disableTouch();
     }, 300);
     clearInterval(run);
     setTimeout(() => {
-      alert("GAME OVER. Sorry, you missed more than five answers");
-    }, 700);
-    displayFinalScore();
-    displayTryAgainAndFinishBtns();
+      displayFinalScore();
+      setTimeout(() => {
+        if (score.currentScore < 10) {
+          feedbackAudioObject.betterLuckNextTime.sound.play();
+        }
+      }, 500);
+      displayTryAgainAndFinishBtns();
+    }, 500);
   }
 }
 

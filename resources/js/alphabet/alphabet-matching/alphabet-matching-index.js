@@ -29,6 +29,7 @@ import {
 } from "./dot-objects-control.js";
 
 import { Connector } from "./connector.js";
+import { feedbackAudioObject } from "../../../utilities/feedback-object.js";
 
 /* SCORING */
 const correctAnswerPoints = 1;
@@ -475,6 +476,9 @@ function checkAllCorrect() {
       updatePositiveCount(allCorrectDots.length * correctAnswerPoints);
       scoreDisplay.classList.add("pulse");
       matchingSfx.allCorrect.play();
+      setTimeout(() => {
+        feedbackAudioObject.greatJob.sound.play();
+      }, 500);
     }, 500);
     setTimeout(() => {
       disableTouch();
