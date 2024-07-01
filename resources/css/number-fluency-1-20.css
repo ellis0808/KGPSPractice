@@ -27,31 +27,18 @@ h2 {
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
+  /* height: 100vh; */
+  /* width: 100vw; */
   background: white;
   display: grid;
   place-content: center;
   grid-template-columns: 1fr;
   grid-template-areas: "main-container";
   touch-action: none;
-  overflow-y: hidden;
+  overflow: hidden;
   cursor: pointer;
 }
-@media (width > 600px) {
-  body {
-    height: 100vh;
-    width: 100vw;
-    background: white;
-    display: grid;
-    place-content: center;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "main-container";
-    touch-action: none;
-    overflow: hidden;
-  }
-}
+
 body::-webkit-scrollbar {
   width: 0.25;
 }
@@ -69,15 +56,15 @@ body:not(:has(*)) {
 
 .main-container {
   grid-area: main-container;
-  height: 100%;
-  width: 100%;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   background: #222;
   display: grid;
 }
 .container {
-  height: 100%;
-  width: 100%;
+  /* height: 100%;
+  width: 100%; */
   background: #222;
   display: grid;
   grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
@@ -111,15 +98,15 @@ body:not(:has(*)) {
 }
 .btn-container1 {
   grid-area: btn-container1;
-  width: 100%;
-  min-height: 100%;
+  /* width: 100%;
+  min-height: 100%; */
   display: grid;
   grid-template-columns: 1.5fr 0.75fr;
   grid-template-areas: "timer  score-display";
 }
 .btn-container2 {
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
   display: grid;
   grid-template-columns: 0.5fr 1fr 0.5fr;
   grid-template-rows: repeat(3, 1fr);
@@ -133,8 +120,8 @@ body:not(:has(*)) {
 }
 .btn-container3 {
   grid-area: btn-container3;
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
@@ -191,8 +178,8 @@ body:not(:has(*)) {
 */
 .home-btn-container {
   grid-area: home-btn-container;
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
@@ -204,8 +191,8 @@ body:not(:has(*)) {
 @media (width > 600px) {
   .home-btn-container {
     grid-area: home-btn-container;
-    width: 100%;
-    height: 100%;
+    /* width: 100%;
+    height: 100%; */
     display: flex;
     flex-direction: column;
   }
@@ -481,8 +468,8 @@ body:not(:has(*)) {
 }
 .try-again-btn,
 .finish-btn {
-  height: 100%;
-  width: 100%;
+  /* width: 100%;
+  height: 100%; */
   margin: auto;
   /* padding: 20px; */
   display: flex;
@@ -548,8 +535,8 @@ body:not(:has(*)) {
 
 .answer-display {
   grid-area: answer-display;
-  height: 100%;
-  width: 100%;
+  /* width: 100%;
+  height: 100%; */
   text-overflow: ellipsis;
   word-break: break-all;
   font-family: var(--font-fam);
@@ -568,8 +555,8 @@ body:not(:has(*)) {
 @media (width > 600px) {
   .answer-display {
     grid-area: answer-display;
-    height: 100%;
-    width: 100%;
+    /* width: 100%;
+    height: 100%; */
     /* margin-top: 2rem; */
     font-family: var(--font-fam);
     text-align: center;

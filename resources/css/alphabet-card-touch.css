@@ -19,9 +19,6 @@
   --hvr-opc: 0.7;
 }
 
-body {
-  overflow: hidden;
-}
 h2 {
   color: white;
 }
@@ -31,13 +28,20 @@ body {
   margin: 0;
   padding: 0;
   display: grid;
-  place-content: center;
   grid-template-columns: 1fr;
-  grid-template-areas:
-    /* "navbar " */ "main-container";
+  grid-template-areas: "main-container";
+  place-content: center;
+  touch-action: none;
+  overflow: hidden;
+  cursor: pointer;
 }
+
 body::-webkit-scrollbar {
   width: 0.25;
+}
+
+body:not(:has(*)) {
+  display: none;
 }
 
 /*
@@ -54,6 +58,7 @@ body::-webkit-scrollbar {
   height: 100vh;
   overflow: hidden;
   background: #222;
+  display: grid;
 }
 .container {
   /* height: 100%; */
@@ -80,8 +85,8 @@ body::-webkit-scrollbar {
     grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
     grid-template-rows: 0.1fr 0.2fr 0.1fr 1fr 0.1fr;
     grid-template-areas:
-      " ..... home-btn-container ..... ....."
-      "..... btn-container1 btn-container1 ....."
+      "home-btn-container ..... ..... ....."
+      "home-btn-container btn-container1 btn-container1 ....."
       "..... btn-container3 btn-container3 ....."
       ".....  card-grid card-grid ....."
       "..... ..... ..... .....";
@@ -100,7 +105,7 @@ body::-webkit-scrollbar {
   /* height: 100%; */
   display: grid;
   grid-template-columns: 0.5fr 1fr 0.5fr;
-  grid-template-rows: 3fr 1fr 0.5fr;
+  grid-template-rows: repeat(3, 1fr);
   grid-template-areas:
     "..... ..... ....."
     "..... start-btn ....."
@@ -119,7 +124,7 @@ body::-webkit-scrollbar {
   grid-template-areas: "repeat-btn";
   place-content: center;
   place-items: center;
-  z-index: 20;
+  z-index: 0;
 }
 #grid {
   grid-area: card-grid;
@@ -134,6 +139,7 @@ body::-webkit-scrollbar {
   place-items: center;
   perspective: 1000px;
   --stagger-delaay: 0.1s;
+  z-index: 10;
 }
 @media (width > 600px) {
   #grid {
@@ -149,13 +155,13 @@ body::-webkit-scrollbar {
 
 */
 .card {
-  width: 90px;
-  height: 90px;
+  width: 5.6rem;
+  height: 5.6rem;
   background: white;
   /* border: var(--clr-acc1) 10px solid; */
-  border-radius: 15px;
+  border-radius: 1rem;
   font-size: 3rem;
-  letter-spacing: 5px;
+  letter-spacing: 5rpx;
   display: flex;
   flex: 1 1 auto;
   place-content: center;
@@ -163,17 +169,15 @@ body::-webkit-scrollbar {
   transform-style: preserve-3d;
   opacity: 1;
   transition: opacity 0.5s;
-  z-index: 1;
   animation: cardEntrance 0.3s ease-out;
   animation-fill-mode: backwards;
 }
 @media (width > 600px) {
   .card {
-    width: 150px;
-    height: 150px;
+    width: 9.3rem;
+    height: 9.3rem;
     background: white;
-    /* border: var(--clr-acc1) 10px solid; */
-    border-radius: 15px;
+    border-radius: 1rem;
     font-size: 5rem;
     letter-spacing: 5px;
     display: flex;
@@ -183,31 +187,11 @@ body::-webkit-scrollbar {
     transform-style: preserve-3d;
     opacity: 1;
     transition: opacity 0.5s;
-    z-index: 1;
     animation: cardEntrance 0.3s ease-out;
     animation-fill-mode: backwards;
   }
 }
-/* @media (width > 1000px) {
-  .card {
-    width: 300px;
-    height: 300px;
-    background: white;
-    border-radius: 15px;
-    font-size: 13rem;
-    letter-spacing: 5px;
-    display: flex;
-    flex: 1 1 auto;
-    place-content: center;
-    place-items: center;
-    transform-style: preserve-3d;
-    opacity: 1;
-    transition: opacity 0.5s;
-    z-index: 1;
-    animation: cardEntrance 0.3s ease-out;
-    animation-fill-mode: backwards;
-  }
-} */
+
 .no-touch {
   pointer-events: none;
 }
@@ -236,6 +220,7 @@ body::-webkit-scrollbar {
   .home-btn-container {
     grid-area: home-btn-container;
     display: flex;
+    flex-direction: column;
   }
 }
 .home-btn {
@@ -442,7 +427,7 @@ body::-webkit-scrollbar {
   width: 40px;
   height: 40px;
   margin: auto;
-  /* margin-top: 10rem; */
+  margin-top: 10rem;
   color: var(--clr-acc1);
   background-color: white;
   border: 2px solid var(--clr-acc1);

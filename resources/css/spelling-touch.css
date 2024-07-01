@@ -71,10 +71,11 @@ body:not(:has(*)) {
   width: 100vw;
   overflow: hidden;
   background: #222;
+  display: grid;
 }
 .container {
-  height: 100%;
-  width: 100%;
+  /* height: 100%;
+  width: 100%; */
   background: #222;
   display: grid;
   grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
@@ -108,15 +109,15 @@ body:not(:has(*)) {
 }
 .btn-container1 {
   grid-area: btn-container1;
-  width: 100%;
-  min-height: 100%;
+  /* width: 100%;
+  min-height: 100%; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "timer  score-display";
 }
 .btn-container2 {
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
   display: grid;
   grid-template-columns: 0.5fr 1fr 0.5fr;
   grid-template-rows: repeat(3, 1fr);
@@ -130,8 +131,8 @@ body:not(:has(*)) {
 }
 .btn-container3 {
   grid-area: btn-container3;
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
@@ -194,8 +195,8 @@ body:not(:has(*)) {
 
 .home-btn-container {
   grid-area: home-btn-container;
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
@@ -488,8 +489,8 @@ body:not(:has(*)) {
 }
 .try-again-btn,
 .finish-btn {
-  height: 100%;
-  width: 100%;
+  /* height: 100%;
+  width: 100%; */
   margin: auto;
   /* padding: 20px; */
   display: flex;
@@ -555,8 +556,8 @@ body:not(:has(*)) {
 
 .letter-display {
   grid-area: letter-display;
-  height: 100%;
-  width: 100%;
+  /* height: 100%;
+  width: 100%; */
   text-overflow: ellipsis;
   word-break: break-all;
   font-family: var(--font-fam);
@@ -575,8 +576,8 @@ body:not(:has(*)) {
 @media (width > 600px), (height > 800px) {
   .letter-display {
     grid-area: letter-display;
-    min-height: 100%;
-    width: 100%;
+    /* width: 100%;
+    min-height: 100%; */
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
