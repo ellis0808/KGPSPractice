@@ -72,8 +72,10 @@ body:not(:has(*)) {
   display: grid;
 }
 .container {
-  /* width: 100%;
-  height: 100%; */
+  width: 100%;
+  height: 100%;
+  max-width: 1000px;
+  max-height: 1000px;
   background: #222;
   display: grid;
   grid-template-columns: 0.25fr 2fr 2fr 0.25fr;

@@ -29,11 +29,29 @@ class Connector {
   buttonUp() {
     this.isPressed = false;
   }
+  setLineId(currentDotId) {
+    this.id = `${currentDotId}-line`;
+  }
+  setLineEndDotId(endDotId) {
+    this.endLineId = `${endDotId}-line`;
+  }
   getStartPosition(event) {
     this.start = this.getCenter(event);
   }
   getEndPosition(event) {
     this.end = this.getCenter(event);
+  }
+  getCenter(event) {
+    let target = event.target.getBoundingClientRect();
+    const bodyRect = body.getBoundingClientRect();
+    let center = {
+      x: event.target.offsetLeft + event.target.offsetWidth / 2,
+      y: event.target.offsetTop + event.target.offsetHeight / 2 - 5,
+    };
+    return center;
+  }
+  getId(startDot) {
+    this.contentId = startDot.contentId;
   }
   drawLine(event) {
     const newLine = document.createElement("div");
@@ -59,15 +77,6 @@ class Connector {
     }
   }
 
-  getCenter(event) {
-    let target = event.target.getBoundingClientRect();
-    const bodyRect = body.getBoundingClientRect();
-    let center = {
-      x: event.target.offsetLeft + event.target.offsetWidth / 2,
-      y: event.target.offsetTop + event.target.offsetHeight / 2 - 5,
-    };
-    return center;
-  }
   getSlopeInDegrees() {
     let slopeInRadian = Math.atan2(
       this.end.y - this.start.y,
@@ -76,12 +85,7 @@ class Connector {
     this.slope = (slopeInRadian * 180) / Math.PI;
     return this.slope;
   }
-  setLineId(currentDotId) {
-    this.id = `${currentDotId}-line`;
-  }
-  setLineEndDotId(endDotId) {
-    this.endLineId = `${endDotId}-line`;
-  }
+
   setDistance() {
     let lineLength = Math.sqrt(
       (this.start.x - this.end.x) ** 2 + (this.start.y - this.end.y) ** 2
@@ -104,9 +108,6 @@ class Connector {
         this.element.classList.remove("pulse");
       }
     }
-  }
-  getId(startDot) {
-    this.contentId = startDot.contentId;
   }
 }
 

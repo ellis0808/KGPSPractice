@@ -823,7 +823,7 @@ function onPointerMove(event) {
   if (event.target.hasPointerCapture(event.pointerId)) {
     event.target.releasePointerCapture(event.pointerId);
   }
-  const bodyRect = appContainer.getBoundingClientRect();
+  const bodyRect = body.getBoundingClientRect();
   if (
     line.isPressed &&
     currentStartDot !== null &&
@@ -1025,23 +1025,6 @@ function onPointerUpFalse() {
   currentStartDot = null;
 }
 
-function getCenterOfTarget(event) {
-  let target = event.target.getBoundingClientRect();
-  const bodyRect = body.getBoundingClientRect();
-  let center = {
-    x: event.target.offsetLeft + event.target.offsetWidth / 2,
-    y: event.target.offsetTop + event.target.offsetHeight / 2 - 5,
-  };
-  return center;
-}
-
-function setDistance() {
-  let lineLength = Math.sqrt(
-    (line.start.x - line.end.x) ** 2 + (line.start.y - line.end.y) ** 2
-  );
-  return lineLength;
-}
-
 // function updateLinePositions() {
 //   redrawAllLines();
 // }
@@ -1060,13 +1043,6 @@ function activateEventListeners() {
   const startTargets = document
     .querySelectorAll(".start-target")
     .forEach((target) => {
-      // if (navigator.maxTouchPoints > 1) {
-      //   target.addEventListener("touchstart", onTouchStart, false);
-      //   target.addEventListener("touchleave", (event) => {
-      //     event.preventDefault();
-      //     event.stopPropagation();
-      //   });
-      // } else {
       target.addEventListener("pointerdown", onPointerDown, false);
       target.addEventListener("pointerleave", (event) => {
         event.preventDefault();
@@ -1077,19 +1053,8 @@ function activateEventListeners() {
   const endTargets = document
     .querySelectorAll(".end-target")
     .forEach((target) => {
-      // if (navigator.maxTouchPoints > 1) {
-      //   target.addEventListener("touchend", onTouchEnd, false);
-      // } else {
       target.addEventListener("pointerup", onPointerUp, false);
-      // }
     });
-
-  // appContainer.addEventListener("pointerdown", onPointerDown, false);
-  // if (navigator.maxTouchPoints > 1) {
-  //   target.addEventListener("touchup", onTouchUp, false);
-  // } else {
-  //   appContainer.addEventListener("pointerup", onPointerUp, false);
-  // }
 
   appContainer.addEventListener("pointerup", onPointerUpFalse, false);
   appContainer.addEventListener("pointermove", onPointerMove, false);
