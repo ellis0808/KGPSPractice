@@ -381,7 +381,7 @@ A. Overall Function
 */
 function roundOver() {
   disableTouch();
-  displayFinalScore();
+  setTimeout(displayFinalScore, 600);
   setTimeout(disableTouch, 500);
   setTimeout(disableTouch, 1000);
   displayTryAgainAndFinishBtns();
@@ -436,6 +436,28 @@ function displayFinalScore() {
     });
   }, 400);
   score.updateUserScore();
+  setTimeout(() => {
+    switch (true) {
+      case score.currentScore < 5:
+        feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
+        break;
+      case score.currentScore > 31:
+        feedbackAudioObject.positiveFeedback.outstanding.sound.play();
+        break;
+      case score.currentScore > 27:
+        feedbackAudioObject.positiveFeedback.amazing.sound.play();
+        break;
+      case score.currentScore > 23:
+        feedbackAudioObject.positiveFeedback.excellent.sound.play();
+        break;
+      case score.currentScore > 18:
+        feedbackAudioObject.positiveFeedback.greatJob.sound.play();
+        break;
+      case score.currentScore > 13:
+        feedbackAudioObject.positiveFeedback.goodJob.sound.play();
+        break;
+    }
+  }, 300);
 }
 
 /*
@@ -476,9 +498,7 @@ function checkAllCorrect() {
       updatePositiveCount(allCorrectDots.length * correctAnswerPoints);
       scoreDisplay.classList.add("pulse");
       matchingSfx.allCorrect.play();
-      setTimeout(() => {
-        feedbackAudioObject.greatJob.sound.play();
-      }, 500);
+      setTimeout(randomFeedback, 500);
     }, 500);
     setTimeout(() => {
       disableTouch();
@@ -487,6 +507,31 @@ function checkAllCorrect() {
   }
 }
 
+let positiveFeedbackAudioObjects = [];
+let negativeFeedbackAudioObjects = [];
+function randomFeedback() {
+  Object.keys(feedbackAudioObject.positiveFeedback).forEach((object) => {
+    if (!positiveFeedbackAudioObjects.includes(object)) {
+      if (object === "greatJob" || object === "goodJob") {
+        positiveFeedbackAudioObjects.push(object);
+      }
+    }
+  });
+  Object.keys(feedbackAudioObject.positiveFeedback).forEach((object) => {
+    if (!negativeFeedbackAudioObjects.includes(object)) {
+      negativeFeedbackAudioObjects.push(object);
+    }
+  });
+
+  let randomFeedbackNumber = Math.floor(
+    Math.random() * positiveFeedbackAudioObjects.length
+  );
+  console.log(randomFeedbackNumber);
+  console.log(positiveFeedbackAudioObjects);
+  feedbackAudioObject.positiveFeedback[
+    positiveFeedbackAudioObjects[randomFeedbackNumber]
+  ].sound.play();
+}
 function continueToNextRound() {
   if (!isPaused) {
     setTimeout(() => {
@@ -1007,6 +1052,7 @@ function onPointerUp(event) {
       event.preventDefault();
     }
   }
+  currentStartDot = null;
 }
 
 /*   FALSE Pointer UP EVENT  */

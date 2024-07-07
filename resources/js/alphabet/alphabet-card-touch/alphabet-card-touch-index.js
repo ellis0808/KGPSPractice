@@ -18,6 +18,7 @@ import {
   removeMenuPage,
   restoreMainMenu,
 } from "../../../utilities/main-menu-display-toggle.js";
+import { feedbackAudioObject } from "../../../utilities/feedback-object.js";
 
 /* SCORING */
 const correctAnswerPoints = 2;
@@ -327,6 +328,28 @@ function displayFinalScore() {
     });
   }, 400);
   score.updateUserScore();
+  setTimeout(() => {
+    switch (true) {
+      case score.currentScore < 5:
+        feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
+        break;
+      case score.currentScore > 31:
+        feedbackAudioObject.positiveFeedback.outstanding.sound.play();
+        break;
+      case score.currentScore > 27:
+        feedbackAudioObject.positiveFeedback.amazing.sound.play();
+        break;
+      case score.currentScore > 23:
+        feedbackAudioObject.positiveFeedback.excellent.sound.play();
+        break;
+      case score.currentScore > 18:
+        feedbackAudioObject.positiveFeedback.greatJob.sound.play();
+        break;
+      case score.currentScore > 13:
+        feedbackAudioObject.positiveFeedback.goodJob.sound.play();
+        break;
+    }
+  }, 300);
 }
 
 function displayTryAgainAndFinishBtns() {
@@ -415,6 +438,30 @@ function touchCard(e) {
   if (parseInt(currentCardID) === correctCardID) {
     correctCard(e);
     updatePositiveCount(correctAnswerPoints);
+    let delay = 300;
+    setTimeout(() => {
+      switch (score.currentScore) {
+        case 6:
+          feedbackAudioObject.positiveFeedback.goodJob.sound.play();
+          break;
+        case 14:
+          feedbackAudioObject.positiveFeedback.greatJob.sound.play();
+          break;
+        case 20:
+          feedbackAudioObject.positiveFeedback.greatJob.sound.play();
+          break;
+        case 26:
+          feedbackAudioObject.positiveFeedback.excellent.sound.play();
+          break;
+        case 30:
+          feedbackAudioObject.positiveFeedback.amazing.sound.play();
+          break;
+        case 32:
+          feedbackAudioObject.positiveFeedback.outstanding.sound.play();
+          break;
+      }
+    }, 650);
+
     disableTouch();
   } else {
     wobble(e);

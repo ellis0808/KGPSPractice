@@ -479,12 +479,11 @@ function resetRoundNumberAndRoundDisplay() {
 function newRound() {
   clearInterval(run);
   if (numberOfRightAnswers === 10) {
-    feedbackAudioObject.greatJob.sound.play();
+    feedbackAudioObject.positiveFeedback.greatJob.sound.play();
   } else if (numberOfRightAnswers > 7 && numberOfRightAnswers < 10) {
-    feedbackAudioObject.goodJob.sound.play();
+    feedbackAudioObject.positiveFeedback.goodJob.sound.play();
   } else if (round !== 0 && numberOfRightAnswers < 5) {
     sessionOver();
-    feedbackAudioObject.betterLuckNextTime.sound.play();
     return;
   }
   setTimeout(() => {
@@ -560,11 +559,6 @@ function gameOver() {
     clearInterval(run);
     setTimeout(() => {
       displayFinalScore();
-      setTimeout(() => {
-        if (score.currentScore < 10) {
-          feedbackAudioObject.betterLuckNextTime.sound.play();
-        }
-      }, 500);
       displayTryAgainAndFinishBtns();
     }, 500);
   }
@@ -584,6 +578,28 @@ function displayFinalScore() {
     });
   }, 400);
   score.updateUserScore();
+  setTimeout(() => {
+    switch (true) {
+      case score.currentScore < 10:
+        feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
+        break;
+      case score.currentScore >= 150:
+        feedbackAudioObject.positiveFeedback.outstanding.sound.play();
+        break;
+      case score.currentScore >= 90:
+        feedbackAudioObject.positiveFeedback.amazing.sound.play();
+        break;
+      case score.currentScore >= 50:
+        feedbackAudioObject.positiveFeedback.excellent.sound.play();
+        break;
+      case score.currentScore >= 30:
+        feedbackAudioObject.positiveFeedback.greatJob.sound.play();
+        break;
+      case score.currentScore >= 10:
+        feedbackAudioObject.positiveFeedback.goodJob.sound.play();
+        break;
+    }
+  }, 300);
 }
 
 function displayTryAgainAndFinishBtns() {

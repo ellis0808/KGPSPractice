@@ -42,7 +42,7 @@ const mainMenuSfx = {
     },
   }),
   back: new Howl({
-    src: ["resources/audio/sfx/ぷよん.mp3"],
+    src: ["resources/audio/sfx/決定ボタンを押す22_reversed.mp3"],
     volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {
