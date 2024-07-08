@@ -526,8 +526,6 @@ function randomFeedback() {
   let randomFeedbackNumber = Math.floor(
     Math.random() * positiveFeedbackAudioObjects.length
   );
-  console.log(randomFeedbackNumber);
-  console.log(positiveFeedbackAudioObjects);
   feedbackAudioObject.positiveFeedback[
     positiveFeedbackAudioObjects[randomFeedbackNumber]
   ].sound.play();

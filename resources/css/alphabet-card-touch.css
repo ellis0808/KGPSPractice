@@ -61,16 +61,13 @@ body:not(:has(*)) {
   display: grid;
 }
 .container {
-  /* height: 100%; */
-  /* width: 100%; */
   background: #222;
   display: grid;
   grid-template-columns: 0.15fr 1fr 1fr 0.15fr;
-  grid-template-rows: 0.2fr 0.05fr 0.2fr 0.05fr 0.05fr 1fr 0.5fr;
+  grid-template-rows: 0.2fr 0.05fr 0.05fr 0.05fr 1fr 0.05fr;
   grid-template-areas:
     "..... home-btn-container home-btn-container ....."
     "..... btn-container1 btn-container1 ....."
-    "..... ..... ..... ....."
     "..... btn-container3 btn-container3 ....."
     "..... ..... ..... ....."
     ".....  card-grid card-grid ....."
@@ -80,7 +77,20 @@ body:not(:has(*)) {
   margin: auto;
   overflow: hidden;
 }
-@media (width > 600px) {
+
+@media only screen and (min-device-width: 768px) {
+  .container {
+    grid-template-columns: 0.25fr 1fr 1fr 1fr 1fr 0.25fr;
+    grid-template-rows: 0.1fr 0.2fr 0.1fr 1fr 0.1fr;
+    grid-template-areas:
+      "..... home-btn-container ..... ..... ..... ..... "
+      "..... home-btn-container btn-container1 btn-container1 btn-container3 ....."
+      "..... ..... ..... ..... ..... ....."
+      "..... card-grid card-grid card-grid card-grid ....."
+      "..... ..... ..... ..... ..... .....";
+  }
+}
+@media (width > 1200px) {
   .container {
     grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
     grid-template-rows: 0.1fr 0.2fr 0.1fr 1fr 0.1fr;
@@ -92,17 +102,14 @@ body:not(:has(*)) {
       "..... ..... ..... .....";
   }
 }
+
 .btn-container1 {
   grid-area: btn-container1;
-  /* width: 100%;
-  min-height: 100%; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: "timer  score-display";
 }
 .btn-container2 {
-  /* width: 100%; */
-  /* height: 100%; */
   display: grid;
   grid-template-columns: 0.5fr 1fr 0.5fr;
   grid-template-rows: repeat(3, 1fr);
@@ -116,8 +123,6 @@ body:not(:has(*)) {
 }
 .btn-container3 {
   grid-area: btn-container3;
-  /* width: 100%;
-  height: 100%; */
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -128,20 +133,24 @@ body:not(:has(*)) {
 }
 #grid {
   grid-area: card-grid;
-  /* width: 100%;
-  height: 100%; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-template-areas: "a   b   c" "d  e  f" "g  h  i";
-  gap: 10px;
+  column-gap: 25px;
+  row-gap: 32px;
   place-content: center;
   place-items: center;
   perspective: 1000px;
   --stagger-delaay: 0.1s;
   z-index: 10;
 }
-@media (width > 600px) {
+@media only screen and (min-device-width: 768px) {
+  #grid {
+    gap: 50px;
+  }
+}
+@media (width > 1200px) {
   #grid {
     gap: 65px;
   }
@@ -172,7 +181,26 @@ body:not(:has(*)) {
   animation: cardEntrance 0.3s ease-out;
   animation-fill-mode: backwards;
 }
-@media (width > 600px) {
+@media only screen and (min-device-width: 768px) {
+  .card {
+    width: 9.3rem;
+    height: 9.3rem;
+    background: white;
+    border-radius: 1rem;
+    font-size: 5rem;
+    letter-spacing: 5px;
+    display: flex;
+    flex: 1 1 auto;
+    place-content: center;
+    place-items: center;
+    transform-style: preserve-3d;
+    opacity: 1;
+    transition: opacity 0.5s;
+    animation: cardEntrance 0.3s ease-out;
+    animation-fill-mode: backwards;
+  }
+}
+@media (width > 1200px) {
   .card {
     width: 9.3rem;
     height: 9.3rem;
@@ -206,8 +234,6 @@ body:not(:has(*)) {
 
 .home-btn-container {
   grid-area: home-btn-container;
-  /* width: 100%;
-  height: 100%; */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
@@ -216,13 +242,24 @@ body:not(:has(*)) {
   place-items: center;
   transition: 0.25s ease-in-out;
 }
-@media (width > 600px) {
+@media only screen and (min-device-width: 768px) {
+  .home-btn-container {
+    grid-area: home-btn-container;
+    display: flex;
+    flex-direction: column;
+    place-content: right;
+    place-items: right;
+    padding-top: 2.5rem;
+  }
+}
+@media (width > 1200px) {
   .home-btn-container {
     grid-area: home-btn-container;
     display: flex;
     flex-direction: column;
   }
 }
+
 .home-btn {
   grid-area: home-btn;
   width: 35px;
@@ -230,14 +267,25 @@ body:not(:has(*)) {
   background-color: transparent;
   color: var(--clr-acc1);
   border: transparent;
-  font-size: 1.3rem;
+  font-size: 1.75rem;
   display: flex;
   place-content: center;
   place-items: center;
   z-index: 50;
   transition: 0.1s ease-in;
+  margin-right: 1.5rem;
 }
-@media (width > 600px) {
+@media only screen and (min-device-width: 768px) {
+  .home-btn {
+    grid-area: home-btn;
+    width: 30px;
+    height: 30px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+}
+@media (width > 1200px) {
   .home-btn {
     grid-area: home-btn;
     width: 25px;
@@ -320,12 +368,28 @@ body:not(:has(*)) {
   height: 25px;
   background-color: transparent;
   color: var(--clr-acc1);
-  font-size: 1.5rem;
+  font-size: 2.25rem;
   display: flex;
   place-content: center;
   place-items: center;
   z-index: 50;
   transition: 0.1s ease-in;
+  margin-left: 1.5rem;
+}
+@media only screen and (min-device-width: 768px) {
+  .pause-btn {
+    grid-area: pause-btn;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    color: var(--clr-acc1);
+    display: flex;
+    place-content: center;
+    place-items: center;
+    margin-left: 0;
+    z-index: 50;
+    transition: 0.1s ease-in;
+  }
 }
 @media (hover: hover) and (pointer: fine) {
   .pause-btn:hover {
@@ -379,7 +443,7 @@ body:not(:has(*)) {
   padding: 0 0px;
   background: rgb(26, 26, 168);
 }
-@media (width > 600px) {
+@media (width > 1200px) {
   #repeat-btn {
     width: 150px;
     height: 75px;
@@ -415,7 +479,7 @@ body:not(:has(*)) {
   transition: 0.6s;
 }
 
-@media (width > 600px) {
+@media (width > 1200px) {
   #start-btn {
     height: 200px;
     width: 500px;
@@ -440,7 +504,7 @@ body:not(:has(*)) {
   transition: 0.6s;
   animation: cardEntrance 0.5s ease-out;
 }
-@media (width > 600px) {
+@media (width > 1200px) {
   #exit-btn {
     width: 75px;
     height: 75px;
@@ -473,7 +537,7 @@ body:not(:has(*)) {
   place-items: center;
   position: absolute;
 }
-@media (width > 600px) {
+@media (width > 1200px) {
   .end-messages-container {
     height: 450px;
     width: 700px;
@@ -508,7 +572,7 @@ body:not(:has(*)) {
   z-index: 20;
   position: absolute;
 }
-@media (width > 600px) {
+@media (width > 1200px) {
   .final-score-alert {
     grid-area: final-score-alert;
     height: 275px;
