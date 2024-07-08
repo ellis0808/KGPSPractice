@@ -27,9 +27,9 @@ body {
   background: white;
   margin: 0;
   padding: 0;
-  display: grid;
+  /* display: grid; */
   grid-template-columns: 1fr;
-  grid-template-areas: "main-container";
+  /* grid-template-areas: "main-container"; */
   place-content: center;
   touch-action: none;
   overflow: hidden;
@@ -155,6 +155,11 @@ body:not(:has(*)) {
     gap: 65px;
   }
 }
+@media (width > 2000px) {
+  #grid {
+    gap: 120px;
+  }
+}
 
 /*
 
@@ -207,6 +212,25 @@ body:not(:has(*)) {
     background: white;
     border-radius: 1rem;
     font-size: 5rem;
+    letter-spacing: 5px;
+    display: flex;
+    flex: 1 1 auto;
+    place-content: center;
+    place-items: center;
+    transform-style: preserve-3d;
+    opacity: 1;
+    transition: opacity 0.5s;
+    animation: cardEntrance 0.3s ease-out;
+    animation-fill-mode: backwards;
+  }
+}
+@media (width > 2000px) {
+  .card {
+    width: 18rem;
+    height: 18rem;
+    background: white;
+    border-radius: 1rem;
+    font-size: 10rem;
     letter-spacing: 5px;
     display: flex;
     flex: 1 1 auto;
@@ -292,6 +316,12 @@ body:not(:has(*)) {
     height: 25px;
     margin-top: 15px;
     margin-bottom: 10px;
+  }
+}
+@media (width > 2000px) {
+  .home-btn {
+    font-size: 6.5rem;
+    margin-bottom: 6rem;
   }
 }
 
@@ -391,21 +421,34 @@ body:not(:has(*)) {
     transition: 0.1s ease-in;
   }
 }
+@media (width > 2000px) {
+  .pause-btn {
+    grid-area: pause-btn;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    color: var(--clr-acc1);
+    font-size: 7rem;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    margin-left: 0;
+    z-index: 50;
+    transition: 0.1s ease-in;
+  }
+}
 @media (hover: hover) and (pointer: fine) {
   .pause-btn:hover {
-    /* transform: translateY(7px); */
     scale: 1.75;
     transition: 0.2s ease-in;
   }
   .pause-btn:active {
-    /* transform: translateY(8px); */
     scale: 1.55;
     transition: 0.1s ease-in;
   }
 }
 .pause-btn-enlarge {
   scale: 1.75;
-  /* transform: translateY(7px); */
   transition: 0.2s ease-in;
 }
 .timer {
@@ -416,6 +459,11 @@ body:not(:has(*)) {
   place-content: center;
   justify-self: center;
 }
+@media (width > 2000) {
+  .timer {
+    font-size: 10rem;
+  }
+}
 .score-display {
   grid-area: score-display;
   color: rgb(248, 245, 56);
@@ -424,6 +472,11 @@ body:not(:has(*)) {
   display: flex;
   place-content: center;
   justify-self: center;
+}
+@media (width > 2000) {
+  .score-display {
+    font-size: 10rem;
+  }
 }
 #repeat-btn {
   grid-area: repeat-btn;
@@ -449,6 +502,14 @@ body:not(:has(*)) {
     height: 75px;
     border-radius: 20px;
     font-size: 2rem;
+  }
+}
+@media (width > 2000px) {
+  #repeat-btn {
+    width: 300px;
+    height: 150px;
+    border-radius: 20px;
+    font-size: 4rem;
   }
 }
 @media (hover: hover) and (pointer: fine) {
@@ -478,11 +539,34 @@ body:not(:has(*)) {
   z-index: 10;
   transition: 0.6s;
 }
-
+@media only screen and (min-device-width: 768px) {
+  #start-btn {
+    grid-area: start-btn;
+    height: 200px;
+    width: 500px;
+    color: white;
+    background: rgb(161, 29, 29);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    border-radius: 25px;
+    border: transparent;
+    z-index: 10;
+    transition: 0.6s;
+  }
+}
 @media (width > 1200px) {
   #start-btn {
     height: 200px;
     width: 500px;
+  }
+}
+@media (width > 2000px) {
+  #start-btn {
+    height: 400px;
+    width: 1000px;
+    font-size: 10rem;
   }
 }
 #exit-btn {
@@ -509,6 +593,13 @@ body:not(:has(*)) {
     width: 75px;
     height: 75px;
     font-size: 2.5rem;
+  }
+}
+@media (width > 2000px) {
+  #exit-btn {
+    width: 150px;
+    height: 150px;
+    font-size: 6rem;
   }
 }
 @media (hover: hover) and (pointer: fine) {
@@ -612,7 +703,8 @@ body:not(:has(*)) {
   z-index: 21;
   transition: 0.3s;
 }
-@media (width > 600px) {
+
+@media (width > 1200px) {
   .try-again-btn,
   .finish-btn {
     height: 90px;
