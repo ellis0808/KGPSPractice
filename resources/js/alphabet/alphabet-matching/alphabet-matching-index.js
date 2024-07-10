@@ -68,6 +68,8 @@ const startDotsDiv = document.createElement("div");
 startDotsDiv.classList.add("start-dot-div");
 const endDotsDiv = document.createElement("div");
 endDotsDiv.classList.add("end-dot-div");
+const leftMenuContainer = document.createElement("div");
+leftMenuContainer.classList.add("left-menu-container");
 
 const tryAgainBtn = document.createElement("div");
 tryAgainBtn.classList.add("try-again-btn");
@@ -131,6 +133,7 @@ I. MAIN APP
 */
 function alphabetMatchingApp() {
   mainContainer.appendChild(appContainer);
+  appContainer.appendChild(leftMenuContainer);
   appContainer.appendChild(btnContainer1);
   appContainer.appendChild(btnContainer2);
   btnContainer2.appendChild(startBtn);
