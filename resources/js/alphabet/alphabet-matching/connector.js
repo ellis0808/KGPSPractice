@@ -6,7 +6,12 @@ import {
   body,
 } from "../../../utilities/variables.js";
 import { StartDot, EndDot, DotCommand } from "./dot-objects-control.js";
-import { currentDotId, endDotId, grid } from "./alphabet-matching-index.js";
+import {
+  currentDotId,
+  endDotId,
+  grid,
+  numberOfItemsToBeDisplayed,
+} from "./alphabet-matching-index.js";
 
 class Connector {
   constructor() {
@@ -16,11 +21,12 @@ class Connector {
     this.distance = null;
     this.slope = null;
     this.element = null;
-    this.id = null;
+    this.startLineId = null;
     this.endLineId = null;
     this.contentId = null;
     this.isActive = false;
-    this.connectedTo = null;
+    this.connectedToStartDot = null;
+    this.connectedToEndDot = null;
     this.conncted = false;
   }
   buttonDown() {
@@ -29,12 +35,12 @@ class Connector {
   buttonUp() {
     this.isPressed = false;
   }
-  setLineId(currentDotId) {
-    this.id = `${currentDotId}-line`;
-  }
-  setLineEndDotId(endDotId) {
-    this.endLineId = `${endDotId}-line`;
-  }
+  // setLineId(currentDotId) {
+  //   this.id = `${currentDotId}-line`;
+  // }
+  // setLineEndDotId(endDotId) {
+  //   this.endLineId = `${endDotId}-line`;
+  // }
   getStartPosition(event) {
     this.start = this.getCenter(event);
   }
@@ -46,11 +52,11 @@ class Connector {
     const bodyRect = body.getBoundingClientRect();
     let center = {
       x: event.target.offsetLeft + event.target.offsetWidth / 2,
-      y: event.target.offsetTop + event.target.offsetHeight / 2 - 5,
+      y: event.target.offsetTop + event.target.offsetHeight / 2,
     };
     return center;
   }
-  getId(startDot) {
+  getContentId(startDot) {
     this.contentId = startDot.contentId;
   }
   drawLine(event) {
@@ -58,7 +64,7 @@ class Connector {
     newLine.classList.add("line", "unconnected");
     this.distance = this.setDistance();
     this.slope = this.getSlopeInDegrees();
-    newLine.setAttribute("id", `${currentDotId}-line`);
+    // newLine.setAttribute("startLineId", currentDotId);
     newLine.style.position = `absolute`;
     newLine.style.left = `${this.start.x}px`;
     newLine.style.top = `${this.start.y}px`;
@@ -67,8 +73,8 @@ class Connector {
     newLine.style.transform = `rotate(${this.slope}deg)`;
     grid.appendChild(newLine);
     this.element = newLine;
-    newLine.setAttribute("lineId", `${currentDotId}-line`);
-    newLine.setAttribute("endLineId", `${endDotId}-line`);
+    newLine.setAttribute("startLineId", currentDotId);
+    newLine.setAttribute("endLineId", endDotId);
   }
   removeLine() {
     if (this.element) {
@@ -92,23 +98,53 @@ class Connector {
     );
     return lineLength;
   }
-  connect(endDot) {
-    if (!endDot) {
-      this.element.classList.remove("unconnected");
-      this.element.classList.remove("pulse");
+  connectStart(dot) {
+    if (!dot) {
+      // this.element.classList.remove("unconnected");
+      // this.element.classList.remove("pulse");
+      // this.remove();
       return;
     } else {
       this.connected = true;
-      this.connectedTo = endDot.id;
-      if (this.contentId === endDot.contentId) {
-        this.element.classList.remove("unconnected");
-        this.element.classList.add("connected");
-        this.element.classList.add("pulse");
+      this.connectedToStartDot = dot.id;
+      this.contentId = dot.contentId;
+      this.setStartLineId(dot);
+    }
+  }
+  connectEnd(dot) {
+    if (!dot) {
+      this.element.classList.remove("unconnected");
+      this.element.classList.remove("pulse");
+      this.remove();
+      return;
+    } else {
+      this.connected = true;
+      this.connectedToStartDot = dot.id;
+      if (this.contentId === dot.contentId) {
+        this.setEndLineId(dot);
+        this.markAsCorrect();
+        const oldLine = document
+          .querySelectorAll(".unconnected")
+          .forEach((item) => {
+            console.log(item);
+            item.remove();
+          });
       } else {
         this.element.classList.remove("pulse");
       }
     }
   }
-}
 
-export { Connector };
+  markAsCorrect() {
+    this.element.classList.remove("unconnected");
+    this.element.classList.add("connected");
+    this.element.classList.add("pulse", "final");
+    // this.remove();
+  }
+  setEndLineId(dot) {
+    this.endLineId = dot.id + numberOfItemsToBeDisplayed;
+  }
+  setStartLineId(dot) {
+    this.startLineId = dot.id;
+  }
+}

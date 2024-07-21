@@ -20,15 +20,14 @@ import {
 } from "../../../utilities/main-menu-display-toggle.js";
 import { alphabetObject } from "../alphabet-audio-object.js";
 import {
-  dotCommand,
+  dotAndLineCommand,
   startDot,
   endDot,
   StartDot,
   EndDot,
-  DotCommand,
+  DotAndLineCommand,
+  Connector,
 } from "./dot-objects-control.js";
-
-import { Connector } from "./connector.js";
 import { feedbackAudioObject } from "../../../utilities/feedback-object.js";
 
 /* SCORING */
@@ -107,6 +106,7 @@ pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
 pauseBtn.addEventListener("click", pause);
 
 let endDotId;
+let startDotId;
 
 function toggleScoreDisplayHide() {
   scoreDisplay.classList.toggle("hide2");
@@ -115,7 +115,7 @@ function toggleScoreDisplayHide() {
 let isPaused = false;
 let appStarted = false;
 
-let numberOfLettersToBeDisplayed = 4;
+let numberOfItemsToBeDisplayed = 4;
 const alphabetLowercase = [];
 const alphabetCapitals = [];
 
@@ -387,7 +387,7 @@ function roundOver() {
   setTimeout(displayFinalScore, 600);
   setTimeout(disableTouch, 500);
   setTimeout(disableTouch, 1000);
-  displayTryAgainAndFinishBtns();
+  setTimeout(displayTryAgainAndFinishBtns, 601);
   grid.classList.add("blur");
   timer.classList.add("blur");
   scoreDisplay.classList.add("blur");
@@ -411,7 +411,7 @@ function clearBoard() {
       item.remove();
     });
     clearArrays();
-    dotCommand.clearArrays();
+    dotAndLineCommand.clearArrays();
   }, 400);
 }
 
@@ -496,7 +496,7 @@ function checkAllCorrect() {
   const allCorrectDots = document.querySelectorAll(
     ".start-dot.pulse.white-ring"
   );
-  if (allCorrectDots.length === numberOfLettersToBeDisplayed) {
+  if (allCorrectDots.length === numberOfItemsToBeDisplayed) {
     setTimeout(() => {
       updatePositiveCount(allCorrectDots.length * correctAnswerPoints);
       scoreDisplay.classList.add("pulse");
@@ -589,13 +589,15 @@ function resetTimer() {
   clearInterval(countDown);
 }
 function disableTouch() {
-  const allTargets = document.querySelectorAll(".dot,.dot-enclosure");
+  const allTargets = document.querySelectorAll(
+    ".dot,.dot-enclosure,.capitals,.lowercase"
+  );
   allTargets.forEach((target) => {
     target.classList.add("no-touch");
   });
 }
 function enableTouch() {
-  const allTargets = document.querySelectorAll(".dot,.dot-enclosure");
+  const allTargets = document.querySelectorAll(".no-touch");
   allTargets.forEach((target) => {
     target.classList.remove("no-touch");
   });
@@ -613,12 +615,12 @@ V. GRID POPULATION
 /*
 A. Generating Letters
   --> This function chooses letters at random from the alphabet array used for the card touch app
-  --> The number of letters is limited to the 'numberOfLettersToBeDisplayed' variable, which is currently set to 4.
+  --> The number of letters is limited to the 'numberOfItemsToBeDisplayed' variable, which is currently set to 4.
   --> The four letters are then sent to the lowercase and capital (after being converted to uppercase) letter arrays.
   --> If one of the letters already exists in the array, it is rejected and a new one is chosen
 */
 function letterSetGenerator() {
-  for (let i = 0; alphabetCapitals.length < numberOfLettersToBeDisplayed; ++i) {
+  for (let i = 0; alphabetCapitals.length < numberOfItemsToBeDisplayed; ++i) {
     let letter = `${alphabet[Math.floor(Math.random() * alphabet.length)]}`;
     if (!alphabetLowercase.includes(letter)) {
       alphabetLowercase.push(letter);
@@ -665,7 +667,7 @@ function generateLetterDivsForMatching(array) {
   }
   array.forEach((item) => {
     const letter = document.createElement("div");
-    letter.setAttribute("contentId", `${item}`);
+    letter.setAttribute("contentId", item);
     letter.setAttribute("data-id", `${divGroup}${item}`);
     letter.classList.add(divGroup);
     letter.innerText = `${letter.getAttribute("contentId")}`;
@@ -685,50 +687,47 @@ C. Generating Start Dots, End Dots, and their Enclosures
 */
 
 function createDots(array) {
-  let dotNumber = 0;
-  let i = 0;
+  let dotNumber;
+  let i = 1;
   if (array === alphabetLowercase) {
-    dotNumber = 4;
+    dotNumber = numberOfItemsToBeDisplayed + 1;
     array.forEach((item) => {
       // Create dot Enclosures for a wider hit-map
       const endDotEnclosure = document.createElement("div");
-      endDotEnclosure.setAttribute("id", `dot-${dotNumber}`);
-      endDotEnclosure.setAttribute("contentId", `${item.toUpperCase()}`);
-      // endDotEnclosure.addEventListener("pointerup", onPointerUp, false)
+      endDotEnclosure.setAttribute("id", dotNumber);
+      endDotEnclosure.setAttribute("contentId", item.toUpperCase());
       endDotEnclosure.classList.add("dot-enclosure", "end-target");
       endDotsDiv.appendChild(endDotEnclosure);
       // Create dot for each Enclosure
       endDot[i] = new EndDot(`endDot${[i]}`);
-      endDot[i].id = i + 4;
+      endDot[i].id = i + numberOfItemsToBeDisplayed;
       endDot[i].contentId = item.toUpperCase();
-      endDot[i].element.setAttribute("id", `dot-${dotNumber}`);
-      // endDot[i].element.addEventListener("pointerup", onPointerUp, false);
+      endDot[i].element.setAttribute("id", dotNumber);
       endDot[i].element.classList.add("end-dot", "dot", "end-target");
       endDot[i].element.style.zIndex = "30";
-      let targetEnclosure = document.getElementById(
-        `dotEnclosure-${dotNumber}`
-      );
       endDotEnclosure.appendChild(endDot[i].element);
-      dotCommand.registerEndDot(endDot[i]);
+      dotAndLineCommand.registerEndDot(endDot[i]);
       ++dotNumber;
       ++i;
     });
     return;
   }
+  i = 0;
+  dotNumber = 0;
   array.forEach((item) => {
     // Create dot Enclosures for a wider hit-map
     const startDotEnclosure = document.createElement("div");
-    startDotEnclosure.setAttribute("id", `dot-${dotNumber}`);
-    startDotEnclosure.setAttribute("contentId", `${item}`);
+    startDotEnclosure.setAttribute("id", dotNumber);
+    startDotEnclosure.setAttribute("contentId", item);
     startDotEnclosure.classList.add("dot-enclosure", "start-target");
     startDotsDiv.appendChild(startDotEnclosure);
     startDot[i] = new StartDot(`startDot${[i]}`);
     startDot[i].id = i;
     startDot[i].contentId = item;
-    startDot[i].element.setAttribute("id", `dot-${i}`);
+    startDot[i].element.setAttribute("id", i);
     startDot[i].element.classList.add("start-dot", "dot", "start-target");
     startDotEnclosure.appendChild(startDot[i].element);
-    dotCommand.registerStartDot(startDot[i]);
+    dotAndLineCommand.registerStartDot(startDot[i]);
     ++dotNumber;
     ++i;
   });
@@ -757,6 +756,7 @@ function clearLines() {
 function draw(event) {
   clearLines();
   lines.forEach((x) => {
+    dotAndLineCommand.registerConnector(line);
     line.drawLine(event);
   });
 }
@@ -767,6 +767,10 @@ const line = new Connector();
 function getEventTargetID(event) {
   currentDotId = event.target.id;
   return currentDotId;
+}
+function getStartDotID(event) {
+  startDotId = event.target.id;
+  return startDotId;
 }
 function getEndDotID(event) {
   endDotId = event.target.id;
@@ -789,75 +793,195 @@ let currentEndDot = null;
 function onPointerDown(event) {
   event.preventDefault();
   event.stopPropagation();
-  if (event.target.classList.contains("start-target")) {
-    if (event.target.hasPointerCapture(event.pointerId)) {
-      event.target.releasePointerCapture(event.pointerId);
-    }
-    currentStartDot = null;
-    currentEndDot = null;
-    currentStartDot = event.target.id.slice(4);
-    startDot[currentStartDot].makeActive();
-    line.buttonDown();
-    currentDotId;
-    scoreDisplay.classList.remove("pulse");
 
-    getEventTargetID(event);
-    if (correctDotsAndLines.includes(`${currentDotId}`)) {
-      event.preventDefault();
-      return;
-    }
-    if (finalLinesIdArray.includes(`${currentDotId}-line`)) {
-      finalLinesIdArray.splice(
-        finalLinesIdArray.indexOf(`${currentDotId}-line`),
-        1
-      );
-    }
-    if (currentLinesIdArray.includes(`${currentDotId}-line`)) {
-      currentLinesIdArray.splice(
-        currentLinesIdArray.indexOf(`${currentDotId}-line`),
-        1
-      );
-    }
+  currentStartDot = null;
+  currentEndDot = null;
+  if (currentStartDot === null && currentEndDot === null) {
+    if (event.target.classList.contains("end-target")) {
+      if (event.target.hasPointerCapture(event.pointerId)) {
+        event.target.releasePointerCapture(event.pointerId);
+      }
 
-    if (line.isPressed) {
+      currentEndDot = Number(event.target.id - numberOfItemsToBeDisplayed);
+
+      endDot[currentEndDot].makeActive();
+
+      line.buttonDown();
+      if (endDot[currentEndDot].connectedToLine) {
+        endDot[currentEndDot].disconnect();
+      }
+      currentDotId;
       getEventTargetID(event);
-      let allLines = document.querySelectorAll(".line");
-      allLines.forEach((item) => {
-        if (currentDotIdArray.includes(currentDotId)) {
-          if (item.id === `${currentDotId}-line`) {
-            item.remove();
-            let currentDotIdToBeRemoved =
-              currentDotIdArray.indexOf(currentDotId);
-            currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
-            let currentLineIdToBeRemoved = currentLinesIdArray.indexOf(
-              `${currentDotId}-line`
-            );
-            currentLinesIdArray.splice(currentLineIdToBeRemoved, 1);
-            if (correctDotsAndLines.includes(currentDotId)) {
-              removeCorrectPulseEffect();
-              correctDotsAndLines.splice(
-                correctDotsAndLines.indexOf(currentDotId),
-                1
-              );
-            }
-          }
-        }
-      });
+      // scoreDisplay.classList.remove("pulse");
+      // if (correctDotsAndLines.includes(endDot[currentEndDot])) {
+      //   event.preventDefault();
+      //   return;
+      // }
+      // if (finalLinesIdArray.includes(endDot[currentEndDot].id)) {
+      //   console.log("test");
+      //   finalLinesIdArray.splice(
+      //     finalLinesIdArray.indexOf(endDot[currentEndDot].id),
+      //     1
+      //   );
+      // }
+      // if (currentLinesIdArray.includes(endDot[currentEndDot].id)) {
+      //   currentLinesIdArray.splice(
+      //     currentLinesIdArray.indexOf(endDot[currentEndDot].id),
+      //     1
+      //   );
+      // }
+      // const byeByeLines = document.querySelectorAll(".final");
+      // byeByeLines.forEach((item) => {
+      //   if (
+      //     Number(item.getAttribute("startlineid")) === endDot[currentEndDot].id
+      //   ) {
+      //     item.classList.remove("final", "connected");
+      //     item.classList.add("unconnected");
+      //     console.log(item.classList);
+      //     lines.splice(lines.indexOf(item), 1);
+
+      //     item.remove();
+      //   }
+      // });
+      // if (line.isPressed) {
+      //   getEventTargetID(event);
+      //   let allLines = document.querySelectorAll(".line");
+      //   allLines.forEach((item) => {
+      //     if (
+      //       currentDotIdArray.includes(
+      //         endDot[currentEndDot] + numberOfItemsToBeDisplayed
+      //       )
+      //     ) {
+      //       if (
+      //         item.startLineId === endDot[currentEndDot] ||
+      //         item.endLineId === endDot[currentEndDot]
+      //       ) {
+      //         item.remove();
+      //         let currentDotIdToBeRemoved = currentDotIdArray.indexOf(
+      //           endDot[currentEndDot] + numberOfItemsToBeDisplayed
+      //         );
+      //         currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
+      //         let currentLineIdToBeRemoved = currentLinesIdArray.indexOf(
+      //           endDot[currentEndDot]
+      //         );
+      //         currentLinesIdArray.splice(currentLineIdToBeRemoved, 1);
+      //         if (correctDotsAndLines.includes(endDot[currentEndDot])) {
+      //           removeCorrectPulseEffect();
+      //           correctDotsAndLines.splice(
+      //             correctDotsAndLines.indexOf(endDot[currentEndDot]),
+      //             1
+      //           );
+      //         }
+      //       }
+      //     }
+      //   });
+      // }
+      if (
+        !currentDotIdArray.includes(endDot[currentEndDot]) +
+        numberOfItemsToBeDisplayed
+      ) {
+        line.start = {};
+        line.getStartPosition(event);
+        line.end = {};
+        line.getEndPosition(event);
+        draw();
+      }
+      // event.target.addEventListener("pointerleave", (event) => {
+      //   event.preventDefault();
+      //   event.stopPropagation();
+      // });
+      return currentEndDot;
+    } else if (event.target.classList.contains("start-target")) {
+      if (event.target.hasPointerCapture(event.pointerId)) {
+        event.target.releasePointerCapture(event.pointerId);
+      }
+      currentStartDot = null;
+      currentEndDot = null;
+
+      currentStartDot = event.target.id;
+      startDot[currentStartDot].makeActive();
+      line.buttonDown();
+      if (startDot[currentStartDot].connectedToLine) {
+        startDot[currentStartDot].disconnect();
+        console.log("test");
+      }
+      currentDotId;
+      scoreDisplay.classList.remove("pulse");
+
+      getEventTargetID(event);
+      // if (correctDotsAndLines.includes(startDot[currentStartDot].id)) {
+      //   event.preventDefault();
+      //   return;
+      // }
+      // if (finalLinesIdArray.includes(startDot[currentStartDot].id)) {
+      //   finalLinesIdArray.splice(
+      //     finalLinesIdArray.indexOf(startDot[currentStartDot].id),
+      //     1
+      //   );
+      // }
+      // if (currentLinesIdArray.includes(startDot[currentStartDot].id)) {
+      //   currentLinesIdArray.splice(
+      //     currentLinesIdArray.indexOf(startDot[currentStartDot].id),
+      //     1
+      //   );
+      // }
+      // const byeByeLines = document.querySelectorAll(".final");
+      // byeByeLines.forEach((item) => {
+      //   if (
+      //     Number(item.getAttribute("startlineid")) ===
+      //     startDot[currentStartDot].id
+      //   ) {
+      //     item.classList.remove("final", "connected");
+      //     item.classList.add("unconnected");
+      //     lines.splice(lines.indexOf(item), 1);
+
+      //     item.remove();
+      //   }
+      // });
+      // if (line.isPressed) {
+      //   getEventTargetID(event);
+      //   let allLines = document.querySelectorAll(".line");
+      //   allLines.forEach((item) => {
+      //     if (currentDotIdArray.includes(startDot[currentStartDot])) {
+      //       if (
+      //         item.startLineId === startDot[currentStartDot] ||
+      //         item.endLineId === startDot[currentStartDot]
+      //       ) {
+      //         item.remove();
+      //         let currentDotIdToBeRemoved = currentDotIdArray.indexOf(
+      //           startDot[currentStartDot]
+      //         );
+      //         currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
+      //         let currentLineIdToBeRemoved = currentLinesIdArray.indexOf(
+      //           startDot[currentStartDot]
+      //         );
+      //         currentLinesIdArray.splice(currentLineIdToBeRemoved, 1);
+      //         if (correctDotsAndLines.includes(startDot[currentStartDot])) {
+      //           removeCorrectPulseEffect();
+      //           correctDotsAndLines.splice(
+      //             correctDotsAndLines.indexOf(startDot[currentStartDot]),
+      //             1
+      //           );
+      //         }
+      //       }
+      //     }
+      //   });
+      // }
+      if (!currentDotIdArray.includes(startDot[currentStartDot])) {
+        line.getContentId(startDot[currentStartDot]);
+        line.start = {};
+        line.getStartPosition(event);
+        line.end = {};
+        line.getEndPosition(event);
+        draw();
+        // line.setStartLineId(startDot[currentStartDot]);
+      }
+      // event.target.addEventListener("pointerleave", (event) => {
+      //   event.preventDefault();
+      //   event.stopPropagation();
+      // });
+      return currentStartDot;
     }
-    if (!currentDotIdArray.includes(currentDotId)) {
-      line.getId(startDot[currentStartDot]);
-      line.start = {};
-      line.getStartPosition(event);
-      line.end = {};
-      line.getEndPosition(event);
-      draw();
-      line.setLineId(currentDotId);
-    }
-    event.target.addEventListener("pointerleave", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-    });
-    return currentStartDot;
   }
 }
 
@@ -866,29 +990,56 @@ function onPointerDown(event) {
 function onPointerMove(event) {
   event.preventDefault();
   event.stopPropagation();
-  if (event.target.hasPointerCapture(event.pointerId)) {
-    event.target.releasePointerCapture(event.pointerId);
-  }
-  const bodyRect = body.getBoundingClientRect();
-  if (
-    line.isPressed &&
-    currentStartDot !== null &&
-    !currentDotIdArray.includes(currentDotId)
-  ) {
-    if (line.start) {
-      line.end = {
-        x: event.clientX - bodyRect.left,
-        y: event.clientY - bodyRect.top,
-      };
-      draw();
-      lines.pop();
-      lines.push(document.querySelector(".unconnected"));
+  if (currentEndDot) {
+    if (event.target.hasPointerCapture(event.pointerId)) {
+      event.target.releasePointerCapture(event.pointerId);
     }
+
+    const bodyRect = body.getBoundingClientRect();
+    if (
+      line.isPressed &&
+      currentEndDot !== null &&
+      !currentDotIdArray.includes(currentDotId)
+    ) {
+      if (line.start) {
+        line.end = {
+          x: event.clientX - bodyRect.left,
+          y: event.clientY - bodyRect.top,
+        };
+        draw();
+        lines.pop();
+        lines.push(document.querySelector(".unconnected"));
+      }
+    }
+    // event.target.addEventListener("pointerleave", (event) => {
+    //   event.preventDefault();
+    //   event.stopPropagation();
+    // });
+  } else if (currentStartDot) {
+    if (event.target.hasPointerCapture(event.pointerId)) {
+      event.target.releasePointerCapture(event.pointerId);
+    }
+    const bodyRect = body.getBoundingClientRect();
+    if (
+      line.isPressed &&
+      currentStartDot !== null &&
+      !currentDotIdArray.includes(currentDotId)
+    ) {
+      if (line.start) {
+        line.end = {
+          x: event.clientX - bodyRect.left,
+          y: event.clientY - bodyRect.top,
+        };
+        draw();
+        lines.pop();
+        lines.push(document.querySelector(".unconnected"));
+      }
+    }
+    // event.target.addEventListener("pointerleave", (event) => {
+    //   event.preventDefault();
+    //   event.stopPropagation();
+    // });
   }
-  event.target.addEventListener("pointerleave", (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-  });
 }
 
 /*   Pointer UP EVENT  */
@@ -896,26 +1047,92 @@ function onPointerMove(event) {
 function onPointerUp(event) {
   event.preventDefault();
   event.stopPropagation();
-  if (currentStartDot) {
+  if (currentEndDot) {
+    currentStartDot = null;
     if (event.target.classList.contains("end-target")) {
-      if (currentStartDot) {
-        if (event.target.hasPointerCapture(event.pointerId)) {
-          event.target.releasePointerCapture(event.pointerId);
-        }
-        currentEndDot = Number(event.target.id.slice(4)) - 4;
+      onPointerUpFalse();
+    }
+    if (event.target.classList.contains("start-target")) {
+      if (event.target.hasPointerCapture(event.pointerId)) {
+        event.target.releasePointerCapture(event.pointerId);
       }
-      startDot[currentStartDot].makeInctive();
-      dotCommand.notify(
-        "connect",
-        startDot[currentStartDot],
-        endDot[currentEndDot]
-      );
-      dotCommand.notify(
+      currentStartDot = Number(event.target.id);
+      if (startDot[currentStartDot].connectedToLine) {
+        // dotAndLineCommand.notify(
+        //   "disconnect",
+        //   endDot[currentEndDot],
+        //   startDot[currentStartDot],
+        //   line,
+        //   event
+        // );
+      }
+      endDot[currentEndDot].makeInactive();
+      dotAndLineCommand.notify(
         "connect",
         endDot[currentEndDot],
-        startDot[currentStartDot]
+        startDot[currentStartDot],
+        line,
+        event
       );
-      line.connect(endDot[currentEndDot]);
+      line.element.setAttribute("linestartid", endDot[currentEndDot].id);
+      lines.pop();
+      // dotAndLineCommand.notify(
+      //   "connect",
+      //   startDot[currentStartDot],
+      //   endDot[currentEndDot],
+      //   line,
+      //   event
+      // );
+
+      draw();
+      line.buttonUp();
+      if (
+        !line.isPressed &&
+        event.target.classList.contains("start-target") &&
+        !currentDotIdArray.includes(currentDotId)
+      ) {
+        getStartDotID(event);
+        const oldlines = document.querySelectorAll(".unconnected");
+        console.log(oldlines);
+        if (oldlines.length > 0) {
+          oldlines[0].classList.remove("unconnected");
+          oldlines[0].classList.add("final");
+        }
+        const oldlines2 = document
+          .querySelectorAll(".unconnected")
+          .forEach((item) => {
+            item.remove();
+          });
+      } else if (!line.isPressed) {
+        removeUnconnectedLines();
+        lines.pop();
+        return;
+      }
+      event.preventDefault();
+    }
+    currentEndDot = null;
+    currentStartDot = null;
+  } else if (currentStartDot) {
+    currentEndDot = null;
+    if (event.target.classList.contains("start-target")) {
+      onPointerUpFalse();
+    }
+    if (event.target.classList.contains("end-target")) {
+      if (event.target.hasPointerCapture(event.pointerId)) {
+        event.target.releasePointerCapture(event.pointerId);
+      }
+      currentEndDot = Number(event.target.id - 4);
+
+      startDot[currentStartDot].makeInactive();
+      dotAndLineCommand.notify(
+        "connect",
+        startDot[currentStartDot],
+        endDot[currentEndDot],
+        line,
+        event
+      );
+
+      draw();
       line.buttonUp();
       if (
         !line.isPressed &&
@@ -923,189 +1140,87 @@ function onPointerUp(event) {
         !currentDotIdArray.includes(currentDotId)
       ) {
         getEndDotID(event);
-        if (endDotsIdArray.includes(event.target.id)) {
-          endDotsIdArray.splice(endDotsIdArray.indexOf(event.target.id), 1);
-          finalLinesIdArray.splice(
-            finalLinesIdArray.indexOf(`${event.target.id}-line`),
-            1
-          );
-        }
-        // the following lines set the dataset line-id for dots and the enclosures separately
-        line.setLineEndDotId(endDotId);
-        if (event.target.classList.contains("dot")) {
-          // event.target.setAttribute("line-id", `${line.id}`);
-        } else if (event.target.classList.contains("dot-enclosure")) {
-          // event.target.children[0].setAttribute("line-id", `${line.id}`);
-        }
-
-        // these lines set the parameters for the line to be drawn in its final position; the slope and length of the line are calculated based on which event it lands on
-        line.slope = line.getSlopeInDegrees(event);
-        line.end = line.getCenter(event);
-
-        // these lines select all the lines marked as 'final' then remove them from the DOM if any of the endLineIds are the same as the current target's id. this prevents multiple lines from being connected to the same end-dot
-        let allLines = document.querySelectorAll(".final");
-        allLines.forEach((item) => {
-          if (item.getAttribute("endLineId").slice(0, 5) === event.target.id) {
-            if (item.id !== `${currentDotId}-line`) {
-              item.remove();
-              let currentDotIdToBeRemoved = currentDotIdArray.indexOf(
-                item.id.slice(0, 5)
-              );
-              currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
-              let currentLinesIdToBeRemoved = currentLinesIdArray.indexOf(
-                item.id
-              );
-              currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
-
-              const orphanedStartDots =
-                document.querySelectorAll(".start-dot.pulse");
-
-              orphanedStartDots.forEach((item) => {
-                if (!currentLinesIdArray.includes(`${item.id}-line`)) {
-                  correctDotsAndLines.splice(
-                    correctDotsAndLines.indexOf(item.id),
-                    1
-                  );
-                }
-              });
-
-              let finalLinesIdToBeRemoved = finalLinesIdArray.indexOf(
-                `${endDotId}-line`
-              );
-              finalLinesIdArray.splice(finalLinesIdToBeRemoved, 1);
-
-              draw();
-            }
-          }
-        });
-
-        // these lines transfer a line from being unconnected and blue in color, to being 'connected' which is actually an intermediary step on the way to being 'final', and white in color; also, 'connected' essentially just means 'drawn' and are static on the board, as opposed to the 'unconnected' lines which are still being draged by the user
-        line.element.classList.remove("unconnected");
-        line.element.classList.add("connected");
-        let allExtraLines = document.querySelectorAll(".connected");
-        let allFinalLines = document.querySelectorAll(".unconnected");
-
-        // the 'connected' lines above are removed
-        allExtraLines.forEach((item) => {
-          item.remove();
-        });
-
-        // the 'final lines' are given the 'final' class and are made white in color; all others are removed
-        // this only works if the item is not included in the finalLinesIdArray
-        if (!finalLinesIdArray.includes(`${endDotId}-line`)) {
-          draw();
-          allExtraLines = document.querySelectorAll(".connected");
-          allFinalLines = document.querySelectorAll(".unconnected");
-          allFinalLines.forEach((item) => {
-            item.classList.add("final");
-            item.classList.remove("unconnected");
-            item.classList.remove("connected");
-          });
-          // the below seems to be redundant...its necessity will have to be checked later (2024.4.21)
-          allExtraLines.forEach((item) => {
+        const oldlines = document.querySelectorAll(".unconnected");
+        oldlines[0].classList.remove("unconnected");
+        oldlines[0].classList.add("final");
+        const oldlines2 = document
+          .querySelectorAll(".unconnected")
+          .forEach((item) => {
             item.remove();
           });
-
-          // these lines remove lines marked as 'final' from the DOM and from their associated arrays if their dataset id matches the target id
-          allLines = document.querySelectorAll(".final");
-          allLines.forEach((item) => {
-            if (item.dataset.id === event.target.id) {
-              item.remove();
-              let currentDotIdToBeRemoved =
-                currentDotIdArray.indexOf(currentDotId);
-              currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
-              let currentLinesIdToBeRemoved = currentLinesIdArray.indexOf(
-                item.id
-              );
-              currentLinesIdArray.splice(currentLinesIdToBeRemoved, 1);
-              let endDotsIdToBeRemoved = endDotsIdArray.indexOf(
-                event.target.id
-              );
-              endDotsIdArray.splice(endDotsIdToBeRemoved);
-              let finalLinesToBeRemoved = endDotsIdArray.indexOf(
-                `${event.target.id}-line`
-              );
-              finalLinesIdArray.splice(finalLinesToBeRemoved);
-
-              const orphanedEndDots =
-                document.querySelectorAll(".end-dot.pulse");
-
-              orphanedEndDots.forEach((item) => {
-                if (!finalLinesIdArray.includes(`${item.id}-line`)) {
-                  correctDotsAndLines.splice(
-                    correctDotsAndLines.indexOf(item.id),
-                    1
-                  );
-                }
-              });
-            }
-          });
-          endDotsIdArray.push(endDotId);
-          currentDotIdArray.push(currentDotId);
-          currentLinesIdArray.push(line.id);
-          finalLinesIdArray.push(line.element.getAttribute("endlineid"));
-        } else if (!line.isPressed) {
-          removeUnconnectedLines();
-          lines.pop();
-          return;
-        }
+      } else if (!line.isPressed) {
+        removeUnconnectedLines();
+        lines.pop();
+        return;
       }
-      event.preventDefault();
     }
+    event.preventDefault();
   }
   currentStartDot = null;
+  currentEndDot = null;
 }
 
 /*   FALSE Pointer UP EVENT  */
 function onPointerUpFalse() {
-  if (line.isPressed) {
-    startDot[currentStartDot].makeInctive();
-    currentStartDot = null;
-    line.buttonUp();
-    if (!line.isPressed) {
-      removeUnconnectedLines();
-      lines.pop();
-      currentStartDot = null;
-      return;
+  if (currentEndDot) {
+    if (line.isPressed) {
+      endDot[currentEndDot].makeInactive();
+      currentEndDot = null;
+      line.buttonUp();
+      if (!line.isPressed) {
+        removeUnconnectedLines();
+        lines.pop();
+        currentEndDot = null;
+        return;
+      }
     }
+  } else if (currentStartDot) {
+    if (line.isPressed) {
+      startDot[currentStartDot].makeInactive();
+      currentStartDot = null;
+      line.buttonUp();
+      if (!line.isPressed) {
+        removeUnconnectedLines();
+        lines.pop();
+        currentStartDot = null;
+        return;
+      }
+    }
+    currentStartDot = null;
   }
-  currentStartDot = null;
 }
 
 // function updateLinePositions() {
 //   redrawAllLines();
 // }
 
-function onPointerLeave(event) {
-  if (line.isPressed) {
-    event.preventDefault();
-    event.stopPropagation();
-    onPointerUp(event);
-  }
-}
+// function onPointerLeave(event) {
+//   if (line.isPressed) {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     onPointerUp(event);
+//   }
+// }
 // function redrawAllLines() {}
 
 // Event Listeners
 function activateEventListeners() {
-  const startTargets = document
-    .querySelectorAll(".start-target")
-    .forEach((target) => {
+  setTimeout(() => {
+    const startTargets = document.querySelectorAll(
+      ".start-target, .end-target"
+    );
+    startTargets.forEach((target) => {
       target.addEventListener("pointerdown", onPointerDown, false);
-      target.addEventListener("pointerleave", (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-      });
-      // }
-    });
-  const endTargets = document
-    .querySelectorAll(".end-target")
-    .forEach((target) => {
       target.addEventListener("pointerup", onPointerUp, false);
+      // target.addEventListener("pointerleave", (event) => {
+      //   event.preventDefault();
+      //   event.stopPropagation();
+      // });
     });
-
-  appContainer.addEventListener("pointerup", onPointerUpFalse, false);
-  appContainer.addEventListener("pointermove", onPointerMove, false);
-  appContainer.addEventListener("pointerleave", onPointerLeave, false);
+  }, 1);
+  mainContainer.addEventListener("pointerup", onPointerUpFalse, false);
+  mainContainer.addEventListener("pointermove", onPointerMove, false);
+  // mainContainer.addEventListener("pointerleave", onPointerLeave, false);
   // window.addEventListener("resize", updateLinePositions);
 }
 function createDoubleTapPreventer(timeout_ms) {
@@ -1130,4 +1245,12 @@ document.body.addEventListener("touchstart", createDoubleTapPreventer(500), {
   passive: false,
 });
 
-export { alphabetMatchingApp, checkAllCorrect, currentDotId, endDotId, grid };
+export {
+  alphabetMatchingApp,
+  checkAllCorrect,
+  currentDotId,
+  endDotId,
+  grid,
+  lines,
+  numberOfItemsToBeDisplayed,
+};
