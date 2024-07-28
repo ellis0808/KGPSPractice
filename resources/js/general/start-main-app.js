@@ -100,7 +100,7 @@ function startMainApp() {
 function setTopMenuVariables() {
   menuContainer.appendChild(abcMenu);
   menuContainer.appendChild(numbersMenu);
-  menuContainer.appendChild(spellingMenu);
+  // menuContainer.appendChild(spellingMenu);
   // menuContainer.appendChild(div4);
 }
 

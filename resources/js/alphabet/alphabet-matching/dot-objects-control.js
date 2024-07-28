@@ -11,6 +11,7 @@ import {
   checkAllCorrect,
   currentDotId,
   endDotId,
+  startDotId,
   grid,
   lines,
   numberOfItemsToBeDisplayed,
@@ -43,13 +44,19 @@ class DotAndLineCommand {
   makeInactive(dot1) {
     dot1.makeInactive();
   }
-  connect(dot1, dot2, line, event) {
-    if (!dot1) {
+  connectStartToEnd(startDot, endDot, line, event) {
+    if (!startDot) {
       return;
     }
-    dot1.connect(dot1, dot2, line);
-    dot2.connect(dot1, dot2, line);
-    line.connect(dot1, dot2, line, event);
+    startDot.connect(startDot, endDot, line);
+    line.connectFromStartToEnd(startDot, endDot, line, event);
+  }
+  connectEndToStart(startDot, endDot, line, event) {
+    if (!endDot) {
+      return;
+    }
+    endDot.connect(endDot, startDot, line);
+    line.connectFromEndToStart(startDot, endDot, line, event);
   }
   disconnect(dot1, dot2, line, event) {
     if (!dot1) {
@@ -66,22 +73,24 @@ class DotAndLineCommand {
   markAsIncorrect(dot1) {
     dot1.markAsIncorrect();
   }
-  notify(action, dot1, dot2, line, event) {
-    if (action === "disconnect") {
-      this.disconnect(dot1, dot2, line, event);
-    } else if (action === "connect") {
-      if (!dot2 || !dot1) {
-        return;
-      } else {
-        this.connect(dot1, dot2, line, event);
-        // if (dot1.contentId === dot2.contentId) {
-        //   this.markAsCorrect(dot1);
-        // } else {
-        //   this.markAsIncorrect(dot1);
-        // }
-      }
-    }
-  }
+  // notifyEndToStart(action, startDot, endDot, line, event) {
+  //   if (action === "connectEndToStart") {
+  //     if (!endDot || !startDot) {
+  //       return;
+  //     } else {
+  //       this.connectEndToStart(startDot, endDot, line, event);
+  //     }
+  //   }
+  // }
+  // notifyStartToEnd(action, startDot, endDot, line, event) {
+  //   if (action === "connectStartToEnd") {
+  //     if (!endDot || !startDot) {
+  //       return;
+  //     } else {
+  //       this.connectStartToEnd(startDot, endDot, line, event);
+  //     }
+  //   }
+  // }
 }
 const dotAndLineCommand = new DotAndLineCommand();
 const startDot = [];
@@ -107,8 +116,6 @@ class StartDot {
 
     if (this.connectedTo) {
       // this order must be maintained; if 'this' is made 'incorrect', it will no longer have anything connected to it
-
-      this.connectedTo.disconnect();
       this.disconnect();
     }
     this.element.classList.add("active-dot", "white-ring");
@@ -117,38 +124,36 @@ class StartDot {
     this.isActive = false;
     this.element.classList.remove("active-dot", "white-ring");
   }
-  connect(endDot, startDot, line) {
+  connect(endDot, line) {
     if (this.connectedTo) {
-      console.log(this.connectedToLine);
-      const oldLine = document.querySelectorAll(".final");
-      console.log(oldLine);
-      console.log(this.connectedToLine.connectedToEnd, startDot);
-      oldLine.forEach((item) => {
-        if (this.connectedToLine.connectedToEnd === startDot) {
-          console.log("test");
-          item.remove();
-        }
-      });
-      // this.connectedToLine.removeLine();
-      this.connectedTo.disconnect();
-      this.connectedTo.removeCorrectPulse();
+      if (this.connectedToLine) {
+        this.connectedToLine.element.remove();
+      }
     }
     this.connected = true;
     this.connectedTo = endDot;
+    endDot.connectedTo = this;
+    this.connectedTo.connected = true;
     this.connectedToLine = line;
-    if (this.contentId === this.connectedTo.contentId) {
-      this.markAsCorrect();
-    }
-    console.log(this);
+    this.connectedTo.connectedToLine = line;
   }
   disconnect() {
     this.removeCorrectPulse();
-    this.connected = false;
-    this.connectedTo = null;
-    if (this.connectedToLine) {
-      this.connectedToLine.disconnect();
+    if (this.connectedTo) {
+      this.connectedTo.removeCorrectPulse();
+      this.connectedTo.connected = false;
+      this.connectedTo.connectedTo = null;
+      this.connectedTo.connectedToLine = null;
+      this.connectedTo = null;
     }
-    this.connectedToLine = null;
+    this.connected = false;
+    if (this.connectedToLine) {
+      this.connectedToLine.connectedToEnd = null;
+      this.connectedToLine.connectedToStart = null;
+      this.connectedToLine = null;
+      if (this.connectedToLine) {
+      }
+    }
   }
   addCorrectPulse() {
     this.element.classList.add("pulse", "white-ring");
@@ -164,7 +169,6 @@ class StartDot {
   }
   markAsCorrect() {
     this.addCorrectPulse();
-    this.connectedTo.addCorrectPulse();
     matchingSfx.validConnection.play();
 
     setTimeout(() => {
@@ -174,7 +178,6 @@ class StartDot {
     checkAllCorrect();
   }
   markAsIncorrect() {
-    this.disconnect();
     matchingSfx.invalidConnection.play();
   }
 }
@@ -194,10 +197,11 @@ class EndDot {
     this.mediator = mediator;
   }
   makeActive() {
+    if (this.connectedToLine) {
+    }
     this.isActive = true;
     if (this.connectedTo) {
       // this order must be maintained; if 'this' is made 'incorrect', it will no longer have anything connected to it
-      this.connectedTo.disconnect();
       this.disconnect();
     }
     this.element.classList.add("active-dot", "white-ring");
@@ -206,38 +210,37 @@ class EndDot {
     this.isActive = false;
     this.element.classList.remove("active-dot", "white-ring");
   }
-  connect(dot1, dot2, line) {
+  connect(startDot, line) {
     if (this.connectedTo) {
-      console.log(this.connectedToLine);
-      console.log("test");
-      const oldLine = document.querySelectorAll(".final");
-      console.log(oldLine);
-      console.log(this.connectedToLine.connectedToEnd, dot2);
-      oldLine.forEach((item) => {
-        if (this.connectedToLine.connectedToEnd === dot2) {
-          item.remove();
-        }
-      });
-      // this.connectedToLine.removeLine();
-      this.connectedTo.disconnect();
-      this.connectedTo.removeCorrectPulse();
+      if (this.connectedToLine) {
+        this.connectedToLine.element.remove();
+      }
     }
     this.connected = true;
-    this.connectedTo = dot1;
+    this.connectedTo = startDot;
+    startDot.connectedTo = this;
+    this.connectedTo.connected = true;
     this.connectedToLine = line;
-    console.log(this);
+    this.connectedTo.connectedToLine = line;
   }
   disconnect() {
-    if (!this.connectedTo) {
-      return;
-    }
     this.removeCorrectPulse();
-    this.connected = false;
-    this.connectedTo = null;
-    if (this.connectedToLine) {
-      this.connectedToLine.disconnect();
+    if (this.connectedTo) {
+      this.connectedTo.removeCorrectPulse();
+      this.connectedTo.connected = false;
+      this.connectedTo.connectedTo = null;
+      this.connectedTo.connectedToLine = null;
+      this.connectedTo = null;
     }
-    this.connectedToLine = null;
+    this.connected = false;
+    if (this.connectedToLine) {
+      this.connectedToLine.connectedToEnd = null;
+      this.connectedToLine.connectedToStart = null;
+      this.connectedToLine = null;
+      if (this.connectedToLine) {
+        this.connectedToLine.element.remove();
+      }
+    }
   }
   addCorrectPulse() {
     this.element.classList.add("pulse", "white-ring");
@@ -256,7 +259,8 @@ class EndDot {
     this.addCorrectPulse();
   }
   markAsIncorrect() {
-    this.disconnect();
+    // this.disconnect();
+    this.removeCorrectPulse();
   }
 }
 
@@ -275,6 +279,7 @@ class Connector {
     this.connectedToStart = null;
     this.connectedToEnd = null;
     this.connected = false;
+    this.match = false;
   }
   setMediator(mediator) {
     this.mediator = mediator;
@@ -306,8 +311,8 @@ class Connector {
     };
     return center;
   }
-  getContentId(startDot) {
-    this.contentId = startDot.contentId;
+  getContentId(dot) {
+    this.contentId = dot.contentId;
   }
   drawLine(event) {
     const newLine = document.createElement("div");
@@ -322,8 +327,9 @@ class Connector {
     newLine.style.transform = `rotate(${this.slope}deg)`;
     grid.appendChild(newLine);
     this.element = newLine;
-    newLine.setAttribute("lineStartId", currentDotId);
-    // newLine.setAttribute("lineEndId", currentDotId);
+    // newLine.setAttribute("lineStartId", currentDotId);
+    newLine.setAttribute("startDotId", startDotId);
+    newLine.setAttribute("endDotId", endDotId);
   }
   removeLine() {
     if (this.element) {
@@ -347,83 +353,76 @@ class Connector {
     );
     return lineLength;
   }
-  connect(dot1, dot2, line, event) {
-    if (!dot1) {
+  connectFromStartToEnd(startDot, endDot, event) {
+    if (!startDot) {
       this.element.classList.remove("unconnected");
       this.element.classList.remove("pulse");
       this.remove();
       return;
     } else {
       this.connected = true;
-      this.connectedToStart = dot1;
-      this.connectedToEnd = dot2;
-      this.contentId = dot1.contentId;
-      // if (!line.element.hasAttribute("linestartid")) {
-      //   this.element.lineStartId = dot1.id;
-      //   // line.element.setAttribute("lineStartId", this.lineStartId);
-      //   console.log(line.getAttribute("linestartid"));
-      // }
-      // if (!line.element.hasAttribute("lineendid")) {
-      //   this.element.lineEndId = dot2.id;
-      //   line.element.setAttribute("lineendid", this.lineEndId);
-      //   console.log(line.element.getAttribute("lineendid"));
-      // }
+      this.connectedToStart = startDot;
+      this.connectedToEnd = endDot;
+      this.contentId = startDot.contentId;
+
       this.getEndPosition(event);
-
-      this.element.classList.add("final");
-      this.element.classList.add("pulse");
-      dot1.element.classList.remove("pulse");
-      dot1.element.classList.add("pulse");
-      const oldLine = document
-        .querySelectorAll(".unconnected")
-        .forEach((item) => {
-          item.remove();
-        });
-
-      lines.push(this);
+      this.removeOldLines();
+    }
+    if (startDot.contentId === endDot.contentId) {
+      startDot.markAsCorrect();
+      endDot.markAsCorrect();
+      this.match = true;
+    } else {
+      startDot.markAsIncorrect();
+      endDot.markAsIncorrect();
+      this.match = false;
+    }
+  }
+  connectFromEndToStart(startDot, endDot, event) {
+    if (!startDot) {
+      this.element.classList.remove("unconnected");
+      this.element.classList.remove("pulse");
+      this.remove();
+      return;
+    } else {
+      this.connected = true;
+      this.connectedToStart = endDot;
+      this.connectedToEnd = startDot;
+      this.getContentId(endDot);
+      this.getEndPosition(event);
+      this.removeOldLines();
+    }
+    if (startDot.contentId === endDot.contentId) {
+      startDot.markAsCorrect();
+      endDot.markAsCorrect();
+      this.match = true;
+    } else {
+      startDot.markAsIncorrect();
+      endDot.markAsIncorrect();
+      this.match = false;
     }
   }
   disconnect(dot1, dot2, line, event) {
-    // if (this.connected) {
-    //   event.target.connectedToLine.remove();
-    // }
-    // console.log("line disconnect");
-    // if (dot2) {
-    //   console.log(dot2.hasOwnProperty("contentId"));
-    //   if (dot2.id) {
-    //     console.log(dot2.id);
-    //   } else console.log("cannot access id");
-    // }
-    // const lineEndToBeRemoved = document.querySelectorAll("[lineendid]");
-    // if (event) {
-    //   console.log(lineEndToBeRemoved, event);
-    //   lineEndToBeRemoved.forEach((item) => {
-    //     if (item.getAttribute("lineendid") === event) {
-    //       console.log("line ends are the same");
-    //       // item.remove();
-    //     }
-    //   });
-    // }
-    // const lineStartToBeRemoved = document.querySelectorAll("[linestartid]");
-    // lineStartToBeRemoved.forEach((item) => {
-    //   if (
-    //     item.getAttribute("linestartid") ===
-    //     this.element.getAttribute("linestartid")
-    //   ) {
-    //     console.log("line starts are the same");
-    //     item.remove();
-    //   }
-    // });
-    // const oldLine = document.querySelectorAll(".final");
-    // console.log(oldLine);
-    // oldLine.forEach((item) => {
-    //   item.remove();
-    // });
+    this.connectedToEnd = null;
+    this.connectedToStart = null;
+    this.element.remove();
   }
   markAsCorrect() {
     this.element.classList.remove("unconnected");
     this.element.classList.add("connected");
     this.element.classList.add("pulse", "final");
+  }
+  removeOldLines() {
+    this.element.classList.add("final");
+    this.element.classList.add("pulse");
+    const oldLine = document
+      .querySelectorAll(".unconnected")
+      .forEach((item) => {
+        item.remove();
+      });
+    this.element.classList.remove("unconnected");
+    this.element.classList.add("final");
+    lines.push(this);
   }
 }
 

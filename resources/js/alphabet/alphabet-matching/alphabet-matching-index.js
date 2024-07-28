@@ -804,78 +804,23 @@ function onPointerDown(event) {
 
       currentEndDot = Number(event.target.id - numberOfItemsToBeDisplayed);
 
-      endDot[currentEndDot].makeActive();
-
-      line.buttonDown();
-      if (endDot[currentEndDot].connectedToLine) {
+      if (endDot[currentEndDot].connected) {
+        document
+          .querySelector(`[enddotid="${endDot[currentEndDot].id}"]`)
+          .remove();
         endDot[currentEndDot].disconnect();
       }
+
+      endDot[currentEndDot].makeActive();
+
+      getEndDotID(event);
+
+      line.buttonDown();
+
       currentDotId;
       getEventTargetID(event);
-      // scoreDisplay.classList.remove("pulse");
-      // if (correctDotsAndLines.includes(endDot[currentEndDot])) {
-      //   event.preventDefault();
-      //   return;
-      // }
-      // if (finalLinesIdArray.includes(endDot[currentEndDot].id)) {
-      //   console.log("test");
-      //   finalLinesIdArray.splice(
-      //     finalLinesIdArray.indexOf(endDot[currentEndDot].id),
-      //     1
-      //   );
-      // }
-      // if (currentLinesIdArray.includes(endDot[currentEndDot].id)) {
-      //   currentLinesIdArray.splice(
-      //     currentLinesIdArray.indexOf(endDot[currentEndDot].id),
-      //     1
-      //   );
-      // }
-      // const byeByeLines = document.querySelectorAll(".final");
-      // byeByeLines.forEach((item) => {
-      //   if (
-      //     Number(item.getAttribute("startlineid")) === endDot[currentEndDot].id
-      //   ) {
-      //     item.classList.remove("final", "connected");
-      //     item.classList.add("unconnected");
-      //     console.log(item.classList);
-      //     lines.splice(lines.indexOf(item), 1);
+      scoreDisplay.classList.remove("pulse");
 
-      //     item.remove();
-      //   }
-      // });
-      // if (line.isPressed) {
-      //   getEventTargetID(event);
-      //   let allLines = document.querySelectorAll(".line");
-      //   allLines.forEach((item) => {
-      //     if (
-      //       currentDotIdArray.includes(
-      //         endDot[currentEndDot] + numberOfItemsToBeDisplayed
-      //       )
-      //     ) {
-      //       if (
-      //         item.startLineId === endDot[currentEndDot] ||
-      //         item.endLineId === endDot[currentEndDot]
-      //       ) {
-      //         item.remove();
-      //         let currentDotIdToBeRemoved = currentDotIdArray.indexOf(
-      //           endDot[currentEndDot] + numberOfItemsToBeDisplayed
-      //         );
-      //         currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
-      //         let currentLineIdToBeRemoved = currentLinesIdArray.indexOf(
-      //           endDot[currentEndDot]
-      //         );
-      //         currentLinesIdArray.splice(currentLineIdToBeRemoved, 1);
-      //         if (correctDotsAndLines.includes(endDot[currentEndDot])) {
-      //           removeCorrectPulseEffect();
-      //           correctDotsAndLines.splice(
-      //             correctDotsAndLines.indexOf(endDot[currentEndDot]),
-      //             1
-      //           );
-      //         }
-      //       }
-      //     }
-      //   });
-      // }
       if (
         !currentDotIdArray.includes(endDot[currentEndDot]) +
         numberOfItemsToBeDisplayed
@@ -899,74 +844,31 @@ function onPointerDown(event) {
       currentEndDot = null;
 
       currentStartDot = event.target.id;
-      startDot[currentStartDot].makeActive();
-      line.buttonDown();
-      if (startDot[currentStartDot].connectedToLine) {
+
+      if (startDot[currentStartDot].connected) {
+        console.log(
+          document.querySelector(
+            `[startdotid="${startDot[currentStartDot].id}"]`
+          )
+        );
+        console.log(startDot[currentStartDot].id);
+        document
+          .querySelector(`[startdotid="${startDot[currentStartDot].id}"]`)
+          .remove();
         startDot[currentStartDot].disconnect();
-        console.log("test");
       }
+
+      startDot[currentStartDot].makeActive();
+
+      getStartDotID(event);
+
+      line.buttonDown();
+
       currentDotId;
       scoreDisplay.classList.remove("pulse");
 
       getEventTargetID(event);
-      // if (correctDotsAndLines.includes(startDot[currentStartDot].id)) {
-      //   event.preventDefault();
-      //   return;
-      // }
-      // if (finalLinesIdArray.includes(startDot[currentStartDot].id)) {
-      //   finalLinesIdArray.splice(
-      //     finalLinesIdArray.indexOf(startDot[currentStartDot].id),
-      //     1
-      //   );
-      // }
-      // if (currentLinesIdArray.includes(startDot[currentStartDot].id)) {
-      //   currentLinesIdArray.splice(
-      //     currentLinesIdArray.indexOf(startDot[currentStartDot].id),
-      //     1
-      //   );
-      // }
-      // const byeByeLines = document.querySelectorAll(".final");
-      // byeByeLines.forEach((item) => {
-      //   if (
-      //     Number(item.getAttribute("startlineid")) ===
-      //     startDot[currentStartDot].id
-      //   ) {
-      //     item.classList.remove("final", "connected");
-      //     item.classList.add("unconnected");
-      //     lines.splice(lines.indexOf(item), 1);
 
-      //     item.remove();
-      //   }
-      // });
-      // if (line.isPressed) {
-      //   getEventTargetID(event);
-      //   let allLines = document.querySelectorAll(".line");
-      //   allLines.forEach((item) => {
-      //     if (currentDotIdArray.includes(startDot[currentStartDot])) {
-      //       if (
-      //         item.startLineId === startDot[currentStartDot] ||
-      //         item.endLineId === startDot[currentStartDot]
-      //       ) {
-      //         item.remove();
-      //         let currentDotIdToBeRemoved = currentDotIdArray.indexOf(
-      //           startDot[currentStartDot]
-      //         );
-      //         currentDotIdArray.splice(currentDotIdToBeRemoved, 1);
-      //         let currentLineIdToBeRemoved = currentLinesIdArray.indexOf(
-      //           startDot[currentStartDot]
-      //         );
-      //         currentLinesIdArray.splice(currentLineIdToBeRemoved, 1);
-      //         if (correctDotsAndLines.includes(startDot[currentStartDot])) {
-      //           removeCorrectPulseEffect();
-      //           correctDotsAndLines.splice(
-      //             correctDotsAndLines.indexOf(startDot[currentStartDot]),
-      //             1
-      //           );
-      //         }
-      //       }
-      //     }
-      //   });
-      // }
       if (!currentDotIdArray.includes(startDot[currentStartDot])) {
         line.getContentId(startDot[currentStartDot]);
         line.start = {};
@@ -974,7 +876,6 @@ function onPointerDown(event) {
         line.end = {};
         line.getEndPosition(event);
         draw();
-        // line.setStartLineId(startDot[currentStartDot]);
       }
       // event.target.addEventListener("pointerleave", (event) => {
       //   event.preventDefault();
@@ -1044,11 +945,13 @@ function onPointerMove(event) {
 
 /*   Pointer UP EVENT  */
 
-function onPointerUp(event) {
+function onPointerUp(event, startDotId, endDotId) {
   event.preventDefault();
   event.stopPropagation();
   if (currentEndDot) {
     currentStartDot = null;
+    getStartDotID(event);
+    line.element.setAttribute("startdotid", startDotId);
     if (event.target.classList.contains("end-target")) {
       onPointerUpFalse();
     }
@@ -1056,33 +959,24 @@ function onPointerUp(event) {
       if (event.target.hasPointerCapture(event.pointerId)) {
         event.target.releasePointerCapture(event.pointerId);
       }
+
       currentStartDot = Number(event.target.id);
-      if (startDot[currentStartDot].connectedToLine) {
-        // dotAndLineCommand.notify(
-        //   "disconnect",
-        //   endDot[currentEndDot],
-        //   startDot[currentStartDot],
-        //   line,
-        //   event
-        // );
-      }
+      const newStartDot = startDot[currentStartDot];
       endDot[currentEndDot].makeInactive();
-      dotAndLineCommand.notify(
-        "connect",
-        endDot[currentEndDot],
-        startDot[currentStartDot],
-        line,
-        event
-      );
-      line.element.setAttribute("linestartid", endDot[currentEndDot].id);
-      lines.pop();
-      // dotAndLineCommand.notify(
-      //   "connect",
-      //   startDot[currentStartDot],
-      //   endDot[currentEndDot],
-      //   line,
-      //   event
-      // );
+      if (newStartDot.connectedToLine) {
+        const oldLine = document
+          .querySelectorAll("[startdotid]")
+          .forEach((item) => {
+            if (item.getAttribute("startdotid") === event.target.id) {
+              const thing = item.getAttribute("startdotid");
+              item.remove();
+              startDot[thing].disconnect();
+            }
+          });
+      }
+
+      line.connectFromEndToStart(newStartDot, endDot[currentEndDot], event);
+      newStartDot.connect(endDot[currentEndDot], line);
 
       draw();
       line.buttonUp();
@@ -1091,9 +985,9 @@ function onPointerUp(event) {
         event.target.classList.contains("start-target") &&
         !currentDotIdArray.includes(currentDotId)
       ) {
-        getStartDotID(event);
+        // removeUnconnectedLines();
+
         const oldlines = document.querySelectorAll(".unconnected");
-        console.log(oldlines);
         if (oldlines.length > 0) {
           oldlines[0].classList.remove("unconnected");
           oldlines[0].classList.add("final");
@@ -1109,11 +1003,14 @@ function onPointerUp(event) {
         return;
       }
       event.preventDefault();
+      return;
     }
+
     currentEndDot = null;
     currentStartDot = null;
   } else if (currentStartDot) {
     currentEndDot = null;
+    getEndDotID(event);
     if (event.target.classList.contains("start-target")) {
       onPointerUpFalse();
     }
@@ -1122,16 +1019,31 @@ function onPointerUp(event) {
         event.target.releasePointerCapture(event.pointerId);
       }
       currentEndDot = Number(event.target.id - 4);
-
+      const newEndDot = endDot[currentEndDot];
       startDot[currentStartDot].makeInactive();
-      dotAndLineCommand.notify(
-        "connect",
-        startDot[currentStartDot],
-        endDot[currentEndDot],
-        line,
-        event
-      );
+      if (newEndDot.connectedToLine) {
+        const oldLine = document
+          .querySelectorAll("[enddotid]")
+          .forEach((item) => {
+            if (item.getAttribute("enddotid") === event.target.id) {
+              const thing = item.getAttribute("enddotid");
+              item.remove();
+              endDot[thing - 4].disconnect();
+            }
+          });
+      }
 
+      line.connectFromStartToEnd(startDot[currentStartDot], newEndDot, event);
+      newEndDot.connect(startDot[currentStartDot], line);
+      // startDot[currentStartDot].makeInactive();
+      // dotAndLineCommand.notifyStartToEnd(
+      //   "connectStartToEnd",
+      //   startDot[currentStartDot],
+      //   endDot[currentEndDot],
+      //   line,
+      //   event
+      // );
+      lines.pop();
       draw();
       line.buttonUp();
       if (
@@ -1155,9 +1067,11 @@ function onPointerUp(event) {
       }
     }
     event.preventDefault();
+    return;
   }
   currentStartDot = null;
   currentEndDot = null;
+  return;
 }
 
 /*   FALSE Pointer UP EVENT  */
@@ -1250,6 +1164,7 @@ export {
   checkAllCorrect,
   currentDotId,
   endDotId,
+  startDotId,
   grid,
   lines,
   numberOfItemsToBeDisplayed,
