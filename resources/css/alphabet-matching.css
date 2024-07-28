@@ -873,6 +873,27 @@ body:not(:has(*)) {
   z-index: 20;
   position: absolute;
 }
+@media only screen and (min-device-width: 768px) {
+  .final-score-alert {
+    grid-area: final-score-alert;
+    height: 275px;
+    width: 600px;
+    margin: auto;
+    color: var(--clr-wht);
+    background: var(--clr-acc1);
+    opacity: 0;
+    border: none;
+    border-radius: 40px;
+    font-size: 7rem;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    z-index: 20;
+    position: absolute;
+    box-shadow: rgba(2, 8, 20, 0.8) 0px 15px 20px 7px,
+      rgba(2, 8, 20, 0.5) 0px 20px 30px 10px;
+  }
+}
 @media (width > 1200px) {
   .final-score-alert {
     grid-area: final-score-alert;

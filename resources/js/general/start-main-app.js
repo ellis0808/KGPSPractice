@@ -149,12 +149,12 @@ function returnToMainMenu() {
   displayGreeting();
   abcMenu.classList.remove("hidden");
   numbersMenu.classList.remove("hidden");
-  spellingMenu.classList.remove("hidden");
-  div4.classList.remove("hidden");
+  // spellingMenu.classList.remove("hidden");
+  // div4.classList.remove("hidden");
   alphabetCardTouchAppMenuItem.remove();
   alphabetMatchingAppMenuItem.remove();
-  spellingTouchAppMenuItem.remove();
-  spellingWritingAppMenuItem.remove();
+  // spellingTouchAppMenuItem.remove();
+  // spellingWritingAppMenuItem.remove();
   numberFluency1to20AppMenuItem.remove();
   displayMainPage();
   returnToMainMenuToggle();
