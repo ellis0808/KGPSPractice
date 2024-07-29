@@ -29,6 +29,7 @@ import {
   Connector,
 } from "./dot-objects-control.js";
 import { feedbackAudioObject } from "../../../utilities/feedback-object.js";
+import { spinfade } from "./fx.js";
 
 /* SCORING */
 const correctAnswerPoints = 1;
@@ -54,6 +55,7 @@ const btnContainer2 = document.createElement("div");
 btnContainer2.classList.add("btn-container2");
 const startBtn = document.createElement("button");
 startBtn.setAttribute("id", "start-btn");
+startBtn.classList.add("letter-matching-app");
 startBtn.textContent = "Start";
 const exitBtn = document.createElement("div");
 exitBtn.setAttribute("id", "exit-btn");
@@ -87,7 +89,7 @@ homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
 homeBtn.addEventListener("click", goHome);
 appContainer.appendChild(homeBtnContainer);
 const reallyGoHomeContainer = document.createElement("div");
-reallyGoHomeContainer.classList.add("go-home-container", "card-touch-app");
+reallyGoHomeContainer.classList.add("go-home-container", "letter-matching-app");
 const reallyGoHomeMessageContainer = document.createElement("div");
 reallyGoHomeMessageContainer.classList.add("go-home-message");
 reallyGoHomeMessageContainer.textContent = "Go back to Menu?";
@@ -149,7 +151,6 @@ function alphabetMatchingApp() {
 
   stylesheet.setAttribute("href", "../../resources/css/alphabet-matching.css");
   displayStartBtn();
-
   score.resetScore();
   resetTimer();
   scoreDisplay.innerText = score.currentScore;
@@ -159,10 +160,14 @@ function alphabetMatchingApp() {
 function endApp() {
   endSession();
   setTimeout(() => {
-    mainContainer.removeChild(appContainer);
-    stylesheet.setAttribute("href", "../resources/css/styles.css");
-    displayMainPage();
-    setTimeout(restoreMainMenu, 600);
+    document.querySelectorAll(".letter-matching-app").forEach((item) => {
+      item.remove();
+    });
+    setTimeout(() => {
+      stylesheet.setAttribute("href", "../resources/css/styles.css");
+      displayMainPage();
+      setTimeout(restoreMainMenu, 100);
+    }, 500);
   }, 500);
   resetTimer();
   scoreDisplay.innerText = score.currentScore;
@@ -272,7 +277,10 @@ II. SESSIONS & ROUNDS
 */
 
 function displayStartBtn() {
-  if (startBtn.classList.contains("no-touch")) {
+  if (
+    startBtn.classList.contains("no-touch") ||
+    startBtn.classList.contains("spinfade")
+  ) {
     startBtn.classList.remove("no-touch");
     startBtn.classList.remove("spinfade");
     exitBtn.classList.remove("no-touch");
@@ -299,7 +307,6 @@ document.addEventListener("keydown", (event) => {
 
 function endSession() {
   unpause2();
-  clearBoard();
   homeBtnReturnToNormal();
   resetNavigationBtns();
   appContainer.classList.add("hide");
@@ -312,9 +319,20 @@ function endSession() {
   }
   appStarted = false;
   removeBlur();
+  clearBoard();
 }
+
+function removeEndMessagesContainer() {
+  if (document.querySelector(".end-messages-container")) {
+    tryAgainBtn.classList.add("no-touch");
+    finishBtn.classList.add("no-touch");
+    document.querySelector(".end-messages-container").remove();
+  }
+}
+
 function startSession() {
   matchingSfx.startApp.play();
+  removeEndMessagesContainer();
   startBtn.classList.add("no-touch");
   startBtn.classList.add("spinfade");
   exitBtn.classList.remove("intro");
@@ -367,7 +385,6 @@ function startNewRound() {
   appContainer.appendChild(homeBtnContainer);
   homeBtnContainer.appendChild(homeBtn);
   homeBtnContainer.appendChild(pauseBtn);
-
   setTimeout(() => {
     activateEventListeners();
   }, 200);
@@ -427,10 +444,13 @@ C. Displaying the Final Score Message Overlay
 */
 function displayFinalScore() {
   const endGameMessagesContainer = document.createElement("div");
-  endGameMessagesContainer.classList.add("end-messages-container");
+  endGameMessagesContainer.classList.add(
+    "end-messages-container",
+    "letter-matching-app"
+  );
   appContainer.appendChild(endGameMessagesContainer);
   const finalScoreAlert = document.createElement("div");
-  finalScoreAlert.classList.add("final-score-alert");
+  finalScoreAlert.classList.add("final-score-alert", "letter-matching-app");
   finalScoreAlert.innerText = `${score.currentScore} points!`;
   setTimeout(() => {
     endGameMessagesContainer.appendChild(finalScoreAlert);
@@ -552,7 +572,7 @@ III. TIMER
 
 let time;
 let countDown;
-const roundTime = 3;
+const roundTime = 60;
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
@@ -846,12 +866,6 @@ function onPointerDown(event) {
       currentStartDot = event.target.id;
 
       if (startDot[currentStartDot].connected) {
-        console.log(
-          document.querySelector(
-            `[startdotid="${startDot[currentStartDot].id}"]`
-          )
-        );
-        console.log(startDot[currentStartDot].id);
         document
           .querySelector(`[startdotid="${startDot[currentStartDot].id}"]`)
           .remove();

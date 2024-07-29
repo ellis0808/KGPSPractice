@@ -20,6 +20,19 @@
   --hvr-opc: 0.7;
 }
 
+@media screen and (max-width: 768px) and (orientation: portrait) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    height: 100vw;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
+
 h2 {
   color: white;
 }
@@ -35,6 +48,18 @@ body {
   overflow-y: hidden;
   cursor: pointer;
   touch-action: none;
+}
+@media (width > 1200px) {
+  body {
+    height: 100vh;
+    width: 100vw;
+    background: white;
+    display: grid;
+    place-content: center;
+    grid-template-columns: 1fr;
+    grid-template-areas: "main-container";
+    overflow: hidden;
+  }
 }
 @media (width > 1200px) {
   body {

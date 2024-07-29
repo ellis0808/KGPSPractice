@@ -49,8 +49,7 @@ function alphabetCardTouchApp() {
 }
 
 const appContainer = document.createElement("div");
-appContainer.classList.add("container");
-appContainer.classList.add("card-touch-app");
+appContainer.classList.add("container", "card-touch-app");
 
 /* Main App Container */
 const homeBtnContainer = document.createElement("div");
@@ -313,12 +312,13 @@ function clearBoardFast() {
 
 function displayFinalScore() {
   const endGameMessagesContainer = document.createElement("div");
-  endGameMessagesContainer.classList.add("end-messages-container");
-  endGameMessagesContainer.classList.add("card-touch-app");
+  endGameMessagesContainer.classList.add(
+    "end-messages-container",
+    "card-touch-app"
+  );
   appContainer.appendChild(endGameMessagesContainer);
   const finalScoreAlert = document.createElement("div");
-  finalScoreAlert.classList.add("final-score-alert");
-  finalScoreAlert.classList.add("card-touch-app");
+  finalScoreAlert.classList.add("final-score-alert", "card-touch-app");
   finalScoreAlert.innerText = `${score.currentScore} points!`;
   setTimeout(() => {
     endGameMessagesContainer.appendChild(finalScoreAlert);
@@ -519,6 +519,7 @@ function endApp() {
   endSession();
 
   const everything = document.querySelectorAll(".card-touch-app");
+  console.log(everything);
   setTimeout(() => {
     everything.forEach((item) => {
       item.remove();
