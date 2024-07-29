@@ -1,4 +1,4 @@
-import { cardText } from "./alphabet-card-touch-index.js";
+import { cardText } from "./alphabet-card-touch-capitals-index.js";
 import { alphabetObject } from "../alphabet-audio-object.js";
 
 let correctCardID;

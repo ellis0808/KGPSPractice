@@ -24,7 +24,7 @@ import { feedbackAudioObject } from "../../../utilities/feedback-object.js";
 const correctAnswerPoints = 2;
 const incorrectAnswerPoints = 1;
 
-function alphabetCardTouchApp() {
+function alphabetCapitalsCardTouchApp() {
   setTimeout(() => {
     resetTimer();
     mainContainer.appendChild(appContainer);
@@ -408,13 +408,13 @@ function createBoard() {
       lettersArray.forEach(() => {
         const card = document.createElement("div");
         card.setAttribute("txt", lettersArray[i]);
-        newCardText = card.getAttribute("txt");
+        newCardText = card.getAttribute("txt").toUpperCase();
         card.textContent = newCardText;
         card.setAttribute("contentId", i);
         card.classList.add("card");
         grid.append(card);
         card.addEventListener("click", touchCard);
-        cardText.push(newCardText);
+        cardText.push(newCardText.toLowerCase());
         ++i;
       });
       btnContainer3.appendChild(repeatBtn);
@@ -517,15 +517,11 @@ function endSession() {
 
 function endApp() {
   endSession();
-
-  const everything = document.querySelectorAll(".card-touch-app");
-  console.log(everything);
   setTimeout(() => {
-    everything.forEach((item) => {
+    document.querySelectorAll(".card-touch-app").forEach((item) => {
       item.remove();
     });
     setTimeout(() => {
-      // mainContainer.removeChild(appContainer);
       stylesheet.setAttribute("href", "../resources/css/styles.css");
       displayMainPage();
       setTimeout(restoreMainMenu, 100);
@@ -620,7 +616,7 @@ function returnToApp() {
 }
 
 export {
-  alphabetCardTouchApp,
+  alphabetCapitalsCardTouchApp,
   startAlphabetCardTouchApp,
   cardText,
   scoreDisplay,

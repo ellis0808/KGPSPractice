@@ -6,7 +6,7 @@ import {
   updatePositiveCount,
 } from "../../../utilities/update-score.js";
 
-import { scoreDisplay } from "../../alphabet/alphabet-card-touch/alphabet-card-touch-index.js";
+import { scoreDisplay } from "../../alphabet/alphabet-card-touch/alphabet-card-touch-capitals-index.js";
 
 import { displayMainPage } from "../../general/start-main-app.js";
 import {

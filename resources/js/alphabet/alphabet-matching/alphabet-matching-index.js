@@ -11,7 +11,7 @@ import {
   updateNegativeCount,
   updatePositiveCount,
 } from "../../../utilities/update-score.js";
-import { scoreDisplay } from "../alphabet-card-touch/alphabet-card-touch-index.js";
+import { scoreDisplay } from "../alphabet-card-touch/alphabet-card-touch-capitals-index.js";
 import { matchingSfx, speak } from "./audio.js";
 import { displayMainPage, startMainApp } from "../../general/start-main-app.js";
 import {

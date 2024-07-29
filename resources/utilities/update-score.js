@@ -1,5 +1,5 @@
 import { score } from "./score-object.js";
-import { scoreDisplay } from "../js/alphabet/alphabet-card-touch/alphabet-card-touch-index.js";
+import { scoreDisplay } from "../js/alphabet/alphabet-card-touch/alphabet-card-touch-capitals-index.js";
 import {
   particles,
   particles2,

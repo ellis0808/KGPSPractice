@@ -10,7 +10,8 @@ import {
   parentsInfo,
 } from "../../utilities/variables.js";
 import {
-  startAlphabetCardTouchApp,
+  startCapitalsAlphabetCardTouchApp,
+  startLowercaseAlphabetCardTouchApp,
   startAlphabetMatchingApp,
   startNumberFluency1to20App,
   startSpellingTouchApp,
@@ -151,7 +152,8 @@ function returnToMainMenu() {
   numbersMenu.classList.remove("hidden");
   // spellingMenu.classList.remove("hidden");
   // div4.classList.remove("hidden");
-  alphabetCardTouchAppMenuItem.remove();
+  alphabetCapitalsCardTouchAppMenuItem.remove();
+  alphabetLowercaseCardTouchAppMenuItem.remove();
   alphabetMatchingAppMenuItem.remove();
   // spellingTouchAppMenuItem.remove();
   // spellingWritingAppMenuItem.remove();
@@ -169,18 +171,31 @@ Specific Menu Items
 
 /* "Alphabet" Menu Items  (2) */
 
-// 1. Alphabet Touch App Menu Item
-const alphabetCardTouchAppMenuItem = document.createElement("div");
-alphabetCardTouchAppMenuItem.setAttribute(
+// 1. Alphabet Capitals Touch App Menu Item
+const alphabetCapitalsCardTouchAppMenuItem = document.createElement("div");
+alphabetCapitalsCardTouchAppMenuItem.setAttribute(
   "id",
   "alphabet-card-touch-app-menu-item"
 );
 // abcMenu.setAttribute("page-id", "mainMenu");
-alphabetCardTouchAppMenuItem.classList.add("div");
-alphabetCardTouchAppMenuItem.innerText = "Card Touch!";
-alphabetCardTouchAppMenuItem.addEventListener(
+alphabetCapitalsCardTouchAppMenuItem.classList.add("div");
+alphabetCapitalsCardTouchAppMenuItem.innerText = "Card Touch!\r\n ABC";
+alphabetCapitalsCardTouchAppMenuItem.addEventListener(
   "click",
-  startAlphabetCardTouchApp
+  startCapitalsAlphabetCardTouchApp
+);
+
+const alphabetLowercaseCardTouchAppMenuItem = document.createElement("div");
+alphabetLowercaseCardTouchAppMenuItem.setAttribute(
+  "id",
+  "alphabet-card-touch-app-menu-item"
+);
+// abcMenu.setAttribute("page-id", "mainMenu");
+alphabetLowercaseCardTouchAppMenuItem.classList.add("div");
+alphabetLowercaseCardTouchAppMenuItem.innerText = "Card Touch!\r\n abc";
+alphabetLowercaseCardTouchAppMenuItem.addEventListener(
+  "click",
+  startLowercaseAlphabetCardTouchApp
 );
 
 // 2. Alphabet Matching App Menu Item
@@ -224,10 +239,12 @@ function displayAbcMenu() {
   numbersMenu.classList.add("hidden");
   spellingMenu.classList.add("hidden");
   div4.classList.add("hidden");
-  menuContainer.appendChild(alphabetCardTouchAppMenuItem);
+  menuContainer.appendChild(alphabetCapitalsCardTouchAppMenuItem);
+  menuContainer.appendChild(alphabetLowercaseCardTouchAppMenuItem);
   menuContainer.appendChild(alphabetMatchingAppMenuItem);
   menuContainer.appendChild(returnToMainMenuBtn);
-  alphabetCardTouchAppMenuItem.classList.remove("hidden");
+  alphabetCapitalsCardTouchAppMenuItem.classList.remove("hidden");
+  alphabetLowercaseCardTouchAppMenuItem.classList.remove("hidden");
   alphabetMatchingAppMenuItem.classList.remove("hidden");
   returnToMainMenuToggle();
 }
@@ -302,7 +319,8 @@ export {
   startMainApp,
   setTopMenuVariables,
   abcMenu,
-  alphabetCardTouchAppMenuItem,
+  alphabetLowercaseCardTouchAppMenuItem,
+  alphabetCapitalsCardTouchAppMenuItem,
   alphabetMatchingAppMenuItem,
   numberFluency1to20AppMenuItem,
   spellingTouchAppMenuItem,

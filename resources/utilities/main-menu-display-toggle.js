@@ -1,6 +1,7 @@
 import {
   abcMenu,
-  alphabetCardTouchAppMenuItem,
+  alphabetCapitalsCardTouchAppMenuItem,
+  alphabetLowercaseCardTouchAppMenuItem,
   alphabetMatchingAppMenuItem,
   spellingMenu,
   div4,
@@ -20,12 +21,12 @@ import {
 } from "./variables.js";
 
 function removeMenuPage() {
-  alphabetCardTouchAppMenuItem.remove();
+  alphabetCapitalsCardTouchAppMenuItem.remove();
+  alphabetLowercaseCardTouchAppMenuItem.remove();
   alphabetMatchingAppMenuItem.remove();
   numberFluency1to20AppMenuItem.remove();
   spellingTouchAppMenuItem.remove();
   spellingWritingAppMenuItem.remove();
-  // navBar.classList.add("hidden");
   topContainer.classList.add("hidden");
   menuContainer.classList.add("hidden");
   abcMenu.classList.add("hidden");
@@ -33,7 +34,6 @@ function removeMenuPage() {
   spellingMenu.classList.add("hidden");
   div4.classList.add("hidden");
 
-  // document.getElementById("navbar").remove();
   document.getElementById("parents-info").remove();
   document.getElementById("top-container").remove();
   document.getElementById("menu-container").remove();
