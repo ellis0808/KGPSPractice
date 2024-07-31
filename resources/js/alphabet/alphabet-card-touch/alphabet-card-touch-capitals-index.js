@@ -4,7 +4,12 @@ import {
   navBar,
   stylesheet,
 } from "../../../utilities/variables.js";
-import { cardTouchSfx, correctCardID, randomNumber, speak } from "./audio.js";
+import {
+  cardTouchSfx,
+  correctCardID,
+  randomNumber,
+  speak,
+} from "./audio-capitals.js";
 import { alphabet } from "./alphabet.js";
 import { alphabetObject } from "../alphabet-audio-object.js";
 import { wobble, spinfade, newRoundCardFlip, particles } from "./FX.js";
