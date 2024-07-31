@@ -73,11 +73,11 @@ const leftMenuContainer = document.createElement("div");
 leftMenuContainer.classList.add("left-menu-container");
 
 const tryAgainBtn = document.createElement("div");
-tryAgainBtn.classList.add("try-again-btn");
+tryAgainBtn.classList.add("try-again-btn", "button");
 tryAgainBtn.innerText = "One More Time";
 tryAgainBtn.addEventListener("click", startNewSession);
 const finishBtn = document.createElement("div");
-finishBtn.classList.add("finish-btn");
+finishBtn.classList.add("finish-btn", "button");
 finishBtn.addEventListener("click", endApp);
 finishBtn.innerText = "Finish";
 
@@ -401,10 +401,9 @@ A. Overall Function
 */
 function roundOver() {
   disableTouch();
-  setTimeout(displayFinalScore, 600);
+  setTimeout(displayEndMessagesContainer, 600);
   setTimeout(disableTouch, 500);
   setTimeout(disableTouch, 1000);
-  setTimeout(displayTryAgainAndFinishBtns, 601);
   grid.classList.add("blur");
   timer.classList.add("blur");
   scoreDisplay.classList.add("blur");
@@ -442,23 +441,54 @@ function clearArrays() {
 /*
 C. Displaying the Final Score Message Overlay
 */
-function displayFinalScore() {
-  const endGameMessagesContainer = document.createElement("div");
-  endGameMessagesContainer.classList.add(
+function displayEndMessagesContainer() {
+  score.updateUserScore();
+  const endMessagesContainer = document.createElement("div");
+  endMessagesContainer.classList.add(
     "end-messages-container",
     "letter-matching-app"
   );
-  appContainer.appendChild(endGameMessagesContainer);
-  const finalScoreAlert = document.createElement("div");
-  finalScoreAlert.classList.add("final-score-alert", "letter-matching-app");
-  finalScoreAlert.innerText = `${score.currentScore} points!`;
+  appContainer.appendChild(endMessagesContainer);
+  const finalScoreAssessment = document.createElement("div");
+  finalScoreAssessment.classList.add("final-score-assessment");
+  const finalScoreAlertHeader = document.createElement("div");
+  finalScoreAlertHeader.classList.add("final-score-alert-header");
+  const finalScoreAlertScore = document.createElement("div");
+  finalScoreAlertScore.classList.add("final-score-alert-score");
+  const endMessagesContainerInnerBorder = document.createElement("div");
+  endMessagesContainerInnerBorder.classList.add("border");
+
+  switch (true) {
+    case score.currentScore < 5:
+      finalScoreAssessment.innerText = "Better Luck\r\nNext Time!";
+      break;
+    case score.currentScore > 31:
+      finalScoreAssessment.innerText = "Outstanding!";
+      break;
+    case score.currentScore > 27:
+      finalScoreAssessment.innerText = "Amazing!";
+      break;
+    case score.currentScore > 23:
+      finalScoreAssessment.innerText = "Excellent!";
+      break;
+    case score.currentScore > 18:
+      finalScoreAssessment.innerText = "Great Job!";
+
+      break;
+    case score.currentScore > 13:
+      finalScoreAssessment.innerText = "Good Job!";
+      break;
+  }
+  finalScoreAlertHeader.innerText = `Score`;
+  finalScoreAlertScore.innerText = `${score.currentScore}`;
   setTimeout(() => {
-    endGameMessagesContainer.appendChild(finalScoreAlert);
-    setTimeout(() => {
-      finalScoreAlert.classList.add("flip");
-    });
+    endMessagesContainer.appendChild(finalScoreAssessment);
+    endMessagesContainer.appendChild(finalScoreAlertHeader);
+    endMessagesContainer.appendChild(finalScoreAlertScore);
+    endMessagesContainer.appendChild(endMessagesContainerInnerBorder);
+    endMessagesContainer.appendChild(tryAgainBtn);
+    endMessagesContainer.appendChild(finishBtn);
   }, 400);
-  score.updateUserScore();
   setTimeout(() => {
     switch (true) {
       case score.currentScore < 5:
@@ -481,22 +511,6 @@ function displayFinalScore() {
         break;
     }
   }, 300);
-}
-
-/*
-D. Displaying the Try Again and Finish Buttons
-*/
-function displayTryAgainAndFinishBtns() {
-  const endGameMessagesContainer = document.querySelector(
-    ".end-messages-container"
-  );
-
-  setTimeout(() => {
-    endGameMessagesContainer.appendChild(tryAgainBtn);
-    tryAgainBtn.classList.add("slideinfromleft");
-    endGameMessagesContainer.appendChild(finishBtn);
-    finishBtn.classList.add("slideinfromright");
-  }, 1000);
 }
 
 /*

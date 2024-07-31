@@ -9,6 +9,7 @@
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 }
 :root {
   --clr-or: hsl(43, 89%, 38%);
@@ -27,8 +28,6 @@ h2 {
 }
 
 body {
-  /* height: 100vh; */
-  /* width: 100vw; */
   background: white;
   display: grid;
   place-content: center;
@@ -63,50 +62,50 @@ body:not(:has(*)) {
   display: grid;
 }
 .container {
-  /* height: 100%;
-  width: 100%; */
   background: #222;
   display: grid;
-  grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
-  grid-template-rows: 0.1fr 0.25fr 0.25fr 0.25fr 1.25fr;
+  grid-template-columns: 0.15fr 0.2fr 1fr 1fr 0.2fr 0.15fr;
+  grid-template-rows: 0.05fr 0.25fr 0.05fr 0.25fr 1.25fr 0.1fr 0.2fr;
   grid-template-areas:
-    "home-btn-container ..... ..... ....."
-    "..... timer score-display ....."
-    "..... main-display main-display ....."
-    "..... btn-container3 btn-container3 ....."
-    "..... number-grid number-grid .....";
+    "..... ..... ..... ..... ..... ....."
+    "..... btn-container1 btn-container1 btn-container1 btn-container1 ....."
+    "..... ..... ..... ..... ..... ....."
+    "..... btn-container3 btn-container3 btn-container3 btn-container3 ....."
+    "..... ..... number-grid number-grid ..... ....."
+    "..... ..... ..... .....  ..... ....."
+    "..... ..... home-btn-container home-btn-container ..... ....."
+    "..... ..... ..... .....  ..... .....";
   place-content: center;
   place-items: center;
   z-index: 0;
-  /* position: absolute; */
   margin: auto;
   overflow: hidden;
 }
-@media (width > 600px) {
+@media (width > 1200px) {
   .container {
     grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
-    grid-template-rows: 0.1fr 0.15fr 0.15fr 0.2fr 0.05fr 1fr 0.1fr;
+    grid-template-rows: 0.1fr 0.15fr 0.2fr 1fr 0.1fr;
     grid-template-areas:
       "home-btn-container  ..... ..... ....."
       "home-btn-container btn-container1 btn-container1 ....."
-      "..... main-display main-display ....."
       ".....  btn-container3  btn-container3 ....."
-      "..... ..... ..... ....."
       ".....  number-grid number-grid ....."
       "..... ..... ..... .....";
   }
 }
 .btn-container1 {
   grid-area: btn-container1;
-  /* width: 100%;
-  min-height: 100%; */
+  display: grid;
+  grid-template-columns: 1.5fr 0.3fr;
+  grid-template-areas: "round-display  score-display";
+}
+.btn-container1 {
+  grid-area: btn-container1;
   display: grid;
   grid-template-columns: 1.5fr 0.75fr;
-  grid-template-areas: "timer  score-display";
+  grid-template-areas: "round-display  score-display";
 }
 .btn-container2 {
-  /* width: 100%;
-  height: 100%; */
   display: grid;
   grid-template-columns: 0.5fr 1fr 0.5fr;
   grid-template-rows: repeat(3, 1fr);
@@ -120,8 +119,6 @@ body:not(:has(*)) {
 }
 .btn-container3 {
   grid-area: btn-container3;
-  /* width: 100%;
-  height: 100%; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
@@ -130,29 +127,24 @@ body:not(:has(*)) {
 }
 .grid {
   grid-area: number-grid;
-  max-width: 400px;
-  max-height: 700px;
-  padding: 0px;
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  column-gap: 12px;
-  row-gap: 17px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr 1fr 1fr 1fr 0.1fr;
+  column-gap: 0px;
+  row-gap: 10px;
   place-content: center;
   place-items: center;
-  perspective: 1000px;
   overflow: hidden;
   --stagger-delaay: 0.1s;
   transition: 0.3s;
   z-index: 20;
 }
-@media (width > 600px) {
+@media (width > 1200px) {
   .grid {
     grid-area: number-grid;
-    max-width: 1000px;
-    max-height: 500px;
     padding: 20px;
-    /* border: solid 1px blue; */
+    column-gap: 12px;
+    row-gap: 17px;
     border-radius: 15px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -178,8 +170,6 @@ body:not(:has(*)) {
 */
 .home-btn-container {
   grid-area: home-btn-container;
-  /* width: 100%;
-  height: 100%; */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
@@ -188,13 +178,14 @@ body:not(:has(*)) {
   place-items: center;
   transition: 0.25s ease-in-out;
 }
-@media (width > 600px) {
+@media (width > 1200px) {
   .home-btn-container {
     grid-area: home-btn-container;
-    /* width: 100%;
-    height: 100%; */
     display: flex;
     flex-direction: column;
+    place-content: right;
+    place-items: right;
+    padding-top: 2.5rem;
   }
 }
 .home-btn {
@@ -204,14 +195,14 @@ body:not(:has(*)) {
   background-color: transparent;
   color: var(--clr-acc1);
   border: transparent;
-  font-size: 1.3rem;
+  font-size: 2rem;
   display: flex;
   place-content: center;
   place-items: center;
   z-index: 50;
   transition: 0.1s ease-in;
 }
-@media (width > 600px) {
+@media (width > 1200px) {
   .home-btn {
     grid-area: home-btn;
     width: 25px;
@@ -223,20 +214,23 @@ body:not(:has(*)) {
 
 @media (hover: hover) and (pointer: fine) {
   .home-btn:hover {
-    /* transform: translateY(7px); */
     scale: 1.75;
     transition: 0.2s ease-in;
   }
   .home-btn:active {
-    /* transform: translateY(8px); */
     scale: 1.55;
     transition: 0.1s ease-in;
   }
 }
 .home-btn-enlarge {
-  scale: 1.75;
-  /* transform: translateY(7px); */
+  scale: 1.1;
   transition: 0.2s ease-in;
+}
+@media (width > 1200) {
+  .home-btn-enlarge {
+    scale: 1.75;
+    transition: 0.2s ease-in;
+  }
 }
 .go-home-container {
   width: 375px;
@@ -295,43 +289,71 @@ body:not(:has(*)) {
   grid-area: pause-btn;
   width: 25px;
   height: 25px;
+  margin-left: 25px;
   background-color: transparent;
   color: var(--clr-acc1);
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   display: flex;
   place-content: center;
   place-items: center;
   z-index: 50;
   transition: 0.1s ease-in;
 }
+@media (width > 1200) {
+  .pause-btn {
+    grid-area: pause-btn;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    color: var(--clr-acc1);
+    font-size: 2.25rem;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    z-index: 50;
+    transition: 0.1s ease-in;
+  }
+}
 @media (hover: hover) and (pointer: fine) {
   .pause-btn:hover {
-    /* transform: translateY(7px); */
     scale: 1.75;
     transition: 0.2s ease-in;
   }
   .pause-btn:active {
-    /* transform: translateY(8px); */
     scale: 1.55;
     transition: 0.1s ease-in;
   }
 }
 .pause-btn-enlarge {
-  scale: 1.75;
-  /* transform: translateY(7px); */
+  scale: 1.1;
   transition: 0.2s ease-in;
 }
-.timer {
-  grid-area: timer;
+@media (width > 1200) {
+  .pause-btn-enlarge {
+    scale: 1.75;
+    transition: 0.2s ease-in;
+  }
+}
+.round-display {
+  grid-area: round-display;
   color: white;
-  font-size: 5rem;
+  font-size: 3.25rem;
   display: flex;
   place-content: start;
+}
+@media (width > 1200) {
+  .round-display {
+    grid-area: round-display;
+    color: white;
+    font-size: 5rem;
+    display: flex;
+    place-content: start;
+  }
 }
 .score-display {
   grid-area: score-display;
   color: rgb(248, 245, 56);
-  font-size: 4.5rem;
+  font-size: 3.25rem;
   display: flex;
   place-content: left;
   margin-left: 40px;
@@ -346,7 +368,6 @@ body:not(:has(*)) {
   grid-area: start-btn;
   height: 125px;
   width: 250px;
-  /* margin: auto; */
   color: white;
   background: rgb(161, 29, 29);
   display: flex;
@@ -535,14 +556,12 @@ body:not(:has(*)) {
 
 .answer-display {
   grid-area: answer-display;
-  /* width: 100%;
-  height: 100%; */
   text-overflow: ellipsis;
   word-break: break-all;
   font-family: var(--font-fam);
   text-align: center;
-  font-size: 3rem;
-  letter-spacing: 3px;
+  font-size: 2.5rem;
+  letter-spacing: 10px;
   color: rgb(180, 4, 4);
   display: flex;
   flex-direction: row;
@@ -550,14 +569,10 @@ body:not(:has(*)) {
   place-content: center;
   place-items: center;
   position: center;
-  /* align-self: start; */
 }
-@media (width > 600px) {
+@media (width > 1200px) {
   .answer-display {
     grid-area: answer-display;
-    /* width: 100%;
-    height: 100%; */
-    /* margin-top: 2rem; */
     font-family: var(--font-fam);
     text-align: center;
     font-size: 4em;
@@ -566,26 +581,30 @@ body:not(:has(*)) {
 }
 
 :root {
-  --box-width: 115px;
-  --box-width2: 65px;
+  --box-width: 65px;
+  --box-width2: 115px;
   --margin-width: 5px;
   --box-margin-width: calc(var(--box-width) + (var(--margin-width) * 2));
   --box-margin-width2: calc(var(--box-width2) + (var(--margin-width) * 2));
 }
 
 .box {
-  height: var(--box-width2);
-  width: var(--box-width2);
-  margin: var(--margin-width2);
+  height: var(--box-width);
+  width: var(--box-width);
+  margin: var(--margin-width);
   display: flex;
   place-content: center;
   place-items: center;
-  background: transparent;
+  background: rgb(238, 238, 238);
+  font-size: 3.25rem;
+  transition: 0.075s ease-in-out;
+  border-radius: 7px;
+  box-shadow: 0 9px #999;
 }
-@media (width > 600px) {
+@media (width > 1200px) {
   .box {
-    height: var(--box-width);
-    width: var(--box-width);
+    height: var(--box-width2);
+    width: var(--box-width2);
     place-content: center;
     place-items: center;
     background: rgb(238, 238, 238);
@@ -601,6 +620,14 @@ body:not(:has(*)) {
     scale: 1.05;
     transition: 0.25s;
   }
+}
+.box:active {
+  scale: 1;
+  transform: translateY(5px) scale(0.95);
+  z-index: -10;
+  transition: 0.025s;
+}
+@media (width > 1200px) {
   .box:active {
     scale: 1;
     transform: translateY(4px);
@@ -874,38 +901,8 @@ body:not(:has(*)) {
   display: none;
 }
 
-.streak {
-  font-family: var(--font-fam);
-  font-size: 4rem;
-  font-weight: 700;
-  color: rgb(190, 7, 7);
-  letter-spacing: 3px;
-}
-.letter-glow {
-  font-family: var(--font-fam);
-  font-size: 80px;
-}
-
 .pulse {
   animation: pulse 0.5s ease-in-out forwards;
-}
-
-.newbox {
-  background: rgb(71, 71, 238);
-  border-radius: 15px;
-  animation: boxmove 3s linear forwards;
-  animation-iteration-count: infinite;
-  animation-composition: add;
-}
-.oldbox {
-  background: rgb(28, 28, 190);
-  border-radius: 15px;
-  opacity: 0.5;
-  pointer-events: none;
-}
-.oldboxglow {
-  box-shadow: white 0px, 0px, 10px, blue 0px 0 10px, white 0px, 0px, 10px,
-    blue 0px 0 10px;
 }
 
 /* ANIMATIONS */
@@ -925,30 +922,5 @@ body:not(:has(*)) {
   100% {
     scale: 1.1;
     border-radius: 0px;
-  }
-}
-@keyframes boxmove {
-  /* 0% {
-        transform: rotateZ(0deg);
-    } */
-  25% {
-    transform: rotateZ(8deg);
-  }
-  75% {
-    transform: rotateZ(-8deg);
-  }
-  /* 100% {
-        transform: rotateZ(0deg);
-    } */
-}
-
-@keyframes cardEntrance {
-  from {
-    opacity: 0;
-    transform: scale(0.3);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
   }
 }

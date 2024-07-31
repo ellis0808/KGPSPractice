@@ -198,9 +198,9 @@ cancelGoHomeBtn.textContent = "Cancel";
 cancelGoHomeBtn.addEventListener("click", returnToApp);
 
 /* Common UI Elements */
-const timer = document.createElement("div");
-timer.classList.add("timer");
-timer.textContent = `Round 1`;
+const roundDisplay = document.createElement("div");
+roundDisplay.classList.add("round-display");
+roundDisplay.textContent = `Round 1`;
 const grid = document.createElement("div");
 grid.classList.add("grid");
 const btnContainer1 = document.createElement("div");
@@ -226,8 +226,6 @@ finishBtn.addEventListener("click", endApp);
 finishBtn.innerText = "Finish";
 
 /* App Specific Display Elements */
-const mainDisplay = document.createElement("div");
-mainDisplay.classList.add("main-display");
 const answerDisplay = document.createElement("div");
 answerDisplay.classList.add("answer-display");
 
@@ -270,8 +268,7 @@ function numberFluency1to20App() {
 function endApp() {
   endSession();
   setTimeout(() => {
-    if (appContainer.contains(mainDisplay)) {
-      appContainer.removeChild(mainDisplay);
+    if (appContainer.contains(btnContainer1 || btnContainer3)) {
       appContainer.removeChild(btnContainer1);
       appContainer.removeChild(btnContainer3);
     }
@@ -456,7 +453,7 @@ function startNewSession() {
     score.resetScore();
     scoreDisplay.innerText = score.currentScore;
     grid.classList.remove("blur");
-    timer.classList.remove("blur");
+    roundDisplay.classList.remove("blur");
     scoreDisplay.classList.remove("blur");
   }, 50);
   resetPenalties();
@@ -474,7 +471,7 @@ function startNewSession() {
 
 function resetRoundNumberAndRoundDisplay() {
   round = 0;
-  timer.textContent = "Round 1";
+  roundDisplay.textContent = "Round 1";
 }
 function newRound() {
   clearInterval(run);
@@ -520,8 +517,7 @@ function startNewRound() {
   removeBlur();
   appContainer.appendChild(btnContainer1);
   btnContainer1.appendChild(scoreDisplay);
-  btnContainer1.appendChild(timer);
-  appContainer.appendChild(mainDisplay);
+  btnContainer1.appendChild(roundDisplay);
   appContainer.appendChild(btnContainer3);
   btnContainer3.appendChild(answerDisplay);
   createGrid();
@@ -548,7 +544,7 @@ function sessionOver() {
   setTimeout(disableTouch, 1000);
   displayTryAgainAndFinishBtns();
   grid.classList.add("blur");
-  timer.classList.add("blur");
+  roundDisplay.classList.add("blur");
   scoreDisplay.classList.add("blur");
 }
 function gameOver() {
@@ -635,7 +631,7 @@ function displayRound(round) {
     bannerContainer.appendChild(roundBanner);
     numbersFluencySfx.newRound.play();
     roundBanner.textContent = `Round ${round}`;
-    timer.textContent = `Round ${round}`;
+    roundDisplay.textContent = `Round ${round}`;
   }, 1500);
   setTimeout(() => {
     roundBanner.classList.remove("banner-in");
@@ -650,9 +646,9 @@ function displayRound(round) {
 }
 
 function roundEffect() {
-  timer.classList.add("wobble-pulse");
+  roundDisplay.classList.add("wobble-pulse");
   setTimeout(() => {
-    timer.classList.remove("wobble-pulse");
+    roundDisplay.classList.remove("wobble-pulse");
   }, 500);
 }
 
@@ -670,6 +666,7 @@ function enableTouch() {
 }
 
 function userTouch(event) {
+  // event.target.classList.add('depress-btn')
   let currentAnswer = event.target.getAttribute("item");
   checkAnswer(currentAnswer, event);
 }
