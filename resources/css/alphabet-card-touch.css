@@ -87,7 +87,8 @@ body:not(:has(*)) {
     grid-template-rows: 0.1fr 0.2fr 0.1fr 1fr 0.1fr;
     grid-template-areas:
       "..... home-btn-container ..... ..... ..... ..... "
-      "..... home-btn-container btn-container1 btn-container1 btn-container3 ....."
+      "..... home-btn-container btn-container1 btn-container1 ....."
+      "..... btn-container3 btn-container3 btn-container3 ....."
       "..... ..... ..... ..... ..... ....."
       "..... card-grid card-grid card-grid card-grid ....."
       "..... ..... ..... ..... ..... .....";
