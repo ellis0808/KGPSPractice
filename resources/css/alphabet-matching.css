@@ -121,7 +121,21 @@ body:not(:has(*)) {
   overflow: hidden;
   touch-action: none;
 }
-@media all and (device-width: 768px) {
+@media only screen and (orientation: portrait) and (device-width: 768px) {
+  .container {
+    grid-template-columns: 0.25fr 2fr 2fr 0.25fr;
+    grid-template-rows: 0.1fr 0.1fr 0.3fr 1fr 0.2fr 0.2fr 0.2fr;
+    grid-template-areas:
+      "..... ..... ..... ....."
+      "..... btn-container1 btn-container1 ....."
+      "..... ..... ..... ....."
+      ".....  matching-grid matching-grid ....."
+      "..... ..... ..... ....."
+      "..... home-btn-container home-btn-container ....."
+      "..... ..... ..... .....";
+  }
+}
+@media only screen and (orientation: landscape) and (device-width: 768px) {
   .container {
     grid-template-columns: 0.5fr 1fr 1fr 0.25fr;
     grid-template-rows: 0.2fr 0.2fr 1fr 0.2fr;
