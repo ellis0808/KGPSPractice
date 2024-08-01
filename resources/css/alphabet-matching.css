@@ -188,7 +188,14 @@ body:not(:has(*)) {
   grid-template-columns: repeat(2, 1fr);
   grid-template-areas: "timer  score-display";
 }
-@media all and (device-width: 768px) {
+@media only screen and (orientation: portrait) and (device-width: 768px) {
+  .btn-container1 {
+  grid-area: btn-container1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: "timer  score-display";
+}
+@media only screen and (orientation: landscape) and (device-width: 768px) {
   .btn-container1 {
     grid-area: btn-container1;
     display: grid;
