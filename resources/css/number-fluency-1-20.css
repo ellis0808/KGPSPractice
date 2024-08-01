@@ -81,18 +81,20 @@ body:not(:has(*)) {
   margin: auto;
   overflow: hidden;
 }
-/* @media only screen and (orientation: portrait) and (device-width: 768px) {
+@media only screen and (orientation: portrait) and (device-width: 768px) {
   .container {
     grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
     grid-template-rows: 0.1fr 0.15fr 0.2fr 1fr 0.1fr;
     grid-template-areas:
-      "home-btn-container  ..... ..... ....."
-      "home-btn-container btn-container1 btn-container1 ....."
-      ".....  btn-container3  btn-container3 ....."
-      ".....  number-grid number-grid ....."
+      "..... ..... ..... ....."
+      "..... btn-container1 btn-container1 ....."
+      "..... btn-container3  btn-container3 ....."
+      "..... number-grid number-grid ....."
+      "..... ..... ..... ....."
+      "..... home-btn-container home-btn-container ....."
       "..... ..... ..... .....";
   }
-} */
+}
 @media only screen and (orientation: landscape) and (device-width: 768px) {
   .container {
     grid-template-columns: 0.5fr 1fr 1fr 0.25fr;
@@ -123,11 +125,13 @@ body:not(:has(*)) {
   grid-template-columns: 1.5fr 0.3fr;
   grid-template-areas: "round-display  score-display";
 }
-.btn-container1 {
-  grid-area: btn-container1;
-  display: grid;
-  grid-template-columns: 1.5fr 0.75fr;
-  grid-template-areas: "round-display  score-display";
+@media only screen and (orientation: landscape) and (device-width: 768px) {
+  .btn-container1 {
+    grid-area: btn-container1;
+    display: grid;
+    grid-template-columns: 1.5fr 0.75fr;
+    grid-template-areas: "round-display  score-display";
+  }
 }
 .btn-container2 {
   display: grid;
@@ -227,6 +231,28 @@ body:not(:has(*)) {
   place-content: center;
   place-items: center;
   transition: 0.25s ease-in-out;
+}
+@media only screen and (orientation: portrait) and (device-width: 768px) {
+  .home-btn-container {
+    grid-area: home-btn-container;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas: "home-btn pause-btn";
+    place-content: center;
+    place-items: center;
+    transition: 0.25s ease-in-out;
+  }
+}
+@media only screen and (orientation: portrait) and (device-width: 768px) {
+  .home-btn-container {
+    grid-area: home-btn-container;
+    display: flex;
+    flex-direction: column;
+    place-content: right;
+    place-items: right;
+    padding-top: 2.5rem;
+  }
 }
 @media (width > 1200px) {
   .home-btn-container {
@@ -655,6 +681,36 @@ body:not(:has(*)) {
   transition: 0.075s ease-in-out;
   border-radius: 7px;
   box-shadow: 0 9px #999;
+}
+@media only screen and (orientation: portrait) and (device-width: 768px) {
+  .box {
+    height: var(--box-width2);
+    width: var(--box-width2);
+    margin: var(--margin-width2);
+    display: flex;
+    place-content: center;
+    place-items: center;
+    background: rgb(238, 238, 238);
+    font-size: 3.25rem;
+    transition: 0.075s ease-in-out;
+    border-radius: 7px;
+    box-shadow: 0 9px #999;
+  }
+}
+@media only screen and (orientation: landscape) and (device-width: 768px) {
+  .box {
+    height: var(--box-width2);
+    width: var(--box-width2);
+    margin: var(--margin-width2);
+    display: flex;
+    place-content: center;
+    place-items: center;
+    background: rgb(238, 238, 238);
+    font-size: 3.25rem;
+    transition: 0.075s ease-in-out;
+    border-radius: 7px;
+    box-shadow: 0 9px #999;
+  }
 }
 @media (width > 1200px) {
   .box {

@@ -241,7 +241,21 @@ body:not(:has(*)) {
   --stagger-delaay: 0.1s;
   transition: 0.3s;
 }
-@media all and (device-width: 768px) {
+@media only screen and (orientation: portrait) and (device-width: 768px) {
+  .grid {
+    grid-area: matching-grid;
+    max-width: 500px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1.5fr 75px 1fr 75px 1.5fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "capitals start-dot-div ..... end-dot-div lowercase";
+    overflow: hidden;
+    --stagger-delaay: 0.1s;
+    transition: 0.3s;
+  }
+}
+@media only screen and (orientation: landscape) and (device-width: 768px) {
   .grid {
     max-width: 1000px;
     max-height: 700px;
@@ -282,7 +296,20 @@ body:not(:has(*)) {
   place-items: center;
   z-index: 0;
 }
-@media all and (device-width: 768px) {
+@media only screen and (orientation: portrait) and (device-width: 768px) {
+  .capitals,
+  .lowercase {
+    grid-area: capitals;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    column-gap: 50px;
+    place-content: center;
+    place-items: center;
+    z-index: 0;
+  }
+}
+@media only screen and (orientation: landscape) and (device-width: 768px) {
   .capitals,
   .lowercase {
     grid-area: capitals;
@@ -328,7 +355,20 @@ body:not(:has(*)) {
   place-items: center;
   justify-items: center;
 }
-@media all and (device-width: 768px) {
+@media only screen and (orientation: portrait) and (device-width: 768px) {
+  .start-dot-div,
+  .end-dot-div {
+    grid-area: start-dot-div;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    column-gap: 50px;
+    place-content: center;
+    place-items: center;
+    justify-items: center;
+  }
+}
+@media only screen and (orientation: landscape) and (device-width: 768px) {
   .start-dot-div,
   .end-dot-div {
     grid-area: start-dot-div;
@@ -457,6 +497,17 @@ body:not(:has(*)) {
   place-items: center;
   z-index: 31;
 }
+@media only screen and (device-width: 768px) {
+  .dot-enclosure {
+    width: 120px;
+    height: 100px;
+    background: transparent;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    z-index: 31;
+  }
+}
 @media (width > 1200px) {
   .dot-enclosure {
     width: 120px;
@@ -558,8 +609,19 @@ body:not(:has(*)) {
   place-items: center;
   transition: 0.25s ease-in-out;
 }
-
-@media all and (device-width: 768px) {
+@media only screen and (orientation: portrait) and (device-width: 768px) {
+  .home-btn-container {
+    grid-area: home-btn-container;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas: "home-btn pause-btn";
+    place-content: center;
+    place-items: center;
+    transition: 0.25s ease-in-out;
+  }
+}
+@media only screen and (orientation: landscape) and (device-width: 768px) {
   .home-btn-container {
     grid-area: home-btn-container;
     display: flex;
