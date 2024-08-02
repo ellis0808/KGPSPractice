@@ -101,18 +101,19 @@ body:not(:has(*)) {
 }
 @media (orientation: landscape) and (min-width: 600px) {
   .container {
-    grid-template-columns: 0.5fr 1fr 1fr 0.25fr;
-    grid-template-rows: 0.2fr 0.2fr 1fr 0.2fr 0.2fr;
+    grid-template-columns: 1fr 1fr 1fr 0.25fr;
+    grid-template-rows: 0.15fr 0.35fr 1fr 0.2fr 0.2fr;
     grid-template-areas:
       "  ..... ..... ..... ....."
-      "home-btn-container  ..... ..... btn-container3"
-      "btn-container1 number-grid number-grid btn-container3"
-      "btn-container1 number-grid number-grid  btn-container3"
+      "home-btn-container btn-container3 btn-container3 ....."
+      "btn-container1 number-grid number-grid ....."
+      "btn-container1 number-grid number-grid  ....."
       "..... ..... ..... .....";
   }
 }
 @media (width > 1200px) {
   .container {
+    max-width: 2000px;
     grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
     grid-template-rows: 0.1fr 0.15fr 0.2fr 1fr 0.1fr;
     grid-template-areas:
@@ -141,7 +142,7 @@ body:not(:has(*)) {
   .btn-container1 {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, 1fr);
-    grid-template-areas: "round-display  score-display";
+    grid-template-areas: "round-display" "score-display";
     padding-top: 4rem;
     align-self: start;
     justify-items: center;
@@ -247,8 +248,10 @@ body:not(:has(*)) {
 @media (orientation: landscape) and (min-width: 600px) {
   .home-btn-container {
     grid-area: home-btn-container;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas: "home-btn pause-btn";
     place-content: right;
     place-items: right;
     padding-top: 2.5rem;
@@ -646,20 +649,19 @@ body:not(:has(*)) {
   place-items: center;
   position: center;
 }
-@media (orientation: landscape) and (min-width: 600px) {
+@media (min-width: 600px) {
   .answer-display {
-    flex-direction: column;
-  }
-}
-@media (width > 1200px) {
-  .answer-display {
-    grid-area: answer-display;
-    font-family: var(--font-fam);
-    text-align: center;
-    font-size: 4em;
+    font-size: 4rem;
     letter-spacing: 15px;
   }
 }
+/* @media (width > 1200px) {
+  .answer-display {
+    grid-area: answer-display;
+    font-size: 4em;
+    letter-spacing: 15px;
+  }
+} */
 
 :root {
   --box-width: 65px;
