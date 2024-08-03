@@ -16,6 +16,10 @@ import {
 import { numbersFluencySfx } from "./audio.js";
 import { feedbackAudioObject } from "../../../utilities/feedback-object.js";
 import { numbersAudioObject } from "../../../utilities/numbers-audio-object.js";
+import {
+  disableTouch,
+  enableTouch,
+} from "../../../utilities/disable-enable-touch.js";
 let interval = 2500;
 let run;
 let isPaused = false;
@@ -32,6 +36,7 @@ let numberOfRightAnswers = 0;
 let maxWrongAnswers = 5;
 let correctAnswerPoints;
 let incorrectAnswerPoints;
+let boxes = ".box";
 
 function startInterval() {
   if (!bannerDisplayed) {
@@ -69,7 +74,7 @@ function speakingInterval() {
     if (!isPaused) {
       getCurrentItem();
       if (!isPaused) {
-        enableTouch();
+        enableTouch(boxes);
         speak(currentItem);
 
         ++loop;
@@ -297,7 +302,7 @@ function removeBlur() {
 
 function pause() {
   isPaused = true;
-  disableTouch();
+  disableTouch(boxes);
   pauseBtn.removeEventListener("click", pause);
   setTimeout(() => {
     btnContainer1.classList.add("strong-blur");
@@ -308,7 +313,7 @@ function pause() {
 }
 function unpause() {
   pauseBtn.removeEventListener("click", unpause);
-  enableTouch();
+  enableTouch(boxes);
   removeBlur();
   setTimeout(() => {
     isPaused = false;
@@ -317,7 +322,7 @@ function unpause() {
 }
 function unpause2() {
   pauseBtn.removeEventListener("click", unpause);
-  enableTouch();
+  enableTouch(boxes);
   btnContainer1.classList.remove("strong-blur");
   btnContainer3.classList.remove("strong-blur");
   grid.classList.remove("strong-blur");
@@ -393,7 +398,6 @@ function displayStartBtn() {
 
 document.addEventListener("keydown", (event) => {
   if (appStarted) {
-    console.log("test");
     if (event.key === "Escape") {
       if (homeBtnIsGoHome) {
         goHome();
@@ -407,6 +411,7 @@ document.addEventListener("keydown", (event) => {
 });
 
 function endSession() {
+  removeHearts();
   appContainer.classList.add("hide");
   homeBtnContainer.classList.add("hide");
   clearInterval(run);
@@ -463,7 +468,6 @@ function startNewSession() {
   resetCorrectAnswerPoints();
   setTimeout(newRound, 300);
   setTimeout(() => {
-    enableTouch();
     tryAgainBtn.classList.remove("no-touch");
     finishBtn.classList.remove("no-touch");
   }, 4000);
@@ -475,6 +479,7 @@ function resetRoundNumberAndRoundDisplay() {
 }
 function newRound() {
   clearInterval(run);
+
   if (numberOfRightAnswers === 10) {
     feedbackAudioObject.positiveFeedback.greatJob.sound.play();
   } else if (numberOfRightAnswers > 7 && numberOfRightAnswers < 10) {
@@ -483,13 +488,14 @@ function newRound() {
     sessionOver();
     return;
   }
+  // disableTouch(boxes);
   setTimeout(() => {
     resetArrayItemCounter();
     resetLoop();
     ++round;
     determineInterval();
     determineCorrectAnswerPoints();
-    setHeartsArray();
+    setHeartsArrayForRoundOne();
     // if (!isPaused) {
     displayHeartsArray();
     if (round === 1) {
@@ -521,13 +527,12 @@ function startNewRound() {
   appContainer.appendChild(btnContainer3);
   btnContainer3.appendChild(answerDisplay);
   createGrid();
+  disableTouch(boxes);
   setTimeout(newRound, 1000);
   if (isPaused) {
     unpause2();
   }
-  setTimeout(() => {
-    enableTouch();
-  }, 300);
+
   setTimeout(() => {
     grid.classList.remove("gridHide");
     homeBtnContainer.appendChild(homeBtn);
@@ -538,10 +543,8 @@ function startNewRound() {
 }
 
 function sessionOver() {
-  disableTouch();
+  disableTouch(boxes);
   displayFinalScore();
-  setTimeout(disableTouch, 500);
-  setTimeout(disableTouch, 1000);
   displayTryAgainAndFinishBtns();
   grid.classList.add("blur");
   roundDisplay.classList.add("blur");
@@ -550,7 +553,7 @@ function sessionOver() {
 function gameOver() {
   if (heartsArray.length === 0) {
     setTimeout(() => {
-      disableTouch();
+      disableTouch(boxes);
     }, 300);
     clearInterval(run);
     setTimeout(() => {
@@ -622,6 +625,7 @@ function displayRound(round) {
   setTimeout(() => {
     bannerDisplayed = true;
   }, 1);
+
   let bannerContainer = document.createElement("div");
   let roundBanner = document.createElement("div");
   bannerContainer.classList.add("banner-container");
@@ -652,21 +656,7 @@ function roundEffect() {
   }, 500);
 }
 
-function disableTouch() {
-  const allTargets = document.querySelectorAll(".box");
-  allTargets.forEach((target) => {
-    target.classList.add("no-touch");
-  });
-}
-function enableTouch() {
-  const allTargets = document.querySelectorAll(".box");
-  allTargets.forEach((target) => {
-    target.classList.remove("no-touch");
-  });
-}
-
 function userTouch(event) {
-  // event.target.classList.add('depress-btn')
   let currentAnswer = event.target.getAttribute("item");
   checkAnswer(currentAnswer, event);
 }
@@ -676,7 +666,7 @@ function checkAnswer(currentAnswer, event) {
     numbersFluencySfx.correct.play();
     updatePositiveCount(correctAnswerPoints);
     ++numberOfRightAnswers;
-    disableTouch();
+    disableTouch(boxes);
   } else {
     numbersFluencySfx.incorrect.play();
     heartsArray.pop();
@@ -704,8 +694,9 @@ function displayHeartsArray() {
   answerDisplay.innerHTML = `${heartsArray.join("")}`;
   answerDisplay.classList.add("pulse");
 }
-function setHeartsArray() {
-  if (heartsArray.length === 0) {
+function setHeartsArrayForRoundOne() {
+  if (round === 1) {
+    heartsArray.length = 0;
     let i;
     for (i = 0; i < maxNumberOfHearts; ++i) {
       heartsArray.push(`<i class="fa-solid fa-heart fa-1x"></i>`);
@@ -716,6 +707,12 @@ function restoreOneHeart() {
   if (heartsArray.length < maxNumberOfHearts) {
     heartsArray.push(`<i class="fa-solid fa-heart fa-1x"></i>`);
     numbersFluencySfx.restoreHeartSFX.play();
+    displayHeartsArray();
+  }
+}
+function removeHearts() {
+  if (heartsArray.length !== 0) {
+    heartsArray.length = 0;
     displayHeartsArray();
   }
 }

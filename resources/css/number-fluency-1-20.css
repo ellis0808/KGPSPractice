@@ -87,8 +87,10 @@ body:not(:has(*)) {
 }
 @media (orientation: portrait) and (min-width: 600px) {
   .container {
+    max-width: 2000px;
+    max-height: 2000px;
     grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
-    grid-template-rows: 0.05fr 0.1fr 0.2fr 1fr 0.1fr 0.2fr 0.2fr;
+    grid-template-rows: 0.05fr 0.1fr 0.3fr 1fr 0.1fr 0.2fr 0.1fr;
     grid-template-areas:
       "..... ..... ..... ....."
       "..... btn-container1 btn-container1 ....."
@@ -101,23 +103,25 @@ body:not(:has(*)) {
 }
 @media (orientation: landscape) and (min-width: 600px) {
   .container {
-    grid-template-columns: 1fr 1fr 1fr 0.25fr;
+    max-width: 2000px;
+    max-height: 2000px;
+    grid-template-columns: 1fr 0.05fr 1fr 1fr 0.25fr;
     grid-template-rows: 0.15fr 0.35fr 1fr 0.2fr 0.2fr;
     grid-template-areas:
-      "  ..... ..... ..... ....."
-      "home-btn-container btn-container3 btn-container3 ....."
-      "btn-container1 number-grid number-grid ....."
-      "btn-container1 number-grid number-grid  ....."
-      "..... ..... ..... .....";
+      "..... ..... ..... ..... ....."
+      "home-btn-container ..... btn-container3 btn-container3 ....."
+      "btn-container1 ..... number-grid number-grid ....."
+      "btn-container1 ..... number-grid number-grid ....."
+      ".....  ..... ..... ..... .....";
   }
 }
-@media (width > 1200px) {
+@media (min-width: 1200px) {
   .container {
     max-width: 2000px;
-    grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
-    grid-template-rows: 0.1fr 0.15fr 0.2fr 1fr 0.1fr;
+    grid-template-columns: 0.25fr 0.1fr 1fr 0.25fr;
+    grid-template-rows: 0.1fr 0.1fr 0.2fr 1fr 0.1fr;
     grid-template-areas:
-      "home-btn-container  ..... ..... ....."
+      ".....  ..... ..... ....."
       "home-btn-container btn-container1 btn-container1 ....."
       ".....  btn-container3  btn-container3 ....."
       ".....  number-grid number-grid ....."
@@ -146,6 +150,17 @@ body:not(:has(*)) {
     padding-top: 4rem;
     align-self: start;
     justify-items: center;
+  }
+}
+@media (min-width: 1200px) {
+  .btn-container1 {
+    grid-area: btn-container1;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.5fr 0.3fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "round-display  score-display";
+    justify-items: start;
   }
 }
 .btn-container2 {
@@ -189,17 +204,27 @@ body:not(:has(*)) {
   transition: 0.3s;
   z-index: 20;
 }
+@media (orientation: portrait) and (min-width: 600px) {
+  .grid {
+    grid-area: number-grid;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 1fr 1fr 1fr 0.1fr;
+    column-gap: 17px;
+    row-gap: 25px;
+  }
+}
 @media (orientation: landscape) and (min-width: 600px) {
   .grid {
     grid-area: number-grid;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr 1fr 1fr 0.1fr;
     column-gap: 12px;
     row-gap: 17px;
   }
 }
-@media (width > 1200px) {
+@media (min-width: 1200px) {
   .grid {
     grid-area: number-grid;
     padding: 20px;
@@ -257,11 +282,9 @@ body:not(:has(*)) {
     padding-top: 2.5rem;
   }
 }
-@media (width > 1200px) {
+@media (min-width: 1200px) {
   .home-btn-container {
     grid-area: home-btn-container;
-    display: flex;
-    flex-direction: column;
     place-content: right;
     place-items: right;
     padding-top: 2.5rem;
@@ -281,7 +304,7 @@ body:not(:has(*)) {
   z-index: 50;
   transition: 0.1s ease-in;
 }
-@media (width > 1200px) {
+@media (min-width: 1200px) {
   .home-btn {
     grid-area: home-btn;
     width: 25px;
@@ -305,7 +328,7 @@ body:not(:has(*)) {
   scale: 1.1;
   transition: 0.2s ease-in;
 }
-@media (width > 1200) {
+@media (min-width: 1200) {
   .home-btn-enlarge {
     scale: 1.75;
     transition: 0.2s ease-in;
@@ -378,7 +401,7 @@ body:not(:has(*)) {
   z-index: 50;
   transition: 0.1s ease-in;
 }
-@media (width > 1200) {
+@media (min-width: 1200) {
   .pause-btn {
     grid-area: pause-btn;
     width: 25px;
@@ -407,7 +430,7 @@ body:not(:has(*)) {
   scale: 1.1;
   transition: 0.2s ease-in;
 }
-@media (width > 1200) {
+@media (min-width: 1200) {
   .pause-btn-enlarge {
     scale: 1.75;
     transition: 0.2s ease-in;
@@ -415,30 +438,72 @@ body:not(:has(*)) {
 }
 .round-display {
   grid-area: round-display;
+  padding-left: 2rem;
+  padding-right: 2rem;
   color: white;
   font-size: 3.25rem;
-  display: flex;
-  place-content: start;
+  align-self: center;
+  justify-self: start;
 }
-@media (width > 1200) {
+@media (orientation: portrait) and (min-width: 600px) {
   .round-display {
     grid-area: round-display;
+    padding-left: 2rem;
+    padding-right: 2rem;
     color: white;
     font-size: 5rem;
-    display: flex;
-    place-content: start;
+    align-self: center;
+    justify-self: start;
+  }
+}
+@media (orientation: landscape) and (min-width: 600px) {
+  .round-display {
+    grid-area: round-display;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    color: white;
+    font-size: 4rem;
+    align-self: center;
+    justify-self: start;
+  }
+}
+@media (min-width: 1200px) {
+  .round-display {
+    grid-area: round-display;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    color: white;
+    font-size: 6rem;
+    align-self: center;
+    justify-self: start;
   }
 }
 .score-display {
   grid-area: score-display;
   color: rgb(248, 245, 56);
   font-size: 3.25rem;
-  display: flex;
-  place-content: left;
+  justify-self: end;
   margin-left: 40px;
 }
+@media (orientation: portrait) and (min-width: 600px) {
+  .score-display {
+    grid-area: score-display;
+    font-size: 3.25rem;
+    place-content: left;
+    margin-left: 40px;
+  }
+}
+@media (orientation: landscape) and (min-width: 600px) {
+  .score-display {
+    grid-area: score-display;
+    font-size: 6rem;
+    align-self: start;
+    justify-self: center;
+    margin-left: 0;
+  }
+}
 
-@media (width > 600px) {
+@media (width > 1200px) {
   .score-display {
     font-size: 6rem;
   }
