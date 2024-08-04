@@ -12,7 +12,6 @@ function updateRandomNumber() {
 function speak() {
   updateRandomNumber();
 
-  const synth = window.speechSynthesis;
   const randomWord = cardText[randomNumber];
 
   setTimeout(function () {
