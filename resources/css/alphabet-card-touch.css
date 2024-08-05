@@ -92,14 +92,14 @@ body:not(:has(*)) {
     max-width: 2000px;
     max-height: 2000px;
     grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
-    grid-template-rows: 0.05fr 0.1fr 0.1fr 1fr 0.1fr 0.1fr;
+    grid-template-rows: 0.05fr 0.1fr 0.1fr 0.6fr 0.1fr;
     grid-template-areas:
       "..... ..... ..... ..... "
       "..... btn-container1 btn-container1 ....."
       "..... btn-container3 btn-container3 ....."
       "..... card-grid card-grid ....."
       "..... home-btn-container home-btn-container ....."
-      "..... ..... ..... .....";
+      /* "..... ..... ..... ....." */;
   }
 }
 @media (orientation: landscape) and (min-width: 600px) {
@@ -313,9 +313,10 @@ body:not(:has(*)) {
 @media (orientation: portrait) and (min-width: 600px) {
   .home-btn-container {
     grid-area: home-btn-container;
-    place-content: right;
-    place-items: right;
-    padding-top: 2.5rem;
+    /* place-content: right;
+    place-items: right; */
+    align-items: start;
+    /* padding-top: 2.5rem; */
   }
 }
 @media (min-width: 1200px) {
@@ -341,14 +342,16 @@ body:not(:has(*)) {
   transition: 0.1s ease-in;
   margin-right: 1.5rem;
 }
-@media all and (device-width: 768px) {
+@media (min-width: 600px) {
   .home-btn {
     grid-area: home-btn;
     width: 30px;
     height: 30px;
-    margin-top: 15px;
+    display: grid;
+    /* margin-top: 15px;
     margin-bottom: 10px;
-    margin-right: 0;
+    margin-right: 0; */
+    align-self: start;
   }
 }
 @media (width > 1200px) {

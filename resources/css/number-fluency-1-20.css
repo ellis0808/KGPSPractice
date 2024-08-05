@@ -106,7 +106,7 @@ body:not(:has(*)) {
     max-width: 2000px;
     max-height: 2000px;
     grid-template-columns: 1fr 0.05fr 1fr 1fr 0.25fr;
-    grid-template-rows: 0.15fr 0.35fr 1fr 0.2fr 0.2fr;
+    grid-template-rows: 0.05fr 0.35fr 1fr 0.2fr 0.2fr;
     grid-template-areas:
       "..... ..... ..... ..... ....."
       "home-btn-container ..... btn-container3 btn-container3 ....."
@@ -164,6 +164,8 @@ body:not(:has(*)) {
   }
 }
 .btn-container2 {
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: 0.5fr 1fr 0.5fr;
   grid-template-rows: repeat(3, 1fr);
@@ -488,7 +490,7 @@ body:not(:has(*)) {
 @media (orientation: portrait) and (min-width: 600px) {
   .score-display {
     grid-area: score-display;
-    font-size: 3.25rem;
+    font-size: 6rem;
     place-content: left;
     margin-left: 40px;
   }
@@ -758,7 +760,7 @@ body:not(:has(*)) {
     place-content: center;
     place-items: center;
     background: rgb(238, 238, 238);
-    font-size: 3.25rem;
+    font-size: 4rem;
     transition: 0.075s ease-in-out;
     border-radius: 7px;
     box-shadow: 0 9px #999;
@@ -773,10 +775,9 @@ body:not(:has(*)) {
     place-content: center;
     place-items: center;
     background: rgb(238, 238, 238);
-    font-size: 3.25rem;
+    font-size: 4rem;
     transition: 0.075s ease-in-out;
     border-radius: 7px;
-    box-shadow: 0 9px #999;
   }
 }
 @media (width > 1200px) {
