@@ -1,4 +1,4 @@
-import { cardText } from "./alphabet-card-touch-capitals-index.js";
+import { cardText } from "./alphabet-card-touch-index.js";
 import { alphabetObject } from "../alphabet-audio-object.js";
 
 let correctCardID;
@@ -12,7 +12,6 @@ function updateRandomNumber() {
 function speak() {
   updateRandomNumber();
 
-  const synth = window.speechSynthesis;
   const randomWord = cardText[randomNumber];
 
   setTimeout(function () {

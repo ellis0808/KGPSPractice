@@ -4,12 +4,7 @@ import {
   navBar,
   stylesheet,
 } from "../../../utilities/variables.js";
-import {
-  cardTouchSfx,
-  correctCardID,
-  randomNumber,
-  speak,
-} from "./audio-lowercase.js";
+import { cardTouchSfx, correctCardID, randomNumber, speak } from "./audio.js";
 import { alphabet } from "./alphabet.js";
 import { alphabetObject } from "../alphabet-audio-object.js";
 import { wobble, spinfade, newRoundCardFlip, particles } from "./FX.js";
@@ -28,8 +23,9 @@ import { feedbackAudioObject } from "../../../utilities/feedback-object.js";
 /* SCORING */
 const correctAnswerPoints = 2;
 const incorrectAnswerPoints = 1;
+let style;
 
-function alphabetLowercaseCardTouchApp() {
+function alphabetCardTouchApp(capitals) {
   setTimeout(() => {
     resetTimer();
     mainContainer.appendChild(appContainer);
@@ -51,6 +47,12 @@ function alphabetLowercaseCardTouchApp() {
   score.resetScore();
   scoreDisplay.innerText = score.currentScore;
   appContainer.classList.remove("hide");
+  if (capitals) {
+    console.log(capitals);
+    style = 1;
+    return style;
+  }
+  return style;
 }
 
 const appContainer = document.createElement("div");
@@ -413,13 +415,21 @@ function createBoard() {
       lettersArray.forEach(() => {
         const card = document.createElement("div");
         card.setAttribute("txt", lettersArray[i]);
-        newCardText = card.getAttribute("txt");
+        if (style === 1) {
+          newCardText = card.getAttribute("txt").toUpperCase();
+        } else {
+          newCardText = card.getAttribute("txt");
+        }
         card.textContent = newCardText;
         card.setAttribute("contentId", i);
         card.classList.add("card");
         grid.append(card);
         card.addEventListener("click", touchCard);
-        cardText.push(newCardText);
+        if (style === 1) {
+          cardText.push(newCardText.toLowerCase());
+        } else {
+          cardText.push(newCardText);
+        }
         ++i;
       });
       btnContainer3.appendChild(repeatBtn);
@@ -621,7 +631,7 @@ function returnToApp() {
 }
 
 export {
-  alphabetLowercaseCardTouchApp,
+  alphabetCardTouchApp,
   startAlphabetCardTouchApp,
   cardText,
   scoreDisplay,

@@ -92,14 +92,13 @@ body:not(:has(*)) {
     max-width: 2000px;
     max-height: 2000px;
     grid-template-columns: 0.25fr 1fr 1fr 0.25fr;
-    grid-template-rows: 0.05fr 0.1fr 0.1fr 0.6fr 0.1fr;
+    grid-template-rows: 0.05fr 0.1fr 0.1fr 1fr 0.3fr;
     grid-template-areas:
       "..... ..... ..... ..... "
       "..... btn-container1 btn-container1 ....."
       "..... btn-container3 btn-container3 ....."
       "..... card-grid card-grid ....."
-      "..... home-btn-container home-btn-container ....."
-      /* "..... ..... ..... ....." */;
+      "..... home-btn-container home-btn-container .....";
   }
 }
 @media (orientation: landscape) and (min-width: 600px) {
@@ -107,11 +106,10 @@ body:not(:has(*)) {
     max-width: 2000px;
     max-height: 2000px;
     grid-template-columns: 1fr 0.05fr 1fr 1fr 0.25fr;
-    grid-template-rows: 0.15fr 0.2fr 0.1fr 1fr 1fr 0.1fr;
+    grid-template-rows: 0.15fr 0.5fr 1fr 1fr 0.1fr;
     grid-template-areas:
       "..... ..... ..... ..... ..... "
-      "home-btn-container ..... ..... ..... ....."
-      "btn-container1 ..... card-grid card-grid ....."
+      "home-btn-container ..... card-grid card-grid ....."
       "btn-container1 ..... card-grid card-grid ....."
       "btn-container3 ..... card-grid card-grid ....."
       "..... ..... ..... ..... .....";
@@ -308,15 +306,18 @@ body:not(:has(*)) {
   grid-template-areas: "home-btn pause-btn";
   place-content: center;
   place-items: center;
+  align-self: start;
   transition: 0.25s ease-in-out;
 }
 @media (orientation: portrait) and (min-width: 600px) {
   .home-btn-container {
+    margin-top: 1rem;
+  }
+}
+@media (orientation: landscape) and (min-width: 600px) {
+  .home-btn-container {
     grid-area: home-btn-container;
-    /* place-content: right;
-    place-items: right; */
-    align-items: start;
-    /* padding-top: 2.5rem; */
+    align-content: start;
   }
 }
 @media (min-width: 1200px) {
@@ -336,22 +337,27 @@ body:not(:has(*)) {
   border: transparent;
   font-size: 1.75rem;
   display: flex;
-  place-content: center;
-  place-items: center;
   z-index: 50;
   transition: 0.1s ease-in;
   margin-right: 1.5rem;
 }
-@media (min-width: 600px) {
+@media (orientation: portrait) and (min-width: 600px) {
   .home-btn {
     grid-area: home-btn;
     width: 30px;
     height: 30px;
     display: grid;
-    /* margin-top: 15px;
-    margin-bottom: 10px;
-    margin-right: 0; */
+    margin: none;
     align-self: start;
+  }
+}
+@media (orientation: landscape) and (min-width: 600px) {
+  .home-btn {
+    grid-area: home-btn;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    margin: none;
   }
 }
 @media (width > 1200px) {
@@ -450,6 +456,21 @@ body:not(:has(*)) {
   z-index: 50;
   transition: 0.1s ease-in;
   margin-left: 1.5rem;
+}
+@media (orientation: portrait) and (min-width: 600px) {
+  .pause-btn {
+    grid-area: pause-btn;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    color: var(--clr-acc1);
+    font-size: 2.3rem;
+    display: grid;
+    align-self: start;
+    margin-left: 2rem;
+    z-index: 50;
+    transition: 0.1s ease-in;
+  }
 }
 @media all and (min-width: 600px) {
   .pause-btn {

@@ -10,8 +10,7 @@ import {
   parentsInfo,
 } from "../../utilities/variables.js";
 import {
-  startCapitalsAlphabetCardTouchApp,
-  startLowercaseAlphabetCardTouchApp,
+  startAlphabetCardTouchApp,
   startAlphabetMatchingApp,
   startNumberFluency1to20App,
   startSpellingTouchApp,
@@ -169,6 +168,8 @@ Specific Menu Items
 **********
 */
 
+let capitals = false;
+
 /* "Alphabet" Menu Items  (2) */
 
 // 1. Alphabet Capitals Touch App Menu Item
@@ -180,10 +181,14 @@ alphabetCapitalsCardTouchAppMenuItem.setAttribute(
 // abcMenu.setAttribute("page-id", "mainMenu");
 alphabetCapitalsCardTouchAppMenuItem.classList.add("div");
 alphabetCapitalsCardTouchAppMenuItem.innerText = "Card Touch!\r\n ABC";
-alphabetCapitalsCardTouchAppMenuItem.addEventListener(
-  "click",
-  startCapitalsAlphabetCardTouchApp
-);
+alphabetCapitalsCardTouchAppMenuItem.addEventListener("click", () => {
+  capitals = true;
+  if (capitals) {
+    console.log(capitals);
+
+    startAlphabetCardTouchApp(capitals);
+  }
+});
 
 const alphabetLowercaseCardTouchAppMenuItem = document.createElement("div");
 alphabetLowercaseCardTouchAppMenuItem.setAttribute(
@@ -193,10 +198,13 @@ alphabetLowercaseCardTouchAppMenuItem.setAttribute(
 // abcMenu.setAttribute("page-id", "mainMenu");
 alphabetLowercaseCardTouchAppMenuItem.classList.add("div");
 alphabetLowercaseCardTouchAppMenuItem.innerText = "Card Touch!\r\n abc";
-alphabetLowercaseCardTouchAppMenuItem.addEventListener(
-  "click",
-  startLowercaseAlphabetCardTouchApp
-);
+alphabetLowercaseCardTouchAppMenuItem.addEventListener("click", () => {
+  capitals = false;
+  if (!capitals) {
+    console.log(capitals);
+    startAlphabetCardTouchApp();
+  }
+});
 
 // 2. Alphabet Matching App Menu Item
 const alphabetMatchingAppMenuItem = document.createElement("div");
