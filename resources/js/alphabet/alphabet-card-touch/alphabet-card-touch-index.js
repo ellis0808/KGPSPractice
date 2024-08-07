@@ -620,7 +620,7 @@ function displayGoHomeConfirmation() {
   reallyGoHomeContainer.appendChild(cancelGoHomeBtn);
 }
 function returnToApp() {
-  appContainer.removeChild(reallyGoHomeContainer);
+  btnContainer4.removeChild(reallyGoHomeContainer);
   homeBtnReturnToNormal();
   unpause();
   homeBtnIsGoHome = true;
