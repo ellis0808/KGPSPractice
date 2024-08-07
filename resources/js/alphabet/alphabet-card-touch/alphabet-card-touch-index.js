@@ -34,6 +34,7 @@ function alphabetCardTouchApp(capitals) {
     appContainer.appendChild(btnContainer1);
     appContainer.appendChild(btnContainer2);
     appContainer.appendChild(btnContainer3);
+    appContainer.appendChild(btnContainer4);
     btnContainer2.appendChild(startBtn);
     btnContainer2.appendChild(exitBtn);
   }, 0);
@@ -71,6 +72,8 @@ pauseBtn.classList.add("pause-btn");
 pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
 pauseBtn.addEventListener("click", pause);
 appContainer.appendChild(homeBtnContainer);
+const btnContainer4 = document.createElement("div");
+btnContainer4.classList.add("btn-container4");
 const reallyGoHomeContainer = document.createElement("div");
 reallyGoHomeContainer.classList.add("go-home-container", "card-touch-app");
 const reallyGoHomeMessageContainer = document.createElement("div");
@@ -506,6 +509,7 @@ document.addEventListener("keydown", (event) => {
   }
 });
 function endSession() {
+  style = 0;
   unpause2();
   homeBtnReturnToNormal();
   resetNavigationBtns();
@@ -524,6 +528,7 @@ function endSession() {
   appStarted = false;
   removeBlur();
   grid.remove();
+  return style;
 }
 
 function endApp() {
@@ -610,7 +615,7 @@ function homeBtnReturnToNormal() {
   homeBtn.classList.remove("home-btn-enlarge");
 }
 function displayGoHomeConfirmation() {
-  appContainer.appendChild(reallyGoHomeContainer);
+  btnContainer4.appendChild(reallyGoHomeContainer);
   reallyGoHomeContainer.appendChild(reallyGoHomeBtn);
   reallyGoHomeContainer.appendChild(cancelGoHomeBtn);
 }

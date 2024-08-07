@@ -141,6 +141,13 @@ body:not(:has(*)) {
     grid-template-areas: "timer" "score-display";
   }
 }
+@media (min-width: 1200px) {
+  .btn-container1 {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "timer score-display";
+  }
+}
 .btn-container2 {
   width: 100%;
   height: 100%;
@@ -155,6 +162,7 @@ body:not(:has(*)) {
   place-content: center;
   place-items: center;
 }
+
 .btn-container3 {
   grid-area: btn-container3;
   display: grid;
@@ -168,6 +176,20 @@ body:not(:has(*)) {
     grid-template-areas: "repeat-btn";
     align-items: start;
   }
+}
+.btn-container4 {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "..... ..... ....."
+    "..... go-home-container ....."
+    "..... ..... .....";
+  position: absolute;
+  place-content: center;
+  place-items: center;
 }
 #grid {
   grid-area: card-grid;
@@ -391,6 +413,7 @@ body:not(:has(*)) {
   transition: 0.2s ease-in;
 }
 .go-home-container {
+  grid-area: go-home-container;
   width: 375px;
   height: 175px;
   background-color: var(--clr-acc1);
@@ -562,6 +585,7 @@ body:not(:has(*)) {
   margin-bottom: 1rem;
   padding: 0px 0px;
   background: rgb(26, 26, 168);
+  z-index: 30;
 }
 @media (orientation: landscape) and (min-width: 600px) {
   #repeat-btn {
