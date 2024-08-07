@@ -269,6 +269,10 @@ function numberFluency1to20App() {
   score.resetScore();
   scoreDisplay.innerText = score.currentScore;
   appContainer.classList.remove("hide");
+
+  if (!scoreDisplay.classList.contains("hide2")) {
+    toggleScoreDisplayHide();
+  }
 }
 
 /* Removes Main App and Returns to Main Menu*/
@@ -522,6 +526,9 @@ function newRound() {
 }
 
 function startNewRound() {
+  if (scoreDisplay.classList.contains("hide2")) {
+    toggleScoreDisplayHide();
+  }
   removeBlur();
   appContainer.appendChild(btnContainer1);
   btnContainer1.appendChild(scoreDisplay);

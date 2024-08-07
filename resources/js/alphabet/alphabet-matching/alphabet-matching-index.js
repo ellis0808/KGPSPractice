@@ -31,6 +31,7 @@ import {
 } from "./dot-objects-control.js";
 import { feedbackAudioObject } from "../../../utilities/feedback-object.js";
 import { spinfade } from "./fx.js";
+import { timer, toggleTimerHide } from "../../../utilities/timer-object.js";
 
 /* SCORING */
 const correctAnswerPoints = 1;
@@ -41,9 +42,6 @@ const appContainer = document.createElement("div");
 appContainer.classList.add("container", "letter-matching-app");
 
 // Button Container 1 (Timer & Score Display)
-const timer = document.createElement("div");
-timer.classList.add("timer");
-timer.textContent = "1:00";
 
 // toggleScoreDisplayHide();
 scoreDisplay.textContent = `${score.currentScore}`;
@@ -151,7 +149,14 @@ function alphabetMatchingApp() {
   score.resetScore();
   resetTimer();
   scoreDisplay.innerText = score.currentScore;
+
   appContainer.classList.remove("hide");
+  if (!scoreDisplay.classList.contains("hide2")) {
+    toggleScoreDisplayHide();
+  }
+  if (!timer.classList.contains("hide2")) {
+    toggleTimerHide();
+  }
 }
 
 function endApp() {
@@ -317,6 +322,8 @@ function endSession() {
   appStarted = false;
   removeBlur();
   clearBoard();
+  toggleScoreDisplayHide();
+  toggleTimerHide();
 }
 
 function removeEndMessagesContainer() {
@@ -366,6 +373,12 @@ function startNewSession() {
 }
 
 function startNewRound() {
+  if (scoreDisplay.classList.contains("hide2")) {
+    toggleScoreDisplayHide();
+  }
+  if (timer.classList.contains("hide2")) {
+    toggleTimerHide();
+  }
   homeBtnContainer.classList.remove("hide");
   grid.classList.remove("blur");
   timer.classList.remove("blur");

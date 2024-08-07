@@ -21,12 +21,12 @@ import {
   restoreMainMenu,
 } from "../../../utilities/main-menu-display-toggle.js";
 import { feedbackAudioObject } from "../../../utilities/feedback-object.js";
+import { timer, toggleTimerHide } from "../../../utilities/timer-object.js";
 
 /* SCORING */
 const correctAnswerPoints = 2;
 const incorrectAnswerPoints = 1;
 let style;
-
 function alphabetCardTouchApp(capitals) {
   setTimeout(() => {
     resetTimer();
@@ -50,6 +50,13 @@ function alphabetCardTouchApp(capitals) {
   score.resetScore();
   scoreDisplay.innerText = score.currentScore;
   appContainer.classList.remove("hide");
+  appContainer.classList.remove("hide");
+  if (!scoreDisplay.classList.contains("hide2")) {
+    toggleScoreDisplayHide();
+  }
+  if (!timer.classList.contains("hide2")) {
+    toggleTimerHide();
+  }
   if (capitals) {
     style = 1;
     return style;
@@ -120,9 +127,6 @@ repeatBtn.textContent = "Repeat";
 toggleRepeatBtnHide();
 // toggleScoreDisplayHide();
 scoreDisplay.textContent = `${score.currentScore}`;
-const timer = document.createElement("div");
-timer.classList.add("timer");
-timer.textContent = "1:00";
 
 const tryAgainBtn = document.createElement("div");
 tryAgainBtn.classList.add("try-again-btn");
@@ -246,6 +250,12 @@ function removeBlur() {
   }
 }
 function startNewSession() {
+  if (scoreDisplay.classList.contains("hide2")) {
+    toggleScoreDisplayHide();
+  }
+  if (timer.classList.contains("hide2")) {
+    toggleTimerHide();
+  }
   isSessionFinished = false;
   appContainer.appendChild(grid);
   score.resetScore();
