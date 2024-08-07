@@ -253,6 +253,7 @@ function numberFluency1to20App() {
   setTimeout(() => {
     mainContainer.appendChild(appContainer);
     appContainer.appendChild(btnContainer2);
+    appContainer.appendChild(btnContainer4);
     btnContainer2.appendChild(startBtn);
     startBtn.textContent = "Start";
     btnContainer2.appendChild(exitBtn);
