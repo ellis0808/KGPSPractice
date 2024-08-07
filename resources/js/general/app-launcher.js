@@ -7,10 +7,8 @@ import { mainMenuSfx } from "./start-main-app.js";
 function startAlphabetCardTouchApp(capitals) {
   mainMenuSfx.select2.play();
   if (capitals) {
-    console.log(capitals);
     alphabetCardTouchApp(capitals);
   } else {
-    console.log(capitals);
     alphabetCardTouchApp();
   }
 }

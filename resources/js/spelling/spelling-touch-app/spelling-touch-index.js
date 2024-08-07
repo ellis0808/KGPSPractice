@@ -7,10 +7,6 @@ import {
   updateNegativeCount,
   updatePositiveCount,
 } from "../../../utilities/update-score.js";
-
-import { scoreDisplay } from "../../alphabet/alphabet-card-touch/alphabet-card-touch-capitals-index.js";
-import { alphabet } from "../../alphabet/alphabet-card-touch/alphabet.js";
-
 import { displayMainPage } from "../../general/start-main-app.js";
 import {
   removeMenuPage,
@@ -62,6 +58,11 @@ cancelGoHomeBtn.addEventListener("click", returnToApp);
 const timer = document.createElement("div");
 timer.classList.add("timer");
 timer.textContent = "1:00";
+const scoreDisplay = document.createElement("div");
+scoreDisplay.classList.add("score-display");
+scoreDisplay.setAttribute("id", "score-display");
+toggleScoreDisplayHide();
+scoreDisplay.textContent = `${score.currentScore}`;
 const grid = document.createElement("div");
 grid.classList.add("grid");
 const btnContainer1 = document.createElement("div");
@@ -654,6 +655,10 @@ function checkSpelling() {
     }
     return numberOfAttempts;
   }
+}
+
+function toggleScoreDisplayHide() {
+  scoreDisplay.classList.toggle("hide2");
 }
 
 export { word, spellingTouchApp };

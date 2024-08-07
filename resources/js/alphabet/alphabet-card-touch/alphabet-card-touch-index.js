@@ -10,6 +10,8 @@ import { alphabetObject } from "../alphabet-audio-object.js";
 import { wobble, spinfade, newRoundCardFlip, particles } from "./FX.js";
 import { score } from "../../../utilities/score-object.js";
 import {
+  scoreDisplay,
+  toggleScoreDisplayHide,
   updateNegativeCount,
   updatePositiveCount,
 } from "../../../utilities/update-score.js";
@@ -48,7 +50,6 @@ function alphabetCardTouchApp(capitals) {
   scoreDisplay.innerText = score.currentScore;
   appContainer.classList.remove("hide");
   if (capitals) {
-    console.log(capitals);
     style = 1;
     return style;
   }
@@ -114,10 +115,7 @@ repeatBtn.setAttribute("id", "repeat-btn");
 repeatBtn.addEventListener("click", repeat);
 repeatBtn.textContent = "Repeat";
 toggleRepeatBtnHide();
-const scoreDisplay = document.createElement("div");
-scoreDisplay.classList.add("score-display");
-scoreDisplay.setAttribute("id", "score-display");
-toggleScoreDisplayHide();
+// toggleScoreDisplayHide();
 scoreDisplay.textContent = `${score.currentScore}`;
 const timer = document.createElement("div");
 timer.classList.add("timer");
@@ -375,9 +373,7 @@ function displayTryAgainAndFinishBtns() {
 function toggleRepeatBtnHide() {
   repeatBtn.classList.toggle("hide2");
 }
-function toggleScoreDisplayHide() {
-  scoreDisplay.classList.toggle("hide2");
-}
+
 function repeat() {
   const synth = window.speechSynthesis;
   const randomLetter = cardText[randomNumber];
@@ -630,9 +626,4 @@ function returnToApp() {
   pauseBtn.addEventListener("click", pause);
 }
 
-export {
-  alphabetCardTouchApp,
-  startAlphabetCardTouchApp,
-  cardText,
-  scoreDisplay,
-};
+export { alphabetCardTouchApp, startAlphabetCardTouchApp, cardText };

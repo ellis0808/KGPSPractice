@@ -184,8 +184,6 @@ alphabetCapitalsCardTouchAppMenuItem.innerText = "Card Touch!\r\n ABC";
 alphabetCapitalsCardTouchAppMenuItem.addEventListener("click", () => {
   capitals = true;
   if (capitals) {
-    console.log(capitals);
-
     startAlphabetCardTouchApp(capitals);
   }
 });

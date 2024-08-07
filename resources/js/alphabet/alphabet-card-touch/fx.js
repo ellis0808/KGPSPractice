@@ -1,5 +1,4 @@
-import { cardTouchSfx } from "./audio-capitals.js";
-import { scoreDisplay } from "./alphabet-card-touch-capitals-index.js";
+import { cardTouchSfx } from "./audio.js";
 
 function wobble(e) {
   e.currentTarget.preventDefault;

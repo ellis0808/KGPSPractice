@@ -155,9 +155,8 @@ body:not(:has(*)) {
 }
 @media (min-width: 1200px) {
   .btn-container1 {
+    /* width: 100%; */
     grid-area: btn-container1;
-    width: 100%;
-    display: grid;
     grid-template-columns: 1.5fr 0.3fr;
     grid-template-rows: 1fr;
     grid-template-areas: "round-display  score-display";
@@ -472,6 +471,7 @@ body:not(:has(*)) {
 }
 @media (min-width: 1200px) {
   .round-display {
+    width: 100%;
     grid-area: round-display;
     padding-left: 2rem;
     padding-right: 2rem;
@@ -506,8 +506,9 @@ body:not(:has(*)) {
   }
 }
 
-@media (width > 1200px) {
+@media (min-width: 1200px) {
   .score-display {
+    width: 100%;
     font-size: 6rem;
   }
 }

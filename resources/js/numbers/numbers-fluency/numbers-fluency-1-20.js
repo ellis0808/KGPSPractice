@@ -2,12 +2,11 @@
 import { mainContainer, stylesheet } from "../../../utilities/variables.js";
 import { score } from "../../../utilities/score-object.js";
 import {
+  scoreDisplay,
+  toggleScoreDisplayHide,
   updateNegativeCount,
   updatePositiveCount,
 } from "../../../utilities/update-score.js";
-
-import { scoreDisplay } from "../../alphabet/alphabet-card-touch/alphabet-card-touch-capitals-index.js";
-
 import { displayMainPage } from "../../general/start-main-app.js";
 import {
   removeMenuPage,
@@ -203,6 +202,9 @@ cancelGoHomeBtn.textContent = "Cancel";
 cancelGoHomeBtn.addEventListener("click", returnToApp);
 
 /* Common UI Elements */
+
+// toggleScoreDisplayHide();
+// scoreDisplay.textContent = `${score.currentScore}`;
 const roundDisplay = document.createElement("div");
 roundDisplay.classList.add("round-display");
 roundDisplay.textContent = `Round 1`;

@@ -8,10 +8,11 @@ import {
 import { alphabet } from "../alphabet-card-touch/alphabet.js";
 import { score } from "../../../utilities/score-object.js";
 import {
+  scoreDisplay,
+  toggleScoreDisplayHide,
   updateNegativeCount,
   updatePositiveCount,
 } from "../../../utilities/update-score.js";
-import { scoreDisplay } from "../alphabet-card-touch/alphabet-card-touch-capitals-index.js";
 import { matchingSfx, speak } from "./audio.js";
 import { displayMainPage, startMainApp } from "../../general/start-main-app.js";
 import {
@@ -44,7 +45,7 @@ const timer = document.createElement("div");
 timer.classList.add("timer");
 timer.textContent = "1:00";
 
-toggleScoreDisplayHide();
+// toggleScoreDisplayHide();
 scoreDisplay.textContent = `${score.currentScore}`;
 
 const grid = document.createElement("div");
@@ -109,10 +110,6 @@ pauseBtn.addEventListener("click", pause);
 
 let endDotId;
 let startDotId;
-
-function toggleScoreDisplayHide() {
-  scoreDisplay.classList.toggle("hide2");
-}
 
 let isPaused = false;
 let appStarted = false;
