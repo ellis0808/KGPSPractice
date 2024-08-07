@@ -186,6 +186,8 @@ pauseBtn.classList.add("pause-btn");
 pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
 pauseBtn.addEventListener("click", pause);
 appContainer.appendChild(homeBtnContainer);
+const btnContainer4 = document.createElement("div");
+btnContainer4.classList.add("btn-container4");
 const reallyGoHomeContainer = document.createElement("div");
 reallyGoHomeContainer.classList.add("go-home-container");
 const reallyGoHomeMessageContainer = document.createElement("div");
@@ -369,12 +371,12 @@ function homeBtnReturnToNormal() {
   homeBtn.classList.remove("home-btn-enlarge");
 }
 function displayGoHomeConfirmation() {
-  appContainer.appendChild(reallyGoHomeContainer);
+  btnContainer4.appendChild(reallyGoHomeContainer);
   reallyGoHomeContainer.appendChild(reallyGoHomeBtn);
   reallyGoHomeContainer.appendChild(cancelGoHomeBtn);
 }
 function returnToApp() {
-  appContainer.removeChild(reallyGoHomeContainer);
+  btnContainer4.removeChild(reallyGoHomeContainer);
   homeBtnReturnToNormal();
   unpause();
   homeBtnIsGoHome = true;
