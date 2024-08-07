@@ -528,10 +528,17 @@ body:not(:has(*)) {
   transition: 0.6s;
 }
 
-@media (width > 600px) {
+@media (min-width: 600px) {
   #start-btn {
     height: 200px;
     width: 500px;
+  }
+}
+@media (min-width: 2000px) {
+  #start-btn {
+    height: 400px;
+    width: 1000px;
+    font-size: 10rem;
   }
 }
 #exit-btn {
@@ -553,11 +560,18 @@ body:not(:has(*)) {
   transition: 0.6s;
   animation: cardEntrance 0.5s ease-out;
 }
-@media (width > 600px) {
+@media (min-width: 600px) {
   #exit-btn {
     width: 75px;
     height: 75px;
     font-size: 2.5rem;
+  }
+}
+@media (min-width: 2000px) {
+  #exit-btn {
+    width: 150px;
+    height: 150px;
+    font-size: 6rem;
   }
 }
 #exit-btn:hover {
