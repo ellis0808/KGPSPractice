@@ -60,28 +60,24 @@ Main Menu Items
 
 const abcMenu = document.createElement("div");
 abcMenu.setAttribute("id", "div1");
-// abcMenu.setAttribute("page-id", "mainMenu");
-abcMenu.classList.add("div", "div-start-menu1");
+abcMenu.classList.add("div", "div-start-menu1", "main-menu-div");
 abcMenu.innerText = "ABCs";
 abcMenu.addEventListener("click", displayAbcMenu);
 const numbersMenu = document.createElement("div");
 numbersMenu.setAttribute("id", "div2");
-// abcMenu.setAttribute("page-id", "mainMenu");
-numbersMenu.classList.add("div", "div-start-menu2");
+numbersMenu.classList.add("div", "div-start-menu2", "main-menu-div");
 numbersMenu.innerText = "1,2,3";
 numbersMenu.addEventListener("click", displayNumbersMenu);
 const spellingMenu = document.createElement("div");
 spellingMenu.setAttribute("id", "div3");
-// abcMenu.setAttribute("page-id", "mainMenu");
-spellingMenu.classList.add("div", "div-start-menu3");
+spellingMenu.classList.add("div", "div-start-menu3", "main-menu-div");
 spellingMenu.addEventListener("click", displaySpellingMenu);
 
 spellingMenu.innerText = "Spelling";
 const div4 = document.createElement("div");
 div4.setAttribute("id", "div4");
-// abcMenu.setAttribute("page-id", "mainMenu");
 
-div4.classList.add("div", "div-start-menu4");
+div4.classList.add("div", "div-start-menu4", "main-menu-div");
 div4.innerText = "4";
 
 /* Top Page Menu Items Display Functions */
@@ -105,8 +101,8 @@ function setTopMenuVariables() {
 }
 
 const greetingDisplay = document.createElement("div");
-const pointsDisplay = document.createElement("div");
 greetingDisplay.classList.add("greeting-display");
+const pointsDisplay = document.createElement("div");
 pointsDisplay.classList.add("points-display");
 
 function displayGreeting() {
@@ -114,7 +110,7 @@ function displayGreeting() {
   returnToMainMenuToggle();
   const greeting = `Hi, ${user}!`;
   const userScore = `You have ${score.userScore} pts`;
-  topContainer.appendChild(greetingDisplay);
+  // topContainer.appendChild(greetingDisplay);
   topContainer.appendChild(pointsDisplay);
   greetingDisplay.textContent = greeting;
   pointsDisplay.textContent = userScore;
@@ -199,7 +195,6 @@ alphabetLowercaseCardTouchAppMenuItem.innerText = "Card Touch!\r\n abc";
 alphabetLowercaseCardTouchAppMenuItem.addEventListener("click", () => {
   capitals = false;
   if (!capitals) {
-    console.log(capitals);
     startAlphabetCardTouchApp();
   }
 });

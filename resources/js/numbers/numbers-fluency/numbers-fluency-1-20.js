@@ -556,8 +556,7 @@ function startNewRound() {
 
 function sessionOver() {
   disableTouch(boxes);
-  displayFinalScore();
-  displayTryAgainAndFinishBtns();
+  displayEndMessagesContainer();
   grid.classList.add("blur");
   roundDisplay.classList.add("blur");
   scoreDisplay.classList.add("blur");
@@ -569,25 +568,49 @@ function gameOver() {
     }, 300);
     clearInterval(run);
     setTimeout(() => {
-      displayFinalScore();
-      displayTryAgainAndFinishBtns();
+      displayEndMessagesContainer();
     }, 500);
   }
 }
 
-function displayFinalScore() {
-  const endGameMessagesContainer = document.createElement("div");
-  endGameMessagesContainer.classList.add("end-messages-container");
-  appContainer.appendChild(endGameMessagesContainer);
-  const finalScoreAlert = document.createElement("div");
-  finalScoreAlert.classList.add("final-score-alert");
-  finalScoreAlert.innerText = `${score.currentScore} points!`;
-  setTimeout(() => {
-    endGameMessagesContainer.appendChild(finalScoreAlert);
-    setTimeout(() => {
-      finalScoreAlert.classList.add("flip");
-    });
-  }, 400);
+function displayEndMessagesContainer() {
+  const endMessagesContainer = document.createElement("div");
+  endMessagesContainer.classList.add("end-messages-container");
+  appContainer.appendChild(endMessagesContainer);
+  const finalScoreAssessment = document.createElement("div");
+  finalScoreAssessment.classList.add("final-score-assessment");
+  const finalScoreAlertScore = document.createElement("div");
+  finalScoreAlertScore.classList.add("final-score-alert-score");
+  const endMessagesContainerInnerBorder = document.createElement("div");
+  endMessagesContainerInnerBorder.classList.add("border");
+
+  switch (true) {
+    case score.currentScore < 5:
+      finalScoreAssessment.innerText = "Better Luck\r\nNext Time!";
+      break;
+    case score.currentScore > 31:
+      finalScoreAssessment.innerText = "Outstanding!";
+      break;
+    case score.currentScore > 27:
+      finalScoreAssessment.innerText = "Amazing!";
+      break;
+    case score.currentScore > 23:
+      finalScoreAssessment.innerText = "Excellent!";
+      break;
+    case score.currentScore > 18:
+      finalScoreAssessment.innerText = "Great Job!";
+
+      break;
+    case score.currentScore > 13:
+      finalScoreAssessment.innerText = "Good Job!";
+      break;
+  }
+  finalScoreAlertScore.innerText = `${score.currentScore}`;
+  endMessagesContainer.appendChild(finalScoreAssessment);
+  endMessagesContainer.appendChild(finalScoreAlertScore);
+  endMessagesContainer.appendChild(endMessagesContainerInnerBorder);
+  endMessagesContainer.appendChild(tryAgainBtn);
+  endMessagesContainer.appendChild(finishBtn);
   score.updateUserScore();
   setTimeout(() => {
     switch (true) {
@@ -611,19 +634,6 @@ function displayFinalScore() {
         break;
     }
   }, 300);
-}
-
-function displayTryAgainAndFinishBtns() {
-  const endGameMessagesContainer = document.querySelector(
-    ".end-messages-container"
-  );
-
-  setTimeout(() => {
-    endGameMessagesContainer.appendChild(tryAgainBtn);
-    tryAgainBtn.classList.add("slideinfromleft");
-    endGameMessagesContainer.appendChild(finishBtn);
-    finishBtn.classList.add("slideinfromright");
-  }, 1000);
 }
 
 /* 

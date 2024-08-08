@@ -595,132 +595,213 @@ body:not(:has(*)) {
   transition: 0.2s ease-in;
 }
 .end-messages-container {
-  height: 550px;
+  grid-area: end-messages-container;
   width: 300px;
+  height: 375px;
+  background-color: var(--clr-acc1);
+  color: var(--clr-wht);
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 125px 125px;
+  grid-template-rows: 1.3fr 0.8fr 1fr 1fr 0.2fr;
   grid-template-areas:
-    "final-score-alert"
-    "try-again-btn"
-    "finish-btn";
+    "final-score-assessment" "final-score-alert-score"
+    "try-again-btn" "finish-btn" ".....";
   place-content: center;
   place-items: center;
+  justify-items: stretch;
+  align-items: center;
   position: absolute;
+  border-radius: 12px;
+  z-index: 51;
+  box-shadow: 0px 24px 35px 7px rgba(0, 0, 0, 0.55);
 }
-@media (width > 600px) {
-  .end-messages-container {
-    height: 450px;
-    width: 700px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 130px;
-    row-gap: 20px;
-    grid-template-areas:
-      "final-score-alert final-score-alert"
-      "try-again-btn  finish-btn";
-    place-content: center;
-    place-items: center;
-    position: absolute;
-  }
-}
-.final-score-alert {
-  grid-area: final-score-alert;
-  height: 275px;
-  width: 300px;
-  margin: auto;
-  color: var(--clr-ylw);
-  opacity: 0;
-  border: transparent;
-  border-radius: 15px;
-  font-size: 5.5rem;
-  line-height: 1;
+.final-score-assessment {
+  grid-area: final-score-assessment;
+  place-content: start;
   text-align: center;
-  -webkit-text-stroke: 2px black;
-  display: flex;
-  place-content: center;
-  place-items: center;
-  z-index: 20;
-  position: absolute;
+  font-size: 2rem;
+  margin: auto;
 }
-@media (width > 600px) {
-  .final-score-alert {
-    grid-area: final-score-alert;
-    height: 275px;
-    width: 600px;
-    margin: auto;
-    color: var(--clr-wht);
-    background: var(--clr-acc1);
-    opacity: 0;
-    border: transparent;
-    border-radius: 40px;
-    font-size: 7rem;
-    display: flex;
-    place-content: center;
-    place-items: center;
-    z-index: 20;
-    position: absolute;
-    box-shadow: rgba(2, 8, 20, 0.8) 0px 15px 20px 7px,
-      rgba(2, 8, 20, 0.5) 0px 20px 30px 10px;
-  }
+.final-score-alert-score {
+  grid-area: final-score-alert-score;
+  font-size: 5rem;
+  margin: auto;
+  place-content: start;
+  z-index: 20;
 }
 .try-again-btn,
 .finish-btn {
-  /* width: 100%;
-  height: 100%; */
-  margin: auto;
-  /* padding: 20px; */
-  display: flex;
-  place-content: center;
-  place-items: center;
+  width: 75%;
+  height: 90%;
+  margin-top: 1.3rem;
+  margin-bottom: 1.3rem;
   color: white;
-  border: transparent;
-  border-radius: 15px;
-  font-size: 2.5rem;
-  line-height: 1.1;
+  place-content: center;
+  font-size: 1.75rem;
+  line-height: 0.9;
   text-align: center;
-  box-shadow: rgba(2, 8, 20, 0.5) 0px 20px 30px 10px;
-  position: absolute;
-  z-index: 21;
+  border-radius: 12px;
+  margin: auto;
+  z-index: 1;
   transition: 0.3s;
-}
-@media (width > 600px) {
-  .try-again-btn,
-  .finish-btn {
-    height: 90px;
-    width: 250px;
-    margin: auto;
-    padding: 20px;
-    display: flex;
-    place-content: center;
-    place-items: center;
-    color: white;
-    border: transparent;
-    border-radius: 30px;
-    font-size: 3rem;
-    line-height: 1.1;
-    text-align: center;
-    box-shadow: rgba(2, 8, 20, 0.5) 0px 20px 30px 10px;
-    position: absolute;
-    z-index: 21;
-    transition: 0.3s;
-  }
-}
-.try-again-btn {
-  grid-area: try-again-btn;
-  background: rgb(161, 29, 29);
-  margin-left: -600px;
-  opacity: 0;
-}
-.finish-btn {
-  grid-area: finish-btn;
-  background: rgb(26, 26, 168);
-  margin-left: 600px;
+  box-shadow: 0px 24px 35px 7px rgba(0, 0, 0, 0.3);
 }
 .try-again-btn:hover,
 .finish-btn:hover {
-  transform: scale(1.07);
+  box-shadow: rgba(2, 8, 20, 0.5) 0px 0.35em 1.175em,
+    rgba(2, 8, 20, 0.3) 0px 0.175em 0.5em;
+  transform: translateY(-3px) scale(1.07);
   transition: 0.3s;
+  z-index: 52;
+}
+
+.try-again-btn {
+  grid-area: try-again-btn;
+  background-color: rgb(26, 26, 168);
+}
+.finish-btn {
+  grid-area: finish-btn;
+  background-color: rgb(161, 29, 29);
+}
+@media (min-width: 600px) {
+  .end-messages-container {
+    grid-area: end-messages-container;
+    width: 400px;
+    height: 595px;
+    background-color: var(--clr-acc1);
+    color: var(--clr-wht);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.3fr 0.8fr 1fr 1fr 0.2fr;
+    grid-template-areas:
+      "final-score-assessment" "final-score-alert-score"
+      "try-again-btn" "finish-btn" ".....";
+    place-content: center;
+    place-items: center;
+    justify-items: stretch;
+    align-items: center;
+    position: absolute;
+    border-radius: 20px;
+    z-index: 51;
+    box-shadow: 0px 24px 35px 7px rgba(0, 0, 0, 0.55);
+  }
+  .final-score-assessment {
+    grid-area: final-score-assessment;
+    place-content: start;
+    text-align: center;
+    font-size: 3rem;
+    margin: auto;
+  }
+  .final-score-alert-score {
+    grid-area: final-score-alert-score;
+    font-size: 7rem;
+    margin: auto;
+    place-content: start;
+    z-index: 20;
+  }
+  .try-again-btn,
+  .finish-btn {
+    width: 75%;
+    height: 90%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    color: white;
+    place-content: center;
+    font-size: 2.5rem;
+    text-align: center;
+    border-radius: 15px;
+    margin: auto;
+    z-index: 1;
+    transition: 0.3s;
+    box-shadow: 0px 24px 35px 7px rgba(0, 0, 0, 0.3);
+  }
+  .try-again-btn:hover,
+  .finish-btn:hover {
+    box-shadow: rgba(2, 8, 20, 0.5) 0px 0.35em 1.175em,
+      rgba(2, 8, 20, 0.3) 0px 0.175em 0.5em;
+    transform: translateY(-3px) scale(1.07);
+    transition: 0.3s;
+    z-index: 52;
+  }
+
+  .try-again-btn {
+    grid-area: try-again-btn;
+    background-color: rgb(26, 26, 168);
+  }
+  .finish-btn {
+    grid-area: finish-btn;
+    background-color: rgb(161, 29, 29);
+  }
+}
+@media (min-width: 2000px) {
+  .end-messages-container {
+    grid-area: end-messages-container;
+    width: 800px;
+    height: 1190px;
+    background-color: var(--clr-acc1);
+    color: var(--clr-wht);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.3fr 0.8fr 1fr 1fr 0.2fr;
+    grid-template-areas:
+      "final-score-assessment" "final-score-alert-score"
+      "try-again-btn" "finish-btn" ".....";
+    place-content: center;
+    place-items: center;
+    justify-items: stretch;
+    align-items: center;
+    position: absolute;
+    border-radius: 40px;
+    z-index: 51;
+    box-shadow: 0px 24px 35px 7px rgba(0, 0, 0, 0.55);
+  }
+  .final-score-assessment {
+    grid-area: final-score-assessment;
+    place-content: start;
+    text-align: center;
+    font-size: 6rem;
+    margin: auto;
+  }
+  .final-score-alert-score {
+    grid-area: final-score-alert-score;
+    font-size: 7rem;
+    margin: auto;
+    place-content: start;
+    z-index: 20;
+  }
+  .try-again-btn,
+  .finish-btn {
+    width: 75%;
+    height: 90%;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    color: white;
+    place-content: center;
+    font-size: 5rem;
+    text-align: center;
+    border-radius: 30px;
+    margin: auto;
+    z-index: 1;
+    transition: 0.3s;
+    box-shadow: 0px 24px 35px 7px rgba(0, 0, 0, 0.3);
+  }
+  .try-again-btn:hover,
+  .finish-btn:hover {
+    box-shadow: rgba(2, 8, 20, 0.5) 0px 0.35em 1.175em,
+      rgba(2, 8, 20, 0.3) 0px 0.175em 0.5em;
+    transform: translateY(-3px) scale(1.07);
+    transition: 0.3s;
+    z-index: 52;
+  }
+
+  .try-again-btn {
+    grid-area: try-again-btn;
+    background-color: rgb(26, 26, 168);
+  }
+  .finish-btn {
+    grid-area: finish-btn;
+    background-color: rgb(161, 29, 29);
+  }
 }
 
 /*
@@ -952,7 +1033,7 @@ body:not(:has(*)) {
   animation: wobble 0.5s ease-in-out backwards;
   transition: var(--transition);
 }
-.slideinfromleft {
+/* .slideinfromleft {
   animation: slide-in-from-left 0.6s ease-in-out forwards;
   transition: var(--transition);
 }
@@ -962,7 +1043,7 @@ body:not(:has(*)) {
 }
 .red {
   animation: red 0.3s backwards;
-}
+} */
 
 /* Animations */
 

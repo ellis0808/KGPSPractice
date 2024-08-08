@@ -464,8 +464,6 @@ function displayEndMessagesContainer() {
   appContainer.appendChild(endMessagesContainer);
   const finalScoreAssessment = document.createElement("div");
   finalScoreAssessment.classList.add("final-score-assessment");
-  const finalScoreAlertHeader = document.createElement("div");
-  finalScoreAlertHeader.classList.add("final-score-alert-header");
   const finalScoreAlertScore = document.createElement("div");
   finalScoreAlertScore.classList.add("final-score-alert-score");
   const endMessagesContainerInnerBorder = document.createElement("div");
@@ -492,16 +490,12 @@ function displayEndMessagesContainer() {
       finalScoreAssessment.innerText = "Good Job!";
       break;
   }
-  finalScoreAlertHeader.innerText = `Score`;
   finalScoreAlertScore.innerText = `${score.currentScore}`;
-  setTimeout(() => {
-    endMessagesContainer.appendChild(finalScoreAssessment);
-    endMessagesContainer.appendChild(finalScoreAlertHeader);
-    endMessagesContainer.appendChild(finalScoreAlertScore);
-    endMessagesContainer.appendChild(endMessagesContainerInnerBorder);
-    endMessagesContainer.appendChild(tryAgainBtn);
-    endMessagesContainer.appendChild(finishBtn);
-  }, 400);
+  endMessagesContainer.appendChild(finalScoreAssessment);
+  endMessagesContainer.appendChild(finalScoreAlertScore);
+  endMessagesContainer.appendChild(endMessagesContainerInnerBorder);
+  endMessagesContainer.appendChild(tryAgainBtn);
+  endMessagesContainer.appendChild(finishBtn);
   setTimeout(() => {
     switch (true) {
       case score.currentScore < 5:
