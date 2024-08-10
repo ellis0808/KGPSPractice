@@ -328,12 +328,15 @@ function clearBoardFast() {
 }
 
 function displayEndMessagesContainer() {
+  score.updateUserScore();
+  const btnContainer5 = document.createElement("div");
+  btnContainer5.classList.add("btn-container5");
   const endMessagesContainer = document.createElement("div");
   endMessagesContainer.classList.add(
     "end-messages-container",
-    "card-touch-app"
+    "letter-matching-app"
   );
-  appContainer.appendChild(endMessagesContainer);
+  btnContainer5.appendChild(endMessagesContainer);
   const finalScoreAssessment = document.createElement("div");
   finalScoreAssessment.classList.add("final-score-assessment");
   const finalScoreAlertScore = document.createElement("div");

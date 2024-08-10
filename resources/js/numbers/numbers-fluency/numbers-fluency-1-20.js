@@ -574,15 +574,19 @@ function gameOver() {
 }
 
 function displayEndMessagesContainer() {
+  score.updateUserScore();
+  const btnContainer5 = document.createElement("div");
+  btnContainer5.classList.add("btn-container5");
   const endMessagesContainer = document.createElement("div");
-  endMessagesContainer.classList.add("end-messages-container");
-  appContainer.appendChild(endMessagesContainer);
+  endMessagesContainer.classList.add(
+    "end-messages-container",
+    "letter-matching-app"
+  );
+  btnContainer5.appendChild(endMessagesContainer);
   const finalScoreAssessment = document.createElement("div");
   finalScoreAssessment.classList.add("final-score-assessment");
   const finalScoreAlertScore = document.createElement("div");
   finalScoreAlertScore.classList.add("final-score-alert-score");
-  const endMessagesContainerInnerBorder = document.createElement("div");
-  endMessagesContainerInnerBorder.classList.add("border");
 
   switch (true) {
     case score.currentScore < 10:
@@ -607,7 +611,6 @@ function displayEndMessagesContainer() {
   finalScoreAlertScore.innerText = `${score.currentScore}`;
   endMessagesContainer.appendChild(finalScoreAssessment);
   endMessagesContainer.appendChild(finalScoreAlertScore);
-  endMessagesContainer.appendChild(endMessagesContainerInnerBorder);
   endMessagesContainer.appendChild(tryAgainBtn);
   endMessagesContainer.appendChild(finishBtn);
   score.updateUserScore();
