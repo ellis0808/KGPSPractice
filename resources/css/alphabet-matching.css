@@ -98,6 +98,17 @@ body:not(:has(*)) {
   overflow: hidden;
   touch-action: none;
 }
+@media (max-height: 500px) and (orientation: landscape) {
+  .container {
+    grid-template-columns: 0.5fr 1fr 1fr 0.25fr;
+    grid-template-rows: 0.2fr 0.2fr 1fr 0.2fr;
+    grid-template-areas:
+      "..... ..... ..... ....."
+      "home-btn-container matching-grid matching-grid ....."
+      "btn-container1  matching-grid matching-grid ....."
+      "..... ..... ..... .....";
+  }
+}
 @media (orientation: portrait) and (min-width: 600px) {
   .container {
     max-width: 2000px;
@@ -249,6 +260,20 @@ body:not(:has(*)) {
   overflow: hidden;
   --stagger-delaay: 0.1s;
   transition: 0.3s;
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .grid {
+    grid-area: matching-grid;
+    max-width: 400px;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1.5fr 75px 1fr 75px 1.5fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "capitals start-dot-div ..... end-dot-div lowercase";
+    overflow: hidden;
+    --stagger-delaay: 0.1s;
+    transition: 0.3s;
+  }
 }
 @media (orientation: portrait) and (min-width: 600px) {
   .grid {

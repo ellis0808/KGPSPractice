@@ -585,23 +585,22 @@ function displayEndMessagesContainer() {
   endMessagesContainerInnerBorder.classList.add("border");
 
   switch (true) {
-    case score.currentScore < 5:
+    case score.currentScore < 10:
       finalScoreAssessment.innerText = "Better Luck\r\nNext Time!";
       break;
-    case score.currentScore > 31:
+    case score.currentScore >= 150:
       finalScoreAssessment.innerText = "Outstanding!";
       break;
-    case score.currentScore > 27:
+    case score.currentScore >= 90:
       finalScoreAssessment.innerText = "Amazing!";
       break;
-    case score.currentScore > 23:
+    case score.currentScore >= 50:
       finalScoreAssessment.innerText = "Excellent!";
       break;
-    case score.currentScore > 18:
+    case score.currentScore >= 30:
       finalScoreAssessment.innerText = "Great Job!";
-
       break;
-    case score.currentScore > 13:
+    case score.currentScore >= 10:
       finalScoreAssessment.innerText = "Good Job!";
       break;
   }

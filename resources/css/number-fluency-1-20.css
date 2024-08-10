@@ -87,6 +87,7 @@ body:not(:has(*)) {
   margin: auto;
   overflow: hidden;
 }
+
 @media (orientation: portrait) and (min-width: 600px) {
   .container {
     max-width: 2000px;
@@ -106,7 +107,19 @@ body:not(:has(*)) {
   .container {
     max-width: 2000px;
     max-height: 2000px;
-    grid-template-columns: 1fr 0.05fr 1fr 1fr 0.25fr;
+    grid-template-columns: 1fr 0.05fr 1fr 1fr 0.05fr;
+    grid-template-rows: 0.05fr 0.25fr 1fr 0.2fr 0.2fr;
+    grid-template-areas:
+      "..... ..... ..... ..... ....."
+      "home-btn-container ..... btn-container3 btn-container3 ....."
+      "btn-container1 ..... number-grid number-grid ....."
+      "btn-container1 ..... number-grid number-grid ....."
+      ".....  ..... ..... ..... .....";
+  }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .container {
+    grid-template-columns: 1fr 0.05fr 1fr 1fr 0.05fr;
     grid-template-rows: 0.05fr 0.25fr 1fr 0.2fr 0.2fr;
     grid-template-areas:
       "..... ..... ..... ..... ....."
@@ -135,6 +148,7 @@ body:not(:has(*)) {
   grid-template-columns: 1.5fr 0.3fr;
   grid-template-areas: "round-display  score-display";
 }
+
 @media (orientation: portrait) and (min-width: 600px) {
   .btn-container1 {
     grid-area: btn-container1;
@@ -153,9 +167,18 @@ body:not(:has(*)) {
     justify-items: center;
   }
 }
+@media (max-height: 500px) and (orientation: landscape) {
+  .btn-container1 {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: "round-display" "score-display";
+    padding-top: 4rem;
+    align-self: start;
+    justify-items: center;
+  }
+}
 @media (min-width: 1200px) {
   .btn-container1 {
-    /* width: 100%; */
     grid-area: btn-container1;
     grid-template-columns: 1.5fr 0.3fr;
     grid-template-rows: 1fr;
@@ -192,6 +215,14 @@ body:not(:has(*)) {
     grid-template-areas: "answer-display";
   }
 }
+@media (max-height: 500px) and (orientation: landscape) {
+  .btn-container3 {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "answer-display";
+    margin-bottom: 1rem;
+  }
+}
 .btn-container4 {
   width: 100%;
   height: 100%;
@@ -220,6 +251,7 @@ body:not(:has(*)) {
   transition: 0.3s;
   z-index: 20;
 }
+
 @media (orientation: portrait) and (min-width: 600px) {
   .grid {
     grid-area: number-grid;
@@ -238,6 +270,17 @@ body:not(:has(*)) {
     grid-template-rows: 1fr 1fr 1fr 1fr 0.1fr;
     column-gap: 12px;
     row-gap: 17px;
+  }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .grid {
+    grid-area: number-grid;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 1fr 1fr 1fr 0.1fr;
+    column-gap: 10px;
+    row-gap: 13px;
+    margin-top: 1rem;
   }
 }
 @media (min-width: 1200px) {
@@ -274,6 +317,7 @@ body:not(:has(*)) {
   place-items: center;
   transition: 0.25s ease-in-out;
 }
+
 @media (orientation: portrait) and (min-width: 600px) {
   .home-btn-container {
     grid-area: home-btn-container;
@@ -296,6 +340,18 @@ body:not(:has(*)) {
     place-content: right;
     place-items: right;
     padding-top: 2.5rem;
+  }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .home-btn-container {
+    grid-area: home-btn-container;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas: "home-btn pause-btn";
+    place-content: right;
+    place-items: right;
+    /* padding-top: 2.5rem; */
   }
 }
 @media (min-width: 1200px) {
@@ -458,30 +514,26 @@ body:not(:has(*)) {
   padding-left: 2rem;
   padding-right: 2rem;
   color: white;
-  font-size: 3.25rem;
+  font-size: 3rem;
   align-self: center;
   justify-self: start;
 }
+
 @media (orientation: portrait) and (min-width: 600px) {
   .round-display {
-    grid-area: round-display;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    color: white;
     font-size: 5rem;
-    align-self: center;
-    justify-self: start;
   }
 }
 @media (orientation: landscape) and (min-width: 600px) {
   .round-display {
-    grid-area: round-display;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    color: white;
     font-size: 4rem;
-    align-self: center;
-    justify-self: start;
+  }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .round-display {
+    padding-left: 1rem;
+    padding-right: 0;
+    font-size: 3rem;
   }
 }
 @media (min-width: 1200px) {
@@ -490,10 +542,7 @@ body:not(:has(*)) {
     grid-area: round-display;
     padding-left: 2rem;
     padding-right: 2rem;
-    color: white;
     font-size: 6rem;
-    align-self: center;
-    justify-self: start;
   }
 }
 .score-display {
@@ -520,7 +569,15 @@ body:not(:has(*)) {
     margin-left: 0;
   }
 }
-
+@media (max-height: 500px) and (orientation: landscape) {
+  .score-display {
+    grid-area: score-display;
+    color: rgb(248, 245, 56);
+    font-size: 3.25rem;
+    justify-self: end;
+    margin-left: 40px;
+  }
+}
 @media (min-width: 1200px) {
   .score-display {
     width: 100%;
@@ -549,6 +606,12 @@ body:not(:has(*)) {
     width: 500px;
   }
 }
+@media (max-height: 500px) and (orientation: landscape) {
+  #start-btn {
+    height: 125px;
+    width: 250px;
+  }
+}
 @media (min-width: 2000px) {
   #start-btn {
     height: 400px;
@@ -559,8 +622,8 @@ body:not(:has(*)) {
 #exit-btn {
   transition: 0.1s ease-in;
   grid-area: exit-btn;
-  width: 40px;
-  height: 40px;
+  width: 75px;
+  height: 75px;
   margin: auto;
   margin-top: 10rem;
   color: var(--clr-acc1);
@@ -575,11 +638,10 @@ body:not(:has(*)) {
   transition: 0.6s;
   animation: cardEntrance 0.5s ease-out;
 }
-@media (min-width: 600px) {
+
+@media (max-height: 500px) and (orientation: landscape) {
   #exit-btn {
-    width: 75px;
-    height: 75px;
-    font-size: 2.5rem;
+    margin: 4rem;
   }
 }
 @media (min-width: 2000px) {
@@ -633,10 +695,12 @@ body:not(:has(*)) {
 .finish-btn {
   width: 75%;
   height: 90%;
+  display: grid;
   margin-top: 1.3rem;
   margin-bottom: 1.3rem;
   color: white;
   place-content: center;
+  align-items: center;
   font-size: 1.75rem;
   line-height: 0.9;
   text-align: center;
@@ -663,6 +727,7 @@ body:not(:has(*)) {
   grid-area: finish-btn;
   background-color: rgb(161, 29, 29);
 }
+
 @media (min-width: 600px) {
   .end-messages-container {
     grid-area: end-messages-container;
@@ -703,13 +768,88 @@ body:not(:has(*)) {
   .finish-btn {
     width: 75%;
     height: 90%;
+    display: grid;
     margin-top: 2rem;
     margin-bottom: 2rem;
     color: white;
     place-content: center;
     font-size: 2.5rem;
+    align-items: center;
     text-align: center;
     border-radius: 15px;
+    margin: auto;
+    z-index: 1;
+    transition: 0.3s;
+    box-shadow: 0px 24px 35px 7px rgba(0, 0, 0, 0.3);
+  }
+  .try-again-btn:hover,
+  .finish-btn:hover {
+    box-shadow: rgba(2, 8, 20, 0.5) 0px 0.35em 1.175em,
+      rgba(2, 8, 20, 0.3) 0px 0.175em 0.5em;
+    transform: translateY(-3px) scale(1.07);
+    transition: 0.3s;
+    z-index: 52;
+  }
+
+  .try-again-btn {
+    grid-area: try-again-btn;
+    background-color: rgb(26, 26, 168);
+  }
+  .finish-btn {
+    grid-area: finish-btn;
+    background-color: rgb(161, 29, 29);
+  }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .end-messages-container {
+    grid-area: end-messages-container;
+    width: 300px;
+    height: 375px;
+    background-color: var(--clr-acc1);
+    color: var(--clr-wht);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1.3fr 0.8fr 1fr 1fr 0.2fr;
+    grid-template-areas:
+      "final-score-assessment" "final-score-alert-score"
+      "try-again-btn" "finish-btn" ".....";
+    place-content: center;
+    place-items: center;
+    justify-items: stretch;
+    align-items: center;
+    position: absolute;
+    border-radius: 12px;
+    z-index: 51;
+    box-shadow: 0px 24px 35px 7px rgba(0, 0, 0, 0.55);
+  }
+  .final-score-assessment {
+    grid-area: final-score-assessment;
+    place-content: start;
+    text-align: center;
+    font-size: 2rem;
+    margin: auto;
+  }
+  .final-score-alert-score {
+    grid-area: final-score-alert-score;
+    font-size: 5rem;
+    margin: auto;
+    place-content: start;
+    z-index: 20;
+  }
+  .try-again-btn,
+  .finish-btn {
+    width: 75%;
+    height: 90%;
+    display: grid;
+    margin-top: 1.3rem;
+    margin-bottom: 1.3rem;
+    color: white;
+    place-content: center;
+    align-items: center;
+    font-size: 1.75rem;
+    line-height: 0.9;
+    text-align: center;
+    border-radius: 12px;
     margin: auto;
     z-index: 1;
     transition: 0.3s;
@@ -757,6 +897,7 @@ body:not(:has(*)) {
   }
   .final-score-assessment {
     grid-area: final-score-assessment;
+    display: grid;
     place-content: start;
     text-align: center;
     font-size: 6rem;
@@ -764,6 +905,7 @@ body:not(:has(*)) {
   }
   .final-score-alert-score {
     grid-area: final-score-alert-score;
+    display: grid;
     font-size: 7rem;
     margin: auto;
     place-content: start;
@@ -773,12 +915,14 @@ body:not(:has(*)) {
   .finish-btn {
     width: 75%;
     height: 90%;
+    display: grid;
     margin-top: 4rem;
     margin-bottom: 4rem;
     color: white;
     place-content: center;
     font-size: 5rem;
     text-align: center;
+    align-items: center;
     border-radius: 30px;
     margin: auto;
     z-index: 1;
@@ -834,6 +978,12 @@ body:not(:has(*)) {
     letter-spacing: 15px;
   }
 }
+@media (max-height: 500px) and (orientation: landscape) {
+  .answer-display {
+    font-size: 2.25rem;
+    letter-spacing: 10px;
+  }
+}
 /* @media (width > 1200px) {
   .answer-display {
     grid-area: answer-display;
@@ -845,9 +995,11 @@ body:not(:has(*)) {
 :root {
   --box-width: 65px;
   --box-width2: 115px;
+  --box-width3: 60px;
   --margin-width: 5px;
   --box-margin-width: calc(var(--box-width) + (var(--margin-width) * 2));
   --box-margin-width2: calc(var(--box-width2) + (var(--margin-width) * 2));
+  --box-margin-width3: calc(var(--box-width3) + (var(--margin-width) * 2));
 }
 
 .box {
@@ -863,46 +1015,29 @@ body:not(:has(*)) {
   border-radius: 7px;
   box-shadow: 0 9px #999;
 }
-@media (orientation: portrait) and (min-width: 600px) {
+@media (min-width: 600px) {
   .box {
     height: var(--box-width2);
     width: var(--box-width2);
     margin: var(--margin-width2);
-    display: flex;
-    place-content: center;
-    place-items: center;
-    background: rgb(238, 238, 238);
     font-size: 4rem;
-    transition: 0.075s ease-in-out;
-    border-radius: 7px;
-    box-shadow: 0 9px #999;
   }
 }
-@media (orientation: landscape) and (min-width: 600px) {
+@media (max-height: 500px) and (orientation: landscape) {
   .box {
-    height: var(--box-width2);
-    width: var(--box-width2);
-    margin: var(--margin-width2);
-    display: flex;
-    place-content: center;
-    place-items: center;
-    background: rgb(238, 238, 238);
-    font-size: 4rem;
-    transition: 0.075s ease-in-out;
-    border-radius: 7px;
+    height: var(--box-width3);
+    width: var(--box-width3);
+    margin: var(--margin-width3);
+    font-size: 2.75rem;
   }
 }
 @media (width > 1200px) {
   .box {
     height: var(--box-width2);
     width: var(--box-width2);
-    place-content: center;
-    place-items: center;
     background: rgb(238, 238, 238);
     font-size: 4rem;
     transition: 0.25s;
-    border-radius: 7px;
-    box-shadow: 0 9px #999;
   }
 }
 
@@ -946,21 +1081,35 @@ body:not(:has(*)) {
 }
 .round-banner {
   grid-area: round-banner;
-  width: 500px;
-  height: 200px;
+  width: 300px;
+  height: 150px;
+  display: grid;
   background-color: var(--clr-acc1);
   color: white;
   border-radius: 15px;
-  font-size: 5rem;
+  font-size: 3.25rem;
   place-content: center;
   place-items: center;
   text-align: center;
   position: absolute;
-  /* margin-top: -5rem; */
   z-index: 99;
   -webkit-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.53);
   -moz-box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.53);
   box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.53);
+}
+@media (min-width: 600px) {
+  .round-banner {
+    width: 500px;
+    height: 200px;
+    font-size: 5rem;
+  }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .round-banner {
+    width: 300px;
+    height: 150px;
+    font-size: 3.25rem;
+  }
 }
 .banner-in {
   animation: banner-in 0.4s ease-out forwards;
