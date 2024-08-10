@@ -463,6 +463,7 @@ function displayEndMessagesContainer() {
     "end-messages-container",
     "letter-matching-app"
   );
+  appContainer.appendChild(btnContainer5);
   btnContainer5.appendChild(endMessagesContainer);
   const finalScoreAssessment = document.createElement("div");
   finalScoreAssessment.classList.add("final-score-assessment");
