@@ -213,6 +213,7 @@ body:not(:has(*)) {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "answer-display";
+    margin-bottom: 2rem;
   }
 }
 @media (max-height: 500px) and (orientation: landscape) {
@@ -284,6 +285,7 @@ body:not(:has(*)) {
     grid-template-rows: 1fr 1fr 1fr 1fr 0.1fr;
     column-gap: 12px;
     row-gap: 17px;
+    margin-top: 2rem63;
   }
 }
 @media (max-height: 500px) and (orientation: landscape) {

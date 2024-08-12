@@ -12,7 +12,7 @@ import {
 import {
   startAlphabetCardTouchApp,
   startAlphabetMatchingApp,
-  startNumberFluency1to20App,
+  startNumberFluencyApp,
   startSpellingTouchApp,
 } from "./app-launcher.js";
 
@@ -153,6 +153,10 @@ function returnToMainMenu() {
   // spellingTouchAppMenuItem.remove();
   // spellingWritingAppMenuItem.remove();
   numberFluency1to20AppMenuItem.remove();
+  numberFluency21to40AppMenuItem.remove();
+  numberFluency41to60AppMenuItem.remove();
+  numberFluency61to80AppMenuItem.remove();
+  numberFluency81to100AppMenuItem.remove();
   displayMainPage();
   returnToMainMenuToggle();
 }
@@ -184,12 +188,12 @@ alphabetCapitalsCardTouchAppMenuItem.addEventListener("click", () => {
   }
 });
 
+// 2. Alphabet Capitals Touch App Menu Item
 const alphabetLowercaseCardTouchAppMenuItem = document.createElement("div");
 alphabetLowercaseCardTouchAppMenuItem.setAttribute(
   "id",
   "alphabet-card-touch-app-menu-item"
 );
-// abcMenu.setAttribute("page-id", "mainMenu");
 alphabetLowercaseCardTouchAppMenuItem.classList.add("div");
 alphabetLowercaseCardTouchAppMenuItem.innerText = "Card Touch!\r\n abc";
 alphabetLowercaseCardTouchAppMenuItem.addEventListener("click", () => {
@@ -199,7 +203,7 @@ alphabetLowercaseCardTouchAppMenuItem.addEventListener("click", () => {
   }
 });
 
-// 2. Alphabet Matching App Menu Item
+// 3. Alphabet Matching App Menu Item
 const alphabetMatchingAppMenuItem = document.createElement("div");
 alphabetMatchingAppMenuItem.setAttribute(
   "id",
@@ -278,12 +282,57 @@ numberFluency1to20AppMenuItem.setAttribute(
 );
 numberFluency1to20AppMenuItem.classList.add("div");
 numberFluency1to20AppMenuItem.innerText = "Touch 1-20";
-numberFluency1to20AppMenuItem.addEventListener(
-  "click",
-  startNumberFluency1to20App
-);
+numberFluency1to20AppMenuItem.addEventListener("click", () => {
+  startNumberFluencyApp(0);
+});
 
-// 2. Alphabet Matching App Menu Item
+// 2. Number Fluency 21-40 App Menu Item
+const numberFluency21to40AppMenuItem = document.createElement("div");
+numberFluency21to40AppMenuItem.setAttribute(
+  "id",
+  "number-fluency-21-to-40-app-menu-item"
+);
+numberFluency21to40AppMenuItem.classList.add("div");
+numberFluency21to40AppMenuItem.innerText = "Touch 21-40";
+numberFluency21to40AppMenuItem.addEventListener("click", () => {
+  startNumberFluencyApp(1);
+});
+
+// 3. Number Fluency 41-60 App Menu Item
+const numberFluency41to60AppMenuItem = document.createElement("div");
+numberFluency41to60AppMenuItem.setAttribute(
+  "id",
+  "number-fluency-41-to-60-app-menu-item"
+);
+numberFluency41to60AppMenuItem.classList.add("div");
+numberFluency41to60AppMenuItem.innerText = "Touch 41-60";
+numberFluency41to60AppMenuItem.addEventListener("click", () => {
+  startNumberFluencyApp(2);
+});
+
+// 4. Number Fluency 61-80 App Menu Item
+const numberFluency61to80AppMenuItem = document.createElement("div");
+numberFluency61to80AppMenuItem.setAttribute(
+  "id",
+  "number-fluency-61-to-80-app-menu-item"
+);
+numberFluency61to80AppMenuItem.classList.add("div");
+numberFluency61to80AppMenuItem.innerText = "Touch 61-80";
+numberFluency61to80AppMenuItem.addEventListener("click", () => {
+  startNumberFluencyApp(3);
+});
+
+// 5. Number Fluency 81-100 App Menu Item
+const numberFluency81to100AppMenuItem = document.createElement("div");
+numberFluency81to100AppMenuItem.setAttribute(
+  "id",
+  "number-fluency-81-to-100-app-menu-item"
+);
+numberFluency81to100AppMenuItem.classList.add("div");
+numberFluency81to100AppMenuItem.innerText = "Touch 81-100";
+numberFluency81to100AppMenuItem.addEventListener("click", () => {
+  startNumberFluencyApp(4);
+});
 
 /* Number menu items fin */
 
@@ -298,10 +347,16 @@ function displayNumbersMenu() {
   spellingMenu.classList.add("hidden");
   div4.classList.add("hidden");
   menuContainer.appendChild(numberFluency1to20AppMenuItem);
-  // menuContainer.appendChild(alphabetMatchingAppMenuItem);
+  menuContainer.appendChild(numberFluency21to40AppMenuItem);
+  menuContainer.appendChild(numberFluency41to60AppMenuItem);
+  menuContainer.appendChild(numberFluency61to80AppMenuItem);
+  menuContainer.appendChild(numberFluency81to100AppMenuItem);
   menuContainer.appendChild(returnToMainMenuBtn);
   numberFluency1to20AppMenuItem.classList.remove("hidden");
-  // alphabetMatchingAppMenuItem.classList.remove("hidden");
+  numberFluency21to40AppMenuItem.classList.remove("hidden");
+  numberFluency41to60AppMenuItem.classList.remove("hidden");
+  numberFluency61to80AppMenuItem.classList.remove("hidden");
+  numberFluency81to100AppMenuItem.classList.remove("hidden");
   returnToMainMenuToggle();
 }
 
@@ -324,6 +379,10 @@ export {
   alphabetCapitalsCardTouchAppMenuItem,
   alphabetMatchingAppMenuItem,
   numberFluency1to20AppMenuItem,
+  numberFluency21to40AppMenuItem,
+  numberFluency41to60AppMenuItem,
+  numberFluency61to80AppMenuItem,
+  numberFluency81to100AppMenuItem,
   spellingTouchAppMenuItem,
   spellingWritingAppMenuItem,
   numbersMenu,

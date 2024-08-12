@@ -10,6 +10,10 @@ import {
   spellingWritingAppMenuItem,
   displayGreeting,
   numberFluency1to20AppMenuItem,
+  numberFluency21to40AppMenuItem,
+  numberFluency41to60AppMenuItem,
+  numberFluency61to80AppMenuItem,
+  numberFluency81to100AppMenuItem,
 } from "../js/general/start-main-app.js";
 import {
   body,
@@ -25,6 +29,10 @@ function removeMenuPage() {
   alphabetLowercaseCardTouchAppMenuItem.remove();
   alphabetMatchingAppMenuItem.remove();
   numberFluency1to20AppMenuItem.remove();
+  numberFluency21to40AppMenuItem.remove();
+  numberFluency41to60AppMenuItem.remove();
+  numberFluency61to80AppMenuItem.remove();
+  numberFluency81to100AppMenuItem.remove();
   spellingTouchAppMenuItem.remove();
   spellingWritingAppMenuItem.remove();
   topContainer.classList.add("hidden");

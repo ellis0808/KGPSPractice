@@ -1,6 +1,6 @@
 import { alphabetCardTouchApp } from "../alphabet/alphabet-card-touch/alphabet-card-touch-index.js";
 import { alphabetMatchingApp } from "../alphabet/alphabet-matching/alphabet-matching-index.js";
-import { numberFluency1to20App } from "../numbers/numbers-fluency/numbers-fluency-1-20.js";
+import { numberFluencyApp } from "../numbers/numbers-fluency/numbers-fluency.js";
 import { spellingTouchApp } from "../spelling/spelling-touch-app/spelling-touch-index.js";
 import { mainMenuSfx } from "./start-main-app.js";
 
@@ -24,9 +24,19 @@ function startSpellingWritingApp() {
   mainMenuSfx.select2.play();
   spellingWritingApp();
 }
-function startNumberFluency1to20App() {
+function startNumberFluencyApp(style) {
   mainMenuSfx.select2.play();
-  numberFluency1to20App();
+  if (style === 0) {
+    numberFluencyApp(0);
+  } else if (style === 1) {
+    numberFluencyApp(1);
+  } else if (style === 2) {
+    numberFluencyApp(2);
+  } else if (style === 3) {
+    numberFluencyApp(3);
+  } else if (style === 4) {
+    numberFluencyApp(4);
+  }
 }
 function startNumberRecognitionApp() {
   mainMenuSfx.select2.play();
@@ -45,5 +55,5 @@ export {
   startAlphabetCardTouchApp,
   startAlphabetMatchingApp,
   startSpellingTouchApp,
-  startNumberFluency1to20App,
+  startNumberFluencyApp,
 };

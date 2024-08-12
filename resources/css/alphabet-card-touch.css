@@ -191,6 +191,20 @@ body:not(:has(*)) {
   place-content: center;
   place-items: center;
 }
+.btn-container5 {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "..... ..... ....."
+    "..... end-messages-container ....."
+    "..... ..... .....";
+  position: absolute;
+  place-content: center;
+  place-items: center;
+}
 #grid {
   grid-area: card-grid;
   display: grid;

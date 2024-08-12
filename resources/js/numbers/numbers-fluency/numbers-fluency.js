@@ -19,6 +19,8 @@ import {
   disableTouch,
   enableTouch,
 } from "../../../utilities/disable-enable-touch.js";
+
+let style;
 let interval = 2500;
 let run;
 let isPaused = false;
@@ -36,109 +38,6 @@ let maxWrongAnswers = 5;
 let correctAnswerPoints;
 let incorrectAnswerPoints;
 let boxes = ".box";
-
-function startInterval() {
-  if (!bannerDisplayed) {
-    if (!isPaused) {
-      run = setInterval(speakingInterval, interval); // start setInterval as "run"
-    }
-  }
-  return run;
-}
-function determineInterval() {
-  if (round === 1) {
-    interval = interval;
-  } else if (round > 1 && round < 6) {
-    interval = interval * 0.9;
-  } else if (round > 5 && round < 11) {
-    interval = interval * 0.95;
-  } else if (round > 10 && round < 16) {
-    interval = interval * 0.97;
-  } else if (round > 16 && round < 21) {
-    interval = interval * 0.98;
-  }
-}
-function arrayGenerator() {
-  currentArray.length = 0;
-  // if (round === 1) {
-  currentArray.length = 0;
-  for (let i = 0; i < 10; ++i) {
-    randNumber = Math.floor(Math.random() * 20 + 1);
-    currentArray.push(randNumber);
-  }
-  return;
-}
-function speakingInterval() {
-  if (!bannerDisplayed) {
-    if (!isPaused) {
-      getCurrentItem();
-      if (!isPaused) {
-        enableTouch(boxes);
-        speak(currentItem);
-
-        ++loop;
-
-        //stop interval
-        if (loop === currentArray.length) {
-          clearInterval(run);
-          setTimeout(newRound, 3000);
-        }
-      }
-    }
-  }
-}
-
-// Reset Functions
-function resetLoop() {
-  loop = 0;
-  return loop;
-}
-function resetArrayItemCounter() {
-  arrayItemCounter = 0;
-  return arrayItemCounter;
-}
-function resetPenalties() {
-  numberOfWrongAnswers = 0;
-  return numberOfWrongAnswers;
-}
-function resetInterval() {
-  interval = 2500;
-  return interval;
-}
-function resetCorrectAnswerPoints() {
-  correctAnswerPoints = 0;
-  return correctAnswerPoints;
-}
-
-/* AUDIO */
-
-function getCurrentItem() {
-  currentItem = currentArray[arrayItemCounter].toString();
-  ++arrayItemCounter;
-  return currentItem;
-}
-function speak(currentItem) {
-  numbersAudioObject[currentItem].sound.play();
-}
-
-/* GRID */
-
-function createGrid() {
-  for (let i = 0; i < gridSize; ++i) {
-    const box = document.createElement("div");
-    box.classList.add("box", "btn");
-    box.setAttribute("id", `box${i}`);
-    if (i < 10) {
-      box.classList.add("item", "under11");
-    } else {
-      box.classList.add("item", "under21");
-    }
-    box.setAttribute("item", `${i + 1}`);
-    box.textContent = `${i + 1}`;
-    box.addEventListener("click", userTouch);
-    grid.appendChild(box);
-  }
-}
 
 /* 
 *****************
@@ -174,7 +73,7 @@ function determineCorrectAnswerPoints() {
 /* Main App Container */
 const appContainer = document.createElement("div");
 appContainer.classList.add("container");
-appContainer.classList.add("spelling-touch-app");
+appContainer.classList.add("number-fluency-app");
 const homeBtnContainer = document.createElement("div");
 homeBtnContainer.classList.add("home-btn-container", "hide");
 const homeBtn = document.createElement("button");
@@ -222,7 +121,7 @@ const startBtn = document.createElement("div");
 startBtn.setAttribute("id", "start-btn");
 const exitBtn = document.createElement("div");
 exitBtn.setAttribute("id", "exit-btn");
-exitBtn.classList.add("card-touch-app", "hide");
+exitBtn.classList.add("number-fluency-app", "hide");
 exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
 exitBtn.addEventListener("click", endApp);
 const tryAgainBtn = document.createElement("div");
@@ -249,7 +148,7 @@ Main App
 */
 
 /* Starts Main App (exported to resources/js/general/app-launcher.js) */
-function numberFluency1to20App() {
+function numberFluencyApp(set) {
   setTimeout(() => {
     mainContainer.appendChild(appContainer);
     appContainer.appendChild(btnContainer2);
@@ -276,6 +175,29 @@ function numberFluency1to20App() {
   if (!scoreDisplay.classList.contains("hide2")) {
     toggleScoreDisplayHide();
   }
+  /* 
+style 0: 1-20
+style 1: 21-40
+style 2: 41-60
+style 3: 61-80
+style 4: 81-100
+*/
+  if (set === 0) {
+    style = 0;
+  } else if (set === 1) {
+    style = 1;
+    return style;
+  } else if (set === 2) {
+    style = 2;
+    return style;
+  } else if (set === 3) {
+    style = 3;
+    return style;
+  } else if (set === 4) {
+    style = 4;
+    return style;
+  }
+  return style;
 }
 
 /* Removes Main App and Returns to Main Menu*/
@@ -286,7 +208,6 @@ function endApp() {
       appContainer.removeChild(btnContainer1);
       appContainer.removeChild(btnContainer3);
     }
-    mainContainer.removeChild(appContainer);
     stylesheet.setAttribute("href", "../resources/css/styles.css");
     displayMainPage();
     setTimeout(restoreMainMenu, 100);
@@ -425,9 +346,8 @@ function endSession() {
   homeBtnContainer.classList.add("hide");
   clearInterval(run);
   removeBlur();
-  const allBoxes = document.querySelectorAll(".box");
-  allBoxes.forEach((box) => {
-    box.remove();
+  document.querySelectorAll(".box, .number-fluency-app").forEach((item) => {
+    item.remove();
   });
   if (document.querySelector(".end-messages-container")) {
     document.querySelector(".end-messages-container").remove();
@@ -580,7 +500,7 @@ function displayEndMessagesContainer() {
   const endMessagesContainer = document.createElement("div");
   endMessagesContainer.classList.add(
     "end-messages-container",
-    "letter-matching-app"
+    "number-fluency-app"
   );
   appContainer.appendChild(btnContainer5);
   btnContainer5.appendChild(endMessagesContainer);
@@ -653,7 +573,7 @@ function displayRound(round) {
 
   let bannerContainer = document.createElement("div");
   let roundBanner = document.createElement("div");
-  bannerContainer.classList.add("banner-container");
+  bannerContainer.classList.add("banner-container", "number-fluency-app");
   roundBanner.classList.add("round-banner", "banner-in");
   setTimeout(() => {
     appContainer.appendChild(bannerContainer);
@@ -742,4 +662,141 @@ function removeHearts() {
   }
 }
 
-export { numberFluency1to20App };
+function startInterval() {
+  if (!bannerDisplayed) {
+    if (!isPaused) {
+      run = setInterval(speakingInterval, interval); // start setInterval as "run"
+    }
+  }
+  return run;
+}
+function determineInterval() {
+  if (round === 1) {
+    interval = interval;
+  } else if (round > 1 && round < 6) {
+    interval = interval * 0.9;
+  } else if (round > 5 && round < 11) {
+    interval = interval * 0.95;
+  } else if (round > 10 && round < 16) {
+    interval = interval * 0.97;
+  } else if (round > 16 && round < 21) {
+    interval = interval * 0.98;
+  }
+}
+function arrayGenerator() {
+  currentArray.length = 0;
+  // if (round === 1) {
+  currentArray.length = 0;
+  for (let i = 0; i < 10; ++i) {
+    randNumber = Math.floor(Math.random() * 20 + 1);
+    currentArray.push(randNumber);
+  }
+  return;
+}
+function speakingInterval() {
+  if (!bannerDisplayed) {
+    if (!isPaused) {
+      getCurrentItem();
+      if (!isPaused) {
+        enableTouch(boxes);
+        speak(currentItem);
+
+        ++loop;
+
+        //stop interval
+        if (loop === currentArray.length) {
+          clearInterval(run);
+          setTimeout(newRound, 3000);
+        }
+      }
+    }
+  }
+}
+
+// Reset Functions
+function resetLoop() {
+  loop = 0;
+  return loop;
+}
+function resetArrayItemCounter() {
+  arrayItemCounter = 0;
+  return arrayItemCounter;
+}
+function resetPenalties() {
+  numberOfWrongAnswers = 0;
+  return numberOfWrongAnswers;
+}
+function resetInterval() {
+  interval = 2500;
+  return interval;
+}
+function resetCorrectAnswerPoints() {
+  correctAnswerPoints = 0;
+  return correctAnswerPoints;
+}
+
+/* AUDIO */
+
+function getCurrentItem() {
+  currentItem = currentArray[arrayItemCounter].toString();
+  ++arrayItemCounter;
+  return currentItem;
+}
+function speak(currentItem) {
+  numbersAudioObject[currentItem].sound.play();
+}
+
+/* GRID */
+
+function createGrid() {
+  for (let i = 0; i < gridSize; ++i) {
+    const box = document.createElement("div");
+    box.classList.add("box", "btn");
+    box.setAttribute("id", `box${i}`);
+    if (style === 0) {
+      if (i < 10) {
+        box.classList.add("item", "under11");
+      } else {
+        box.classList.add("item", "under21");
+      }
+      box.setAttribute("item", `${i + 1}`);
+      box.textContent = `${i + 1}`;
+    } else if (style === 1) {
+      if (i < 10) {
+        box.classList.add("item", "under31");
+      } else {
+        box.classList.add("item", "under41");
+      }
+      box.setAttribute("item", `${i + 21}`);
+      box.textContent = `${i + 21}`;
+    } else if (style === 2) {
+      if (i < 10) {
+        box.classList.add("item", "under51");
+      } else {
+        box.classList.add("item", "under61");
+      }
+      box.setAttribute("item", `${i + 41}`);
+      box.textContent = `${i + 41}`;
+    } else if (style === 3) {
+      if (i < 10) {
+        box.classList.add("item", "under71");
+      } else {
+        box.classList.add("item", "under81");
+      }
+      box.setAttribute("item", `${i + 61}`);
+      box.textContent = `${i + 61}`;
+    } else if (style === 4) {
+      if (i < 10) {
+        box.classList.add("item", "under91");
+      } else {
+        box.classList.add("item", "under101");
+      }
+      box.setAttribute("item", `${i + 81}`);
+      box.textContent = `${i + 81}`;
+    }
+    box.addEventListener("click", userTouch);
+    grid.appendChild(box);
+  }
+}
+
+export { numberFluencyApp };

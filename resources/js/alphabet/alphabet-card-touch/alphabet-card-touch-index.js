@@ -23,10 +23,11 @@ import {
 import { feedbackAudioObject } from "../../../utilities/feedback-object.js";
 import { timer, toggleTimerHide } from "../../../utilities/timer-object.js";
 
+let style;
+
 /* SCORING */
 const correctAnswerPoints = 2;
 const incorrectAnswerPoints = 1;
-let style;
 function alphabetCardTouchApp(capitals) {
   setTimeout(() => {
     resetTimer();

@@ -302,12 +302,25 @@ class Connector {
   getEndPosition(event) {
     this.end = this.getCenter(event);
   }
+  getStartPosition2(dot) {
+    this.start = this.getCenter2(dot);
+  }
+  getEndPosition2(dot) {
+    this.end = this.getCenter2(dot);
+  }
   getCenter(event) {
     // let target = event.target.getBoundingClientRect();
     const bodyRect = body.getBoundingClientRect();
     let center = {
       x: event.target.offsetLeft + event.target.offsetWidth / 2,
       y: event.target.offsetTop + event.target.offsetHeight / 2 - 5,
+    };
+    return center;
+  }
+  getCenter2(dot) {
+    let center = {
+      x: dot.element.offsetLeft + dot.element.offsetWidth / 2,
+      y: dot.element.offsetTop + dot.element.offsetHeight / 2 - 5,
     };
     return center;
   }
