@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="../css/login.css"
+    />
+    <title>KGPS English Practice</title>
+  </head>
+  <body>
+    <h1>KGPS English Practice</h1>
+    <div class="container">
+      <div class="login-container">
+        <div class="student-container-heading container-heading">Students</div>
+        <div class="student-name-container"></div>
+        <dialog class="student-password-entry-form-container modal">
+          <form
+            action=""
+            id="studentPasswordEntryForm"
+            method="dialog"
+          >
+            <div class="text">Hello!</div>
+            <br />
+            <br />
+            <button class="close-modal-btn">Cancel</button>
+          </form>
+        </dialog>
+        <div class="teacher-container-heading container-heading">Teachers</div>
+        <div class="teacher-name-container"></div>
+        <dialog class="teacher-password-entry-form-container modal">
+          <div class="teacher-username-container"></div>
+          <form
+            action=""
+            id="teacherPasswordEntryForm"
+            method="dialog"
+          >
+            <br />
+            <br />
+            <label for="teacherpassword">Password: </label>
+            <input
+              type="password"
+              name="teacherpassword"
+              id="teacherpassword"
+              required
+            />
+            <br />
+            <br />
+            <div class="teacher-login-btn-container">
+              <input
+                type="submit"
+                value="Login"
+              />
+              <button class="close-teacher-login-modal-btn">Cancel</button>
+            </div>
+          </form>
+        </dialog>
+      </div>
+    </div>
+    <script
+      type="module"
+      src="login.js"
+    ></script>
+  </body>
+</html>

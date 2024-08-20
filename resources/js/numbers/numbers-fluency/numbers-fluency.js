@@ -72,8 +72,7 @@ function determineCorrectAnswerPoints() {
 
 /* Main App Container */
 const appContainer = document.createElement("div");
-appContainer.classList.add("container");
-appContainer.classList.add("number-fluency-app");
+appContainer.classList.add("container", "number-fluency-app");
 const homeBtnContainer = document.createElement("div");
 homeBtnContainer.classList.add("home-btn-container", "hide");
 const homeBtn = document.createElement("button");
@@ -88,7 +87,7 @@ appContainer.appendChild(homeBtnContainer);
 const btnContainer4 = document.createElement("div");
 btnContainer4.classList.add("btn-container4");
 const reallyGoHomeContainer = document.createElement("div");
-reallyGoHomeContainer.classList.add("go-home-container");
+reallyGoHomeContainer.classList.add("go-home-container", "number-fluency-app");
 const reallyGoHomeMessageContainer = document.createElement("div");
 reallyGoHomeMessageContainer.classList.add("go-home-message");
 reallyGoHomeMessageContainer.textContent = "Go back to Menu?";
@@ -160,10 +159,7 @@ function numberFluencyApp(set) {
     grid.classList.add("gridHide");
   }, 0);
 
-  stylesheet.setAttribute(
-    "href",
-    "../../resources/css/number-fluency-1-20.css"
-  );
+  stylesheet.setAttribute("href", "../../resources/css/number-fluency.css");
   displayStartBtn();
 
   removeMenuPage();
@@ -688,7 +684,17 @@ function arrayGenerator() {
   // if (round === 1) {
   currentArray.length = 0;
   for (let i = 0; i < 10; ++i) {
-    randNumber = Math.floor(Math.random() * 20 + 1);
+    if (style === 0) {
+      randNumber = Math.floor(Math.random() * 20 + 1);
+    } else if (style === 1) {
+      randNumber = Math.floor(Math.random() * (40 - 20) + 21);
+    } else if (style === 2) {
+      randNumber = Math.floor(Math.random() * (60 - 40) + 41);
+    } else if (style === 3) {
+      randNumber = Math.floor(Math.random() * (80 - 60) + 61);
+    } else if (style === 4) {
+      randNumber = Math.floor(Math.random() * (100 - 80) + 81);
+    }
     currentArray.push(randNumber);
   }
   return;

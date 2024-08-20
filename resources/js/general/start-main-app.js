@@ -10,8 +10,8 @@ import {
   parentsInfo,
 } from "../../utilities/variables.js";
 import {
-  startAlphabetCardTouchApp,
-  startAlphabetMatchingApp,
+  startCardTouchApp,
+  startMatchingApp,
   startNumberFluencyApp,
   startSpellingTouchApp,
 } from "./app-launcher.js";
@@ -68,17 +68,22 @@ numbersMenu.setAttribute("id", "div2");
 numbersMenu.classList.add("div", "div-start-menu2", "main-menu-div");
 numbersMenu.innerText = "1,2,3";
 numbersMenu.addEventListener("click", displayNumbersMenu);
+const sightWordsMenu = document.createElement("div");
+sightWordsMenu.setAttribute("id", "div3");
+sightWordsMenu.classList.add("div", "div-start-menu4", "main-menu-div");
+sightWordsMenu.addEventListener("click", displaySightWordsMenu);
+sightWordsMenu.innerText = "Sight Words";
 const spellingMenu = document.createElement("div");
-spellingMenu.setAttribute("id", "div3");
-spellingMenu.classList.add("div", "div-start-menu3", "main-menu-div");
+spellingMenu.setAttribute("id", "div4");
+spellingMenu.classList.add("div", "div-start-menu4", "main-menu-div");
 spellingMenu.addEventListener("click", displaySpellingMenu);
 
 spellingMenu.innerText = "Spelling";
 const div4 = document.createElement("div");
-div4.setAttribute("id", "div4");
+// div4.setAttribute("id", "div4");
 
-div4.classList.add("div", "div-start-menu4", "main-menu-div");
-div4.innerText = "4";
+// div4.classList.add("div", "div-start-menu4", "main-menu-div");
+// div4.innerText = "4";
 
 /* Top Page Menu Items Display Functions */
 
@@ -96,6 +101,7 @@ function startMainApp() {
 function setTopMenuVariables() {
   menuContainer.appendChild(abcMenu);
   menuContainer.appendChild(numbersMenu);
+  menuContainer.appendChild(sightWordsMenu);
   // menuContainer.appendChild(spellingMenu);
   // menuContainer.appendChild(div4);
 }
@@ -145,11 +151,15 @@ function returnToMainMenu() {
   displayGreeting();
   abcMenu.classList.remove("hidden");
   numbersMenu.classList.remove("hidden");
+  sightWordsMenu.classList.remove("hidden");
   // spellingMenu.classList.remove("hidden");
   // div4.classList.remove("hidden");
   alphabetCapitalsCardTouchAppMenuItem.remove();
   alphabetLowercaseCardTouchAppMenuItem.remove();
   alphabetMatchingAppMenuItem.remove();
+  sightWords1AppMenuItem.remove();
+  sightWords2AppMenuItem.remove();
+  sightWords3AppMenuItem.remove();
   // spellingTouchAppMenuItem.remove();
   // spellingWritingAppMenuItem.remove();
   numberFluency1to20AppMenuItem.remove();
@@ -168,8 +178,6 @@ Specific Menu Items
 **********
 */
 
-let capitals = false;
-
 /* "Alphabet" Menu Items  (2) */
 
 // 1. Alphabet Capitals Touch App Menu Item
@@ -182,10 +190,7 @@ alphabetCapitalsCardTouchAppMenuItem.setAttribute(
 alphabetCapitalsCardTouchAppMenuItem.classList.add("div");
 alphabetCapitalsCardTouchAppMenuItem.innerText = "Card Touch!\r\n ABC";
 alphabetCapitalsCardTouchAppMenuItem.addEventListener("click", () => {
-  capitals = true;
-  if (capitals) {
-    startAlphabetCardTouchApp(capitals);
-  }
+  startCardTouchApp("capitals");
 });
 
 // 2. Alphabet Capitals Touch App Menu Item
@@ -197,22 +202,50 @@ alphabetLowercaseCardTouchAppMenuItem.setAttribute(
 alphabetLowercaseCardTouchAppMenuItem.classList.add("div");
 alphabetLowercaseCardTouchAppMenuItem.innerText = "Card Touch!\r\n abc";
 alphabetLowercaseCardTouchAppMenuItem.addEventListener("click", () => {
-  capitals = false;
-  if (!capitals) {
-    startAlphabetCardTouchApp();
-  }
+  startCardTouchApp("lowercase");
 });
 
 // 3. Alphabet Matching App Menu Item
 const alphabetMatchingAppMenuItem = document.createElement("div");
 alphabetMatchingAppMenuItem.setAttribute(
   "id",
-  "alphabet--matching-app-menu-item"
+  "alphabet-matching-app-menu-item"
 );
 alphabetMatchingAppMenuItem.classList.add("div");
 alphabetMatchingAppMenuItem.innerText = "Letter Matching";
-alphabetMatchingAppMenuItem.addEventListener("click", startAlphabetMatchingApp);
+alphabetMatchingAppMenuItem.addEventListener("click", startMatchingApp);
 /* Alphabet menu items fin */
+
+/* "Sight Words" Menu Items  (2) */
+
+// 1. Sight Words 1 Touch App Menu Item
+const sightWords1AppMenuItem = document.createElement("div");
+sightWords1AppMenuItem.setAttribute("id", "sight-words-1-app-menu-item");
+sightWords1AppMenuItem.classList.add("div");
+sightWords1AppMenuItem.innerText = "Sight Words 1";
+sightWords1AppMenuItem.addEventListener("click", () => {
+  startCardTouchApp("sightwords1");
+});
+
+// 2. Sight Words 2 Touch App Menu Item
+const sightWords2AppMenuItem = document.createElement("div");
+sightWords2AppMenuItem.setAttribute("id", "sight-words-2-app-menu-item");
+sightWords2AppMenuItem.classList.add("div");
+sightWords2AppMenuItem.innerText = "Sight Words 2";
+sightWords2AppMenuItem.addEventListener("click", () => {
+  startCardTouchApp("sightwords2");
+});
+
+// 3. Sight Words 3 Matching App Menu Item
+const sightWords3AppMenuItem = document.createElement("div");
+sightWords3AppMenuItem.setAttribute("id", "sight-words-3-app-menu-item");
+sightWords3AppMenuItem.classList.add("div");
+sightWords3AppMenuItem.innerText = "Sight Words 3";
+sightWords3AppMenuItem.addEventListener("click", () => {
+  startCardTouchApp("sightwords3");
+});
+
+/* Sight Words menu items fin */
 
 /* Spelling Menu Items  (2) */
 
@@ -242,6 +275,7 @@ function displayAbcMenu() {
   topContainer.innerText = "Alphabet";
   abcMenu.classList.add("hidden");
   numbersMenu.classList.add("hidden");
+  sightWordsMenu.classList.add("hidden");
   spellingMenu.classList.add("hidden");
   div4.classList.add("hidden");
   menuContainer.appendChild(alphabetCapitalsCardTouchAppMenuItem);
@@ -253,6 +287,25 @@ function displayAbcMenu() {
   alphabetMatchingAppMenuItem.classList.remove("hidden");
   returnToMainMenuToggle();
 }
+function displaySightWordsMenu() {
+  mainMenuSfx.select2.play();
+  isMainMenu = false;
+  hideParentsInfoBtn();
+  topContainer.innerText = "Sight Words";
+  abcMenu.classList.add("hidden");
+  numbersMenu.classList.add("hidden");
+  sightWordsMenu.classList.add("hidden");
+  spellingMenu.classList.add("hidden");
+  div4.classList.add("hidden");
+  menuContainer.appendChild(sightWords1AppMenuItem);
+  menuContainer.appendChild(sightWords2AppMenuItem);
+  menuContainer.appendChild(sightWords3AppMenuItem);
+  menuContainer.appendChild(returnToMainMenuBtn);
+  sightWords1AppMenuItem.classList.remove("hidden");
+  sightWords2AppMenuItem.classList.remove("hidden");
+  sightWords3AppMenuItem.classList.remove("hidden");
+  returnToMainMenuToggle();
+}
 
 // Displays the Spelling Menu
 function displaySpellingMenu() {
@@ -262,6 +315,7 @@ function displaySpellingMenu() {
   topContainer.innerText = "Spelling";
   abcMenu.classList.add("hidden");
   numbersMenu.classList.add("hidden");
+  sightWordsMenu.classList.add("hidden");
   spellingMenu.classList.add("hidden");
   div4.classList.add("hidden");
   menuContainer.appendChild(spellingTouchAppMenuItem);
@@ -344,6 +398,7 @@ function displayNumbersMenu() {
   topContainer.innerText = "Numbers";
   abcMenu.classList.add("hidden");
   numbersMenu.classList.add("hidden");
+  sightWordsMenu.classList.add("hidden");
   spellingMenu.classList.add("hidden");
   div4.classList.add("hidden");
   menuContainer.appendChild(numberFluency1to20AppMenuItem);
@@ -383,9 +438,13 @@ export {
   numberFluency41to60AppMenuItem,
   numberFluency61to80AppMenuItem,
   numberFluency81to100AppMenuItem,
+  sightWords1AppMenuItem,
+  sightWords2AppMenuItem,
+  sightWords3AppMenuItem,
   spellingTouchAppMenuItem,
   spellingWritingAppMenuItem,
   numbersMenu,
+  sightWordsMenu,
   spellingMenu,
   div4,
   mainMenuSfx,

@@ -1,9 +1,5 @@
 import { score } from "./score-object.js";
-import {
-  particles,
-  particles2,
-} from "../js/alphabet/alphabet-card-touch/FX.js";
-import { newRoundCardFlip } from "../js/alphabet/alphabet-matching/fx.js";
+import { particles, particles2 } from "../js/card-touch/FX.js";
 
 const scoreDisplay = document.createElement("div");
 scoreDisplay.classList.add("score-display");

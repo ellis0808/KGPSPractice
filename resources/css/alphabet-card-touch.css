@@ -205,7 +205,7 @@ body:not(:has(*)) {
   place-content: center;
   place-items: center;
 }
-#grid {
+.grid {
   grid-area: card-grid;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -219,24 +219,90 @@ body:not(:has(*)) {
   --stagger-delaay: 0.1s;
   z-index: 10;
 }
+.sight-word-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas: "a b" "c d" "e f";
+  column-gap: 25px;
+  row-gap: 32px;
+  place-content: center;
+  place-items: center;
+  perspective: 1000px;
+  --stagger-delaay: 0.1s;
+  z-index: 10;
+}
+.sight-word-grid-4x4 {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas: "a b" "c d";
+}
 @media (orientation: portrait) and (min-width: 600px) {
-  #grid {
+  .grid {
     gap: 50px;
+  }
+  .sight-word-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas: "a b" "c d" "e f";
+  }
+  .sight-word-grid-4x4 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: "a b" "c d";
   }
 }
 @media (orientation: landscape) and (min-width: 600px) {
-  #grid {
+  .grid {
     gap: 50px;
+  }
+  .sight-word-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas: "a b" "c d" "e f";
+  }
+  .sight-word-grid-4x4 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: "a b" "c d";
   }
 }
 @media (min-width: 1200px) {
-  #grid {
+  .grid {
     gap: 65px;
+  }
+  .sight-word-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: "a b c" "d e f";
+    row-gap: 100px;
+  }
+  .sight-word-grid-4x4 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: "a b" "c d";
   }
 }
 @media (min-width: 2000px) {
-  #grid {
+  .grid {
     gap: 120px;
+  }
+  .sight-word-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: "a b c" "d e f";
+  }
+  .sight-word-grid-4x4 {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: "a b" "c d";
   }
 }
 
@@ -264,6 +330,10 @@ body:not(:has(*)) {
   animation: cardEntrance 0.3s ease-out;
   animation-fill-mode: backwards;
 }
+.sight-word {
+  width: 10rem;
+  font-size: 2.5rem;
+}
 @media (min-width: 600px) {
   .card {
     width: 9.3rem;
@@ -281,6 +351,9 @@ body:not(:has(*)) {
     transition: opacity 0.5s;
     animation: cardEntrance 0.3s ease-out;
     animation-fill-mode: backwards;
+  }
+  .sight-word {
+    width: 20rem;
   }
 }
 @media (min-width: 1200px) {
@@ -301,6 +374,9 @@ body:not(:has(*)) {
     animation: cardEntrance 0.3s ease-out;
     animation-fill-mode: backwards;
   }
+  .sight-word {
+    width: 20rem;
+  }
 }
 @media (width > 2000px) {
   .card {
@@ -319,6 +395,9 @@ body:not(:has(*)) {
     transition: opacity 0.5s;
     animation: cardEntrance 0.3s ease-out;
     animation-fill-mode: backwards;
+  }
+  .sight-word {
+    width: 38rem;
   }
 }
 
