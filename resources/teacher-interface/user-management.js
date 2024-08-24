@@ -30,7 +30,7 @@ closeUpdateUserModalBtn.addEventListener("click", () => {
 async function getUsers() {
   try {
     const response = await fetch(
-      "http://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/read_users.php"
+      "https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/read_users.php"
     );
 
     if (!response.ok) {
@@ -127,7 +127,7 @@ function displayUsers(data) {
 async function getSingleUser(id) {
   try {
     const response = await fetch(
-      `http://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/read_users.php?id=${id}`
+      `https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/read_users.php?id=${id}`
     );
 
     if (!response.ok) {
@@ -158,7 +158,7 @@ function displaySingleUser(data) {
 async function getSingleUser2(id) {
   try {
     const response = await fetch(
-      `http://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/read_users.php?id=${id}`
+      `https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/read_users.php?id=${id}`
     );
 
     if (!response.ok) {
@@ -201,7 +201,7 @@ document
     const access = document.querySelector('input[name="access"]:checked').value;
     try {
       const response = await fetch(
-        "http://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/create_user.php",
+        "https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/create_user.php",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -236,7 +236,7 @@ document
 async function deleteUser(id) {
   try {
     const response = await fetch(
-      "http://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/delete_user.php",
+      "https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/delete_user.php",
       {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
@@ -306,7 +306,7 @@ document
       console.log(newData);
 
       const response = await fetch(
-        "http://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/update_user.php",
+        "https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/update_user.php",
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

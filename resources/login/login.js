@@ -75,7 +75,7 @@ function populateStudentContainer() {
 async function getUsersForLogin() {
   try {
     const response = await fetch(
-      "http://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/read_users.php"
+      "https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/read_users.php"
     );
 
     if (!response.ok) {
@@ -311,7 +311,7 @@ async function loginUser(id, firstname, lastname, access) {
 
   try {
     const response = await fetch(
-      "http://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/login.php",
+      "https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/login.php",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
