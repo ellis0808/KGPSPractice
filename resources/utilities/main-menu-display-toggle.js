@@ -18,7 +18,7 @@ import {
   numberFluency61to80AppMenuItem,
   numberFluency81to100AppMenuItem,
   sightWordsMenu,
-} from "../js/general/start-main-app.js";
+} from "../apps/general/start-main-app.js";
 import {
   body,
   mainContainer,

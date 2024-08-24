@@ -24,7 +24,7 @@ Enable Audio
 
 const mainMenuSfx = {
   select1: new Howl({
-    src: ["resources/audio/sfx/決定ボタンを押す42.mp3"],
+    src: ["/resources/audio/sfx/決定ボタンを押す42.mp3"],
     volume: 0.8,
     onplayerror: function () {
       sound.once("unlock", function () {
@@ -33,7 +33,7 @@ const mainMenuSfx = {
     },
   }),
   select2: new Howl({
-    src: ["resources/audio/sfx/決定ボタンを押す22.mp3"],
+    src: ["/resources/audio/sfx/決定ボタンを押す22.mp3"],
     volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {
@@ -42,7 +42,7 @@ const mainMenuSfx = {
     },
   }),
   back: new Howl({
-    src: ["resources/audio/sfx/決定ボタンを押す22_reversed.mp3"],
+    src: ["/resources/audio/sfx/決定ボタンを押す22_reversed.mp3"],
     volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {

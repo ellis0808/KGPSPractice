@@ -26,20 +26,23 @@ closeUpdateUserModalBtn.addEventListener("click", () => {
   document.getElementById("updateUser").reset();
 });
 
-// Gets and displays all users in the table made from CSS grid
+// Gets and displays all students in the table made from CSS grid
 async function getUsers() {
   try {
-    const response = await fetch("http://localhost/api/read_users.php");
+    const response = await fetch(
+      "http://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/read_users.php"
+    );
 
     if (!response.ok) {
       throw new Error("Network response was not okay");
     }
     const data = await response.json();
+    console.log(data.students);
 
-    if (data.users) {
-      displayUsers(data.users);
+    if (data.students) {
+      displayUsers(data.students);
     } else {
-      console.log("No users found");
+      console.log("No students found");
     }
   } catch (error) {
     console.error("Error getting user data:", error);
@@ -124,7 +127,7 @@ function displayUsers(data) {
 async function getSingleUser(id) {
   try {
     const response = await fetch(
-      `http://localhost/api/read_users.php?id=${id}`
+      `http://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/read_users.php?id=${id}`
     );
 
     if (!response.ok) {
@@ -135,7 +138,7 @@ async function getSingleUser(id) {
     if (data) {
       displaySingleUser(data);
     } else {
-      console.log("No users found");
+      console.log("No students found");
     }
   } catch (error) {
     console.error("Error getting user data:", error);
@@ -155,7 +158,7 @@ function displaySingleUser(data) {
 async function getSingleUser2(id) {
   try {
     const response = await fetch(
-      `http://localhost/api/read_users.php?id=${id}`
+      `http://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/read_users.php?id=${id}`
     );
 
     if (!response.ok) {
@@ -166,7 +169,7 @@ async function getSingleUser2(id) {
     if (data) {
       displaySingleUser2(data);
     } else {
-      console.log("No users found");
+      console.log("No students found");
     }
   } catch (error) {
     console.error("Error getting user data:", error);
@@ -197,22 +200,28 @@ document
     );
     const access = document.querySelector('input[name="access"]:checked').value;
     try {
-      const response = await fetch("http://localhost/api/create_user.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          lastname: lastname,
-          firstname: firstname,
-          password: password,
-          gradelevel: gradelevel,
-          access: access,
-        }),
-      });
+      const response = await fetch(
+        "http://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/create_user.php",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            lastname: lastname,
+            firstname: firstname,
+            password: password,
+            gradelevel: gradelevel,
+            access: access,
+          }),
+        }
+      );
       const data = await response.json();
+      console.log(data);
+
       if (!response.ok) {
         throw new Error("Network response was not okay");
       } else {
         getUsers();
+        console.log("success!");
       }
     } catch (error) {
       console.error("Error creating new user:", error);
@@ -226,11 +235,14 @@ document
 // Delete User
 async function deleteUser(id) {
   try {
-    const response = await fetch("http://localhost/api/delete_user.php", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: id }),
-    });
+    const response = await fetch(
+      "http://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/delete_user.php",
+      {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: id }),
+      }
+    );
 
     const data = await response.json();
     if (!response.ok) {
@@ -293,11 +305,14 @@ document
     try {
       console.log(newData);
 
-      const response = await fetch("http://localhost/api/update_user.php", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newData),
-      });
+      const response = await fetch(
+        "http://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/update_user.php",
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newData),
+        }
+      );
       const data = await response.json();
       console.log(data);
 

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="../css/user-management.css"
+    />
+    <title>User Management</title>
+  </head>
+  <body>
+    <br />
+    <h2>Students</h2>
+    <br />
+    <div class="div1 users-list"></div>
+    <br />
+    <br />
+    <br />
+    <button class="open-modal-btn">Create New User</button>
+
+    <!-- Create New User Modal -->
+    <dialog class="create-user-div modal">
+      <h2>Create New User</h2>
+      <form
+        class="form"
+        id="createUser"
+        method="dialog"
+      >
+        <label for="firstname">First Name:</label>
+        <input
+          type="text"
+          id="firstname"
+          name="firstname"
+          required
+          maxlength="24"
+        />
+        <br />
+        <br />
+        <label for="lastname">Last Name:</label>
+        <input
+          type="text"
+          id="lastname"
+          name="lastname"
+          required
+          maxlength="24"
+        />
+        <br />
+        <br />
+        <label for="password">Password (8 characters minimum):</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          minlength="8"
+          maxlength="32"
+        />
+        <br />
+        <br />
+        <label>Access:</label>
+        <input
+          type="radio"
+          id="Student"
+          name="access"
+          value="Student"
+          checked
+        />
+        <label for="Student">Student</label>
+        <input
+          type="radio"
+          id="Teacher"
+          name="access"
+          value="Teacher"
+        />
+        <label for="Teacher">Teacher</label>
+        <br />
+        <br />
+        <label>Grade:</label>
+        <input
+          type="radio"
+          id="1"
+          name="gradelevel"
+          value="1"
+        />
+        <label for="1">1</label>
+        <input
+          type="radio"
+          id="2"
+          name="gradelevel"
+          value="2"
+        />
+        <label for="2">2</label>
+        <input
+          type="radio"
+          id="3"
+          name="gradelevel"
+          value="3"
+        />
+        <label for="3">3</label>
+        <input
+          type="radio"
+          id="4"
+          name="gradelevel"
+          value="4"
+        />
+        <label for="4">4</label>
+        <input
+          type="radio"
+          id="5"
+          name="gradelevel"
+          value="5"
+        />
+        <label for="5">5</label>
+        <input
+          type="radio"
+          id="6"
+          name="gradelevel"
+          value="6"
+        />
+        <label for="6">6</label>
+        <br />
+        <br />
+        <input
+          type="submit"
+          value="Create User"
+          class="create-new-user"
+        />
+      </form>
+      <br />
+      <br />
+      <button class="close-modal-btn">Cancel</button>
+    </dialog>
+    <!-- END Create New User Modal -->
+
+    <!-- Individual User Modal -->
+    <dialog
+      id="single-user-data-div"
+      class="user-data-div modal"
+    >
+      <h2 class="user-data-modal-name"></h2>
+      <div class="single-user-data2"></div>
+      <br />
+      <br />
+      <button class="close-modal-btn2">Cancel</button>
+    </dialog>
+    <!-- END Individual User Modal -->
+
+    <!-- Update User Modal -->
+    <dialog class="update-user-div modal">
+      <h2>Update User</h2>
+      <div class="single-user-data1"></div>
+      <form
+        class="form"
+        id="updateUser"
+        method="dialog"
+      >
+        <br />
+        <label for="firstname">First Name: </label>
+        <input
+          type="text"
+          id="updatefirstname"
+          name="firstname"
+          maxlength="24"
+        />
+        <br />
+        <br />
+        <label for="lastname">Last Name: </label>
+        <input
+          type="text"
+          id="updatelastname"
+          name="lastname"
+          maxlength="24"
+        />
+        <br />
+        <br />
+        <label>Access:</label>
+        <input
+          type="radio"
+          id="Student"
+          name="updateaccess"
+          value="Student"
+        />
+        <label for="Student">Student</label>
+        <input
+          type="radio"
+          id="Teacher"
+          name="updateaccess"
+          value="Teacher"
+        />
+        <label for="Teacher">Teacher</label>
+        <br />
+        <br />
+        <label>Grade: </label>
+        <input
+          type="radio"
+          id="1"
+          name="updategradelevel"
+          value="1"
+        />
+        <label for="1">1</label>
+        <input
+          type="radio"
+          id="2"
+          name="updategradelevel"
+          value="2"
+        />
+        <label for="2">2</label>
+        <input
+          type="radio"
+          id="3"
+          name="updategradelevel"
+          value="3"
+        />
+        <label for="3">3</label>
+        <input
+          type="radio"
+          id="4"
+          name="updategradelevel"
+          value="4"
+        />
+        <label for="4">4</label>
+        <input
+          type="radio"
+          id="5"
+          name="updategradelevel"
+          value="5"
+        />
+        <label for="5">5</label>
+        <input
+          type="radio"
+          id="6"
+          name="updategradelevel"
+          value="6"
+        />
+        <label for="6">6</label>
+        <br />
+        <br />
+        <label for="password">Password (8 characters minimum):</label>
+        <input
+          type="password"
+          id="updatepassword"
+          name="password"
+          minlength="8"
+          maxlength="32"
+        />
+        <br />
+        <br />
+        <input
+          type="submit"
+          value="Update User"
+          class="update-user"
+        />
+      </form>
+      <br />
+      <br />
+      <button class="close-modal-btn3">Cancel</button>
+    </dialog>
+    <!-- END Update User Modal -->
+
+    <script
+      type="module"
+      src="user-management.js
+    "
+    ></script>
+  </body>
+</html>

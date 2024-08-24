@@ -1,5 +1,5 @@
 import { score } from "./score-object.js";
-import { particles, particles2 } from "../js/card-touch/FX.js";
+import { particles, particles2 } from "../apps/card-touch/FX.js";
 
 const scoreDisplay = document.createElement("div");
 scoreDisplay.classList.add("score-display");

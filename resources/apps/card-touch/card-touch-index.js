@@ -46,10 +46,7 @@ function cardTouchApp(set) {
     btnContainer2.appendChild(exitBtn);
   }, 0);
 
-  stylesheet.setAttribute(
-    "href",
-    "../../resources/css/alphabet-card-touch.css"
-  );
+  stylesheet.setAttribute("href", "../../resources/css/card-touch.css");
   displayStartBtn();
 
   removeMenuPage();

@@ -109,7 +109,39 @@ body {
   font-size: 1.08rem;
   /* border: 1px solid orange; */
 }
+.student-password-grid-container {
+  display: grid;
+}
+.student-username-container {
+  display: grid;
+  justify-self: center;
+  font-size: 1.5rem;
+}
+.student-selected-password-images {
+  width: 10rem;
+  height: 5rem;
+  /* margin-top: 1rem; */
+  display: grid;
+  justify-self: center;
+  place-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  color: black;
+}
 
+.student-password-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+.grid-image {
+  width: 4rem;
+  height: 4rem;
+  display: grid;
+  border: 1px red solid;
+  place-content: center;
+}
+
+.student-login-btn-container,
 .teacher-login-btn-container {
   width: 70%;
   margin: auto;
@@ -134,4 +166,8 @@ body {
 }
 .hide {
   display: none;
+}
+.selected {
+  background-color: greenyellow;
+  scale: 1.05;
 }

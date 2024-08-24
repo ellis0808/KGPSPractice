@@ -12,6 +12,7 @@
     />
     <title>KGPS English Practice</title>
   </head>
+  <script src="../utilities/howler.js"></script>
   <body>
     <h1>KGPS English Practice</h1>
     <div class="container">
@@ -24,10 +25,23 @@
             id="studentPasswordEntryForm"
             method="dialog"
           >
-            <div class="text">Hello!</div>
+            <div class="student-password-grid-container">
+              <div class="student-username-container"></div>
+              <div class="student-selected-password-images">
+                <div class="student-selected-password-image-1"></div>
+                <div class="student-selected-password-image-2"></div>
+              </div>
+              <div class="student-password-grid"></div>
+            </div>
             <br />
             <br />
-            <button class="close-modal-btn">Cancel</button>
+            <div class="student-login-btn-container">
+              <input
+                type="submit"
+                value="Login"
+              />
+              <button class="close-student-login-modal-btn">Cancel</button>
+            </div>
           </form>
         </dialog>
         <div class="teacher-container-heading container-heading">Teachers</div>
@@ -63,7 +77,7 @@
     </div>
     <script
       type="module"
-      src="login.js"
+      src="./login.js"
     ></script>
   </body>
 </html>
