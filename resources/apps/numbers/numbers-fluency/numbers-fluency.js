@@ -14,11 +14,13 @@ import {
 } from "../../../utilities/main-menu-display-toggle.js";
 import { numbersFluencySfx } from "./audio.js";
 import { feedbackAudioObject } from "../../../utilities/feedback-object.js";
-import { numbersAudioObject } from "../../../utilities/numbers-audio-object.js";
 import {
   disableTouch,
   enableTouch,
 } from "../../../utilities/disable-enable-touch.js";
+import { sessionCheck } from "../../../login/session-check.js";
+
+sessionCheck();
 
 let style;
 let interval = 2500;
@@ -145,6 +147,100 @@ const gridSize = 20;
 Main App
 *****************
 */
+let numbersAudioObject = {};
+
+async function loadAudioForStyle(style) {
+  let section = "numbers";
+  try {
+    const response = await fetch(`/${section}-manifest.json`);
+    const data = await response.json();
+
+    if (style === 0) {
+      for (const key in data) {
+        const audioData = data[key];
+        if (audioData.group === "1-20") {
+          numbersAudioObject[key] = {
+            content: audioData.content,
+            sound: new Howl({
+              src: [
+                `https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/resources/audio/${section}-audio/${audioData.file}`,
+              ],
+              volume: audioData.volume,
+            }),
+          };
+        }
+      }
+    }
+    if (style === 1) {
+      for (const key in data) {
+        const audioData = data[key];
+        if (audioData.group === "21-40") {
+          numbersAudioObject[key] = {
+            content: audioData.content,
+            sound: new Howl({
+              src: [
+                `https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/resources/audio/${section}-audio/${audioData.file}`,
+              ],
+              volume: audioData.volume,
+            }),
+          };
+        }
+      }
+    }
+    if (style === 2) {
+      for (const key in data) {
+        const audioData = data[key];
+        if (audioData.group === "41-60") {
+          numbersAudioObject[key] = {
+            content: audioData.content,
+            sound: new Howl({
+              src: [
+                `https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/resources/audio/${section}-audio/${audioData.file}`,
+              ],
+              volume: audioData.volume,
+            }),
+          };
+        }
+      }
+    }
+    if (style === 3) {
+      for (const key in data) {
+        const audioData = data[key];
+        if (audioData.group === "61-80") {
+          numbersAudioObject[key] = {
+            content: audioData.content,
+            sound: new Howl({
+              src: [
+                `https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/resources/audio/${section}-audio/${audioData.file}`,
+              ],
+              volume: audioData.volume,
+            }),
+          };
+        }
+      }
+    }
+    if (style === 4) {
+      for (const key in data) {
+        const audioData = data[key];
+        if (audioData.group === "81-100") {
+          numbersAudioObject[key] = {
+            content: audioData.content,
+            sound: new Howl({
+              src: [
+                `https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/resources/audio/${section}-audio/${audioData.file}`,
+              ],
+              volume: audioData.volume,
+            }),
+          };
+        }
+      }
+    }
+
+    console.log("audio loaded for: ", section);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
 
 /* Starts Main App (exported to resources/js/general/app-launcher.js) */
 function numberFluencyApp(set) {
@@ -180,17 +276,22 @@ style 4: 81-100
 */
   if (set === 0) {
     style = 0;
+    loadAudioForStyle(style);
   } else if (set === 1) {
     style = 1;
+    loadAudioForStyle(style);
     return style;
   } else if (set === 2) {
     style = 2;
+    loadAudioForStyle(style);
     return style;
   } else if (set === 3) {
     style = 3;
+    loadAudioForStyle(style);
     return style;
   } else if (set === 4) {
     style = 4;
+    loadAudioForStyle(style);
     return style;
   }
   return style;
@@ -805,4 +906,4 @@ function createGrid() {
   }
 }
 
-export { numberFluencyApp };
+export { numberFluencyApp, numbersAudioObject };

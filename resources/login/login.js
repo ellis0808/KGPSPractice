@@ -327,7 +327,7 @@ async function loginUser(id, firstname, lastname, access) {
       routing(data);
     }
   } catch (error) {
-    console.error("Error loging in:", error);
+    console.error("Error loging in: ", error);
   }
 }
 window.addEventListener("load", getUsersForLogin);

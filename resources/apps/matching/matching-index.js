@@ -21,7 +21,6 @@ import {
   removeMenuPage,
   restoreMainMenu,
 } from "../../utilities/main-menu-display-toggle.js";
-import { alphabetObject } from "../../utilities/alphabet-audio-object.js";
 import {
   dotAndLineCommand,
   startDot,
@@ -31,6 +30,9 @@ import {
   DotAndLineCommand,
   Connector,
 } from "./dot-objects-control.js";
+import { sessionCheck } from "../../login/session-check.js";
+
+sessionCheck();
 
 /* SCORING */
 const correctAnswerPoints = 1;
@@ -133,6 +135,39 @@ const finalLinesIdArray = [];
 I. MAIN APP
 *******
 */
+let style;
+let alphabetAudioObject = {};
+
+async function loadAudioForStyle(style) {
+  let section;
+  if (style === 0) {
+    section = "alphabet";
+  }
+
+  try {
+    const response = await fetch(`/${section}-manifest.json`);
+    const data = await response.json();
+    console.log(data);
+
+    if (style === 0) {
+      for (const key in data) {
+        const audioData = data[key];
+        alphabetAudioObject[key] = {
+          content: audioData.content,
+          sound: new Howl({
+            src: [
+              `https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/resources/audio/${section}-audio/${audioData.file}`,
+            ],
+            volume: audioData.volume,
+          }),
+        };
+      }
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
 function alphabetMatchingApp() {
   mainContainer.appendChild(appContainer);
   appContainer.appendChild(leftMenuContainer);
@@ -150,7 +185,7 @@ function alphabetMatchingApp() {
   exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
   removeMenuPage();
 
-  stylesheet.setAttribute("href", "../../resources/css/alphabet-matching.css");
+  stylesheet.setAttribute("href", "../../resources/css/matching.css");
   displayStartBtn();
   score.resetScore();
   resetTimer();
@@ -163,6 +198,30 @@ function alphabetMatchingApp() {
   if (!timer.classList.contains("hide2")) {
     toggleTimerHide();
   }
+  // if (set === "capitals") {
+  style = 0;
+  loadAudioForStyle(style);
+  //   return style;
+  // } else if (set === "lowercase") {
+  //   style = 1;
+  //   loadAudioForStyle(style);
+  //   return style;
+  // } else if (set === "sightwords1") {
+  //   style = 2;
+  //   loadAudioForStyle(style);
+  //   return style;
+  // }
+  // if (set === "sightwords2") {
+  //   style = 3;
+  //   loadAudioForStyle(style);
+  //   return style;
+  // }
+  // if (set === "sightwords3") {
+  //   style = 4;
+  //   loadAudioForStyle(style);
+  //   return style;
+  // }
+  return style;
 }
 
 function endApp() {
@@ -707,7 +766,7 @@ function generateLetterDivsForMatching(array) {
       letter.classList.add(divGroup);
       letter.innerText = `${letter.getAttribute("contentId")}`;
       letter.addEventListener("click", () => {
-        alphabetObject[item].sound.play();
+        alphabetAudioObject[item].sound.play();
       });
       lowercaseLetterDiv.appendChild(letter);
     });
@@ -720,7 +779,7 @@ function generateLetterDivsForMatching(array) {
     letter.classList.add(divGroup);
     letter.innerText = `${letter.getAttribute("contentId")}`;
     letter.addEventListener("click", () => {
-      alphabetObject[item.toLowerCase()].sound.play();
+      alphabetAudioObject[item.toLowerCase()].sound.play();
     });
     capitalLettersDiv.appendChild(letter);
   });
@@ -1268,6 +1327,7 @@ document.body.addEventListener("touchstart", createDoubleTapPreventer(500), {
 export {
   alphabetMatchingApp,
   checkAllCorrect,
+  alphabetAudioObject,
   currentDotId,
   endDotId,
   startDotId,

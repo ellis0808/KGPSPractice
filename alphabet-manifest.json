@@ -1,0 +1,132 @@
+{
+  "a": {
+    "content": "a",
+    "file": "v1-alphabet-a.mp3",
+    "volume": 0.5
+  },
+  "b": {
+    "content": "b",
+    "file": "v1-alphabet-b.mp3",
+    "volume": 0.6
+  },
+  "c": {
+    "content": "c",
+    "file": "v1-alphabet-c.mp3",
+    "volume": 0.8
+  },
+  "d": {
+    "content": "d",
+    "file": "v1-alphabet-d.mp3",
+    "volume": 0.8
+  },
+  "e": {
+    "content": "e",
+    "file": "v1-alphabet-e.mp3",
+    "volume": 0.9
+  },
+  "f": {
+    "content": "f",
+    "file": "v1-alphabet-f.mp3",
+    "volume": 0.8
+  },
+  "g": {
+    "content": "g",
+    "file": "v1-alphabet-g.mp3",
+    "volume": 0.8
+  },
+  "h": {
+    "content": "h",
+    "file": "v1-alphabet-h.mp3",
+    "volume": 0.8
+  },
+  "i": {
+    "content": "i",
+    "file": "v1-alphabet-i.mp3",
+    "volume": 0.8
+  },
+  "j": {
+    "content": "j",
+    "file": "v1-alphabet-j.mp3",
+    "volume": 0.8
+  },
+  "k": {
+    "content": "k",
+    "file": "v1-alphabet-k.mp3",
+    "volume": 0.8
+  },
+  "l": {
+    "content": "l",
+    "file": "v1-alphabet-l.mp3",
+    "volume": 0.8
+  },
+  "m": {
+    "content": "m",
+    "file": "v1-alphabet-m.mp3",
+    "volume": 0.8
+  },
+  "n": {
+    "content": "n",
+    "file": "v1-alphabet-n.mp3",
+    "volume": 0.8
+  },
+  "o": {
+    "content": "o",
+    "file": "v1-alphabet-o.mp3",
+    "volume": 0.8
+  },
+  "p": {
+    "content": "p",
+    "file": "v1-alphabet-p.mp3",
+    "volume": 0.8
+  },
+  "q": {
+    "content": "q",
+    "file": "v1-alphabet-q.mp3",
+    "volume": 0.8
+  },
+  "r": {
+    "content": "r",
+    "file": "v1-alphabet-r.mp3",
+    "volume": 0.8
+  },
+  "s": {
+    "content": "s",
+    "file": "v1-alphabet-s.mp3",
+    "volume": 0.8
+  },
+  "t": {
+    "content": "t",
+    "file": "v1-alphabet-t.mp3",
+    "volume": 0.8
+  },
+  "u": {
+    "content": "u",
+    "file": "v1-alphabet-u.mp3",
+    "volume": 0.8
+  },
+  "v": {
+    "content": "v",
+    "file": "v1-alphabet-v.mp3",
+    "volume": 0.8
+  },
+  "w": {
+    "content": "w",
+    "file": "v1-alphabet-w.mp3",
+    "volume": 0.8
+  },
+  "x": {
+    "content": "x",
+    "file": "v1-alphabet-x.mp3",
+    "volume": 0.8
+  },
+  "y": {
+    "content": "y",
+    "file": "v1-alphabet-y.mp3",
+    "volume": 1
+  },
+  "z": {
+    "content": "z",
+    "file": "v1-alphabet-z.mp3",
+    "volume": 0.8
+  }
+}

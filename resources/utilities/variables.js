@@ -1,5 +1,5 @@
 const body = document.body;
-const navBar = document.getElementById("user-nav");
+const navBar = document.getElementById("navbar");
 const mainContainer = document.getElementById("main-container");
 const parentsInfo = document.getElementById("parents-info");
 const menuContainer = document.getElementById("menu-container");

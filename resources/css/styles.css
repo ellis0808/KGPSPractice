@@ -14,6 +14,7 @@
 }
 :root {
   --clr-acc1: #006747;
+  --clr-acc1-hvr: rgba(0, 103, 71, 0.7);
   --clr-wht: #fff;
   --hvr-opc: 0.7;
 }
@@ -60,47 +61,54 @@ body:not(:has(*)) {
 
 .navbar {
   grid-area: navbar;
-  height: 35px;
+  height: 60px;
   width: 100%;
-  background: lightblue;
-  font-size: 3rem;
-  justify-content: right;
+  background: rgb(230 230 230 / 0.5);
+  display: grid;
+  grid-template-columns: 0.075fr 1fr 0.5fr 0.075fr;
+  grid-template-areas: "..... nav-logo  nav-user-space .....";
   transition: 0.3s;
   z-index: 10;
   position: absolute;
 }
-.navbar-nav {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  list-style: none;
+.nav-logo,
+.nav-user-space {
+  grid-area: nav-logo;
+  color: var(--clr-acc1);
+  display: grid;
+  justify-self: start;
+  align-self: center;
+  font-size: 2rem;
   transition: 0.3s;
+}
+.nav-logo {
+  grid-area: nav-logo;
+  justify-self: start;
+}
+.nav-user-space {
+  height: 60px;
+  grid-area: nav-user-space;
+  justify-self: end;
+  position: relative;
+}
+.nav-user-name {
+  font-size: 2rem;
+  transition: 0.3s;
+}
+.nav-user-name:hover {
+  color: var(--clr-acc1-hvr);
+  /* font-size: 2.5rem; */
+}
+.nav-user-menu {
+  display: none;
+  background-color: rgb(230 230 230);
+  position: relative;
+  /* top: 100%; */
+}
+.nav-user-space:hover .nav-user-menu {
+  display: grid;
 }
 
-.nav-item {
-  height: 100%;
-  font-size: inherit;
-}
-.nav-item:nth-child(1) {
-  margin-left: 2rem;
-  font-size: 1rem;
-}
-.nav-item:last-child {
-  margin-left: auto;
-  margin-right: 2rem;
-}
-.navbar:hover {
-  height: 5rem;
-  font-size: 3rem;
-  transition: 0.3s;
-}
-.navbar-nav:hover {
-  font-size: 3rem;
-  transition: 0.3s;
-}
 .main-container {
   grid-area: main-container;
   display: grid;

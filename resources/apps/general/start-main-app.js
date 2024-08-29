@@ -15,6 +15,10 @@ import {
   startNumberFluencyApp,
   startSpellingTouchApp,
 } from "./app-launcher.js";
+import { logout } from "../../utilities/logout.js";
+import { sessionCheck } from "../../login/session-check.js";
+
+sessionCheck();
 
 /*
 **********
@@ -42,7 +46,7 @@ const mainMenuSfx = {
     },
   }),
   back: new Howl({
-    src: ["/resources/audio/sfx/決定ボタンを押す22_reversed.mp3"],
+    src: ["/resources/audio/sfx/決定ボタンを押す22-reversed.mp3"],
     volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {
@@ -57,6 +61,11 @@ const mainMenuSfx = {
 Main Menu Items
 **********
 */
+
+const navLogo = document.querySelector(".nav-logo");
+const navUserSpace = document.querySelector(".nav-user");
+const navUserName = document.querySelector(".nav-user-name");
+const navUserMenu = document.querySelector(".nav-user-menu");
 
 const abcMenu = document.createElement("div");
 abcMenu.setAttribute("id", "div1");
@@ -124,10 +133,8 @@ function displayGreeting() {
 function displayMainPage() {
   isMainMenu = true;
   const navBarDisplay = `${user}`;
-  // const navItem = document.getElementById("nav-item");
-  // navItem.innerHTML = ``;
-
-  // navBar.innerHTML = navBarDisplay;
+  navLogo.innerText = `KGPS English Practice`;
+  navUserName.innerText = navBarDisplay;
 }
 function hideParentsInfoBtn() {
   parentsInfo.classList.add("hidden");
@@ -135,7 +142,9 @@ function hideParentsInfoBtn() {
 function displayParentsInfoBtn() {
   parentsInfo.classList.remove("hidden");
 }
-
+if (document.querySelector(".logout")) {
+  document.querySelector(".logout").addEventListener("click", logout);
+}
 /*  Return to Main Page  */
 
 const returnToMainMenuBtn = document.createElement("button");
@@ -170,7 +179,9 @@ function returnToMainMenu() {
   displayMainPage();
   returnToMainMenuToggle();
 }
-// body.appendChild(navBar);
+if (navBar) {
+  body.appendChild(navBar);
+}
 
 /*
 **********

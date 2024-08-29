@@ -1,18 +1,3 @@
-// Audio
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-let source = null;
-
-function stopAudio() {
-  source.stop();
-}
-
-function finishedLoading(bufferList) {
-  source = audioContext.createBufferSource();
-  source.buffer = bufferList[0];
-  source.connect(audioContext.destination);
-  source.start(0);
-}
-
 const numbersFluencySfx = {
   restoreHeartSFX: new Howl({
     src: ["/resources/audio/sfx/パパッ.mp3"],
@@ -41,4 +26,4 @@ const numbersFluencySfx = {
   }),
 };
 
-export { numbersFluencySfx, stopAudio, finishedLoading };
+export { numbersFluencySfx };

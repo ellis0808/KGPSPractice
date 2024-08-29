@@ -1,0 +1,181 @@
+{
+  "a": {
+    "content": "a",
+    "file": "sight-words-v1-a.mp3",
+    "volume": 0.5,
+    "group": 1
+  },
+  "the": {
+    "content": "the",
+    "file": "sight-words-v1-the.mp3",
+    "volume": 0.5,
+    "group": 1
+  },
+  "what": {
+    "content": "what",
+    "file": "sight-words-v1-what.mp3",
+    "volume": 0.5,
+    "group": 1
+  },
+  "this": {
+    "content": "this",
+    "file": "sight-words-v1-this.mp3",
+    "volume": 0.5,
+    "group": 1
+  },
+  "my": {
+    "content": "my",
+    "file": "sight-words-v1-my.mp3",
+    "volume": 0.5,
+    "group": 2
+  },
+  "there": {
+    "content": "there",
+    "file": "sight-words-v1-there.mp3",
+    "volume": 0.5,
+    "group": 3
+  },
+  "where": {
+    "content": "where",
+    "file": "sight-words-v1-where.mp3",
+    "volume": 0.5
+  },
+  "your": {
+    "content": "your",
+    "file": "sight-words-v1-your.mp3",
+    "volume": 0.5
+  },
+  "he": {
+    "content": "he",
+    "file": "sight-words-v1-he.mp3",
+    "volume": 0.5,
+    "group": 2
+  },
+  "she": {
+    "content": "she",
+    "file": "sight-words-v1-she.mp3",
+    "volume": 0.5,
+    "group": 2
+  },
+  "who": {
+    "content": "who",
+    "file": "sight-words-v1-who.mp3",
+    "volume": 0.5,
+    "group": 2
+  },
+  "are": {
+    "content": "are",
+    "file": "sight-words-v1-are.mp3",
+    "volume": 0.5,
+    "group": 2
+  },
+  "they": {
+    "content": "they",
+    "file": "sight-words-v1-they.mp3",
+    "volume": 0.5,
+    "group": 2
+  },
+  "have": {
+    "content": "have",
+    "file": "sight-words-v1-have.mp3",
+    "volume": 0.5
+  },
+  "those": {
+    "content": "those",
+    "file": "sight-words-v1-those.mp3",
+    "volume": 0.5
+  },
+  "to": {
+    "content": "to",
+    "file": "sight-words-v1-to.mp3",
+    "volume": 0.5
+  },
+  "do": {
+    "content": "do",
+    "file": "sight-words-v1-do.mp3",
+    "volume": 0.5
+  },
+  "does": {
+    "content": "does",
+    "file": "sight-words-v1-does.mp3",
+    "volume": 0.5
+  },
+  "doesnt": {
+    "content": "doesn't",
+    "file": "sight-words-v1-doesnt.mp3",
+    "volume": 0.5
+  },
+  "yes": {
+    "content": "yes",
+    "file": "sight-words-v1-yes.mp3",
+    "volume": 0.5,
+    "group": 3
+  },
+  "no": {
+    "content": "no",
+    "file": "sight-words-v1-no.mp3",
+    "volume": 0.5,
+    "group": 3
+  },
+  "isnt": {
+    "content": "isn't",
+    "file": "sight-words-v1-isn't.mp3",
+    "volume": 0.5,
+    "group": 3
+  },
+  "I": {
+    "content": "I",
+    "file": "sight-words-v1-I.mp3",
+    "volume": 0.5
+  },
+  "you": {
+    "content": "you",
+    "file": "sight-words-v1-you.mp3",
+    "volume": 0.5
+  },
+  "many": {
+    "content": "many",
+    "file": "sight-words-v1-many.mp3",
+    "volume": 0.5
+  },
+  "wearing": {
+    "content": "wearing",
+    "file": "sight-words-v1-wearing.mp3",
+    "volume": 0.5
+  },
+  "want": {
+    "content": "want",
+    "file": "sight-words-v1-want.mp3",
+    "volume": 0.5
+  },
+  "we": {
+    "content": "we",
+    "file": "sight-words-v1-we.mp3",
+    "volume": 0.5
+  },
+  "go": {
+    "content": "go",
+    "file": "sight-words-v1-go.mp3",
+    "volume": 0.5
+  },
+  "look": {
+    "content": "look",
+    "file": "sight-words-v1-look.mp3",
+    "volume": 0.5
+  },
+  "see": {
+    "content": "see",
+    "file": "sight-words-v1-see.mp3",
+    "volume": 0.5
+  },
+  "some": {
+    "content": "some",
+    "file": "sight-words-v1-some.mp3",
+    "volume": 0.5
+  },
+  "favorite": {
+    "content": "favorite",
+    "file": "sight-words-v1-favorite.mp3",
+    "volume": 0.5
+  }
+}

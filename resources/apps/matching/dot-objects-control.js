@@ -1,7 +1,6 @@
 import { body } from "../../utilities/variables.js";
-
+import { alphabetAudioObject } from "./matching-index.js";
 import { matchingSfx } from "./audio.js";
-import { alphabetObject } from "../../utilities/alphabet-audio-object.js";
 import {
   checkAllCorrect,
   currentDotId,
@@ -167,7 +166,7 @@ class StartDot {
     matchingSfx.validConnection.play();
 
     setTimeout(() => {
-      alphabetObject[this.contentId.toLowerCase()].sound.play();
+      alphabetAudioObject[this.contentId.toLowerCase()].sound.play();
     }, 200);
 
     checkAllCorrect();

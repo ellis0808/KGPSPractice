@@ -11,7 +11,6 @@ import {
   sightWords2,
   sightWords3,
 } from "./card-data.js";
-import { alphabetObject } from "../../utilities/alphabet-audio-object.js";
 import { wobble, spinfade, newRoundCardFlip, particles } from "./FX.js";
 import { score } from "../../utilities/score-object.js";
 import {
@@ -27,9 +26,61 @@ import {
 } from "../../utilities/main-menu-display-toggle.js";
 import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import { timer, toggleTimerHide } from "../../utilities/timer-object.js";
-import { sightWordsObject } from "../../utilities/sight-words-audio-object.js";
+import { sessionCheck } from "../../login/session-check.js";
+
+sessionCheck();
 
 let style;
+
+let sightWordsAudioObject = {};
+let alphabetAudioObject = {};
+
+async function loadAudioForStyle(style) {
+  let section;
+  if (style === 0 || style === 1) {
+    section = "alphabet";
+  }
+  if (style === 2 || style === 3 || style === 4) {
+    section = "sight-words";
+  }
+  try {
+    const response = await fetch(`/${section}-manifest.json`);
+    const data = await response.json();
+    console.log(data);
+
+    if (style === 0 || style === 1) {
+      for (const key in data) {
+        const audioData = data[key];
+        alphabetAudioObject[key] = {
+          content: audioData.content,
+          sound: new Howl({
+            src: [
+              `https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/resources/audio/${section}-audio/${audioData.file}`,
+            ],
+            volume: audioData.volume,
+          }),
+        };
+      }
+    }
+    if (style === 2 || style === 3 || style === 4) {
+      for (const key in data) {
+        const audioData = data[key];
+        sightWordsAudioObject[key] = {
+          content: audioData.content,
+          sound: new Howl({
+            src: [
+              `https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/resources/audio/${section}-audio/${audioData.file}`,
+            ],
+            volume: audioData.volume,
+          }),
+        };
+      }
+    }
+    console.log("audio loaded for: ", section);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
 
 /* SCORING */
 const correctAnswerPoints = 2;
@@ -71,20 +122,25 @@ style 5: sight words 4
 */
   if (set === "capitals") {
     style = 0;
+    loadAudioForStyle(style);
     return style;
   } else if (set === "lowercase") {
     style = 1;
+    loadAudioForStyle(style);
     return style;
   } else if (set === "sightwords1") {
     style = 2;
+    loadAudioForStyle(style);
     return style;
   }
   if (set === "sightwords2") {
     style = 3;
+    loadAudioForStyle(style);
     return style;
   }
   if (set === "sightwords3") {
     style = 4;
+    loadAudioForStyle(style);
     return style;
   }
   return style;
@@ -443,9 +499,9 @@ function repeat() {
   setTimeout(function () {
     if (!isPaused) {
       if (style === 0 || style === 1) {
-        alphabetObject[randomItem].sound.play();
+        alphabetAudioObject[randomItem].sound.play();
       } else if (style === 2 || style === 3 || style === 4) {
-        sightWordsObject[randomItem].sound.play();
+        sightWordsAudioObject[randomItem].sound.play();
       }
     }
   }, 30);
@@ -737,4 +793,11 @@ function returnToApp() {
   pauseBtn.addEventListener("click", pause);
 }
 
-export { cardTouchApp, startCardTouchApp, cardText, style };
+export {
+  cardTouchApp,
+  startCardTouchApp,
+  cardText,
+  style,
+  alphabetAudioObject,
+  sightWordsAudioObject,
+};
