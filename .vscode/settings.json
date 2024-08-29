@@ -1,3 +1,19 @@
 {
-  "liveServer.settings.port": 5501
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "KGPSEP Local",
+      "database": "usersdb",
+      "username": "root",
+      "password": "4eveRis Close2dAy",
+      "connectionTimeout": 30
+    }
+  ]
 }

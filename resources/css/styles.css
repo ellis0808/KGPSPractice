@@ -4,11 +4,13 @@
 /* Accent Color Opacity on Hover: 0.7 */
 
 * {
-  user-select: none;
   font-size: 16px;
   font-family: "Playpen Sans", sans-serif;
   font-weight: 800;
   font-style: normal;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 :root {
   --clr-acc1: #006747;
@@ -18,15 +20,20 @@
 
 body {
   background: white;
+  width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
   display: grid;
   place-content: center;
   /* place-items: center; */
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.25 1fr 1fr 0.25;
+  grid-template-rows: 0.025fr 0.1fr 1fr 0.075fr;
   grid-template-areas:
-    "  ..... parents-info"
-    "main-container   main-container";
+    "..... ..... ..... ....."
+    " ..... ..... parents-info ....."
+    "..... main-container   main-container ....."
+    "..... ..... ..... .....";
 }
 @media (width > 600px) {
   body {
@@ -37,6 +44,7 @@ body {
     place-content: center;
     /* place-items: center; */
     grid-template-columns: 2rem minmax(250px, 500px) minmax(250px, 500px) 2rem;
+    grid-template-rows: 0.025fr 0.1fr 1fr 0.075fr;
     grid-template-areas:
       "navbar navbar navbar navbar"
       ".....  ..... parents-info  ....."
@@ -102,28 +110,98 @@ body:not(:has(*)) {
 }
 .top-container {
   grid-area: top-container;
-  height: 175px;
   width: 100%;
+  height: 130px;
   margin: auto;
-  font-size: 4rem;
-  display: flex;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  display: grid;
+  grid-template-rows: 1fr 0.5fr;
+  grid-template-areas:
+    "greeting-display"
+    "points-display";
   place-content: center;
   place-items: center;
-  animation: cardEntrance 1s ease-in-out forwards;
+  font-size: 4rem;
+  transition: 0.3s;
+  animation: cardEntrance 1.15s ease-in-out backwards;
 }
 @media (width > 600px) {
   .top-container {
     grid-area: top-container;
-    height: 175px;
     width: 100%;
+    height: 175px;
     margin: auto;
     margin-bottom: 50px;
     font-size: 7rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 0.5fr;
+    grid-template-areas:
+      "greeting-display greeting-display"
+      "points-display points-display";
+    place-content: center;
+    place-items: center;
+  }
+}
+.greeting-display {
+  grid-area: greeting-display;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  font-size: 3rem;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  text-align: center;
+  transition: 0.3s;
+  animation: fadeIn 0.25s ease-in backwards;
+}
+@media (width > 600px) {
+  .greeting-display {
+    grid-area: greeting-display;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    font-size: 5rem;
     display: flex;
     place-content: center;
     place-items: center;
-    animation: cardEntrance 1s ease-in-out forwards;
+    text-align: center;
+    transition: 0.3s;
+    animation: fadeIn 0.25s ease-in backwards;
   }
+}
+.points-display {
+  grid-area: points-display;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  font-size: 3rem;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  text-align: center;
+  transition: 0.3s;
+  animation: fadeIn 0.25s ease-in backwards;
+}
+@media (width > 600px) {
+  .points-display {
+    grid-area: points-display;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    font-size: 4rem;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    text-align: center;
+    transition: 0.3s;
+    animation: fadeIn 0.25s ease-in backwards;
+  }
+}
+.test {
+  margin: auto;
 }
 .menu-container {
   grid-area: menu-container;
@@ -136,8 +214,8 @@ body:not(:has(*)) {
   grid-template-columns: 1fr;
   /* grid-template-rows: repeat(auto-fill, 1fr); */
   grid-template-areas:
-    "alphabet"
-    "numbers"
+    "menu1"
+    "menu2"
     "menu3"
     "menu4";
   /* column-gap: 8rem; */
@@ -155,8 +233,9 @@ body:not(:has(*)) {
     grid-template-columns: repeat(2, minmax(min(250px, 100%), 1fr));
     grid-template-rows: repeat(2, 1fr);
     grid-template-areas:
-      "alphabet  numbers"
-      "menu3  menu4";
+      "menu1  menu2"
+      "menu3  menu4"
+      "menu5  menu6";
     column-gap: 8rem;
     row-gap: 4rem;
   }
@@ -196,10 +275,12 @@ body:not(:has(*)) {
 }
 
 .parents-info:hover {
-  /* box-shadow: rgba(2, 8, 20, 0.5) 0px 0.35em 1.175em,
-    rgba(2, 8, 20, 0.3) 0px 0.175em 0.5em; */
   transform: translateY(-3px) scale(1.07);
   transition: 0.3s;
+}
+.parents-info:active {
+  transform: scale(1.03);
+  transition: 0.2s ease-in-out;
 }
 
 .returnToMainMenuBtn {
@@ -217,7 +298,6 @@ body:not(:has(*)) {
   transition: 0.3s;
 }
 .div {
-  user-select: none;
   width: 330px;
   height: 175px;
   background: var(--clr-acc1);
@@ -227,16 +307,18 @@ body:not(:has(*)) {
   place-content: center;
   place-items: center;
   line-break: strict;
-  font-size: 3.5rem;
+  font-size: 3rem;
   line-height: 1.2;
   text-align: center;
   transition: 0.3s;
   box-shadow: 0px 24px 35px 7px rgba(0, 0, 0, 0.3);
   --stagger-delay: 0.15s;
 }
-@media (width > 600px) {
+.main-menu-div {
+  font-size: 3.5rem;
+}
+@media (min-width: 975px) {
   .div {
-    user-select: none;
     width: 100%;
     height: 200px;
     background: var(--clr-acc1);
@@ -250,40 +332,44 @@ body:not(:has(*)) {
     text-align: center;
     transition: 0.3s;
     box-shadow: 0px 24px 35px 7px rgba(0, 0, 0, 0.3);
-    --stagger-delay: 0.15s;
+    --stagger-delay: 0.1s;
+    --card-entrance: 0.5s;
+  }
+  .main-menu-div {
+    font-size: 4rem;
   }
 }
 .div-start-menu1 {
-  grid-area: alphabet;
-  animation: cardEntrance 0.7s ease-out;
+  grid-area: menu1;
+  animation: cardEntrance var(--card-entrance) ease-out;
   animation-fill-mode: backwards;
   animation-delay: calc(1 * var(--stagger-delay));
 }
 .div-start-menu2 {
-  grid-area: numbers;
-  animation: cardEntrance 0.7s ease-out;
+  grid-area: menu2;
+  animation: cardEntrance var(--card-entrance) ease-out;
   animation-fill-mode: backwards;
   animation-delay: calc(2 * var(--stagger-delay));
 }
 .div-start-menu3 {
   grid-area: menu3;
-  animation: cardEntrance 0.7s ease-out;
+  animation: cardEntrance var(--card-entrance) ease-out;
   animation-fill-mode: backwards;
   animation-delay: calc(3 * var(--stagger-delay));
 }
 .div-start-menu4 {
   grid-area: menu4;
-  animation: cardEntrance 0.7s ease-out;
+  animation: cardEntrance var(--card-entrance) ease-out;
   animation-fill-mode: backwards;
   animation-delay: calc(4 * var(--stagger-delay));
 }
 .div-start-menu5 {
-  animation: cardEntrance 0.7s ease-out;
+  animation: cardEntrance var(--card-entrance) ease-out;
   animation-fill-mode: backwards;
   animation-delay: calc(5 * var(--stagger-delay));
 }
 .div-start-menu6 {
-  animation: cardEntrance 0.7s ease-out;
+  animation: cardEntrance var(--card-entrance) ease-out;
   animation-fill-mode: backwards;
   animation-delay: calc(6 * var(--stagger-delay));
 }
@@ -306,5 +392,13 @@ body:not(:has(*)) {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

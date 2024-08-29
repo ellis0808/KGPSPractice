@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="../css/login.css"
+    />
+    <title>KGPS English Practice</title>
+  </head>
+  <script src="../utilities/howler.js"></script>
+  <body>
+    <h1>KGPS English Practice</h1>
+    <div class="container">
+      <div class="login-container">
+        <div class="student-container-heading container-heading">Students</div>
+        <div class="student-name-container"></div>
+        <dialog class="student-password-entry-form-container modal">
+          <form
+            action=""
+            id="studentPasswordEntryForm"
+            method="dialog"
+          >
+            <div class="student-password-grid-container">
+              <div class="student-username-container"></div>
+              <div class="student-selected-password-images">
+                <div class="student-selected-password-image-1"></div>
+                <div class="student-selected-password-image-2"></div>
+              </div>
+              <div class="student-password-grid"></div>
+            </div>
+            <br />
+            <br />
+            <div class="student-login-btn-container">
+              <input
+                type="submit"
+                value="Login"
+              />
+              <button class="close-student-login-modal-btn">Cancel</button>
+            </div>
+          </form>
+        </dialog>
+        <div class="teacher-container-heading container-heading">Teachers</div>
+        <div class="teacher-name-container"></div>
+        <dialog class="teacher-password-entry-form-container modal">
+          <div class="teacher-username-container"></div>
+          <form
+            action=""
+            id="teacherPasswordEntryForm"
+            method="dialog"
+          >
+            <br />
+            <br />
+            <label for="teacherpassword">Password: </label>
+            <input
+              type="password"
+              name="teacherpassword"
+              id="teacherpassword"
+              required
+            />
+            <br />
+            <br />
+            <div class="teacher-login-btn-container">
+              <input
+                type="submit"
+                value="Login"
+              />
+              <button class="close-teacher-login-modal-btn">Cancel</button>
+            </div>
+          </form>
+        </dialog>
+      </div>
+    </div>
+    <script
+      type="module"
+      src="./login.js"
+    ></script>
+  </body>
+</html>

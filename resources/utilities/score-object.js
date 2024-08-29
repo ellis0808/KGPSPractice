@@ -1,5 +1,6 @@
 const score = {
   currentScore: 0,
+  userScore: 0,
   highScore: 0,
   plusPoints: 5,
   minusPoints: 2,
@@ -18,6 +19,9 @@ const score = {
   },
   resetScore: function () {
     this.currentScore = 0;
+  },
+  updateUserScore: function () {
+    this.userScore += this.currentScore;
   },
 };
 

@@ -1,11 +1,14 @@
 import { score } from "./score-object.js";
-import { scoreDisplay } from "../js/alphabet/alphabet-card-touch/alphabet-card-touch.js";
-import {
-  particles,
-  particles2,
-} from "../js/alphabet/alphabet-card-touch/FX.js";
-import { newRoundCardFlip } from "../js/alphabet/alphabet-matching/fx.js";
+import { particles, particles2 } from "../apps/card-touch/FX.js";
 
+const scoreDisplay = document.createElement("div");
+scoreDisplay.classList.add("score-display");
+scoreDisplay.setAttribute("id", "score-display");
+scoreDisplay.textContent = `${score.currentScore}`;
+
+function toggleScoreDisplayHide() {
+  scoreDisplay.classList.toggle("hide2");
+}
 const updatePositiveCount = (amount) => {
   const points = amount;
   const increment = 1;
@@ -50,4 +53,9 @@ const updateNegativeCount = (amount) => {
   }, 600);
 };
 
-export { updateNegativeCount, updatePositiveCount };
+export {
+  scoreDisplay,
+  toggleScoreDisplayHide,
+  updateNegativeCount,
+  updatePositiveCount,
+};
