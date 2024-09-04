@@ -13,5 +13,5 @@ jobs:
         with:
           server: orchidpony8.sakura.ne.jp
           username: orchidpony8
-          server-dir: /home/orchidpony8/www/KGPSEnglishPractice-test
+          server-dir: /home/orchidpony8/www
           password: ${{ secrets.FTP_PASSWORD }}
