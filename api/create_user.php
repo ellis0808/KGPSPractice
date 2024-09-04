@@ -3,15 +3,9 @@
 session_start();
 
 require './db_connect.php';
+require './headers.php';
 
-header('Content-Type: application/json');
 
-// Allow requests from any origin
-header("Access-Control-Allow-Origin: *");
-// Allow specific HTTP methods
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
-// Allow specific headers
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     header("HTTP/1.1 204 No Content");

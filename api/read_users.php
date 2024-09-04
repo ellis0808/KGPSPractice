@@ -1,23 +1,7 @@
 <?php
 
 require './db_connect.php';
-
-header('Content-Type: application/json');
-
-// Allow requests from any origin
-header("Access-Control-Allow-Origin: *");
-// Allow specific HTTP methods
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
-// Allow specific headers
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
-header("Access-Control-Allow-Credentials: true");
-header("Access-Control-Max-Age: 3600");
-header("X-Content-Type-Options: nosniff");
-
-if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    header("HTTP/1.1 204 No Content");
-    exit;
-}
+require './headers.php';
 
 
 try {

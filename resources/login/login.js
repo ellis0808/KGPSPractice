@@ -75,9 +75,7 @@ function populateStudentContainer() {
 // Gets students and teachers from database
 async function getUsersForLogin() {
   try {
-    const response = await fetch(
-      "https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/read_users.php"
-    );
+    const response = await fetch("/api/read_users.php");
 
     if (!response.ok) {
       throw new Error("Network response was not okay");
@@ -308,25 +306,18 @@ async function loginUser(id, firstname, lastname, access) {
   }
 
   try {
-    const response = await fetch(
-      "https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/login.php",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, firstname, lastname, password }),
-        credentials: "include",
-      }
-    );
+    const response = await fetch("/api/login.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, firstname, lastname, password }),
+      credentials: "include",
+    });
 
     const rawText = await response.text();
     console.log("Raw response text: ", rawText);
 
     const data = JSON.parse(rawText);
     console.log("Parsed response data: ", data);
-
-    // console.log("Login Response:", response);
-    // const data = await response.json();
-    // console.log("Login Data:", data);
 
     if (!response.ok) {
       resetStudentPasswordEntryArray();

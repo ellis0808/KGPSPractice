@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+require './headers.php';
 
 // Redirect to login if the user is not logged in
 if (!isset($_SESSION['user_id']) && basename($_SERVER['PHP_SELF']) != 'login.php') {
@@ -10,12 +11,6 @@ if (!isset($_SESSION['user_id']) && basename($_SERVER['PHP_SELF']) != 'login.php
 
 
 
-// Allow requests from any origin
-header("Access-Control-Allow-Origin: *");
-// Allow specific HTTP methods
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
-// Allow specific headers
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 
 
@@ -24,7 +19,7 @@ function getDBConnection()
     $host = 'mysql57.orchidpony8.sakura.ne.jp';
     $db = 'orchidpony8_kgps_eng_pr';
     $user = 'orchidpony8';
-    $pass = '';
+    $pass = 'he1-maha_ptic74';
     $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
     $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, PDO::ATTR_EMULATE_PREPARES => false,];
 

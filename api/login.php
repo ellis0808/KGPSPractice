@@ -2,28 +2,13 @@
 
 
 require './db_connect.php';
-
+require './headers.php';
 
 if (isset($_SESSION['user_id'])) {
     header('Location: /index.html');
     exit();
 }
 
-
-
-header('Content-Type: application/json');
-
-// Allow requests from any origin
-header("Access-Control-Allow-Origin: http://127.0.0.1:5500");
-// Allow specific HTTP methods
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
-// Allow specific headers
-header("Access-Control-Allow-Headers: Content-Type, Authorization");
-
-if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    header("HTTP/1.1 204 No Content");
-    exit;
-}
 
 $data = json_decode(file_get_contents('php://input'), true);
 $id = $data['id'] ?? null;
