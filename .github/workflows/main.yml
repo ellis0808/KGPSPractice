@@ -1,7 +1,8 @@
 on: push
+  branches: [testBranch]
 name: 🚀 Deploy website on push
 jobs:
-  web-deploy:
+  ftp-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
@@ -13,5 +14,5 @@ jobs:
         with:
           server: orchidpony8.sakura.ne.jp
           username: orchidpony8
-          server-dir: www
+          server-dir: /home/orchidpony8/www/KGPSEnglishPractice-test/
           password: ${{ secrets.FTP_PASSWORD }}
