@@ -3,14 +3,12 @@ import { startMainApp } from "../apps/general/start-main-app.js";
 import {
   passwordImageArray,
   passwordImageObject,
-} from "/KGPSEnglishPractice-test/resources/login/password-image-object.js";
+} from "./resources/login/password-image-object.js";
 // import { sessionCheck } from "./session-check.js";
 
 const mainMenuSfx = {
   select1: new Howl({
-    src: [
-      "/KGPSEnglishPractice-test/resources/audio/sfx/決定ボタンを押す42.mp3",
-    ],
+    src: ["./resources/audio/sfx/決定ボタンを押す42.mp3"],
     volume: 0.8,
     onplayerror: function () {
       sound.once("unlock", function () {
@@ -19,9 +17,7 @@ const mainMenuSfx = {
     },
   }),
   select2: new Howl({
-    src: [
-      "/KGPSEnglishPractice-test/resources/audio/sfx/決定ボタンを押す22.mp3",
-    ],
+    src: ["./resources/audio/sfx/決定ボタンを押す22.mp3"],
     volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {
@@ -30,9 +26,7 @@ const mainMenuSfx = {
     },
   }),
   back: new Howl({
-    src: [
-      "/KGPSEnglishPractice-test/resources/audio/sfx/決定ボタンを押す22_reversed.mp3",
-    ],
+    src: ["./resources/audio/sfx/決定ボタンを押す22_reversed.mp3"],
     volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {

@@ -57,9 +57,7 @@ async function loadAudioForStyle(style) {
         alphabetAudioObject[key] = {
           content: audioData.content,
           sound: new Howl({
-            src: [
-              `https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/resources/audio/${section}-audio/${audioData.file}`,
-            ],
+            src: [`./resources/audio/${section}-audio/${audioData.file}`],
             volume: audioData.volume,
           }),
         };
@@ -71,9 +69,7 @@ async function loadAudioForStyle(style) {
         sightWordsAudioObject[key] = {
           content: audioData.content,
           sound: new Howl({
-            src: [
-              `https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/resources/audio/${section}-audio/${audioData.file}`,
-            ],
+            src: [`./resources/audio/${section}-audio/${audioData.file}`],
             volume: audioData.volume,
           }),
         };
