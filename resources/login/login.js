@@ -3,12 +3,14 @@ import { startMainApp } from "../apps/general/start-main-app.js";
 import {
   passwordImageArray,
   passwordImageObject,
-} from "./password-image-object.js";
+} from "/KGPSEnglishPractice-test/password-image-object.js";
 // import { sessionCheck } from "./session-check.js";
 
 const mainMenuSfx = {
   select1: new Howl({
-    src: ["/resources/audio/sfx/決定ボタンを押す42.mp3"],
+    src: [
+      "/KGPSEnglishPractice-test/resources/audio/sfx/決定ボタンを押す42.mp3",
+    ],
     volume: 0.8,
     onplayerror: function () {
       sound.once("unlock", function () {
@@ -17,7 +19,9 @@ const mainMenuSfx = {
     },
   }),
   select2: new Howl({
-    src: ["/resources/audio/sfx/決定ボタンを押す22.mp3"],
+    src: [
+      "/KGPSEnglishPractice-test/resources/audio/sfx/決定ボタンを押す22.mp3",
+    ],
     volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {
@@ -26,7 +30,9 @@ const mainMenuSfx = {
     },
   }),
   back: new Howl({
-    src: ["/resources/audio/sfx/決定ボタンを押す22_reversed.mp3"],
+    src: [
+      "/KGPSEnglishPractice-test/resources/audio/sfx/決定ボタンを押す22_reversed.mp3",
+    ],
     volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {
@@ -75,7 +81,9 @@ function populateStudentContainer() {
 // Gets students and teachers from database
 async function getUsersForLogin() {
   try {
-    const response = await fetch("/api/read_users.php");
+    const response = await fetch(
+      "/KGPSEnglishPractice-test/api/read_users.php"
+    );
 
     if (!response.ok) {
       throw new Error("Network response was not okay");
