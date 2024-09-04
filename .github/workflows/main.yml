@@ -1,5 +1,4 @@
 on: push
-  branches: [testBranch]
 name: 🚀 Deploy website on push
 jobs:
   ftp-deploy:
