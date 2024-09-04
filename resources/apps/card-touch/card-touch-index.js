@@ -16,7 +16,7 @@ import {
   spinfade,
   newRoundCardFlip,
   particles,
-} from "./KGPSEnglishPractice-test/resources/apps/card-touch/fx.js";
+} from "/KGPSEnglishPractice-test/resources/apps/card-touch/fx.js";
 import { score } from "../../utilities/score-object.js";
 import {
   scoreDisplay,
