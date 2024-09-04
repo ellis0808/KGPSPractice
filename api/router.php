@@ -10,7 +10,7 @@ if (!isset($_SESSION['id'])) {
 
 // Determine which route to take based on user access
 if ($_SESSION['access'] === 'Student') {
-    header("Location: ");
+    header("Location: index.html");
     exit;
 } elseif ($_SESSION['access'] === 'Teacher') {
     header("Location: user_management.html");

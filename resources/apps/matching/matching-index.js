@@ -32,8 +32,6 @@ import {
 } from "./dot-objects-control.js";
 import { sessionCheck } from "../../login/session-check.js";
 
-sessionCheck();
-
 /* SCORING */
 const correctAnswerPoints = 1;
 const incorrectAnswerPoints = 1;
@@ -168,7 +166,8 @@ async function loadAudioForStyle(style) {
   }
 }
 
-function alphabetMatchingApp() {
+function matchingApp() {
+  sessionCheck();
   mainContainer.appendChild(appContainer);
   appContainer.appendChild(leftMenuContainer);
   appContainer.appendChild(btnContainer1);
@@ -1325,7 +1324,7 @@ document.body.addEventListener("touchstart", createDoubleTapPreventer(500), {
 });
 
 export {
-  alphabetMatchingApp,
+  matchingApp,
   checkAllCorrect,
   alphabetAudioObject,
   currentDotId,

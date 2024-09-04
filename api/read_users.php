@@ -1,6 +1,6 @@
 <?php
 
-require 'C:\Users\Logan\Desktop\Coding Practice\KGPS Practice\resources\backend\db_connect.php';
+require './db_connect.php';
 
 header('Content-Type: application/json');
 
@@ -10,6 +10,9 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 // Allow specific headers
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
+header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Max-Age: 3600");
+header("X-Content-Type-Options: nosniff");
 
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     header("HTTP/1.1 204 No Content");

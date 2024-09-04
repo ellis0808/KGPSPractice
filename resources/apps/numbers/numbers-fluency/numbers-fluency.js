@@ -18,9 +18,7 @@ import {
   disableTouch,
   enableTouch,
 } from "../../../utilities/disable-enable-touch.js";
-import { sessionCheck } from "../../../login/session-check.js";
-
-sessionCheck();
+// import { sessionCheck } from "../../../login/session-check.js";
 
 let style;
 let interval = 2500;
@@ -244,6 +242,9 @@ async function loadAudioForStyle(style) {
 
 /* Starts Main App (exported to resources/js/general/app-launcher.js) */
 function numberFluencyApp(set) {
+  console.log("test");
+  // sessionCheck();
+
   setTimeout(() => {
     mainContainer.appendChild(appContainer);
     appContainer.appendChild(btnContainer2);

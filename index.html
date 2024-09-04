@@ -8,6 +8,22 @@
     />
     <title>KGPS English Practice</title>
     <link
+      rel="stylesheet"
+      type="text/css"
+      href="./resources/css/styles.css"
+      id="stylesheet"
+    />
+    <script
+      type="module"
+      src="./resources/login/session-check.js"
+    ></script>
+    <style>
+      /* Initially hide the content */
+      #main-content {
+        display: none;
+      }
+    </style>
+    <link
       rel="preconnect"
       href="https://fonts.googleapis.com"
     />
@@ -19,12 +35,6 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Playpen+Sans:wght@100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Serif+JP&family=Noto+Serif:ital,wght@0,100..900;1,100..900&&display=swap"
       rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="./resources/css/styles.css"
-      id="stylesheet"
     />
   </head>
   <body>
@@ -66,14 +76,38 @@
       src="https://kit.fontawesome.com/4fb586e243.js"
       crossorigin="anonymous"
     ></script>
-    <script
+    <!-- <script
       data-search-pseudo-elements
       defer
       src="/your-path-to-fontawesome/js/all.js"
-    ></script>
-    <script
+    ></script> -->
+    <script>
+      document.addEventListener("DOMContentLoaded", async function () {
+        try {
+          const response = await fetch(
+            "https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/session-check.php",
+            {
+              credentials: "include", // Ensure cookies are sent with the request
+            }
+          );
+          const data = await response.json();
+
+          if (data.loggedIn) {
+            // Session is valid, show the content
+            document.getElementById("main-content").style.display = "block";
+          } else {
+            // No valid session, redirect to login
+            window.location.href = "/resources/login/login.html";
+          }
+        } catch (error) {
+          console.error("Error checking session:", error);
+          window.location.href = "/resources/login/error.html";
+        }
+      });
+    </script>
+    <!-- <script
       type="module"
       src="./resources/apps/index.js"
-    ></script>
+    ></script> -->
   </body>
 </html>

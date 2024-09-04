@@ -26,9 +26,7 @@ import {
 } from "../../utilities/main-menu-display-toggle.js";
 import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import { timer, toggleTimerHide } from "../../utilities/timer-object.js";
-import { sessionCheck } from "../../login/session-check.js";
-
-sessionCheck();
+// import { sessionCheck } from "../../login/session-check.js";
 
 let style;
 
@@ -85,7 +83,9 @@ async function loadAudioForStyle(style) {
 /* SCORING */
 const correctAnswerPoints = 2;
 const incorrectAnswerPoints = 1;
+
 function cardTouchApp(set) {
+  // sessionCheck();
   setTimeout(() => {
     resetTimer();
     mainContainer.appendChild(appContainer);

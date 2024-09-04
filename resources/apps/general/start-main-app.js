@@ -18,8 +18,6 @@ import {
 import { logout } from "../../utilities/logout.js";
 import { sessionCheck } from "../../login/session-check.js";
 
-sessionCheck();
-
 /*
 **********
 Enable Audio
@@ -46,7 +44,7 @@ const mainMenuSfx = {
     },
   }),
   back: new Howl({
-    src: ["/resources/audio/sfx/決定ボタンを押す22-reversed.mp3"],
+    src: ["resources/audio/SFX/決定ボタンを押す22-reversed.mp3"],
     volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {
@@ -98,6 +96,7 @@ const div4 = document.createElement("div");
 
 let isMainMenu = true;
 function startMainApp() {
+  sessionCheck();
   stylesheet.setAttribute("href", "../resources/css/styles.css");
   displayMainPage();
 

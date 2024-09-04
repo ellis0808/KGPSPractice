@@ -1,3 +1,5 @@
+import { sessionCheck } from "../login/session-check.js";
+
 const userList = document.querySelector(".div1");
 const createUserBtn = document.querySelector(".create-new-user");
 const createUserDiv = document.querySelector(".create-user-div");

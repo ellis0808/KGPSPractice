@@ -1,11 +1,14 @@
 <?php
 
-require 'C:\Users\Logan\Desktop\Coding Practice\KGPS Practice\resources\backend\db_connect.php';
+session_start();
+
+require './db_connect.php';
+
 
 header('Content-Type: application/json');
 
 // Allow requests from any origin
-header("Access-Control-Allow-Origin: http://myapp.local");
+header("Access-Control-Allow-Origin: *");
 // Allow specific HTTP methods
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 // Allow specific headers

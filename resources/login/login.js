@@ -4,6 +4,7 @@ import {
   passwordImageArray,
   passwordImageObject,
 } from "./password-image-object.js";
+// import { sessionCheck } from "./session-check.js";
 
 const mainMenuSfx = {
   select1: new Howl({
@@ -131,10 +132,8 @@ function displayUsersForLogin(data) {
           lastname: event.target.getAttribute("userlastname"),
           access: user.access,
         };
-        console.log(selectedUser.firstname);
 
         studentPasswordGridNameHeader.innerText = `${user.firstname} ${user.lastname}`;
-        console.log(selectedUser.access);
 
         resetStudentPasswordEntryArray();
         studentPasswordEntryForm.showModal();
@@ -196,7 +195,8 @@ function resetStudentPasswordEntryArray() {
         .querySelector(`[content='${item}']`)
         .classList.remove("selected");
     });
-    studentPasswordEntryArray = [null, null];
+    studentPasswordEntryArray[0] = null;
+    studentPasswordEntryArray[1] = null;
   }
 }
 
@@ -300,14 +300,12 @@ document
 
 // Login logic
 async function loginUser(id, firstname, lastname, access) {
-  console.log(access);
   let password;
   if (access === "Teacher") {
     password = document.getElementById("teacherpassword").value;
   } else if (access === "Student") {
     password = studentPasswordEntryArray.join("");
   }
-  console.log(password);
 
   try {
     const response = await fetch(
@@ -316,12 +314,22 @@ async function loginUser(id, firstname, lastname, access) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id, firstname, lastname, password }),
+        credentials: "include",
       }
     );
 
-    const data = await response.json();
+    const rawText = await response.text();
+    console.log("Raw response text: ", rawText);
+
+    const data = JSON.parse(rawText);
+    console.log("Parsed response data: ", data);
+
+    // console.log("Login Response:", response);
+    // const data = await response.json();
+    // console.log("Login Data:", data);
 
     if (!response.ok) {
+      resetStudentPasswordEntryArray();
       throw new Error("Login error", data.error);
     } else {
       routing(data);

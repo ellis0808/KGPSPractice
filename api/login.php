@@ -1,11 +1,20 @@
 <?php
 
-require 'C:\Users\Logan\Desktop\Coding Practice\KGPS Practice\resources\backend\db_connect.php';
+
+require './db_connect.php';
+
+
+if (isset($_SESSION['user_id'])) {
+    header('Location: /index.html');
+    exit();
+}
+
+
 
 header('Content-Type: application/json');
 
 // Allow requests from any origin
-header("Access-Control-Allow-Origin: :http://myapp.local");
+header("Access-Control-Allow-Origin: http://127.0.0.1:5500");
 // Allow specific HTTP methods
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 // Allow specific headers
@@ -35,11 +44,14 @@ try {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['password'])) {
-        session_start();
+        $_SESSION['loggedIn'] = true;
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['firstname'] = $user['firstname'];
         $_SESSION['lastname'] = $user['lastname'];
         $_SESSION['access'] = $user['access'];
+
+        // Debug: Log the session data
+        error_log("Session Data: " . print_r($_SESSION, true));
 
         echo json_encode($user);
     } else {
