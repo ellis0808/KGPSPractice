@@ -3,7 +3,7 @@ import { startMainApp } from "../apps/general/start-main-app.js";
 import {
   passwordImageArray,
   passwordImageObject,
-} from "/KGPSEnglishPractice-test/password-image-object.js";
+} from "/KGPSEnglishPractice-test/resources/login/password-image-object.js";
 // import { sessionCheck } from "./session-check.js";
 
 const mainMenuSfx = {
