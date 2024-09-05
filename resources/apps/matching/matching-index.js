@@ -143,7 +143,9 @@ async function loadAudioForStyle(style) {
   }
 
   try {
-    const response = await fetch(`/${section}-manifest.json`);
+    const response = await fetch(
+      `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-manifest.json`
+    );
     const data = await response.json();
     console.log(data);
 
@@ -154,7 +156,7 @@ async function loadAudioForStyle(style) {
           content: audioData.content,
           sound: new Howl({
             src: [
-              `https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/resources/audio/${section}-audio/${audioData.file}`,
+              `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${audioData.file}`,
             ],
             volume: audioData.volume,
           }),

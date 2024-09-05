@@ -42,7 +42,9 @@ async function loadAudioForStyle(style) {
     section = "sight-words";
   }
   try {
-    const response = await fetch(`/${section}-manifest.json`);
+    const response = await fetch(
+      `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-manifest.json`
+    );
     const data = await response.json();
     console.log(data);
 
@@ -52,7 +54,9 @@ async function loadAudioForStyle(style) {
         alphabetAudioObject[key] = {
           content: audioData.content,
           sound: new Howl({
-            src: [`./resources/audio/${section}-audio/${audioData.file}`],
+            src: [
+              `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${audioData.file}`,
+            ],
             volume: audioData.volume,
           }),
         };
@@ -64,7 +68,9 @@ async function loadAudioForStyle(style) {
         sightWordsAudioObject[key] = {
           content: audioData.content,
           sound: new Howl({
-            src: [`./resources/audio/${section}-audio/${audioData.file}`],
+            src: [
+              `https://orchidpony8.sakura.ne.jp/KGPSEPaudio${section}-audio/${audioData.file}`,
+            ],
             volume: audioData.volume,
           }),
         };
