@@ -5,7 +5,7 @@ require './db_connect.php';
 require './headers.php';
 
 if (isset($_SESSION['user_id'])) {
-    header('Location: /index.html');
+    header('Location: ../index.html');
     exit();
 }
 

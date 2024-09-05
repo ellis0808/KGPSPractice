@@ -151,7 +151,7 @@ async function loadAudioForStyle(style) {
   let section = "numbers";
   try {
     const response = await fetch(
-      `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-manifest.json`
+      `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${section}-manifest.json`
     );
     const data = await response.json();
 

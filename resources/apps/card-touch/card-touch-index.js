@@ -26,7 +26,6 @@ import {
 } from "../../utilities/main-menu-display-toggle.js";
 import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import { timer, toggleTimerHide } from "../../utilities/timer-object.js";
-// import { sessionCheck } from "../../login/session-check.js";
 
 let style;
 
@@ -43,7 +42,7 @@ async function loadAudioForStyle(style) {
   }
   try {
     const response = await fetch(
-      `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-manifest.json`
+      `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${section}-manifest.json`
     );
     const data = await response.json();
     console.log(data);
