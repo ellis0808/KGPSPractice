@@ -1,20 +1,18 @@
 const numbersFluencySfx = {
   restoreHeartSFX: new Howl({
-    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/パパッ.mp3"],
+    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-poppop-1.mp3"],
     volume: 0.8,
   }),
   incorrect: new Howl({
-    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/キャンセル5.mp3"],
+    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-cancel-1.mp3"],
     volume: 0.8,
   }),
   correct: new Howl({
-    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/クイズ正解5.mp3"],
+    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-correct-2.mp3"],
     volume: 0.8,
   }),
   startApp: new Howl({
-    src: [
-      "https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/決定ボタンを押す43.mp3",
-    ],
+    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-seelct-3.mp3"],
     volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {
@@ -23,9 +21,7 @@ const numbersFluencySfx = {
     },
   }),
   newRound: new Howl({
-    src: [
-      "https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/ちゃんちゃん♪1.mp3",
-    ],
+    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-success-1.mp3"],
     volume: 0.5,
   }),
 };

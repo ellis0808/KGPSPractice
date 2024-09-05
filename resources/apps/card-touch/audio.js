@@ -30,15 +30,15 @@ function speak() {
 
 const cardTouchSfx = {
   correcCard: new Howl({
-    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/クイズ正解5.mp3"],
+    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-correct-1.mp3"],
   }),
   incorrectCard: new Howl({
-    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/クイズ不正解2.mp3"],
+    src: [
+      "https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-incorrect-1.mp3",
+    ],
   }),
   startApp: new Howl({
-    src: [
-      "https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/決定ボタンを押す43.mp3",
-    ],
+    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-select-3.mp3"],
     volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {
