@@ -5,7 +5,7 @@ require './headers.php';
 
 // Redirect to login if the user is not logged in
 if (!isset($_SESSION['user_id']) && basename($_SERVER['PHP_SELF']) != 'login.php') {
-    header('Location: /resources/login/login.html');
+    header('Location: ./resources/login/login.html');
     exit();
 }
 
