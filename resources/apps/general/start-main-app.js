@@ -27,7 +27,7 @@ Enable Audio
 const mainMenuSfx = {
   select1: new Howl({
     src: [
-      "http://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/決定ボタンを押す42.mp3",
+      "https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/決定ボタンを押す42.mp3",
     ],
     volume: 0.8,
     onplayerror: function () {
@@ -38,7 +38,7 @@ const mainMenuSfx = {
   }),
   select2: new Howl({
     src: [
-      "http://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/決定ボタンを押す22.mp3",
+      "https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/決定ボタンを押す22.mp3",
     ],
     volume: 0.5,
     onplayerror: function () {
@@ -49,7 +49,7 @@ const mainMenuSfx = {
   }),
   back: new Howl({
     src: [
-      "http://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/決定ボタンを押す22-reversed.mp3",
+      "https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/決定ボタンを押す22-reversed.mp3",
     ],
     volume: 0.5,
     onplayerror: function () {

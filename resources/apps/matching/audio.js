@@ -16,20 +16,20 @@ function speak(event) {
 
 const matchingSfx = {
   validConnection: new Howl({
-    src: ["http://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/パパッ.mp3"],
+    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/パパッ.mp3"],
     volume: 0.8,
   }),
   invalidConnection: new Howl({
-    src: ["http://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/キャンセル5.mp3"],
+    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/キャンセル5.mp3"],
     volume: 0.8,
   }),
   allCorrect: new Howl({
-    src: ["http://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/クイズ正解5.mp3"],
+    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/クイズ正解5.mp3"],
     volume: 0.8,
   }),
   startApp: new Howl({
     src: [
-      "http://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/決定ボタンを押す43.mp3",
+      "https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/決定ボタンを押す43.mp3",
     ],
     volume: 0.5,
     onplayerror: function () {
