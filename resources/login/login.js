@@ -31,7 +31,7 @@ const mainMenuSfx = {
   }),
   back: new Howl({
     src: [
-      "https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/決定ボタンを押す22_reversed.mp3",
+      "https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/決定ボタンを押す22-reversed.mp3",
     ],
     volume: 0.5,
     onplayerror: function () {

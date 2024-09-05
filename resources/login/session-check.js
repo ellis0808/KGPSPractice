@@ -19,8 +19,12 @@ async function sessionCheck() {
       console.log(`last name: ${data.lastname}`);
     } else {
       // Redirect to login page
-      if (window.location.pathname !== "/resources/login/login.html") {
-        window.location.href = "/resources/login/login.html";
+      if (
+        window.location.pathname !==
+        "/KGPSEnglishPractice-test/resources/login/login.html"
+      ) {
+        window.location.href =
+          "/KGPSEnglishPractice-test/resources/login/login.html";
       }
     }
   } catch (error) {
