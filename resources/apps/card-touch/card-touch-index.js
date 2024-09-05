@@ -11,12 +11,7 @@ import {
   sightWords2,
   sightWords3,
 } from "./card-data.js";
-import {
-  wobble,
-  spinfade,
-  newRoundCardFlip,
-  particles,
-} from "/KGPSEnglishPractice-test/resources/apps/card-touch/fx.js";
+import { wobble, spinfade, newRoundCardFlip, particles } from "./fx.js";
 import { score } from "../../utilities/score-object.js";
 import {
   scoreDisplay,
