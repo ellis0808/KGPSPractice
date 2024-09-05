@@ -82,7 +82,7 @@ function populateStudentContainer() {
 async function getUsersForLogin() {
   try {
     const response = await fetch(
-      "/KGPSEnglishPractice-test/api/read_users.php"
+      "https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice-test/api/read_users.php"
     );
 
     if (!response.ok) {
