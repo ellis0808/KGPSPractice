@@ -1,7 +1,7 @@
 <?php
 
 require './db_connect.php';
-require './headers.php';
+// require './headers.php';
 
 
 try {
