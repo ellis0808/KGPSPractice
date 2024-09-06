@@ -7,6 +7,8 @@ require './headers.php';
 try {
     $pdo = getDBConnection();
 
+    header('Content-Type: application/json');
+
     // Check if a specific user ID was requested
     if (isset($_GET['id'])) {
         $stmt = $pdo->prepare("SELECT id, lastname, firstname, gradelevel, access, password FROM students WHERE id = :id");
@@ -21,7 +23,7 @@ try {
     } else {
         // Retrieve all students if no specific ID is requested
         $stmt = $pdo->query(("SELECT id, lastname, firstname, gradelevel, access, password FROM students"));
-        $students = $stmt->fetchAll(pdo::FETCH_ASSOC);
+        $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         echo json_encode(['students' => $students]);
     }
