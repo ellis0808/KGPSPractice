@@ -80,7 +80,7 @@ function populateStudentContainer() {
 // Gets students and teachers from database
 async function getUsersForLogin() {
   try {
-    const response = await fetch("./api/read_users.php");
+    const response = await fetch("/api/read_users.php");
 
     if (!response.ok) {
       throw new Error("Network response was not okay");
