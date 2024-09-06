@@ -313,7 +313,7 @@ async function loginUser(id, firstname, lastname, access) {
   }
 
   try {
-    const response = await fetch("../api/login.php", {
+    const response = await fetch("KGPSEnglishPractice-test/api/login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id, firstname, lastname, password }),
