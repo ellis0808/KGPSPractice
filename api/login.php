@@ -5,10 +5,10 @@ session_start();
 require './db_connect.php';
 require './headers.php';
 
-if (isset($_SESSION['user_id'])) {
-    header('Location: ../index.html');
-    exit();
-}
+// if (isset($_SESSION['user_id'])) {
+//     header('Location: ../index.html');
+//     exit();
+// }
 
 
 $data = json_decode(file_get_contents('php://input'), true);
