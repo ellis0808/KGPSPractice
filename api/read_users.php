@@ -1,5 +1,9 @@
 <?php
 
+
+ob_start();
+
+
 require './db_connect.php';
 // require './headers.php';
 
@@ -30,3 +34,5 @@ try {
 } catch (PDOException $e) {
     echo json_encode(['error' => $e->getMessage()]);
 }
+
+ob_end_flush();
