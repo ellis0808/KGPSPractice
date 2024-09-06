@@ -313,7 +313,7 @@ async function loginUser(id, firstname, lastname, access) {
   }
 
   try {
-    const response = await fetch("/KGPSEnglishPractice-test/api/login.php", {
+    const response = await fetch("../api/login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id, firstname, lastname, password }),
@@ -345,8 +345,8 @@ closeTeacherLoginModalBtn.addEventListener("click", () => {
 function routing(userData) {
   if (userData.access === "Teacher") {
     window.location.href =
-      "/KGPSEnglishPractice-test/resources/teacher-interface/user-management.html";
+      "../resources/teacher-interface/user-management.html";
   } else if (userData.access === "Student") {
-    window.location.href = "/KGPSEnglishPractice-test/index.html";
+    window.location.href = "../index.html";
   }
 }

@@ -12,7 +12,7 @@ const numbersFluencySfx = {
     volume: 0.8,
   }),
   startApp: new Howl({
-    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-seelct-3.mp3"],
+    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-select-3.mp3"],
     volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {

@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 require './headers.php';
 
 // Redirect to login if the user is not logged in
