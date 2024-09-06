@@ -581,7 +581,7 @@ function letterTouch(e) {
   letterDisplay.textContent = `${userSelectedLetters.join("")}`;
   const bufferLoader = new BufferLoader(
     audioContext,
-    ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/カーソル移動1.mp3"],
+    ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-cursor-move-1.mp3"],
     finishedLoading
   );
   bufferLoader.load();
@@ -593,7 +593,7 @@ function deleteLastEntry() {
   letterDisplay.textContent = `${userSelectedLetters.join("")}`;
   const bufferLoader = new BufferLoader(
     audioContext,
-    ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/カーソル移動2.mp3"],
+    ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-cursor-move-2.mp3"],
     finishedLoading
   );
   bufferLoader.load();
@@ -628,7 +628,7 @@ function checkSpelling() {
   if (userSelectedLetters.join("") === word) {
     const bufferLoader = new BufferLoader(
       audioContext,
-      ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/クイズ正解5.mp3"],
+      ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-correct-1.mp3"],
       finishedLoading
     );
     bufferLoader.load();
@@ -639,7 +639,7 @@ function checkSpelling() {
     ++numberOfAttempts;
     const bufferLoader = new BufferLoader(
       audioContext,
-      ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/クイズ不正解2.mp3"],
+      ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-incorrect-1.mp3"],
       finishedLoading
     );
     bufferLoader.load();
