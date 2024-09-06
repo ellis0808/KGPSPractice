@@ -347,6 +347,6 @@ function routing(userData) {
     window.location.href =
       "../resources/teacher-interface/user-management.html";
   } else if (userData.access === "Student") {
-    window.location.href = "../index.html";
+    window.location.href = "KGPSEnglishPractice-test/index.html";
   }
 }
