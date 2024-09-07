@@ -167,7 +167,7 @@ async function loadAudioForStyle(style) {
 }
 
 function matchingApp() {
-  sessionCheck();
+  // sessionCheck();
   mainContainer.appendChild(appContainer);
   appContainer.appendChild(leftMenuContainer);
   appContainer.appendChild(btnContainer1);
