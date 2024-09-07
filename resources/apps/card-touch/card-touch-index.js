@@ -68,7 +68,7 @@ async function loadAudioForStyle(style) {
           content: audioData.content,
           sound: new Howl({
             src: [
-              `https://orchidpony8.sakura.ne.jp/KGPSEPaudio${section}-audio/${audioData.file}`,
+              `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${audioData.file}`,
             ],
             volume: audioData.volume,
           }),
