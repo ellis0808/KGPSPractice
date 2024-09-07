@@ -101,7 +101,7 @@ function startMainApp() {
   // sessionCheck();
   stylesheet.setAttribute(
     "href",
-    "KGPSEnglishPractice-test/resources/css/styles.css"
+    "/KGPSEnglishPractice-test/resources/css/styles.css"
   );
   displayMainPage();
 
