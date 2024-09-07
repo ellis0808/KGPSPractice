@@ -384,6 +384,8 @@ function endSession() {
   appContainer.classList.add("hide");
   homeBtnContainer.classList.add("hide");
   document.querySelectorAll(".letter-matching-app").forEach((item) => {
+    console.log("to be removed");
+
     item.remove();
   });
   if (document.querySelector(".end-messages-container")) {
