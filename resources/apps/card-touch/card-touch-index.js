@@ -98,7 +98,10 @@ function cardTouchApp(set) {
     btnContainer2.appendChild(exitBtn);
   }, 0);
 
-  stylesheet.setAttribute("href", "../../resources/css/card-touch.css");
+  stylesheet.setAttribute(
+    "href",
+    "/KGPSEnglishPractice-test/resources/css/card-touch.css"
+  );
   displayStartBtn();
 
   removeMenuPage();

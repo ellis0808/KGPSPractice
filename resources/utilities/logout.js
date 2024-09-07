@@ -1,6 +1,6 @@
 async function logout() {
   try {
-    const response = await fetch("./api/logout.php");
+    const response = await fetch("/KGPSEnglishPractice-test/api/logout.php");
     const data = await response.json();
     console.log(data);
 

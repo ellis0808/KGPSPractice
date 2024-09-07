@@ -8,15 +8,15 @@ import {
   topContainer,
   user,
   parentsInfo,
-} from "../../utilities/variables.js";
+} from "/KGPSEnglishPractice-test/resources/utilities/variables.js";
 import {
   startCardTouchApp,
   startMatchingApp,
   startNumberFluencyApp,
   startSpellingTouchApp,
 } from "./app-launcher.js";
-import { logout } from "../../utilities/logout.js";
-import { sessionCheck } from "../../login/session-check.js";
+import { logout } from "/KGPSEnglishPractice-test/resources/utilities/logout.js";
+import { sessionCheck } from "/KGPSEnglishPractice-test/resources/login/session-check.js";
 
 /*
 **********
