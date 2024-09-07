@@ -46,7 +46,7 @@ appContainer.classList.add("container", "letter-matching-app");
 scoreDisplay.textContent = `${score.currentScore}`;
 
 const grid = document.createElement("div");
-grid.classList.add("grid");
+grid.classList.add("grid", "letter-matching-app");
 const btnContainer1 = document.createElement("div");
 btnContainer1.classList.add("btn-container1");
 const btnContainer2 = document.createElement("div");
