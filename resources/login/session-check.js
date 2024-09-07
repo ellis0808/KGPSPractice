@@ -1,7 +1,7 @@
 async function sessionCheck() {
   try {
     const response = await fetch(
-      "https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/api/session-check.php",
+      "/KGPSEnglishPractice-test/api/session-check.php",
       {
         method: "GET",
         headers: { "Content-Type": "application/json" },
