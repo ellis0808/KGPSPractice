@@ -99,7 +99,10 @@ const div4 = document.createElement("div");
 let isMainMenu = true;
 function startMainApp() {
   // sessionCheck();
-  stylesheet.setAttribute("href", "../resources/css/styles.css");
+  stylesheet.setAttribute(
+    "href",
+    "KGPSEnglishPractice-test/resources/css/styles.css"
+  );
   displayMainPage();
 
   setTimeout(() => {
