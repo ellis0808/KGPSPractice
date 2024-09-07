@@ -704,7 +704,10 @@ function endApp() {
       item.remove();
     });
     setTimeout(() => {
-      stylesheet.setAttribute("href", "../resources/css/styles.css");
+      stylesheet.setAttribute(
+        "href",
+        "/KGPSEnglishPractice-test/resources/css/styles.css"
+      );
       displayMainPage();
       setTimeout(restoreMainMenu, 100);
     }, 500);
