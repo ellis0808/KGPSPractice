@@ -147,7 +147,6 @@ async function loadAudioForStyle(style) {
       `/KGPSEPaudio/${section}-audio/${section}-manifest.json`
     );
     const data = await response.json();
-    console.log(data);
 
     if (style === 0) {
       for (const key in data) {
@@ -383,8 +382,10 @@ function endSession() {
   resetNavigationBtns();
   appContainer.classList.add("hide");
   homeBtnContainer.classList.add("hide");
-  document.querySelectorAll(".letter-matching-app").forEach((item) => {
-    console.log("to be removed");
+  const stuff = document.querySelectorAll(".letter-matching-app");
+  console.log(stuff);
+
+  stuff.forEach((item) => {
     item.remove();
   });
   if (document.querySelector(".end-messages-container")) {
@@ -1225,28 +1226,20 @@ function redrawAllLines() {
 }
 function getOldLines2() {
   // document.querySelectorAll(".final").forEach((line) => {
-  //   console.log(line);
 
   //   line.remove;
   // });
   // lines.length = 0;
   startDot.forEach((item) => {
     if (item.connected) {
-      console.log(item);
-
       item.connectedToLine.element.remove();
       let startCenter;
       let endCenter;
       startCenter = item.connectedToLine.getCenter2(item);
-      console.log(startCenter.x, startCenter.y);
 
       // item.connectedToLine.getStartPosition2(item.connectedTo)
       item.connectedToLine.element.style.left = `${startCenter.x}px`;
       item.connectedToLine.element.style.top = `${startCenter.y}px`;
-      console.log(
-        item.connectedToLine.element.style.left,
-        item.connectedToLine.element.style.top
-      );
 
       item.connectedToLine.getEndPosition2(item.connectedTo);
       item.connectedToLine.drawLine();
