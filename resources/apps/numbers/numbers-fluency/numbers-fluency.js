@@ -258,7 +258,10 @@ function numberFluencyApp(set) {
     grid.classList.add("gridHide");
   }, 0);
 
-  stylesheet.setAttribute("href", "../../resources/css/number-fluency.css");
+  stylesheet.setAttribute(
+    "href",
+    "/KGPSEnglishPractice-test/resources/css/number-fluency.css"
+  );
   displayStartBtn();
 
   removeMenuPage();
@@ -308,7 +311,10 @@ function endApp() {
       appContainer.removeChild(btnContainer1);
       appContainer.removeChild(btnContainer3);
     }
-    stylesheet.setAttribute("href", "../resources/css/styles.css");
+    stylesheet.setAttribute(
+      "href",
+      "/KGPSEnglishPractice-test/resources/css/styles.css"
+    );
     displayMainPage();
     setTimeout(restoreMainMenu, 100);
   }, 500);

@@ -144,7 +144,7 @@ async function loadAudioForStyle(style) {
 
   try {
     const response = await fetch(
-      `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${section}-manifest.json`
+      `/KGPSEPaudio/${section}-audio/${section}-manifest.json`
     );
     const data = await response.json();
     console.log(data);
@@ -155,9 +155,7 @@ async function loadAudioForStyle(style) {
         alphabetAudioObject[key] = {
           content: audioData.content,
           sound: new Howl({
-            src: [
-              `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${audioData.file}`,
-            ],
+            src: [`/KGPSEPaudio/${section}-audio/${audioData.file}`],
             volume: audioData.volume,
           }),
         };
@@ -186,7 +184,10 @@ function matchingApp() {
   exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
   removeMenuPage();
 
-  stylesheet.setAttribute("href", "../../resources/css/matching.css");
+  stylesheet.setAttribute(
+    "href",
+    "/KGPSEnglishPractice-test/resources/css/matching.css"
+  );
   displayStartBtn();
   score.resetScore();
   resetTimer();
@@ -232,7 +233,10 @@ function endApp() {
       item.remove();
     });
     setTimeout(() => {
-      stylesheet.setAttribute("href", "../resources/css/styles.css");
+      stylesheet.setAttribute(
+        "href",
+        "/KGPSEnglishPractice-test/resources/css/styles.css"
+      );
       displayMainPage();
       setTimeout(restoreMainMenu, 100);
     }, 500);
