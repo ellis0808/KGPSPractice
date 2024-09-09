@@ -810,14 +810,23 @@ function createDots(array) {
       const endDotEnclosure = document.createElement("div");
       endDotEnclosure.setAttribute("id", dotNumber);
       endDotEnclosure.setAttribute("contentId", item.toUpperCase());
-      endDotEnclosure.classList.add("dot-enclosure", "end-target");
+      endDotEnclosure.classList.add(
+        "dot-enclosure",
+        "end-target",
+        "letter-matching-app"
+      );
       endDotsDiv.appendChild(endDotEnclosure);
       // Create dot for each Enclosure
       endDot[i] = new EndDot(`endDot${[i]}`);
       endDot[i].id = i + numberOfItemsToBeDisplayed;
       endDot[i].contentId = item.toUpperCase();
       endDot[i].element.setAttribute("id", dotNumber);
-      endDot[i].element.classList.add("end-dot", "dot", "end-target");
+      endDot[i].element.classList.add(
+        "end-dot",
+        "dot",
+        "end-target",
+        "letter-matching-app"
+      );
       endDot[i].element.style.zIndex = "30";
       endDotEnclosure.appendChild(endDot[i].element);
       dotAndLineCommand.registerEndDot(endDot[i]);
@@ -833,13 +842,22 @@ function createDots(array) {
     const startDotEnclosure = document.createElement("div");
     startDotEnclosure.setAttribute("id", dotNumber);
     startDotEnclosure.setAttribute("contentId", item);
-    startDotEnclosure.classList.add("dot-enclosure", "start-target");
+    startDotEnclosure.classList.add(
+      "dot-enclosure",
+      "start-target",
+      "letter-matching-app"
+    );
     startDotsDiv.appendChild(startDotEnclosure);
     startDot[i] = new StartDot(`startDot${[i]}`);
     startDot[i].id = i;
     startDot[i].contentId = item;
     startDot[i].element.setAttribute("id", i);
-    startDot[i].element.classList.add("start-dot", "dot", "start-target");
+    startDot[i].element.classList.add(
+      "start-dot",
+      "dot",
+      "start-target",
+      "letter-matching-app"
+    );
     startDotEnclosure.appendChild(startDot[i].element);
     dotAndLineCommand.registerStartDot(startDot[i]);
     ++dotNumber;
