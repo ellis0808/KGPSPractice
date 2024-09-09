@@ -31,7 +31,9 @@ import {
   Connector,
 } from "./dot-objects-control.js";
 import { sessionCheck } from "../../login/session-check.js";
+import { checkSession } from "../../utilities/check-session.js";
 
+checkSession();
 /* SCORING */
 const correctAnswerPoints = 1;
 const incorrectAnswerPoints = 1;
