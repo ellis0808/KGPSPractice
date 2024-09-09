@@ -1,7 +1,7 @@
-import { checkSession } from "./check-session";
+// import { checkSession } from "./check-session";
 import { score } from "./score-object";
 
-checkSession();
+// checkSession();
 const user = {
   fullname: lastName + firstName,
   firstName: String, //does this make sense?

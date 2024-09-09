@@ -29,8 +29,8 @@ async function sessionCheck() {
     }
   } catch (error) {
     console.error("Error checking session:", error);
-    // window.location.href =
-    //   "/KGPSEnglishPractice-test/resources/login/error.html";
+    window.location.href =
+      "/KGPSEnglishPractice-test/resources/login/error.html";
   }
 }
 
