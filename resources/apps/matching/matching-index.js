@@ -770,7 +770,7 @@ function generateLetterDivsForMatching(array) {
       const letter = document.createElement("div");
       letter.setAttribute("contentId", `${item}`);
       letter.setAttribute("data-id", `${divGroup}${item}`);
-      letter.classList.add(divGroup);
+      letter.classList.add(divGroup, "letter-matching-app");
       letter.innerText = `${letter.getAttribute("contentId")}`;
       letter.addEventListener("click", () => {
         alphabetAudioObject[item].sound.play();
@@ -783,7 +783,7 @@ function generateLetterDivsForMatching(array) {
     const letter = document.createElement("div");
     letter.setAttribute("contentId", item);
     letter.setAttribute("data-id", `${divGroup}${item}`);
-    letter.classList.add(divGroup);
+    letter.classList.add(divGroup, "letter-matching-app");
     letter.innerText = `${letter.getAttribute("contentId")}`;
     letter.addEventListener("click", () => {
       alphabetAudioObject[item.toLowerCase()].sound.play();
@@ -1044,7 +1044,11 @@ function onPointerUp(event, startDotId, endDotId) {
   if (currentEndDot) {
     currentStartDot = null;
     getStartDotID(event);
-    line.element.setAttribute("startdotid", startDotId);
+    try {
+      line.element.setAttribute("startdotid", startDotId);
+    } catch (error) {
+      return;
+    }
     if (event.target.classList.contains("end-target")) {
       onPointerUpFalse();
     }
