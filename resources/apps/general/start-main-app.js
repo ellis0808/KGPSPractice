@@ -101,7 +101,6 @@ let isMainMenu = true;
 function startMainApp() {
   sessionCheck();
   checkSession();
-  console.log(sessionData.loggedIn);
 
   stylesheet.setAttribute(
     "href",
