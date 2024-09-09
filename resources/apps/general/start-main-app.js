@@ -99,7 +99,7 @@ const div4 = document.createElement("div");
 
 let isMainMenu = true;
 function startMainApp() {
-  sessionCheck();
+  // sessionCheck();
   checkSession();
 
   stylesheet.setAttribute(

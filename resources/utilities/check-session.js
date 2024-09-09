@@ -17,6 +17,7 @@ async function checkSession() {
           "/KGPSEnglishPractice-test/resources/login/login.html";
       }
     }
+    return sessionData;
   } catch (error) {
     if (
       window.location.pathname !==
