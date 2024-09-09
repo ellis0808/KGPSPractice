@@ -98,7 +98,7 @@ const div4 = document.createElement("div");
 
 let isMainMenu = true;
 function startMainApp() {
-  // sessionCheck();
+  sessionCheck();
   stylesheet.setAttribute(
     "href",
     "/KGPSEnglishPractice-test/resources/css/styles.css"
