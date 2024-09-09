@@ -17,22 +17,22 @@ async function sessionCheck() {
       console.log(`user id: ${data.user_id}`);
       console.log(`first name: ${data.firstname}`);
       console.log(`last name: ${data.lastname}`);
-      // } else {
-      //   // Redirect to login page
-      //   if (
-      //     window.location.pathname !==
-      //     "/KGPSEnglishPractice-test/resources/login/login.html"
-      //   ) {
-      //     window.location.href =
-      //       "/KGPSEnglishPractice-test/resources/login/login.html";
-      //   }
+    } else {
+      // Redirect to login page
+      if (
+        window.location.pathname !==
+        "/KGPSEnglishPractice-test/resources/login/login.html"
+      ) {
+        window.location.href =
+          "/KGPSEnglishPractice-test/resources/login/login.html";
+      }
     }
   } catch (error) {
-    // console.log(data);
+    console.log(data);
 
     console.error("Error checking session:", error);
-    window.location.href =
-      "/KGPSEnglishPractice-test/resources/login/error.html";
+    // window.location.href =
+    //   "/KGPSEnglishPractice-test/resources/login/error.html";
   }
 }
 
