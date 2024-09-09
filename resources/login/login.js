@@ -1,45 +1,7 @@
-import { startMainApp } from "../apps/general/start-main-app.js";
-
 import {
   passwordImageArray,
   passwordImageObject,
 } from "./password-image-object.js";
-
-// const mainMenuSfx = {
-//   select1: new Howl({
-//     src: [
-//       "https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-select-2.mp3",
-//     ],
-//     volume: 0.8,
-//     onplayerror: function () {
-//       sound.once("unlock", function () {
-//         sound.play();
-//       });
-//     },
-//   }),
-//   select2: new Howl({
-//     src: [
-//       "https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-select-1.mp3",
-//     ],
-//     volume: 0.5,
-//     onplayerror: function () {
-//       sound.once("unlock", function () {
-//         sound.play();
-//       });
-//     },
-//   }),
-//   back: new Howl({
-//     src: [
-//       "https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-select-1-reversed.mp3",
-//     ],
-//     volume: 0.5,
-//     onplayerror: function () {
-//       sound.once("unlock", function () {
-//         sound.play();
-//       });
-//     },
-//   }),
-// };
 
 const studentNameContainer = document.querySelector(".student-name-container");
 const teacherNameContainer = document.querySelector(".teacher-name-container");
