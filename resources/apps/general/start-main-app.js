@@ -99,8 +99,8 @@ const div4 = document.createElement("div");
 
 let isMainMenu = true;
 function startMainApp() {
-  // sessionCheck();
-  checkSession();
+  sessionCheck();
+  // checkSession();
 
   stylesheet.setAttribute(
     "href",
