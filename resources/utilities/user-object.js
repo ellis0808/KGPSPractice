@@ -1,7 +1,5 @@
-// import { checkSession } from "./check-session";
 import { score } from "./score-object.js";
 
-// checkSession();
 const user = {
   id: null,
   firstName: null, //does this make sense?
