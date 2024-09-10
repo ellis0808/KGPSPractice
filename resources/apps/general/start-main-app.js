@@ -122,11 +122,11 @@ function startMainApp() {
 function setUser() {
   console.log(sessionData);
 
-  user.grade = sessionData.gradeLevel;
-  user.firstName = sessionData.firstName;
-  user.lastName = sessionData.lastName;
+  user.grade = sessionData.gradelevel;
+  user.firstName = sessionData.firstname;
+  user.lastName = sessionData.lastname;
   user.access = sessionData.access;
-  user.id = sessionData.userId;
+  user.id = sessionData.userid;
   console.log(user);
 }
 
