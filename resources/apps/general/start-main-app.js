@@ -115,7 +115,7 @@ function startMainApp() {
     }, 500);
 
     displayMainPage();
-  }, 1500);
+  }, 500);
 }
 
 function setUser() {
@@ -151,7 +151,7 @@ function displayGreeting() {
 }
 function displayMainPage() {
   isMainMenu = true;
-  const navBarDisplay = `${user.firstName}${user.lastName.slice(0, 1)}.`;
+  const navBarDisplay = `${user.firstName} ${user.lastName.slice(0, 1)}.`;
   navLogo.innerText = `KGPS English Practice`;
   navUserName.innerText = navBarDisplay;
 }
