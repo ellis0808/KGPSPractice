@@ -107,15 +107,14 @@ function startMainApp() {
       "href",
       "/KGPSEnglishPractice-test/resources/css/styles.css"
     );
-    displayMainPage();
+    setUser();
 
     setTimeout(() => {
       setTopMenuVariables();
       displayGreeting();
     }, 500);
 
-    console.log(user);
-    setUser();
+    displayMainPage();
   }, 1500);
 }
 
