@@ -33,6 +33,7 @@ async function sessionCheck() {
         "/KGPSEnglishPractice-test/resources/login/login.html";
     }
   }
+  return sessionData;
 }
 
 export { sessionCheck, sessionData };
