@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 require './db_connect.php';
-require './headers.php';
+// require './headers.php';
 
 // if (isset($_SESSION['user_id'])) {
 //     header('Location: ../index.html');
@@ -37,9 +37,6 @@ try {
         $_SESSION['firstname'] = $user['firstname'];
         $_SESSION['lastname'] = $user['lastname'];
         $_SESSION['access'] = $user['access'];
-
-        // Debug: Log the session data
-        error_log("Session Data: " . print_r($_SESSION, true));
 
         echo json_encode($user);
     } else {
