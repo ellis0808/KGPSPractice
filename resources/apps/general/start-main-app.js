@@ -16,7 +16,10 @@ import {
   startSpellingTouchApp,
 } from "./app-launcher.js";
 import { logout } from "/KGPSEnglishPractice-test/resources/utilities/logout.js";
-import { sessionCheck } from "/KGPSEnglishPractice-test/resources/login/session-check.js";
+import {
+  sessionCheck,
+  sessionData,
+} from "/KGPSEnglishPractice-test/resources/login/session-check.js";
 
 /*
 **********
