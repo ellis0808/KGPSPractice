@@ -114,6 +114,8 @@ function startMainApp() {
     displayGreeting();
   }, 500);
   setTimeout(() => {
+    console.log(user);
+
     setUser();
   }, 2000);
 }
