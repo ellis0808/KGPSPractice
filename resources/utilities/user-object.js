@@ -1,5 +1,5 @@
 // import { checkSession } from "./check-session";
-import { score } from "./score-object";
+import { score } from "./score-object.js";
 
 // checkSession();
 const user = {
