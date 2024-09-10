@@ -116,7 +116,7 @@ function startMainApp() {
   setTimeout(() => {
     console.log(user);
 
-    setUser();
+    // setUser();
   }, 2000);
 }
 function setUser() {
