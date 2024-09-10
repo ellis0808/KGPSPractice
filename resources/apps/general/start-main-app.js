@@ -6,7 +6,6 @@ import {
   menuContainer,
   stylesheet,
   topContainer,
-  user,
   parentsInfo,
 } from "/KGPSEnglishPractice-test/resources/utilities/variables.js";
 import {
@@ -20,6 +19,7 @@ import {
   sessionCheck,
   sessionData,
 } from "/KGPSEnglishPractice-test/resources/login/session-check.js";
+import { user } from "../../utilities/user-object.js";
 
 /*
 **********
@@ -114,8 +114,16 @@ function startMainApp() {
     displayGreeting();
   }, 500);
   setTimeout(() => {
-    console.log(sessionData);
+    setUser(sessionData);
   }, 2000);
+}
+function setUser(sessionData) {
+  user.grade = sessionData.gradeLevel;
+  user.firstName = sessionData.firstName;
+  user.lastName = sessionData.lastName;
+  user.access = sessionData.access;
+  user.id = sessionData.userId;
+  console.log(user);
 }
 
 function setTopMenuVariables() {
