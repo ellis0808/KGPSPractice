@@ -17,7 +17,7 @@ import {
 } from "./app-launcher.js";
 import { logout } from "/KGPSEnglishPractice-test/resources/utilities/logout.js";
 import { sessionCheck } from "/KGPSEnglishPractice-test/resources/login/session-check.js";
-// import { checkSession } from "../../utilities/check-session.js";
+import { checkSession } from "../../utilities/check-session.js";
 
 /*
 **********
@@ -100,7 +100,7 @@ const div4 = document.createElement("div");
 let isMainMenu = true;
 function startMainApp() {
   sessionCheck();
-  // checkSession();
+  checkSession();
 
   stylesheet.setAttribute(
     "href",
