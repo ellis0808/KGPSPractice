@@ -102,7 +102,6 @@ const div4 = document.createElement("div");
 let isMainMenu = true;
 function startMainApp() {
   sessionCheck();
-  console.log(sessionData);
 
   stylesheet.setAttribute(
     "href",
@@ -114,6 +113,9 @@ function startMainApp() {
     setTopMenuVariables();
     displayGreeting();
   }, 500);
+  setTimeout(() => {
+    console.log(sessionData);
+  }, 2000);
 }
 
 function setTopMenuVariables() {
