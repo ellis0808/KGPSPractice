@@ -117,17 +117,14 @@ function startMainApp() {
     console.log(user);
 
     setUser();
-  }, 2000);
+  }, 500);
 }
 function setUser() {
-  console.log(sessionData);
-
   user.gradeLevel = sessionData.gradeLevel;
   user.firstName = sessionData.firstName;
   user.lastName = sessionData.lastName;
   user.access = sessionData.access;
   user.id = sessionData.userId;
-  console.log(user);
 }
 
 function setTopMenuVariables() {
