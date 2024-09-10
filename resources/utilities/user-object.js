@@ -4,7 +4,6 @@ import { score } from "./score-object";
 // checkSession();
 const user = {
   id: null,
-  fullname: this.lastName + this.firstName,
   firstName: null, //does this make sense?
   lastName: null, //does this make sense?
   grade: null,
