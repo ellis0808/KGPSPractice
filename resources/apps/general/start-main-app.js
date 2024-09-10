@@ -116,7 +116,7 @@ function startMainApp() {
 
     console.log(user);
     setUser();
-  }, 1000);
+  }, 1500);
 }
 
 function setUser() {
