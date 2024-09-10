@@ -33,10 +33,12 @@ try {
 
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['loggedIn'] = true;
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['firstname'] = $user['firstname'];
-        $_SESSION['lastname'] = $user['lastname'];
+        $_SESSION['userId'] = $user['id'];
+        $_SESSION['firstName'] = $user['firstname'];
+        $_SESSION['lastName'] = $user['lastname'];
         $_SESSION['access'] = $user['access'];
+        $_SESSION['gradeLevel'] = $user['gradelevel'];
+
 
         echo json_encode($user);
     } else {
