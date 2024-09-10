@@ -151,7 +151,7 @@ function displayGreeting() {
 }
 function displayMainPage() {
   isMainMenu = true;
-  const navBarDisplay = `${user.firstName}`;
+  const navBarDisplay = `${user.firstName}${user.lastName.slice(0, 1)}.`;
   navLogo.innerText = `KGPS English Practice`;
   navUserName.innerText = navBarDisplay;
 }
