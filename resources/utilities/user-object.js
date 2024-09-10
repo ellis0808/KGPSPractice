@@ -4,7 +4,7 @@ const user = {
   id: null,
   firstName: null, //does this make sense?
   lastName: null, //does this make sense?
-  grade: null,
+  gradeLevel: null,
   cummulativeScore: 0,
   currentScore: score.currentScore,
   currentLoginTime: null,
