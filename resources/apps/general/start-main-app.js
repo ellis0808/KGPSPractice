@@ -108,12 +108,8 @@ function startMainApp() {
       "/KGPSEnglishPractice-test/resources/css/styles.css"
     );
     setUser();
-
-    setTimeout(() => {
-      setTopMenuVariables();
-      displayGreeting();
-    }, 500);
-
+    setTopMenuVariables();
+    displayGreeting();
     displayMainPage();
   }, 500);
 }
