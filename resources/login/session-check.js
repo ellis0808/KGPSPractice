@@ -1,3 +1,4 @@
+let sessionData;
 async function sessionCheck() {
   try {
     const response = await fetch(
@@ -9,7 +10,7 @@ async function sessionCheck() {
       }
     );
 
-    const sessionData = await response.json();
+    sessionData = await response.json();
     console.log(sessionData);
 
     if (!sessionData.loggedIn) {
