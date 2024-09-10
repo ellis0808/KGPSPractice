@@ -114,10 +114,10 @@ function startMainApp() {
     displayGreeting();
   }, 500);
   setTimeout(() => {
-    setUser(sessionData);
+    setUser();
   }, 2000);
 }
-function setUser(sessionData) {
+function setUser() {
   user.grade = sessionData.gradeLevel;
   user.firstName = sessionData.firstName;
   user.lastName = sessionData.lastName;
