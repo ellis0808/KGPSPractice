@@ -101,7 +101,11 @@ const div4 = document.createElement("div");
 
 let isMainMenu = true;
 function startMainApp() {
-  sessionCheck();
+  try {
+    sessionCheck();
+  } catch (error) {
+    console.log(error);
+  }
 
   stylesheet.setAttribute(
     "href",
@@ -143,16 +147,16 @@ pointsDisplay.classList.add("points-display");
 function displayGreeting() {
   isMainMenu = true;
   returnToMainMenuToggle();
-  const greeting = `Hi, ${user}!`;
+  const greeting = `Hi, ${user.firstName}!`;
   const userScore = `You have ${score.userScore} pts`;
-  // topContainer.appendChild(greetingDisplay);
+  topContainer.appendChild(greetingDisplay);
   topContainer.appendChild(pointsDisplay);
   greetingDisplay.textContent = greeting;
   pointsDisplay.textContent = userScore;
 }
 function displayMainPage() {
   isMainMenu = true;
-  const navBarDisplay = `${user}`;
+  const navBarDisplay = `${user.firstName}`;
   navLogo.innerText = `KGPS English Practice`;
   navUserName.innerText = navBarDisplay;
 }
