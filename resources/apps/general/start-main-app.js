@@ -101,28 +101,24 @@ const div4 = document.createElement("div");
 
 let isMainMenu = true;
 function startMainApp() {
-  try {
-    sessionCheck();
-  } catch (error) {
-    console.log(error);
-  }
-
-  stylesheet.setAttribute(
-    "href",
-    "/KGPSEnglishPractice-test/resources/css/styles.css"
-  );
-  displayMainPage();
-
+  sessionCheck();
   setTimeout(() => {
-    setTopMenuVariables();
-    displayGreeting();
-  }, 500);
-  setTimeout(() => {
+    stylesheet.setAttribute(
+      "href",
+      "/KGPSEnglishPractice-test/resources/css/styles.css"
+    );
+    displayMainPage();
+
+    setTimeout(() => {
+      setTopMenuVariables();
+      displayGreeting();
+    }, 500);
+
     console.log(user);
-
     setUser();
-  }, 500);
+  }, 1000);
 }
+
 function setUser() {
   user.gradeLevel = sessionData.gradeLevel;
   user.firstName = sessionData.firstName;
