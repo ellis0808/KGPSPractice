@@ -12,11 +12,7 @@ async function sessionCheck() {
     const sessionData = await response.json();
     console.log(sessionData);
 
-    if (sessionData.loggedIn) {
-      console.log(`user id: ${sessionData.user_id}`);
-      console.log(`first name: ${sessionData.firstname}`);
-      console.log(`last name: ${sessionData.lastname}`);
-    } else {
+    if (!sessionData.loggedIn) {
       // Redirect to login page
       if (
         window.location.pathname !==
@@ -26,6 +22,7 @@ async function sessionCheck() {
           "/KGPSEnglishPractice-test/resources/login/login.html";
       }
     }
+    return sessionData;
   } catch (error) {
     if (
       window.location.pathname !==
@@ -37,4 +34,4 @@ async function sessionCheck() {
   }
 }
 
-export { sessionCheck };
+export { sessionCheck, sessionData };
