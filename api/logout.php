@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require './db_connect.php';
 
@@ -9,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 
 
-session_start();
 session_unset();
 session_destroy();
 
