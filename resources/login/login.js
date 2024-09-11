@@ -56,6 +56,11 @@ async function getUsersForLogin() {
     } else {
       console.log("no students found");
     }
+    if (data.teachers) {
+      displayUsersForLogin(data.teachers);
+    } else {
+      console.log("no students found");
+    }
   } catch (error) {
     console.error("Error getting user data:", error);
   }
@@ -66,22 +71,28 @@ function displayUsersForLogin(data) {
   teacherNameContainer.innerText = "";
   data.forEach((user) => {
     const userContainer = document.createElement("div");
+
     userContainer.classList.add("user-container");
     userContainer.setAttribute("userId", user.id);
-    userContainer.setAttribute("userfirstname", user.firstname);
     userContainer.setAttribute("userlastname", user.lastname);
     const userInitialsContainer = document.createElement("div");
     userInitialsContainer.classList.add("user-initials-container");
     userInitialsContainer.setAttribute("userId", user.id);
-    userInitialsContainer.setAttribute("userfirstname", user.firstname);
     userInitialsContainer.setAttribute("userlastname", user.lastname);
     const userNameContainer = document.createElement("div");
     userNameContainer.classList.add("user-name-container");
     userNameContainer.setAttribute("userId", user.id);
-    userNameContainer.setAttribute("userfirstname", user.firstname);
     userNameContainer.setAttribute("userlastname", user.lastname);
     userNameContainer.setAttribute("useraccess", user.access);
-
+    if (data.firstname) {
+      userContainer.setAttribute("userfirstname", user.firstname);
+      userInitialsContainer.setAttribute("userfirstname", user.firstname);
+      userNameContainer.setAttribute("userfirstname", user.firstname);
+    } else {
+      userContainer.setAttribute("usertitle", user.title);
+      userInitialsContainer.setAttribute("usertitle", user.title);
+      userNameContainer.setAttribute("usertitle", user.title);
+    }
     if (user.access === "Student") {
       userInitialsContainer.innerText = `${user.firstname.slice(
         0,
@@ -107,18 +118,18 @@ function displayUsersForLogin(data) {
       });
     } else {
       userInitialsContainer.innerText = `${user.lastname.slice(0, 1)}`;
-      userNameContainer.innerText = `${user.firstname} ${user.lastname}`;
+      userNameContainer.innerText = `${user.title} ${user.lastname}`;
       userContainer.addEventListener("click", (event) => {
         selectedUser = {
           id: event.target.getAttribute("userId"),
-          firstname: event.target.getAttribute("userfirstname"),
+          title: event.target.getAttribute("usertitle"),
           lastname: event.target.getAttribute("userlastname"),
           access: user.access,
         };
         const teacherUsernameContainer = document.querySelector(
           ".teacher-username-container"
         );
-        teacherUsernameContainer.innerText = `${user.firstname} ${user.lastname}`;
+        teacherUsernameContainer.innerText = `${user.title} ${user.lastname}`;
 
         teacherPasswordEntryForm.showModal();
       });
