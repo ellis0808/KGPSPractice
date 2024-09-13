@@ -14,9 +14,9 @@ try {
     header('Content-Type: application/json');
 
     // Check if a specific user ID was requested
-    if (isset($_GET['id'])) {
-        $stmt = $pdo->prepare("SELECT id, lastname, firstname, gradelevel, access, password FROM students WHERE id = :id");
-        $stmt->execute(['id' => $_GET['id']]);
+    if (isset($_GET['student_id'])) {
+        $stmt = $pdo->prepare("SELECT student_id, lastname, firstname, gradelevel, access, password FROM students WHERE student_id = :id");
+        $stmt->execute(['student_id' => $_GET['student_id']]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user) {
@@ -26,7 +26,7 @@ try {
         }
     } else {
         // Retrieve all teachers if no specific ID is requested
-        $stmt = $pdo->query(("SELECT id, lastname, firstname, gradelevel, access, password FROM students"));
+        $stmt = $pdo->query(("SELECT student_id, lastname, firstname, gradelevel, access, password FROM students"));
         $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         echo json_encode(['students' => $students]);
