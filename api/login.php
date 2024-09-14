@@ -5,16 +5,10 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 require './db_connect.php';
-// require './headers.php';
-
-// if (isset($_SESSION['user_id'])) {
-//     header('Location: ../index.html');
-//     exit();
-// }
 
 
 $data = json_decode(file_get_contents('php://input'), true);
-$id = $data['student_id'] ?? null;
+$id = $data['id'] ?? null;
 $firstname = $data['firstname'] ?? null;
 $lastname = $data['lastname'] ?? null;
 $password = $data['password'] ?? null;
@@ -33,7 +27,7 @@ try {
 
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['loggedIn'] = true;
-        $_SESSION['userId'] = $user['student_id'];
+        $_SESSION['userId'] = $user['userId'];
         $_SESSION['firstName'] = $user['firstname'];
         $_SESSION['lastName'] = $user['lastname'];
         $_SESSION['access'] = $user['access'];
