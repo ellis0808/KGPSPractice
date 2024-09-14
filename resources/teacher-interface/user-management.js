@@ -115,8 +115,10 @@ function displayUsers(data) {
     } else {
       userGradeLevel.textContent = `${user.gradelevel}`;
     }
-    if (user.access === 1) {
-      userAccess.textContent = `Admin`;
+    if (user.access !== "Student") {
+      if (user.access === 1) {
+        userAccess.textContent = `Admin`;
+      } else userAccess.textContent = `Teacher`;
     } else {
       userAccess.textContent = `${user.access}`;
     }
