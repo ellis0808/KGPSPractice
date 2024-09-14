@@ -72,12 +72,12 @@ function displayUsersForLogin(data) {
     userContainer.setAttribute("userlastname", user.lastname);
     const userInitialsContainer = document.createElement("div");
     userInitialsContainer.classList.add("user-initials-container");
-    userInitialsContainer.setAttribute("userId", user.id);
+    userInitialsContainer.setAttribute("userId", user.student_id);
     userInitialsContainer.setAttribute("userfirstname", user.firstname);
     userInitialsContainer.setAttribute("userlastname", user.lastname);
     const userNameContainer = document.createElement("div");
     userNameContainer.classList.add("user-name-container");
-    userNameContainer.setAttribute("userId", user.id);
+    userNameContainer.setAttribute("userId", user.student_id);
     userNameContainer.setAttribute("userfirstname", user.firstname);
     userNameContainer.setAttribute("userlastname", user.lastname);
     userNameContainer.setAttribute("useraccess", user.access);
@@ -257,7 +257,7 @@ document
   .getElementById("teacherPasswordEntryForm")
   .addEventListener("submit", (event) => {
     loginUser(
-      selectedUser.id,
+      selectedUser.teacher_id,
       selectedUser.firstname,
       selectedUser.lastname,
       selectedUser.access
