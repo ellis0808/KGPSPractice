@@ -83,7 +83,7 @@ function displayUsers(data) {
     const userAccess = document.createElement("div");
     const editUserBtn = document.createElement("button");
     const deleteUserBtn = document.createElement("button");
-    userName.setAttribute("userId", user.student_id);
+    userName.setAttribute("userId", user.id);
     userName.classList.add("open-modal-btn2", "user-name");
     userName.addEventListener("click", (event) => {
       const id = event.target.getAttribute("userId");
@@ -93,8 +93,8 @@ function displayUsers(data) {
     });
     editUserBtn.textContent = "Edit";
     deleteUserBtn.textContent = "Delete";
-    editUserBtn.setAttribute("userId", user.student_id);
-    deleteUserBtn.setAttribute("userId", user.student_id);
+    editUserBtn.setAttribute("userId", user.id);
+    deleteUserBtn.setAttribute("userId", user.id);
     editUserBtn.classList.add("open-modal-btn3");
     editUserBtn.addEventListener("click", (event) => {
       const id = event.target.getAttribute("userId");
@@ -115,7 +115,11 @@ function displayUsers(data) {
     } else {
       userGradeLevel.textContent = `${user.gradelevel}`;
     }
-    userAccess.textContent = `${user.access}`;
+    if (user.access === 1) {
+      userAccess.textContent = `Admin`;
+    } else {
+      userAccess.textContent = `${user.access}`;
+    }
     userData.classList.add("user-slot");
     userData.appendChild(number);
     userData.appendChild(userName);
