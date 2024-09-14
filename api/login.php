@@ -8,7 +8,7 @@ require './db_connect.php';
 
 
 $data = json_decode(file_get_contents('php://input'), true);
-$id = $data['student_id'] ?? null;
+$id = $data['id'] ?? null;
 $firstname = $data['firstname'] ?? null;
 $lastname = $data['lastname'] ?? null;
 $password = $data['password'] ?? null;
