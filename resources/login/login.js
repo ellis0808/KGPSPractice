@@ -51,8 +51,8 @@ async function getUsersForLogin() {
     }
     const data = await response.json();
 
-    if (data.students) {
-      displayUsersForLogin(data.students);
+    if (data.users) {
+      displayUsersForLogin(data.users);
     } else {
       console.log("no students found");
     }
