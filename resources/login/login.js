@@ -67,7 +67,7 @@ function displayUsersForLogin(data) {
   data.forEach((user) => {
     const userContainer = document.createElement("div");
     userContainer.classList.add("user-container");
-    userContainer.setAttribute("userId", user.id);
+    userContainer.setAttribute("userId", user.student_id);
     userContainer.setAttribute("userfirstname", user.firstname);
     userContainer.setAttribute("userlastname", user.lastname);
     const userInitialsContainer = document.createElement("div");
