@@ -244,7 +244,7 @@ document
   .getElementById("studentPasswordEntryForm")
   .addEventListener("submit", (event) => {
     loginUser(
-      selectedUser.id,
+      selectedUser.student_id,
       selectedUser.firstname,
       selectedUser.lastname,
       selectedUser.access
