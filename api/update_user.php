@@ -55,8 +55,8 @@ try {
 
     if (!empty($fields)) {
         $sql .= implode(", ", $fields);
-        $sql .= " WHERE student_id = :id";
-        $params['student_id'] = $id;
+        $sql .= " WHERE id = :id";
+        $params['id'] = $id;
 
 
         // Prepare and execute the statement
