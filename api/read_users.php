@@ -27,7 +27,7 @@ try {
     } else {
         // Retrieve all teachers if no specific ID is requested
         $stmt = $pdo->query(("SELECT student_id, lastname, firstname, gradelevel, access, password FROM students UNION SELECT teacher_id, lastname, title, access, admin, password FROM teachers"));
-        $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         echo json_encode(['users' => $users]);
     }
