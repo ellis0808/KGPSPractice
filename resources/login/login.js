@@ -65,8 +65,6 @@ function displayUsersForLogin(data) {
   studentNameContainer.innerText = "";
   teacherNameContainer.innerText = "";
   data.forEach((user) => {
-    console.log(user);
-
     const userContainer = document.createElement("div");
     userContainer.classList.add("user-container");
     userContainer.setAttribute("userId", user.student_id);
@@ -246,7 +244,7 @@ document
   .getElementById("studentPasswordEntryForm")
   .addEventListener("submit", (event) => {
     loginUser(
-      selectedUser.student_id,
+      selectedUser.id,
       selectedUser.firstname,
       selectedUser.lastname,
       selectedUser.access
@@ -259,7 +257,7 @@ document
   .getElementById("teacherPasswordEntryForm")
   .addEventListener("submit", (event) => {
     loginUser(
-      selectedUser.teacher_id,
+      selectedUser.id,
       selectedUser.firstname,
       selectedUser.lastname,
       selectedUser.access
