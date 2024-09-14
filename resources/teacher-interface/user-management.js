@@ -39,10 +39,10 @@ async function getUsers() {
       throw new Error("Network response was not okay");
     }
     const data = await response.json();
-    console.log(data.students);
+    console.log(data.users);
 
-    if (data.students) {
-      displayUsers(data.students);
+    if (data.users) {
+      displayUsers(data.users);
     } else {
       console.log("No students found");
     }
