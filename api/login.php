@@ -21,8 +21,8 @@ if (!$id || !$firstname || !$lastname || !$password) {
 try {
     $pdo = getDBConnection();
 
-    $stmt = $pdo->prepare(('SELECT student_id, lastname, firstname, gradelevel, password, access FROM students WHERE student_id = :student_id AND firstname = :firstname AND lastname = :lastname'));
-    $stmt->execute(['student_id' => $id, 'firstname' => $firstname, 'lastname' => $lastname]);
+    $stmt = $pdo->prepare(('SELECT id, lastname, firstname, gradelevel, password, access FROM students WHERE id = :id AND firstname = :firstname AND lastname = :lastname'));
+    $stmt->execute(['id' => $id, 'firstname' => $firstname, 'lastname' => $lastname]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['password'])) {
