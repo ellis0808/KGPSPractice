@@ -65,6 +65,8 @@ function displayUsersForLogin(data) {
   studentNameContainer.innerText = "";
   teacherNameContainer.innerText = "";
   data.forEach((user) => {
+    console.log(user);
+
     const userContainer = document.createElement("div");
     userContainer.classList.add("user-container");
     userContainer.setAttribute("userId", user.student_id);
