@@ -27,7 +27,7 @@ try {
 
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['loggedIn'] = true;
-        $_SESSION['userId'] = $user['student_id'];
+        $_SESSION['userId'] = $user['id'];
         $_SESSION['firstName'] = $user['firstname'];
         $_SESSION['lastName'] = $user['lastname'];
         $_SESSION['access'] = $user['access'];
