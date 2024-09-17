@@ -256,6 +256,8 @@ document
 document
   .getElementById("teacherPasswordEntryForm")
   .addEventListener("submit", (event) => {
+    console.log(selectedUser.student_id);
+
     loginUser(
       selectedUser.student_id,
       selectedUser.first_name,
@@ -267,6 +269,8 @@ document
 
 // Login logic
 async function loginUser(id, first_name, last_name, access) {
+  console.log(id);
+
   let password;
   if (access === "teacher") {
     password = document.getElementById("teacherpassword").value;
