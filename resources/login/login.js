@@ -68,8 +68,8 @@ function displayUsersForLogin(data) {
     const userContainer = document.createElement("div");
     userContainer.classList.add("user-container");
     userContainer.setAttribute("userId", user.id);
-    userContainer.setAttribute("userfirstname", user.firstname);
-    userContainer.setAttribute("userlastname", user.lastname);
+    userContainer.setAttribute("userfirstname", user.firs_tname);
+    userContainer.setAttribute("userlastname", user.last_name);
     const userInitialsContainer = document.createElement("div");
     userInitialsContainer.classList.add("user-initials-container");
     userInitialsContainer.setAttribute("userId", user.id);
@@ -83,11 +83,11 @@ function displayUsersForLogin(data) {
     userNameContainer.setAttribute("useraccess", user.access);
 
     if (user.access === "student") {
-      userInitialsContainer.innerText = `${user.firstname.slice(
+      userInitialsContainer.innerText = `${user.first_name.slice(
         0,
         1
-      )}. ${user.lastname.slice(0, 1)}.`;
-      userNameContainer.innerText = `${user.firstname} ${user.lastname.slice(
+      )}. ${user.last_name.slice(0, 1)}.`;
+      userNameContainer.innerText = `${user.first_name} ${user.last_name.slice(
         0,
         1
       )}.`;
@@ -100,14 +100,14 @@ function displayUsersForLogin(data) {
           access: user.access,
         };
 
-        studentPasswordGridNameHeader.innerText = `${user.firstname} ${user.lastname}`;
+        studentPasswordGridNameHeader.innerText = `${user.first_name} ${user.last_name}`;
 
         resetStudentPasswordEntryArray();
         studentPasswordEntryForm.showModal();
       });
     } else {
-      userInitialsContainer.innerText = `${user.lastname.slice(0, 1)}`;
-      userNameContainer.innerText = `${user.firstname} ${user.lastname}`;
+      userInitialsContainer.innerText = `${user.last_name.slice(0, 1)}`;
+      userNameContainer.innerText = `${user.first_name} ${user.last_name}`;
       userContainer.addEventListener("click", (event) => {
         selectedUser = {
           id: event.target.getAttribute("userId"),
@@ -118,7 +118,7 @@ function displayUsersForLogin(data) {
         const teacherUsernameContainer = document.querySelector(
           ".teacher-username-container"
         );
-        teacherUsernameContainer.innerText = `${user.firstname} ${user.lastname}`;
+        teacherUsernameContainer.innerText = `${user.first_name} ${user.last_name}`;
 
         teacherPasswordEntryForm.showModal();
       });
@@ -258,7 +258,7 @@ document
   .addEventListener("submit", (event) => {
     loginUser(
       selectedUser.id,
-      selectedUser.firs_tname,
+      selectedUser.first_name,
       selectedUser.last_name,
       selectedUser.access
     );
