@@ -29,17 +29,17 @@ try {
     $params = [];
 
     // Only update fields that are given new values
-    if (isset($data['lastname']) && $data['lastname'] !== "") {
-        $fields[] = "lastname = :lastname";
-        $params['lastname'] = $data['lastname'];
+    if (isset($data['last_name']) && $data['last_name'] !== "") {
+        $fields[] = "last_name = :last_name";
+        $params['last_name'] = $data['last_name'];
     }
-    if (isset($data['firstname']) && $data['firstname'] !== "") {
-        $fields[] = "firstname = :firstname";
-        $params['firstname'] = $data['firstname'];
+    if (isset($data['first_name']) && $data['first_name'] !== "") {
+        $fields[] = "first_name = :first_name";
+        $params['first_name'] = $data['first_name'];
     }
-    if (isset($data['gradelevel']) && $data['gradelevel'] !== "") {
-        $fields[] = "gradelevel = :gradelevel";
-        $params['gradelevel'] = $data['gradelevel'];
+    if (isset($data['grade_level']) && $data['grade_level'] !== "") {
+        $fields[] = "grade_level = :grade_level";
+        $params['grade_level'] = $data['grade_level'];
     }
     if (isset($data['access']) && $data['access'] !== "") {
         $fields[] = "access = :access";

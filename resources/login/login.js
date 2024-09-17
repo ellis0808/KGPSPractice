@@ -74,7 +74,7 @@ function displayUsersForLogin(data) {
     userInitialsContainer.classList.add("user-initials-container");
     userInitialsContainer.setAttribute("userId", user.id);
     userInitialsContainer.setAttribute("userfirstname", user.firstname);
-    userInitialsContainer.setAttribute("userlastname", user.lastname);
+    userInitialsContainer.setASttribute("userlastname", userS.lastname);
     const userNameContainer = document.createElement("div");
     userNameContainer.classList.add("user-name-container");
     userNameContainer.setAttribute("userId", user.id);
@@ -82,7 +82,7 @@ function displayUsersForLogin(data) {
     userNameContainer.setAttribute("userlastname", user.lastname);
     userNameContainer.setAttribute("useraccess", user.access);
 
-    if (user.access === "Student") {
+    if (user.access === "student") {
       userInitialsContainer.innerText = `${user.firstname.slice(
         0,
         1
@@ -245,8 +245,8 @@ document
   .addEventListener("submit", (event) => {
     loginUser(
       selectedUser.id,
-      selectedUser.firstname,
-      selectedUser.lastname,
+      selectedUser.first_name,
+      selectedUser.last_name,
       selectedUser.access
     );
     document.getElementById("studentPasswordEntryForm").reset();
@@ -258,19 +258,19 @@ document
   .addEventListener("submit", (event) => {
     loginUser(
       selectedUser.id,
-      selectedUser.firstname,
-      selectedUser.lastname,
+      selectedUser.firs_tname,
+      selectedUser.last_name,
       selectedUser.access
     );
     document.getElementById("teacherPasswordEntryForm").reset();
   });
 
 // Login logic
-async function loginUser(id, firstname, lastname, access) {
+async function loginUser(id, first_name, lastn_ame, access) {
   let password;
-  if (access === "Teacher") {
+  if (access === "teacher") {
     password = document.getElementById("teacherpassword").value;
-  } else if (access === "Student") {
+  } else if (access === "student") {
     password = studentPasswordEntryArray.join("");
   }
 
@@ -278,7 +278,7 @@ async function loginUser(id, firstname, lastname, access) {
     const response = await fetch("/KGPSEnglishPractice-test/api/login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, firstname, lastname, password }),
+      body: JSON.stringify({ id, first_name, last_name, password }),
       credentials: "include",
     });
 
@@ -305,10 +305,10 @@ closeTeacherLoginModalBtn.addEventListener("click", () => {
 });
 
 function routing(userData) {
-  if (userData.access === "Teacher") {
+  if (userData.access === "teacher") {
     window.location.href =
       "../resources/teacher-interface/user-management.html";
-  } else if (userData.access === "Student") {
+  } else if (userData.access === "student") {
     window.location.href = "/KGPSEnglishPractice-test/index.html";
   }
 }

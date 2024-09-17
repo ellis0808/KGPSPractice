@@ -19,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-$lastname = $data['lastname'] ?? '';
-$firstname = $data['firstname'] ?? '';
-$gradelevel = $data['gradelevel'] ?? '';
+$lastname = $data['last_name'] ?? '';
+$firstname = $data['first_name'] ?? '';
+$gradelevel = $data['grade_level'] ?? '';
 $password = $data['password'] ?? '';
 $access = $data['access'] ?? '';
 
@@ -29,8 +29,8 @@ $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
 try {
     $pdo = getDBConnection();
-    $stmt = $pdo->prepare("INSERT INTO students (lastname, firstname, gradelevel, access, password) VALUES (:lastname, :firstname, :gradelevel, :access, :password)");
-    $stmt->execute(['lastname' => $lastname, 'firstname' => $firstname, 'gradelevel' => $gradelevel, 'access' => $access, 'password' => $hashedPassword]);
+    $stmt = $pdo->prepare("INSERT INTO students (last_name, first_name, grade_level, access, password) VALUES (:last_name, :first_name, :grade_level, :access, :password)");
+    $stmt->execute(['last_name' => $lastname, 'first_name' => $firstname, 'grade_level' => $gradelevel, 'access' => $access, 'password' => $hashedPassword]);
 
     echo json_encode(['message' => 'User created successfully']);
 } catch (PDOException $e) {

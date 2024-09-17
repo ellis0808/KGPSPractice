@@ -11,7 +11,7 @@ require './db_connect.php';
 // Get the input data from the request
 $data = json_decode(file_get_contents('php://input'), true);
 
-$id = $data['student_id'] ?? null;
+$id = $data['id'] ?? null;
 
 if (!$id) {
     echo json_encode(['error' => 'User ID is required']);
@@ -22,11 +22,11 @@ try {
     $pdo = getDBConnection();
 
     // Prepare the SQL query to delete the user
-    $sql = "DELETE FROM students WHERE student_id = :id";
+    $sql = "DELETE FROM students WHERE id = :id";
     $stmt = $pdo->prepare($sql);
 
     // Bind parameters and execute the query
-    $stmt->execute(['student_id' => $id]);
+    $stmt->execute(['id' => $id]);
 
     if ($stmt->rowCount()) {
         echo json_encode(['message' => 'User deleted successfully']);
