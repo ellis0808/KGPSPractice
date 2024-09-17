@@ -266,7 +266,7 @@ document
   });
 
 // Login logic
-async function loginUser(id, first_name, lastn_ame, access) {
+async function loginUser(id, first_name, last_name, access) {
   let password;
   if (access === "teacher") {
     password = document.getElementById("teacherpassword").value;
