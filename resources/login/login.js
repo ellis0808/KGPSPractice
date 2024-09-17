@@ -67,17 +67,17 @@ function displayUsersForLogin(data) {
   data.forEach((user) => {
     const userContainer = document.createElement("div");
     userContainer.classList.add("user-container");
-    userContainer.setAttribute("userId", user.id);
-    userContainer.setAttribute("userfirstname", user.firs_tname);
+    userContainer.setAttribute("userId", user.student_id);
+    userContainer.setAttribute("userfirstname", user.first_name);
     userContainer.setAttribute("userlastname", user.last_name);
     const userInitialsContainer = document.createElement("div");
     userInitialsContainer.classList.add("user-initials-container");
-    userInitialsContainer.setAttribute("userId", user.id);
+    userInitialsContainer.setAttribute("userId", user.student_id);
     userInitialsContainer.setAttribute("userfirstname", user.first_name);
     userInitialsContainer.setASttribute("userlastname", user.last_name);
     const userNameContainer = document.createElement("div");
     userNameContainer.classList.add("user-name-container");
-    userNameContainer.setAttribute("userId", user.id);
+    userNameContainer.setAttribute("userId", user.student_id);
     userNameContainer.setAttribute("userfirstname", user.first_name);
     userNameContainer.setAttribute("userlastname", user.last_name);
     userNameContainer.setAttribute("useraccess", user.access);
