@@ -74,7 +74,7 @@ function displayUsersForLogin(data) {
     userInitialsContainer.classList.add("user-initials-container");
     userInitialsContainer.setAttribute("userId", user.student_id);
     userInitialsContainer.setAttribute("userfirstname", user.first_name);
-    userInitialsContainer.setASttribute("userlastname", user.last_name);
+    userInitialsContainer.setAttribute("userlastname", user.last_name);
     const userNameContainer = document.createElement("div");
     userNameContainer.classList.add("user-name-container");
     userNameContainer.setAttribute("userId", user.student_id);
