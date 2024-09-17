@@ -208,7 +208,9 @@ document
     const gradelevel = parseInt(
       document.querySelector('input[name="gradelevel"]:checked').value
     );
-    const access = document.querySelector('input[name="access"]:checked').value;
+    const access = document
+      .querySelector('input[name="access"]:checked')
+      .value.toLowerCase();
     try {
       const response = await fetch(
         "/KGPSEnglishPractice-test/api/create_user.php",
