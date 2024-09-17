@@ -109,11 +109,11 @@ function displayUsers(data) {
     number.classList.add("number");
     userGradeLevel.classList.add("number");
     number.textContent = `${i}`;
-    userName.textContent = `${user.lastname}, ${user.firstname}`;
+    userName.textContent = `${user.last_name}, ${user.first_name}`;
     if (user.access === "teacher") {
       userGradeLevel.textContent = ``;
     } else {
-      userGradeLevel.textContent = `${user.gradelevel}`;
+      userGradeLevel.textContent = `${user.grade_level}`;
     }
     if (user.access !== "student") {
       if (user.access === "1") {
@@ -158,9 +158,9 @@ function displaySingleUser(data) {
   const singleUserData1 = document.querySelector(".single-user-data1");
   singleUserData1.setAttribute("userID", data.id);
   if (data.access === "teacher") {
-    singleUserData1.innerText = `${data.lastname}, ${data.firstname}\r\nAccess: ${data.access}`;
+    singleUserData1.innerText = `${data.last_name}, ${data.first_name}\r\nAccess: ${data.access}`;
   } else {
-    singleUserData1.innerText = `${data.lastname}, ${data.firstname}\r\nGrade: ${data.gradelevel}\r\nAccess: ${data.access}`;
+    singleUserData1.innerText = `${data.last_name}, ${data.first_name}\r\nGrade: ${data.grade_level}\r\nAccess: ${data.access}`;
   }
 }
 
@@ -188,11 +188,11 @@ async function getSingleUser2(id) {
 function displaySingleUser2(data) {
   const userName = document.querySelector(".user-data-modal-name");
   const singleUserData2 = document.querySelector(".single-user-data2");
-  userName.innerText = `${data.lastname}, ${data.firstname}`;
+  userName.innerText = `${data.last_name}, ${data.first_name}`;
   if (data.access === "teacher") {
     singleUserData2.innerText = `Access: ${data.access}`;
   } else {
-    singleUserData2.innerText = `Grade: ${data.gradelevel}\r\nAccess: ${data.access}`;
+    singleUserData2.innerText = `Grade: ${data.grade_level}\r\nAccess: ${data.access}`;
   }
 }
 
