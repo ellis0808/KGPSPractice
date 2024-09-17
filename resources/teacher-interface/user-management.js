@@ -110,12 +110,12 @@ function displayUsers(data) {
     userGradeLevel.classList.add("number");
     number.textContent = `${i}`;
     userName.textContent = `${user.lastname}, ${user.firstname}`;
-    if (user.access === "Teacher") {
+    if (user.access === "teacher") {
       userGradeLevel.textContent = ``;
     } else {
       userGradeLevel.textContent = `${user.gradelevel}`;
     }
-    if (user.access !== "Student") {
+    if (user.access !== "student") {
       if (user.access === "1") {
         userAccess.textContent = `Admin`;
       } else userAccess.textContent = `Teacher`;
@@ -157,7 +157,7 @@ async function getSingleUser(id) {
 function displaySingleUser(data) {
   const singleUserData1 = document.querySelector(".single-user-data1");
   singleUserData1.setAttribute("userID", data.id);
-  if (data.access === "Teacher") {
+  if (data.access === "teacher") {
     singleUserData1.innerText = `${data.lastname}, ${data.firstname}\r\nAccess: ${data.access}`;
   } else {
     singleUserData1.innerText = `${data.lastname}, ${data.firstname}\r\nGrade: ${data.gradelevel}\r\nAccess: ${data.access}`;
@@ -189,7 +189,7 @@ function displaySingleUser2(data) {
   const userName = document.querySelector(".user-data-modal-name");
   const singleUserData2 = document.querySelector(".single-user-data2");
   userName.innerText = `${data.lastname}, ${data.firstname}`;
-  if (data.access === "Teacher") {
+  if (data.access === "teacher") {
     singleUserData2.innerText = `Access: ${data.access}`;
   } else {
     singleUserData2.innerText = `Grade: ${data.gradelevel}\r\nAccess: ${data.access}`;
@@ -216,10 +216,10 @@ document
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            lastname: lastname,
-            firstname: firstname,
+            last_name: lastname,
+            first_name: firstname,
             password: password,
-            gradelevel: gradelevel,
+            grade_level: gradelevel,
             access: access,
           }),
         }
@@ -298,16 +298,16 @@ document
     const newData = { id: id };
 
     if (firstname) {
-      newData.firstname = firstname;
+      newData.first_name = firstname;
     }
     if (lastname) {
-      newData.lastname = lastname;
+      newData.last_name = lastname;
     }
     if (password) {
       newData.password = password;
     }
     if (gradelevel) {
-      newData.gradelevel = gradelevel;
+      newData.grade_level = gradelevel;
     }
     if (access) {
       newData.access = access;

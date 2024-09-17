@@ -9,8 +9,8 @@ require './db_connect.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
 $id = $data['id'] ?? null;
-$firstname = $data['firstname'] ?? null;
-$lastname = $data['lastname'] ?? null;
+$firstname = $data['first_name'] ?? null;
+$lastname = $data['last_name'] ?? null;
 $password = $data['password'] ?? null;
 
 if (!$id || !$firstname || !$lastname || !$password) {
@@ -21,17 +21,17 @@ if (!$id || !$firstname || !$lastname || !$password) {
 try {
     $pdo = getDBConnection();
 
-    $stmt = $pdo->prepare(('SELECT id, lastname, firstname, gradelevel, password, access FROM students WHERE id = :id AND firstname = :firstname AND lastname = :lastname'));
-    $stmt->execute(['id' => $id, 'firstname' => $firstname, 'lastname' => $lastname]);
+    $stmt = $pdo->prepare(('SELECT id, last_name, first_name, grade_level, password, access FROM students WHERE id = :id AND first_name = :first_name AND last_name = :last_name'));
+    $stmt->execute(['id' => $id, 'first_name' => $firstname, 'last_name' => $lastname]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['loggedIn'] = true;
         $_SESSION['userId'] = $user['id'];
-        $_SESSION['firstName'] = $user['firstname'];
-        $_SESSION['lastName'] = $user['lastname'];
+        $_SESSION['firstName'] = $user['first_name'];
+        $_SESSION['lastName'] = $user['last_name'];
         $_SESSION['access'] = $user['access'];
-        $_SESSION['gradeLevel'] = $user['gradelevel'];
+        $_SESSION['gradeLevel'] = $user['grade_level'];
 
 
         echo json_encode($user);
