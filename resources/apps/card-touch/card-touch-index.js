@@ -89,7 +89,7 @@ async function loadAudioForStyle(style) {
 /* SCORING */
 const correctAnswerPoints = 2;
 const incorrectAnswerPoints = 1;
-let user1;
+let user1 = {};
 
 function cardTouchApp(set) {
   sessionCheck();

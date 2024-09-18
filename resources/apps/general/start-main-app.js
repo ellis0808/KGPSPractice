@@ -113,7 +113,7 @@ function startMainApp() {
     displayMainPage();
   }, 2500);
 }
-let user1;
+let user1 = {};
 
 function setUser() {
   user1.gradeLevel = sessionData.gradeLevel;
