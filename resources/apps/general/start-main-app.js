@@ -114,6 +114,7 @@ function startMainApp() {
   }, 2500);
 }
 let user1;
+
 function setUser() {
   user1.gradeLevel = sessionData.gradeLevel;
   user1.firstName = sessionData.firstName;
