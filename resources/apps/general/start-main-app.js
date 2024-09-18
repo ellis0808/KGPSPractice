@@ -111,7 +111,7 @@ function startMainApp() {
     setTopMenuVariables();
     displayGreeting();
     displayMainPage();
-  }, 700);
+  }, 1000);
 }
 
 function setUser() {
