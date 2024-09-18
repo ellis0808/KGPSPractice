@@ -26,7 +26,7 @@ import {
 } from "../../utilities/main-menu-display-toggle.js";
 import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import { timer, toggleTimerHide } from "../../utilities/timer-object.js";
-import { sessionCheck } from "../../login/session-check.js";
+import { sessionCheck, sessionData } from "../../login/session-check.js";
 
 let style;
 
