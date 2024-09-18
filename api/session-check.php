@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// require './db_connect.php';
+require './db_connect.php';
 // require './headers.php';
 
 
