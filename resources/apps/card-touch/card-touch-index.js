@@ -675,6 +675,11 @@ document.addEventListener("keydown", (event) => {
     return;
   }
 });
+
+function updateScore() {
+  //  For student users; teachers will differ on user type, etc
+  const newScore = { id: id, user_type: user.access };
+}
 function endSession() {
   style = 0;
   unpause2();
