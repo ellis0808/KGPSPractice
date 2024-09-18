@@ -246,9 +246,9 @@ document
     console.log(selectedUser);
 
     loginUser(
-      selectedUser.student_id,
-      selectedUser.first_name,
-      selectedUser.last_name,
+      selectedUser.id,
+      selectedUser.firstname,
+      selectedUser.lastname,
       selectedUser.access
     );
     document.getElementById("studentPasswordEntryForm").reset();
@@ -259,16 +259,16 @@ document
   .getElementById("teacherPasswordEntryForm")
   .addEventListener("submit", (event) => {
     loginUser(
-      selectedUser.student_id,
-      selectedUser.first_name,
-      selectedUser.last_name,
+      selectedUser.id,
+      selectedUser.firstname,
+      selectedUser.lastname,
       selectedUser.access
     );
     document.getElementById("teacherPasswordEntryForm").reset();
   });
 
 // Login logic
-async function loginUser(id, first_name, last_name, access) {
+async function loginUser(id, firstname, lastname, access) {
   let password;
   if (access === "teacher") {
     password = document.getElementById("teacherpassword").value;
@@ -280,12 +280,12 @@ async function loginUser(id, first_name, last_name, access) {
     const response = await fetch("/KGPSEnglishPractice-test/api/login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, first_name, last_name, password }),
+      body: JSON.stringify({ id, firstname, lastname, password }),
       credentials: "include",
     });
     console.log(id);
-    console.log(first_name);
-    console.log(last_name);
+    console.log(firstname);
+    console.log(lastname);
     console.log(password);
 
     const rawText = await response.text();

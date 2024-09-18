@@ -9,8 +9,8 @@ require './db_connect.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
 $id = (int)$data['id'] ?? null;
-$firstname = $data['first_name'] ?? null;
-$lastname = $data['last_name'] ?? null;
+$firstname = $data['firstname'] ?? null;
+$lastname = $data['lastname'] ?? null;
 $password = $data['password'] ?? null;
 
 if (!$id) {
