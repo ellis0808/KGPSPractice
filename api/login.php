@@ -13,8 +13,20 @@ $firstname = $data['first_name'] ?? null;
 $lastname = $data['last_name'] ?? null;
 $password = $data['password'] ?? null;
 
-if (!$id || !$firstname || !$lastname || !$password) {
+if (!$id) {
     echo json_encode(['error' => $id, 'User ID is required']);
+    exit;
+}
+if (!$firstname) {
+    echo json_encode(['error' => $firstname, 'User ID is required']);
+    exit;
+}
+if (!$lastname) {
+    echo json_encode(['error' => $lastname, 'User ID is required']);
+    exit;
+}
+if (!$password) {
+    echo json_encode(['error' => $password, 'User ID is required']);
     exit;
 }
 

@@ -281,7 +281,10 @@ async function loginUser(id, first_name, last_name, access) {
       body: JSON.stringify({ id, first_name, last_name, password }),
       credentials: "include",
     });
-    console.log(id);
+    console.log(password);
+    console.log(password);
+    console.log(password);
+    console.log(password);
 
     const rawText = await response.text();
     console.log("Raw response text: ", rawText);
