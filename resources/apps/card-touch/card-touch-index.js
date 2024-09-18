@@ -697,11 +697,11 @@ document.addEventListener("keydown", (event) => {
 async function updateScore() {
   //  For student users; teachers will differ on user type, etc
   const newScore = {
-    user_id: user.student_id,
-    student_id: user.student_id,
-    teacher_id: user.student_id,
-    user_type: user.access,
-    activity_score: user.currentScore,
+    user_id: user1.student_id,
+    student_id: user1.student_id,
+    teacher_id: user1.student_id,
+    user_type: user1.access,
+    activity_score: score.currentScore,
   };
   console.log(newScore);
 
