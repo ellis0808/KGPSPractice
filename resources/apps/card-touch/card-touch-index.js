@@ -103,7 +103,7 @@ function cardTouchApp(set) {
     "/KGPSEnglishPractice-test/resources/css/card-touch.css"
   );
   displayStartBtn();
-
+  setUser();
   removeMenuPage();
 
   score.resetScore();
@@ -148,6 +148,14 @@ style 5: sight words 4
     return style;
   }
   return style;
+}
+
+function setUser() {
+  user.gradeLevel = sessionData.gradeLevel;
+  user.firstName = sessionData.firstName;
+  user.lastName = sessionData.lastName;
+  user.access = sessionData.access;
+  user.id = sessionData.userId;
 }
 
 const appContainer = document.createElement("div");
@@ -677,7 +685,7 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-function updateScore() {
+async function updateScore() {
   //  For student users; teachers will differ on user type, etc
   const newScore = {
     user_id: user.student_id,
@@ -687,6 +695,15 @@ function updateScore() {
     activity_score: user.currentScore,
   };
   console.log(newScore);
+
+  const response = await fetch(
+    "/KGPSEnglishPractice-test/api/update_score.php",
+    {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newScore),
+    }
+  );
 }
 function endSession() {
   style = 0;
