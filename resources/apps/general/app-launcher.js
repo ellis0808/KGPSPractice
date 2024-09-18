@@ -1,7 +1,7 @@
 import { cardTouchApp } from "../card-touch/card-touch-index.js";
 import { matchingApp } from "../matching/matching-index.js";
 import { numberFluencyApp } from "../numbers/numbers-fluency/numbers-fluency.js";
-import { spellingTouchApp } from "../spelling/spelling-touch-app/spelling-touch-index.js";
+// import { spellingTouchApp } from "../spelling/spelling-touch-app/spelling-touch-index.js";
 import { mainMenuSfx } from "./start-main-app.js";
 
 function startCardTouchApp(set) {
@@ -22,14 +22,14 @@ function startMatchingApp() {
   mainMenuSfx.select2.play();
   matchingApp();
 }
-function startSpellingTouchApp() {
-  mainMenuSfx.select2.play();
-  spellingTouchApp();
-}
-function startSpellingWritingApp() {
-  mainMenuSfx.select2.play();
-  spellingWritingApp();
-}
+// function startSpellingTouchApp() {
+//   mainMenuSfx.select2.play();
+//   spellingTouchApp();
+// }
+// function startSpellingWritingApp() {
+//   mainMenuSfx.select2.play();
+//   spellingWritingApp();
+// }
 function startNumberFluencyApp(set) {
   mainMenuSfx.select2.play();
   if (set === 0) {
@@ -60,6 +60,6 @@ function startnumberMathApp() {
 export {
   startCardTouchApp,
   startMatchingApp,
-  startSpellingTouchApp,
+  // startSpellingTouchApp,
   startNumberFluencyApp,
 };
