@@ -18,15 +18,15 @@ if (!$id) {
     exit;
 }
 if (!$firstname) {
-    echo json_encode(['error' => $firstname, 'User ID is required']);
+    echo json_encode(['error' => $firstname, 'First name is required']);
     exit;
 }
 if (!$lastname) {
-    echo json_encode(['error' => $lastname, 'User ID is required']);
+    echo json_encode(['error' => $lastname, 'Last name is required']);
     exit;
 }
 if (!$password) {
-    echo json_encode(['error' => $password, 'User ID is required']);
+    echo json_encode(['error' => $password, 'Password is required']);
     exit;
 }
 
