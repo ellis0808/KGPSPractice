@@ -678,7 +678,11 @@ document.addEventListener("keydown", (event) => {
 
 function updateScore() {
   //  For student users; teachers will differ on user type, etc
-  const newScore = { id: id, user_type: user.access };
+  const newScore = {
+    id: id,
+    user_type: user.access,
+    activity_score: user.currentScore,
+  };
 }
 function endSession() {
   style = 0;
