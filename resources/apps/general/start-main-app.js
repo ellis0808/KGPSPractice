@@ -113,13 +113,13 @@ function startMainApp() {
     displayMainPage();
   }, 2500);
 }
-
+let user1;
 function setUser() {
-  user.gradeLevel = sessionData.gradeLevel;
-  user.firstName = sessionData.firstName;
-  user.lastName = sessionData.lastName;
-  user.access = sessionData.access;
-  user.id = sessionData.userId;
+  user1.gradeLevel = sessionData.gradeLevel;
+  user1.firstName = sessionData.firstName;
+  user1.lastName = sessionData.lastName;
+  user1.access = sessionData.access;
+  user1.id = sessionData.userId;
 }
 
 function setTopMenuVariables() {
@@ -138,7 +138,7 @@ pointsDisplay.classList.add("points-display");
 function displayGreeting() {
   isMainMenu = true;
   returnToMainMenuToggle();
-  const greeting = `Hi, ${user.firstName}!`;
+  const greeting = `Hi, ${user1.firstName}!`;
   const userScore = `You have ${score.userScore} pts`;
   topContainer.appendChild(greetingDisplay);
   topContainer.appendChild(pointsDisplay);
@@ -147,7 +147,7 @@ function displayGreeting() {
 }
 function displayMainPage() {
   isMainMenu = true;
-  const navBarDisplay = `${user.firstName} ${user.lastName.slice(0, 1)}.`;
+  const navBarDisplay = `${user1.firstName} ${user1.lastName.slice(0, 1)}.`;
   navLogo.innerText = `KGPS English Practice`;
   navUserName.innerText = navBarDisplay;
 }
