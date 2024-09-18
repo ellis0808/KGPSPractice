@@ -12,7 +12,7 @@ import {
   startCardTouchApp,
   startMatchingApp,
   startNumberFluencyApp,
-  startSpellingTouchApp,
+  // startSpellingTouchApp,
 } from "./app-launcher.js";
 import { logout } from "/KGPSEnglishPractice-test/resources/utilities/logout.js";
 import {
