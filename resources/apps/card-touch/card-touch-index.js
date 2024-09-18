@@ -104,7 +104,6 @@ function cardTouchApp(set) {
     "/KGPSEnglishPractice-test/resources/css/card-touch.css"
   );
   displayStartBtn();
-  setUser();
   removeMenuPage();
 
   score.resetScore();
@@ -125,6 +124,8 @@ style 3: sight words 2
 style 4: sight words 3
 style 5: sight words 4
 */
+  setTimeout(setUser, 2000);
+
   if (set === "capitals") {
     style = 0;
     loadAudioForStyle(style);
