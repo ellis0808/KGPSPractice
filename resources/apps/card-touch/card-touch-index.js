@@ -425,6 +425,7 @@ function clearBoardFast() {
 
 function displayEndMessagesContainer() {
   score.updateUserScore();
+  updateScore();
   const btnContainer5 = document.createElement("div");
   btnContainer5.classList.add("btn-container5");
   const endMessagesContainer = document.createElement("div");
@@ -679,10 +680,13 @@ document.addEventListener("keydown", (event) => {
 function updateScore() {
   //  For student users; teachers will differ on user type, etc
   const newScore = {
-    id: id,
+    user_id: user.student_id,
+    student_id: user.student_id,
+    teacher_id: user.student_id,
     user_type: user.access,
     activity_score: user.currentScore,
   };
+  console.log(newScore);
 }
 function endSession() {
   style = 0;
