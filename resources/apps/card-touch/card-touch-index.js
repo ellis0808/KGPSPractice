@@ -31,7 +31,6 @@ import {
 import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import { timer, toggleTimerHide } from "../../utilities/timer-object.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
-import { sessionData } from "/KGPSEnglishPractice-test/resources/login/session-check.js";
 
 let style;
 
