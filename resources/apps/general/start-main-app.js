@@ -280,7 +280,7 @@ const spellingTouchAppMenuItem = document.createElement("div");
 spellingTouchAppMenuItem.setAttribute("id", "spelling-touch-app-menu-item");
 spellingTouchAppMenuItem.classList.add("div");
 spellingTouchAppMenuItem.innerText = "Touch & Spell";
-spellingTouchAppMenuItem.addEventListener("click", startSpellingTouchApp);
+// spellingTouchAppMenuItem.addEventListener("click", startSpellingTouchApp);
 
 // 2. Spelling Writing App menu item
 const spellingWritingAppMenuItem = document.createElement("div");
