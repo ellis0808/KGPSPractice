@@ -86,7 +86,7 @@ const correctAnswerPoints = 2;
 const incorrectAnswerPoints = 1;
 
 function cardTouchApp(set) {
-  // sessionCheck();
+  sessionCheck();
   setTimeout(() => {
     resetTimer();
     mainContainer.appendChild(appContainer);
