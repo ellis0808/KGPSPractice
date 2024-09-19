@@ -110,7 +110,6 @@ function startMainApp() {
     );
     setUser();
     setTopMenuVariables();
-    score.updateUserScore(user1.id);
     displayGreeting();
     displayMainPage();
   }, 2500);
@@ -138,14 +137,17 @@ const pointsDisplay = document.createElement("div");
 pointsDisplay.classList.add("points-display");
 
 function displayGreeting() {
+  score.updateUserScore(user1.id);
   isMainMenu = true;
   returnToMainMenuToggle();
-  const greeting = `Hi, ${user1.firstName}!`;
-  const userScore = `You have ${score.userScore} pts`;
-  topContainer.appendChild(greetingDisplay);
-  topContainer.appendChild(pointsDisplay);
-  greetingDisplay.textContent = greeting;
-  pointsDisplay.textContent = userScore;
+  setTimeout(() => {
+    const greeting = `Hi, ${user1.firstName}!`;
+    const userScore = `You have ${score.userScore} pts`;
+    topContainer.appendChild(greetingDisplay);
+    topContainer.appendChild(pointsDisplay);
+    greetingDisplay.textContent = greeting;
+    pointsDisplay.textContent = userScore;
+  }, 300);
 }
 function displayMainPage() {
   isMainMenu = true;
