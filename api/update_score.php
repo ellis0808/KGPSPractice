@@ -15,14 +15,11 @@ try {
 
     $params = [];
     $sql = "UPDATE activity_stats SET";
+    if (isset($data['activity_id']) && $data['activity_id'] !== '') {
+        $params['activity_id'] = $data['activity_id'];
+    }
     if (isset($data['user_id']) && $data['user_id'] !== '') {
         $params['user_id'] = $data['user_id'];
-    }
-    if (isset($data['student_id']) && $data['student_id'] !== '') {
-        $params['student_id'] = $data['student_id'];
-    }
-    if (isset($data['teacher_id']) && $data['teacher_id'] !== '') {
-        $params['teacher_id'] = $data['teacher_id'];
     }
     if (isset($data['user_type']) && $data['user_type'] !== '') {
         $params['user_type'] = $data['user_type'];
