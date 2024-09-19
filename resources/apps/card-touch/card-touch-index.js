@@ -698,9 +698,9 @@ async function updateScore() {
   //  For student users; teachers will differ on user type, etc
   const newScore = {
     activity_id: 0,
-    user_id: user1.student_id,
-    student_id: user1.student_id,
-    teacher_id: user1.student_id,
+    user_id: user1.id,
+    student_id: user1.id,
+    teacher_id: user1.id,
     user_type: user1.access,
     correct_answer_count: 0,
     incorrect_answer_count: 0,
@@ -709,15 +709,21 @@ async function updateScore() {
     activity_score: score.currentScore,
   };
   console.log(newScore);
-
-  const response = await fetch(
-    "/KGPSEnglishPractice-test/api/update_score.php",
-    {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newScore),
+  try {
+    const response = await fetch(
+      "/KGPSEnglishPractice-test/api/update_score.php",
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newScore),
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not okay");
     }
-  );
+  } catch (error) {
+    console.error("Error updating user:", error);
+  }
 }
 function endSession() {
   style = 0;
