@@ -711,18 +711,21 @@ async function updateScore() {
   console.log(newScore);
   try {
     const response = await fetch(
-      "/KGPSEnglishPractice-test/api/update_score.php",
+      "/KGPSEnglishPractice-test/api/add_user_activity_record.php",
       {
-        method: "PUT",
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newScore),
       }
     );
+    const data = await response.json();
+    console.log(data);
+
     if (!response.ok) {
       throw new Error("Network response was not okay");
-    }
+    } else console.log("success!");
   } catch (error) {
-    console.error("Error updating user:", error);
+    console.error("Error adding record:", error);
   }
 }
 function endSession() {
