@@ -14,8 +14,8 @@ try {
 
         $stmt = $pdo->prepare('SELECT SUM(activity_score) FROM activity_stats WHERE user_id = :user_id');
         $stmt->execute(['id' => $_GET['id']]);
-        $userStats = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($userStats) {
+        $userTotalScore = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($userTotalScore) {
             echo json_encode($userTotalScore);
         } else {
             echo json_encode(['message' => 'User not found']);
