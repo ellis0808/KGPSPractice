@@ -98,6 +98,7 @@ const div4 = document.createElement("div");
 // div4.innerText = "4";
 
 /* Top Page Menu Items Display Functions */
+let user1 = {};
 
 let isMainMenu = true;
 function startMainApp() {
@@ -114,7 +115,6 @@ function startMainApp() {
   }, 2500);
   score.updateUserScore(user1.id);
 }
-let user1 = {};
 
 function setUser() {
   user1.gradeLevel = sessionData.gradeLevel;
