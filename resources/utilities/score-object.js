@@ -37,6 +37,7 @@ const score = {
     } catch (error) {
       console.error("Error getting user data:", error);
     }
+    return (this.userScore = data);
   },
 };
 
