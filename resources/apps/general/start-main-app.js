@@ -110,10 +110,10 @@ function startMainApp() {
     );
     setUser();
     setTopMenuVariables();
+    score.updateUserScore(user1.id);
     displayGreeting();
     displayMainPage();
   }, 2500);
-  score.updateUserScore(user1.id);
 }
 
 function setUser() {
