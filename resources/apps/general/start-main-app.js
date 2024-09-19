@@ -112,6 +112,7 @@ function startMainApp() {
     displayGreeting();
     displayMainPage();
   }, 2500);
+  score.updateUserScore(user1.id);
 }
 let user1 = {};
 
@@ -140,7 +141,6 @@ function displayGreeting() {
   isMainMenu = true;
   returnToMainMenuToggle();
   const greeting = `Hi, ${user1.firstName}!`;
-  score.updateUserScore();
   const userScore = `You have ${score.userScore} pts`;
   topContainer.appendChild(greetingDisplay);
   topContainer.appendChild(pointsDisplay);
