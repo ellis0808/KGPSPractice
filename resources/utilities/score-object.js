@@ -1,6 +1,6 @@
 const score = {
   currentScore: 0,
-  userScore: 0,
+  userScore: this.updateUserScore(),
   highScore: 0,
   plusPoints: 5,
   minusPoints: 2,
@@ -20,8 +20,21 @@ const score = {
   resetScore: function () {
     this.currentScore = 0;
   },
-  updateUserScore: function () {
-    this.userScore += this.currentScore;
+  updateUserScore: async function (id) {
+    try {
+      const response = await fetch(
+        `/KGPSEnglishPractice-test/api/read_and_calculate_total_score.php?id=${id}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Network resposne was not okay");
+      }
+      const data = await response.json();
+      if (data) console.log(data);
+      return (this.userScore = data);
+    } catch (error) {
+      console.error("Error getting user data:", error);
+    }
   },
 };
 

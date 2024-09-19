@@ -699,8 +699,6 @@ async function updateScore() {
   const newScore = {
     activity_id: 1,
     user_id: user1.id,
-    student_id: user1.id,
-    teacher_id: user1.id,
     user_type: user1.access,
     correct_answer_count: 0,
     incorrect_answer_count: 0,
