@@ -32,12 +32,15 @@ const score = {
       const data = await response.json();
       if (data) {
         console.log(data);
-        return (this.userScore = data);
+        this.userScore = data;
+        console.log(this.userScore);
+
+        return this.userScore;
       }
     } catch (error) {
       console.error("Error getting user data:", error);
     }
-    return (this.userScore = data);
+    return this.userScore;
   },
 };
 
