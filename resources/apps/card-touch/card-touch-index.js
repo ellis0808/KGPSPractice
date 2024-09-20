@@ -19,11 +19,7 @@ import {
   updateNegativeCount,
   updatePositiveCount,
 } from "../../utilities/update-score.js";
-import {
-  displayMainPage,
-  startMainApp,
-  // user1,
-} from "../general/start-main-app.js";
+import { displayMainPage, startMainApp } from "../general/start-main-app.js";
 import {
   removeMenuPage,
   restoreMainMenu,
@@ -31,6 +27,7 @@ import {
 import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import { timer, toggleTimerHide } from "../../utilities/timer-object.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
+import { user } from "../../utilities/user-object.js";
 
 let style;
 export let activityId;
@@ -106,7 +103,7 @@ async function loadAudioForStyle(style) {
 /* SCORING */
 const correctAnswerPoints = 2;
 const incorrectAnswerPoints = 1;
-export let user1 = {};
+// let user1 = {};
 
 function cardTouchApp(set) {
   sessionCheck();
@@ -177,11 +174,11 @@ style 5: sight words 4
 }
 
 function setUser() {
-  user1.gradeLevel = sessionData.gradeLevel;
-  user1.firstName = sessionData.firstName;
-  user1.lastName = sessionData.lastName;
-  user1.access = sessionData.access;
-  user1.id = sessionData.userId;
+  user.gradeLevel = sessionData.gradeLevel;
+  user.firstName = sessionData.firstName;
+  user.lastName = sessionData.lastName;
+  user.access = sessionData.access;
+  user.id = sessionData.userId;
 }
 
 const appContainer = document.createElement("div");
@@ -714,8 +711,8 @@ async function updateUserTotalScore() {
   //  For student users; teachers will differ on user type, etc
   const newScore = {
     activity_id: activityId,
-    user_id: user1.id,
-    user_type: user1.access,
+    user_id: user.id,
+    user_type: user.access,
     correct_answer_count: 0,
     incorrect_answer_count: 0,
     time_to_correct_answer_duration_in_seconds: 0,

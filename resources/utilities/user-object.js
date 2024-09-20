@@ -5,14 +5,12 @@ const user = {
   firstName: null, //does this make sense?
   lastName: null, //does this make sense?
   gradeLevel: null,
-  cummulativeScore: 0,
+  access: null,
+  cummulativeScore: score.updateUserScore(),
   currentScore: score.currentScore,
   currentLoginTime: null,
   totalLoginTime: null,
   awards: [],
-  updateCummulativeScore: function () {
-    this.cummulativeScore += score.userScore;
-  },
 };
 
 export { user };

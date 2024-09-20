@@ -35,6 +35,7 @@ import { sessionCheck, sessionData } from "../../login/session-check.js";
 /* SCORING */
 const correctAnswerPoints = 1;
 const incorrectAnswerPoints = 1;
+let user1 = {};
 
 // Main App Container
 const appContainer = document.createElement("div");

@@ -98,7 +98,7 @@ const div4 = document.createElement("div");
 // div4.innerText = "4";
 
 /* Top Page Menu Items Display Functions */
-let user1 = {};
+// let user1 = {};
 
 let isMainMenu = true;
 function startMainApp() {
@@ -116,11 +116,11 @@ function startMainApp() {
 }
 
 function setUser() {
-  user1.gradeLevel = sessionData.gradeLevel;
-  user1.firstName = sessionData.firstName;
-  user1.lastName = sessionData.lastName;
-  user1.access = sessionData.access;
-  user1.id = sessionData.userId;
+  user.gradeLevel = sessionData.gradeLevel;
+  user.firstName = sessionData.firstName;
+  user.lastName = sessionData.lastName;
+  user.access = sessionData.access;
+  user.id = sessionData.userId;
 }
 
 function setTopMenuVariables() {
@@ -137,11 +137,11 @@ const pointsDisplay = document.createElement("div");
 pointsDisplay.classList.add("points-display");
 
 function displayGreeting() {
-  score.updateUserScore(user1.id);
+  score.updateUserScore(user.id);
   isMainMenu = true;
   returnToMainMenuToggle();
   setTimeout(() => {
-    const greeting = `Hi, ${user1.firstName}!`;
+    const greeting = `Hi, ${user.firstName}!`;
     const userScore = `You have ${score.userScore} pts`;
     topContainer.appendChild(greetingDisplay);
     topContainer.appendChild(pointsDisplay);
@@ -151,7 +151,7 @@ function displayGreeting() {
 }
 function displayMainPage() {
   isMainMenu = true;
-  const navBarDisplay = `${user1.firstName} ${user1.lastName.slice(0, 1)}.`;
+  const navBarDisplay = `${user.firstName} ${user.lastName.slice(0, 1)}.`;
   navLogo.innerText = `KGPS English Practice`;
   navUserName.innerText = navBarDisplay;
 }
