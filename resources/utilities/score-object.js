@@ -31,8 +31,8 @@ const score = {
       }
       const data = await response.json();
       if (data) {
-        console.log(data);
-        this.userScore = data;
+        console.log(data.total_score);
+        this.userScore = data.total_score;
         console.log(this.userScore);
 
         return this.userScore;
