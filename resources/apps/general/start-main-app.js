@@ -137,6 +137,9 @@ const pointsDisplay = document.createElement("div");
 pointsDisplay.classList.add("points-display");
 
 function displayGreeting() {
+  console.log(user1.id);
+  console.log(score.userScore);
+
   score.updateUserScore(user1.id);
   isMainMenu = true;
   returnToMainMenuToggle();
