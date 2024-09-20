@@ -11,7 +11,6 @@ async function sessionCheck() {
     );
 
     sessionData = await response.json();
-    console.log(sessionData);
 
     if (!sessionData.loggedIn) {
       // Redirect to login page

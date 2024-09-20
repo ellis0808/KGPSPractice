@@ -94,7 +94,6 @@ async function loadAudioForStyle(style) {
         };
       }
     }
-    console.log("audio loaded for: ", section);
   } catch (error) {
     console.error("Error:", error);
   }
@@ -103,12 +102,9 @@ async function loadAudioForStyle(style) {
 /* SCORING */
 const correctAnswerPoints = 2;
 const incorrectAnswerPoints = 1;
-// let user1 = {};
 
 function cardTouchApp(set) {
   sessionCheck();
-  console.log(sessionData);
-
   setTimeout(() => {
     resetTimer();
     mainContainer.appendChild(appContainer);

@@ -39,7 +39,6 @@ async function getUsers() {
       throw new Error("Network response was not okay");
     }
     const data = await response.json();
-    console.log(data);
 
     if (data.users) {
       displayUsers(data.users);
@@ -74,8 +73,6 @@ function displayUsers(data) {
   let i = 0;
   data.forEach((user) => {
     ++i;
-    console.log(user);
-
     const userData = document.createElement("div");
     const number = document.createElement("div");
     const userName = document.createElement("div");
@@ -227,13 +224,10 @@ document
         }
       );
       const data = await response.json();
-      console.log(data);
-
       if (!response.ok) {
         throw new Error("Network response was not okay");
       } else {
         getUsers();
-        console.log("success!");
       }
     } catch (error) {
       console.error("Error creating new user:", error);
@@ -260,8 +254,6 @@ async function deleteUser(id) {
     if (!response.ok) {
       throw new Error("Network response was not okay");
     } else {
-      console.log("user deleted:", data);
-
       getUsers();
     }
   } catch (error) {
@@ -278,7 +270,6 @@ document
     const id = document
       .querySelector(".single-user-data1")
       .getAttribute("userId");
-    console.log(id);
 
     getSingleUser(id);
     const firstname = document.getElementById("updatefirstname").value;
@@ -315,8 +306,6 @@ document
       newData.access = access;
     }
     try {
-      console.log(newData);
-
       const response = await fetch(
         "/KGPSEnglishPractice-test/api/update_user.php",
         {
@@ -326,12 +315,9 @@ document
         }
       );
       const data = await response.json();
-      console.log(data);
-
       if (!response.ok) {
         throw new Error("Network response was not okay");
       } else {
-        console.log("user updated:", data);
         getSingleUser(id);
         getUsers();
       }
