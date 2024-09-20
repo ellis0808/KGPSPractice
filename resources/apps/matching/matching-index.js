@@ -31,7 +31,6 @@ import {
   Connector,
 } from "./dot-objects-control.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
-import { user1 } from "../card-touch/card-touch-index.js";
 
 /* SCORING */
 const correctAnswerPoints = 1;
