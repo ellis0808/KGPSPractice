@@ -33,6 +33,24 @@ import { timer, toggleTimerHide } from "../../utilities/timer-object.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 
 let style;
+export let activityId;
+if (style === 0) {
+  activityId = 1;
+} else if (style === 1) {
+  activityId = 2;
+} else if (style === 2) {
+  activityId = 4;
+} else if (style === 3) {
+  activityId = 5;
+} else if (style === 4) {
+  activityId = 6;
+} else if (style === 5) {
+  activityId = 7;
+} else if (style === 6) {
+  activityId = 8;
+} else if (style === 7) {
+  activityId = 9;
+}
 
 let sightWordsAudioObject = {};
 let alphabetAudioObject = {};
@@ -50,7 +68,6 @@ async function loadAudioForStyle(style) {
       `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${section}-manifest.json`
     );
     const data = await response.json();
-    console.log(data);
 
     if (style === 0 || style === 1) {
       for (const key in data) {
@@ -89,7 +106,7 @@ async function loadAudioForStyle(style) {
 /* SCORING */
 const correctAnswerPoints = 2;
 const incorrectAnswerPoints = 1;
-let user1 = {};
+export let user1 = {};
 
 function cardTouchApp(set) {
   sessionCheck();
@@ -442,7 +459,7 @@ function clearBoardFast() {
 
 function displayEndMessagesContainer() {
   score.updateUserScore();
-  updateScore();
+  updateUserTotalScore();
   const btnContainer5 = document.createElement("div");
   btnContainer5.classList.add("btn-container5");
   const endMessagesContainer = document.createElement("div");
@@ -554,7 +571,6 @@ function createBoard() {
       let sightWord;
       if (style === 2) {
         grid.classList.add("sight-word-grid-4x4");
-        console.log(sightWords1);
         sightWords1.forEach((item) => {
           sightWordArray.push(item);
         });
@@ -694,10 +710,10 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-async function updateScore() {
+async function updateUserTotalScore() {
   //  For student users; teachers will differ on user type, etc
   const newScore = {
-    activity_id: 1,
+    activity_id: activityId,
     user_id: user1.id,
     user_type: user1.access,
     correct_answer_count: 0,
@@ -706,7 +722,6 @@ async function updateScore() {
     answer_attempts: 0,
     activity_score: score.currentScore,
   };
-  console.log(newScore);
   try {
     const response = await fetch(
       "/KGPSEnglishPractice-test/api/add_user_activity_record.php",
@@ -717,11 +732,10 @@ async function updateScore() {
       }
     );
     const data = await response.json();
-    console.log(data);
 
     if (!response.ok) {
       throw new Error("Network response was not okay");
-    } else console.log("success!");
+    }
   } catch (error) {
     console.error("Error adding record:", error);
   }

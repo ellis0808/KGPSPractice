@@ -1,6 +1,6 @@
 const score = {
   currentScore: 0,
-  userScore: null,
+  userScore: 0,
   highScore: 0,
   plusPoints: 5,
   minusPoints: 2,
@@ -31,9 +31,7 @@ const score = {
       }
       const data = await response.json();
       if (data) {
-        console.log(data.total_score);
         this.userScore = data.total_score;
-        console.log(this.userScore);
 
         return this.userScore;
       }

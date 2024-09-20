@@ -30,7 +30,8 @@ import {
   DotAndLineCommand,
   Connector,
 } from "./dot-objects-control.js";
-import { sessionCheck } from "../../login/session-check.js";
+import { sessionCheck, sessionData } from "../../login/session-check.js";
+import { user1 } from "../card-touch/card-touch-index.js";
 
 /* SCORING */
 const correctAnswerPoints = 1;
@@ -134,6 +135,7 @@ I. MAIN APP
 *******
 */
 let style;
+let activityId = 3;
 let alphabetAudioObject = {};
 
 async function loadAudioForStyle(style) {
@@ -166,7 +168,7 @@ async function loadAudioForStyle(style) {
 }
 
 function matchingApp() {
-  // sessionCheck();
+  sessionCheck();
   mainContainer.appendChild(appContainer);
   appContainer.appendChild(leftMenuContainer);
   appContainer.appendChild(btnContainer1);
@@ -199,30 +201,9 @@ function matchingApp() {
   if (!timer.classList.contains("hide2")) {
     toggleTimerHide();
   }
-  // if (set === "capitals") {
   style = 0;
   loadAudioForStyle(style);
-  //   return style;
-  // } else if (set === "lowercase") {
-  //   style = 1;
-  //   loadAudioForStyle(style);
-  //   return style;
-  // } else if (set === "sightwords1") {
-  //   style = 2;
-  //   loadAudioForStyle(style);
-  //   return style;
-  // }
-  // if (set === "sightwords2") {
-  //   style = 3;
-  //   loadAudioForStyle(style);
-  //   return style;
-  // }
-  // if (set === "sightwords3") {
-  //   style = 4;
-  //   loadAudioForStyle(style);
-  //   return style;
-  // }
-  return style;
+  setTimeout(setUser, 2000);
 }
 
 function endApp() {
@@ -340,6 +321,27 @@ function removeBlur() {
       });
   }
 }
+function setUser() {
+  user1.gradeLevel = sessionData.gradeLevel;
+  user1.firstName = sessionData.firstName;
+  user1.lastName = sessionData.lastName;
+  user1.access = sessionData.access;
+  user1.id = sessionData.userId;
+}
+
+async function updateUserTotalScore() {
+  //  For student users; teachers will differ on user type, etc
+  const newScore = {
+    activity_id: activityId,
+    user_id: user1.id,
+    user_type: user1.access,
+    correct_answer_count: 0,
+    incorrect_answer_count: 0,
+    time_to_correct_answer_duration_in_seconds: 0,
+    answer_attempts: 0,
+    activity_score: score.currentScore,
+  };
+}
 
 /*
 *******
@@ -383,7 +385,6 @@ function endSession() {
   appContainer.classList.add("hide");
   homeBtnContainer.classList.add("hide");
   const stuff = document.querySelectorAll(".letter-matching-app");
-  console.log(stuff);
 
   stuff.forEach((item) => {
     item.remove();
@@ -528,6 +529,7 @@ C. Displaying the Final Score Message Overlay
 */
 function displayEndMessagesContainer() {
   score.updateUserScore();
+  updateUserTotalScore();
   const btnContainer5 = document.createElement("div");
   btnContainer5.classList.add("btn-container5");
   const endMessagesContainer = document.createElement("div");
