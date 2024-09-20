@@ -31,11 +31,11 @@ import {
   Connector,
 } from "./dot-objects-control.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
+import { user } from "../../utilities/user-object.js";
 
 /* SCORING */
 const correctAnswerPoints = 1;
 const incorrectAnswerPoints = 1;
-let user1 = {};
 
 // Main App Container
 const appContainer = document.createElement("div");
@@ -322,19 +322,19 @@ function removeBlur() {
   }
 }
 function setUser() {
-  user1.gradeLevel = sessionData.gradeLevel;
-  user1.firstName = sessionData.firstName;
-  user1.lastName = sessionData.lastName;
-  user1.access = sessionData.access;
-  user1.id = sessionData.userId;
+  user.gradeLevel = sessionData.gradeLevel;
+  user.firstName = sessionData.firstName;
+  user.lastName = sessionData.lastName;
+  user.access = sessionData.access;
+  user.id = sessionData.userId;
 }
 
 async function updateUserTotalScore() {
   //  For student users; teachers will differ on user type, etc
   const newScore = {
     activity_id: activityId,
-    user_id: user1.id,
-    user_type: user1.access,
+    user_id: user.id,
+    user_type: user.access,
     correct_answer_count: 0,
     incorrect_answer_count: 0,
     time_to_correct_answer_duration_in_seconds: 0,
