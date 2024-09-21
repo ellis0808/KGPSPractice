@@ -15,5 +15,6 @@
       "password": "4eveRis Close2dAy",
       "connectionTimeout": 30
     }
-  ]
+  ],
+  "liveServer.settings.port": 5501
 }

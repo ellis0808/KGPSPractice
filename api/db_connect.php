@@ -17,7 +17,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 function getDBConnection()
 {
-    $host = 'mysql57.orchidpony8.sakura.ne.jp';
+    $host = 'mysql80.orchidpony8.sakura.ne.jp';
     $db = 'orchidpony8_kgps_eng_pr';
     $user = 'orchidpony8';
     $pass = 'he1-maha_ptic74';
