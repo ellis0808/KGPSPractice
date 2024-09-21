@@ -25,6 +25,7 @@ const user = {
 
       if (data) {
         this.cumulativeScore = data.total_score;
+        console.log(data.total_score);
         console.log(this.cumulativeScore);
 
         return this.cumulativeScore;

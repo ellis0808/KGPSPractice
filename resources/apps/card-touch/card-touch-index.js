@@ -457,8 +457,8 @@ async function getCumulativeUserScore() {
 }
 
 function displayEndMessagesContainer() {
-  getCumulativeUserScore();
   updateUserTotalScore();
+  getCumulativeUserScore();
   const btnContainer5 = document.createElement("div");
   btnContainer5.classList.add("btn-container5");
   const endMessagesContainer = document.createElement("div");
