@@ -6,11 +6,31 @@ const user = {
   lastName: null, //does this make sense?
   gradeLevel: null,
   access: null,
-  cummulativeScore: score.userScore,
+  cummulativeScore: 0,
   currentScore: score.currentScore,
   currentLoginTime: null,
   totalLoginTime: null,
   awards: [],
+  updateUserScore: async function (id) {
+    try {
+      const response = await fetch(
+        `/KGPSEnglishPractice-test/api/read_and_calculate_total_score.php?id=${id}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Network resposne was not okay");
+      }
+      const data = await response.json();
+      if (data) {
+        this.cummulativeScore = data.total_score;
+
+        return this.cummulativeScore;
+      }
+    } catch (error) {
+      console.error("Error getting user data:", error);
+    }
+    return this.cummulativeScore;
+  },
 };
 
 export { user };
