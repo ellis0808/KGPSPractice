@@ -8,7 +8,7 @@ const user = {
   lastName: null, //does this make sense?
   gradeLevel: null,
   access: null,
-  cummulativeScore: totalScore,
+  cummulativeScore: 0,
   currentScore: score.currentScore,
   currentLoginTime: null,
   totalLoginTime: null,
@@ -24,17 +24,17 @@ const user = {
       }
       const data = await response.json();
       if (data) {
-        totalScore = data.total_score;
-        console.log(totalScore);
+        this.cummulativeScore = data.total_score;
+        console.log(this.cummulativeScore);
 
-        return totalScore;
+        return this.cummulativeScore;
       } else {
         console.log("failed!");
       }
     } catch (error) {
       console.error("Error getting user data:", error);
     }
-    return totalScore;
+    return this.cummulativeScore;
   },
 };
 
