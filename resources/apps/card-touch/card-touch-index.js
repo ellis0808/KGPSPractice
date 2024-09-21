@@ -711,6 +711,8 @@ document.addEventListener("keydown", (event) => {
 
 async function updateUserTotalScore() {
   //  For student users; teachers will differ on user type, etc
+  console.log(activityId);
+
   const newScore = {
     activity_id: activityId,
     user_id: user.id,
