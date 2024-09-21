@@ -31,30 +31,24 @@ import { user } from "../../utilities/user-object.js";
 
 let style;
 let activityId;
-if (style === 0) {
-  activityId = 1;
-  return activityId;
-} else if (style === 1) {
-  activityId = 2;
-  return activityId;
-} else if (style === 2) {
-  activityId = 4;
-  return activityId;
-} else if (style === 3) {
-  activityId = 5;
-  return activityId;
-} else if (style === 4) {
-  activityId = 6;
-  return activityId;
-} else if (style === 5) {
-  activityId = 7;
-  return activityId;
-} else if (style === 6) {
-  activityId = 8;
-  return activityId;
-} else if (style === 7) {
-  activityId = 9;
-  return activityId;
+function setActivityId() {
+  if (style === 0) {
+    activityId = 1;
+  } else if (style === 1) {
+    activityId = 2;
+  } else if (style === 2) {
+    activityId = 4;
+  } else if (style === 3) {
+    activityId = 5;
+  } else if (style === 4) {
+    activityId = 6;
+  } else if (style === 5) {
+    activityId = 7;
+  } else if (style === 6) {
+    activityId = 8;
+  } else if (style === 7) {
+    activityId = 9;
+  }
 }
 
 let sightWordsAudioObject = {};
@@ -174,6 +168,7 @@ style 5: sight words 4
     loadAudioForStyle(style);
     return style;
   }
+  setActivityId();
   return style;
 }
 
