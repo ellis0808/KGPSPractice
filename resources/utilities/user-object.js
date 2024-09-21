@@ -6,7 +6,7 @@ const user = {
   lastName: null, //does this make sense?
   gradeLevel: null,
   access: null,
-  cummulativeScore: score.updateUserScore(),
+  cummulativeScore: score.userScore,
   currentScore: score.currentScore,
   currentLoginTime: null,
   totalLoginTime: null,

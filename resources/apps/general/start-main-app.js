@@ -120,6 +120,7 @@ function setUser() {
   user.lastName = sessionData.lastName;
   user.access = sessionData.access;
   user.id = sessionData.userId;
+  user.cummulativeScore = score.userScore;
 }
 
 function setTopMenuVariables() {
@@ -141,7 +142,7 @@ function displayGreeting() {
   returnToMainMenuToggle();
   setTimeout(() => {
     const greeting = `Hi, ${user.firstName}!`;
-    const userScore = `You have ${score.userScore} pts`;
+    const userScore = `You have ${user.cummulativeScore} pts`;
     topContainer.appendChild(greetingDisplay);
     topContainer.appendChild(pointsDisplay);
     greetingDisplay.textContent = greeting;
