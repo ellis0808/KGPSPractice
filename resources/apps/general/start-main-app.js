@@ -109,7 +109,7 @@ function startMainApp() {
     );
     setUser();
     setTopMenuVariables();
-
+    getCumulativeUserScore();
     displayGreeting();
     displayMainPage();
   }, 2500);
@@ -147,7 +147,6 @@ function displayGreeting() {
   returnToMainMenuToggle();
   setTimeout(() => {
     const greeting = `Hi, ${user.firstName}!`;
-    getCumulativeUserScore();
     const userScore = `You have ${user.cumulativeScore} pts`;
     topContainer.appendChild(greetingDisplay);
     topContainer.appendChild(pointsDisplay);
