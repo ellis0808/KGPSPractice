@@ -110,9 +110,9 @@ function startMainApp() {
     setUser();
     setTopMenuVariables();
     getCumulativeUserScore();
-    displayGreeting();
+    setTimeout(displayGreeting, 500);
     displayMainPage();
-  }, 2500);
+  }, 500);
 }
 
 function setUser() {
