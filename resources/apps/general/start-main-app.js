@@ -137,7 +137,7 @@ const pointsDisplay = document.createElement("div");
 pointsDisplay.classList.add("points-display");
 
 function displayGreeting() {
-  score.updateUserScore(user.id);
+  user.getCummulativeScore(user.id);
   isMainMenu = true;
   returnToMainMenuToggle();
   setTimeout(() => {
