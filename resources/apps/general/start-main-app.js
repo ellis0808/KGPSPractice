@@ -147,7 +147,7 @@ function displayGreeting() {
   returnToMainMenuToggle();
   setTimeout(() => {
     const greeting = `Hi, ${user.firstName}!`;
-    getCumulativeUserScore;
+    getCumulativeUserScore();
     const userScore = `You have ${user.cumulativeScore} pts`;
     topContainer.appendChild(greetingDisplay);
     topContainer.appendChild(pointsDisplay);

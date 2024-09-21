@@ -450,8 +450,14 @@ function clearBoardFast() {
   newCardText;
 }
 
+let cumulativeUserScore;
+async function getCumulativeUserScore() {
+  cumulativeUserScore = await user.getCumulativeScore(user.id);
+  return cumulativeUserScore;
+}
+
 function displayEndMessagesContainer() {
-  user.getCumulativeScore();
+  getCumulativeUserScore();
   updateUserTotalScore();
   const btnContainer5 = document.createElement("div");
   btnContainer5.classList.add("btn-container5");
