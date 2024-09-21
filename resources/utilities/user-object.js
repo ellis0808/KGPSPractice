@@ -11,7 +11,7 @@ const user = {
   currentLoginTime: null,
   totalLoginTime: null,
   awards: [],
-  getCummulativeScore: async function (id) {
+  getCumulativeScore: async function (id) {
     try {
       const response = await fetch(
         `/KGPSEnglishPractice-test/api/read_and_calculate_total_score.php?id=${id}`
