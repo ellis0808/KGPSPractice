@@ -24,10 +24,13 @@ const user = {
       console.log(data);
 
       if (data) {
-        this.cumulativeScore = data.total_score;
-        console.log(data.total_score);
-        console.log(this.cumulativeScore);
-
+        if (data.total_score === undefined) {
+          this.cumulativeScore = 0;
+        } else {
+          this.cumulativeScore = data.total_score;
+          console.log(data.total_score);
+          console.log(this.cumulativeScore);
+        }
         return this.cumulativeScore;
       } else {
         console.log("failed!");
