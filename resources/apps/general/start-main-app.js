@@ -109,6 +109,7 @@ function startMainApp() {
     );
     setUser();
     setTopMenuVariables();
+
     displayGreeting();
     displayMainPage();
   }, 2500);
@@ -120,8 +121,6 @@ function setUser() {
   user.lastName = sessionData.lastName;
   user.access = sessionData.access;
   user.id = sessionData.userId;
-  score.updateUserScore(user.id);
-  user.cummulativeScore = score.userScore;
 }
 
 function setTopMenuVariables() {
@@ -139,6 +138,7 @@ pointsDisplay.classList.add("points-display");
 
 function displayGreeting() {
   score.updateUserScore(user.id);
+  user.cummulativeScore = score.userScore;
   isMainMenu = true;
   returnToMainMenuToggle();
   setTimeout(() => {
