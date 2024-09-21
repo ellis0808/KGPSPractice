@@ -28,6 +28,8 @@ const user = {
         console.log(totalScore);
 
         return totalScore;
+      } else {
+        console.log("failed!");
       }
     } catch (error) {
       console.error("Error getting user data:", error);
