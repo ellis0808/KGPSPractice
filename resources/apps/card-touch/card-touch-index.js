@@ -451,7 +451,7 @@ function clearBoardFast() {
 }
 
 function displayEndMessagesContainer() {
-  score.updateUserScore();
+  user.getCummulativeScore();
   updateUserTotalScore();
   const btnContainer5 = document.createElement("div");
   btnContainer5.classList.add("btn-container5");
@@ -728,6 +728,8 @@ async function updateUserTotalScore() {
 
     if (!response.ok) {
       throw new Error("Network response was not okay");
+    } else {
+      console.log("new total score is ", user.cummulativeScore);
     }
   } catch (error) {
     console.error("Error adding record:", error);
