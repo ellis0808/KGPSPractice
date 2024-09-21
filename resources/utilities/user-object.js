@@ -1,14 +1,12 @@
 import { score } from "./score-object.js";
 
-let totalScore;
-
 const user = {
   id: null,
   firstName: null, //does this make sense?
   lastName: null, //does this make sense?
   gradeLevel: null,
   access: null,
-  cummulativeScore: 0,
+  cumulativeScore: 0,
   currentScore: score.currentScore,
   currentLoginTime: null,
   totalLoginTime: null,
@@ -24,17 +22,17 @@ const user = {
       }
       const data = await response.json();
       if (data) {
-        this.cummulativeScore = data.total_score;
-        console.log(this.cummulativeScore);
+        this.cumulativeScore = data.total_score;
+        console.log(this.cumulativeScore);
 
-        return this.cummulativeScore;
+        return this.cumulativeScore;
       } else {
         console.log("failed!");
       }
     } catch (error) {
       console.error("Error getting user data:", error);
     }
-    return this.cummulativeScore;
+    return (this.cumulativeScore = 0);
   },
 };
 
