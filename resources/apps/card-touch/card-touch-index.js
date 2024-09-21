@@ -58,7 +58,6 @@ function setActivityId(style) {
     return activityId;
   }
 }
-setActivityId(style);
 
 let sightWordsAudioObject = {};
 let alphabetAudioObject = {};
@@ -157,6 +156,7 @@ style 5: sight words 4
   if (set === "capitals") {
     style = 0;
     loadAudioForStyle(style);
+    setActivityId(style);
     return style;
   } else if (set === "lowercase") {
     style = 1;
@@ -175,6 +175,7 @@ style 5: sight words 4
   if (set === "sightwords3") {
     style = 4;
     loadAudioForStyle(style);
+    setActivityId(style);
     return style;
   }
   return style;
