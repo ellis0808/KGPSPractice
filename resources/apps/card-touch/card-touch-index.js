@@ -58,6 +58,7 @@ function setActivityId(style) {
     return activityId;
   }
 }
+setActivityId(style);
 
 let sightWordsAudioObject = {};
 let alphabetAudioObject = {};
@@ -176,7 +177,6 @@ style 5: sight words 4
     loadAudioForStyle(style);
     return style;
   }
-  setActivityId(style);
   return style;
 }
 
