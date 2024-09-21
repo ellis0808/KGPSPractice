@@ -266,7 +266,7 @@ if (style === 2) {
   roundTime = 30;
   timer.innerText = "0:30";
 } else {
-  roundTime = 60;
+  roundTime = 10;
   timer.innerText = "1:00";
 }
 function startTimer() {
