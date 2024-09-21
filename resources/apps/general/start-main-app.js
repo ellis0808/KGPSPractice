@@ -462,6 +462,7 @@ function returnToMainMenuToggle() {
 export {
   displayGreeting,
   displayMainPage,
+  getCumulativeUserScore,
   hideParentsInfoBtn,
   startMainApp,
   setTopMenuVariables,

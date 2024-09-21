@@ -5,6 +5,7 @@ import {
   alphabetMatchingAppMenuItem,
   spellingMenu,
   div4,
+  getCumulativeUserScore,
   numbersMenu,
   sightWords1AppMenuItem,
   sightWords2AppMenuItem,
