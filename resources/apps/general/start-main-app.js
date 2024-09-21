@@ -136,13 +136,18 @@ greetingDisplay.classList.add("greeting-display");
 const pointsDisplay = document.createElement("div");
 pointsDisplay.classList.add("points-display");
 
+let cumulativeUserScore;
+async function getCumulativeUserScore() {
+  cumulativeUserScore = await user.getCumulativeScore(user.id);
+  return cumulativeUserScore;
+}
+
 function displayGreeting() {
-  user.getCumulativeScore(user.id);
   isMainMenu = true;
   returnToMainMenuToggle();
   setTimeout(() => {
     const greeting = `Hi, ${user.firstName}!`;
-
+    getCumulativeUserScore;
     const userScore = `You have ${user.cumulativeScore} pts`;
     topContainer.appendChild(greetingDisplay);
     topContainer.appendChild(pointsDisplay);
