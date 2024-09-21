@@ -30,7 +30,7 @@ import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
 
 let style;
-export let activityId;
+let activityId;
 if (style === 0) {
   activityId = 1;
   return activityId;
