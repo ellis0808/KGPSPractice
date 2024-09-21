@@ -31,7 +31,7 @@ import { user } from "../../utilities/user-object.js";
 
 let style;
 let activityId;
-function setActivityId() {
+function setActivityId(style) {
   if (style === 0) {
     activityId = 1;
     return activityId;
@@ -176,7 +176,7 @@ style 5: sight words 4
     loadAudioForStyle(style);
     return style;
   }
-  setActivityId();
+  setActivityId(style);
   return style;
 }
 
