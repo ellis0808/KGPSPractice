@@ -142,6 +142,7 @@ function displayGreeting() {
   returnToMainMenuToggle();
   setTimeout(() => {
     const greeting = `Hi, ${user.firstName}!`;
+
     const userScore = `You have ${user.cumulativeScore} pts`;
     topContainer.appendChild(greetingDisplay);
     topContainer.appendChild(pointsDisplay);
@@ -149,6 +150,7 @@ function displayGreeting() {
     pointsDisplay.textContent = userScore;
   }, 300);
 }
+
 function displayMainPage() {
   isMainMenu = true;
   const navBarDisplay = `${user.firstName} ${user.lastName.slice(0, 1)}.`;
