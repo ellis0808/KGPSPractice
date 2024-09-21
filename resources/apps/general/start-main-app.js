@@ -120,6 +120,7 @@ function setUser() {
   user.lastName = sessionData.lastName;
   user.access = sessionData.access;
   user.id = sessionData.userId;
+  score.updateUserScore(user.id);
   user.cummulativeScore = score.userScore;
 }
 
