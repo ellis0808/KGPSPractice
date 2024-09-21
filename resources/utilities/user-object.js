@@ -18,7 +18,7 @@ const user = {
       );
 
       if (!response.ok) {
-        throw new Error("Network resposne was not okay");
+        throw new Error("Network response was not okay");
       }
       const data = await response.json();
       console.log(data);
