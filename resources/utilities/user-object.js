@@ -25,6 +25,7 @@ const user = {
       const data = await response.json();
       if (data) {
         totalScore = data.total_score;
+        console.log(totalScore);
 
         return totalScore;
       }
