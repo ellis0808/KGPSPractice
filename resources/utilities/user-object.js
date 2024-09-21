@@ -21,6 +21,8 @@ const user = {
         throw new Error("Network resposne was not okay");
       }
       const data = await response.json();
+      console.log(data);
+
       if (data) {
         this.cumulativeScore = data.total_score;
         console.log(this.cumulativeScore);
@@ -32,7 +34,6 @@ const user = {
     } catch (error) {
       console.error("Error getting user data:", error);
     }
-    return (this.cumulativeScore = 0);
   },
 };
 
