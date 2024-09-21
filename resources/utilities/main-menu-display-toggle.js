@@ -63,7 +63,8 @@ function restoreMainMenu() {
   mainContainer.appendChild(menuContainer);
   // navBar.classList.remove("hidden");
   topContainer.classList.remove("hidden");
-  displayGreeting();
+  getCumulativeUserScore();
+  setTimeout(displayGreeting, 500);
   menuContainer.classList.remove("hidden");
   abcMenu.classList.remove("hidden");
   numbersMenu.classList.remove("hidden");
