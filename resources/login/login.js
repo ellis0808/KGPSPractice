@@ -185,13 +185,13 @@ passwordImageArray.forEach((image) => {
         //   .classList.remove("selected");
         studentPasswordEntryArray.splice(0, 1);
       }
-      studentPasswordEntryArray.forEach((item) => {
-        if (item !== null) {
-          document
-            .querySelector(`[content = '${item}']`)
-            .classList.add("selected");
-        }
-      });
+      // studentPasswordEntryArray.forEach((item) => {
+      //   if (item !== null) {
+      //     document
+      //       .querySelector(`[content = '${item}']`)
+      //       .classList.add("selected");
+      //   }
+      // });
     }
   });
 

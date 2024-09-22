@@ -8,7 +8,14 @@
   user-select: none; /* Standard syntax */
 }
 :root {
-  --clr-acc1: #006747;
+  --clr-or: hsl(43, 89%, 38%);
+  --clr-ylw: rgb(248, 245, 56);
+  --clr-red: rgb(161, 29, 29);
+  --clr-blu: rgb(26, 26, 168);
+  --font-fam: "Noto Sans", sans-serif;
+  --txt-md: 2rem;
+  --transition: all 0.25s ease-in-out;
+  --clr-acc1: rgb(0, 103, 71);
   --clr-wht: #fff;
   --hvr-opc: 0.7;
 }
@@ -152,7 +159,7 @@ body {
   height: 4rem;
   display: grid;
   /* border: 1px red solid; */
-  fill: black;
+  fill: var(--clr-blu);
   top: 0;
   left: 0;
   place-content: center;
