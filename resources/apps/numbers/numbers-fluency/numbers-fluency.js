@@ -279,7 +279,7 @@ function numberFluencyApp(set) {
   );
   removeMenuPage();
 
-  displayStartBtn();
+  setTimeout(displayStartBtn, 500);
 
   score.resetScore();
   scoreDisplay.innerText = score.currentScore;
