@@ -132,12 +132,17 @@ body {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(3, 1fr);
+  gap: 1px;
 }
 .grid-image {
   width: 4rem;
   height: 4rem;
   display: grid;
-  border: 1px red solid;
+  /* border: 1px red solid; */
+  fill: black;
+  top: 0;
+  left: 0;
+  text-shadow: none;
   place-content: center;
 }
 
