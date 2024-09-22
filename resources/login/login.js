@@ -167,7 +167,7 @@ function resetStudentPasswordEntryArray() {
 }
 
 passwordImageArray.forEach((image) => {
-  passwordImageObject[image].image;
+  `https://orchidpony8.sakura.ne.jp/images/${passwordImageObject[image].image}.svg`;
   const gridImage = document.createElement("div");
   gridImage.setAttribute("id", passwordImageObject[image].id);
   gridImage.setAttribute("content", passwordImageObject[image].content);

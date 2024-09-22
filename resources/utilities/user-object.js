@@ -21,15 +21,12 @@ const user = {
         throw new Error("Network response was not okay");
       }
       const data = await response.json();
-      console.log(data);
 
       if (data) {
         if (data.total_score === undefined) {
           this.cumulativeScore = 0;
         } else {
           this.cumulativeScore = data.total_score;
-          console.log(data.total_score);
-          console.log(this.cumulativeScore);
         }
         return this.cumulativeScore;
       } else {
