@@ -142,7 +142,6 @@ startBtn.setAttribute("id", "start-btn");
 const exitBtn = document.createElement("div");
 exitBtn.setAttribute("id", "exit-btn");
 exitBtn.classList.add("number-fluency-app", "hide");
-exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
 exitBtn.addEventListener("click", endApp);
 const tryAgainBtn = document.createElement("div");
 tryAgainBtn.classList.add("try-again-btn");
@@ -274,12 +273,11 @@ function numberFluencyApp(set) {
     grid.classList.add("gridHide");
   }, 0);
 
-  removeMenuPage();
-
   stylesheet.setAttribute(
     "href",
     "/KGPSEnglishPractice-test/resources/css/number-fluency.css"
   );
+  removeMenuPage();
 
   displayStartBtn();
 
@@ -485,6 +483,7 @@ Sessions & Rounds
 function displayStartBtn() {
   btnContainer2.appendChild(startBtn);
   startBtn.textContent = "Start";
+  exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
   btnContainer2.appendChild(exitBtn);
   if (startBtn.classList.contains("no-touch")) {
     startBtn.classList.remove("no-touch");
