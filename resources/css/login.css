@@ -142,7 +142,6 @@ body {
   fill: black;
   top: 0;
   left: 0;
-  text-shadow: none;
   place-content: center;
   background-size: contain;
 }
