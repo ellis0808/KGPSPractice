@@ -202,10 +202,12 @@ studentPasswordGridContainer.appendChild(studentPasswordGrid);
 
 function displaySelectedPasswordImages() {
   if (studentPasswordEntryArray[0] !== null) {
-    studentSelectedPasswordImage1.classList.add("selected");
-    studentSelectedPasswordImage1.style.backgroundImage = `url(${
-      passwordImageObject[studentPasswordEntryArray[0]].image
-    })`;
+    if (studentPasswordEntryArray[1] === null) {
+      studentSelectedPasswordImage1.classList.add("selected");
+      studentSelectedPasswordImage1.style.backgroundImage = `url(${
+        passwordImageObject[studentPasswordEntryArray[0]].image
+      })`;
+    }
   } else {
     studentSelectedPasswordImage1.classList.remove("selected");
     studentSelectedPasswordImage1.innerText = ``;
