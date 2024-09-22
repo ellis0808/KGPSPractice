@@ -164,7 +164,7 @@ body {
   left: 0;
   place-content: center;
   background-size: contain;
-  border: 3px var(--clr-blu) solid;
+  border: 10px var(--clr-blu) solid;
   border-radius: 5px;
 }
 
@@ -199,5 +199,6 @@ body {
   height: 110%;
   background-color: greenyellow;
   scale: 1.05;
+  border: 10px var(--clr-blu) solid;
   border-radius: 5px;
 }
