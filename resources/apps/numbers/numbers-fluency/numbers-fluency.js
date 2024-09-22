@@ -19,6 +19,7 @@ import {
   enableTouch,
 } from "../../../utilities/disable-enable-touch.js";
 import { sessionCheck, sessionData } from "../../../login/session-check.js";
+import { user } from "../../../utilities/user-object.js";
 
 let style;
 let activityId;
