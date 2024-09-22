@@ -28,9 +28,11 @@ const studentSelectedPasswordImagesContainer = document.querySelector(
 const studentSelectedPasswordImage1 = document.querySelector(
   ".student-selected-password-image-1"
 );
+studentSelectedPasswordImage1.classList.add("chosen-image");
 const studentSelectedPasswordImage2 = document.querySelector(
   ".student-selected-password-image-2"
 );
+studentSelectedPasswordImage2.classList.add("chosen-image");
 
 const studentPasswordEntryArray = [null, null];
 

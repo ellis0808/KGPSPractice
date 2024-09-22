@@ -132,9 +132,22 @@ body {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 10px;
+  column-gap: 10px;
+  row-gap: 10px;
 }
 .grid-image {
+  width: 4rem;
+  height: 4rem;
+  display: grid;
+  /* border: 1px red solid; */
+  fill: black;
+  top: 0;
+  left: 0;
+  place-content: center;
+  background-size: contain;
+}
+
+.chosen-image {
   width: 4rem;
   height: 4rem;
   display: grid;
