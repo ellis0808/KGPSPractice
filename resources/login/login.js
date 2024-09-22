@@ -167,11 +167,10 @@ function resetStudentPasswordEntryArray() {
 }
 
 passwordImageArray.forEach((image) => {
-  `https://orchidpony8.sakura.ne.jp/images/${passwordImageObject[image].image}.svg`;
   const gridImage = document.createElement("div");
   gridImage.setAttribute("id", passwordImageObject[image].id);
   gridImage.setAttribute("content", passwordImageObject[image].content);
-  // gridImage.style.backgroundImage = `${passwordImageObject[image].image}`;
+  gridImage.style.backgroundImage = `https://orchidpony8.sakura.ne.jp/images/${passwordImageObject[image].image}.svg`;
   gridImage.classList.add("grid-image");
   gridImage.innerText = `${passwordImageObject[image].content}`;
   gridImage.addEventListener("click", (event) => {
