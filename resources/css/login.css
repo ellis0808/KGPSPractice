@@ -134,6 +134,8 @@ body {
   place-items: center;
   grid-template-columns: repeat(2, 1fr);
   color: black;
+  border-bottom: 5px solid var(--clr-blu);
+  border-radius: 5px;
 }
 
 .student-password-grid {
