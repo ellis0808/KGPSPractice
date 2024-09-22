@@ -270,9 +270,6 @@ function numberFluencyApp(set) {
     mainContainer.appendChild(appContainer);
     appContainer.appendChild(btnContainer2);
     appContainer.appendChild(btnContainer4);
-    btnContainer2.appendChild(startBtn);
-    startBtn.textContent = "Start";
-    btnContainer2.appendChild(exitBtn);
     appContainer.appendChild(grid);
     grid.classList.add("gridHide");
   }, 0);
@@ -490,6 +487,9 @@ Sessions & Rounds
 */
 
 function displayStartBtn() {
+  btnContainer2.appendChild(startBtn);
+  startBtn.textContent = "Start";
+  btnContainer2.appendChild(exitBtn);
   if (startBtn.classList.contains("no-touch")) {
     startBtn.classList.remove("no-touch");
     startBtn.classList.remove("spinfade");
