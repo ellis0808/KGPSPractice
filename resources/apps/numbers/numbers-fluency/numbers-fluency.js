@@ -279,10 +279,13 @@ function numberFluencyApp(set) {
 
   removeMenuPage();
 
-  stylesheet.setAttribute(
-    "href",
-    "/KGPSEnglishPractice-test/resources/css/number-fluency.css"
-  );
+  setTimeout(() => {
+    stylesheet.setAttribute(
+      "href",
+      "/KGPSEnglishPractice-test/resources/css/number-fluency.css"
+    ),
+      500;
+  });
   displayStartBtn();
 
   // add settimeout here? to delay the menu page being removed until the stylesheet change (above) has taken effect
