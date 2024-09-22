@@ -172,7 +172,7 @@ passwordImageArray.forEach((image) => {
   gridImage.setAttribute("content", passwordImageObject[image].content);
   gridImage.style.backgroundImage = `url(${[image].image})`;
   gridImage.classList.add("grid-image");
-  gridImage.innerText = `${passwordImageObject[image].content}`;
+  // gridImage.innerText = `${passwordImageObject[image].content}`;
   gridImage.addEventListener("click", (event) => {
     // deselects previously selected grid image
     const content = gridImage.getAttribute("content");
