@@ -32,11 +32,6 @@ import {
 } from "./dot-objects-control.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
-import {
-  startBtn,
-  exitBtn,
-  btnContainer2,
-} from "../numbers/numbers-fluency/numbers-fluency.js";
 
 /* SCORING */
 const correctAnswerPoints = 1;
