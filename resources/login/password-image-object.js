@@ -52,7 +52,7 @@ const passwordImageObject = {
   airplane: {
     id: 11,
     content: "airplane",
-    image: "/images/clipart/transportation-airplane-silhouette-2.svg",
+    image: "/images/clipart/transportation-airplane-silhouette-1.svg",
   },
   boat: {
     id: 12,
