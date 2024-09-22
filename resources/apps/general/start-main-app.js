@@ -112,7 +112,7 @@ function startMainApp() {
     getCumulativeUserScore();
     setTimeout(displayGreeting, 500);
     displayMainPage();
-  }, 500);
+  }, 1000);
 }
 
 function setUser() {
