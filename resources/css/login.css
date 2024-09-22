@@ -173,8 +173,8 @@ body {
   display: none;
 }
 .selected {
-  width: 4.1rem;
-  height: 4.1rem;
+  width: 110%;
+  height: 110%;
   background-color: greenyellow;
   scale: 1.05;
   border-radius: 5px;

@@ -129,28 +129,6 @@ function displayUsersForLogin(data) {
   });
 }
 
-// Object.entries(passwordImageObject).forEach((item) => {
-//   Object.values(item).forEach((thing) => {
-//     Object.keys(thing).forEach((substance) => {
-//       console.log(substance);
-//     });
-//   });
-// });
-
-// const iterate = (obj) => {
-//   const stack = [obj];
-//   while (stack?.length > 0) {
-//     const currentObj = stack.pop();
-//     Object.keys(currentObj).forEach((key) => {
-//       console.log(`key: ${key}, value: ${currentObj[key]}`);
-//       if (typeof currentObj[key] === "object" && currentObj[key] !== null) {
-//         stack.push(currentObj[key]);
-//       }
-//     });
-//   }
-// };
-// iterate(passwordImageObject);
-
 function resetStudentPasswordEntryArray() {
   if (
     studentPasswordEntryArray[0] !== null ||
@@ -166,13 +144,13 @@ function resetStudentPasswordEntryArray() {
   }
 }
 
+// Generate student login grid with images
 passwordImageArray.forEach((image) => {
   const gridImage = document.createElement("div");
   gridImage.classList.add("grid-image");
   gridImage.setAttribute("id", passwordImageObject[image].id);
   gridImage.setAttribute("content", passwordImageObject[image].content);
   gridImage.style.backgroundImage = `url(${passwordImageObject[image].image})`;
-  // gridImage.innerText = `${passwordImageObject[image].content}`;
   gridImage.addEventListener("click", (event) => {
     // deselects previously selected grid image
     const content = gridImage.getAttribute("content");
@@ -222,16 +200,16 @@ studentPasswordGridContainer.appendChild(studentPasswordGrid);
 
 function displaySelectedPasswordImages() {
   if (studentPasswordEntryArray[0] !== null) {
-    studentSelectedPasswordImage1.innerText = `${
-      passwordImageObject[studentPasswordEntryArray[0]].content
-    }`;
+    studentSelectedPasswordImage1.style.backgroundImage = `url(${
+      passwordImageObject[studentPasswordEntryArray[0]].image
+    })`;
   } else {
     studentSelectedPasswordImage1.innerText = ``;
   }
   if (studentPasswordEntryArray[1] !== null) {
-    studentSelectedPasswordImage2.innerText = `${
-      passwordImageObject[studentPasswordEntryArray[1]].content
-    }`;
+    studentSelectedPasswordImage2.style.backgroundImage = `url(${
+      passwordImageObject[studentPasswordEntryArray[1]].image
+    })`;
   } else {
     studentSelectedPasswordImage2.innerText = ``;
   }
