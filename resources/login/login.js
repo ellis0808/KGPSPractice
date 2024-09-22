@@ -171,7 +171,7 @@ passwordImageArray.forEach((image) => {
   gridImage.classList.add("grid-image");
   gridImage.setAttribute("id", passwordImageObject[image].id);
   gridImage.setAttribute("content", passwordImageObject[image].content);
-  gridImage.style.backgroundImage = `url(${passwordImageArray[image].image})`;
+  gridImage.style.backgroundImage = `url(${passwordImageObject[image].image})`;
   // gridImage.innerText = `${passwordImageObject[image].content}`;
   gridImage.addEventListener("click", (event) => {
     // deselects previously selected grid image
