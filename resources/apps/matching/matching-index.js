@@ -32,6 +32,11 @@ import {
 } from "./dot-objects-control.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
+import {
+  startBtn,
+  exitBtn,
+  btnContainer2,
+} from "../numbers/numbers-fluency/numbers-fluency.js";
 
 /* SCORING */
 const correctAnswerPoints = 1;
@@ -202,22 +207,22 @@ function matchingApp(set) {
   appContainer.appendChild(btnContainer1);
   appContainer.appendChild(btnContainer2);
   appContainer.appendChild(btnContainer4);
-  btnContainer2.appendChild(startBtn);
-  btnContainer2.appendChild(exitBtn);
   appContainer.appendChild(grid);
   grid.classList.add("gridHide");
   grid.appendChild(capitalLettersDiv);
   grid.appendChild(lowercaseLetterDiv);
   grid.appendChild(startDotsDiv);
   grid.appendChild(endDotsDiv);
-  exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
-  removeMenuPage();
 
   stylesheet.setAttribute(
     "href",
     "/KGPSEnglishPractice-test/resources/css/matching.css"
   );
-  displayStartBtn();
+
+  removeMenuPage();
+
+  setTimeout(displayStartBtn, 200);
+
   score.resetScore();
   resetTimer();
   scoreDisplay.innerText = score.currentScore;
@@ -420,6 +425,10 @@ II. SESSIONS & ROUNDS
 */
 
 function displayStartBtn() {
+  btnContainer2.appendChild(startBtn);
+  startBtn.textContent = "Start";
+  exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
+  btnContainer2.appendChild(exitBtn);
   if (
     startBtn.classList.contains("no-touch") ||
     startBtn.classList.contains("spinfade")
