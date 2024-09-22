@@ -18,9 +18,11 @@ function startCardTouchApp(set) {
     cardTouchApp("sightwords3");
   }
 }
-function startMatchingApp() {
+function startMatchingApp(set) {
   mainMenuSfx.select2.play();
-  matchingApp();
+  if (set === "alphabet") {
+    matchingApp(set);
+  }
 }
 // function startSpellingTouchApp() {
 //   mainMenuSfx.select2.play();

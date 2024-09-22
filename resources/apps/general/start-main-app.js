@@ -249,7 +249,9 @@ alphabetMatchingAppMenuItem.setAttribute(
 );
 alphabetMatchingAppMenuItem.classList.add("div");
 alphabetMatchingAppMenuItem.innerText = "Letter Matching";
-alphabetMatchingAppMenuItem.addEventListener("click", startMatchingApp);
+alphabetMatchingAppMenuItem.addEventListener("click", () => {
+  startMatchingApp("alphabet");
+});
 /* Alphabet menu items fin */
 
 /* "Sight Words" Menu Items  (2) */
