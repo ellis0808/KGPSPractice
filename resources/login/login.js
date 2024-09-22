@@ -54,7 +54,6 @@ async function getUsersForLogin() {
     if (data.users) {
       displayUsersForLogin(data.users);
     } else {
-      console.log("no students found");
     }
   } catch (error) {
     console.error("Error getting user data:", error);
@@ -243,8 +242,6 @@ function displaySelectedPasswordImages() {
 document
   .getElementById("studentPasswordEntryForm")
   .addEventListener("submit", (event) => {
-    console.log(selectedUser);
-
     loginUser(
       selectedUser.id,
       selectedUser.firstname,
@@ -283,16 +280,10 @@ async function loginUser(id, firstname, lastname, access) {
       body: JSON.stringify({ id, firstname, lastname, password }),
       credentials: "include",
     });
-    console.log(id);
-    console.log(firstname);
-    console.log(lastname);
-    console.log(password);
 
     const rawText = await response.text();
-    console.log("Raw response text: ", rawText);
 
     const data = JSON.parse(rawText);
-    console.log("Parsed response data: ", data);
 
     if (!response.ok) {
       resetStudentPasswordEntryArray();

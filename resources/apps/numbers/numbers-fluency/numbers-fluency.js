@@ -277,6 +277,8 @@ function numberFluencyApp(set) {
     grid.classList.add("gridHide");
   }, 0);
 
+  removeMenuPage();
+
   stylesheet.setAttribute(
     "href",
     "/KGPSEnglishPractice-test/resources/css/number-fluency.css"
@@ -284,7 +286,6 @@ function numberFluencyApp(set) {
   displayStartBtn();
 
   // add settimeout here? to delay the menu page being removed until the stylesheet change (above) has taken effect
-  setTimeout(removeMenuPage, 500);
 
   score.resetScore();
   scoreDisplay.innerText = score.currentScore;
