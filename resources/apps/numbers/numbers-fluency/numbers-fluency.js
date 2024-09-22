@@ -281,9 +281,7 @@ function numberFluencyApp(set) {
     "/KGPSEnglishPractice-test/resources/css/number-fluency.css"
   );
 
-  displayStartBtn;
-
-  // add settimeout here? to delay the menu page being removed until the stylesheet change (above) has taken effect
+  displayStartBtn();
 
   score.resetScore();
   scoreDisplay.innerText = score.currentScore;
