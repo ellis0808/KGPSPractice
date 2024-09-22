@@ -164,6 +164,8 @@ body {
   left: 0;
   place-content: center;
   background-size: contain;
+  border: 3px var(--clr-blu), solid;
+  border-radius: 5px;
 }
 
 .student-login-btn-container,
