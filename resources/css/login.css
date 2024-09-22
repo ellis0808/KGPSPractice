@@ -140,10 +140,11 @@ body {
   display: grid;
   /* border: 1px red solid; */
   fill: black;
-  /* top: 0; */
-  /* left: 0; */
+  top: 0;
+  left: 0;
   text-shadow: none;
   place-content: center;
+  background-size: contain;
 }
 
 .student-login-btn-container,
