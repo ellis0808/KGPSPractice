@@ -284,7 +284,7 @@ function numberFluencyApp(set) {
   displayStartBtn();
 
   // add settimeout here? to delay the menu page being removed until the stylesheet change (above) has taken effect
-  removeMenuPage();
+  setTimeout(removeMenuPage, 500);
 
   score.resetScore();
   scoreDisplay.innerText = score.currentScore;
