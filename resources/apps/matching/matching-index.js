@@ -138,6 +138,34 @@ let style;
 let activityId = 3;
 let alphabetAudioObject = {};
 
+function setActivityId(style) {
+  if (style === 0) {
+    activityId = 3;
+    return activityId;
+  } // else if (style === 1) {
+  //   activityId = 2;
+  //   return activityId;
+  // } else if (style === 2) {
+  //   activityId = 4;
+  //   return activityId;
+  // } else if (style === 3) {
+  //   activityId = 5;
+  //   return activityId;
+  // } else if (style === 4) {
+  //   activityId = 6;
+  //   return activityId;
+  // } else if (style === 5) {
+  //   activityId = 7;
+  //   return activityId;
+  // } else if (style === 6) {
+  //   activityId = 8;
+  //   return activityId;
+  // } else if (style === 7) {
+  //   activityId = 9;
+  //   return activityId;
+  // }
+}
+
 async function loadAudioForStyle(style) {
   let section;
   if (style === 0) {
@@ -201,8 +229,33 @@ function matchingApp() {
   if (!timer.classList.contains("hide2")) {
     toggleTimerHide();
   }
-  style = 0;
-  loadAudioForStyle(style);
+  if (set === "alphabet") {
+    style = 0;
+    loadAudioForStyle(style);
+    setActivityId(style);
+    return style;
+  } //else if (set === "lowercase") {
+  //   style = 1;
+  //   loadAudioForStyle(style);
+  //   return style;
+  // } else if (set === "sightwords1") {
+  //   style = 2;
+  //   loadAudioForStyle(style);
+  //   return style;
+  // }
+  // if (set === "sightwords2") {
+  //   style = 3;
+  //   loadAudioForStyle(style);
+  //   return style;
+  // }
+  // if (set === "sightwords3") {
+  //   style = 4;
+  //   loadAudioForStyle(style);
+  //   setActivityId(style);
+  //   return style;
+  // }
+  // return style;
+  // loadAudioForStyle(style);
   setTimeout(setUser, 2000);
 }
 
@@ -341,6 +394,23 @@ async function updateUserTotalScore() {
     answer_attempts: 0,
     activity_score: score.currentScore,
   };
+  try {
+    const response = await fetch(
+      "/KGPSEnglishPractice-test/api/add_user_activity_record.php",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newScore),
+      }
+    );
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error("Network response was not okay");
+    }
+  } catch (error) {
+    console.error("Error adding record:", error);
+  }
 }
 
 /*

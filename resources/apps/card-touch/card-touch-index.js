@@ -723,7 +723,6 @@ document.addEventListener("keydown", (event) => {
 
 async function updateUserTotalScore() {
   //  For student users; teachers will differ on user type, etc
-  console.log(activityId);
 
   const newScore = {
     activity_id: activityId,
@@ -745,12 +744,9 @@ async function updateUserTotalScore() {
       }
     );
     const data = await response.json();
-    console.log(data);
 
     if (!response.ok) {
       throw new Error("Network response was not okay");
-    } else {
-      console.log("new total score is ", user.cumulativeScore);
     }
   } catch (error) {
     console.error("Error adding record:", error);
@@ -885,7 +881,6 @@ export {
   cardTouchApp,
   startCardTouchApp,
   cardText,
-  style,
   alphabetAudioObject,
   sightWordsAudioObject,
 };
