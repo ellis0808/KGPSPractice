@@ -286,7 +286,7 @@ function numberFluencyApp(set) {
     ),
       500;
   });
-  displayStartBtn();
+  setTimeout(displayStartBtn, 500);
 
   // add settimeout here? to delay the menu page being removed until the stylesheet change (above) has taken effect
 
