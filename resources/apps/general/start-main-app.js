@@ -107,8 +107,8 @@ function startMainApp() {
       "href",
       "/KGPSEnglishPractice-test/resources/css/styles.css"
     );
-    setUser();
     setTopMenuVariables();
+    setUser();
     getCumulativeUserScore();
     setTimeout(displayGreeting, 500);
     displayMainPage();
