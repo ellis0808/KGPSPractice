@@ -18,9 +18,11 @@ import {
   disableTouch,
   enableTouch,
 } from "../../../utilities/disable-enable-touch.js";
-// import { sessionCheck } from "../../../login/session-check.js";
+import { sessionCheck, sessionData } from "../../../login/session-check.js";
 
 let style;
+let activityId;
+let numbersAudioObject = {};
 let interval = 2500;
 let run;
 let isPaused = false;
@@ -39,6 +41,24 @@ let correctAnswerPoints;
 let incorrectAnswerPoints;
 let boxes = ".box";
 
+function setActivityId(style) {
+  if (style === 0) {
+    activityId = 11;
+    return activityId;
+  } else if (style === 1) {
+    activityId = 12;
+    return activityId;
+  } else if (style === 2) {
+    activityId = 13;
+    return activityId;
+  } else if (style === 3) {
+    activityId = 14;
+    return activityId;
+  } else if (style === 4) {
+    activityId = 15;
+    return activityId;
+  }
+}
 /* 
 *****************
 GENERAL VARIABLES
@@ -145,7 +165,6 @@ const gridSize = 20;
 Main App
 *****************
 */
-let numbersAudioObject = {};
 
 async function loadAudioForStyle(style) {
   let section = "numbers";
@@ -244,8 +263,7 @@ async function loadAudioForStyle(style) {
 
 /* Starts Main App (exported to resources/js/general/app-launcher.js) */
 function numberFluencyApp(set) {
-  console.log("test");
-  // sessionCheck();
+  sessionCheck();
 
   setTimeout(() => {
     mainContainer.appendChild(appContainer);
@@ -264,6 +282,7 @@ function numberFluencyApp(set) {
   );
   displayStartBtn();
 
+  // add settimeout here? to delay the menu page being removed until the stylesheet change (above) has taken effect
   removeMenuPage();
 
   score.resetScore();
@@ -283,24 +302,69 @@ style 4: 81-100
   if (set === 0) {
     style = 0;
     loadAudioForStyle(style);
+    setActivityId(style);
   } else if (set === 1) {
     style = 1;
     loadAudioForStyle(style);
+    setActivityId(style);
     return style;
   } else if (set === 2) {
     style = 2;
     loadAudioForStyle(style);
+    setActivityId(style);
     return style;
   } else if (set === 3) {
     style = 3;
     loadAudioForStyle(style);
+    setActivityId(style);
     return style;
   } else if (set === 4) {
     style = 4;
     loadAudioForStyle(style);
+    setActivityId(style);
     return style;
   }
+  setTimeout(setUser, 2000);
   return style;
+}
+function setUser() {
+  user.gradeLevel = sessionData.gradeLevel;
+  user.firstName = sessionData.firstName;
+  user.lastName = sessionData.lastName;
+  user.access = sessionData.access;
+  user.id = sessionData.userId;
+}
+
+async function updateUserTotalScore() {
+  //  For student users; teachers will differ on user type, etc
+  const newScore = {
+    activity_id: activityId,
+    user_id: user.id,
+    user_type: user.access,
+    correct_answer_count: 0,
+    incorrect_answer_count: 0,
+    time_to_correct_answer_duration_in_seconds: 0,
+    answer_attempts: 0,
+    activity_score: score.currentScore,
+  };
+  try {
+    const response = await fetch(
+      "/KGPSEnglishPractice-test/api/add_user_activity_record.php",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newScore),
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+
+    if (!response.ok) {
+      throw new Error("Network response was not okay");
+    }
+  } catch (error) {
+    console.error("Error adding record:", error);
+  }
 }
 
 /* Removes Main App and Returns to Main Menu*/
@@ -601,6 +665,7 @@ function gameOver() {
 
 function displayEndMessagesContainer() {
   score.updateUserScore();
+  updateUserTotalScore();
   const btnContainer5 = document.createElement("div");
   btnContainer5.classList.add("btn-container5");
   const endMessagesContainer = document.createElement("div");
