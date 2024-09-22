@@ -202,7 +202,10 @@ studentPasswordGridContainer.appendChild(studentPasswordGrid);
 
 function displaySelectedPasswordImages() {
   if (studentPasswordEntryArray[0] !== null) {
-    if (studentPasswordEntryArray[1] === null) {
+    if (
+      studentPasswordEntryArray[1] === null ||
+      studentPasswordEntryArray[1] !== null
+    ) {
       studentSelectedPasswordImage1.classList.add("selected");
       studentSelectedPasswordImage1.style.backgroundImage = `url(${
         passwordImageObject[studentPasswordEntryArray[0]].image
