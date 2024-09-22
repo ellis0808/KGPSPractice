@@ -135,7 +135,7 @@ I. MAIN APP
 *******
 */
 let style;
-let activityId = 3;
+let activityId;
 let alphabetAudioObject = {};
 
 function setActivityId(style) {
@@ -404,6 +404,7 @@ async function updateUserTotalScore() {
       }
     );
     const data = await response.json();
+    console.log(data);
 
     if (!response.ok) {
       throw new Error("Network response was not okay");
