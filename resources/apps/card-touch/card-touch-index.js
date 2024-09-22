@@ -122,16 +122,15 @@ function cardTouchApp(set) {
     appContainer.appendChild(btnContainer2);
     appContainer.appendChild(btnContainer3);
     appContainer.appendChild(btnContainer4);
-    btnContainer2.appendChild(startBtn);
-    btnContainer2.appendChild(exitBtn);
   }, 0);
 
   stylesheet.setAttribute(
     "href",
     "/KGPSEnglishPractice-test/resources/css/card-touch.css"
   );
-  displayStartBtn();
   removeMenuPage();
+
+  setTimeout(displayStartBtn, 200);
 
   score.resetScore();
   scoreDisplay.innerText = score.currentScore;
@@ -233,12 +232,11 @@ btnContainer2.classList.add("btn-container2");
 const startBtn = document.createElement("button");
 startBtn.setAttribute("id", "start-btn");
 startBtn.classList.add("card-touch-app");
-startBtn.textContent = "Start";
 startBtn.addEventListener("click", startSession);
 const exitBtn = document.createElement("div");
 exitBtn.setAttribute("id", "exit-btn");
 exitBtn.classList.add("card-touch-app", "hide");
-exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
+
 exitBtn.addEventListener("click", endApp);
 const btnContainer1 = document.createElement("div");
 btnContainer1.classList.add("btn-container1", "hide");
@@ -332,6 +330,10 @@ function enableTouch() {
 }
 
 function displayStartBtn() {
+  startBtn.textContent = "Start";
+  exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
+  btnContainer2.appendChild(startBtn);
+  btnContainer2.appendChild(exitBtn);
   if (startBtn.classList.contains("no-touch")) {
     startBtn.classList.remove("no-touch");
     startBtn.classList.remove("spinfade");
