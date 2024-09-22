@@ -144,7 +144,6 @@ async function getCumulativeUserScore() {
 
 function displayGreeting() {
   isMainMenu = true;
-  returnToMainMenuToggle();
   setTimeout(() => {
     const greeting = `Hi, ${user.firstName}!`;
     const userScore = `You have ${user.cumulativeScore} pts`;
@@ -157,6 +156,7 @@ function displayGreeting() {
 
 function displayMainPage() {
   isMainMenu = true;
+  returnToMainMenuToggle();
   const navBarDisplay = `${user.firstName} ${user.lastName.slice(0, 1)}.`;
   navLogo.innerText = `KGPS English Practice`;
   navUserName.innerText = navBarDisplay;
