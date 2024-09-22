@@ -170,7 +170,7 @@ passwordImageArray.forEach((image) => {
   const gridImage = document.createElement("div");
   gridImage.setAttribute("id", passwordImageObject[image].id);
   gridImage.setAttribute("content", passwordImageObject[image].content);
-  gridImage.style.backgroundImage = `url(https://orchidpony8.sakura.ne.jp/images/${passwordImageObject[image].image}.svg)`;
+  gridImage.style.backgroundImage = `url(/images/${passwordImageObject[image].image}.svg)`;
   gridImage.classList.add("grid-image");
   gridImage.innerText = `${passwordImageObject[image].content}`;
   gridImage.addEventListener("click", (event) => {
