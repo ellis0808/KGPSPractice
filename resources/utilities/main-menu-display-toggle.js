@@ -30,6 +30,7 @@ import {
 } from "./variables.js";
 
 function removeMenuPage() {
+  navBar.remove();
   alphabetCapitalsCardTouchAppMenuItem.remove();
   alphabetLowercaseCardTouchAppMenuItem.remove();
   alphabetMatchingAppMenuItem.remove();
@@ -43,6 +44,7 @@ function removeMenuPage() {
   sightWords3AppMenuItem.remove();
   spellingTouchAppMenuItem.remove();
   spellingWritingAppMenuItem.remove();
+  navBar.classList.add("hidden");
   topContainer.classList.add("hidden");
   menuContainer.classList.add("hidden");
   abcMenu.classList.add("hidden");
@@ -57,12 +59,12 @@ function removeMenuPage() {
 }
 
 function restoreMainMenu() {
-  // body.appendChild(navBar);
+  body.appendChild(navBar);
   topContainer.innerText = "";
   body.appendChild(parentsInfo);
   mainContainer.appendChild(topContainer);
   mainContainer.appendChild(menuContainer);
-  // navBar.classList.remove("hidden");
+  navBar.classList.remove("hidden");
   topContainer.classList.remove("hidden");
   getCumulativeUserScore();
   setTimeout(displayGreeting, 500);
