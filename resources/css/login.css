@@ -129,6 +129,7 @@ body {
   height: 5rem;
   /* margin-top: 1rem; */
   display: grid;
+  column-gap: 10px;
   justify-self: center;
   place-items: center;
   grid-template-columns: repeat(2, 1fr);
@@ -164,8 +165,6 @@ body {
   left: 0;
   place-content: center;
   background-size: contain;
-  border: 10px var(--clr-blu) solid;
-  border-radius: 5px;
 }
 
 .student-login-btn-container,
@@ -199,6 +198,6 @@ body {
   height: 110%;
   background-color: greenyellow;
   scale: 1.05;
-  border: 10px var(--clr-blu) solid;
+  border: 7px var(--clr-blu) solid;
   border-radius: 5px;
 }
