@@ -278,7 +278,7 @@ if (style === 2) {
   roundTime = 30;
   timer.innerText = "0:30";
 } else {
-  roundTime = 10;
+  roundTime = 60;
   timer.innerText = "1:00";
 }
 function startTimer() {
@@ -882,5 +882,6 @@ export {
   startCardTouchApp,
   cardText,
   alphabetAudioObject,
+  style,
   sightWordsAudioObject,
 };
