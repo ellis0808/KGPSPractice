@@ -268,9 +268,9 @@ document
   .addEventListener("submit", async function (id, event) {
     //  prevents default form submission
     event.preventDefault();
-    const id = document
-      .querySelector(".single-user-data1")
-      .getAttribute("userId");
+    // const id = document
+    //   .querySelector(".single-user-data1")
+    //   .getAttribute("userId");
     console.log(id);
 
     getSingleUser(id);
