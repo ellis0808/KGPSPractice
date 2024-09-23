@@ -15,7 +15,7 @@ try {
 
     // Check if a specific user ID was requested
     if (isset($_GET['id'])) {
-        $stmt = $pdo->prepare("SELECT student_id, last_name, first_name, grade_level, access, password FROM students WHERE student_id = :id");
+        $stmt = $pdo->prepare("SELECT student_id, last_name, first_name, grade_level, access, password FROM students WHERE student_id = :student_id");
         $stmt->execute(['student_id' => $_GET['id']]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 

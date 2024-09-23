@@ -12,7 +12,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 error_log(print_r($data, true));
 
-$id = $data['id'] ?? null;
+$id = $data['student_id'] ?? null;
 
 if (!$id) {
     echo json_encode(['error' => 'User ID is required']);
@@ -54,8 +54,8 @@ try {
 
     if (!empty($fields)) {
         $sql .= implode(", ", $fields);
-        $sql .= " WHERE student_id = :id";
-        $params['id'] = $id;
+        $sql .= " WHERE student_id = :student_id";
+        $params['student_id'] = $id;
 
 
         // Prepare and execute the statement
