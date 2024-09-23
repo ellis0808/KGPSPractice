@@ -178,18 +178,18 @@ function loadImages() {
         }
 
         if (studentPasswordEntryArray.length > 2) {
-          // document
-          //   .querySelector(`[content='${studentPasswordEntryArray[0]}']`)
-          //   .classList.remove("selected");
+          document
+            .querySelector(`[content='${studentPasswordEntryArray[0]}']`)
+            .classList.remove("selected");
           studentPasswordEntryArray.splice(0, 1);
         }
-        // studentPasswordEntryArray.forEach((item) => {
-        //   if (item !== null) {
-        //     document
-        //       .querySelector(`[content = '${item}']`)
-        //       .classList.add("selected");
-        //   }
-        // });
+        studentPasswordEntryArray.forEach((item) => {
+          if (item !== null) {
+            document
+              .querySelector(`[content = '${item}']`)
+              .classList.add("selected");
+          }
+        });
       }
     });
 

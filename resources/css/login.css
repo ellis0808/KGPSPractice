@@ -158,8 +158,8 @@ body {
 }
 
 .chosen-image {
-  width: 4rem;
-  height: 4rem;
+  width: 4.3rem;
+  height: 4.3rem;
   display: grid;
   /* border: 1px red solid; */
   fill: var(--clr-blu);
@@ -196,9 +196,9 @@ body {
   display: none;
 }
 .selected {
-  width: 110%;
-  height: 110%;
+  width: 100%;
+  height: 100%;
   scale: 1.05;
-  border-bottom: 7px var(--clr-blu) solid;
+  background-color: 7px var(--clr-blu) solid;
   border-radius: 5px;
 }
