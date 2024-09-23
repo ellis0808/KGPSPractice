@@ -5,7 +5,6 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 require './db_connect.php';
-// require './headers.php';
 
 
 // Get the input data from the request
@@ -55,7 +54,7 @@ try {
 
     if (!empty($fields)) {
         $sql .= implode(", ", $fields);
-        $sql .= " WHERE id = :id";
+        $sql .= " WHERE student_id = :id";
         $params['id'] = $id;
 
 
