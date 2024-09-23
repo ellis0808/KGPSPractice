@@ -212,7 +212,7 @@ function displaySelectedPasswordImages() {
       passwordImageObject[studentPasswordEntryArray[1]].image
     })`;
   } else {
-    studentSelectedPasswordImage1.style.backgroundImage = ``;
+    studentSelectedPasswordImage2.style.backgroundImage = ``;
   }
 }
 
