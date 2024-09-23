@@ -200,24 +200,19 @@ studentPasswordGridContainer.appendChild(studentPasswordGrid);
 
 function displaySelectedPasswordImages() {
   if (studentPasswordEntryArray[0] !== null) {
-    // if (studentPasswordEntryArray[1] === null) {
-    // studentSelectedPasswordImage1.classList.add("selected");
     studentSelectedPasswordImage1.style.backgroundImage = `url(${
       passwordImageObject[studentPasswordEntryArray[0]].image
     })`;
     // }
   } else {
-    // studentSelectedPasswordImage1.classList.remove("selected");
-    studentSelectedPasswordImage1.innerText = ``;
+    studentSelectedPasswordImage1.style.backgroundImage = ``;
   }
   if (studentPasswordEntryArray[1] !== null) {
-    // studentSelectedPasswordImage2.classList.add("selected");
     studentSelectedPasswordImage2.style.backgroundImage = `url(${
       passwordImageObject[studentPasswordEntryArray[1]].image
     })`;
   } else {
-    // studentSelectedPasswordImage1.classList.remove("selected");
-    studentSelectedPasswordImage2.innerText = ``;
+    studentSelectedPasswordImage1.style.backgroundImage = ``;
   }
 }
 
