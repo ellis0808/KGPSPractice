@@ -244,6 +244,8 @@ document
 
 // Delete User
 async function deleteUser(id) {
+  console.log(id);
+
   try {
     const response = await fetch(
       "/KGPSEnglishPractice-test/api/delete_user.php",
@@ -255,6 +257,8 @@ async function deleteUser(id) {
     );
 
     const data = await response.json();
+    console.log(data);
+
     if (!response.ok) {
       throw new Error("Network response was not okay");
     } else {

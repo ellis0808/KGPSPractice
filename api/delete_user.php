@@ -22,11 +22,11 @@ try {
     $pdo = getDBConnection();
 
     // Prepare the SQL query to delete the user
-    $sql = "DELETE FROM students WHERE id = :id";
+    $sql = "DELETE FROM students WHERE student_id = :student_id";
     $stmt = $pdo->prepare($sql);
 
     // Bind parameters and execute the query
-    $stmt->execute(['id' => $id]);
+    $stmt->execute(['student_id' => $id]);
 
     if ($stmt->rowCount()) {
         echo json_encode(['message' => 'User deleted successfully']);
