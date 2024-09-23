@@ -12,6 +12,7 @@
   --clr-ylw: rgb(248, 245, 56);
   --clr-red: rgb(161, 29, 29);
   --clr-blu: rgb(26, 26, 168);
+  --clr-blu2: rgba(26, 26, 168, 0.25);
   --font-fam: "Noto Sans", sans-serif;
   --txt-md: 2rem;
   --transition: all 0.25s ease-in-out;
@@ -134,8 +135,6 @@ body {
   place-items: center;
   grid-template-columns: repeat(2, 1fr);
   color: black;
-  border-bottom: 5px solid var(--clr-blu);
-  border-radius: 5px;
 }
 
 .student-password-grid {
@@ -198,5 +197,5 @@ body {
   width: 100%;
   height: 100%;
   scale: 1.05;
-  background-color: var(--clr-blu);
+  background-color: var(--clr-blu2);
 }
