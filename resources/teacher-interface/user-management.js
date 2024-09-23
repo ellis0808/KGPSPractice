@@ -84,7 +84,7 @@ function displayUsers(data) {
     userName.classList.add("open-modal-btn2", "user-name");
     userName.addEventListener("click", (event) => {
       const id = event.target.getAttribute("userId");
-      getSingleUser2(id);
+      getSingleUser2(user.id);
       // document.getElementById("single-user-data-div").reset();
       userDataDiv.showModal();
     });
@@ -95,7 +95,7 @@ function displayUsers(data) {
     editUserBtn.classList.add("open-modal-btn3");
     editUserBtn.addEventListener("click", (event) => {
       const id = event.target.getAttribute("userId");
-      getSingleUser(id);
+      getSingleUser(user.id);
       document.getElementById("updateUser").reset();
       updateUserDiv.showModal();
     });
