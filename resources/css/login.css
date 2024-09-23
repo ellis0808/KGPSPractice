@@ -162,7 +162,6 @@ body {
   height: 4.3rem;
   display: grid;
   /* border: 1px red solid; */
-  fill: var(--clr-blu);
   top: 0;
   left: 0;
   place-content: center;
@@ -199,6 +198,5 @@ body {
   width: 100%;
   height: 100%;
   scale: 1.05;
-  background-color: 7px var(--clr-blu) solid;
-  border-radius: 5px;
+  background-color: var(--clr-blu);
 }
