@@ -271,6 +271,7 @@ document
     const id = document
       .querySelector(".single-user-data1")
       .getAttribute("userId");
+    console.log(id);
 
     getSingleUser(id);
     const firstname = document.getElementById("updatefirstname").value;
