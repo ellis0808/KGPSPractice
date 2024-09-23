@@ -172,6 +172,7 @@ async function getSingleUser2(id) {
       throw new Error("Network response was not okay");
     }
     const data = await response.json();
+    console.log(data);
 
     if (data) {
       displaySingleUser2(data);
@@ -315,6 +316,8 @@ document
         }
       );
       const data = await response.json();
+      console.log(data);
+
       if (!response.ok) {
         throw new Error("Network response was not okay");
       } else {
