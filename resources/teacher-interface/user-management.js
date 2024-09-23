@@ -290,6 +290,7 @@ document
     const access = accessElement ? accessElement.value : null;
 
     const newData = { student_id: id };
+    console.log(newData);
 
     if (firstname) {
       newData.first_name = firstname;
