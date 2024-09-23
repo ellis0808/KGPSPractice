@@ -265,7 +265,7 @@ async function deleteUser(id) {
 // Update User
 document
   .getElementById("updateUser")
-  .addEventListener("submit", async function (event) {
+  .addEventListener("submit", async function (id, event) {
     //  prevents default form submission
     event.preventDefault();
     const id = document
