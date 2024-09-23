@@ -27,7 +27,7 @@ const passwordImageObject = {
   lizard: {
     id: 6,
     content: "lizard",
-    image: "/images/clipart/.svg",
+    image: "/images/clipart/animal-lizard-silhouette-2.svg",
   },
   car: {
     id: 7,

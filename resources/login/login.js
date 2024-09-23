@@ -37,8 +37,13 @@ studentSelectedPasswordImage2.classList.add("chosen-image");
 const studentPasswordEntryArray = [null, null];
 
 let selectedUser = null;
-function populateStudentContainer() {
-  getUsersForLogin();
+
+function loadImages() {
+  passwordImageArray.forEach((item) => {
+    console.log(passwordImageObject[item].image);
+
+    passwordImageObject[item].image;
+  });
 }
 
 // Gets students and teachers from database
@@ -280,7 +285,10 @@ async function loginUser(id, firstname, lastname, access) {
     console.error("Error loging in: ", error);
   }
 }
-window.addEventListener("load", getUsersForLogin);
+window.addEventListener("load", () => {
+  getUsersForLogin();
+  loadImages();
+});
 closeTeacherLoginModalBtn.addEventListener("click", () => {
   teacherPasswordEntryForm.close();
   // teacherPasswordEntryForm.reset();
