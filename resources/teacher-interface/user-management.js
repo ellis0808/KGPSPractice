@@ -163,6 +163,8 @@ function displaySingleUser(data) {
 
 // Get and Display data for single user when clicking on name
 async function getSingleUser2(id) {
+  console.log(id);
+
   try {
     const response = await fetch(
       `/KGPSEnglishPractice-test/api/read_users.php?id=${id}`
