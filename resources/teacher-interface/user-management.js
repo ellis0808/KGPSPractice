@@ -80,22 +80,22 @@ function displayUsers(data) {
     const userAccess = document.createElement("div");
     const editUserBtn = document.createElement("button");
     const deleteUserBtn = document.createElement("button");
-    userName.setAttribute("userId", user.id);
+    userName.setAttribute("userId", user.student_id);
     userName.classList.add("open-modal-btn2", "user-name");
     userName.addEventListener("click", (event) => {
       const id = event.target.getAttribute("userId");
-      getSingleUser2(user.id);
+      getSingleUser2(id);
       // document.getElementById("single-user-data-div").reset();
       userDataDiv.showModal();
     });
     editUserBtn.textContent = "Edit";
     deleteUserBtn.textContent = "Delete";
-    editUserBtn.setAttribute("userId", user.id);
-    deleteUserBtn.setAttribute("userId", user.id);
+    editUserBtn.setAttribute("userId", user.student_id);
+    deleteUserBtn.setAttribute("userId", user.student_id);
     editUserBtn.classList.add("open-modal-btn3");
     editUserBtn.addEventListener("click", (event) => {
       const id = event.target.getAttribute("userId");
-      getSingleUser(user.id);
+      getSingleUser(id);
       document.getElementById("updateUser").reset();
       updateUserDiv.showModal();
     });
