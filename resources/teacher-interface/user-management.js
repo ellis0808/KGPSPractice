@@ -141,7 +141,6 @@ async function getSingleUser(id) {
       throw new Error("Network response was not okay");
     }
     const data = await response.json();
-    console.log(data);
 
     if (data) {
       displaySingleUser(data);
@@ -164,8 +163,6 @@ function displaySingleUser(data) {
 
 // Get and Display data for single user when clicking on name
 async function getSingleUser2(id) {
-  console.log(id);
-
   try {
     const response = await fetch(
       `/KGPSEnglishPractice-test/api/read_users.php?id=${id}`
@@ -175,7 +172,6 @@ async function getSingleUser2(id) {
       throw new Error("Network response was not okay");
     }
     const data = await response.json();
-    console.log(data);
 
     if (data) {
       displaySingleUser2(data);
@@ -244,8 +240,6 @@ document
 
 // Delete User
 async function deleteUser(id) {
-  console.log(id);
-
   try {
     const response = await fetch(
       "/KGPSEnglishPractice-test/api/delete_user.php",
@@ -257,7 +251,6 @@ async function deleteUser(id) {
     );
 
     const data = await response.json();
-    console.log(data);
 
     if (!response.ok) {
       throw new Error("Network response was not okay");
@@ -296,7 +289,7 @@ document
     );
     const access = accessElement ? accessElement.value : null;
 
-    const newData = { id: id };
+    const newData = { student_id: id };
 
     if (firstname) {
       newData.first_name = firstname;
@@ -323,7 +316,6 @@ document
         }
       );
       const data = await response.json();
-      console.log(data);
 
       if (!response.ok) {
         throw new Error("Network response was not okay");
