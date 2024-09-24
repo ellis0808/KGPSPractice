@@ -93,7 +93,7 @@ body {
   align-content: start;
   justify-content: center;
   /* border: 1px solid red; */
-  animation: userItemEntrance 3s ease-out;
+  animation: userItemEntrance 0.5s ease-out;
   animation-fill-mode: backwards;
   transition: var(--transition);
 }
@@ -215,12 +215,12 @@ body {
 @keyframes userItemEntrance {
   from {
     opacity: 0;
-    scale: 0.3;
-    translate: 0% -60%;
+    /* scale: 0.3; */
+    translate: 0% -40%;
   }
   to {
     opacity: 1;
-    scale: 1;
+    /* scale: 1; */
     translate: 0% 0%;
   }
 }
