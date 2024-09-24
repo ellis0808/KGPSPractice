@@ -126,11 +126,12 @@ body {
   margin-top: 0.5rem;
   font-size: 1.08rem;
   /* border: 1px solid orange; */
-  animation: fadeIn 0.5s ease-out;
+  animation: fadeIn 0.3s ease-out;
   animation-fill-mode: backwards;
   transition: var(--transition);
 }
 .user-name-container:hover {
+  line-height: 0.8;
   font-weight: 900;
 }
 .student-password-grid-container {
