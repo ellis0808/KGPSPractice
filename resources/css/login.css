@@ -93,13 +93,10 @@ body {
   align-content: start;
   justify-content: center;
   /* border: 1px solid red; */
-  animation: userItemEntrance 0.5s ease-out;
-  animation-fill-mode: backwards;
-  transition: var(--transition);
 }
 
 .user-container:hover {
-  scale: 1.05;
+  scale: 1.1;
   transition: var(--transition);
 }
 
@@ -114,6 +111,9 @@ body {
   place-content: center;
   font-size: 2rem;
   border-radius: 8px;
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
 }
 .user-name-container {
   min-width: 2rem;
@@ -126,6 +126,12 @@ body {
   margin-top: 0.5rem;
   font-size: 1.08rem;
   /* border: 1px solid orange; */
+  animation: fadeIn 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+}
+.user-name-container:hover {
+  font-weight: 900;
 }
 .student-password-grid-container {
   display: grid;
@@ -214,13 +220,22 @@ body {
 
 @keyframes userItemEntrance {
   from {
-    opacity: 0;
-    /* scale: 0.3; */
+    opacity: 0.5;
+    scale: 0.8;
     translate: 0% -40%;
   }
   to {
     opacity: 1;
-    /* scale: 1; */
+    scale: 1;
     translate: 0% 0%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
