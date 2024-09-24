@@ -93,7 +93,7 @@ body {
   align-content: start;
   justify-content: center;
   /* border: 1px solid red; */
-  animation: userItemEntrance 2s ease-out;
+  animation: userItemEntrance 3s ease-out;
   animation-fill-mode: backwards;
   transition: var(--transition);
 }
