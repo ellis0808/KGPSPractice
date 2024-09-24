@@ -235,6 +235,126 @@ body {
   transition: var(--transition);
   animation-delay: calc(7 * var(--stagger-delay));
 }
+.user-initials-container-21 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(4 * var(--stagger-delay));
+}
+.user-initials-container-22 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(5 * var(--stagger-delay));
+}
+.user-initials-container-23 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(6 * var(--stagger-delay));
+}
+.user-initials-container-24 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(7 * var(--stagger-delay));
+}
+.user-initials-container-25 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(8 * var(--stagger-delay));
+}
+.user-initials-container-26 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(5 * var(--stagger-delay));
+}
+.user-initials-container-27 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(6 * var(--stagger-delay));
+}
+.user-initials-container-28 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(7 * var(--stagger-delay));
+}
+.user-initials-container-29 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(8 * var(--stagger-delay));
+}
+.user-initials-container-30 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(9 * var(--stagger-delay));
+}
+.user-initials-container-31 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(6 * var(--stagger-delay));
+}
+.user-initials-container-32 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(7 * var(--stagger-delay));
+}
+.user-initials-container-33 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(8 * var(--stagger-delay));
+}
+.user-initials-container-34 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(9 * var(--stagger-delay));
+}
+.user-initials-container-35 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(10 * var(--stagger-delay));
+}
+.user-initials-container-36 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(7 * var(--stagger-delay));
+}
+.user-initials-container-37 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(8 * var(--stagger-delay));
+}
+.user-initials-container-38 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(9 * var(--stagger-delay));
+}
+.user-initials-container-39 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(10 * var(--stagger-delay));
+}
+.user-initials-container-40 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(11 * var(--stagger-delay));
+}
 .user-name-container {
   min-width: 2rem;
   height: 1rem;
