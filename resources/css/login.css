@@ -105,6 +105,7 @@ body {
   align-self: start;
   justify-self: center;
   place-content: center;
+  font-family: var(--font-fam);
   font-size: 2rem;
   border-radius: 8px;
   animation: userItemEntrance 0.5s ease-out;
@@ -114,7 +115,7 @@ body {
 .user-name-container {
   min-width: 2rem;
   height: 1rem;
-  color: #fff;
+  color: black;
   display: grid;
   align-self: center;
   justify-self: center;
