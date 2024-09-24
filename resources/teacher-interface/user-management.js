@@ -153,7 +153,7 @@ async function getSingleUser(id) {
 }
 function displaySingleUser(data) {
   const singleUserData1 = document.querySelector(".single-user-data1");
-  singleUserData1.setAttribute("userID", data.id);
+  singleUserData1.setAttribute("userID", data.student_id);
   if (data.access === "teacher") {
     singleUserData1.innerText = `${data.last_name}, ${data.first_name}\r\nAccess: ${data.access}`;
   } else {
