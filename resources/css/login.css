@@ -71,7 +71,7 @@ body {
 .teacher-name-container {
   width: 100%;
   /* height: 500px; */
-  background: rgb(20 20 20 / 0.2);
+  /* background: rgb(20 20 20 / 0.2); */
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: auto;
@@ -95,15 +95,11 @@ body {
   /* border: 1px solid red; */
 }
 
-.user-container:hover {
-  scale: 1.1;
-  transition: var(--transition);
-}
-
 .user-initials-container {
   width: 5.3rem;
   height: 4.3rem;
   background: #006747;
+  color: var(--clr-wht);
   /* border: 1px solid blue; */
   display: grid;
   align-self: start;
@@ -130,10 +126,7 @@ body {
   animation-fill-mode: backwards;
   transition: var(--transition);
 }
-.user-name-container:hover {
-  line-height: 0.8;
-  font-weight: 900;
-}
+
 .student-password-grid-container {
   display: grid;
 }
