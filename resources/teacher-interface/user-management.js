@@ -262,78 +262,81 @@ async function deleteUser(id) {
   }
 }
 
+async function updateUser(id) {
+  getSingleUser(id);
+  const firstname = document.getElementById("updatefirstname").value;
+
+  const lastname = document.getElementById("updatelastname").value;
+  const password = document.getElementById("updatepassword").value;
+
+  const gradelevelElement = document.querySelector(
+    'input[name="updategradelevel"]:checked'
+  );
+  const gradelevel = gradelevelElement
+    ? parseInt(gradelevelElement.value)
+    : null;
+  const accessElement = document.querySelector(
+    'input[name="updateaccess"]:checked'
+  );
+  const access = accessElement ? accessElement.value : null;
+
+  const newData = { student_id: id };
+  console.log(newData);
+
+  if (firstname) {
+    newData.first_name = firstname;
+  }
+  if (lastname) {
+    newData.last_name = lastname;
+  }
+  if (password) {
+    newData.password = password;
+  }
+  if (gradelevel) {
+    newData.grade_level = gradelevel;
+  }
+  if (access) {
+    newData.access = access;
+  }
+  try {
+    const response = await fetch(
+      "/KGPSEnglishPractice-test/api/update_user.php",
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newData),
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+
+    if (!response.ok) {
+      throw new Error("Network response was not okay");
+    } else {
+      getSingleUser(id);
+      getUsers();
+    }
+  } catch (error) {
+    console.error("Error updating user:", error);
+  }
+  document.getElementById("updateUser").reset();
+  // updateUserDiv.innerText = "User information updated.";
+  setTimeout(() => {
+    updateUserDiv.close();
+  }, 1000);
+}
+
 // Update User
 document
   .getElementById("updateUser")
-  .addEventListener("submit", async function (id, event) {
+  .addEventListener("submit", async function (event) {
     //  prevents default form submission
     event.preventDefault();
-    // const id = document
-    //   .querySelector(".single-user-data1")
-    //   .getAttribute("userId");
+    const id = document
+      .querySelector(".single-user-data1")
+      .getAttribute("userId");
     console.log(id);
-
-    getSingleUser(id);
-    const firstname = document.getElementById("updatefirstname").value;
-
-    const lastname = document.getElementById("updatelastname").value;
-    const password = document.getElementById("updatepassword").value;
-
-    const gradelevelElement = document.querySelector(
-      'input[name="updategradelevel"]:checked'
-    );
-    const gradelevel = gradelevelElement
-      ? parseInt(gradelevelElement.value)
-      : null;
-    const accessElement = document.querySelector(
-      'input[name="updateaccess"]:checked'
-    );
-    const access = accessElement ? accessElement.value : null;
-
-    const newData = { student_id: id };
-    console.log(newData);
-
-    if (firstname) {
-      newData.first_name = firstname;
-    }
-    if (lastname) {
-      newData.last_name = lastname;
-    }
-    if (password) {
-      newData.password = password;
-    }
-    if (gradelevel) {
-      newData.grade_level = gradelevel;
-    }
-    if (access) {
-      newData.access = access;
-    }
-    try {
-      const response = await fetch(
-        "/KGPSEnglishPractice-test/api/update_user.php",
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newData),
-        }
-      );
-      const data = await response.json();
-      console.log(data);
-
-      if (!response.ok) {
-        throw new Error("Network response was not okay");
-      } else {
-        getSingleUser(id);
-        getUsers();
-      }
-    } catch (error) {
-      console.error("Error updating user:", error);
-    }
-    document.getElementById("updateUser").reset();
-    // updateUserDiv.innerText = "User information updated.";
-    setTimeout(() => {
-      updateUserDiv.close();
-    }, 1000);
+    updateUser(id);
   });
 
 window.addEventListener("load", getUsers);
