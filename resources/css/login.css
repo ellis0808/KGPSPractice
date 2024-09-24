@@ -108,9 +108,84 @@ body {
   font-family: var(--font-fam);
   font-size: 2rem;
   border-radius: 8px;
+  transition: var(--transition);
+  --stagger-delay: 0.1s;
+}
+.user-initials-container:hover {
+  scale: 1.08;
+  transition: var(--transition);
+}
+.user-initials-container-1 {
   animation: userItemEntrance 0.5s ease-out;
   animation-fill-mode: backwards;
   transition: var(--transition);
+  animation-delay: calc(1 * 0);
+}
+.user-initials-container-2 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(1 * var(--stagger-delay));
+}
+.user-initials-container-3 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(2 * var(--stagger-delay));
+}
+.user-initials-container-4 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(3 * var(--stagger-delay));
+}
+.user-initials-container-5 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(4 * var(--stagger-delay));
+}
+.user-initials-container-6 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(5 * var(--stagger-delay));
+}
+.user-initials-container-7 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(6 * var(--stagger-delay));
+}
+.user-initials-container-8 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(7 * var(--stagger-delay));
+}
+.user-initials-container-9 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(8 * var(--stagger-delay));
+}
+.user-initials-container-10 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(9 * var(--stagger-delay));
+}
+.user-initials-container-11 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(10 * var(--stagger-delay));
+}
+.user-initials-container-12 {
+  animation: userItemEntrance 0.5s ease-out;
+  animation-fill-mode: backwards;
+  transition: var(--transition);
+  animation-delay: calc(11 * var(--stagger-delay));
 }
 .user-name-container {
   min-width: 2rem;

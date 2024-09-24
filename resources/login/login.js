@@ -62,14 +62,19 @@ async function getUsersForLogin() {
 function displayUsersForLogin(data) {
   studentNameContainer.innerText = "";
   teacherNameContainer.innerText = "";
+  let i = 0;
   data.forEach((user) => {
+    ++i;
     const userContainer = document.createElement("div");
     userContainer.classList.add("user-container");
     userContainer.setAttribute("userId", user.student_id);
     userContainer.setAttribute("userfirstname", user.first_name);
     userContainer.setAttribute("userlastname", user.last_name);
     const userInitialsContainer = document.createElement("div");
-    userInitialsContainer.classList.add("user-initials-container");
+    userInitialsContainer.classList.add(
+      "user-initials-container",
+      `user-initials-container-${i}`
+    );
     userInitialsContainer.setAttribute("userId", user.student_id);
     userInitialsContainer.setAttribute("userfirstname", user.first_name);
     userInitialsContainer.setAttribute("userlastname", user.last_name);
