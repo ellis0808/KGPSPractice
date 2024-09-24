@@ -113,7 +113,7 @@ body {
   justify-self: center;
   place-content: center;
   font-size: 2rem;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 .user-name-container {
   min-width: 2rem;
@@ -216,7 +216,7 @@ body {
   from {
     opacity: 0;
     scale: 0.3;
-    translate: 0% -20%;
+    translate: 0% -60%;
   }
   to {
     opacity: 1;
