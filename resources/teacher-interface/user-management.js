@@ -262,6 +262,18 @@ async function deleteUser(id) {
   }
 }
 
+// Update User
+document
+  .getElementById("updateUser")
+  .addEventListener("submit", async function (event) {
+    //  prevents default form submission
+    event.preventDefault();
+    const id = document
+      .querySelector(".single-user-data1")
+      .getAttribute("userId");
+    console.log(id);
+    updateUser(id);
+  });
 async function updateUser(id) {
   getSingleUser(id);
   const firstname = document.getElementById("updatefirstname").value;
@@ -325,19 +337,6 @@ async function updateUser(id) {
     updateUserDiv.close();
   }, 1000);
 }
-
-// Update User
-document
-  .getElementById("updateUser")
-  .addEventListener("submit", async function (event) {
-    //  prevents default form submission
-    event.preventDefault();
-    const id = document
-      .querySelector(".single-user-data1")
-      .getAttribute("userId");
-    console.log(id);
-    updateUser(id);
-  });
 
 window.addEventListener("load", getUsers);
 
