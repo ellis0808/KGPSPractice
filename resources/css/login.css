@@ -93,17 +93,19 @@ body {
   align-content: start;
   justify-content: center;
   /* border: 1px solid red; */
-  animation: userItemEntrance ease-out;
+  animation: userItemEntrance 2s ease-out;
   animation-fill-mode: backwards;
+  transition: var(--transition);
 }
 
 .user-container:hover {
   scale: 1.05;
+  transition: var(--transition);
 }
 
 .user-initials-container {
-  width: 5rem;
-  height: 3.5rem;
+  width: 5.3rem;
+  height: 4.3rem;
   background: #006747;
   /* border: 1px solid blue; */
   display: grid;
@@ -111,7 +113,7 @@ body {
   justify-self: center;
   place-content: center;
   font-size: 2rem;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 .user-name-container {
   min-width: 2rem;
