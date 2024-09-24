@@ -290,7 +290,7 @@ body {
 
 @keyframes userItemEntrance {
   from {
-    opacity: 0.5;
+    opacity: 0;
     translate: 0% -40%;
   }
   to {
