@@ -302,5 +302,10 @@ async function loadImages() {
     );
     const data = JSON.parse(data);
     console.log(data);
-  } catch (error) {}
+    if (!response.ok) {
+      throw new Error("There was an error", data.error);
+    }
+  } catch (error) {
+    console.error("Error getting images ", error);
+  }
 }
