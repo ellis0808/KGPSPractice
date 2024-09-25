@@ -280,7 +280,7 @@ window.addEventListener("load", () => {
   getUsersForLogin();
   loadStudentLoginImageGrid();
 
-  loadImages();
+  // loadImages();
 });
 closeTeacherLoginModalBtn.addEventListener("click", () => {
   teacherPasswordEntryForm.close();
