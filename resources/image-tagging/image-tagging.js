@@ -5,13 +5,12 @@
 // const imageLinkContainer = document.querySelector(".image-type-container");
 // const imageThumbnailContainer = document.querySelector(".image-type-container");
 
-async function loadImages(params) {
+async function loadImages() {
   try {
     const response = await fetch(
       "/KGPSEnglishPractice-test/api/load-images.php"
     );
     const imageData = await response.json();
-    console.log(data);
     let i = 0;
     imageData.images.forEach((item) => {
       ++i;
