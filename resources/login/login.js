@@ -264,6 +264,7 @@ async function loginUser(id, firstname, lastname, access) {
       credentials: "include",
     });
 
+    const rawText = response.json();
     const data = JSON.parse(rawText);
 
     if (!response.ok) {
