@@ -148,6 +148,21 @@ function resetStudentPasswordEntryArray() {
   }
 }
 
+async function loadImages() {
+  try {
+    const response = await fetch(
+      "/KGPSEnglishPractice-test/api/load-images.php"
+    );
+    const data = JSON.parse(data);
+    console.log(data);
+    if (!response.ok) {
+      throw new Error("There was an error", data.error);
+    }
+  } catch (error) {
+    console.error("Error getting images ", error);
+  }
+}
+
 // Generate student login grid with images
 function loadStudentLoginImageGrid() {
   passwordImageArray.forEach((image) => {
@@ -292,20 +307,5 @@ function routing(userData) {
       "../resources/teacher-interface/user-management.html";
   } else if (userData.access === "student") {
     window.location.href = "/KGPSEnglishPractice-test/index.html";
-  }
-}
-
-async function loadImages() {
-  try {
-    const response = await fetch(
-      "/KGPSEnglishPractice-test/api/load-images.php"
-    );
-    const data = JSON.parse(data);
-    console.log(data);
-    if (!response.ok) {
-      throw new Error("There was an error", data.error);
-    }
-  } catch (error) {
-    console.error("Error getting images ", error);
   }
 }
