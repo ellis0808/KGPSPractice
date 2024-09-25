@@ -1,17 +1,40 @@
-const imageTypeContainer = document.querySelector(".image-type-container");
-const imageCategoryContainer = document.querySelector(".image-type-container");
-const imageFileNameContainer = document.querySelector(".image-type-container");
-const imageFileTypeContainer = document.querySelector(".image-type-container");
-const imageLinkContainer = document.querySelector(".image-type-container");
-const imageThumbnailContainer = document.querySelector(".image-type-container");
+// const imageTypeContainer = document.querySelector(".image-type-container");
+// const imageCategoryContainer = document.querySelector(".image-type-container");
+// const imageFileNameContainer = document.querySelector(".image-type-container");
+// const imageFileTypeContainer = document.querySelector(".image-type-container");
+// const imageLinkContainer = document.querySelector(".image-type-container");
+// const imageThumbnailContainer = document.querySelector(".image-type-container");
 
 async function loadImages(params) {
   try {
     const response = await fetch(
       "/KGPSEnglishPractice-test/api/load-images.php"
     );
-    const data = await response.json();
+    const imageData = await response.json();
     console.log(data);
+    let i = 0;
+    imageData.images.forEach((item) => {
+      ++i;
+      const imageRow = document.createElement("div");
+      const imageTypeContainer = document.createElement("div");
+      const imageCategoryContainer = document.createElement("div");
+      const imageFileNameContainer = document.createElement("div");
+      const imageFileTypeContainer = document.createElement("div");
+      const imageLinkContainer = document.createElement("div");
+      const imageThumbnailContainer = document.createElement("div");
+      imageTypeContainer.innerText = item.type;
+      imageCategoryContainer.innerText = item.category;
+      imageFileNameContainer.innerText = item.filename;
+      imageFileTypeContainer.innerText = item.filetype;
+      imageLinkContainer.innerText = item.link;
+      imageThumbnailContainer.style.backgroundImage = `url(${item.link})`;
+      imageRow.appendChild(imageTypeContainer);
+      imageRow.appendChild(imageCategoryContainer);
+      imageRow.appendChild(imageFileNameContainer);
+      imageRow.appendChild(imageFileTypeContainer);
+      imageRow.appendChild(imageLinkContainer);
+      imageRow.appendChild(imageThumbnailContainer);
+    });
 
     if (!response.ok) {
       throw new Error("Network response was not okay");
