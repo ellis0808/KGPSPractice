@@ -4,7 +4,7 @@
 // const imageFileTypeContainer = document.querySelector(".image-type-container");
 // const imageLinkContainer = document.querySelector(".image-type-container");
 // const imageThumbnailContainer = document.querySelector(".image-type-container");
-
+const imageDataContainer = document.querySelector(".image-data-container");
 async function loadImages() {
   try {
     const response = await fetch(
@@ -35,6 +35,7 @@ async function loadImages() {
       imageRow.appendChild(imageFileTypeContainer);
       imageRow.appendChild(imageLinkContainer);
       imageRow.appendChild(imageThumbnailContainer);
+      imageDataContainer.appendChild(imageRow);
     });
 
     if (!response.ok) {

@@ -8,7 +8,7 @@
   grid-template-columns: auto;
   grid-template-rows: auto;
 }
-.user-data-header-row {
+.image-data-header-row {
   max-width: 100%;
   height: 2rem;
   display: grid;
@@ -21,7 +21,7 @@
   background: transparent;
   color: rgb(240 240 240);
 }
-.user-slot {
+.image-row {
   max-width: 100%;
   display: grid;
   grid-template-columns: 0.1fr 0.3fr 0.1fr 0.15fr 0.1fr 0.1fr;
