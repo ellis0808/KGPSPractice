@@ -278,21 +278,8 @@ async function loginUser(id, firstname, lastname, access) {
 }
 window.addEventListener("load", () => {
   getUsersForLogin();
-  // loadStudentLoginImageGrid();
-  async function loadImages() {
-    try {
-      const response = await fetch(
-        "/KGPSEnglishPractice-test/api/load-images.php"
-      );
-      const data = await response.json();
-      console.log(data);
-      if (!response.ok) {
-        throw new Error("There was an error", data.error);
-      }
-    } catch (error) {
-      console.error("Error getting images ", error);
-    }
-  }
+  loadStudentLoginImageGrid();
+
   loadImages();
 });
 closeTeacherLoginModalBtn.addEventListener("click", () => {
@@ -306,5 +293,20 @@ function routing(userData) {
       "../resources/teacher-interface/user-management.html";
   } else if (userData.access === "student") {
     window.location.href = "/KGPSEnglishPractice-test/index.html";
+  }
+}
+
+async function loadImages() {
+  try {
+    const response = await fetch(
+      "/KGPSEnglishPractice-test/api/load-images.php"
+    );
+    const data = await response.json();
+    console.log(data);
+    if (!response.ok) {
+      throw new Error("There was an error", data.error);
+    }
+  } catch (error) {
+    console.error("Error getting images ", error);
   }
 }
