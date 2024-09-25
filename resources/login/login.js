@@ -284,7 +284,7 @@ window.addEventListener("load", () => {
       const response = await fetch(
         "/KGPSEnglishPractice-test/api/load-images.php"
       );
-      const data = JSON.parse(data);
+      const data = await response.json;
       console.log(data);
       if (!response.ok) {
         throw new Error("There was an error", data.error);
