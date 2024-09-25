@@ -149,7 +149,7 @@ function resetStudentPasswordEntryArray() {
 }
 
 // Generate student login grid with images
-function loadImages() {
+function loadStudentLoginImageGrid() {
   passwordImageArray.forEach((image) => {
     const gridImage = document.createElement("div");
     gridImage.classList.add("grid-image");
@@ -264,8 +264,6 @@ async function loginUser(id, firstname, lastname, access) {
       credentials: "include",
     });
 
-    const rawText = await response.text();
-
     const data = JSON.parse(rawText);
 
     if (!response.ok) {
@@ -280,7 +278,7 @@ async function loginUser(id, firstname, lastname, access) {
 }
 window.addEventListener("load", () => {
   getUsersForLogin();
-  loadImages();
+  // loadStudentLoginImageGrid();
 });
 closeTeacherLoginModalBtn.addEventListener("click", () => {
   teacherPasswordEntryForm.close();
@@ -295,3 +293,15 @@ function routing(userData) {
     window.location.href = "/KGPSEnglishPractice-test/index.html";
   }
 }
+
+async function loadImages() {
+  try {
+    const response = await fetch(
+      "/KGPSEnglishPractice-test/api/load_images.php"
+    );
+    const data = JSON.parse(data);
+    console.log(data);
+  } catch (error) {}
+}
+
+loadImages();
