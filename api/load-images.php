@@ -9,7 +9,7 @@ try {
 
     header('Content-Type: application/json');
 
-
+    // Get all available images
     $stmt = $pdo->query(('SELECT image_id, type, category, filename, filetype, link FROM images'));
     $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

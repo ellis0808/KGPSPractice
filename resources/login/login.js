@@ -279,6 +279,7 @@ async function loginUser(id, firstname, lastname, access) {
 window.addEventListener("load", () => {
   getUsersForLogin();
   // loadStudentLoginImageGrid();
+  loadImages();
 });
 closeTeacherLoginModalBtn.addEventListener("click", () => {
   teacherPasswordEntryForm.close();
@@ -303,5 +304,3 @@ async function loadImages() {
     console.log(data);
   } catch (error) {}
 }
-
-loadImages();
