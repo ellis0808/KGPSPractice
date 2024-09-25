@@ -11,6 +11,8 @@ async function loadImages() {
       "/KGPSEnglishPractice-test/api/load-images.php"
     );
     const imageData = await response.json();
+    console.log(imageData.images);
+
     let i = 0;
     imageData.images.forEach((item) => {
       ++i;
