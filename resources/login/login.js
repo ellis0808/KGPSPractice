@@ -293,6 +293,7 @@ window.addEventListener("load", () => {
       console.error("Error getting images ", error);
     }
   }
+  loadImages();
 });
 closeTeacherLoginModalBtn.addEventListener("click", () => {
   teacherPasswordEntryForm.close();
