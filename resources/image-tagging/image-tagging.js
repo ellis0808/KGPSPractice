@@ -20,3 +20,7 @@ async function loadImages(params) {
     console.log("There was an error", error);
   }
 }
+
+window.addEventListener("load", () => {
+  loadImages();
+});
