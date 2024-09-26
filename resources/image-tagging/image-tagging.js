@@ -55,3 +55,25 @@ async function loadImages() {
 window.addEventListener("load", () => {
   loadImages();
 });
+
+document.getElementById("search-entry").addEventListener("submit", () => {
+  const searchItem = document.getElementById("filename").value;
+  imageSearch(searchItem);
+});
+
+async function imageSearch(searchItem) {
+  try {
+    const response = await fetch(
+      `/KGPSEnglishPractice-test/api/load-images.php=?${searchItem}}`
+    );
+
+    const data = await response.json();
+    console.log(data);
+
+    if (!response.ok) {
+      throw new Error("Network response not okay");
+    }
+  } catch (error) {
+    console.log("There was an error loading the images");
+  }
+}

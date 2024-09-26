@@ -16,6 +16,22 @@
     <h2>Image Tagging</h2>
     <div class="maincontainer">
       <div class="tags-container"></div>
+      <div class="search-area-container">
+        <search>
+          <form
+            action="./search/"
+            id="search-entry"
+          >
+            <label for="filename">Search for an Image</label>
+            <input
+              type="search"
+              id="filename"
+              name="filename-search"
+            />
+            <button type="submit">Search</button>
+          </form>
+        </search>
+      </div>
       <div class="image-container">
         <div class="image-data-header-row">
           <div class="image-number-header-container table-header"></div>
