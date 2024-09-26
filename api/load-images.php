@@ -10,10 +10,10 @@ try {
 
     header('Content-Type: application/json');
     // Get all images with the indicated filename
-    if (isset($_GET['item'])) {
-        $stmt = $pdo->prepare('SELECT image_id, type, category, filename, filetype, link FROM images WHERE filename LIKE :item');
-        $stmt->execute(['item' => '%' . $_GET['item'] . '%']);
-        $image = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (isset($_GET['id'])) {
+        $stmt = $pdo->prepare('SELECT image_id, type, category, filename, filetype, link FROM images WHERE filename LIKE :id');
+        $stmt->execute(['item' => '%' . $_GET['id'] . '%']);
+        $image = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($image) {
             echo json_encode($image);
         } else {
