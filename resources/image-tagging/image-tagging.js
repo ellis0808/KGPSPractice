@@ -17,19 +17,24 @@ async function loadImages() {
     imageData.images.forEach((item) => {
       ++i;
       const imageRow = document.createElement("div");
-      imageRow.classList.add("image-row");
+      imageRow.classList.add("image-row", "table-header");
+      const number = document.createElement("div");
       const imageTypeContainer = document.createElement("div");
       const imageCategoryContainer = document.createElement("div");
       const imageFileNameContainer = document.createElement("div");
       const imageFileTypeContainer = document.createElement("div");
       const imageLinkContainer = document.createElement("div");
       const imageThumbnailContainer = document.createElement("div");
+      number.classList.add("number");
+      imageThumbnailContainer.classList.add("thumbnail");
+      number.innerText = `${i}`;
       imageTypeContainer.innerText = item.type;
       imageCategoryContainer.innerText = item.category;
       imageFileNameContainer.innerText = item.filename;
       imageFileTypeContainer.innerText = item.filetype;
       imageLinkContainer.innerText = item.link;
       imageThumbnailContainer.style.backgroundImage = `url(${item.link})`;
+      imageRow.appendChild(number);
       imageRow.appendChild(imageTypeContainer);
       imageRow.appendChild(imageCategoryContainer);
       imageRow.appendChild(imageFileNameContainer);
