@@ -17,7 +17,7 @@ async function loadImages() {
     imageData.images.forEach((item) => {
       ++i;
       const imageRow = document.createElement("div");
-      imageRow.classList.add("image-row", "table-header");
+      imageRow.classList.add("image-row");
       const number = document.createElement("div");
       const imageTypeContainer = document.createElement("div");
       const imageCategoryContainer = document.createElement("div");
