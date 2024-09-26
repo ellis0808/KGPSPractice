@@ -57,6 +57,7 @@ window.addEventListener("load", () => {
 });
 
 document.getElementById("image-search").addEventListener("submit", (event) => {
+  event.preventDefault();
   const searchItem = document.getElementById("filename").value;
   imageSearch(searchItem);
 });
@@ -67,13 +68,13 @@ async function imageSearch(searchItem) {
       `/KGPSEnglishPractice-test/api/load-images.php?id=${searchItem}`
     );
 
-    const data = await response.json();
-    console.log(data);
-
     if (!response.ok) {
       throw new Error("Network response not okay");
     }
+
+    const data = await response.json();
+    console.log(data);
   } catch (error) {
-    console.log("There was an error loading the images");
+    console.log("There was an error loading the images", error.message);
   }
 }
