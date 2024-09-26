@@ -56,7 +56,7 @@ window.addEventListener("load", () => {
   loadImages();
 });
 
-document.getElementById("search-entry").addEventListener("submit", () => {
+document.getElementById("filename").addEventListener("submit", () => {
   const searchItem = document.getElementById("filename").value;
   imageSearch(searchItem);
 });
