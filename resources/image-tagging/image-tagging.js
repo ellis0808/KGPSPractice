@@ -5,6 +5,7 @@
 // const imageLinkContainer = document.querySelector(".image-type-container");
 // const imageThumbnailContainer = document.querySelector(".image-type-container");
 const imageDataContainer = document.querySelector(".image-data-container");
+
 async function loadImages() {
   try {
     const response = await fetch(
@@ -55,8 +56,10 @@ function populateImageTable(data) {
     data = data.images;
   }
   if (imageDataContainer.childNodes) {
-    imageDataContainer.childNodes.forEach((item) => {
-      item.remove();
+    imageDataContainer.childNodes.forEach((formerItem) => {
+      console.log(formerItem);
+
+      formerItem.remove();
     });
   }
   data.forEach((item) => {
