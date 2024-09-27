@@ -7,7 +7,7 @@
 const imageDataContainer = document.querySelector(".image-data-container");
 const getAllImagesBtn = document.querySelector(".get-all-images-btn");
 
-getAllImagesBtn.addEventListener("pointer", loadImages);
+getAllImagesBtn.addEventListener("pointerdown", loadImages);
 
 async function loadImages() {
   try {
