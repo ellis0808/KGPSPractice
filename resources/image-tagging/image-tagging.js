@@ -5,9 +5,9 @@
 // const imageLinkContainer = document.querySelector(".image-type-container");
 // const imageThumbnailContainer = document.querySelector(".image-type-container");
 const imageDataContainer = document.querySelector(".image-data-container");
-const getAllImagesBtn = document.querySelector(".get-all-images-btn");
+// const getAllImagesBtn = document.querySelector(".get-all-images-btn");
 
-getAllImagesBtn.addEventListener("pointer", loadImages);
+// getAllImagesBtn.addEventListener("pointer", loadImages);
 
 async function loadImages() {
   try {
