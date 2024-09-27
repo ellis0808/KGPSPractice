@@ -54,7 +54,7 @@ function populateImageTable(data) {
   if (data.images) {
     data = data.images;
   }
-  if (imageDataContainer.children) {
+  if (imageDataContainer.childNodes) {
     imageDataContainer.childNodes.forEach((item) => {
       item.remove();
     });
