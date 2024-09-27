@@ -54,6 +54,11 @@ function populateImageTable(data) {
   if (data.images) {
     data = data.images;
   }
+  if (imageDataContainer.children) {
+    imageDataContainer.childNodes.forEach((item) => {
+      item.remove();
+    });
+  }
   data.forEach((item) => {
     ++i;
     const imageRow = document.createElement("div");
