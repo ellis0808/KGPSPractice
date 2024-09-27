@@ -56,10 +56,9 @@ function populateImageTable(data) {
     data = data.images;
   }
   if (imageDataContainer.childNodes) {
-    imageDataContainer.childNodes.forEach((formerItem) => {
-      console.log(formerItem);
-
-      formerItem.remove();
+    document.querySelectorAll(".image-row").forEach((row) => {
+      console.log(row);
+      row.remove();
     });
   }
   data.forEach((item) => {
