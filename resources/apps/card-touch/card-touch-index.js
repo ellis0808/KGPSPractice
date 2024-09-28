@@ -80,9 +80,19 @@ async function loadAudio(style) {
     const audioLinks = data.map((item) => {
       return item.link;
     });
-    console.log(audioLinks);
+    return audioLinks;
   } catch (error) {
     console.log("There was an error ", error);
+  }
+  try {
+    const response = await fetch(audioLinks);
+    if (!response.ok) {
+      throw new Error("Network response was not okay");
+    }
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log("There was an error loading the audio", error);
   }
 }
 
