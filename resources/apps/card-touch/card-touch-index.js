@@ -62,6 +62,27 @@ function setActivityId(style) {
 let sightWordsAudioObject = {};
 let alphabetAudioObject = {};
 
+async function loadAudio(style) {
+  let category;
+  let grouping;
+  if (style === 0 || style === 1) {
+    category = "alphabet";
+    grouping = 1;
+  }
+  try {
+    const response = await fetch(
+      `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not okay");
+    }
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log("There was an error ", error);
+  }
+}
+
 async function loadAudioForStyle(style) {
   let section;
   if (style === 0 || style === 1) {
@@ -154,7 +175,7 @@ style 5: sight words 4
 
   if (set === "capitals") {
     style = 0;
-    loadAudioForStyle(style);
+    loadAudio(style);
     setActivityId(style);
     return style;
   } else if (set === "lowercase") {
