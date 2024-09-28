@@ -77,7 +77,9 @@ async function loadAudio(style) {
       throw new Error("Network response was not okay");
     }
     const data = await response.json();
-    console.log(data);
+    data.forEach((item) => {
+      console.log(item);
+    });
   } catch (error) {
     console.log("There was an error ", error);
   }
