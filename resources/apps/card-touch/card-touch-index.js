@@ -78,8 +78,9 @@ async function loadAudio(style) {
     }
     const data = await response.json();
     const audioLinks = data.map((item) => {
-      console.log(item);
+      return item.link;
     });
+    console.log(audioLinks);
   } catch (error) {
     console.log("There was an error ", error);
   }
