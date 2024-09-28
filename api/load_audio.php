@@ -9,8 +9,8 @@ try {
 
     header('Content-Type: application/json');
 
-    $category = $_GET['category'] ?? null;
-    $grouping = $_GET['grouping'] ?? null;
+    $category = $_GET['id1'] ?? null;
+    $grouping = $_GET['id2'] ?? null;
     if ($category && $grouping) {
         $stmt = $pdo->prepare('SELECT link FROM `audio_category` where category =:category AND `grouping` = :`grouping`');
         $stmt->execute(['category' => $category, 'grouping' => $grouping]);
