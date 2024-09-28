@@ -111,6 +111,7 @@ async function loadAudioForStyle(style) {
         };
       }
     }
+
     if (style === 2 || style === 3 || style === 4) {
       for (const key in data) {
         const audioData = data[key];
