@@ -62,7 +62,7 @@ function setActivityId(style) {
 let sightWordsAudioObject = {};
 let alphabetAudioObject = {};
 
-async function loadAudio(style) {
+async function getAudio(style) {
   let category;
   let grouping;
   if (style === 0 || style === 1) {
@@ -80,13 +80,15 @@ async function loadAudio(style) {
     const audioLinks = data.map((item) => {
       return item.link;
     });
-    console.log(audioLinks);
-    return audioLinks;
+    loadAudio(audioLinks);
   } catch (error) {
     console.log("There was an error ", error);
   }
+}
+
+async function loadAudio(links) {
   try {
-    console.log(audioLinks);
+    console.log(links);
 
     // const response = await fetch(audioLinks);
     // if (!response.ok) {
@@ -98,7 +100,6 @@ async function loadAudio(style) {
     console.log("There was an error loading the audio", error);
   }
 }
-
 async function loadAudioForStyle(style) {
   let section;
   if (style === 0 || style === 1) {
@@ -192,7 +193,7 @@ style 5: sight words 4
 
   if (set === "capitals") {
     style = 0;
-    loadAudio(style);
+    getAudio(style);
     setActivityId(style);
     return style;
   } else if (set === "lowercase") {
