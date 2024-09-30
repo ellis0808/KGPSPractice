@@ -76,21 +76,24 @@ async function getAudio(style) {
     if (!response.ok) {
       throw new Error("Network response was not okay");
     }
-    const data = await response.json();
-    console.log(data);
+    const audioData = await response.json();
+    console.log(audioData);
 
-    const audioLinks = data.map((item) => {
-      return item.link;
-    });
-    loadAudio(audioLinks);
+    loadAudio(audioData);
   } catch (error) {
     console.log("There was an error ", error);
   }
 }
 
-function loadAudio(audioLinks) {
-  audioLinks.forEach(async (link) => {
-    alphabetAudioObject = {};
+function loadAudio(audioData) {
+  audioData.map((item) => {
+    return (alphabetAudioObject = {
+      content: item.content,
+      sound: new Howl({
+        src: [item.link],
+        volume: 0.5,
+      }),
+    });
   });
 }
 async function loadAudioForStyle(style) {
