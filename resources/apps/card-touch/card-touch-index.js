@@ -86,7 +86,7 @@ async function getAudio(style) {
 }
 
 function loadAudio(audioData) {
-  audioData.map((item) => {
+  const audioObject = audioData.map((item) => {
     return (alphabetAudioObject = {
       content: item.content,
       sound: new Howl({
@@ -95,6 +95,7 @@ function loadAudio(audioData) {
       }),
     });
   });
+  console.log(audioObject);
 }
 async function loadAudioForStyle(style) {
   let section;
