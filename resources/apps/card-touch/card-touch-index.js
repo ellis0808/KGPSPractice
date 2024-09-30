@@ -88,7 +88,9 @@ async function getAudio(style) {
 
 async function loadAudio(audioLinks) {
   try {
-    const response = await fetch(audioLinks);
+    console.log(audioLinks);
+
+    const response = await fetch(`${audioLinks}`);
     if (!response.ok) {
       throw new Error("Network response was not okay");
     }
