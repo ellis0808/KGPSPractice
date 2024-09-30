@@ -108,53 +108,53 @@ function loadAudio(audioData) {
     });
   });
 }
-async function loadAudioForStyle(style) {
-  let section;
-  if (style === 0 || style === 1) {
-    section = "alphabet";
-  }
-  if (style === 2 || style === 3 || style === 4) {
-    section = "sight-words";
-  }
-  try {
-    const response = await fetch(
-      `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${section}-manifest.json`
-    );
-    const data = await response.json();
+// async function loadAudioForStyle(style) {
+//   let section;
+//   if (style === 0 || style === 1) {
+//     section = "alphabet";
+//   }
+//   if (style === 2 || style === 3 || style === 4) {
+//     section = "sight-words";
+//   }
+//   try {
+//     const response = await fetch(
+//       `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${section}-manifest.json`
+//     );
+//     const data = await response.json();
 
-    if (style === 0 || style === 1) {
-      for (const key in data) {
-        const audioData = data[key];
-        alphabetAudioObject[key] = {
-          content: audioData.content,
-          sound: new Howl({
-            src: [
-              `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${audioData.file}`,
-            ],
-            volume: audioData.volume,
-          }),
-        };
-      }
-    }
+//     if (style === 0 || style === 1) {
+//       for (const key in data) {
+//         const audioData = data[key];
+//         alphabetAudioObject[key] = {
+//           content: audioData.content,
+//           sound: new Howl({
+//             src: [
+//               `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${audioData.file}`,
+//             ],
+//             volume: audioData.volume,
+//           }),
+//         };
+//       }
+//     }
 
-    if (style === 2 || style === 3 || style === 4) {
-      for (const key in data) {
-        const audioData = data[key];
-        sightWordsAudioObject[key] = {
-          content: audioData.content,
-          sound: new Howl({
-            src: [
-              `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${audioData.file}`,
-            ],
-            volume: audioData.volume,
-          }),
-        };
-      }
-    }
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
+//     if (style === 2 || style === 3 || style === 4) {
+//       for (const key in data) {
+//         const audioData = data[key];
+//         sightWordsAudioObject[key] = {
+//           content: audioData.content,
+//           sound: new Howl({
+//             src: [
+//               `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${audioData.file}`,
+//             ],
+//             volume: audioData.volume,
+//           }),
+//         };
+//       }
+//     }
+//   } catch (error) {
+//     console.error("Error:", error);
+//   }
+// }
 
 /* SCORING */
 const correctAnswerPoints = 2;
@@ -199,34 +199,34 @@ style 5: sight words 4
 */
   setTimeout(setUser, 2000);
 
-  if (set === "capitals") {
-    style = 0;
-    getAudio(style);
-    setActivityId(style);
-    return style;
-  } else if (set === "lowercase") {
-    style = 1;
-    loadAudioForStyle(style);
-    return style;
-  } else if (set === "sightwords1") {
-    style = 2;
-    loadAudioForStyle(style);
-    return style;
+  switch (set) {
+    case "capitals":
+      style = 0;
+      getAudio(style);
+      setActivityId(style);
+      return style;
+    case "lowercase":
+      style = 1;
+      getAudio(style);
+      setActivityId(style);
+      return style;
+    case "sightwords1":
+      style = 2;
+      getAudio(style);
+      setActivityId(style);
+      return style;
+    case "sightwords2":
+      style = 3;
+      getAudio(style);
+      setActivityId(style);
+      return style;
+    case "sightwords3":
+      style = 4;
+      getAudio(style);
+      setActivityId(style);
+      return style;
   }
-  if (set === "sightwords2") {
-    style = 3;
-    loadAudioForStyle(style);
-    return style;
-  }
-  if (set === "sightwords3") {
-    style = 4;
-    loadAudioForStyle(style);
-    setActivityId(style);
-    return style;
-  }
-  return style;
 }
-
 function setUser() {
   user.gradeLevel = sessionData.gradeLevel;
   user.firstName = sessionData.firstName;
