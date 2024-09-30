@@ -87,7 +87,7 @@ async function getAudio(style) {
 
 function loadAudio(audioData) {
   const audioObject = audioData.map((item) => {
-    return (alphabetAudioObject = {
+    return (alphabetAudioObject[item.content] = {
       content: item.content,
       sound: new Howl({
         src: [item.link],
