@@ -69,6 +69,18 @@ async function getAudio(style) {
     category = "alphabet";
     grouping = 1;
   }
+  if (style === 2) {
+    category = "sight-words";
+    grouping = 1;
+  }
+  if (style === 3) {
+    category = "sight-words";
+    grouping = 2;
+  }
+  if (style === 4) {
+    category = "sight-words";
+    grouping = 3;
+  }
   try {
     const response = await fetch(
       `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
@@ -95,7 +107,6 @@ function loadAudio(audioData) {
       }),
     });
   });
-  console.log(audioObject);
 }
 async function loadAudioForStyle(style) {
   let section;
