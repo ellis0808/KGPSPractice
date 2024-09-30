@@ -86,7 +86,7 @@ async function getAudio(style) {
   }
 }
 
-async function loadAudio(links) {
+async function loadAudio(audioLinks) {
   try {
     const response = await fetch(audioLinks);
     if (!response.ok) {
