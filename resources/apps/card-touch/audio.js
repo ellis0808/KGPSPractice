@@ -18,11 +18,11 @@ function speak() {
   const randomWord = cardText[randomNumber];
 
   setTimeout(function () {
-    if (style === 0 || style === 1) {
-      alphabetAudioObject[randomWord].sound.play();
-    } else if (style === 2 || style === 3 || style === 4) {
-      sightWordsAudioObject[randomWord].sound.play();
-    }
+    // if (style === 0 || style === 1) {
+    alphabetAudioObject[randomWord].sound.play();
+    // } else if (style === 2 || style === 3 || style === 4) {
+    // sightWordsAudioObject[randomWord].sound.play();
+    // }
   }, 1000);
 
   return (correctCardID = randomNumber);
@@ -30,15 +30,13 @@ function speak() {
 
 const cardTouchSfx = {
   correcCard: new Howl({
-    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-correct-1.mp3"],
+    src: ["/KGPSEPaudio/sfx/sfx-correct-1.mp3"],
   }),
   incorrectCard: new Howl({
-    src: [
-      "https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-incorrect-1.mp3",
-    ],
+    src: ["/KGPSEPaudio/sfx/sfx-incorrect-1.mp3"],
   }),
   startApp: new Howl({
-    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-select-3.mp3"],
+    src: ["/KGPSEPaudio/sfx/sfx-select-3.mp3"],
     volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {

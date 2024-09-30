@@ -597,11 +597,11 @@ function repeat() {
 
   setTimeout(function () {
     if (!isPaused) {
-      if (style === 0 || style === 1) {
-        alphabetAudioObject[randomItem].sound.play();
-      } else if (style === 2 || style === 3 || style === 4) {
-        sightWordsAudioObject[randomItem].sound.play();
-      }
+      // if (style === 0 || style === 1) {
+      alphabetAudioObject[randomItem].sound.play();
+      // } else if (style === 2 || style === 3 || style === 4) {
+      // sightWordsAudioObject[randomItem].sound.play();
+      // }
     }
   }, 30);
 }
