@@ -88,14 +88,12 @@ async function getAudio(style) {
 
 async function loadAudio(links) {
   try {
-    console.log(links);
-
-    // const response = await fetch(audioLinks);
-    // if (!response.ok) {
-    //   throw new Error("Network response was not okay");
-    // }
-    // const data = await response.json();
-    // console.log(data);
+    const response = await fetch(audioLinks);
+    if (!response.ok) {
+      throw new Error("Network response was not okay");
+    }
+    const data = await response.json();
+    console.log(data);
   } catch (error) {
     console.log("There was an error loading the audio", error);
   }
