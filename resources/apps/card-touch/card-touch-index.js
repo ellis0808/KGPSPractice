@@ -88,18 +88,16 @@ async function getAudio(style) {
 
 function loadAudio(audioLinks) {
   audioLinks.forEach(async (link) => {
-    console.log(link);
-
-    // try {
-    //   const response = await fetch(`${audioLinks}`);
-    //   if (!response.ok) {
-    //     throw new Error("Network response was not okay");
-    //   }
-    //   const data = await response.json();
-    //   console.log(data);
-    // } catch (error) {
-    //   console.log("There was an error loading the audio", error);
-    // }
+    try {
+      const response = await fetch(`${link}`);
+      if (!response.ok) {
+        throw new Error("Network response was not okay");
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log("There was an error loading the audio", error);
+    }
   });
 }
 async function loadAudioForStyle(style) {
