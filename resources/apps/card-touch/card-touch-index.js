@@ -99,14 +99,14 @@ async function getAudio(style) {
 
 function loadAudio(audioData) {
   const audioObject = audioData.map((item) => {
-    switch (item.content) {
-      case "isnt":
-        item.content = "isn't";
-        return item.content;
-      case "doesnt":
-        item.content = "doesn't";
-        return item.content;
-    }
+    // switch (item.content) {
+    //   case "isnt":
+    //     item.content = "isn't";
+    //     return item.content;
+    //   case "doesnt":
+    //     item.content = "doesn't";
+    //     return item.content;
+    // }
     return (alphabetAudioObject[item.content] = {
       content: item.content,
       sound: new Howl({
