@@ -80,8 +80,8 @@ async function loadAudio(style) {
     const audioLinks = data.map((item) => {
       return item.link;
     });
+    console.log(audioLinks);
     return audioLinks;
-    // console.log(audioLinks);
   } catch (error) {
     console.log("There was an error ", error);
   }
