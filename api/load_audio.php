@@ -12,7 +12,14 @@ try {
     $category = $_GET['id1'] ?? null;
     $grouping = $_GET['id2'] ?? null;
     if ($category && $grouping) {
-        $stmt = $pdo->prepare('SELECT content, link FROM `audio_directory` where category =:category AND ((category = "sight-words" AND `grouping` <= :grouping) OR (category != "sight-words" AND `grouping` = :grouping))');
+        $stmt = $pdo->prepare('SELECT content, link
+         FROM `audio_directory`
+         WHERE category = :category
+         AND (
+         (:category = "sight-words" AND `grouping` <= :grouping)
+         OR (:category != "sight-words" AND `grouping` = :grouping)
+         )
+         ');
         $stmt->execute(['category' => $category, 'grouping' => $grouping]);
         $audio = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($audio) {
