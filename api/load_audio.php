@@ -12,6 +12,17 @@ try {
     $category = $_GET['id1'] ?? null;
     $grouping = $_GET['id2'] ?? null;
     if ($category && $grouping) {
+        if ($category === "sight-words") {
+            $stmt = $pdo->prepare('SELECT content, link
+         FROM `audio_directory`
+         WHERE category = :category
+         AND  `grouping` <= :grouping');
+        } else {
+            $stmt = $pdo->prepare('SELECT content, link
+         FROM `audio_directory`
+         WHERE category = :category
+         AND  `grouping` = :grouping');
+        }
         $stmt = $pdo->prepare('SELECT content, link
          FROM `audio_directory`
          WHERE category = :category
