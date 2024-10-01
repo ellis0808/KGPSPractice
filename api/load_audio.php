@@ -15,11 +15,10 @@ try {
         $stmt = $pdo->prepare('SELECT content, link
          FROM `audio_directory`
          WHERE category = :category
-         AND `grouping` <=
-         CASE
-         WHEN :category = "sight-words" THEN :grouping
-         ELSE `grouping`
-         END
+         AND (
+         (`category` = "sight-words" AND `grouping` <= :grouping)
+         OR (:category != "sight-words" AND `grouping` = :grouping)
+         )
          ');
         $stmt->execute(['category' => $category, 'grouping' => $grouping]);
         $audio = $stmt->fetchAll(PDO::FETCH_ASSOC);
