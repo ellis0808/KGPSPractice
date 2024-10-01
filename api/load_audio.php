@@ -23,14 +23,6 @@ try {
          WHERE category = :category
          AND  `grouping` = :grouping');
         }
-        $stmt = $pdo->prepare('SELECT content, link
-         FROM `audio_directory`
-         WHERE category = :category
-         AND (
-         (`category` = "sight-words" AND `grouping` <= :grouping)
-         OR (`category` != "sight-words" AND `grouping` = :grouping)
-         )
-         ');
         $stmt->execute(['category' => $category, 'grouping' => $grouping]);
         $audio = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($audio) {
