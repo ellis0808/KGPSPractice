@@ -180,7 +180,6 @@ async function getAudio(style) {
       throw new Error("Network response was not okay");
     }
     const audioData = await response.json();
-    console.log(audioData);
     loadAudio(audioData);
   } catch (error) {
     console.log("There was an error ", error);
