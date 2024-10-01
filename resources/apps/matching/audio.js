@@ -16,19 +16,19 @@ function speak(event) {
 
 const matchingSfx = {
   validConnection: new Howl({
-    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-poppop-1.mp3"],
+    src: ["/KGPSEPaudio/sfx/sfx-poppop-1.mp3"],
     volume: 0.8,
   }),
   invalidConnection: new Howl({
-    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-cancel-1.mp3"],
+    src: ["/KGPSEPaudio/sfx/sfx-cancel-1.mp3"],
     volume: 0.8,
   }),
   allCorrect: new Howl({
-    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-correct-1.mp3"],
+    src: ["/KGPSEPaudio/sfx/sfx-correct-1.mp3"],
     volume: 0.8,
   }),
   startApp: new Howl({
-    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-select-3.mp3"],
+    src: ["/KGPSEPaudio/sfx/sfx-select-3.mp3"],
     volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {

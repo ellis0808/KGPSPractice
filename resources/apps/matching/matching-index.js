@@ -136,7 +136,7 @@ I. MAIN APP
 */
 let style;
 let activityId;
-let alphabetAudioObject = {};
+let audioObject = {};
 
 function setActivityId(style) {
   if (style === 0) {
@@ -165,35 +165,67 @@ function setActivityId(style) {
   //   return activityId;
   // }
 }
-
-async function loadAudioForStyle(style) {
-  let section;
+async function getAudio(style) {
+  let category;
+  let grouping;
   if (style === 0) {
-    section = "alphabet";
+    category = "alphabet";
+    grouping = 1;
   }
-
   try {
     const response = await fetch(
-      `/KGPSEPaudio/${section}-audio/${section}-manifest.json`
+      `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
     );
-    const data = await response.json();
-
-    if (style === 0) {
-      for (const key in data) {
-        const audioData = data[key];
-        alphabetAudioObject[key] = {
-          content: audioData.content,
-          sound: new Howl({
-            src: [`/KGPSEPaudio/${section}-audio/${audioData.file}`],
-            volume: audioData.volume,
-          }),
-        };
-      }
+    if (!response.ok) {
+      throw new Error("Network response was not okay");
     }
+    const audioData = await response.json();
+    console.log(audioData);
+    loadAudio(audioData);
   } catch (error) {
-    console.error("Error:", error);
+    console.log("There was an error ", error);
   }
 }
+
+function loadAudio(audioData) {
+  const audio = audioData.map((item) => {
+    return (audioObject[item.content] = {
+      content: item.content,
+      sound: new Howl({
+        src: [item.link],
+        volume: 0.5,
+      }),
+    });
+  });
+}
+// async function loadAudioForStyle(style) {
+//   let section;
+//   if (style === 0) {
+//     section = "alphabet";
+//   }
+
+//   try {
+//     const response = await fetch(
+//       `/KGPSEPaudio/${section}-audio/${section}-manifest.json`
+//     );
+//     const data = await response.json();
+
+//     if (style === 0) {
+//       for (const key in data) {
+//         const audioData = data[key];
+//         alphabetAudioObject[key] = {
+//           content: audioData.content,
+//           sound: new Howl({
+//             src: [`/KGPSEPaudio/${section}-audio/${audioData.file}`],
+//             volume: audioData.volume,
+//           }),
+//         };
+//       }
+//     }
+//   } catch (error) {
+//     console.error("Error:", error);
+//   }
+// }
 
 function matchingApp(set) {
   sessionCheck();
@@ -849,7 +881,7 @@ function generateLetterDivsForMatching(array) {
       letter.classList.add(divGroup, "letter-matching-app");
       letter.innerText = `${letter.getAttribute("contentId")}`;
       letter.addEventListener("click", () => {
-        alphabetAudioObject[item].sound.play();
+        audioObject[item].sound.play();
       });
       lowercaseLetterDiv.appendChild(letter);
     });
@@ -862,7 +894,7 @@ function generateLetterDivsForMatching(array) {
     letter.classList.add(divGroup, "letter-matching-app");
     letter.innerText = `${letter.getAttribute("contentId")}`;
     letter.addEventListener("click", () => {
-      alphabetAudioObject[item.toLowerCase()].sound.play();
+      audioObject[item.toLowerCase()].sound.play();
     });
     capitalLettersDiv.appendChild(letter);
   });
@@ -1424,7 +1456,7 @@ document.body.addEventListener("touchstart", createDoubleTapPreventer(500), {
 export {
   matchingApp,
   checkAllCorrect,
-  alphabetAudioObject,
+  audioObject,
   currentDotId,
   endDotId,
   startDotId,

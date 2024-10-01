@@ -1,8 +1,5 @@
 import { cardText, style } from "./card-touch-index.js";
-import {
-  alphabetAudioObject,
-  sightWordsAudioObject,
-} from "./card-touch-index.js";
+import { audioObject } from "./card-touch-index.js";
 
 let correctCardID;
 
@@ -19,7 +16,7 @@ function speak() {
 
   setTimeout(function () {
     // if (style === 0 || style === 1) {
-    alphabetAudioObject[randomWord].sound.play();
+    audioObject[randomWord].sound.play();
     // } else if (style === 2 || style === 3 || style === 4) {
     // sightWordsAudioObject[randomWord].sound.play();
     // }

@@ -60,7 +60,7 @@ function setActivityId(style) {
 }
 
 let sightWordsAudioObject = {};
-let alphabetAudioObject = {};
+let audioObject = {};
 
 async function getAudio(style) {
   let category;
@@ -99,7 +99,7 @@ async function getAudio(style) {
 
 function loadAudio(audioData) {
   const audioObject = audioData.map((item) => {
-    return (alphabetAudioObject[item.content] = {
+    return (audioObject[item.content] = {
       content: item.content,
       sound: new Howl({
         src: [item.link],
@@ -598,7 +598,7 @@ function repeat() {
   setTimeout(function () {
     if (!isPaused) {
       // if (style === 0 || style === 1) {
-      alphabetAudioObject[randomItem].sound.play();
+      audioObject[randomItem].sound.play();
       // } else if (style === 2 || style === 3 || style === 4) {
       // sightWordsAudioObject[randomItem].sound.play();
       // }
@@ -930,7 +930,7 @@ export {
   cardTouchApp,
   startCardTouchApp,
   cardText,
-  alphabetAudioObject,
+  audioObject,
   style,
   sightWordsAudioObject,
 };
