@@ -263,7 +263,7 @@ function matchingApp(set) {
   }
   if (set === "alphabet") {
     style = 0;
-    loadAudioForStyle(style);
+    getAudio(style);
     setActivityId(style);
     return style;
   } //else if (set === "lowercase") {
