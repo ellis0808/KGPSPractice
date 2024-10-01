@@ -1,5 +1,5 @@
 import { body } from "../../utilities/variables.js";
-import { alphabetAudioObject } from "./matching-index.js";
+import { audioObject } from "./matching-index.js";
 import { matchingSfx } from "./audio.js";
 import {
   checkAllCorrect,
@@ -166,7 +166,7 @@ class StartDot {
     matchingSfx.validConnection.play();
 
     setTimeout(() => {
-      alphabetAudioObject[this.contentId.toLowerCase()].sound.play();
+      audioObject[this.contentId.toLowerCase()].sound.play();
     }, 200);
 
     checkAllCorrect();
