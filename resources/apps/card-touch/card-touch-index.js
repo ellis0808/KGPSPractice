@@ -60,6 +60,7 @@ function cardTouchApp(set) {
   );
   removeMenuPage();
 
+  setUiElements();
   setTimeout(displayStartBtn, 200);
 
   score.resetScore();
@@ -115,47 +116,49 @@ cancelGoHomeBtn.textContent = "Cancel";
 cancelGoHomeBtn.addEventListener("click", returnToApp);
 
 /* Common UI Elements */
-const grid = document.createElement("div");
-grid.classList.add("grid");
-grid.setAttribute("id", "grid");
-if (style === 2 || style === 3 || style === 4) {
-  grid.classList.add("sight-word-grid");
-}
-const btnContainer2 = document.createElement("div");
-btnContainer2.classList.add("btn-container2");
-const startBtn = document.createElement("button");
-startBtn.setAttribute("id", "start-btn");
-startBtn.classList.add("card-touch-app");
-startBtn.addEventListener("click", startSession);
-const exitBtn = document.createElement("div");
-exitBtn.setAttribute("id", "exit-btn");
-exitBtn.classList.add("card-touch-app", "hide");
+const setUiElements = () => {
+  const grid = document.createElement("div");
+  grid.classList.add("grid");
+  grid.setAttribute("id", "grid");
+  if (style === 2 || style === 3 || style === 4) {
+    grid.classList.add("sight-word-grid");
+  }
+  const btnContainer2 = document.createElement("div");
+  btnContainer2.classList.add("btn-container2");
+  const startBtn = document.createElement("button");
+  startBtn.setAttribute("id", "start-btn");
+  startBtn.classList.add("card-touch-app");
+  startBtn.addEventListener("click", startSession);
+  const exitBtn = document.createElement("div");
+  exitBtn.setAttribute("id", "exit-btn");
+  exitBtn.classList.add("card-touch-app", "hide");
 
-exitBtn.addEventListener("click", endApp);
-const btnContainer1 = document.createElement("div");
-btnContainer1.classList.add("btn-container1", "hide");
-btnContainer1.setAttribute("id", "btn-container1");
-const btnContainer3 = document.createElement("div");
-btnContainer3.classList.add("btn-container3", "hide");
-btnContainer3.setAttribute("id", "btn-container3");
-const repeatBtn = document.createElement("div");
-repeatBtn.classList.add("repeat-btn");
-repeatBtn.classList.add("card-touch-app");
-repeatBtn.setAttribute("id", "repeat-btn");
-repeatBtn.addEventListener("click", repeat);
-repeatBtn.textContent = "Repeat";
-toggleRepeatBtnHide();
-// toggleScoreDisplayHide();
-scoreDisplay.textContent = `${score.currentScore}`;
+  exitBtn.addEventListener("click", endApp);
+  const btnContainer1 = document.createElement("div");
+  btnContainer1.classList.add("btn-container1", "hide");
+  btnContainer1.setAttribute("id", "btn-container1");
+  const btnContainer3 = document.createElement("div");
+  btnContainer3.classList.add("btn-container3", "hide");
+  btnContainer3.setAttribute("id", "btn-container3");
+  const repeatBtn = document.createElement("div");
+  repeatBtn.classList.add("repeat-btn");
+  repeatBtn.classList.add("card-touch-app");
+  repeatBtn.setAttribute("id", "repeat-btn");
+  repeatBtn.addEventListener("click", repeat);
+  repeatBtn.textContent = "Repeat";
+  toggleRepeatBtnHide();
+  // toggleScoreDisplayHide();
+  scoreDisplay.textContent = `${score.currentScore}`;
 
-const tryAgainBtn = document.createElement("div");
-tryAgainBtn.classList.add("try-again-btn");
-tryAgainBtn.innerText = "One More Time";
-tryAgainBtn.addEventListener("click", startSession);
-const finishBtn = document.createElement("div");
-finishBtn.classList.add("finish-btn");
-finishBtn.addEventListener("click", endApp);
-finishBtn.innerText = "Finish";
+  const tryAgainBtn = document.createElement("div");
+  tryAgainBtn.classList.add("try-again-btn");
+  tryAgainBtn.innerText = "One More Time";
+  tryAgainBtn.addEventListener("click", startSession);
+  const finishBtn = document.createElement("div");
+  finishBtn.classList.add("finish-btn");
+  finishBtn.addEventListener("click", endApp);
+  finishBtn.innerText = "Finish";
+};
 
 let isPaused = false;
 let appStarted = false;
