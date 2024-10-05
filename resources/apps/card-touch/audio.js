@@ -1,6 +1,6 @@
 import { cardText } from "./card-touch-index.js";
 
-const audioObject = {};
+let audioObject;
 let correctCardID;
 
 let randomNumber;
