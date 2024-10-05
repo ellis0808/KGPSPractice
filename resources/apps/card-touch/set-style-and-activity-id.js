@@ -1,15 +1,15 @@
 import { getAudio } from "./card-touch-index";
-let style;
-let activityId;
+// let style;
+// let activityId;
 
 // This function sets the style based on what the activity is. The "set" is retrieved from 'start-main-app', which is the main page that the user sees upon loging in.
 function setStyle(set) {
   switch (set) {
     case "capitals":
       style = 0;
-      getAudio(style);
       activityId = 1;
-    // return style;
+      getAudio(style);
+      return [style, activityId];
     case "lowercase":
       style = 1;
       getAudio(style);
@@ -37,6 +37,7 @@ function setStyle(set) {
       return style;
   }
 }
+const [style, activityId] = setStyle();
 
 // This function sets the activity id. The activity id is used in recording the score obtained in a given activity. (Separate scores are kept for each activity; the number the user sees score is the total of all activity scores combined.)
 function setActivityId(style) {
