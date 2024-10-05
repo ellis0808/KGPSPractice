@@ -1,5 +1,5 @@
 import { cardText } from "./card-touch-index.js";
-
+let audioObject = {};
 let correctCardID;
 
 let randomNumber;
