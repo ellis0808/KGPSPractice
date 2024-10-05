@@ -10,7 +10,7 @@ import {
   randomNumber,
   speak,
   getAudio,
-  loadAudio,
+  audioObject,
 } from "./audio.js";
 import {
   alphabet,
@@ -805,12 +805,4 @@ function returnToApp() {
   pauseBtn.addEventListener("click", pause);
 }
 
-export {
-  cardTouchApp,
-  getAudio,
-  startCardTouchApp,
-  cardText,
-  audioObject,
-  style,
-  sightWordsAudioObject,
-};
+export { cardTouchApp, getAudio, startCardTouchApp, cardText, style };
