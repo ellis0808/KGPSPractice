@@ -37,7 +37,7 @@ function setStyle(set) {
       return style;
   }
 }
-const [style, activityId] = setStyle();
+const [style, activityId] = setStyle(set);
 
 // This function sets the activity id. The activity id is used in recording the score obtained in a given activity. (Separate scores are kept for each activity; the number the user sees score is the total of all activity scores combined.)
 function setActivityId(style) {
