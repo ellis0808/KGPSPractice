@@ -61,6 +61,7 @@ function cardTouchApp(set) {
   removeMenuPage();
 
   setUiElements();
+  setTimer();
   setTimeout(displayStartBtn, 200);
 
   score.resetScore();
@@ -166,21 +167,24 @@ let isSessionFinished = false;
 let cardText = [];
 let newCardText;
 let countDown;
+
 // TIMER
 let time;
 let roundTime;
-if (style === 2) {
-  roundTime = 30;
-  timer.innerText = "0:30";
-} else {
-  roundTime = 60;
-  timer.innerText = "1:00";
-}
-function startTimer() {
+const setTimer = () => {
+  if (style === 2) {
+    roundTime = 30;
+    timer.innerText = "0:30";
+  } else {
+    roundTime = 60;
+    timer.innerText = "1:00";
+  }
+};
+const startTimer = () => {
   time = roundTime;
   setTimeout(displayTimer, 500);
-}
-function displayTimer() {
+};
+const displayTimer = () => {
   countDown = setInterval(() => {
     if (!isPaused) {
       --time;
@@ -204,13 +208,13 @@ function displayTimer() {
     }
   }, 1000);
   return countDown;
-}
-function resetTimer() {
+};
+const resetTimer = () => {
   timer.innerText = "1:00";
   timer.classList.remove("wobble");
   time = roundTime;
   clearInterval(countDown);
-}
+};
 function disableTouch() {
   const allCards = document.querySelectorAll(".card");
   allCards.forEach((card) => {
