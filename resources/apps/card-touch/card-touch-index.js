@@ -45,6 +45,7 @@ function cardTouchApp(set) {
   sessionCheck();
   setStyle(set);
   setGridStyle(style);
+  setRoundTime(style);
   setTimeout(() => {
     resetTimer();
     mainContainer.appendChild(appContainer);
@@ -164,13 +165,15 @@ let countDown;
 // TIMER
 let time;
 let roundTime;
-if (style === 2) {
-  roundTime = 30;
-  timer.innerText = "0:30";
-} else {
-  roundTime = 60;
-  timer.innerText = "1:00";
-}
+const setRoundTime = (style) => {
+  if (style === 2) {
+    roundTime = 30;
+    timer.innerText = "0:30";
+  } else {
+    roundTime = 60;
+    timer.innerText = "1:00";
+  }
+};
 function startTimer() {
   time = roundTime;
   setTimeout(displayTimer, 500);
