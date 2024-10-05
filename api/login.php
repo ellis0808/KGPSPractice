@@ -7,6 +7,13 @@ if (session_status() == PHP_SESSION_NONE) {
 require './db_connect.php';
 
 
+$ip = $_SERVER['REMOTE_ADDR'];
+$failed_attempts = get_failed_attempts($ip);
+
+if ($failed_attempts && $failed_attempts['attempts'] >= 5 && (time() - strtotime($failed_attempts['attempt_time']) < 900)) {
+    die('Too many failed login attempts. Please try again later.');
+}
+
 $data = json_decode(file_get_contents('php://input'), true);
 $id = (int)$data['id'] ?? null;
 $firstname = $data['firstname'] ?? null;
@@ -45,11 +52,39 @@ try {
         $_SESSION['access'] = $user['access'];
         $_SESSION['gradeLevel'] = $user['grade_level'];
 
+        clear_failed_attempts($ip);
 
         echo json_encode($user);
     } else {
+        log_failed_attempt($ip);
+
         echo json_encode(['error' => 'Invalid ID, firstname, lastname or password']);
     }
 } catch (PDOException $e) {
     echo json_encode(['error' => $e->getMessage()]);
+}
+
+
+function get_failed_attempts($ip)
+{
+    global $pdo;
+    $stmt = $pdo->prepare("SELECT attempts, attempt_time FROM login_attempts WHERE ip_address = :ip");
+    $stmt->execute(['ip' => $ip]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function log_failed_attempt($ip)
+{
+    global $pdo;
+    $stmt = $pdo->prepare("INSERT INTO login_attempts (ip_address, attempts)
+    VALUES (:ip, 1)
+    ON DUPLICATE KEY UPDATE attempts = attempts + 1, attempt_time = CURRENT_TIMESTAMP");
+    $stmt->execute(['ip' => $ip]);
+}
+
+function clear_failed_attempts($ip)
+{
+    global $pdo;
+    $stmt = $pdo->prepare("DELETE FROM login_attempts WHERE ip_address = :ip");
+    $stmt->execute(['ip' => $ip]);
 }

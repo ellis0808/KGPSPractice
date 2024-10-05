@@ -4,7 +4,14 @@ import {
   navBar,
   stylesheet,
 } from "../../utilities/variables.js";
-import { cardTouchSfx, correctCardID, randomNumber, speak } from "./audio.js";
+import {
+  cardTouchSfx,
+  correctCardID,
+  randomNumber,
+  speak,
+  getAudio,
+  loadAudio,
+} from "./audio.js";
 import {
   alphabet,
   sightWords1,
@@ -28,10 +35,13 @@ import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import { timer, toggleTimerHide } from "../../utilities/timer-object.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
+import { setStyle } from "./set-style.js";
 
 let style;
 let activityId;
-function setActivityId(style) {
+
+// This function sets the activity id. The activity id is used in recording the score obtained in a given activity. (Separate scores are kept for each activity; the number the user sees score is the total of all activity scores combined.)
+export function setActivityId(style) {
   if (style === 0) {
     activityId = 1;
     return activityId;
@@ -58,102 +68,6 @@ function setActivityId(style) {
     return activityId;
   }
 }
-
-let sightWordsAudioObject = {};
-let audioObject = {};
-
-async function getAudio(style) {
-  let category;
-  let grouping;
-  if (style === 0 || style === 1) {
-    category = "alphabet";
-    grouping = 1;
-  }
-  if (style === 2) {
-    category = "sight-words";
-    grouping = 1;
-  }
-  if (style === 3) {
-    category = "sight-words";
-    grouping = 2;
-  }
-  if (style === 4) {
-    category = "sight-words";
-    grouping = 3;
-  }
-  try {
-    const response = await fetch(
-      `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
-    );
-    if (!response.ok) {
-      throw new Error("Network response was not okay");
-    }
-    const audioData = await response.json();
-
-    loadAudio(audioData);
-  } catch (error) {
-    console.log("There was an error ", error);
-  }
-}
-
-function loadAudio(audioData) {
-  const audioObject = audioData.map((item) => {
-    return (audioObject[item.content] = {
-      content: item.content,
-      sound: new Howl({
-        src: [item.link],
-        volume: 0.5,
-      }),
-    });
-  });
-}
-// async function loadAudioForStyle(style) {
-//   let section;
-//   if (style === 0 || style === 1) {
-//     section = "alphabet";
-//   }
-//   if (style === 2 || style === 3 || style === 4) {
-//     section = "sight-words";
-//   }
-//   try {
-//     const response = await fetch(
-//       `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${section}-manifest.json`
-//     );
-//     const data = await response.json();
-
-//     if (style === 0 || style === 1) {
-//       for (const key in data) {
-//         const audioData = data[key];
-//         alphabetAudioObject[key] = {
-//           content: audioData.content,
-//           sound: new Howl({
-//             src: [
-//               `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${audioData.file}`,
-//             ],
-//             volume: audioData.volume,
-//           }),
-//         };
-//       }
-//     }
-
-//     if (style === 2 || style === 3 || style === 4) {
-//       for (const key in data) {
-//         const audioData = data[key];
-//         sightWordsAudioObject[key] = {
-//           content: audioData.content,
-//           sound: new Howl({
-//             src: [
-//               `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${audioData.file}`,
-//             ],
-//             volume: audioData.volume,
-//           }),
-//         };
-//       }
-//     }
-//   } catch (error) {
-//     console.error("Error:", error);
-//   }
-// }
 
 /* SCORING */
 const correctAnswerPoints = 2;
@@ -188,43 +102,9 @@ function cardTouchApp(set) {
   if (!timer.classList.contains("hide2")) {
     toggleTimerHide();
   }
-  /* 
-style 0: capitals
-style 1: lowercase
-style 2: sight words 1
-style 3: sight words 2
-style 4: sight words 3
-style 5: sight words 4
-*/
   setTimeout(setUser, 2000);
 
-  switch (set) {
-    case "capitals":
-      style = 0;
-      getAudio(style);
-      setActivityId(style);
-      return style;
-    case "lowercase":
-      style = 1;
-      getAudio(style);
-      setActivityId(style);
-      return style;
-    case "sightwords1":
-      style = 2;
-      getAudio(style);
-      setActivityId(style);
-      return style;
-    case "sightwords2":
-      style = 3;
-      getAudio(style);
-      setActivityId(style);
-      return style;
-    case "sightwords3":
-      style = 4;
-      getAudio(style);
-      setActivityId(style);
-      return style;
-  }
+  setStyle(set);
 }
 function setUser() {
   user.gradeLevel = sessionData.gradeLevel;
@@ -927,6 +807,7 @@ function returnToApp() {
 
 export {
   cardTouchApp,
+  getAudio,
   startCardTouchApp,
   cardText,
   audioObject,

@@ -1,5 +1,5 @@
-import { cardText, style } from "./card-touch-index.js";
-import { audioObject } from "./card-touch-index.js";
+import { cardText } from "./card-touch-index.js";
+const audioObject = {};
 
 let correctCardID;
 
@@ -15,11 +15,7 @@ function speak() {
   const randomWord = cardText[randomNumber];
 
   setTimeout(function () {
-    // if (style === 0 || style === 1) {
     audioObject[randomWord].sound.play();
-    // } else if (style === 2 || style === 3 || style === 4) {
-    // sightWordsAudioObject[randomWord].sound.play();
-    // }
   }, 1000);
 
   return (correctCardID = randomNumber);
@@ -43,4 +39,63 @@ const cardTouchSfx = {
   }),
 };
 
-export { cardTouchSfx, correctCardID, randomNumber, speak };
+async function getAudio(style) {
+  // these two variables will be used to retrieve the associated audio links from the server; they follow the format of the 'audio_data' table, so refernce the category and grouping from there
+  let category;
+  let grouping;
+  if (style === 0 || style === 1) {
+    category = "alphabet";
+    grouping = 1;
+  }
+  if (style === 2) {
+    category = "sight-words";
+    grouping = 1;
+  }
+  if (style === 3) {
+    category = "sight-words";
+    grouping = 2;
+  }
+  if (style === 4) {
+    category = "sight-words";
+    grouping = 3;
+  }
+  if (style === 5) {
+    category = "phonics";
+    grouping = 1;
+  }
+  try {
+    const response = await fetch(
+      `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not okay");
+    }
+    const audioData = await response.json();
+
+    loadAudio(audioData);
+  } catch (error) {
+    console.log("There was an error ", error);
+  }
+}
+
+function loadAudio(audioData) {
+  const audioObject = audioData.map((item) => {
+    return (audioObject[item.content] = {
+      content: item.content,
+      sound: new Howl({
+        src: [item.link],
+        volume: 0.5,
+      }),
+    });
+  });
+}
+
+export {
+  audioObject,
+  cardTouchSfx,
+  correctCardID,
+  randomNumber,
+  speak,
+  getAudio,
+  loadAudio,
+};
