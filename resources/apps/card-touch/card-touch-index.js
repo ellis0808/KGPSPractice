@@ -656,7 +656,6 @@ async function updateUserTotalScore() {
   }
 }
 function endSession() {
-  style = 0;
   unpause2();
   homeBtnReturnToNormal();
   resetNavigationBtns();
