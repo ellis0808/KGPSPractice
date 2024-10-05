@@ -44,7 +44,7 @@ const incorrectAnswerPoints = 1;
 function cardTouchApp(set) {
   sessionCheck();
   setStyle(set);
-
+  setGridStyle(style);
   setTimeout(() => {
     resetTimer();
     mainContainer.appendChild(appContainer);
@@ -118,9 +118,7 @@ cancelGoHomeBtn.addEventListener("click", returnToApp);
 const grid = document.createElement("div");
 grid.classList.add("grid");
 grid.setAttribute("id", "grid");
-if (style === 2 || style === 3 || style === 4) {
-  grid.classList.add("sight-word-grid");
-}
+
 const btnContainer2 = document.createElement("div");
 btnContainer2.classList.add("btn-container2");
 const startBtn = document.createElement("button");
@@ -222,6 +220,12 @@ function enableTouch() {
   });
   // repeatBtn.classList.remove("no-touch");
 }
+
+const setGridStyle = (style) => {
+  if (style === 2 || style === 3 || style === 4) {
+    grid.classList.add("sight-word-grid");
+  }
+};
 
 function displayStartBtn() {
   startBtn.textContent = "Start";
