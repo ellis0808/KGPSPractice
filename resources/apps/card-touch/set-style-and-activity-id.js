@@ -8,8 +8,8 @@ function setStyle(set) {
     case "capitals":
       style = 0;
       getAudio(style);
-      setActivityId(style);
-      return style;
+      activityId = 1;
+    // return style;
     case "lowercase":
       style = 1;
       getAudio(style);
@@ -30,10 +30,10 @@ function setStyle(set) {
       getAudio(style);
       setActivityId(style);
       return style;
-    case "phonics1":
+    case "letter-sounds-asmf":
       style = 5;
       getAudio(style);
-      setActivityId(style);
+      activityId = 16;
       return style;
   }
 }

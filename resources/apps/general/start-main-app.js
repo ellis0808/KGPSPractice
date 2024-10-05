@@ -70,28 +70,42 @@ const navUserSpace = document.querySelector(".nav-user");
 const navUserName = document.querySelector(".nav-user-name");
 const navUserMenu = document.querySelector(".nav-user-menu");
 
+// Alphabet Menu
 const abcMenu = document.createElement("div");
 abcMenu.setAttribute("id", "div1");
 abcMenu.classList.add("div", "div-start-menu1", "main-menu-div");
 abcMenu.innerText = "ABCs";
 abcMenu.addEventListener("click", displayAbcMenu);
+
+// Numbers Main Menu Button
 const numbersMenu = document.createElement("div");
 numbersMenu.setAttribute("id", "div2");
 numbersMenu.classList.add("div", "div-start-menu2", "main-menu-div");
 numbersMenu.innerText = "1,2,3";
 numbersMenu.addEventListener("click", displayNumbersMenu);
+
+// Sight Words Main Menu Button
 const sightWordsMenu = document.createElement("div");
 sightWordsMenu.setAttribute("id", "div3");
 sightWordsMenu.classList.add("div", "div-start-menu4", "main-menu-div");
 sightWordsMenu.addEventListener("click", displaySightWordsMenu);
 sightWordsMenu.innerText = "Sight Words";
-const spellingMenu = document.createElement("div");
-spellingMenu.setAttribute("id", "div4");
-spellingMenu.classList.add("div", "div-start-menu4", "main-menu-div");
-spellingMenu.addEventListener("click", displaySpellingMenu);
 
-spellingMenu.innerText = "Spelling";
+// Letter Sounds Main Menu Button
+const letterSoundsMenu = document.createElement("div");
+letterSoundsMenu.setAttribute("id", "div5");
+letterSoundsMenu.classList.add("div", "div-start-menu5", "main-menu-div");
+letterSoundsMenu.addEventListener("click", displayLetterSoundsMenu);
+letterSoundsMenu.innerText = "Letter Sounds";
 const div4 = document.createElement("div");
+
+// Spelling Main Menu Button
+const spellingMenu = document.createElement("div");
+spellingMenu.setAttribute("id", "div5");
+spellingMenu.classList.add("div", "div-start-menu5", "main-menu-div");
+spellingMenu.addEventListener("click", displaySpellingMenu);
+spellingMenu.innerText = "Spelling";
+
 // div4.setAttribute("id", "div4");
 
 // div4.classList.add("div", "div-start-menu4", "main-menu-div");
@@ -127,6 +141,7 @@ function setTopMenuVariables() {
   menuContainer.appendChild(abcMenu);
   menuContainer.appendChild(numbersMenu);
   menuContainer.appendChild(sightWordsMenu);
+  // menuContainer.appendChild(letterSoundsMenu);
   // menuContainer.appendChild(spellingMenu);
   // menuContainer.appendChild(div4);
 }
@@ -186,6 +201,7 @@ function returnToMainMenu() {
   abcMenu.classList.remove("hidden");
   numbersMenu.classList.remove("hidden");
   sightWordsMenu.classList.remove("hidden");
+  // letterSoundsMenu.classList.remove("hidden");
   // spellingMenu.classList.remove("hidden");
   // div4.classList.remove("hidden");
   alphabetCapitalsCardTouchAppMenuItem.remove();
@@ -254,7 +270,7 @@ alphabetMatchingAppMenuItem.addEventListener("click", () => {
 });
 /* Alphabet menu items fin */
 
-/* "Sight Words" Menu Items  (2) */
+/* Sight Words Menu Items  (3) */
 
 // 1. Sight Words 1 Touch App Menu Item
 const sightWords1AppMenuItem = document.createElement("div");
@@ -285,6 +301,37 @@ sightWords3AppMenuItem.addEventListener("click", () => {
 
 /* Sight Words menu items fin */
 
+/* Letter Sounds Menu Items  (1) */
+
+// 1. Letter Sounds Touch App Menu Item
+const letterSoundsAMSFAppMenuItem = document.createElement("div");
+letterSoundsAMSFAppMenuItem.setAttribute("id", "amsf-app-menu-item");
+letterSoundsAMSFAppMenuItem.classList.add("div");
+letterSoundsAMSFAppMenuItem.innerText = "a, m , s, f";
+letterSoundsAMSFAppMenuItem.addEventListener("click", () => {
+  startCardTouchApp("letter-sounds-asmf");
+});
+
+// 2. Letter Sounds Touch App Menu Item
+// const sightWords2AppMenuItem = document.createElement("div");
+// sightWords2AppMenuItem.setAttribute("id", "sight-words-2-app-menu-item");
+// sightWords2AppMenuItem.classList.add("div");
+// sightWords2AppMenuItem.innerText = "Sight Words 2";
+// sightWords2AppMenuItem.addEventListener("click", () => {
+//   startCardTouchApp("sightwords2");
+// });
+
+// 3. Letter Sounds Matching App Menu Item
+// const sightWords3AppMenuItem = document.createElement("div");
+// sightWords3AppMenuItem.setAttribute("id", "sight-words-3-app-menu-item");
+// sightWords3AppMenuItem.classList.add("div");
+// sightWords3AppMenuItem.innerText = "Sight Words 3";
+// sightWords3AppMenuItem.addEventListener("click", () => {
+//   startCardTouchApp("sightwords3");
+// });
+
+/* Letter Sounds menu items fin */
+
 /* Spelling Menu Items  (2) */
 
 // 1. Spelling Touch App menu item
@@ -314,6 +361,7 @@ function displayAbcMenu() {
   abcMenu.classList.add("hidden");
   numbersMenu.classList.add("hidden");
   sightWordsMenu.classList.add("hidden");
+  letterSoundsMenu.classList.add("hidden");
   spellingMenu.classList.add("hidden");
   div4.classList.add("hidden");
   menuContainer.appendChild(alphabetCapitalsCardTouchAppMenuItem);
@@ -333,6 +381,7 @@ function displaySightWordsMenu() {
   abcMenu.classList.add("hidden");
   numbersMenu.classList.add("hidden");
   sightWordsMenu.classList.add("hidden");
+  letterSoundsMenu.classList.add("hidden");
   spellingMenu.classList.add("hidden");
   div4.classList.add("hidden");
   menuContainer.appendChild(sightWords1AppMenuItem);
@@ -342,6 +391,26 @@ function displaySightWordsMenu() {
   sightWords1AppMenuItem.classList.remove("hidden");
   sightWords2AppMenuItem.classList.remove("hidden");
   sightWords3AppMenuItem.classList.remove("hidden");
+  returnToMainMenuToggle();
+}
+function displayLetterSoundsMenu() {
+  mainMenuSfx.select2.play();
+  isMainMenu = false;
+  hideParentsInfoBtn();
+  topContainer.innerText = "Sight Words";
+  abcMenu.classList.add("hidden");
+  numbersMenu.classList.add("hidden");
+  sightWordsMenu.classList.add("hidden");
+  letterSoundsMenu.classList.add("hidden");
+  spellingMenu.classList.add("hidden");
+  div4.classList.add("hidden");
+  menuContainer.appendChild(letterSoundsAMSFAppMenuItem);
+  // menuContainer.appendChild(sightWords2AppMenuItem);
+  // menuContainer.appendChild(sightWords3AppMenuItem);
+  // menuContainer.appendChild(returnToMainMenuBtn);
+  letterSoundsAMSFAppMenuItem.classList.remove("hidden");
+  // sightWords2AppMenuItem.classList.remove("hidden");
+  // sightWords3AppMenuItem.classList.remove("hidden");
   returnToMainMenuToggle();
 }
 

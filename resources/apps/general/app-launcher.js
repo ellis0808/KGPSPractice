@@ -16,6 +16,8 @@ function startCardTouchApp(set) {
     cardTouchApp("sightwords2");
   } else if (set === "sightwords3") {
     cardTouchApp("sightwords3");
+  } else if (set === "letter-sounds-asmf") {
+    cardTouchApp("letter-sounds-asmf");
   }
 }
 function startMatchingApp(set) {
