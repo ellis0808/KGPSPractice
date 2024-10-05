@@ -35,14 +35,7 @@ import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import { timer, toggleTimerHide } from "../../utilities/timer-object.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
-import {
-  style,
-  activityId,
-  setStyle,
-  setActivityId,
-} from "./set-style-and-activity-id.js";
-
-// This function sets the activity id. The activity id is used in recording the score obtained in a given activity. (Separate scores are kept for each activity; the number the user sees score is the total of all activity scores combined.)
+import { style, activityId, setStyle } from "./set-style-and-activity-id.js";
 
 /* SCORING */
 const correctAnswerPoints = 2;
@@ -50,6 +43,8 @@ const incorrectAnswerPoints = 1;
 
 function cardTouchApp(set) {
   sessionCheck();
+  setStyle(set);
+
   setTimeout(() => {
     resetTimer();
     mainContainer.appendChild(appContainer);
@@ -78,8 +73,6 @@ function cardTouchApp(set) {
     toggleTimerHide();
   }
   setTimeout(setUser, 2000);
-
-  setStyle(set);
 }
 function setUser() {
   user.gradeLevel = sessionData.gradeLevel;
