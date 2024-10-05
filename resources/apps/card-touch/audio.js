@@ -1,6 +1,5 @@
 import { cardText } from "./card-touch-index.js";
 
-let audioObject;
 let correctCardID;
 
 let randomNumber;
@@ -79,7 +78,7 @@ async function getAudio(style) {
 }
 
 function loadAudio(audioData) {
-  audioObject = audioData.map((item) => {
+  const audioObject = audioData.map((item) => {
     return (audioObject[item.content] = {
       content: item.content,
       sound: new Howl({
