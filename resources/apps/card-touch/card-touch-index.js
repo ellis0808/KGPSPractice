@@ -35,39 +35,14 @@ import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import { timer, toggleTimerHide } from "../../utilities/timer-object.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
-import { setStyle } from "./set-style.js";
-
-let style;
-let activityId;
+import {
+  style,
+  activityId,
+  setStyle,
+  setActivityId,
+} from "./set-style-and-activity-id.js";
 
 // This function sets the activity id. The activity id is used in recording the score obtained in a given activity. (Separate scores are kept for each activity; the number the user sees score is the total of all activity scores combined.)
-export function setActivityId(style) {
-  if (style === 0) {
-    activityId = 1;
-    return activityId;
-  } else if (style === 1) {
-    activityId = 2;
-    return activityId;
-  } else if (style === 2) {
-    activityId = 4;
-    return activityId;
-  } else if (style === 3) {
-    activityId = 5;
-    return activityId;
-  } else if (style === 4) {
-    activityId = 6;
-    return activityId;
-  } else if (style === 5) {
-    activityId = 7;
-    return activityId;
-  } else if (style === 6) {
-    activityId = 8;
-    return activityId;
-  } else if (style === 7) {
-    activityId = 9;
-    return activityId;
-  }
-}
 
 /* SCORING */
 const correctAnswerPoints = 2;
@@ -805,4 +780,4 @@ function returnToApp() {
   pauseBtn.addEventListener("click", pause);
 }
 
-export { cardTouchApp, getAudio, startCardTouchApp, cardText, style };
+export { cardTouchApp, getAudio, startCardTouchApp, cardText };
