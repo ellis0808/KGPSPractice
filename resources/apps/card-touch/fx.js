@@ -1,4 +1,4 @@
-import { cardTouchSfx } from "./audio.js";
+import { cardTouchSfx } from "./card-touch-audio.js";
 
 function wobble(e) {
   e.currentTarget.preventDefault;

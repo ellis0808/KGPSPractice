@@ -139,7 +139,7 @@ let activityId;
 let audioObject = {};
 
 function setActivityId(style) {
-  if (style === 0) {
+  if (style === 1) {
     activityId = 3;
     return activityId;
   } // else if (style === 1) {
@@ -168,7 +168,7 @@ function setActivityId(style) {
 async function getAudio(style) {
   let category;
   let grouping;
-  if (style === 0) {
+  if (style === 1) {
     category = "alphabet";
     grouping = 1;
   }
@@ -261,7 +261,7 @@ function matchingApp(set) {
     toggleTimerHide();
   }
   if (set === "alphabet") {
-    style = 0;
+    style = 1;
     getAudio(style);
     setActivityId(style);
     return style;

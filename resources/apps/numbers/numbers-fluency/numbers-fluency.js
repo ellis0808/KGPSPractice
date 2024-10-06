@@ -43,19 +43,19 @@ let incorrectAnswerPoints;
 let boxes = ".box";
 
 function setActivityId(style) {
-  if (style === 0) {
+  if (style === 1) {
     activityId = 11;
     return activityId;
-  } else if (style === 1) {
+  } else if (style === 2) {
     activityId = 12;
     return activityId;
-  } else if (style === 2) {
+  } else if (style === 3) {
     activityId = 13;
     return activityId;
-  } else if (style === 3) {
+  } else if (style === 4) {
     activityId = 14;
     return activityId;
-  } else if (style === 4) {
+  } else if (style === 5) {
     activityId = 15;
     return activityId;
   }
@@ -168,23 +168,23 @@ Main App
 async function getAudio(style) {
   let category;
   let grouping;
-  if (style === 0) {
+  if (style === 1) {
     category = "numbers";
     grouping = 1;
   }
-  if (style === 1) {
+  if (style === 2) {
     category = "numbers";
     grouping = 2;
   }
-  if (style === 2) {
+  if (style === 3) {
     category = "numbers";
     grouping = 3;
   }
-  if (style === 3) {
+  if (style === 4) {
     category = "numbers";
     grouping = 4;
   }
-  if (style === 4) {
+  if (style === 5) {
     category = "numbers";
     grouping = 5;
   }
@@ -340,15 +340,10 @@ style 2: 41-60
 style 3: 61-80
 style 4: 81-100
 */
-  if (set === 0) {
-    style = 0;
-    loadAudioForStyle(style);
-    setActivityId(style);
-  } else if (set === 1) {
+  if (set === 1) {
     style = 1;
     loadAudioForStyle(style);
     setActivityId(style);
-    return style;
   } else if (set === 2) {
     style = 2;
     loadAudioForStyle(style);
@@ -361,6 +356,11 @@ style 4: 81-100
     return style;
   } else if (set === 4) {
     style = 4;
+    loadAudioForStyle(style);
+    setActivityId(style);
+    return style;
+  } else if (set === 5) {
+    style = 5;
     loadAudioForStyle(style);
     setActivityId(style);
     return style;
@@ -904,15 +904,15 @@ function arrayGenerator() {
   // if (round === 1) {
   currentArray.length = 0;
   for (let i = 0; i < 10; ++i) {
-    if (style === 0) {
+    if (style === 1) {
       randNumber = Math.floor(Math.random() * 20 + 1);
-    } else if (style === 1) {
-      randNumber = Math.floor(Math.random() * (40 - 20) + 21);
     } else if (style === 2) {
-      randNumber = Math.floor(Math.random() * (60 - 40) + 41);
+      randNumber = Math.floor(Math.random() * (40 - 20) + 21);
     } else if (style === 3) {
-      randNumber = Math.floor(Math.random() * (80 - 60) + 61);
+      randNumber = Math.floor(Math.random() * (60 - 40) + 41);
     } else if (style === 4) {
+      randNumber = Math.floor(Math.random() * (80 - 60) + 61);
+    } else if (style === 5) {
       randNumber = Math.floor(Math.random() * (100 - 80) + 81);
     }
     currentArray.push(randNumber);
@@ -979,7 +979,7 @@ function createGrid() {
     const box = document.createElement("div");
     box.classList.add("box", "btn");
     box.setAttribute("id", `box${i}`);
-    if (style === 0) {
+    if (style === 1) {
       if (i < 10) {
         box.classList.add("item", "under11");
       } else {
@@ -987,7 +987,7 @@ function createGrid() {
       }
       box.setAttribute("item", `${i + 1}`);
       box.textContent = `${i + 1}`;
-    } else if (style === 1) {
+    } else if (style === 2) {
       if (i < 10) {
         box.classList.add("item", "under31");
       } else {
@@ -995,7 +995,7 @@ function createGrid() {
       }
       box.setAttribute("item", `${i + 21}`);
       box.textContent = `${i + 21}`;
-    } else if (style === 2) {
+    } else if (style === 3) {
       if (i < 10) {
         box.classList.add("item", "under51");
       } else {
@@ -1003,7 +1003,7 @@ function createGrid() {
       }
       box.setAttribute("item", `${i + 41}`);
       box.textContent = `${i + 41}`;
-    } else if (style === 3) {
+    } else if (style === 4) {
       if (i < 10) {
         box.classList.add("item", "under71");
       } else {
@@ -1011,7 +1011,7 @@ function createGrid() {
       }
       box.setAttribute("item", `${i + 61}`);
       box.textContent = `${i + 61}`;
-    } else if (style === 4) {
+    } else if (style === 5) {
       if (i < 10) {
         box.classList.add("item", "under91");
       } else {

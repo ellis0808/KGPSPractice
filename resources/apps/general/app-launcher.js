@@ -1,9 +1,11 @@
 import { cardTouchApp } from "../card-touch/card-touch-index.js";
 import { matchingApp } from "../matching/matching-index.js";
 import { numberFluencyApp } from "../numbers/numbers-fluency/numbers-fluency.js";
+import { writingApp } from "../writing/writing.js";
 // import { spellingTouchApp } from "../spelling/spelling-touch-app/spelling-touch-index.js";
 import { mainMenuSfx } from "./start-main-app.js";
 
+// Card Touch App
 function startCardTouchApp(set) {
   mainMenuSfx.select2.play();
   if (set === "capitals") {
@@ -20,6 +22,8 @@ function startCardTouchApp(set) {
     cardTouchApp("letter-sounds-asmf");
   }
 }
+
+// Matching App
 function startMatchingApp(set) {
   mainMenuSfx.select2.play();
   if (set === "alphabet") {
@@ -34,31 +38,27 @@ function startMatchingApp(set) {
 //   mainMenuSfx.select2.play();
 //   spellingWritingApp();
 // }
+
+// Number Fluency App
 function startNumberFluencyApp(set) {
   mainMenuSfx.select2.play();
-  if (set === 0) {
-    numberFluencyApp(0);
-  } else if (set === 1) {
+  if (set === 1) {
     numberFluencyApp(1);
   } else if (set === 2) {
     numberFluencyApp(2);
   } else if (set === 3) {
     numberFluencyApp(3);
   } else if (set === 4) {
-    numberFluencyApp(4);
+    numberFluencyApp(5);
+  } else if (set === 5) {
+    numberFluencyApp(5);
   }
 }
-function startNumberRecognitionApp() {
+
+// Writing App
+function startWritingApp(set) {
   mainMenuSfx.select2.play();
-  numberRecognitionApp();
-}
-function startNumberWritingApp() {
-  mainMenuSfx.select2.play();
-  numberWritingApp();
-}
-function startnumberMathApp() {
-  mainMenuSfx.select2.play();
-  numberMathApp();
+  writingApp(set);
 }
 
 export {
@@ -66,4 +66,5 @@ export {
   startMatchingApp,
   // startSpellingTouchApp,
   startNumberFluencyApp,
+  startWritingApp,
 };

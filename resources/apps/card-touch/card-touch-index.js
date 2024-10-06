@@ -11,7 +11,7 @@ import {
   speak,
   getAudio,
   audioObject,
-} from "./audio.js";
+} from "./card-touch-audio.js";
 import {
   alphabet,
   sightWords1,
@@ -166,7 +166,7 @@ let countDown;
 let time;
 let roundTime;
 const setRoundTime = (style) => {
-  if (style === 2) {
+  if (style === 3) {
     roundTime = 30;
     timer.innerText = "0:30";
   } else {
@@ -225,7 +225,7 @@ function enableTouch() {
 }
 
 const setGridStyle = (style) => {
-  if (style === 2 || style === 3 || style === 4) {
+  if (style === 3 || style === 4 || style === 5) {
     grid.classList.add("sight-word-grid");
   }
 };
@@ -451,11 +451,7 @@ function repeat() {
 
   setTimeout(function () {
     if (!isPaused) {
-      // if (style === 0 || style === 1) {
       audioObject[randomItem].sound.play();
-      // } else if (style === 2 || style === 3 || style === 4) {
-      // sightWordsAudioObject[randomItem].sound.play();
-      // }
     }
   }, 30);
 }
@@ -473,29 +469,29 @@ function createBoard() {
   let lettersArray = [];
   let sightWordArray = [];
   function cardGenerator() {
-    if (style === 0 || style === 1) {
+    if (style === 1 || style === 2) {
       for (let i = 0; lettersArray.length < 9; ++i) {
         let letter = `${alphabet[Math.floor(Math.random() * alphabet.length)]}`;
         if (!lettersArray.includes(letter)) {
           lettersArray.push(letter);
         }
       }
-    } else if (style === 2 || style === 3 || style === 4) {
+    } else if (style === 3 || style === 4 || style === 5) {
       grid.classList.add("sight-word-grid");
       let sightWord;
-      if (style === 2) {
+      if (style === 3) {
         grid.classList.add("sight-word-grid-4x4");
         sightWords1.forEach((item) => {
           sightWordArray.push(item);
         });
-      } else if (style === 3 || style === 4) {
+      } else if (style === 4 || style === 5) {
         grid.classList.remove("sight-word-grid-4x4");
         for (let i = 0; sightWordArray.length < 6; ++i) {
-          if (style === 3) {
+          if (style === 4) {
             sightWord = `${
               sightWords2[Math.floor(Math.random() * sightWords2.length)]
             }`;
-          } else if (style === 4) {
+          } else if (style === 5) {
             sightWord = `${
               sightWords3[Math.floor(Math.random() * sightWords3.length)]
             }`;
@@ -511,12 +507,12 @@ function createBoard() {
     if (!isPaused) {
       cardGenerator();
       let i = 0;
-      if (style === 0 || style === 1) {
+      if (style === 1 || style === 2) {
         lettersArray.forEach(() => {
           const card = document.createElement("div");
           card.setAttribute("contentId", lettersArray[i]);
           card.setAttribute("data-id", i);
-          if (style === 0) {
+          if (style === 1) {
             newCardText = card.getAttribute("contentId").toUpperCase();
           } else {
             newCardText = card.getAttribute("contentId");
@@ -525,14 +521,14 @@ function createBoard() {
           card.classList.add("card");
           grid.append(card);
           card.addEventListener("click", touchCard);
-          if (style === 0) {
+          if (style === 1) {
             cardText.push(newCardText.toLowerCase());
           } else {
             cardText.push(newCardText);
           }
           ++i;
         });
-      } else if (style === 2 || style === 3 || style === 4) {
+      } else if (style === 3 || style === 4 || style === 5) {
         sightWordArray.forEach(() => {
           const card = document.createElement("div");
           card.setAttribute("contentID", sightWordArray[i]);

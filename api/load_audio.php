@@ -10,20 +10,22 @@ try {
     header('Content-Type: application/json');
 
     $category = $_GET['id1'] ?? null;
-    $grouping = $_GET['id2'] ?? null;
-    if ($category && $grouping) {
-        if ($category === "sight-words") {
+    $grouping1 = $_GET['id2'] ?? null;
+    $grouping2 = $_GET['id3'] ?? null;
+    if ($category && $grouping1) {
+        if ($grouping2) {
             $stmt = $pdo->prepare('SELECT content, link
          FROM `audio_directory`
          WHERE category = :category
-         AND  `grouping` <= :grouping');
+         AND  (`grouping` > :grouping AND `grouping` < :grouping)');
+            $stmt->execute(['category' => $category, 'grouping1' => $grouping1, 'grouping2' => $grouping2]);
         } else {
             $stmt = $pdo->prepare('SELECT content, link
-         FROM `audio_directory`
-         WHERE category = :category
-         AND  `grouping` = :grouping');
+            FROM `audio_directory`
+            WHERE category = :category
+            AND  `grouping` = :grouping');
+            $stmt->execute(['category' => $category, 'grouping1' => $grouping1]);
         }
-        $stmt->execute(['category' => $category, 'grouping' => $grouping]);
         $audio = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($audio) {
             echo json_encode($audio);

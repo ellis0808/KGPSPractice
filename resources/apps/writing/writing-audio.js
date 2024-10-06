@@ -1,4 +1,3 @@
-import { cardText } from "./card-touch-index.js";
 let audioObject = {};
 let correctCardID;
 let randomNumber;
@@ -20,7 +19,7 @@ function speak() {
   return (correctCardID = randomNumber);
 }
 
-const cardTouchSfx = {
+const writingSfx = {
   correcCard: new Howl({
     src: ["/KGPSEPaudio/sfx/sfx-correct-1.mp3"],
   }),
@@ -42,30 +41,65 @@ async function getAudio(style) {
   // these two variables will be used to retrieve the associated audio links from the server; they follow the format of the 'audio_data' table, so refernce the category and grouping from there
   let category;
   let grouping;
-  if (style === 0 || style === 1) {
-    category = "alphabet";
+  let grouping2;
+  if (style === 1) {
+    category = "numbers";
     grouping = 1;
   }
   if (style === 2) {
-    category = "sight-words";
-    grouping = 1;
-  }
-  if (style === 3) {
-    category = "sight-words";
+    category = "numbers";
     grouping = 2;
   }
-  if (style === 4) {
-    category = "sight-words";
+  if (style === 3) {
+    category = "numbers";
     grouping = 3;
   }
+  if (style === 4) {
+    category = "numbers";
+    grouping = 4;
+  }
   if (style === 5) {
-    category = "phonics";
+    category = "numbers";
+    grouping = 5;
+  }
+  if (style === 6) {
+    category = "numbers";
+    grouping = 6;
+  }
+  if (style === 7) {
+    category = "numbers";
+    grouping = 7;
+  }
+  if (style === 8) {
+    category = "numbers";
+    grouping = 1;
+  }
+  if (style === 9) {
+    category = "numbers";
+    grouping = 1;
+  }
+  if (style === 10) {
+    category = "numbers";
+    grouping = 1;
+  }
+  if (style === 11) {
+    category = "numbers";
+    grouping = 1;
+  }
+  if (style === 12) {
+    category = "numbers";
     grouping = 1;
   }
   try {
-    const response = await fetch(
-      `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
-    );
+    if (grouping2) {
+      const response = await fetch(
+        `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}&id3=${grouping2}`
+      );
+    } else {
+      const response = await fetch(
+        `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
+      );
+    }
     if (!response.ok) {
       throw new Error("Network response was not okay");
     }
@@ -91,7 +125,7 @@ function loadAudio(audioData) {
 
 export {
   audioObject,
-  cardTouchSfx,
+  writingSfx,
   correctCardID,
   randomNumber,
   speak,
