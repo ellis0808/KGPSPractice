@@ -56,10 +56,10 @@ function startNumberFluencyApp(set) {
 }
 
 // Writing App
-function startWritingApp(set) {
-  mainMenuSfx.select2.play();
-  writingApp(set);
-}
+// function startWritingApp(set) {
+//   mainMenuSfx.select2.play();
+//   writingApp(set);
+// }
 
 export {
   startCardTouchApp,
