@@ -68,11 +68,11 @@ async function getAudio(style) {
   try {
     let response;
     if (grouping2 != null) {
-      const response = await fetch(
+      response = await fetch(
         `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}&id3=${grouping2}`
       );
     } else if (grouping2 === null) {
-      const response = await fetch(
+      response = await fetch(
         `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
       );
     }
