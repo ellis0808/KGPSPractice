@@ -66,16 +66,15 @@ async function getAudio(style) {
     grouping = 1;
   }
   try {
+    let response;
     if (grouping2 != null) {
       const response = await fetch(
         `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}&id3=${grouping2}`
       );
-      return response;
     } else if (grouping2 === null) {
       const response = await fetch(
         `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
       );
-      return response;
     }
     if (!response.ok) {
       throw new Error("Network response was not okay");
