@@ -6,7 +6,6 @@ import {
   menuContainer,
   stylesheet,
 } from "../../utilities/variables";
-import { handwriting } from "../../utilities/handwriting.canvas.js";
 import {
   setStyle,
   setActivityId,
