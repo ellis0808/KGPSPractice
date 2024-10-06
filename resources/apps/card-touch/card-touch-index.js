@@ -35,7 +35,11 @@ import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import { timer, toggleTimerHide } from "../../utilities/timer-object.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
-import { style, activityId, setStyle } from "./set-style-and-activity-id.js";
+import {
+  style,
+  activityId,
+  setStyle,
+} from "./card-touch-set-style-and-activity-id.js";
 
 /* SCORING */
 const correctAnswerPoints = 2;

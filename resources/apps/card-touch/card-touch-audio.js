@@ -42,7 +42,7 @@ async function getAudio(style) {
   // these two variables will be used to retrieve the associated audio links from the server; they follow the format of the 'audio_data' table, so refernce the category and grouping from there
   let category;
   let grouping;
-  let grouping2;
+  let grouping2 = null;
   if (style === 1 || style === 2) {
     category = "alphabet";
     grouping = 1;
@@ -66,12 +66,12 @@ async function getAudio(style) {
     grouping = 1;
   }
   try {
-    if (grouping2) {
+    if (grouping2 != null) {
       const response = await fetch(
         `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}&id3=${grouping2}`
       );
       return response;
-    } else if (!grouping2) {
+    } else if (grouping2 === null) {
       const response = await fetch(
         `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
       );
@@ -81,6 +81,7 @@ async function getAudio(style) {
       throw new Error("Network response was not okay");
     }
     const audioData = await response.json();
+    console.log(audioData);
 
     loadAudio(audioData);
   } catch (error) {
