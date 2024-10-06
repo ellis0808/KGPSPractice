@@ -66,5 +66,5 @@ export {
   startMatchingApp,
   // startSpellingTouchApp,
   startNumberFluencyApp,
-  startWritingApp,
+  // startWritingApp,
 };
