@@ -1,7 +1,7 @@
 import { cardTouchApp } from "../card-touch/card-touch-index.js";
 import { matchingApp } from "../matching/matching-index.js";
 import { numberFluencyApp } from "../numbers/numbers-fluency/numbers-fluency.js";
-import { writingApp } from "../writing/writing.js";
+// import { writingApp } from "../writing/writing.js";
 // import { spellingTouchApp } from "../spelling/spelling-touch-app/spelling-touch-index.js";
 import { mainMenuSfx } from "./start-main-app.js";
 
