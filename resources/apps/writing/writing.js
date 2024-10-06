@@ -27,7 +27,6 @@ function writingApp(set) {
 }
 
 // Main Structure Containers
-const mainContainer = document.querySelector(".main-container");
 const appContainer = document.createElement("div");
 appContainer.classList.add("container", "writing-app");
 
