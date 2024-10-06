@@ -71,7 +71,7 @@ async function getAudio(style) {
         `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}&id3=${grouping2}`
       );
       return response;
-    } else {
+    } else if (!grouping2) {
       const response = await fetch(
         `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
       );
