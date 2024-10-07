@@ -33,6 +33,11 @@ import {
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
 import { audioObject } from "../../utilities/audio.js";
+import {
+  style,
+  activityId,
+  setStyle,
+} from "./matching-set-style-and-activity-id.js";
 
 /* SCORING */
 const correctAnswerPoints = 1;
@@ -138,6 +143,7 @@ I. MAIN APP
 
 function matchingApp(set) {
   sessionCheck();
+  setStyle(set);
   mainContainer.appendChild(appContainer);
   appContainer.appendChild(leftMenuContainer);
   appContainer.appendChild(btnContainer1);

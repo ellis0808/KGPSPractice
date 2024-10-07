@@ -17,3 +17,5 @@ function setActivityId(style) {
       return (activityId = 3);
   }
 }
+
+export { activityId, style, setActivityId, setStyle };
