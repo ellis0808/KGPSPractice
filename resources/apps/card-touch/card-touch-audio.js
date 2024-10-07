@@ -46,12 +46,12 @@ function startAudioFetch(style) {
   if (style === 1 || style === 2) {
     category = "alphabet";
     grouping = 1;
-    getAudio(category, grouping);
+    getAudio(category, grouping, grouping2);
   }
   if (style === 3) {
     category = "sight-words";
     grouping = 2;
-    getAudio(category, grouping);
+    getAudio(category, grouping, grouping2);
   }
   if (style === 4) {
     category = "sight-words";
