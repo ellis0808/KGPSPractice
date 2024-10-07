@@ -787,7 +787,6 @@ function generateLetterDivsForMatching(array) {
     });
     capitalLettersDiv.appendChild(letter);
   });
-  console.log("test 7");
 }
 
 /*

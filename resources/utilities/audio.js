@@ -42,6 +42,7 @@ function loadAudio(audioData) {
       }),
     });
   });
+  console.log(audioObject);
 }
 
 export { getAudio, audioObject };
