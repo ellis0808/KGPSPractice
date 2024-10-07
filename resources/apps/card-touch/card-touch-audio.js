@@ -1,3 +1,4 @@
+import { getAudio } from "../../utilities/audio.js";
 import { cardText } from "./card-touch-index.js";
 let audioObject = {};
 let correctCardID;
@@ -38,66 +39,36 @@ const cardTouchSfx = {
   }),
 };
 
-async function getAudio(style) {
-  // these two variables will be used to retrieve the associated audio links from the server; they follow the format of the 'audio_data' table, so refernce the category and grouping from there
-  let category;
-  let grouping;
-  let grouping2 = null;
-  if (style === 1 || style === 2) {
-    category = "alphabet";
-    grouping = 1;
-  }
-  if (style === 3) {
-    category = "sight-words";
-    grouping = 2;
-  }
-  if (style === 4) {
-    category = "sight-words";
-    grouping = 2;
-    grouping2 = 3;
-  }
-  if (style === 5) {
-    category = "sight-words";
-    grouping = 2;
-    grouping2 = 4;
-  }
-  if (style === 6) {
-    category = "phonics";
-    grouping = 1;
-  }
-  try {
-    let response;
-    if (grouping2 !== null) {
-      response = await fetch(
-        `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}&id3=${grouping2}`
-      );
-    } else if (grouping2 === null) {
-      response = await fetch(
-        `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
-      );
-    }
-    if (!response.ok) {
-      throw new Error("Network response was not okay");
-    }
-    const audioData = await response.json();
-    console.log(audioData);
-
-    loadAudio(audioData);
-  } catch (error) {
-    console.log("There was an error ", error);
-  }
+// these two variables will be used to retrieve the associated audio links from the server; they follow the format of the 'audio_data' table, so refernce the category and grouping from there
+let category;
+let grouping;
+let grouping2 = null;
+if (style === 1 || style === 2) {
+  category = "alphabet";
+  grouping = 1;
+  getAudio(category, grouping);
 }
-
-function loadAudio(audioData) {
-  audioData.map((item) => {
-    return (audioObject[item.content] = {
-      content: item.content,
-      sound: new Howl({
-        src: [item.link],
-        volume: 0.5,
-      }),
-    });
-  });
+if (style === 3) {
+  category = "sight-words";
+  grouping = 2;
+  getAudio(category, grouping);
+}
+if (style === 4) {
+  category = "sight-words";
+  grouping = 2;
+  grouping2 = 3;
+  getAudio(category, grouping, grouping2);
+}
+if (style === 5) {
+  category = "sight-words";
+  grouping = 2;
+  grouping2 = 4;
+  getAudio(category, grouping, grouping2);
+}
+if (style === 6) {
+  category = "phonics";
+  grouping = 1;
+  getAudio(category, grouping);
 }
 
 export {

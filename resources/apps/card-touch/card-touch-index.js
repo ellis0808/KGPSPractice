@@ -779,4 +779,4 @@ function returnToApp() {
   pauseBtn.addEventListener("click", pause);
 }
 
-export { cardTouchApp, getAudio, startCardTouchApp, cardText };
+export { cardTouchApp, startCardTouchApp, cardText };
