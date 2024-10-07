@@ -37,4 +37,4 @@ function startAudioFetch(style) {
   }
 }
 
-export { matchingSfx, speak, startAudioFetch };
+export { matchingSfx, startAudioFetch };
