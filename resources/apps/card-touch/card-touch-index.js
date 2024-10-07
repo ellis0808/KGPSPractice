@@ -767,4 +767,4 @@ function returnToApp() {
   pauseBtn.addEventListener("click", pause);
 }
 
-export { cardTouchApp, startCardTouchApp, cardText };
+export { cardTouchApp, startCardTouchApp, cardText, isPaused };

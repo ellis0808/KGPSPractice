@@ -1,5 +1,5 @@
 import { getAudio, audioObject } from "../../utilities/audio.js";
-import { cardText, startBtn } from "./card-touch-index.js";
+import { cardText, isPaused } from "./card-touch-index.js";
 let correctCardID;
 let randomNumber;
 
