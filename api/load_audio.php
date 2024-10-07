@@ -18,13 +18,20 @@ try {
          FROM `audio_directory`
          WHERE category = :category
          AND  (`grouping` BETWEEN :grouping1 AND :grouping2)');
-            $stmt->execute(['category' => $category, 'grouping1' => $grouping1, 'grouping2' => $grouping2]);
+            $stmt->execute([
+                'category' => $category,
+                'grouping1' => $grouping1,
+                'grouping2' => $grouping2
+            ]);
         } else {
             $stmt = $pdo->prepare('SELECT content, link
             FROM `audio_directory`
             WHERE category = :category
             AND  `grouping` = :grouping1');
-            $stmt->execute(['category' => $category, 'grouping1' => $grouping1]);
+            $stmt->execute([
+                'category' => $category,
+                'grouping1' => $grouping1
+            ]);
         }
         $audio = $stmt->fetchAll(PDO::FETCH_ASSOC);
         if ($audio) {

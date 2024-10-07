@@ -50,25 +50,25 @@ function startAudioFetch(style) {
   }
   if (style === 3) {
     category = "sight-words";
-    grouping = 2;
+    grouping = 1;
     getAudio(category, grouping, grouping2);
   }
   if (style === 4) {
     category = "sight-words";
-    grouping = 2;
-    grouping2 = 3;
+    grouping = 1;
+    grouping2 = 2;
     getAudio(category, grouping, grouping2);
   }
   if (style === 5) {
     category = "sight-words";
-    grouping = 2;
-    grouping2 = 4;
+    grouping = 1;
+    grouping2 = 3;
     getAudio(category, grouping, grouping2);
   }
   if (style === 6) {
     category = "phonics";
     grouping = 1;
-    getAudio(category, grouping);
+    getAudio(category, grouping, grouping2);
   }
 }
 
