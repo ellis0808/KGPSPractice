@@ -9,7 +9,6 @@ import {
   correctCardID,
   randomNumber,
   speak,
-  getAudio,
   audioObject,
 } from "./card-touch-audio.js";
 import {

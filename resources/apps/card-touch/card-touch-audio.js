@@ -1,6 +1,5 @@
-import { getAudio } from "../../utilities/audio.js";
+import { getAudio, audioObject } from "../../utilities/audio.js";
 import { cardText } from "./card-touch-index.js";
-let audioObject = {};
 let correctCardID;
 let randomNumber;
 
@@ -40,35 +39,37 @@ const cardTouchSfx = {
 };
 
 // these three variables will be used to retrieve the associated audio links from the server; they follow the format of the 'audio_data' table, so refernce the category and grouping from there. grouping and grouping2 set the minimum and maximum ranges for the grouping in the case that more than one set of audio is needed
-let category;
-let grouping;
-let grouping2 = null;
-if (style === 1 || style === 2) {
-  category = "alphabet";
-  grouping = 1;
-  getAudio(category, grouping);
-}
-if (style === 3) {
-  category = "sight-words";
-  grouping = 2;
-  getAudio(category, grouping);
-}
-if (style === 4) {
-  category = "sight-words";
-  grouping = 2;
-  grouping2 = 3;
-  getAudio(category, grouping, grouping2);
-}
-if (style === 5) {
-  category = "sight-words";
-  grouping = 2;
-  grouping2 = 4;
-  getAudio(category, grouping, grouping2);
-}
-if (style === 6) {
-  category = "phonics";
-  grouping = 1;
-  getAudio(category, grouping);
+function startAudioFetch(style) {
+  let category;
+  let grouping;
+  let grouping2 = null;
+  if (style === 1 || style === 2) {
+    category = "alphabet";
+    grouping = 1;
+    getAudio(category, grouping);
+  }
+  if (style === 3) {
+    category = "sight-words";
+    grouping = 2;
+    getAudio(category, grouping);
+  }
+  if (style === 4) {
+    category = "sight-words";
+    grouping = 2;
+    grouping2 = 3;
+    getAudio(category, grouping, grouping2);
+  }
+  if (style === 5) {
+    category = "sight-words";
+    grouping = 2;
+    grouping2 = 4;
+    getAudio(category, grouping, grouping2);
+  }
+  if (style === 6) {
+    category = "phonics";
+    grouping = 1;
+    getAudio(category, grouping);
+  }
 }
 
-export { audioObject, cardTouchSfx, correctCardID, randomNumber, speak };
+export { cardTouchSfx, correctCardID, randomNumber, speak, startAudioFetch };

@@ -1,4 +1,4 @@
-import { getAudio } from "./card-touch-index";
+import { startAudioFetch } from "./card-touch-audio";
 let style;
 let activityId;
 
@@ -7,32 +7,32 @@ function setStyle(set) {
   switch (set) {
     case "capitals":
       style = 1;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     case "lowercase":
       style = 2;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     case "sightwords1":
       style = 3;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     case "sightwords2":
       style = 4;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     case "sightwords3":
       style = 5;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     case "letter-sounds-asmf":
       style = 6;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
   }

@@ -1,3 +1,5 @@
+let audioObject = {};
+
 async function getAudio(category, grouping, grouping2) {
   try {
     let response;
