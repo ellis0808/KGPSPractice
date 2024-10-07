@@ -1,3 +1,5 @@
+import { startAudioFetch } from "./matching-audio";
+
 let style;
 let activityId;
 
