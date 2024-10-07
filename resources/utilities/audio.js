@@ -36,4 +36,4 @@ function loadAudio(audioData) {
   });
 }
 
-export { getAudio };
+export { getAudio, audioObject };
