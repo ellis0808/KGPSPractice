@@ -469,13 +469,13 @@ function startNewRound() {
   homeBtnContainer.appendChild(pauseBtn);
   setTimeout(() => {
     activateEventListeners();
-  }, 200);
+  }, 700);
   setTimeout(() => {
     enableTouch();
-  }, 300);
+  }, 1000);
   setTimeout(() => {
     grid.classList.remove("gridHide");
-  }, 100);
+  }, 600);
 }
 
 /*
