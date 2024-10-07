@@ -1,5 +1,5 @@
 import { getAudio, audioObject } from "../../utilities/audio.js";
-import { cardText } from "./card-touch-index.js";
+import { cardText, startBtn } from "./card-touch-index.js";
 let correctCardID;
 let randomNumber;
 
@@ -18,6 +18,16 @@ function speak() {
   }, 1000);
 
   return (correctCardID = randomNumber);
+}
+
+function repeat() {
+  const randomItem = cardText[randomNumber];
+
+  setTimeout(function () {
+    if (!isPaused) {
+      audioObject[randomItem].sound.play();
+    }
+  }, 30);
 }
 
 const cardTouchSfx = {
@@ -72,4 +82,11 @@ function startAudioFetch(style) {
   }
 }
 
-export { cardTouchSfx, correctCardID, randomNumber, speak, startAudioFetch };
+export {
+  cardTouchSfx,
+  correctCardID,
+  randomNumber,
+  repeat,
+  speak,
+  startAudioFetch,
+};

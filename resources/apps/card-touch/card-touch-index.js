@@ -7,7 +7,7 @@ import {
 import {
   cardTouchSfx,
   correctCardID,
-  randomNumber,
+  repeat,
   speak,
 } from "./card-touch-audio.js";
 import {
@@ -124,7 +124,7 @@ grid.setAttribute("id", "grid");
 
 const btnContainer2 = document.createElement("div");
 btnContainer2.classList.add("btn-container2");
-const startBtn = document.createElement("button");
+export const startBtn = document.createElement("button");
 startBtn.setAttribute("id", "start-btn");
 startBtn.classList.add("card-touch-app");
 startBtn.addEventListener("click", startSession);
@@ -446,16 +446,6 @@ function displayEndMessagesContainer() {
 
 function toggleRepeatBtnHide() {
   repeatBtn.classList.toggle("hide2");
-}
-function repeat() {
-  const synth = window.speechSynthesis;
-  const randomItem = cardText[randomNumber];
-
-  setTimeout(function () {
-    if (!isPaused) {
-      audioObject[randomItem].sound.play();
-    }
-  }, 30);
 }
 
 // BOARD GENERATION
