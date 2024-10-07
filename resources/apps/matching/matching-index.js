@@ -454,13 +454,14 @@ function startNewRound() {
   grid.classList.remove("blur");
   timer.classList.remove("blur");
   scoreDisplay.classList.remove("blur");
-
-  letterSetGenerator();
-  const shuffledAlphabetCapitals = shuffle(alphabetCapitals);
-  generateLetterDivsForMatching(shuffledAlphabetCapitals);
-  generateLetterDivsForMatching(alphabetLowercase);
-  createDots(shuffledAlphabetCapitals);
-  createDots(alphabetLowercase);
+  setTimeout(() => {
+    letterSetGenerator();
+    const shuffledAlphabetCapitals = shuffle(alphabetCapitals);
+    generateLetterDivsForMatching(shuffledAlphabetCapitals);
+    generateLetterDivsForMatching(alphabetLowercase);
+    createDots(shuffledAlphabetCapitals);
+    createDots(alphabetLowercase);
+  }, 500);
   btnContainer1.appendChild(timer);
   btnContainer1.appendChild(scoreDisplay);
   appContainer.appendChild(homeBtnContainer);
