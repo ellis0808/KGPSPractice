@@ -21,6 +21,7 @@ import {
   removeMenuPage,
   restoreMainMenu,
 } from "../../utilities/main-menu-display-toggle.js";
+import { audioObject } from "../../utilities/audio.js";
 import {
   dotAndLineCommand,
   startDot,
@@ -32,7 +33,6 @@ import {
 } from "./dot-objects-control.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
-import { audioObject } from "../../utilities/audio.js";
 import {
   style,
   activityId,
@@ -776,8 +776,8 @@ function generateLetterDivsForMatching(array) {
     });
     return;
   }
+  const letter = document.createElement("div");
   array.forEach((item) => {
-    const letter = document.createElement("div");
     letter.setAttribute("contentId", item);
     letter.setAttribute("data-id", `${divGroup}${item}`);
     letter.classList.add(divGroup, "letter-matching-app");

@@ -167,6 +167,8 @@ class StartDot {
     matchingSfx.validConnection.play();
 
     setTimeout(() => {
+      console.log(audioObject);
+
       audioObject[this.contentId.toLowerCase()].sound.play();
     }, 200);
 

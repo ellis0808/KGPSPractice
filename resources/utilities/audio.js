@@ -24,8 +24,6 @@ async function getAudio(category, grouping, grouping2) {
     const audioData = await response.json();
     console.log("test 6");
 
-    console.log(audioData);
-
     loadAudio(audioData);
   } catch (error) {
     console.log("There was an error ", error);
