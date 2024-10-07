@@ -39,7 +39,7 @@ const cardTouchSfx = {
   }),
 };
 
-// these two variables will be used to retrieve the associated audio links from the server; they follow the format of the 'audio_data' table, so refernce the category and grouping from there
+// these three variables will be used to retrieve the associated audio links from the server; they follow the format of the 'audio_data' table, so refernce the category and grouping from there. grouping and grouping2 set the minimum and maximum ranges for the grouping in the case that more than one set of audio is needed
 let category;
 let grouping;
 let grouping2 = null;
@@ -71,12 +71,4 @@ if (style === 6) {
   getAudio(category, grouping);
 }
 
-export {
-  audioObject,
-  cardTouchSfx,
-  correctCardID,
-  randomNumber,
-  speak,
-  getAudio,
-  loadAudio,
-};
+export { audioObject, cardTouchSfx, correctCardID, randomNumber, speak };
