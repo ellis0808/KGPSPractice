@@ -1,4 +1,3 @@
-import { audioObject } from "../../utilities/audio.js";
 import { body } from "../../utilities/variables.js";
 audioObject;
 import { matchingSfx } from "./matching-audio.js";
@@ -11,6 +10,7 @@ import {
   lines,
   numberOfItemsToBeDisplayed,
 } from "./matching-index.js";
+import { audioObject } from "../../utilities/audio.js";
 class DotAndLineCommand {
   constructor() {
     this.startDots = [];

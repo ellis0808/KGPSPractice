@@ -21,7 +21,6 @@ import {
   removeMenuPage,
   restoreMainMenu,
 } from "../../utilities/main-menu-display-toggle.js";
-import { audioObject } from "../../utilities/audio.js";
 import {
   dotAndLineCommand,
   startDot,
@@ -38,6 +37,7 @@ import {
   activityId,
   setStyle,
 } from "./matching-set-style-and-activity-id.js";
+import { audioObject } from "../../utilities/audio.js";
 
 /* SCORING */
 const correctAnswerPoints = 1;
@@ -776,8 +776,8 @@ function generateLetterDivsForMatching(array) {
     });
     return;
   }
-  const letter = document.createElement("div");
   array.forEach((item) => {
+    const letter = document.createElement("div");
     letter.setAttribute("contentId", item);
     letter.setAttribute("data-id", `${divGroup}${item}`);
     letter.classList.add(divGroup, "letter-matching-app");
