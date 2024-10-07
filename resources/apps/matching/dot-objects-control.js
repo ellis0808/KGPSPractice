@@ -1,6 +1,7 @@
+import { audioObject } from "../../utilities/audio.js";
 import { body } from "../../utilities/variables.js";
-import { audioObject } from "./matching-index.js";
-import { matchingSfx } from "./audio.js";
+audioObject;
+import { matchingSfx } from "./matching-audio.js";
 import {
   checkAllCorrect,
   currentDotId,

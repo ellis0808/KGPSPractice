@@ -15,8 +15,8 @@ import {
   updateNegativeCount,
   updatePositiveCount,
 } from "../../utilities/update-score.js";
-import { matchingSfx, speak } from "./audio.js";
-import { displayMainPage, startMainApp } from "../general/start-main-app.js";
+import { matchingSfx } from "./matching-audio.js";
+import { displayMainPage } from "../general/start-main-app.js";
 import {
   removeMenuPage,
   restoreMainMenu,
@@ -32,6 +32,7 @@ import {
 } from "./dot-objects-control.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
+import { audioObject } from "../../utilities/audio.js";
 
 /* SCORING */
 const correctAnswerPoints = 1;
@@ -134,97 +135,6 @@ const finalLinesIdArray = [];
 I. MAIN APP
 *******
 */
-let style;
-let activityId;
-let audioObject = {};
-
-function setActivityId(style) {
-  if (style === 1) {
-    activityId = 3;
-    return activityId;
-  } // else if (style === 1) {
-  //   activityId = 2;
-  //   return activityId;
-  // } else if (style === 2) {
-  //   activityId = 4;
-  //   return activityId;
-  // } else if (style === 3) {
-  //   activityId = 5;
-  //   return activityId;
-  // } else if (style === 4) {
-  //   activityId = 6;
-  //   return activityId;
-  // } else if (style === 5) {
-  //   activityId = 7;
-  //   return activityId;
-  // } else if (style === 6) {
-  //   activityId = 8;
-  //   return activityId;
-  // } else if (style === 7) {
-  //   activityId = 9;
-  //   return activityId;
-  // }
-}
-async function getAudio(style) {
-  let category;
-  let grouping;
-  if (style === 1) {
-    category = "alphabet";
-    grouping = 1;
-  }
-  try {
-    const response = await fetch(
-      `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
-    );
-    if (!response.ok) {
-      throw new Error("Network response was not okay");
-    }
-    const audioData = await response.json();
-    loadAudio(audioData);
-  } catch (error) {
-    console.log("There was an error ", error);
-  }
-}
-
-function loadAudio(audioData) {
-  const audio = audioData.map((item) => {
-    return (audioObject[item.content] = {
-      content: item.content,
-      sound: new Howl({
-        src: [item.link],
-        volume: 0.5,
-      }),
-    });
-  });
-}
-// async function loadAudioForStyle(style) {
-//   let section;
-//   if (style === 0) {
-//     section = "alphabet";
-//   }
-
-//   try {
-//     const response = await fetch(
-//       `/KGPSEPaudio/${section}-audio/${section}-manifest.json`
-//     );
-//     const data = await response.json();
-
-//     if (style === 0) {
-//       for (const key in data) {
-//         const audioData = data[key];
-//         alphabetAudioObject[key] = {
-//           content: audioData.content,
-//           sound: new Howl({
-//             src: [`/KGPSEPaudio/${section}-audio/${audioData.file}`],
-//             volume: audioData.volume,
-//           }),
-//         };
-//       }
-//     }
-//   } catch (error) {
-//     console.error("Error:", error);
-//   }
-// }
 
 function matchingApp(set) {
   sessionCheck();
@@ -260,33 +170,7 @@ function matchingApp(set) {
   if (!timer.classList.contains("hide2")) {
     toggleTimerHide();
   }
-  if (set === "alphabet") {
-    style = 1;
-    getAudio(style);
-    setActivityId(style);
-    return style;
-  } //else if (set === "lowercase") {
-  //   style = 1;
-  //   loadAudioForStyle(style);
-  //   return style;
-  // } else if (set === "sightwords1") {
-  //   style = 2;
-  //   loadAudioForStyle(style);
-  //   return style;
-  // }
-  // if (set === "sightwords2") {
-  //   style = 3;
-  //   loadAudioForStyle(style);
-  //   return style;
-  // }
-  // if (set === "sightwords3") {
-  //   style = 4;
-  //   loadAudioForStyle(style);
-  //   setActivityId(style);
-  //   return style;
-  // }
-  // return style;
-  // loadAudioForStyle(style);
+
   setTimeout(setUser, 2000);
 }
 
@@ -1455,7 +1339,6 @@ document.body.addEventListener("touchstart", createDoubleTapPreventer(500), {
 export {
   matchingApp,
   checkAllCorrect,
-  audioObject,
   currentDotId,
   endDotId,
   startDotId,
