@@ -8,7 +8,7 @@ require './db_connect.php';
 
 
 $ip = $_SERVER['REMOTE_ADDR'];
-$failed_attempts = get_failed_attempts($ip);
+// $failed_attempts = get_failed_attempts($ip);
 
 if ($failed_attempts && $failed_attempts['attempts'] >= 5 && (time() - strtotime($failed_attempts['attempt_time']) < 900)) {
     die('Too many failed login attempts. Please try again later.');
@@ -52,11 +52,11 @@ try {
         $_SESSION['access'] = $user['access'];
         $_SESSION['gradeLevel'] = $user['grade_level'];
 
-        clear_failed_attempts($pdo, $ip);
+        // clear_failed_attempts($pdo, $ip);
 
         echo json_encode($user);
     } else {
-        log_failed_attempt($ip);
+        // log_failed_attempt($ip);
 
         echo json_encode(['error' => 'Invalid ID, firstname, lastname or password']);
     }
@@ -65,26 +65,26 @@ try {
 }
 
 
-function get_failed_attempts($ip)
-{
-    global $pdo;
-    $stmt = $pdo->prepare("SELECT attempts, attempt_time FROM login_attempts WHERE ip_address = :ip");
-    $stmt->execute(['ip' => $ip]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
+// function get_failed_attempts($ip)
+// {
+//     global $pdo;
+//     $stmt = $pdo->prepare("SELECT attempts, attempt_time FROM login_attempts WHERE ip_address = :ip");
+//     $stmt->execute(['ip' => $ip]);
+//     return $stmt->fetch(PDO::FETCH_ASSOC);
+// }
 
-function log_failed_attempt($ip)
-{
-    global $pdo;
-    $stmt = $pdo->prepare("INSERT INTO login_attempts (ip_address, attempts)
-    VALUES (:ip, 1)
-    ON DUPLICATE KEY UPDATE attempts = attempts + 1, attempt_time = CURRENT_TIMESTAMP");
-    $stmt->execute(['ip' => $ip]);
-}
+// function log_failed_attempt($ip)
+// {
+//     global $pdo;
+//     $stmt = $pdo->prepare("INSERT INTO login_attempts (ip_address, attempts)
+//     VALUES (:ip, 1)
+//     ON DUPLICATE KEY UPDATE attempts = attempts + 1, attempt_time = CURRENT_TIMESTAMP");
+//     $stmt->execute(['ip' => $ip]);
+// }
 
-function clear_failed_attempts($ip)
-{
-    global $pdo;
-    $stmt = $pdo->prepare("DELETE FROM login_attempts WHERE ip_address = :ip");
-    $stmt->execute(['ip' => $ip]);
-}
+// function clear_failed_attempts($ip)
+// {
+//     global $pdo;
+//     $stmt = $pdo->prepare("DELETE FROM login_attempts WHERE ip_address = :ip");
+//     $stmt->execute(['ip' => $ip]);
+// }
