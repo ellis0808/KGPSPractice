@@ -7,6 +7,7 @@ import {
   lowercaseLetterDiv,
   numberOfItemsToBeDisplayed,
 } from "./matching-index.js";
+import { alphabet } from "../card-touch/card-data.js";
 import { audioObject } from "../../utilities/audio.js";
 import { dotAndLineCommand, endDot, startDot } from "./dot-objects-control.js";
 
