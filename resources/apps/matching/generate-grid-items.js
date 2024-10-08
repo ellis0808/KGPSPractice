@@ -6,6 +6,7 @@ import {
   startDotsDiv,
   lowercaseLetterDiv,
   numberOfItemsToBeDisplayed,
+  disableTouch,
 } from "./matching-index.js";
 import { alphabet } from "../card-touch/card-data.js";
 import { audioObject } from "../../utilities/audio.js";

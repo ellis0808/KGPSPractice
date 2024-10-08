@@ -1207,6 +1207,8 @@ document.body.addEventListener("touchstart", createDoubleTapPreventer(500), {
 export {
   matchingApp,
   checkAllCorrect,
+  disableTouch,
+  enableTouch,
   alphabetCapitals,
   alphabetLowercase,
   currentDotId,
