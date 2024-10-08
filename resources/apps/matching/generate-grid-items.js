@@ -9,7 +9,13 @@ import {
 } from "./matching-index.js";
 import { alphabet } from "../card-touch/card-data.js";
 import { audioObject } from "../../utilities/audio.js";
-import { dotAndLineCommand, endDot, startDot } from "./dot-objects-control.js";
+import {
+  dotAndLineCommand,
+  endDot,
+  startDot,
+  EndDot,
+  StartDot,
+} from "./dot-objects-control.js";
 
 /*
 V. GRID POPULATION
