@@ -1171,6 +1171,9 @@ function getCenter(dot, center) {
 // Event Listeners
 function activateEventListeners() {
   setTimeout(() => {
+    const lowercaseLettersForAudio = document.querySelectorAll(".lowercase-");
+    console.log(lowercaseLettersForAudio);
+
     const startTargets = document.querySelectorAll(
       ".start-target, .end-target"
     );
