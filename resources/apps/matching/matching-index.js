@@ -460,27 +460,28 @@ function startNewRound() {
   grid.classList.remove("blur");
   timer.classList.remove("blur");
   scoreDisplay.classList.remove("blur");
-
-  letterSetGenerator();
-  const shuffledAlphabetCapitals = shuffle(alphabetCapitals);
-  generateLetterDivsForMatching(shuffledAlphabetCapitals);
-  generateLetterDivsForMatching(alphabetLowercase);
-  createDots(shuffledAlphabetCapitals);
-  createDots(alphabetLowercase);
-  btnContainer1.appendChild(timer);
-  btnContainer1.appendChild(scoreDisplay);
-  appContainer.appendChild(homeBtnContainer);
-  homeBtnContainer.appendChild(homeBtn);
-  homeBtnContainer.appendChild(pauseBtn);
   setTimeout(() => {
-    activateEventListeners();
-  }, 200);
-  setTimeout(() => {
-    enableTouch();
-  }, 300);
-  setTimeout(() => {
-    grid.classList.remove("gridHide");
-  }, 100);
+    letterSetGenerator();
+    const shuffledAlphabetCapitals = shuffle(alphabetCapitals);
+    generateLetterDivsForMatching(shuffledAlphabetCapitals);
+    generateLetterDivsForMatching(alphabetLowercase);
+    createDots(shuffledAlphabetCapitals);
+    createDots(alphabetLowercase);
+    btnContainer1.appendChild(timer);
+    btnContainer1.appendChild(scoreDisplay);
+    appContainer.appendChild(homeBtnContainer);
+    homeBtnContainer.appendChild(homeBtn);
+    homeBtnContainer.appendChild(pauseBtn);
+    setTimeout(() => {
+      activateEventListeners();
+    }, 200);
+    setTimeout(() => {
+      enableTouch();
+    }, 300);
+    setTimeout(() => {
+      grid.classList.remove("gridHide");
+    }, 100);
+  }, 1000);
 }
 
 /*
