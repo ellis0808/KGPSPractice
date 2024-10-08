@@ -7,12 +7,12 @@ if (session_status() == PHP_SESSION_NONE) {
 require './db_connect.php';
 
 
-$ip = $_SERVER['REMOTE_ADDR'];
+// $ip = $_SERVER['REMOTE_ADDR'];
 // $failed_attempts = get_failed_attempts($ip);
 
-if ($failed_attempts && $failed_attempts['attempts'] >= 5 && (time() - strtotime($failed_attempts['attempt_time']) < 900)) {
-    die('Too many failed login attempts. Please try again later.');
-}
+// if ($failed_attempts && $failed_attempts['attempts'] >= 5 && (time() - strtotime($failed_attempts['attempt_time']) < 900)) {
+//     die('Too many failed login attempts. Please try again later.');
+// }
 
 $data = json_decode(file_get_contents('php://input'), true);
 $id = (int)$data['id'] ?? null;
