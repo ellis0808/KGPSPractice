@@ -1175,6 +1175,7 @@ function activateEventListeners() {
     lowercaseLettersForAudio.forEach((letter) => {
       letter.addEventListener("click", () => {
         console.log(letter.getAttribute("contentId"));
+        console.log(audioObject);
 
         // audioObject[letter.getAttribute("contentId")].sound.play();
       });
