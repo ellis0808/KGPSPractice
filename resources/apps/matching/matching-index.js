@@ -1174,7 +1174,9 @@ function activateEventListeners() {
     const lowercaseLettersForAudio = document.querySelectorAll(".lowercase-");
     lowercaseLettersForAudio.forEach((letter) => {
       letter.addEventListener("click", () => {
-        audioObject[letter.getAttribute("contentId")].sound.play();
+        console.log(letter.getAttribute("contentId"));
+
+        // audioObject[letter.getAttribute("contentId")].sound.play();
       });
     });
     const startTargets = document.querySelectorAll(
