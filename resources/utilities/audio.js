@@ -4,25 +4,18 @@ async function getAudio(category, grouping, grouping2) {
   try {
     let response;
     if (grouping2 !== null) {
-      console.log("test 1");
-
       response = await fetch(
         `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}&id3=${grouping2}`
       );
-      console.log("test 2");
     } else if (grouping2 === null) {
-      console.log("test 3");
-
       response = await fetch(
         `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
       );
-      console.log("test 5");
     }
     if (!response.ok) {
       throw new Error("Network response was not okay");
     }
     const audioData = await response.json();
-    console.log("test 6");
 
     loadAudio(audioData);
   } catch (error) {

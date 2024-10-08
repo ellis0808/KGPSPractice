@@ -1,4 +1,4 @@
-import { audioObject, getAudio } from "../../utilities/audio";
+import { audioObject, getAudio } from "../../utilities/audio.js";
 
 const matchingSfx = {
   validConnection: new Howl({
