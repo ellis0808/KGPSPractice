@@ -111,6 +111,7 @@ function loadAudio(audioData) {
       }),
     });
   });
+  console.log(audioData);
 }
 
 export {
