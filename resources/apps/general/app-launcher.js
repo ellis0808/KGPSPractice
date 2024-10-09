@@ -60,6 +60,7 @@ function startWritingApp(set) {
   mainMenuSfx.select2.play();
   if (set === 1) {
     writingApp("sightwords1Writing");
+    console.log("applauncher log");
   }
 }
 

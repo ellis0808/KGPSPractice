@@ -30,6 +30,7 @@ function writingApp(set) {
     "/KGPSEnglishPractice-test/resources/css/writing.css"
   );
   removeMenuPage();
+  console.log("writing App log");
 
   setTimeout(() => {
     displayStartBtn();
