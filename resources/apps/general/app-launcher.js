@@ -58,8 +58,8 @@ function startNumberFluencyApp(set) {
 // Writing App
 function startWritingApp(set) {
   mainMenuSfx.select2.play();
-  if (set === 1) {
-    writingApp("sightwords1Writing");
+  if (set === "sightwords1") {
+    writingApp("sightwords1");
     console.log("applauncher log");
   }
 }
