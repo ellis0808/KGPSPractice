@@ -47,6 +47,5 @@ export {
   randomNumber,
   speak,
   getAudio,
-  loadAudio,
   startAudioFetch,
 };
