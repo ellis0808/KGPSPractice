@@ -97,27 +97,30 @@ canvas.width = 800;
 canvas.height = 475;
 
 // Appending Items
-
+let canvasController;
 // Canvas Custom Properties
-const canvasController = new handwriting.Canvas(
-  document.getElementById("canvas"),
-  3
-);
-canvasController.setLineWidth(10);
-canvasController.setOptions({
-  language: "en",
-  numOfReturn: 1,
-});
-canvasController.set_Undo_Redo(true, false);
+const setCanvasController = () => {
+  canvasController = new handwriting.Canvas(
+    document.getElementById("canvas"),
+    3
+  );
+  canvasController.setLineWidth(10);
+  canvasController.setOptions({
+    language: "en",
+    numOfReturn: 1,
+  });
+  canvasController.set_Undo_Redo(true, false);
 
-canvasController.setCallBack(function (input, error) {
-  console.log("input ", input);
-  if (error) {
-    throw error;
-  }
-  checkAnswer(input);
-  // return input;
-});
+  canvasController.setCallBack(function (input, error) {
+    console.log("input ", input);
+    if (error) {
+      throw error;
+    }
+    checkAnswer(input);
+    // return input;
+  });
+  return canvasController;
+};
 
 clearBtn.addEventListener("pointerdown", (event) => {
   canvasController.erase();
