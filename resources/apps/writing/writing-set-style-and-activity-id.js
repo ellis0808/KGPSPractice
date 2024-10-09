@@ -1,3 +1,5 @@
+import { style } from "../matching/matching-set-style-and-activity-id";
+
 let style;
 let activityId;
 
@@ -7,69 +9,69 @@ function setStyle(set) {
     // Numbers
     case "numbers1-10":
       style = 1;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     case "numbers11-20":
       style = 2;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     case "numbers21-40":
       style = 3;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     case "numbers41-60":
       style = 4;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     case "numbers61-80":
       style = 5;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     case "numbers81-100":
       style = 6;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     case "numbers1-50":
       style = 7;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     case "numbers1-100":
       style = 8;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     // Math
     case "sight-words1":
       style = 9;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     case "sight-words2":
       style = 10;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     case "sight-words3":
       style = 11;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     case "numbers1-100":
       style = 5;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
     // Letter Sounds
     case "numbers1-100":
       style = 5;
-      getAudio(style);
+      startAudioFetch(style);
       setActivityId(style);
       return style;
   }
@@ -100,6 +102,9 @@ function setActivityId(style) {
     return activityId;
   } else if (style === 7) {
     activityId = 9;
+    return activityId;
+  } else if (style === 9) {
+    activityId = 4;
     return activityId;
   }
 }

@@ -1,3 +1,4 @@
+import { getAudio } from "../../utilities/audio.js";
 import { randomItem } from "./writing.js";
 let audioObject = {};
 let correctCardID;
@@ -27,7 +28,7 @@ const writingSfx = {
   }),
 };
 
-async function getAudio(style) {
+function startAudioFetch(style) {
   // these two variables will be used to retrieve the associated audio links from the server; they follow the format of the 'audio_data' table, so refernce the category and grouping from there
   let category;
   let grouping;
@@ -35,83 +36,8 @@ async function getAudio(style) {
   if (style === 1) {
     category = "sight-words";
     grouping = 1;
+    getAudio(category, grouping, grouping2);
   }
-  // if (style === 2) {
-  //   category = "numbers";
-  //   grouping = 2;
-  // }
-  // if (style === 3) {
-  //   category = "numbers";
-  //   grouping = 3;
-  // }
-  // if (style === 4) {
-  //   category = "numbers";
-  //   grouping = 4;
-  // }
-  // if (style === 5) {
-  //   category = "numbers";
-  //   grouping = 5;
-  // }
-  // if (style === 6) {
-  //   category = "numbers";
-  //   grouping = 6;
-  // }
-  // if (style === 7) {
-  //   category = "numbers";
-  //   grouping = 7;
-  // }
-  // if (style === 8) {
-  //   category = "numbers";
-  //   grouping = 1;
-  // }
-  // if (style === 9) {
-  //   category = "numbers";
-  //   grouping = 1;
-  // }
-  // if (style === 10) {
-  //   category = "numbers";
-  //   grouping = 1;
-  // }
-  // if (style === 11) {
-  //   category = "numbers";
-  //   grouping = 1;
-  // }
-  // if (style === 12) {
-  //   category = "numbers";
-  //   grouping = 1;
-  // }
-  try {
-    if (grouping2) {
-      const response = await fetch(
-        `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}&id3=${grouping2}`
-      );
-    } else {
-      const response = await fetch(
-        `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
-      );
-    }
-    if (!response.ok) {
-      throw new Error("Network response was not okay");
-    }
-    const audioData = await response.json();
-
-    loadAudio(audioData);
-  } catch (error) {
-    console.log("There was an error ", error);
-  }
-}
-
-function loadAudio(audioData) {
-  audioData.map((item) => {
-    return (audioObject[item.content] = {
-      content: item.content,
-      sound: new Howl({
-        src: [item.link],
-        volume: 0.5,
-      }),
-    });
-  });
-  console.log(audioData);
 }
 
 export {
@@ -122,4 +48,5 @@ export {
   speak,
   getAudio,
   loadAudio,
+  startAudioFetch,
 };
