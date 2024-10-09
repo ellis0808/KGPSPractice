@@ -12,7 +12,6 @@ import {
 } from "./writing-set-style-and-activity-id.js";
 import { writingSfx } from "./writing-audio.js";
 import { removeMenuPage } from "../../utilities/main-menu-display-toggle.js";
-import { appContainer } from "../card-touch/card-touch-index.js";
 
 function writingApp(set) {
   sessionCheck();
@@ -34,7 +33,6 @@ function writingApp(set) {
   setTimeout(() => {
     displayStartBtn();
   }, 200);
-  appContainer.classList.remove("hide");
   appContainer.classList.remove("hide");
 }
 
