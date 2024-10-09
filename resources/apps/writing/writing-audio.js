@@ -3,16 +3,7 @@ let audioObject = {};
 let correctCardID;
 let randomNumber;
 
-function updateRandomNumber() {
-  randomNumber = Math.floor(Math.random() * cardText.length);
-
-  return randomNumber;
-}
 function speak() {
-  updateRandomNumber();
-
-  const randomWord = cardText[randomNumber];
-
   setTimeout(function () {
     audioObject[randomItem].sound.play();
   }, 1000);
