@@ -16,8 +16,6 @@ function speak() {
   setTimeout(function () {
     audioObject[randomItem].sound.play();
   }, 1000);
-
-  return (correctCardID = randomNumber);
 }
 
 const writingSfx = {

@@ -12,6 +12,7 @@ import {
 } from "./writing-set-style-and-activity-id.js";
 import { writingSfx } from "./writing-audio.js";
 import { removeMenuPage } from "../../utilities/main-menu-display-toggle.js";
+import { speak } from "./writing-audio.js";
 
 function writingApp(set) {
   sessionCheck();
@@ -39,6 +40,9 @@ function writingApp(set) {
 }
 
 const displayStartBtn = () => {
+  if (startBtn.classList.contains("hide")) {
+    startBtn.classList.remove("hide");
+  }
   btnContainer2.appendChild(startBtn);
 };
 
@@ -49,10 +53,12 @@ const startRound = () => {
   bottomRow.appendChild(clearBtn);
   bottomRow.appendChild(undoBtn);
   bottomRow.appendChild(checkBtn);
-  displayQuestion();
+  //   displayQuestion();
+  startBtn.classList.add("hide");
   setTimeout(() => {
     getRandomItem();
-  }, 1000);
+  }, 500);
+  setTimeout(speak, 300);
 };
 
 // Main Structure Containers
@@ -145,6 +151,9 @@ checkBtn.addEventListener("pointerdown", (event) => {
 startBtn.addEventListener("click", () => {
   startRound();
 });
+
+/* -----  Item Generator ----- */
+
 const items = ["a", "the", "what", "this"];
 let maxNumberOfItems = 10;
 let randomItem;
@@ -158,6 +167,8 @@ const getRandomItem = () => {
     return randomItemArray.push(randomItem);
   }
 };
+
+/* ----- End Item Generator ----- */
 
 function displayQuestion() {
   questionDisplay.innerText = "Write the letter!";

@@ -191,3 +191,30 @@ body:not(:has(*)) {
   place-content: center;
   place-items: center;
 }
+
+/*
+
+*****
+05. FX
+*****
+
+*/
+
+.blur {
+  filter: blur(3px);
+}
+.strong-blur {
+  filter: blur(16px);
+}
+.hide {
+  opacity: 0;
+  transition: 0.5s;
+  pointer-events: none;
+  /* z-index: -10; */
+}
+.hide2 {
+  opacity: 0;
+  transition: 0.75s;
+  pointer-events: none;
+  /* z-index: -10; */
+}
