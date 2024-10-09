@@ -68,7 +68,6 @@ function cardTouchApp(set) {
   score.resetScore();
   scoreDisplay.innerText = score.currentScore;
   appContainer.classList.remove("hide");
-  appContainer.classList.remove("hide");
   if (!scoreDisplay.classList.contains("hide2")) {
     toggleScoreDisplayHide();
   }
@@ -85,7 +84,7 @@ function setUser() {
   user.id = sessionData.userId;
 }
 
-const appContainer = document.createElement("div");
+export const appContainer = document.createElement("div");
 appContainer.classList.add("container", "card-touch-app");
 
 /* Main App Container */

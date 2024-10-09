@@ -12,19 +12,30 @@ import {
 } from "./writing-set-style-and-activity-id.js";
 import { writingSfx } from "./writing-audio.js";
 import { removeMenuPage } from "../../utilities/main-menu-display-toggle.js";
+import { appContainer } from "../card-touch/card-touch-index.js";
 
 function writingApp(set) {
   sessionCheck();
   setStyle(set);
+  setTimeout(() => {
+    mainContainer.appendChild(appContainer);
+    appContainer.appendChild(topRow);
+    appContainer.appendChild(secondRow);
+    appContainer.appendChild(canvasRow);
+    appContainer.appendChild(bottomRow);
+  }, 0);
 
   stylesheet.setAttribute(
     "href",
     "/KGPSEnglishPractice-test/resources/css/writing.css"
   );
   removeMenuPage();
+
   setTimeout(() => {
     displayStartBtn();
   }, 200);
+  appContainer.classList.remove("hide");
+  appContainer.classList.remove("hide");
 }
 
 const displayStartBtn = () => {
@@ -32,8 +43,12 @@ const displayStartBtn = () => {
 };
 
 const startRound = () => {
-  mainContainer.appendChild(appContainer);
-  appContainer.appendChild(canvas);
+  topRow.appendChild(repeatBtn);
+  secondRow.appendChild(questionDisplay);
+  canvasRow.appendChild(canvas);
+  bottomRow.appendChild(clearBtn);
+  bottomRow.appendChild(undoBtn);
+  bottomRow.appendChild(checkBtn);
   displayQuestion();
   setTimeout(() => {
     getRandomItem();
@@ -84,17 +99,6 @@ canvas.width = 800;
 canvas.height = 475;
 
 // Appending Items
-mainContainer.appendChild(appContainer);
-appContainer.appendChild(topRow);
-appContainer.appendChild(secondRow);
-appContainer.appendChild(canvasRow);
-appContainer.appendChild(bottomRow);
-topRow.appendChild(repeatBtn);
-secondRow.appendChild(questionDisplay);
-canvasRow.appendChild(canvas);
-bottomRow.appendChild(clearBtn);
-bottomRow.appendChild(undoBtn);
-bottomRow.appendChild(checkBtn);
 
 // Canvas Custom Properties
 const canvasController = new handwriting.Canvas(
