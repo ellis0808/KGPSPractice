@@ -11,23 +11,33 @@ import {
   setActivityId,
 } from "./writing-set-style-and-activity-id.js";
 import { writingSfx } from "./writing-audio.js";
+import { removeMenuPage } from "../../utilities/main-menu-display-toggle.js";
 
 function writingApp(set) {
   sessionCheck();
   setStyle(set);
-  setTimeout(() => {
-    mainContainer.appendChild(appContainer);
-    appContainer.appendChild(canvas);
-    displayStartBtn();
-  }, 0);
+
   stylesheet.setAttribute(
     "href",
     "/KGPSEnglishPractice-test/resources/css/writing.css"
   );
+  removeMenuPage();
+  setTimeout(() => {
+    displayStartBtn();
+  }, 200);
 }
 
 const displayStartBtn = () => {
   appContainer.appendChild(startBtn);
+};
+
+const startRound = () => {
+  mainContainer.appendChild(appContainer);
+  appContainer.appendChild(canvas);
+  displayQuestion();
+  setTimeout(() => {
+    getRandomItem();
+  }, 1000);
 };
 
 // Main Structure Containers
@@ -125,10 +135,7 @@ checkBtn.addEventListener("pointerdown", (event) => {
 });
 
 startBtn.addEventListener("click", () => {
-  displayQuestion();
-  setTimeout(() => {
-    getRandomItem();
-  }, 1000);
+  startRound();
 });
 const items = ["a", "the", "what", "this"];
 let maxNumberOfItems = 10;

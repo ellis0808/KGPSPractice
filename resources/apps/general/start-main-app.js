@@ -301,7 +301,10 @@ sightWords3AppMenuItem.addEventListener("click", () => {
   startCardTouchApp("sightwords3");
 });
 const sightWords1WritingAppMenuItem = document.createElement("div");
-sightWords1WritingAppMenuItem.setAttribute("id", "sight-words-3-app-menu-item");
+sightWords1WritingAppMenuItem.setAttribute(
+  "id",
+  "sight-words-1-writing-app-menu-item"
+);
 sightWords1WritingAppMenuItem.classList.add("div");
 sightWords1WritingAppMenuItem.innerText = "Sight Words Writing";
 sightWords1WritingAppMenuItem.addEventListener("click", () => {
