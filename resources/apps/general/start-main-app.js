@@ -210,6 +210,7 @@ function returnToMainMenu() {
   sightWords1AppMenuItem.remove();
   sightWords2AppMenuItem.remove();
   sightWords3AppMenuItem.remove();
+  sightWords1WritingAppMenuItem.remove();
   // spellingTouchAppMenuItem.remove();
   // spellingWritingAppMenuItem.remove();
   numberFluency1to20AppMenuItem.remove();
@@ -297,6 +298,13 @@ sightWords3AppMenuItem.classList.add("div");
 sightWords3AppMenuItem.innerText = "Sight Words 3";
 sightWords3AppMenuItem.addEventListener("click", () => {
   startCardTouchApp("sightwords3");
+});
+const sightWords1WritingAppMenuItem = document.createElement("div");
+sightWords1WritingAppMenuItem.setAttribute("id", "sight-words-3-app-menu-item");
+sightWords1WritingAppMenuItem.classList.add("div");
+sightWords1WritingAppMenuItem.innerText = "Sight Words Writing";
+sightWords1WritingAppMenuItem.addEventListener("click", () => {
+  startCardTouchApp("sightwords1Writing");
 });
 
 /* Sight Words menu items fin */
@@ -387,10 +395,12 @@ function displaySightWordsMenu() {
   menuContainer.appendChild(sightWords1AppMenuItem);
   menuContainer.appendChild(sightWords2AppMenuItem);
   menuContainer.appendChild(sightWords3AppMenuItem);
+  menuContainer.appendChild(sightWords1WritingAppMenuItem);
   menuContainer.appendChild(returnToMainMenuBtn);
   sightWords1AppMenuItem.classList.remove("hidden");
   sightWords2AppMenuItem.classList.remove("hidden");
   sightWords3AppMenuItem.classList.remove("hidden");
+  sightWords1WritingAppMenuItem.classList.remove("hidden");
   returnToMainMenuToggle();
 }
 function displayLetterSoundsMenu() {
@@ -549,6 +559,7 @@ export {
   sightWords1AppMenuItem,
   sightWords2AppMenuItem,
   sightWords3AppMenuItem,
+  sightWords1WritingAppMenuItem,
   spellingTouchAppMenuItem,
   spellingWritingAppMenuItem,
   numbersMenu,

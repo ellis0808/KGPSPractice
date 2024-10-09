@@ -1171,15 +1171,6 @@ function getCenter(dot, center) {
 // Event Listeners
 function activateEventListeners() {
   setTimeout(() => {
-    const lowercaseLettersForAudio = document.querySelectorAll(".lowercase-");
-    lowercaseLettersForAudio.forEach((letter) => {
-      letter.addEventListener("click", () => {
-        console.log(letter.getAttribute("contentId"));
-        console.log(audioObject);
-
-        // audioObject[letter.getAttribute("contentId")].sound.play();
-      });
-    });
     const startTargets = document.querySelectorAll(
       ".start-target, .end-target"
     );

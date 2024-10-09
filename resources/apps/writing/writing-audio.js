@@ -1,3 +1,4 @@
+import { randomItem } from "./writing.js";
 let audioObject = {};
 let correctCardID;
 let randomNumber;
@@ -13,7 +14,7 @@ function speak() {
   const randomWord = cardText[randomNumber];
 
   setTimeout(function () {
-    audioObject[randomWord].sound.play();
+    audioObject[randomItem].sound.play();
   }, 1000);
 
   return (correctCardID = randomNumber);
@@ -43,53 +44,53 @@ async function getAudio(style) {
   let grouping;
   let grouping2;
   if (style === 1) {
-    category = "numbers";
+    category = "sight-words";
     grouping = 1;
   }
-  if (style === 2) {
-    category = "numbers";
-    grouping = 2;
-  }
-  if (style === 3) {
-    category = "numbers";
-    grouping = 3;
-  }
-  if (style === 4) {
-    category = "numbers";
-    grouping = 4;
-  }
-  if (style === 5) {
-    category = "numbers";
-    grouping = 5;
-  }
-  if (style === 6) {
-    category = "numbers";
-    grouping = 6;
-  }
-  if (style === 7) {
-    category = "numbers";
-    grouping = 7;
-  }
-  if (style === 8) {
-    category = "numbers";
-    grouping = 1;
-  }
-  if (style === 9) {
-    category = "numbers";
-    grouping = 1;
-  }
-  if (style === 10) {
-    category = "numbers";
-    grouping = 1;
-  }
-  if (style === 11) {
-    category = "numbers";
-    grouping = 1;
-  }
-  if (style === 12) {
-    category = "numbers";
-    grouping = 1;
-  }
+  // if (style === 2) {
+  //   category = "numbers";
+  //   grouping = 2;
+  // }
+  // if (style === 3) {
+  //   category = "numbers";
+  //   grouping = 3;
+  // }
+  // if (style === 4) {
+  //   category = "numbers";
+  //   grouping = 4;
+  // }
+  // if (style === 5) {
+  //   category = "numbers";
+  //   grouping = 5;
+  // }
+  // if (style === 6) {
+  //   category = "numbers";
+  //   grouping = 6;
+  // }
+  // if (style === 7) {
+  //   category = "numbers";
+  //   grouping = 7;
+  // }
+  // if (style === 8) {
+  //   category = "numbers";
+  //   grouping = 1;
+  // }
+  // if (style === 9) {
+  //   category = "numbers";
+  //   grouping = 1;
+  // }
+  // if (style === 10) {
+  //   category = "numbers";
+  //   grouping = 1;
+  // }
+  // if (style === 11) {
+  //   category = "numbers";
+  //   grouping = 1;
+  // }
+  // if (style === 12) {
+  //   category = "numbers";
+  //   grouping = 1;
+  // }
   try {
     if (grouping2) {
       const response = await fetch(

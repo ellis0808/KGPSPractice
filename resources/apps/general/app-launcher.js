@@ -1,7 +1,7 @@
 import { cardTouchApp } from "../card-touch/card-touch-index.js";
 import { matchingApp } from "../matching/matching-index.js";
 import { numberFluencyApp } from "../numbers/numbers-fluency/numbers-fluency.js";
-// import { writingApp } from "../writing/writing.js";
+import { writingApp } from "../writing/writing.js";
 // import { spellingTouchApp } from "../spelling/spelling-touch-app/spelling-touch-index.js";
 import { mainMenuSfx } from "./start-main-app.js";
 
@@ -56,15 +56,17 @@ function startNumberFluencyApp(set) {
 }
 
 // Writing App
-// function startWritingApp(set) {
-//   mainMenuSfx.select2.play();
-//   writingApp(set);
-// }
+function startWritingApp(set) {
+  mainMenuSfx.select2.play();
+  if (set === 1) {
+    writingApp("sightwords1Writing");
+  }
+}
 
 export {
   startCardTouchApp,
   startMatchingApp,
   // startSpellingTouchApp,
   startNumberFluencyApp,
-  // startWritingApp,
+  startWritingApp,
 };

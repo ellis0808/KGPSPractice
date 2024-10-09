@@ -10,6 +10,7 @@ import {
   sightWords1AppMenuItem,
   sightWords2AppMenuItem,
   sightWords3AppMenuItem,
+  sightWords1WritingAppMenuItem,
   spellingTouchAppMenuItem,
   spellingWritingAppMenuItem,
   displayGreeting,
@@ -44,6 +45,7 @@ function removeMenuPage() {
   sightWords3AppMenuItem.remove();
   spellingTouchAppMenuItem.remove();
   spellingWritingAppMenuItem.remove();
+  sightWords1WritingAppMenuItem.remove();
   navBar.classList.add("hidden");
   topContainer.classList.add("hidden");
   menuContainer.classList.add("hidden");
