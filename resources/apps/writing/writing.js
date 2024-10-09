@@ -22,6 +22,7 @@ function writingApp(set) {
     appContainer.appendChild(secondRow);
     appContainer.appendChild(canvasRow);
     appContainer.appendChild(bottomRow);
+    appContainer.appendChild(btnContainer2);
   }, 0);
 
   stylesheet.setAttribute(
@@ -37,7 +38,7 @@ function writingApp(set) {
 }
 
 const displayStartBtn = () => {
-  appContainer.appendChild(startBtn);
+  btnContainer2.appendChild(startBtn);
 };
 
 const startRound = () => {
@@ -68,7 +69,8 @@ const canvasRow = document.createElement("div");
 canvasRow.classList.add("canvas-row", "writing-app");
 const bottomRow = document.createElement("div");
 bottomRow.classList.add("bottom-row", "writing-app");
-
+const btnContainer2 = document.createElement("div");
+btnContainer2.classList.add("btn-container2");
 // Buttons (btn)
 const repeatBtn = document.createElement("div");
 repeatBtn.classList.add("repeat-btn", "btn", "writing-app");
