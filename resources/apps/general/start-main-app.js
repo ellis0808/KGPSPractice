@@ -12,6 +12,7 @@ import {
   startCardTouchApp,
   startMatchingApp,
   startNumberFluencyApp,
+  startWritingApp,
   // startSpellingTouchApp,
 } from "./app-launcher.js";
 import { logout } from "/KGPSEnglishPractice-test/resources/utilities/logout.js";
@@ -304,7 +305,7 @@ sightWords1WritingAppMenuItem.setAttribute("id", "sight-words-3-app-menu-item");
 sightWords1WritingAppMenuItem.classList.add("div");
 sightWords1WritingAppMenuItem.innerText = "Sight Words Writing";
 sightWords1WritingAppMenuItem.addEventListener("click", () => {
-  startCardTouchApp("sightwords1Writing");
+  startWritingApp("sightwords1Writing");
 });
 
 /* Sight Words menu items fin */

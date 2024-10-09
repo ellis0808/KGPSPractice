@@ -18,6 +18,7 @@ function writingApp(set) {
   setTimeout(() => {
     mainContainer.appendChild(appContainer);
     appContainer.appendChild(canvas);
+    displayStartBtn();
   }, 0);
   stylesheet.setAttribute(
     "href",
@@ -25,9 +26,15 @@ function writingApp(set) {
   );
 }
 
+const displayStartBtn = () => {
+  appContainer.appendChild(startBtn);
+};
+
 // Main Structure Containers
 const appContainer = document.createElement("div");
 appContainer.classList.add("container", "writing-app");
+const startBtn = document.createElement("div");
+startBtn.classList.add("start-btn");
 
 // Sub-structure Containers
 const topRow = document.createElement("div");
@@ -117,7 +124,7 @@ checkBtn.addEventListener("pointerdown", (event) => {
   canvasController.recognize(event);
 });
 
-window.addEventListener("load", () => {
+startBtn.addEventListener("click", () => {
   displayQuestion();
   setTimeout(() => {
     getRandomItem();
