@@ -55,6 +55,7 @@ const startRound = () => {
   //   displayQuestion();
   startBtn.classList.add("hide");
   setTimeout(() => {
+    appContainer.removeChild(btnContainer2);
     getRandomItem();
   }, 500);
   setTimeout(speak, 1000);
