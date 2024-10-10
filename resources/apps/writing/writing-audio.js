@@ -1,14 +1,22 @@
 import { getAudio } from "../../utilities/audio.js";
-import { randomItem } from "./writing.js";
+import { randomItemArray } from "./writing.js";
 let audioObject = {};
 let correctCardID;
 let randomNumber;
 
-function speak() {
-  setTimeout(function () {
-    console.log(randomItem);
+const updateRandomNumber = () => {
+  randomNumber = Math.floor(Math.random() * randomItemArray.length);
+  return randomNumber;
+};
 
-    audioObject[randomItem].sound.play();
+function speak() {
+  updateRandomNumber();
+
+  const randomWord = randomItemArray[randomNumber];
+
+  setTimeout(function () {
+    console.log(randomWord);
+    audioObject[randomWord].sound.play();
   }, 1000);
 }
 

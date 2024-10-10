@@ -160,11 +160,12 @@ let randomItem;
 let randomItemArray = [];
 
 const getRandomItem = () => {
-  for (let i = 0; i < maxNumberOfItems; ++i) {
-    randomItem = items[Math.floor(Math.random() * items.length)];
+  let i;
+  for (i = 0; i < maxNumberOfItems; ++i) {
+    chosenItem = items[Math.floor(Math.random() * items.length)];
     console.log(randomItem);
 
-    return randomItemArray.push(randomItem);
+    randomItemArray.push(randomItem);
   }
 };
 
@@ -203,4 +204,4 @@ function checkAnswer(input) {
   }
 }
 
-export { writingApp, randomItem };
+export { writingApp, randomItemArray };
