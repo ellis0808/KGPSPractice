@@ -52,10 +52,11 @@ const startRound = () => {
   bottomRow.appendChild(clearBtn);
   bottomRow.appendChild(undoBtn);
   bottomRow.appendChild(checkBtn);
+  setCanvasController();
   //   displayQuestion();
   startBtn.classList.add("hide");
   setTimeout(() => {
-    appContainer.removeChild(btnContainer2);
+    // appContainer.removeChild(btnContainer2);
     getRandomItem();
   }, 500);
   setTimeout(speak, 1000);
