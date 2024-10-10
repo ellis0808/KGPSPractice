@@ -193,6 +193,8 @@ function playLetter() {
 }
 
 function checkAnswer(input) {
+  console.log(input[0]);
+  console.log(randomWord);
   if (input[0] === randomWord) {
     setTimeout(() => {
       correct.play();
