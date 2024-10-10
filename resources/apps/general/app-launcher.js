@@ -58,7 +58,7 @@ function startNumberFluencyApp(set) {
 // Writing App
 function startWritingApp(set) {
   mainMenuSfx.select2.play();
-  if (set === "sightwords1") {
+  if (set === "sight-words1") {
     writingApp("sight-words1");
   }
 }
