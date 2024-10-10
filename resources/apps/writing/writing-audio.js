@@ -2,7 +2,7 @@ import { getAudio, audioObject } from "../../utilities/audio.js";
 import { randomItemArray } from "./writing.js";
 let correctCardID;
 let randomNumber;
-
+let randomWord;
 const updateRandomNumber = () => {
   randomNumber = Math.floor(Math.random() * randomItemArray.length);
   return randomNumber;
@@ -12,7 +12,7 @@ const speak = () => {
   updateRandomNumber();
   console.log(audioObject);
 
-  const randomWord = randomItemArray[randomNumber];
+  randomWord = randomItemArray[randomNumber];
 
   setTimeout(function () {
     console.log(randomWord);
