@@ -110,7 +110,7 @@ body:not(:has(*)) {
   grid-area: canvas;
   width: 800px;
   height: 475px;
-  background: url("/images/assets/alphabet-three-lines.svg");
+  background: white;
   border: solid black 1px;
   position: absolute;
 }

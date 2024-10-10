@@ -16,7 +16,6 @@ import { speak, randomWord } from "./writing-audio.js";
 
 function writingApp(set) {
   sessionCheck();
-  writingSfx.startApp.play();
   setStyle(set);
   setTimeout(() => {
     mainContainer.appendChild(appContainer);
