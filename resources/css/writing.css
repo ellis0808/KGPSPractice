@@ -90,6 +90,7 @@ body:not(:has(*)) {
   grid-template-areas: "canvas";
   place-content: center;
   place-items: center;
+  z-index: 10;
 }
 .canvas {
   grid-area: canvas;
@@ -129,6 +130,7 @@ body:not(:has(*)) {
   grid-template-areas: "clear-btn  undo-btn  check-btn";
   place-content: center;
   place-items: center;
+  z-index: 10;
 }
 .btn {
   width: 75px;
