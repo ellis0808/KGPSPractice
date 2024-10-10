@@ -12,7 +12,7 @@ import {
 } from "./writing-set-style-and-activity-id.js";
 import { writingSfx } from "./writing-audio.js";
 import { removeMenuPage } from "../../utilities/main-menu-display-toggle.js";
-import { speak } from "./writing-audio.js";
+import { speak, randomWord } from "./writing-audio.js";
 
 function writingApp(set) {
   sessionCheck();
@@ -193,7 +193,7 @@ function playLetter() {
 }
 
 function checkAnswer(input) {
-  if (input[0] === correctAnswer) {
+  if (input[0] === randomWord) {
     setTimeout(() => {
       correct.play();
     }, 300);

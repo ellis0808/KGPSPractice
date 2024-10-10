@@ -18,6 +18,8 @@ const speak = () => {
     console.log(randomWord);
     audioObject[randomWord].sound.play();
   }, 1000);
+
+  return randomWord;
 };
 
 const repeat = () => {
@@ -66,6 +68,7 @@ export {
   writingSfx,
   correctCardID,
   randomNumber,
+  randomWord,
   speak,
   startAudioFetch,
 };
