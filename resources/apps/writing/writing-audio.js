@@ -4,6 +4,8 @@ let correctCardID;
 let randomNumber;
 
 const updateRandomNumber = () => {
+  console.log(randomItemArray);
+
   randomNumber = Math.floor(Math.random() * randomItemArray.length);
   return randomNumber;
 };

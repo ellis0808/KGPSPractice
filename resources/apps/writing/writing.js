@@ -167,6 +167,7 @@ const getRandomItem = () => {
 
     randomItemArray.push(randomItem);
   }
+  console.log(randomItemArray);
 };
 
 /* ----- End Item Generator ----- */
