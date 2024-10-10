@@ -53,7 +53,7 @@ function startAudioFetch(style) {
   let category;
   let grouping;
   let grouping2;
-  if (style === 1) {
+  if (style === 9) {
     category = "sight-words";
     grouping = 1;
     getAudio(category, grouping, grouping2);
