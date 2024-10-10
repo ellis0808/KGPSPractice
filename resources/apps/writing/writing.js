@@ -31,7 +31,6 @@ function writingApp(set) {
     "/KGPSEnglishPractice-test/resources/css/writing.css"
   );
   removeMenuPage();
-  console.log("writing App log");
 
   setTimeout(() => {
     displayStartBtn();
@@ -163,11 +162,9 @@ const getRandomItem = () => {
   let i;
   for (i = 0; i < maxNumberOfItems; ++i) {
     randomItem = items[Math.floor(Math.random() * items.length)];
-    console.log(randomItem);
 
     randomItemArray.push(randomItem);
   }
-  console.log(randomItemArray);
 };
 
 /* ----- End Item Generator ----- */

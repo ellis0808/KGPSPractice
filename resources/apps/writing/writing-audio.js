@@ -4,14 +4,13 @@ let correctCardID;
 let randomNumber;
 
 const updateRandomNumber = () => {
-  console.log(randomItemArray);
-
   randomNumber = Math.floor(Math.random() * randomItemArray.length);
   return randomNumber;
 };
 
 const speak = () => {
   updateRandomNumber();
+  console.log(audioObject);
 
   const randomWord = randomItemArray[randomNumber];
 
