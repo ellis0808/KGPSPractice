@@ -199,11 +199,19 @@ function checkAnswer(input) {
     setTimeout(() => {
       writingSfx.correct.play();
     }, 300);
+    setTimeout(newWord, 1000);
   } else {
     setTimeout(() => {
       writingSfx.incorrect.play();
     }, 300);
   }
 }
+const newWord = () => {
+  resetCanvas();
+  setTimeout(speak, 300);
+};
+const resetCanvas = () => {
+  canvasController.erase();
+};
 
 export { writingApp, randomItemArray };
