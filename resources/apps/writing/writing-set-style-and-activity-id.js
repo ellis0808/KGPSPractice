@@ -48,17 +48,17 @@ function setStyle(set) {
       setActivityId(style);
       return style;
     // Math
-    case "sight-words1":
+    case "sightwords1":
       style = 9;
       startAudioFetch(style);
       setActivityId(style);
       return style;
-    case "sight-words2":
+    case "sightwords2":
       style = 10;
       startAudioFetch(style);
       setActivityId(style);
       return style;
-    case "sight-words3":
+    case "sightwords3":
       style = 11;
       startAudioFetch(style);
       setActivityId(style);

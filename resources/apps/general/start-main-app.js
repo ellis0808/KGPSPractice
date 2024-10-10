@@ -308,7 +308,7 @@ sightWords1WritingAppMenuItem.setAttribute(
 sightWords1WritingAppMenuItem.classList.add("div");
 sightWords1WritingAppMenuItem.innerText = "Sight Words Writing";
 sightWords1WritingAppMenuItem.addEventListener("click", () => {
-  startWritingApp("sight-words1");
+  startWritingApp("sightwords1");
 });
 
 /* Sight Words menu items fin */
