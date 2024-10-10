@@ -10,7 +10,6 @@ const updateRandomNumber = () => {
 
 const speak = () => {
   updateRandomNumber();
-  console.log(audioObject);
 
   randomWord = randomItemArray[randomNumber];
 
@@ -33,10 +32,10 @@ const repeat = () => {
 };
 
 const writingSfx = {
-  correcCard: new Howl({
+  correct: new Howl({
     src: ["/KGPSEPaudio/sfx/sfx-correct-1.mp3"],
   }),
-  incorrectCard: new Howl({
+  incorrect: new Howl({
     src: ["/KGPSEPaudio/sfx/sfx-incorrect-1.mp3"],
   }),
   startApp: new Howl({

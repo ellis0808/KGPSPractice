@@ -16,6 +16,7 @@ import { speak, randomWord } from "./writing-audio.js";
 
 function writingApp(set) {
   sessionCheck();
+  writingSfx.startApp.play();
   setStyle(set);
   setTimeout(() => {
     mainContainer.appendChild(appContainer);
@@ -42,6 +43,7 @@ const displayStartBtn = () => {
 };
 
 const startRound = () => {
+  writingSfx.startApp.play();
   appContainer.appendChild(topRow);
   appContainer.appendChild(secondRow);
   appContainer.appendChild(canvasRow);
@@ -193,15 +195,13 @@ function playLetter() {
 }
 
 function checkAnswer(input) {
-  console.log(input[0]);
-  console.log(randomWord);
   if (input[0] === randomWord) {
     setTimeout(() => {
-      correct.play();
+      writingSfx.correct.play();
     }, 300);
   } else {
     setTimeout(() => {
-      incorrect.play();
+      writingSfx.incorrect.play();
     }, 300);
   }
 }

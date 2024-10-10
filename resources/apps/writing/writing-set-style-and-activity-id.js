@@ -5,8 +5,6 @@ let activityId;
 
 // This function sets the style based on what the activity is. The "set" is retrieved from 'start-main-app', which is the main page that the user sees upon loging in.
 function setStyle(set) {
-  console.log(set);
-
   switch (set) {
     // Numbers
     case "numbers1-10":
@@ -54,7 +52,6 @@ function setStyle(set) {
       style = 9;
       startAudioFetch(style);
       setActivityId(style);
-      console.log("style activated!");
       return style;
     case "sightwords2":
       style = 10;
