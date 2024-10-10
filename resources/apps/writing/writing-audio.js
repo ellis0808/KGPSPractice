@@ -49,14 +49,15 @@ const writingSfx = {
 };
 
 function startAudioFetch(style) {
-  // these two variables will be used to retrieve the associated audio links from the server; they follow the format of the 'audio_data' table, so refernce the category and grouping from there
+  // these three variables will be used to retrieve the associated audio links from the server; they follow the format of the 'audio_data' table, so refernce the category and grouping from there. grouping is the lower end of the range you want to retrieve, and grouping2 is the higher end
   let category;
   let grouping;
-  let grouping2;
-  if (style === 9) {
-    category = "sight-words";
-    grouping = 1;
-    getAudio(category, grouping, grouping2);
+  let grouping2 = null;
+  switch (style) {
+    case 9:
+      category = "sight-words";
+      grouping = 1;
+      getAudio(category, grouping, grouping2);
   }
 }
 
