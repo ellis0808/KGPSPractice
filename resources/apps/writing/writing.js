@@ -58,7 +58,7 @@ const startRound = () => {
   setTimeout(() => {
     getRandomItem();
   }, 500);
-  setTimeout(speak, 300);
+  setTimeout(speak, 1000);
 };
 
 // Main Structure Containers
