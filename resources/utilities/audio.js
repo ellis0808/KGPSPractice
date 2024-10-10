@@ -16,6 +16,7 @@ async function getAudio(category, grouping, grouping2) {
       throw new Error("Network response was not okay");
     }
     const audioData = await response.json();
+    console.log(audioData);
 
     loadAudio(audioData);
   } catch (error) {
