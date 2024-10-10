@@ -66,6 +66,5 @@ export {
   correctCardID,
   randomNumber,
   speak,
-  getAudio,
   startAudioFetch,
 };
