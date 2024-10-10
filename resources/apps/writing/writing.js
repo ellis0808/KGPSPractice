@@ -19,10 +19,6 @@ function writingApp(set) {
   setStyle(set);
   setTimeout(() => {
     mainContainer.appendChild(appContainer);
-    appContainer.appendChild(topRow);
-    appContainer.appendChild(secondRow);
-    appContainer.appendChild(canvasRow);
-    appContainer.appendChild(bottomRow);
     appContainer.appendChild(btnContainer2);
   }, 0);
 
@@ -46,6 +42,10 @@ const displayStartBtn = () => {
 };
 
 const startRound = () => {
+  appContainer.appendChild(topRow);
+  appContainer.appendChild(secondRow);
+  appContainer.appendChild(canvasRow);
+  appContainer.appendChild(bottomRow);
   topRow.appendChild(repeatBtn);
   secondRow.appendChild(questionDisplay);
   canvasRow.appendChild(canvas);
