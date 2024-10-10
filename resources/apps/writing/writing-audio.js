@@ -6,6 +6,8 @@ let randomNumber;
 
 function speak() {
   setTimeout(function () {
+    console.log(randomItem);
+
     audioObject[randomItem].sound.play();
   }, 1000);
 }
