@@ -1,6 +1,5 @@
-import { getAudio } from "../../utilities/audio.js";
+import { getAudio, audioObject } from "../../utilities/audio.js";
 import { randomItemArray } from "./writing.js";
-let audioObject = {};
 let correctCardID;
 let randomNumber;
 
@@ -9,7 +8,7 @@ const updateRandomNumber = () => {
   return randomNumber;
 };
 
-function speak() {
+const speak = () => {
   updateRandomNumber();
 
   const randomWord = randomItemArray[randomNumber];
@@ -18,7 +17,17 @@ function speak() {
     console.log(randomWord);
     audioObject[randomWord].sound.play();
   }, 1000);
-}
+};
+
+const repeat = () => {
+  const randomItem = randomItemArray[randomNumber];
+
+  setTimeout(() => {
+    // if (!isPaused) {
+    audioObject[randomItem].sound.play();
+    // }
+  }, 30);
+};
 
 const writingSfx = {
   correcCard: new Howl({
