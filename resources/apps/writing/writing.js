@@ -162,7 +162,7 @@ let randomItemArray = [];
 const getRandomItem = () => {
   let i;
   for (i = 0; i < maxNumberOfItems; ++i) {
-    chosenItem = items[Math.floor(Math.random() * items.length)];
+    randomItem = items[Math.floor(Math.random() * items.length)];
     console.log(randomItem);
 
     randomItemArray.push(randomItem);
