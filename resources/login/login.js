@@ -133,93 +133,93 @@ function displayUsersForLogin(data) {
   });
 }
 
-function resetStudentPasswordEntryArray() {
-  if (
-    studentPasswordEntryArray[0] !== null ||
-    studentPasswordEntryArray[1] !== null
-  ) {
-    studentPasswordEntryArray.forEach((item) => {
-      document
-        .querySelector(`[content='${item}']`)
-        .classList.remove("selected");
-    });
-    studentPasswordEntryArray[0] = null;
-    studentPasswordEntryArray[1] = null;
-  }
-}
+// function resetStudentPasswordEntryArray() {
+//   if (
+//     studentPasswordEntryArray[0] !== null ||
+//     studentPasswordEntryArray[1] !== null
+//   ) {
+//     studentPasswordEntryArray.forEach((item) => {
+//       document
+//         .querySelector(`[content='${item}']`)
+//         .classList.remove("selected");
+//     });
+//     studentPasswordEntryArray[0] = null;
+//     studentPasswordEntryArray[1] = null;
+//   }
+// }
 
 // Generate student login grid with images
-function loadStudentLoginImageGrid() {
-  passwordImageArray.forEach((image) => {
-    const gridImage = document.createElement("div");
-    gridImage.classList.add("grid-image");
-    gridImage.setAttribute("id", passwordImageObject[image].id);
-    gridImage.setAttribute("content", passwordImageObject[image].content);
-    gridImage.style.backgroundImage = `url(${passwordImageObject[image].image})`;
-    gridImage.addEventListener("click", (event) => {
-      // deselects previously selected grid image
-      const content = gridImage.getAttribute("content");
-      if (studentPasswordEntryArray.includes(content)) {
-        document
-          .querySelector(`[content='${content}']`)
-          .classList.remove("selected");
-        studentPasswordEntryArray.splice(
-          studentPasswordEntryArray.indexOf(content),
-          1,
-          null
-        );
-        displaySelectedPasswordImages();
-      } else {
-        if (
-          studentPasswordEntryArray[0] !== null &&
-          studentPasswordEntryArray[1] === null
-        ) {
-          studentPasswordEntryArray.splice(1, 1, content);
-          displaySelectedPasswordImages();
-        }
-        if (studentPasswordEntryArray[0] === null) {
-          studentPasswordEntryArray.splice(0, 1, content);
-          displaySelectedPasswordImages();
-        }
+// function loadStudentLoginImageGrid() {
+// passwordImageArray.forEach((image) => {
+//   const gridImage = document.createElement("div");
+//   gridImage.classList.add("grid-image");
+//   gridImage.setAttribute("id", passwordImageObject[image].id);
+//   gridImage.setAttribute("content", passwordImageObject[image].content);
+//   gridImage.style.backgroundImage = `url(${passwordImageObject[image].image})`;
+//   gridImage.addEventListener("click", (event) => {
+//     // deselects previously selected grid image
+//     const content = gridImage.getAttribute("content");
+//     if (studentPasswordEntryArray.includes(content)) {
+//       document
+//         .querySelector(`[content='${content}']`)
+//         .classList.remove("selected");
+//       studentPasswordEntryArray.splice(
+//         studentPasswordEntryArray.indexOf(content),
+//         1,
+//         null
+//       );
+//       displaySelectedPasswordImages();
+//     } else {
+//       if (
+//         studentPasswordEntryArray[0] !== null &&
+//         studentPasswordEntryArray[1] === null
+//       ) {
+//         studentPasswordEntryArray.splice(1, 1, content);
+//         displaySelectedPasswordImages();
+//       }
+//       if (studentPasswordEntryArray[0] === null) {
+//         studentPasswordEntryArray.splice(0, 1, content);
+//         displaySelectedPasswordImages();
+//       }
 
-        if (studentPasswordEntryArray.length > 2) {
-          // document
-          //   .querySelector(`[content='${studentPasswordEntryArray[0]}']`)
-          //   .classList.remove("selected");
-          studentPasswordEntryArray.splice(0, 1);
-        }
-        studentPasswordEntryArray.forEach((item) => {
-          if (item !== null) {
-            document
-              .querySelector(`[content = '${item}']`)
-              .classList.add("selected");
-          }
-        });
-      }
-    });
+//       if (studentPasswordEntryArray.length > 2) {
+//         // document
+//         //   .querySelector(`[content='${studentPasswordEntryArray[0]}']`)
+//         //   .classList.remove("selected");
+//         studentPasswordEntryArray.splice(0, 1);
+//       }
+//       studentPasswordEntryArray.forEach((item) => {
+//         if (item !== null) {
+//           document
+//             .querySelector(`[content = '${item}']`)
+//             .classList.add("selected");
+//         }
+//       });
+//     }
+//   });
 
-    studentPasswordGrid.appendChild(gridImage);
-  });
-}
+//   studentPasswordGrid.appendChild(gridImage);
+// });
+// }
 studentPasswordGridContainer.appendChild(studentPasswordGrid);
 
-function displaySelectedPasswordImages() {
-  if (studentPasswordEntryArray[0] !== null) {
-    studentSelectedPasswordImage1.style.backgroundImage = `url(${
-      passwordImageObject[studentPasswordEntryArray[0]].image
-    })`;
-    // }
-  } else {
-    studentSelectedPasswordImage1.style.backgroundImage = ``;
-  }
-  if (studentPasswordEntryArray[1] !== null) {
-    studentSelectedPasswordImage2.style.backgroundImage = `url(${
-      passwordImageObject[studentPasswordEntryArray[1]].image
-    })`;
-  } else {
-    studentSelectedPasswordImage2.style.backgroundImage = ``;
-  }
-}
+// function displaySelectedPasswordImages() {
+//   if (studentPasswordEntryArray[0] !== null) {
+//     studentSelectedPasswordImage1.style.backgroundImage = `url(${
+//       passwordImageObject[studentPasswordEntryArray[0]].image
+//     })`;
+//     // }
+//   } else {
+//     studentSelectedPasswordImage1.style.backgroundImage = ``;
+//   }
+//   if (studentPasswordEntryArray[1] !== null) {
+//     studentSelectedPasswordImage2.style.backgroundImage = `url(${
+//       passwordImageObject[studentPasswordEntryArray[1]].image
+//     })`;
+//   } else {
+//     studentSelectedPasswordImage2.style.backgroundImage = ``;
+//   }
+// }
 
 // Student login submission Event Listener
 document
