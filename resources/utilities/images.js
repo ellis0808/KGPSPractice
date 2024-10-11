@@ -10,6 +10,7 @@ async function getImages() {
     }
 
     const imageData = await response.json();
+    console.log(imageData);
 
     // loadImages(imageData);
   } catch (error) {
@@ -17,7 +18,7 @@ async function getImages() {
   }
 }
 
-const loadImages = (imageData) => {
+function loadImages(imageData) {
   imageData.map((item) => {
     return (imageObject[item.content] = {
       content: item.filename,
@@ -26,6 +27,6 @@ const loadImages = (imageData) => {
     });
   });
   console.log(imageObject);
-};
+}
 
 export { getImages, imageObject };
