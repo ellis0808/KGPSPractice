@@ -2,6 +2,7 @@
 //   passwordImageArray,
 //   passwordImageObject,
 // } from "./password-image-object.js";
+import { getImages } from "../utilities/images.js";
 
 const studentNameContainer = document.querySelector(".student-name-container");
 const teacherNameContainer = document.querySelector(".teacher-name-container");
@@ -279,9 +280,9 @@ async function loginUser(id, firstname, lastname, access) {
 }
 window.addEventListener("load", () => {
   getUsersForLogin();
-  loadStudentLoginImageGrid();
+  // loadStudentLoginImageGrid();
 
-  loadImages();
+  getImages();
 });
 closeTeacherLoginModalBtn.addEventListener("click", () => {
   teacherPasswordEntryForm.close();

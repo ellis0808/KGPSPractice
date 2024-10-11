@@ -27,3 +27,5 @@ const loadImages = (imageData) => {
   });
   console.log(imageObject);
 };
+
+export { getImages };
