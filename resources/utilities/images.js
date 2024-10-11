@@ -3,7 +3,7 @@ let imageObject = {};
 async function getImages() {
   try {
     const response = await fetch(
-      "/KGPSEnglishPractice-test/api/load-images.php"
+      "/KGPSEnglishPractice-test/api/load_images.php"
     );
     if (!response.ok) {
       throw new Error("There was an error", data.error);
