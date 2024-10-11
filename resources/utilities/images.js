@@ -11,7 +11,7 @@ async function getImages() {
 
     const imageData = await response.json();
 
-    loadImages(imageData);
+    // loadImages(imageData);
   } catch (error) {
     console.error("Error getting images ", error);
   }
