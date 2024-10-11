@@ -28,4 +28,4 @@ const loadImages = (imageData) => {
   console.log(imageObject);
 };
 
-export { getImages };
+export { getImages, imageObject };

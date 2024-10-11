@@ -301,7 +301,7 @@ function routing(userData) {
 async function loadImages() {
   try {
     const response = await fetch(
-      "/KGPSEnglishPractice-test/api/load-images.php"
+      "/KGPSEnglishPractice-test/api/load_images.php"
     );
     const data = await response.json();
     console.log(data);
