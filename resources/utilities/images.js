@@ -9,10 +9,12 @@ async function getImages() {
       throw new Error("There was an error", data.error);
     }
 
-    const imageData = await response.json();
+    const data = await response.json();
+    const imageData = data.images;
+
     console.log(imageData);
 
-    // loadImages(imageData);
+    loadImages(imageData);
   } catch (error) {
     console.error("Error getting images ", error);
   }
