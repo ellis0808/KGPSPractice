@@ -1,7 +1,7 @@
-import {
-  passwordImageArray,
-  passwordImageObject,
-} from "./password-image-object.js";
+// import {
+//   passwordImageArray,
+//   passwordImageObject,
+// } from "./password-image-object.js";
 
 const studentNameContainer = document.querySelector(".student-name-container");
 const teacherNameContainer = document.querySelector(".teacher-name-container");
