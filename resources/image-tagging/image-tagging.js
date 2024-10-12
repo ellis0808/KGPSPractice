@@ -11,14 +11,14 @@ const imageDataContainer = document.querySelector(".image-data-container");
 const getAllImagesBtn = document.querySelector(".get-all-images-btn");
 const searchBox = document.getElementById("image-search");
 
-getAllImagesBtn.addEventListener("pointerdown", loadImages);
-
 window.addEventListener("load", () => {
   if (searchBox) {
     console.log(searchBox.value);
   }
   getImages();
 });
+
+getAllImagesBtn.addEventListener("pointerdown", getImages);
 
 searchBox.addEventListener("submit", (event) => {
   event.preventDefault();
