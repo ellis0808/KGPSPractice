@@ -1,6 +1,6 @@
 let imageObject = {};
 
-async function getImages() {
+async function getImages(category, grouping, grouping2) {
   try {
     const response = await fetch(
       "/KGPSEnglishPractice-test/api/load_images.php"

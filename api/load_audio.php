@@ -15,7 +15,7 @@ try {
     if ($category && $grouping1) {
         if ($grouping2) {
             $stmt = $pdo->prepare('SELECT content, link
-         FROM `audio_directory`
+         FROM `audio`
          WHERE category = :category
          AND  (`grouping` BETWEEN :grouping1 AND :grouping2)');
             $stmt->execute([
@@ -25,7 +25,7 @@ try {
             ]);
         } else {
             $stmt = $pdo->prepare('SELECT content, link
-            FROM `audio_directory`
+            FROM `audio`
             WHERE category = :category
             AND  `grouping` = :grouping1');
             $stmt->execute([
