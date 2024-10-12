@@ -238,13 +238,17 @@ function displaySelectedPasswordImages() {
   console.log(images);
   let image1;
   let image2;
-  image1 = images.filter((image) =>
+  image1 = Object.keys(imageObject).filter((image) =>
     image.includes(studentPasswordEntryArray[0])
   );
   console.log(image1);
 
   if (studentPasswordEntryArray[0] !== null) {
-    studentSelectedPasswordImage1.style.backgroundImage = `url(${imageObject[image1].link})`;
+    studentSelectedPasswordImage1.style.backgroundImage = `url(${
+      Object.keys(imageObject).filter((image) =>
+        image.includes(studentPasswordEntryArray[0])
+      ).link
+    })`;
     // }
   } else {
     studentSelectedPasswordImage1.style.backgroundImage = ``;
