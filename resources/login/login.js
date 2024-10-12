@@ -294,7 +294,7 @@ async function loginUser(id, firstname, lastname, access) {
   }
 
   try {
-    console.log(password);
+    console.log(document.getElementById("teacherpassword").value);
 
     const response = await fetch("/KGPSEnglishPractice-test/api/login.php", {
       method: "POST",
