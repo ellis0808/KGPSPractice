@@ -17,7 +17,7 @@ try {
     if ($catgegory && $grouping1) {
         if ($grouping2) {
             $stmt = $pdo->prepare('SELECT image_id, type, category, filename, link, content, alt_text
-            FROM images_directory
+            FROM images
             WHERE unit = :unit
             AND (`grouping` BETWEEN :grouping1 AND :grouping2)');
             $stmt->execute([
@@ -27,7 +27,7 @@ try {
             ]);
         } else {
             $stmt = $pdo->prepare('SELECT image_id, type, category, filename, link, content, alt_text
-            FROM images_directory
+            FROM images
             WHERE unit = :unit
             AND `grouping` = :grouping1');
             $stmt->execute([

@@ -1,17 +1,17 @@
 let imageObject = {};
 
-async function getImages(category, grouping, grouping2) {
+async function getImages(unit, grouping, grouping2) {
   try {
     let response;
-    if (category === null && grouping === null && grouping2 === null) {
+    if (unit === null && grouping === null && grouping2 === null) {
       response = await fetch("/KGPSEnglishPractice-test/api/load_images.php");
     } else if (grouping2 !== null) {
       response = await fetch(
-        `/KGPSEnglishPractice-test/api/load_images.php?id1=${category}&id2=${grouping}&id3=${grouping2}`
+        `/KGPSEnglishPractice-test/api/load_images.php?id1=${unit}&id2=${grouping}&id3=${grouping2}`
       );
-    } else if (category && grouping && grouping2 === null) {
+    } else if (unit && grouping && grouping2 === null) {
       response = await fetch(
-        `/KGPSEnglishPractice-test/api/load_images.php?id1=${category}&id2=${grouping}`
+        `/KGPSEnglishPractice-test/api/load_images.php?id1=${unit}&id2=${grouping}`
       );
     }
     if (!response.ok) {
