@@ -238,7 +238,9 @@ function displaySelectedPasswordImages() {
   console.log(images);
   let image1;
   let image2;
-  image1 = images.filter((image) => studentPasswordEntryArray[0]);
+  image1 = images.filter((image) =>
+    image.includes(studentPasswordEntryArray[0])
+  );
   console.log(image1);
 
   if (studentPasswordEntryArray[0] !== null) {
