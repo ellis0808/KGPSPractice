@@ -9,14 +9,18 @@ import { getImages, imageObject } from "../utilities/images.js";
 // const imageThumbnailContainer = document.querySelector(".image-type-container");
 const imageDataContainer = document.querySelector(".image-data-container");
 const getAllImagesBtn = document.querySelector(".get-all-images-btn");
+const searchBox = document.getElementById("image-search");
 
 getAllImagesBtn.addEventListener("pointerdown", loadImages);
 
 window.addEventListener("load", () => {
+  if (searchBox.value) {
+    console.log("empty");
+  }
   getImages();
 });
 
-document.getElementById("image-search").addEventListener("submit", (event) => {
+searchBox.addEventListener("submit", (event) => {
   event.preventDefault();
   const searchItem = document.getElementById("filename").value;
   getImages(searchItem);
@@ -26,9 +30,7 @@ document.getElementById("image-search").addEventListener("submit", (event) => {
 async function imageSearch(searchItem) {
   try {
     const response = await fetch(
-      `/KGPSEnglishPractice-test/api/load_images.php?id=${encodeURIComponent(
-        searchItem
-      )}`
+      `/KGPSEnglishPractice-test/api/load_images.php?id=${searchItem}`
     );
 
     if (!response.ok) {
