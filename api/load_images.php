@@ -14,7 +14,7 @@ try {
     $grouping1 = $_GET['id2'] ?? null;
     $grouping2 = $_GET['id3'] ?? null;
 
-    if ($catgegory && $grouping1) {
+    if ($unit && $grouping1) {
         if ($grouping2) {
             $stmt = $pdo->prepare('SELECT image_id, link, content, alt_text
             FROM images
@@ -61,6 +61,12 @@ try {
             // Get all available images
             $stmt = $pdo->query(('SELECT image_id, link, content, alt_text, unit, `grouping`
             FROM images'));
+            $image = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if ($image) {
+                echo json_encode($image);
+            } else {
+                echo json_encode(['message' => 'No images found']);
+            }
         }
     }
 } catch (PDOException $e) {
