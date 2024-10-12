@@ -287,10 +287,10 @@ async function loginUser(id, firstname, lastname, access) {
   let password;
   if (access === "teacher") {
     password = document.getElementById("teacherpassword").value;
-    return password;
+    // return password;
   } else if (access === "student") {
     password = studentPasswordEntryArray.join("");
-    return password;
+    // return password;
   }
 
   try {
@@ -310,6 +310,8 @@ async function loginUser(id, firstname, lastname, access) {
       resetStudentPasswordEntryArray();
       throw new Error("Login error", data.error);
     } else {
+      console.log(data);
+
       routing(data);
     }
   } catch (error) {
