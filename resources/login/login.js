@@ -234,16 +234,15 @@ studentPasswordGridContainer.appendChild(studentPasswordGrid);
 function displaySelectedPasswordImages() {
   console.log(studentPasswordEntryArray);
   console.log(studentPasswordEntryArray[0]);
-  let images = Object.entries(imageObject);
+  let images = Object.keys(imageObject);
   console.log(images);
-
   let image1;
   let image2;
-  // image1 = images.filter(item => `item.content`)
+  image1 = images.filter(studentSelectedPasswordImage1[0]);
+  console.log(image1);
+
   if (studentPasswordEntryArray[0] !== null) {
-    studentSelectedPasswordImage1.style.backgroundImage = `url(${
-      imageObject[studentPasswordEntryArray[0].slice(0, 13)].link
-    })`;
+    studentSelectedPasswordImage1.style.backgroundImage = `url(${imageObject[image1].link})`;
     // }
   } else {
     studentSelectedPasswordImage1.style.backgroundImage = ``;
