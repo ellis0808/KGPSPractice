@@ -33,6 +33,7 @@ async function getImages(unit, grouping, grouping2) {
 }
 
 function loadImages(imageData) {
+  imageObject = {};
   imageData.map((item) => {
     return (imageObject[item.filename] = {
       id: item.image_id,
