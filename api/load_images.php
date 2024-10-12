@@ -45,10 +45,10 @@ try {
         }
     } else {
         // Get all images with the indicated filename
-        if (isset($_GET['id'])) {
+        if (isset($_GET['id1'])) {
             $stmt = $pdo->prepare('SELECT * FROM images
             WHERE filename LIKE :item');
-            $stmt->execute(['item' => $_GET['id'] . '%']);
+            $stmt->execute(['item' => $_GET['id1'] . '%']);
             $image = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($image) {
                 echo json_encode($image);

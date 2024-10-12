@@ -7,7 +7,7 @@ async function getImages(unit, grouping, grouping2) {
       response = await fetch("/KGPSEnglishPractice-test/api/load_images.php");
     } else if (unit && !grouping && !grouping2) {
       response = await fetch(
-        `/KGPSEnglishPractice-test/api/load_images.php?id=${unit}`
+        `/KGPSEnglishPractice-test/api/load_images.php?id1=${unit}`
       );
     } else if (grouping2 !== null) {
       response = await fetch(

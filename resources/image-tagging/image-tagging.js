@@ -26,23 +26,6 @@ searchBox.addEventListener("submit", (event) => {
   populateImageTable();
 });
 
-// async function imageSearch(searchItem) {
-//   try {
-//     const response = await fetch(
-//       `/KGPSEnglishPractice-test/api/load_images.php?id=${searchItem}`
-//     );
-
-//     if (!response.ok) {
-//       throw new Error("Network response not okay");
-//     }
-
-//     const data = await response.json();
-//     populateImageTable();
-//   } catch (error) {
-//     console.log("There was an error loading the images", error.message);
-//   }
-// }
-
 function populateImageTable() {
   let i = 0;
 
