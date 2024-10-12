@@ -10,7 +10,7 @@ window.addEventListener("load", () => {
   }, 500);
   getImages();
 
-  setTimeout(populateImageTable, 500);
+  setTimeout(populateImageTable, 200);
 });
 
 getAllImagesBtn.addEventListener("pointerdown", getImages);
@@ -21,7 +21,7 @@ searchBox.addEventListener("submit", (event) => {
   console.log(searchItem);
 
   getImages(searchItem);
-  setTimeout(populateImageTable, 1000);
+  setTimeout(populateImageTable, 200);
 });
 
 function populateImageTable() {
