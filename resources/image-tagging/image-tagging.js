@@ -13,9 +13,8 @@ const searchBox = document.getElementById("image-search");
 
 window.addEventListener("load", () => {
   getImages();
-  console.log(Object.keys(imageObject));
 
-  populateImageTable();
+  setTimeout(populateImageTable, 500);
 });
 
 getAllImagesBtn.addEventListener("pointerdown", getImages);
