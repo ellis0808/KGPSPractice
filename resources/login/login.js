@@ -27,6 +27,9 @@ const passwordImageNamesArray = [
 
 const studentNameContainer = document.querySelector(".student-name-container");
 const teacherNameContainer = document.querySelector(".teacher-name-container");
+const closeStudentLoginModalBtn = document.querySelector(
+  ".close-student-login-modal-btn"
+);
 const closeTeacherLoginModalBtn = document.querySelector(
   ".close-teacher-login-modal-btn"
 );
@@ -307,6 +310,9 @@ window.addEventListener("load", () => {
   getImages("login", 1, null);
   getUsersForLogin();
   setTimeout(loadStudentLoginImageGrid, 200);
+});
+closeStudentLoginModalBtn.addEventListener("click", () => {
+  studentPasswordEntryForm.close();
 });
 closeTeacherLoginModalBtn.addEventListener("click", () => {
   teacherPasswordEntryForm.close();
