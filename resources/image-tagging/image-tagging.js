@@ -10,7 +10,7 @@ window.addEventListener("load", () => {
   }, 0);
   getImages();
 
-  setTimeout(populateImageTable, 100);
+  setTimeout(populateImageTable, 500);
 });
 
 getAllImagesBtn.addEventListener("pointerdown", getImages);
@@ -18,10 +18,9 @@ getAllImagesBtn.addEventListener("pointerdown", getImages);
 searchBox.addEventListener("submit", (event) => {
   event.preventDefault();
   const searchItem = document.getElementById("filename").value;
-  console.log(searchItem);
 
   getImages(searchItem);
-  setTimeout(populateImageTable, 100);
+  setTimeout(populateImageTable, 500);
 });
 
 function populateImageTable() {
@@ -29,14 +28,11 @@ function populateImageTable() {
 
   if (imageDataContainer.childNodes) {
     document.querySelectorAll(".image-row").forEach((row) => {
-      console.log(row);
       row.remove();
     });
   }
 
   Object.keys(imageObject).forEach((item) => {
-    console.log(item);
-
     ++i;
     const imageRow = document.createElement("div");
     imageRow.classList.add("image-row");
