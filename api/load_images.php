@@ -46,7 +46,7 @@ try {
     } else {
         // Get all images with the indicated filename
         if (isset($_GET['id'])) {
-            $stmt = $pdo->prepare('SELECT image_id, type, category, filename, filetype, link, content, alt_text, unit, `grouping`
+            $stmt = $pdo->prepare('SELECT image_id, filename, type, category, filename, filetype, link, content, alt_text, unit, `grouping`
             FROM images
             WHERE filename LIKE :item');
             $stmt->execute(['item' => $_GET['id'] . '%']);
@@ -59,7 +59,7 @@ try {
         } else {
 
             // Get all available images
-            $stmt = $pdo->query(('SELECT image_id, type, category, filename, filetype, link, content, alt_text, unit, `grouping`
+            $stmt = $pdo->query(('SELECT image_id, filename, type, category, filename, filetype, link, content, alt_text, unit, `grouping`
             FROM images'));
             $image = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($image) {
