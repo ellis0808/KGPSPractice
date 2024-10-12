@@ -232,23 +232,6 @@ function loadStudentLoginImageGrid() {
 studentPasswordGridContainer.appendChild(studentPasswordGrid);
 
 function displaySelectedPasswordImages() {
-  console.log(studentPasswordEntryArray);
-  console.log(studentPasswordEntryArray[0]);
-  let images = Object.keys(imageObject);
-  console.log(images);
-  let image1;
-  let image2;
-  image1 = Object.keys(imageObject).filter((image) =>
-    image.includes(studentPasswordEntryArray[0])
-  );
-  // console.log(
-  //   imageObject[
-  //     Object.keys(imageObject).filter((image) =>
-  //       image.includes(studentPasswordEntryArray[0])
-  //     )
-  //   ].link
-  // );
-
   if (studentPasswordEntryArray[0] !== null) {
     studentSelectedPasswordImage1.style.backgroundImage = `url(${
       imageObject[
@@ -263,7 +246,11 @@ function displaySelectedPasswordImages() {
   }
   if (studentPasswordEntryArray[1] !== null) {
     studentSelectedPasswordImage2.style.backgroundImage = `url(${
-      imageObject[studentPasswordEntryArray[1].slice(0, 13)].link
+      imageObject[
+        Object.keys(imageObject).filter((image) =>
+          image.includes(studentPasswordEntryArray[1])
+        )
+      ].link
     })`;
   } else {
     studentSelectedPasswordImage2.style.backgroundImage = ``;
