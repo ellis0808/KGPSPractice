@@ -241,7 +241,11 @@ function displaySelectedPasswordImages() {
   image1 = Object.keys(imageObject).filter((image) =>
     image.includes(studentPasswordEntryArray[0])
   );
-  console.log(image1);
+  console.log(
+    Object.keys(imageObject).filter((image) =>
+      image.includes(studentPasswordEntryArray[0])
+    ).link
+  );
 
   if (studentPasswordEntryArray[0] !== null) {
     studentSelectedPasswordImage1.style.backgroundImage = `url(${
