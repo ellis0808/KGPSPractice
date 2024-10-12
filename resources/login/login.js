@@ -167,6 +167,7 @@ function resetStudentPasswordEntryArray() {
     });
     studentPasswordEntryArray[0] = null;
     studentPasswordEntryArray[1] = null;
+    displaySelectedPasswordImages();
   }
 }
 
