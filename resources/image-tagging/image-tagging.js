@@ -16,6 +16,7 @@ window.addEventListener("load", () => {
     console.log(searchBox.value);
   }
   getImages();
+  populateImageTable();
 });
 
 getAllImagesBtn.addEventListener("pointerdown", getImages);
@@ -69,12 +70,12 @@ function populateImageTable() {
     number.classList.add("number");
     imageThumbnailContainer.classList.add("thumbnail");
     number.innerText = `${i}`;
-    imageTypeContainer.innerText = item.type;
-    imageCategoryContainer.innerText = item.category;
-    imageFileNameContainer.innerText = item.filename;
-    imageFileTypeContainer.innerText = item.filetype;
-    imageLinkContainer.innerText = item.link;
-    imageThumbnailContainer.style.backgroundImage = `url(${item.link})`;
+    imageTypeContainer.innerText = imageObject[item].type;
+    imageCategoryContainer.innerText = imageObject[item].category;
+    imageFileNameContainer.innerText = imageObject[item].filename;
+    imageFileTypeContainer.innerText = imageObject[item].filetype;
+    imageLinkContainer.innerText = imageObject[item].link;
+    imageThumbnailContainer.style.backgroundImage = `url(${imageObject[item].link})`;
     imageRow.appendChild(number);
     imageRow.appendChild(imageTypeContainer);
     imageRow.appendChild(imageCategoryContainer);
