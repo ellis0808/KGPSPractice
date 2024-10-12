@@ -300,9 +300,7 @@ async function loginUser(id, firstname, lastname, access) {
   }
 }
 window.addEventListener("load", () => {
-  passwordImageNamesArray.forEach((item) => {
-    getImages(item);
-  });
+  getImages("login", 1, null);
   getUsersForLogin();
   loadStudentLoginImageGrid();
 });
