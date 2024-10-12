@@ -5,7 +5,7 @@
 import { getImages, imageObject } from "../utilities/images.js";
 
 const passwordImageNamesArray = [
-  "  rabbit-silhouette-1",
+  "rabbit-silhouette-1",
   "duck-silhouette-2",
   "fish-silhouette-3",
   "turtle-silhouette-2",

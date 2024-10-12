@@ -31,6 +31,35 @@ async function getImages(unit, grouping, grouping2) {
     console.error("Error getting images ", error);
   }
 }
+async function getSpecifiedImages(unit, grouping, grouping2) {
+  try {
+    let response;
+    if (!unit && !grouping && !grouping2) {
+      response = await fetch("/KGPSEnglishPractice-test/api/load_images.php");
+    } else if (unit && !grouping && !grouping2) {
+      response = await fetch(
+        `/KGPSEnglishPractice-test/api/load_images.php?id=${unit}`
+      );
+    } else if (grouping2 !== null) {
+      response = await fetch(
+        `/KGPSEnglishPractice-test/api/load_images.php?id1=${unit}&id2=${grouping}&id3=${grouping2}`
+      );
+    } else if (unit && grouping && grouping2 === null) {
+      response = await fetch(
+        `/KGPSEnglishPractice-test/api/load_images.php?id1=${unit}&id2=${grouping}`
+      );
+    }
+    if (!response.ok) {
+      throw new Error("There was an error", data.error);
+    }
+
+    const imageData = await response.json();
+
+    console.log(imageData);
+  } catch (error) {
+    console.error("Error getting images ", error);
+  }
+}
 
 function loadImages(imageData) {
   imageData.map((item) => {
