@@ -7,10 +7,10 @@ const searchBox = document.getElementById("image-search");
 window.addEventListener("load", () => {
   setTimeout(() => {
     document.getElementById("filename").value = "";
-  }, 500);
+  }, 0);
   getImages();
 
-  setTimeout(populateImageTable, 200);
+  setTimeout(populateImageTable, 100);
 });
 
 getAllImagesBtn.addEventListener("pointerdown", getImages);
@@ -21,7 +21,7 @@ searchBox.addEventListener("submit", (event) => {
   console.log(searchItem);
 
   getImages(searchItem);
-  setTimeout(populateImageTable, 200);
+  setTimeout(populateImageTable, 100);
 });
 
 function populateImageTable() {
@@ -33,7 +33,6 @@ function populateImageTable() {
       row.remove();
     });
   }
-  console.log(Object.values(imageObject));
 
   Object.keys(imageObject).forEach((item) => {
     console.log(item);
