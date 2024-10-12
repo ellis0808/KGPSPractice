@@ -172,7 +172,7 @@ function resetStudentPasswordEntryArray() {
 
 // Generate student login grid with images
 function loadStudentLoginImageGrid() {
-  imageObject.forEach((image) => {
+  passwordImageNamesArray.forEach((image) => {
     const gridImage = document.createElement("div");
     gridImage.classList.add("grid-image");
     gridImage.setAttribute("id", imageObject[image].id);
