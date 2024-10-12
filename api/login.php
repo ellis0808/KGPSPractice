@@ -20,6 +20,8 @@ $firstname = $data['firstname'] ?? null;
 $lastname = $data['lastname'] ?? null;
 $access = $data['access'] ?? null;
 $password = $data['password'] ?? null;
+
+
 if (!$id) {
     echo json_encode(['error' => 'User ID is required']);
     exit;

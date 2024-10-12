@@ -194,7 +194,6 @@ function loadStudentLoginImageGrid() {
           1,
           null
         );
-        console.log(studentPasswordEntryArray);
 
         displaySelectedPasswordImages();
       } else {
@@ -323,11 +322,11 @@ window.addEventListener("load", () => {
   setTimeout(loadStudentLoginImageGrid, 500);
 });
 closeStudentLoginModalBtn.addEventListener("click", (event) => {
-  event.preventDefault();
+  // event.preventDefault();
   studentPasswordEntryForm.close();
 });
 closeTeacherLoginModalBtn.addEventListener("click", (event) => {
-  event.preventDefault();
+  // event.preventDefault();
   teacherPasswordEntryForm.close();
   // teacherPasswordEntryForm.reset();
 });
