@@ -235,7 +235,7 @@ function displaySelectedPasswordImages() {
   console.log(studentPasswordEntryArray);
   if (studentPasswordEntryArray[0] !== null) {
     studentSelectedPasswordImage1.style.backgroundImage = `url(${
-      imageObject[studentPasswordEntryArray[0]].link
+      imageObject[studentPasswordEntryArray[0].slice(0, 13)].link
     })`;
     // }
   } else {
@@ -243,7 +243,7 @@ function displaySelectedPasswordImages() {
   }
   if (studentPasswordEntryArray[1] !== null) {
     studentSelectedPasswordImage2.style.backgroundImage = `url(${
-      imageObject[studentPasswordEntryArray[1]].link
+      imageObject[studentPasswordEntryArray[1].slice(0, 13)].link
     })`;
   } else {
     studentSelectedPasswordImage2.style.backgroundImage = ``;
