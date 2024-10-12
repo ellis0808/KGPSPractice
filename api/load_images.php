@@ -35,22 +35,23 @@ try {
                 'grouping1' => $grouping1
             ]);
         }
-    } else {
-        // Get all images with the indicated filename
-        // if (isset($_GET['id'])) {
-        //     $stmt = $pdo->prepare('SELECT image_id, type, category, filename, filetype, link, content, alt_text FROM images WHERE filename LIKE :item');
-        //     $stmt->execute(['item' => $_GET['id'] . '%']);
-        //     $image = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        //     if ($image) {
-        //         echo json_encode($image);
-        //     } else {
-        //         echo json_encode(['message' => 'No images match the search criteria']);
-        //     }
-        // } else {
-
-        //     // Get all available images
-        //     $stmt = $pdo->query(('SELECT image_id, type, category, filename, filetype, link, content, alt_text FROM images'));
     }
+    // else {
+    // Get all images with the indicated filename
+    // if (isset($_GET['id'])) {
+    //     $stmt = $pdo->prepare('SELECT image_id, type, category, filename, filetype, link, content, alt_text FROM images WHERE filename LIKE :item');
+    //     $stmt->execute(['item' => $_GET['id'] . '%']);
+    //     $image = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //     if ($image) {
+    //         echo json_encode($image);
+    //     } else {
+    //         echo json_encode(['message' => 'No images match the search criteria']);
+    //     }
+    // } else {
+
+    //     // Get all available images
+    //     $stmt = $pdo->query(('SELECT image_id, type, category, filename, filetype, link, content, alt_text FROM images'));
+    // }
     $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if ($images) {
