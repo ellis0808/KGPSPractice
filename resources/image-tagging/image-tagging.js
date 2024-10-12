@@ -14,8 +14,8 @@ const searchBox = document.getElementById("image-search");
 getAllImagesBtn.addEventListener("pointerdown", loadImages);
 
 window.addEventListener("load", () => {
-  if (searchBox.value) {
-    console.log("empty");
+  if (searchBox) {
+    console.log(searchBox.value);
   }
   getImages();
 });
