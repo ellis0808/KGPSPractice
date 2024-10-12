@@ -5,6 +5,9 @@ const getAllImagesBtn = document.querySelector(".get-all-images-btn");
 const searchBox = document.getElementById("image-search");
 
 window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("filename").value = "";
+  }, 500);
   getImages();
 
   setTimeout(populateImageTable, 500);
@@ -18,8 +21,7 @@ searchBox.addEventListener("submit", (event) => {
   console.log(searchItem);
 
   getImages(searchItem);
-  setTimeout(populateImageTable, 500);
-  searchBox.textContent = "";
+  setTimeout(populateImageTable, 1000);
 });
 
 function populateImageTable() {
