@@ -18,50 +18,71 @@ $data = json_decode(file_get_contents('php://input'), true);
 $id = (int)$data['id'] ?? null;
 $firstname = $data['firstname'] ?? null;
 $lastname = $data['lastname'] ?? null;
+$access = $data['access'] ?? null;
 $password = $data['password'] ?? null;
-
 if (!$id) {
     echo json_encode(['error' => 'User ID is required']);
-    exit;
-}
-if (!$firstname) {
-    echo json_encode(['error' => 'First name is required']);
-    exit;
-}
-if (!$lastname) {
-    echo json_encode(['error' => 'Last name is required']);
     exit;
 }
 if (!$password) {
     echo json_encode(['error' => 'Password is required']);
     exit;
 }
+// Student login
+if ($access === 'student') {
 
-try {
-    $pdo = getDBConnection();
+    try {
+        $pdo = getDBConnection();
 
-    $stmt = $pdo->prepare('SELECT student_id, last_name, first_name, grade_level, password, access FROM students WHERE student_id = :student_id AND first_name = :first_name AND last_name = :last_name');
-    $stmt->execute(['student_id' => $id, 'first_name' => $firstname, 'last_name' => $lastname]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $pdo->prepare('SELECT student_id, last_name, first_name, grade_level, password, access FROM students WHERE student_id = :student_id AND first_name = :first_name AND last_name = :last_name');
+        $stmt->execute(['student_id' => $id, 'first_name' => $firstname, 'last_name' => $lastname, 'access' => $access]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['loggedIn'] = true;
-        $_SESSION['userId'] = $user['student_id'];
-        $_SESSION['firstName'] = $user['first_name'];
-        $_SESSION['lastName'] = $user['last_name'];
-        $_SESSION['access'] = $user['access'];
-        $_SESSION['gradeLevel'] = $user['grade_level'];
+        if ($user && password_verify($password, $user['password'])) {
+            $_SESSION['loggedIn'] = true;
+            $_SESSION['userId'] = $user['student_id'];
+            $_SESSION['firstName'] = $user['first_name'];
+            $_SESSION['lastName'] = $user['last_name'];
+            $_SESSION['access'] = $user['access'];
+            $_SESSION['gradeLevel'] = $user['grade_level'];
 
-        // clear_failed_attempts($pdo, $ip);
+            // clear_failed_attempts($pdo, $ip);
 
-        echo json_encode($user);
-    } else {
-        // log_failed_attempt($ip);
+            echo json_encode($user);
+        } else {
+            // log_failed_attempt($ip);
 
-        echo json_encode(['error' => 'Invalid ID, firstname, lastname or password']);
+            echo json_encode(['error' => 'Invalid ID, firstname, lastname or password']);
+        }
+    } catch (PDOException $e) {
+        echo json_encode(['error' => $e->getMessage()]);
     }
-} catch (PDOException $e) {
-    echo json_encode(['error' => $e->getMessage()]);
+} else if ($access === 'teacher') {
+    // Teacher login
+
+    try {
+
+        $pdo = getDBConnection();
+        $stmt = $pdo->prepare('SELECT teacher_id, last_name, title, access, admin, password
+        WHERE teacher_id = :teacher_id AND last_name = :last_name AND title = :title AND access = :access AND admin = :admin');
+        $stmt->execute(['teacher_id' => $id, 'last_name' => $lastname, 'title' => $title, 'access' => $access, 'admin' => $admin]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user && password_verify($password, $user['password'])) {
+            $_SESSION['loggedIn'] = true;
+            $_SESSION['userId'] = $user['teacher_id'];
+            $_SESSION['lastName'] = $user['last_name'];
+            $_SESSION['title'] = $user['title'];
+            $_SESSION['access'] = $user['access'];
+            $_SESSION['admin'] = $user['admin'];
+
+            echo json_encode($user);
+        } else {
+            echo json_encode(['error' => 'Invalid ID, name or password']);
+        }
+    } catch (PDOException $e) {
+        echo json_encode(['error' => $e->getMessage()]);
+    }
 }
 
 

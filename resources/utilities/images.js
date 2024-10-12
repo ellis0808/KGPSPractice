@@ -24,7 +24,7 @@ async function getImages(unit, grouping, grouping2) {
 
     const imageData = await response.json();
 
-    console.log(imageData);
+    // console.log(imageData);
 
     loadImages(imageData);
   } catch (error) {
@@ -48,7 +48,7 @@ function loadImages(imageData) {
       grouping: item.grouping,
     });
   });
-  console.log(imageObject);
+  // console.log(imageObject);
 }
 
 export { getImages, imageObject };
