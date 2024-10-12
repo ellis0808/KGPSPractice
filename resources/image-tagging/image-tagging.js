@@ -12,10 +12,9 @@ const getAllImagesBtn = document.querySelector(".get-all-images-btn");
 const searchBox = document.getElementById("image-search");
 
 window.addEventListener("load", () => {
-  if (searchBox) {
-    console.log(searchBox.value);
-  }
   getImages();
+  console.log(Object.keys(imageObject));
+
   populateImageTable();
 });
 
@@ -28,22 +27,22 @@ searchBox.addEventListener("submit", (event) => {
   populateImageTable();
 });
 
-async function imageSearch(searchItem) {
-  try {
-    const response = await fetch(
-      `/KGPSEnglishPractice-test/api/load_images.php?id=${searchItem}`
-    );
+// async function imageSearch(searchItem) {
+//   try {
+//     const response = await fetch(
+//       `/KGPSEnglishPractice-test/api/load_images.php?id=${searchItem}`
+//     );
 
-    if (!response.ok) {
-      throw new Error("Network response not okay");
-    }
+//     if (!response.ok) {
+//       throw new Error("Network response not okay");
+//     }
 
-    const data = await response.json();
-    populateImageTable();
-  } catch (error) {
-    console.log("There was an error loading the images", error.message);
-  }
-}
+//     const data = await response.json();
+//     populateImageTable();
+//   } catch (error) {
+//     console.log("There was an error loading the images", error.message);
+//   }
+// }
 
 function populateImageTable() {
   let i = 0;
