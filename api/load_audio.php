@@ -43,6 +43,5 @@ try {
         echo json_encode(['Message' => 'Missing parameters']);
     }
 } catch (PDOException $e) {
-    echo
-    json_encode(['error' => $e->getMessage()]);
+    echo json_encode(['error' => $e->getMessage()]);
 }
