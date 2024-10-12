@@ -302,7 +302,7 @@ async function loginUser(id, firstname, lastname, access) {
 window.addEventListener("load", () => {
   getImages("login", 1, null);
   getUsersForLogin();
-  setTimeout(loadStudentLoginImageGrid, 1000);
+  loadStudentLoginImageGrid();
 });
 closeTeacherLoginModalBtn.addEventListener("click", () => {
   teacherPasswordEntryForm.close();
