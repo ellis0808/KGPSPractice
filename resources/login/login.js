@@ -284,12 +284,13 @@ document
 
 // Login logic
 async function loginUser(id, firstname, lastname, access) {
-  let password;
+  let teacherPassword;
+  let studentPassword;
   if (access === "teacher") {
-    password = document.getElementById("teacherpassword").value;
+    teacherPassword = document.getElementById("teacherpassword").value;
     // return password;
   } else if (access === "student") {
-    password = studentPasswordEntryArray.join("");
+    studentPassword = studentPasswordEntryArray.join("");
     // return password;
   }
 
@@ -299,7 +300,13 @@ async function loginUser(id, firstname, lastname, access) {
     const response = await fetch("/KGPSEnglishPractice-test/api/login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, firstname, lastname, access, password }),
+      body: JSON.stringify({
+        id,
+        firstname,
+        lastname,
+        access,
+        teacherPassword,
+      }),
       credentials: "include",
     });
 
