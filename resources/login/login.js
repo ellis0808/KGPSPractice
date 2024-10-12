@@ -228,6 +228,7 @@ function loadStudentLoginImageGrid() {
 studentPasswordGridContainer.appendChild(studentPasswordGrid);
 
 function displaySelectedPasswordImages() {
+  console.log(studentPasswordEntryArray);
   if (studentPasswordEntryArray[0] !== null) {
     studentSelectedPasswordImage1.style.backgroundImage = `url(${
       imageObject[studentPasswordEntryArray[0]].link
