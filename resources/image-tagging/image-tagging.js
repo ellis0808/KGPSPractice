@@ -22,6 +22,8 @@ getAllImagesBtn.addEventListener("pointerdown", getImages);
 searchBox.addEventListener("submit", (event) => {
   event.preventDefault();
   const searchItem = document.getElementById("filename").value;
+  console.log(searchItem);
+
   getImages(searchItem);
   populateImageTable();
 });
