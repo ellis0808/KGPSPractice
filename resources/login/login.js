@@ -286,6 +286,8 @@ async function loginUser(id, firstname, lastname, access) {
   }
 
   try {
+    console.log(password);
+
     const response = await fetch("/KGPSEnglishPractice-test/api/login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
