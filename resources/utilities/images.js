@@ -36,10 +36,15 @@ function loadImages(imageData) {
   imageData.map((item) => {
     return (imageObject[item.filename] = {
       id: item.image_id,
-      content: item.content,
+      type: item.type,
+      category: item.category,
       filename: item.filename,
+      filetype: imageData.filetype,
       link: item.link,
+      content: item.content,
       altText: item.alt_text,
+      unit: item.unit,
+      grouping: item.grouping,
     });
   });
   console.log(imageObject);
