@@ -37,7 +37,7 @@ document.getElementById("image-search").addEventListener("submit", (event) => {
 async function imageSearch(searchItem) {
   try {
     const response = await fetch(
-      `/KGPSEnglishPractice-test/api/load-images.php?id=${encodeURIComponent(
+      `/KGPSEnglishPractice-test/api/load_images.php?id=${encodeURIComponent(
         searchItem
       )}`
     );

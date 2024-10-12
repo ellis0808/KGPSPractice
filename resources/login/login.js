@@ -309,12 +309,14 @@ async function loginUser(id, firstname, lastname, access) {
 window.addEventListener("load", () => {
   getImages("login", 1, null);
   getUsersForLogin();
-  setTimeout(loadStudentLoginImageGrid, 200);
+  setTimeout(loadStudentLoginImageGrid, 500);
 });
-closeStudentLoginModalBtn.addEventListener("click", () => {
+closeStudentLoginModalBtn.addEventListener("click", (event) => {
+  event.preventDefault();
   studentPasswordEntryForm.close();
 });
-closeTeacherLoginModalBtn.addEventListener("click", () => {
+closeTeacherLoginModalBtn.addEventListener("click", (event) => {
+  event.preventDefault();
   teacherPasswordEntryForm.close();
   // teacherPasswordEntryForm.reset();
 });
