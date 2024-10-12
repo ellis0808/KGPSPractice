@@ -3,35 +3,24 @@
 // const imageFileNameContainer = document.querySelector(".image-type-container");
 // const imageFileTypeContainer = document.querySelector(".image-type-container");
 // const imageLinkContainer = document.querySelector(".image-type-container");
+
+import { getImages, imageObject } from "../utilities/images.js";
+
 // const imageThumbnailContainer = document.querySelector(".image-type-container");
 const imageDataContainer = document.querySelector(".image-data-container");
 const getAllImagesBtn = document.querySelector(".get-all-images-btn");
 
 getAllImagesBtn.addEventListener("pointerdown", loadImages);
 
-async function loadImages() {
-  try {
-    const response = await fetch(
-      "/KGPSEnglishPractice-test/api/load_images.php"
-    );
-    const imageData = await response.json();
-    populateImageTable(imageData);
-    if (!response.ok) {
-      throw new Error("Network response was not okay");
-    }
-  } catch (error) {
-    console.log("There was an error", error);
-  }
-}
-
 window.addEventListener("load", () => {
-  loadImages();
+  getImages();
 });
 
 document.getElementById("image-search").addEventListener("submit", (event) => {
   event.preventDefault();
   const searchItem = document.getElementById("filename").value;
-  imageSearch(searchItem);
+  getImages(searchItem);
+  populateImageTable();
 });
 
 async function imageSearch(searchItem) {
@@ -47,24 +36,22 @@ async function imageSearch(searchItem) {
     }
 
     const data = await response.json();
-    populateImageTable(data);
+    populateImageTable();
   } catch (error) {
     console.log("There was an error loading the images", error.message);
   }
 }
 
-function populateImageTable(data) {
+function populateImageTable() {
   let i = 0;
-  if (data.images) {
-    data = data.images;
-  }
+
   if (imageDataContainer.childNodes) {
     document.querySelectorAll(".image-row").forEach((row) => {
       console.log(row);
       row.remove();
     });
   }
-  data.forEach((item) => {
+  Object.keys(imageObject).forEach((item) => {
     ++i;
     const imageRow = document.createElement("div");
     imageRow.classList.add("image-row");
