@@ -37,7 +37,7 @@ function loadImages(imageData) {
     return (imageObject[item.content] = {
       id: item.image_id,
       content: item.content,
-      filename: filename,
+      filename: item.filename,
       link: item.link,
       altText: item.alt_text,
     });
