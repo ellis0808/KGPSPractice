@@ -235,7 +235,7 @@ function displaySelectedPasswordImages() {
   console.log(studentPasswordEntryArray);
   console.log(studentPasswordEntryArray[0]);
   let images = Object.entries(imageObject);
-  console.log(imageObject);
+  console.log(images);
 
   let image1;
   let image2;
