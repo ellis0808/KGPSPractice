@@ -36,8 +36,10 @@ if ($access === 'student') {
     try {
         $pdo = getDBConnection();
 
-        $stmt = $pdo->prepare('SELECT student_id, last_name, first_name, grade_level, password, access FROM students WHERE student_id = :student_id AND first_name = :first_name AND last_name = :last_name');
-        $stmt->execute(['student_id' => $id, 'first_name' => $firstname, 'last_name' => $lastname, 'access' => $access]);
+        $stmt = $pdo->prepare('SELECT student_id, last_name, first_name, grade_level, password, access
+        FROM students
+        WHERE student_id = :student_id AND first_name = :first_name AND last_name = :last_name');
+        $stmt->execute(['student_id' => $id, 'first_name' => $firstname, 'last_name' => $lastname]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['password'])) {
@@ -59,22 +61,23 @@ if ($access === 'student') {
     } catch (PDOException $e) {
         echo json_encode(['error' => $e->getMessage()]);
     }
-} else if ($access === 'teacher') {
+} elseif ($access === 'teacher') {
     // Teacher login
 
     try {
 
         $pdo = getDBConnection();
         $stmt = $pdo->prepare('SELECT teacher_id, last_name, title, access, admin, password
-        WHERE teacher_id = :teacher_id AND last_name = :last_name AND title = :title AND access = :access AND admin = :admin');
-        $stmt->execute(['teacher_id' => $id, 'last_name' => $lastname, 'title' => $title, 'access' => $access, 'admin' => $admin]);
+        FROM teachers
+        WHERE teacher_id = :teacher_id AND last_name = :last_name AND title = :title');
+        $stmt->execute(['teacher_id' => $id, 'last_name' => $lastname, 'title' => $firstname]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['loggedIn'] = true;
             $_SESSION['userId'] = $user['teacher_id'];
             $_SESSION['lastName'] = $user['last_name'];
-            $_SESSION['title'] = $user['title'];
+            $_SESSION['title'] = $user['first_name'];
             $_SESSION['access'] = $user['access'];
             $_SESSION['admin'] = $user['admin'];
 
