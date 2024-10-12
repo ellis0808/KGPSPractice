@@ -18,10 +18,7 @@ async function getImages(unit, grouping, grouping2) {
       throw new Error("There was an error", data.error);
     }
 
-    const data = await response.json();
-    console.log(data);
-
-    const imageData = data.images;
+    const imageData = await response.json();
 
     console.log(imageData);
 
