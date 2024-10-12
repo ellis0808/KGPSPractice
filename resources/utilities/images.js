@@ -36,7 +36,8 @@ function loadImages(imageData) {
   imageData.map((item) => {
     return (imageObject[item.content] = {
       id: item.image_id,
-      content: item.filename,
+      content: item.content,
+      filename: filename,
       link: item.link,
       altText: item.alt_text,
     });
