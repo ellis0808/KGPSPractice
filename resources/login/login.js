@@ -241,19 +241,21 @@ function displaySelectedPasswordImages() {
   image1 = Object.keys(imageObject).filter((image) =>
     image.includes(studentPasswordEntryArray[0])
   );
-  console.log(
-    imageObject[
-      Object.keys(imageObject).filter((image) =>
-        image.includes(studentPasswordEntryArray[0])
-      )
-    ].link
-  );
+  // console.log(
+  //   imageObject[
+  //     Object.keys(imageObject).filter((image) =>
+  //       image.includes(studentPasswordEntryArray[0])
+  //     )
+  //   ].link
+  // );
 
   if (studentPasswordEntryArray[0] !== null) {
     studentSelectedPasswordImage1.style.backgroundImage = `url(${
-      Object.keys(imageObject).filter((image) =>
-        image.includes(studentPasswordEntryArray[0])
-      ).link
+      imageObject[
+        Object.keys(imageObject).filter((image) =>
+          image.includes(studentPasswordEntryArray[0])
+        )
+      ].link
     })`;
     // }
   } else {
