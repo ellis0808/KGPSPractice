@@ -16,7 +16,7 @@ try {
 
     if ($unit && $grouping1) {
         if ($grouping2) {
-            $stmt = $pdo->prepare('SELECT image_id, link, content, alt_text
+            $stmt = $pdo->prepare('SELECT image_id, filename, link, content, alt_text
             FROM images
             WHERE unit = :unit
             AND (`grouping` BETWEEN :grouping1 AND :grouping2)');
@@ -26,7 +26,7 @@ try {
                 'grouping2' => $grouping2
             ]);
         } else {
-            $stmt = $pdo->prepare('SELECT image_id, link, content, alt_text
+            $stmt = $pdo->prepare('SELECT image_id, filename, link, content, alt_text
             FROM images
             WHERE unit = :unit
             AND `grouping` = :grouping1');
@@ -59,7 +59,7 @@ try {
         } else {
 
             // Get all available images
-            $stmt = $pdo->query(('SELECT image_id, link, content, alt_text, unit, `grouping`
+            $stmt = $pdo->query(('SELECT image_id, type, category, filename, filetype, link, content, alt_text, unit, `grouping`
             FROM images'));
             $image = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($image) {

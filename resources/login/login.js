@@ -4,6 +4,27 @@
 // } from "./password-image-object.js";
 import { getImages, imageObject } from "../utilities/images.js";
 
+const passwordImageNamesArray = [
+  "  rabbit-silhouette-1",
+  "duck-silhouette-2",
+  "fish-silhouette-3",
+  "turtle-silhouette-2",
+  "cat-silhouette-1",
+  "lizard-silhouette-2",
+  "car-silhouette-1",
+  "truck-silhouette-1",
+  "rocket-silhouette-1",
+  "train-silhouette-1",
+  "airplane-silhouette-2",
+  "sailboat-silhouette-1",
+  "strawberry-silhouette-2",
+  "apple-silhouette-2",
+  "carrot-silhouette-2",
+  "banana-silhouette-1",
+  "watermelon-silhouette-2",
+  "spoon-silhouette-1",
+];
+
 const studentNameContainer = document.querySelector(".student-name-container");
 const teacherNameContainer = document.querySelector(".teacher-name-container");
 const closeTeacherLoginModalBtn = document.querySelector(
@@ -279,7 +300,9 @@ async function loginUser(id, firstname, lastname, access) {
   }
 }
 window.addEventListener("load", () => {
-  getImages("login", 1, null);
+  passwordImageNamesArray.forEach((item) => {
+    getImages(item);
+  });
   getUsersForLogin();
   loadStudentLoginImageGrid();
 });

@@ -3,8 +3,12 @@ let imageObject = {};
 async function getImages(unit, grouping, grouping2) {
   try {
     let response;
-    if (unit === null && grouping === null && grouping2 === null) {
+    if (!unit && !grouping && !grouping2) {
       response = await fetch("/KGPSEnglishPractice-test/api/load_images.php");
+    } else if (unit && !grouping && !grouping2) {
+      response = await fetch(
+        `/KGPSEnglishPractice-test/api/load_images.php?id=${unit}`
+      );
     } else if (grouping2 !== null) {
       response = await fetch(
         `/KGPSEnglishPractice-test/api/load_images.php?id1=${unit}&id2=${grouping}&id3=${grouping2}`
