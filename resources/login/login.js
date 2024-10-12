@@ -233,6 +233,13 @@ studentPasswordGridContainer.appendChild(studentPasswordGrid);
 
 function displaySelectedPasswordImages() {
   console.log(studentPasswordEntryArray);
+  console.log(studentPasswordEntryArray[0]);
+  let images = Object.entries(imageObject);
+  console.log(imageObject);
+
+  let image1;
+  let image2;
+  // image1 = images.filter(item => `item.content`)
   if (studentPasswordEntryArray[0] !== null) {
     studentSelectedPasswordImage1.style.backgroundImage = `url(${
       imageObject[studentPasswordEntryArray[0].slice(0, 13)].link
