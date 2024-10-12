@@ -12,7 +12,7 @@ getAllImagesBtn.addEventListener("pointerdown", loadImages);
 async function loadImages() {
   try {
     const response = await fetch(
-      "/KGPSEnglishPractice-test/api/load-images.php"
+      "/KGPSEnglishPractice-test/api/load_images.php"
     );
     const imageData = await response.json();
     populateImageTable(imageData);
