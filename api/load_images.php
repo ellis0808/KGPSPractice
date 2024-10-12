@@ -50,10 +50,14 @@ try {
 
     //     // Get all available images
     //     $stmt = $pdo->query(('SELECT image_id, type, category, filename, filetype, link, content, alt_text FROM images'));
-    //     $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    //     echo json_encode(['images' => $images]);
-    // }
+    if ($images) {
+
+        echo json_encode(['images' => $images]);
+    } else {
+        echo json_encode(['message' => 'No images match the search criteira']);
+    }
 } catch (PDOException $e) {
     echo json_encode(['error' => $e->getMessage()]);
 }

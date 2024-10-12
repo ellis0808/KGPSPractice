@@ -10,6 +10,7 @@ async function getImages(category, grouping, grouping2) {
     }
 
     const data = await response.json();
+
     const imageData = data.images;
 
     console.log(imageData);
