@@ -1,12 +1,5 @@
-// const imageTypeContainer = document.querySelector(".image-type-container");
-// const imageCategoryContainer = document.querySelector(".image-type-container");
-// const imageFileNameContainer = document.querySelector(".image-type-container");
-// const imageFileTypeContainer = document.querySelector(".image-type-container");
-// const imageLinkContainer = document.querySelector(".image-type-container");
-
 import { getImages, imageObject } from "../utilities/images.js";
 
-// const imageThumbnailContainer = document.querySelector(".image-type-container");
 const imageDataContainer = document.querySelector(".image-data-container");
 const getAllImagesBtn = document.querySelector(".get-all-images-btn");
 const searchBox = document.getElementById("image-search");
@@ -25,7 +18,8 @@ searchBox.addEventListener("submit", (event) => {
   console.log(searchItem);
 
   getImages(searchItem);
-  populateImageTable();
+  setTimeout(populateImageTable, 500);
+  searchBox.textContent = "";
 });
 
 function populateImageTable() {
