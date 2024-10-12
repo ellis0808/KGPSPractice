@@ -54,6 +54,8 @@ function populateImageTable() {
     });
   }
   Object.keys(imageObject).forEach((item) => {
+    console.log(item);
+
     ++i;
     const imageRow = document.createElement("div");
     imageRow.classList.add("image-row");
