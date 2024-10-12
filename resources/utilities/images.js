@@ -19,6 +19,7 @@ async function getImages(unit, grouping, grouping2) {
     }
 
     const data = await response.json();
+    console.log(data);
 
     const imageData = data.images;
 
