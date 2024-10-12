@@ -124,7 +124,7 @@ function displayUsersForLogin(data) {
           lastname: event.target.getAttribute("userlastname"),
           access: user.access,
         };
-
+        loadStudentLoginImageGrid();
         studentPasswordGridNameHeader.innerText = `${user.first_name} ${user.last_name}`;
 
         resetStudentPasswordEntryArray();
@@ -302,7 +302,6 @@ async function loginUser(id, firstname, lastname, access) {
 window.addEventListener("load", () => {
   getImages("login", 1, null);
   getUsersForLogin();
-  loadStudentLoginImageGrid();
 });
 closeTeacherLoginModalBtn.addEventListener("click", () => {
   teacherPasswordEntryForm.close();
