@@ -190,6 +190,8 @@ function loadStudentLoginImageGrid() {
           1,
           null
         );
+        console.log(studentPasswordEntryArray);
+
         displaySelectedPasswordImages();
       } else {
         if (
