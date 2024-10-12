@@ -52,7 +52,7 @@ function populateImageTable() {
       row.remove();
     });
   }
-  console.log(Object.values);
+  console.log(Object.values(imageObject));
 
   Object.keys(imageObject).forEach((item) => {
     console.log(item);
