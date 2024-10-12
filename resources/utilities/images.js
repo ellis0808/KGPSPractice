@@ -34,7 +34,7 @@ async function getImages(unit, grouping, grouping2) {
 
 function loadImages(imageData) {
   imageData.map((item) => {
-    return (imageObject[item.content] = {
+    return (imageObject[item.filename] = {
       id: item.image_id,
       content: item.content,
       filename: item.filename,
