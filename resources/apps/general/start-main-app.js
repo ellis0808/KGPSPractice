@@ -24,7 +24,7 @@ Enable Audio
 
 const mainMenuSfx = {
   select1: new Howl({
-    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-select-2.mp3"],
+    src: ["/KGPSEPaudio/sfx/sfx-select-2.mp3"],
     volume: 0.8,
     onplayerror: function () {
       sound.once("unlock", function () {
@@ -33,7 +33,7 @@ const mainMenuSfx = {
     },
   }),
   select2: new Howl({
-    src: ["https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-select-1.mp3"],
+    src: ["/KGPSEPaudio/sfx/sfx-select-1.mp3"],
     volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {
@@ -42,9 +42,7 @@ const mainMenuSfx = {
     },
   }),
   back: new Howl({
-    src: [
-      "https://orchidpony8.sakura.ne.jp/KGPSEPaudio/sfx/sfx-select-1-reversed.mp3",
-    ],
+    src: ["/KGPSEPaudio/sfx/sfx-select-1-reversed.mp3"],
     volume: 0.5,
     onplayerror: function () {
       sound.once("unlock", function () {

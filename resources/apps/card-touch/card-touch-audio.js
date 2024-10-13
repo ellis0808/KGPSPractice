@@ -39,7 +39,7 @@ class CardTouchAudio {
       audio.audioObject[this.randomWord].sound.play();
     }, 1000);
 
-    return (correctCardID = this.randomNumber);
+    return (this.correctCardID = this.randomNumber);
   }
 
   repeat() {
