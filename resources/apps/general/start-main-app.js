@@ -8,13 +8,7 @@ import {
   topContainer,
   parentsInfo,
 } from "/KGPSEnglishPractice-test/resources/utilities/variables.js";
-import {
-  startCardTouchApp,
-  startMatchingApp,
-  startNumberFluencyApp,
-  startWritingApp,
-  // startSpellingTouchApp,
-} from "./app-launcher.js";
+import { appLauncher } from "./app-launcher.js";
 import { logout } from "/KGPSEnglishPractice-test/resources/utilities/logout.js";
 import {
   sessionCheck,
@@ -244,7 +238,7 @@ alphabetCapitalsCardTouchAppMenuItem.setAttribute(
 alphabetCapitalsCardTouchAppMenuItem.classList.add("div");
 alphabetCapitalsCardTouchAppMenuItem.innerText = "Card Touch!\r\n ABC";
 alphabetCapitalsCardTouchAppMenuItem.addEventListener("click", () => {
-  startCardTouchApp("capitals");
+  appLauncher.startCardTouchApp("capitals");
 });
 
 // 2. Alphabet Capitals Touch App Menu Item
@@ -256,7 +250,7 @@ alphabetLowercaseCardTouchAppMenuItem.setAttribute(
 alphabetLowercaseCardTouchAppMenuItem.classList.add("div");
 alphabetLowercaseCardTouchAppMenuItem.innerText = "Card Touch!\r\n abc";
 alphabetLowercaseCardTouchAppMenuItem.addEventListener("click", () => {
-  startCardTouchApp("lowercase");
+  appLauncher.startCardTouchApp("lowercase");
 });
 
 // 3. Alphabet Matching App Menu Item
@@ -268,7 +262,7 @@ alphabetMatchingAppMenuItem.setAttribute(
 alphabetMatchingAppMenuItem.classList.add("div");
 alphabetMatchingAppMenuItem.innerText = "Letter Matching";
 alphabetMatchingAppMenuItem.addEventListener("click", () => {
-  startMatchingApp("alphabet");
+  appLauncher.startMatchingApp("alphabet");
 });
 /* Alphabet menu items fin */
 
@@ -280,7 +274,7 @@ sightWords1AppMenuItem.setAttribute("id", "sight-words-1-app-menu-item");
 sightWords1AppMenuItem.classList.add("div");
 sightWords1AppMenuItem.innerText = "Sight Words 1";
 sightWords1AppMenuItem.addEventListener("click", () => {
-  startCardTouchApp("sightwords1");
+  appLauncher.startCardTouchApp("sightwords1");
 });
 
 // 2. Sight Words 2 Touch App Menu Item
@@ -289,7 +283,7 @@ sightWords2AppMenuItem.setAttribute("id", "sight-words-2-app-menu-item");
 sightWords2AppMenuItem.classList.add("div");
 sightWords2AppMenuItem.innerText = "Sight Words 2";
 sightWords2AppMenuItem.addEventListener("click", () => {
-  startCardTouchApp("sightwords2");
+  appLauncher.startCardTouchApp("sightwords2");
 });
 
 // 3. Sight Words 3 Matching App Menu Item
@@ -298,7 +292,7 @@ sightWords3AppMenuItem.setAttribute("id", "sight-words-3-app-menu-item");
 sightWords3AppMenuItem.classList.add("div");
 sightWords3AppMenuItem.innerText = "Sight Words 3";
 sightWords3AppMenuItem.addEventListener("click", () => {
-  startCardTouchApp("sightwords3");
+  appLauncher.startCardTouchApp("sightwords3");
 });
 const sightWords1WritingAppMenuItem = document.createElement("div");
 sightWords1WritingAppMenuItem.setAttribute(
@@ -308,7 +302,7 @@ sightWords1WritingAppMenuItem.setAttribute(
 sightWords1WritingAppMenuItem.classList.add("div");
 sightWords1WritingAppMenuItem.innerText = "Sight Words Writing";
 sightWords1WritingAppMenuItem.addEventListener("click", () => {
-  startWritingApp("sightwords1");
+  appLauncher.startWritingApp("sightwords1");
 });
 
 /* Sight Words menu items fin */
@@ -321,7 +315,7 @@ letterSoundsAMSFAppMenuItem.setAttribute("id", "amsf-app-menu-item");
 letterSoundsAMSFAppMenuItem.classList.add("div");
 letterSoundsAMSFAppMenuItem.innerText = "a, m , s, f";
 letterSoundsAMSFAppMenuItem.addEventListener("click", () => {
-  startCardTouchApp("letter-sounds-asmf");
+  appLauncher.startCardTouchApp("letter-sounds-asmf");
 });
 
 // 2. Letter Sounds Touch App Menu Item
@@ -458,7 +452,7 @@ numberFluency1to20AppMenuItem.setAttribute(
 numberFluency1to20AppMenuItem.classList.add("div");
 numberFluency1to20AppMenuItem.innerText = "Touch 1-20";
 numberFluency1to20AppMenuItem.addEventListener("click", () => {
-  startNumberFluencyApp(0);
+  startFluencyApp(0);
 });
 
 // 2. Number Fluency 21-40 App Menu Item
@@ -470,7 +464,7 @@ numberFluency21to40AppMenuItem.setAttribute(
 numberFluency21to40AppMenuItem.classList.add("div");
 numberFluency21to40AppMenuItem.innerText = "Touch 21-40";
 numberFluency21to40AppMenuItem.addEventListener("click", () => {
-  startNumberFluencyApp(1);
+  startFluencyApp(1);
 });
 
 // 3. Number Fluency 41-60 App Menu Item
@@ -482,7 +476,7 @@ numberFluency41to60AppMenuItem.setAttribute(
 numberFluency41to60AppMenuItem.classList.add("div");
 numberFluency41to60AppMenuItem.innerText = "Touch 41-60";
 numberFluency41to60AppMenuItem.addEventListener("click", () => {
-  startNumberFluencyApp(2);
+  startFluencyApp(2);
 });
 
 // 4. Number Fluency 61-80 App Menu Item
@@ -494,7 +488,7 @@ numberFluency61to80AppMenuItem.setAttribute(
 numberFluency61to80AppMenuItem.classList.add("div");
 numberFluency61to80AppMenuItem.innerText = "Touch 61-80";
 numberFluency61to80AppMenuItem.addEventListener("click", () => {
-  startNumberFluencyApp(3);
+  startFluencyApp(3);
 });
 
 // 5. Number Fluency 81-100 App Menu Item
@@ -506,7 +500,7 @@ numberFluency81to100AppMenuItem.setAttribute(
 numberFluency81to100AppMenuItem.classList.add("div");
 numberFluency81to100AppMenuItem.innerText = "Touch 81-100";
 numberFluency81to100AppMenuItem.addEventListener("click", () => {
-  startNumberFluencyApp(4);
+  startFluencyApp(4);
 });
 
 /* Number menu items fin */

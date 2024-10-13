@@ -12,7 +12,7 @@ import {
   removeMenuPage,
   restoreMainMenu,
 } from "../../utilities/main-menu-display-toggle.js";
-import { numbersFluencySfx } from "./fluency-audio.js";
+import { fluencyAudio } from "./fluency-audio.js";
 import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import {
   disableTouch,
@@ -21,6 +21,7 @@ import {
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
 import { audio } from "../../utilities/audio.js";
+// import { audio } from "../../utilities/audio.js";
 
 let style;
 let activityId;
@@ -42,24 +43,6 @@ let correctAnswerPoints;
 let incorrectAnswerPoints;
 let boxes = ".box";
 
-function setActivityId(style) {
-  if (style === 1) {
-    activityId = 11;
-    return activityId;
-  } else if (style === 2) {
-    activityId = 12;
-    return activityId;
-  } else if (style === 3) {
-    activityId = 13;
-    return activityId;
-  } else if (style === 4) {
-    activityId = 14;
-    return activityId;
-  } else if (style === 5) {
-    activityId = 15;
-    return activityId;
-  }
-}
 /* 
 *****************
 GENERAL VARIABLES
@@ -165,149 +148,55 @@ const gridSize = 20;
 Main App
 *****************
 */
-async function getAudio(style) {
-  let category;
-  let grouping;
-  if (style === 1) {
-    category = "numbers";
-    grouping = 1;
-  }
-  if (style === 2) {
-    category = "numbers";
-    grouping = 2;
-  }
-  if (style === 3) {
-    category = "numbers";
-    grouping = 3;
-  }
-  if (style === 4) {
-    category = "numbers";
-    grouping = 4;
-  }
-  if (style === 5) {
-    category = "numbers";
-    grouping = 5;
-  }
-  try {
-    const response = await fetch(
-      `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
-    );
-    if (!response.ok) {
-      throw new Error("Network response was not okay");
-    }
-    const audioData = await response.json();
-  } catch (error) {
-    console.log("There was an error ", error);
-  }
-}
-function loadAudio(audioData) {
-  const audioObject = audioData.map((item) => {
-    return (audioObject[item.content] = {
-      content: item.content,
-      sound: new Howl({
-        src: [item.link],
-        volume: 0.5,
-      }),
-    });
-  });
-}
-// async function loadAudioForStyle(style) {
-//   let section = "numbers";
+// async function getAudio(style) {
+//   let category;
+//   let grouping;
+//   if (style === 1) {
+//     category = "numbers";
+//     grouping = 1;
+//   }
+//   if (style === 2) {
+//     category = "numbers";
+//     grouping = 2;
+//   }
+//   if (style === 3) {
+//     category = "numbers";
+//     grouping = 3;
+//   }
+//   if (style === 4) {
+//     category = "numbers";
+//     grouping = 4;
+//   }
+//   if (style === 5) {
+//     category = "numbers";
+//     grouping = 5;
+//   }
 //   try {
 //     const response = await fetch(
-//       `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${section}-manifest.json`
+//       `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
 //     );
-//     const data = await response.json();
-
-//     if (style === 0) {
-//       for (const key in data) {
-//         const audioData = data[key];
-//         if (audioData.group === "1-20") {
-//           numbersAudioObject[key] = {
-//             content: audioData.content,
-//             sound: new Howl({
-//               src: [
-//                 `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${audioData.file}`,
-//               ],
-//               volume: audioData.volume,
-//             }),
-//           };
-//         }
-//       }
+//     if (!response.ok) {
+//       throw new Error("Network response was not okay");
 //     }
-//     if (style === 1) {
-//       for (const key in data) {
-//         const audioData = data[key];
-//         if (audioData.group === "21-40") {
-//           numbersAudioObject[key] = {
-//             content: audioData.content,
-//             sound: new Howl({
-//               src: [
-//                 `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${audioData.file}`,
-//               ],
-//               volume: audioData.volume,
-//             }),
-//           };
-//         }
-//       }
-//     }
-//     if (style === 2) {
-//       for (const key in data) {
-//         const audioData = data[key];
-//         if (audioData.group === "41-60") {
-//           numbersAudioObject[key] = {
-//             content: audioData.content,
-//             sound: new Howl({
-//               src: [
-//                 `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${audioData.file}`,
-//               ],
-//               volume: audioData.volume,
-//             }),
-//           };
-//         }
-//       }
-//     }
-//     if (style === 3) {
-//       for (const key in data) {
-//         const audioData = data[key];
-//         if (audioData.group === "61-80") {
-//           numbersAudioObject[key] = {
-//             content: audioData.content,
-//             sound: new Howl({
-//               src: [
-//                 `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${audioData.file}`,
-//               ],
-//               volume: audioData.volume,
-//             }),
-//           };
-//         }
-//       }
-//     }
-//     if (style === 4) {
-//       for (const key in data) {
-//         const audioData = data[key];
-//         if (audioData.group === "81-100") {
-//           numbersAudioObject[key] = {
-//             content: audioData.content,
-//             sound: new Howl({
-//               src: [
-//                 `https://orchidpony8.sakura.ne.jp/KGPSEPaudio/${section}-audio/${audioData.file}`,
-//               ],
-//               volume: audioData.volume,
-//             }),
-//           };
-//         }
-//       }
-//     }
-
-//     console.log("audio loaded for: ", section);
+//     const audioData = await response.json();
 //   } catch (error) {
-//     console.error("Error:", error);
+//     console.log("There was an error ", error);
 //   }
+// }
+// function loadAudio(audioData) {
+//   const audioObject = audioData.map((item) => {
+//     return (audioObject[item.content] = {
+//       content: item.content,
+//       sound: new Howl({
+//         src: [item.link],
+//         volume: 0.5,
+//       }),
+//     });
+//   });
 // }
 
 /* Starts Main App (exported to resources/js/general/app-launcher.js) */
-function numberFluencyApp(set) {
+function fluencyApp(set) {
   sessionCheck();
 
   setTimeout(() => {
@@ -333,40 +222,8 @@ function numberFluencyApp(set) {
   if (!scoreDisplay.classList.contains("hide2")) {
     toggleScoreDisplayHide();
   }
-  /* 
-style 0: 1-20
-style 1: 21-40
-style 2: 41-60
-style 3: 61-80
-style 4: 81-100
-*/
-  if (set === 1) {
-    style = 1;
-    loadAudioForStyle(style);
-    setActivityId(style);
-  } else if (set === 2) {
-    style = 2;
-    loadAudioForStyle(style);
-    setActivityId(style);
-    return style;
-  } else if (set === 3) {
-    style = 3;
-    loadAudioForStyle(style);
-    setActivityId(style);
-    return style;
-  } else if (set === 4) {
-    style = 4;
-    loadAudioForStyle(style);
-    setActivityId(style);
-    return style;
-  } else if (set === 5) {
-    style = 5;
-    loadAudioForStyle(style);
-    setActivityId(style);
-    return style;
-  }
+
   setTimeout(setUser, 2000);
-  return style;
 }
 function setUser() {
   user.gradeLevel = sessionData.gradeLevel;
@@ -925,7 +782,7 @@ function speakingInterval() {
       getCurrentItem();
       if (!isPaused) {
         enableTouch(boxes);
-        speak(currentItem);
+        fluencyAudio.speak(currentItem);
 
         ++loop;
 
@@ -967,9 +824,6 @@ function getCurrentItem() {
   currentItem = currentArray[arrayItemCounter].toString();
   ++arrayItemCounter;
   return currentItem;
-}
-function speak(currentItem) {
-  audioObject[currentItem].sound.play();
 }
 
 /* GRID */
@@ -1025,4 +879,4 @@ function createGrid() {
   }
 }
 
-export { numberFluencyApp };
+export { fluencyApp };
