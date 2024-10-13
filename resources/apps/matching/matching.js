@@ -15,7 +15,7 @@ import {
   updateNegativeCount,
   updatePositiveCount,
 } from "../../utilities/update-score.js";
-import { matchingSfx } from "./matching-audio.js";
+import { matchingAudio } from "./matching-audio.js";
 import { displayMainPage } from "../general/start-main-app.js";
 import {
   removeMenuPage,
@@ -411,7 +411,7 @@ function removeEndMessagesContainer() {
 }
 
 function startSession() {
-  matchingSfx.startApp.play();
+  amatchingSfx.startApp.play();
   removeEndMessagesContainer();
   startBtn.classList.add("no-touch");
   startBtn.classList.add("spinfade");
@@ -617,7 +617,7 @@ function checkAllCorrect() {
     setTimeout(() => {
       updatePositiveCount(allCorrectDots.length * correctAnswerPoints);
       scoreDisplay.classList.add("pulse");
-      matchingSfx.allCorrect.play();
+      matchingAudio.matchingSfx.allCorrect.play();
       setTimeout(randomFeedback, 500);
     }, 500);
     setTimeout(() => {

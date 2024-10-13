@@ -1,4 +1,4 @@
-import { startAudioFetch } from "./matching-audio";
+import { matchingAudio } from "./matching-audio";
 
 let style;
 let activityId;
@@ -7,7 +7,7 @@ function setStyle(set) {
   switch (set) {
     case "alphabet":
       style = 1;
-      startAudioFetch(style);
+      matchingAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
   }

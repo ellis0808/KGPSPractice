@@ -1,5 +1,5 @@
 import { audio } from "../../utilities/audio.js";
-import { cardText, isPaused } from "./card-touch-index.js";
+import { cardText, isPaused } from "./card-touch.js";
 let correctCardID;
 let randomNumber;
 

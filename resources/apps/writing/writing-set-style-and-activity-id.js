@@ -1,4 +1,4 @@
-import { startAudioFetch } from "./writing-audio.js";
+import { writingAudio } from "./writing-audio.js";
 
 let style;
 let activityId;
@@ -9,69 +9,69 @@ function setStyle(set) {
     // Numbers
     case "numbers1-10":
       style = 1;
-      startAudioFetch(style);
+      writingAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
     case "numbers11-20":
       style = 2;
-      startAudioFetch(style);
+      writingAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
     case "numbers21-40":
       style = 3;
-      startAudioFetch(style);
+      writingAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
     case "numbers41-60":
       style = 4;
-      startAudioFetch(style);
+      writingAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
     case "numbers61-80":
       style = 5;
-      startAudioFetch(style);
+      writingAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
     case "numbers81-100":
       style = 6;
-      startAudioFetch(style);
+      writingAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
     case "numbers1-50":
       style = 7;
-      startAudioFetch(style);
+      writingAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
     case "numbers1-100":
       style = 8;
-      startAudioFetch(style);
+      writingAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
     // Math
     case "sightwords1":
       style = 9;
-      startAudioFetch(style);
+      writingAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
     case "sightwords2":
       style = 10;
-      startAudioFetch(style);
+      writingAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
     case "sightwords3":
       style = 11;
-      startAudioFetch(style);
+      writingAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
     case "numbers1-100":
       style = 5;
-      startAudioFetch(style);
+      writingAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
     // Letter Sounds
     case "numbers1-100":
       style = 5;
-      startAudioFetch(style);
+      writingAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
   }

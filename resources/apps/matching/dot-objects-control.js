@@ -1,5 +1,5 @@
 import { body } from "../../utilities/variables.js";
-import { matchingSfx } from "./matching-audio.js";
+import { matchingAudio } from "./matching-audio.js";
 import {
   checkAllCorrect,
   currentDotId,
@@ -8,7 +8,7 @@ import {
   grid,
   lines,
   numberOfItemsToBeDisplayed,
-} from "./matching-index.js";
+} from "./matching.js";
 import { audio } from "../../utilities/audio.js";
 class DotAndLineCommand {
   constructor() {
@@ -163,7 +163,7 @@ class StartDot {
   }
   markAsCorrect() {
     this.addCorrectPulse();
-    matchingSfx.validConnection.play();
+    matchingAudio.matchingSfx.validConnection.play();
 
     setTimeout(() => {
       audio.audioObject[this.contentId.toLowerCase()].sound.play();
@@ -172,7 +172,7 @@ class StartDot {
     checkAllCorrect();
   }
   markAsIncorrect() {
-    matchingSfx.invalidConnection.play();
+    matchingAudio.matchingSfx.invalidConnection.play();
   }
 }
 class EndDot {

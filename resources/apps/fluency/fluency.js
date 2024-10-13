@@ -1,26 +1,26 @@
 /* Imports */
-import { mainContainer, stylesheet } from "../../../utilities/variables.js";
-import { score } from "../../../utilities/score-object.js";
+import { mainContainer, stylesheet } from "../../utilities/variables.js";
+import { score } from "../../utilities/score-object.js";
 import {
   scoreDisplay,
   toggleScoreDisplayHide,
   updateNegativeCount,
   updatePositiveCount,
-} from "../../../utilities/update-score.js";
-import { displayMainPage } from "../../general/start-main-app.js";
+} from "../../utilities/update-score.js";
+import { displayMainPage } from "../general/start-main-app.js";
 import {
   removeMenuPage,
   restoreMainMenu,
-} from "../../../utilities/main-menu-display-toggle.js";
-import { numbersFluencySfx } from "./audio.js";
-import { feedbackAudioObject } from "../../../utilities/feedback-object.js";
+} from "../../utilities/main-menu-display-toggle.js";
+import { numbersFluencySfx } from "./fluency-audio.js";
+import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import {
   disableTouch,
   enableTouch,
-} from "../../../utilities/disable-enable-touch.js";
-import { sessionCheck, sessionData } from "../../../login/session-check.js";
-import { user } from "../../../utilities/user-object.js";
-import { audio } from "../../../utilities/audio.js";
+} from "../../utilities/disable-enable-touch.js";
+import { sessionCheck, sessionData } from "../../login/session-check.js";
+import { user } from "../../utilities/user-object.js";
+import { audio } from "../../utilities/audio.js";
 
 let style;
 let activityId;

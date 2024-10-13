@@ -7,7 +7,7 @@ import {
   lowercaseLetterDiv,
   numberOfItemsToBeDisplayed,
   disableTouch,
-} from "./matching-index.js";
+} from "./matching.js";
 import { alphabet } from "../card-touch/card-data.js";
 import { audio } from "../../utilities/audio.js";
 import {
