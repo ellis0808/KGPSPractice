@@ -10,7 +10,6 @@ import {
   setStyle,
   setActivityId,
 } from "./writing-set-style-and-activity-id.js";
-import { writingSfx } from "./writing-audio.js";
 import { removeMenuPage } from "../../utilities/main-menu-display-toggle.js";
 import { writingAudio } from "./writing-audio.js";
 
@@ -42,7 +41,7 @@ const displayStartBtn = () => {
 };
 
 const startRound = () => {
-  writingSfx.startApp.play();
+  writingAudio.writingSfx.startApp.play();
   appContainer.appendChild(topRow);
   appContainer.appendChild(secondRow);
   appContainer.appendChild(canvasRow);
@@ -196,12 +195,12 @@ function playLetter() {
 function checkAnswer(input) {
   if (input[0] === writingAudio.randomWord) {
     setTimeout(() => {
-      writingSfx.correct.play();
+      writingAudio.writingSfx.correct.play();
     }, 300);
     setTimeout(newWord, 1000);
   } else {
     setTimeout(() => {
-      writingSfx.incorrect.play();
+      writingAudio.writingSfx.incorrect.play();
     }, 300);
   }
 }
