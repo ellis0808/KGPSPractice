@@ -3,10 +3,11 @@ import { cardText, isPaused } from "./card-touch.js";
 
 class CardTouchAudio {
   constructor() {
-    this.randomNumber;
-    this.randomWord;
-    this.randomItem;
-    this.correctCardID;
+    this.randomNumber = null;
+    this.randomWord = null;
+    this.randomItem = null;
+    this.correctCardID = null;
+    this.repeat = this.repeat.bind(this);
     this.cardTouchSfx = {
       correcCard: new Howl({
         src: ["/KGPSEPaudio/sfx/sfx-correct-1.mp3"],
@@ -42,10 +43,9 @@ class CardTouchAudio {
 
     return (this.correctCardID = this.randomNumber);
   }
-
   repeat() {
-    this.updateRandomNumber();
-    console.log(this.randomNumber);
+    // this.updateRandomNumber();
+    // console.log(this.randomNumber);
 
     this.randomItem = cardText[this.randomNumber];
     console.log(this.randomItem);
