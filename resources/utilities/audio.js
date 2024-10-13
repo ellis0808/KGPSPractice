@@ -27,7 +27,7 @@ class Audio {
   }
   loadAudio(audioData) {
     audioData.map((item) => {
-      return (audioObject[item.content] = {
+      return (this.audioObject[item.content] = {
         content: item.content,
         sound: new Howl({
           src: [item.link],
