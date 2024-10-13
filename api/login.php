@@ -19,7 +19,7 @@ $id = (int)$data['id'] ?? null;
 $firstname = $data['firstname'] ?? null;
 $lastname = $data['lastname'] ?? null;
 $access = $data['access'] ?? null;
-$password = $data['teacherpassword'] ?? null;
+$password = $data['password'] ?? null;
 
 
 if (!$id) {
