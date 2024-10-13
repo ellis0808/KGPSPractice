@@ -12,7 +12,7 @@ import {
 } from "./writing-set-style-and-activity-id.js";
 import { writingSfx } from "./writing-audio.js";
 import { removeMenuPage } from "../../utilities/main-menu-display-toggle.js";
-import { speak, randomWord } from "./writing-audio.js";
+import { writingAudio } from "./writing-audio.js";
 
 function writingApp(set) {
   sessionCheck();
@@ -60,7 +60,7 @@ const startRound = () => {
     // appContainer.removeChild(btnContainer2);
     getRandomItem();
   }, 500);
-  setTimeout(speak, 1000);
+  setTimeout(writingAudio.speak, 1000);
 };
 
 // Main Structure Containers
@@ -194,7 +194,7 @@ function playLetter() {
 }
 
 function checkAnswer(input) {
-  if (input[0] === randomWord) {
+  if (input[0] === writingAudio.randomWord) {
     setTimeout(() => {
       writingSfx.correct.play();
     }, 300);
@@ -207,7 +207,7 @@ function checkAnswer(input) {
 }
 const newWord = () => {
   resetCanvas();
-  setTimeout(speak, 300);
+  setTimeout(writingAudio.speak, 300);
 };
 const resetCanvas = () => {
   canvasController.erase();
