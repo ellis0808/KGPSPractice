@@ -20,7 +20,7 @@ class Audio {
       }
       const audioData = await response.json();
 
-      loadAudio(audioData);
+      this.loadAudio(audioData);
     } catch (error) {
       console.log("There was an error ", error);
     }
