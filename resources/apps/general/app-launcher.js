@@ -6,18 +6,15 @@ import { writingApp } from "../writing/writing.js";
 import { mainMenuSfx } from "./start-main-app.js";
 
 class AppLauncher {
+  // Card Touch App
   startCardTouchApp(set) {
     mainMenuSfx.select2.play();
     cardTouchApp(set);
   }
-}
-// Card Touch App
-function startCardTouchApp(set) {}
-
-// Matching App
-function startMatchingApp(set) {
-  mainMenuSfx.select2.play();
-  matchingApp(set);
+  // Matching App
+  function startMatchingApp(set) {
+    mainMenuSfx.select2.play();
+    matchingApp(set);
 }
 // function startSpellingTouchApp() {
 //   mainMenuSfx.select2.play();
@@ -27,7 +24,6 @@ function startMatchingApp(set) {
 //   mainMenuSfx.select2.play();
 //   spellingWritingApp();
 // }
-
 // Number Fluency App
 function startNumberFluencyApp(set) {
   mainMenuSfx.select2.play();
@@ -39,11 +35,10 @@ function startWritingApp(set) {
   mainMenuSfx.select2.play();
   writingApp(set);
 }
+}
+
+const appLauncher = new AppLauncher
 
 export {
-  startCardTouchApp,
-  startMatchingApp,
-  // startSpellingTouchApp,
-  startNumberFluencyApp,
-  startWritingApp,
+
 };

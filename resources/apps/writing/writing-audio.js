@@ -24,21 +24,20 @@ class WritingAudio {
     };
   }
   updateRandomNumber = () => {
-    randomNumber = Math.floor(Math.random() * randomItemArray.length);
-    return randomNumber;
+    this.randomNumber = Math.floor(Math.random() * randomItemArray.length);
+    return this.randomNumber;
   };
   speak = () => {
     this.updateRandomNumber();
-    randomWord = randomItemArray[randomNumber];
+    this.randomWord = randomItemArray[this.randomNumber];
     setTimeout(function () {
-      console.log(randomWord);
-      audio.audioObject[randomWord].sound.play();
+      console.log(this.randomWord);
+      audio.audioObject[this.randomWord].sound.play();
     }, 1000);
-    return randomWord;
+    return this.randomWord;
   };
-
   repeat = () => {
-    const randomItem = randomItemArray[randomNumber];
+    const randomItem = randomItemArray[this.randomNumber];
     setTimeout(() => {
       // if (!isPaused) {
       audio.audioObject[randomItem].sound.play();

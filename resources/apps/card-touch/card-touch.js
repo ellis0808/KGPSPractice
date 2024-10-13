@@ -4,12 +4,7 @@ import {
   navBar,
   stylesheet,
 } from "../../utilities/variables.js";
-import {
-  cardTouchSfx,
-  correctCardID,
-  repeat,
-  speak,
-} from "./card-touch-audio.js";
+import { cardTouchAudio } from "./card-touch-audio.js";
 import {
   alphabet,
   sightWords1,
@@ -250,7 +245,7 @@ function displayStartBtn() {
 
 // Start Round
 function startSession() {
-  cardTouchSfx.startApp.play();
+  cardTouchAudio.cardTouchSfx.startApp.play();
   removeEndMessagesContainer();
   startBtn.classList.add("no-touch");
   startBtn.classList.add("spinfade");
@@ -537,7 +532,7 @@ function createBoard() {
       btnContainer1.appendChild(scoreDisplay);
       if (!isSessionFinished) {
         if (!isPaused) {
-          speak();
+          cardTouchAudio.speak();
         }
       }
       setTimeout(toggleRepeatBtnHide, 1500);
@@ -551,7 +546,7 @@ let currentCardID;
 // functions
 function touchCard(e) {
   currentCardID = this.getAttribute("contentId");
-  if (currentCardID === cardText[correctCardID]) {
+  if (currentCardID === cardText[cardTouchAudio.correctCardID]) {
     correctCard(e);
     updatePositiveCount(correctAnswerPoints);
     let delay = 300;
@@ -700,7 +695,7 @@ function unpause() {
   setTimeout(() => {
     isPaused = false;
     if (grid.hasChildNodes()) {
-      setTimeout(repeat, 200);
+      setTimeout(cardTouchAudio.repeat, 200);
     }
     //displays a new board in case the app is paused after a correct answer, but before a new board is generated
     if (!grid.hasChildNodes()) {
