@@ -32,6 +32,7 @@ class CardTouchAudio {
   }
   speak() {
     this.updateRandomNumber();
+    console.log(this.randomNumber);
 
     this.randomWord = cardText[this.randomNumber];
 
@@ -44,6 +45,7 @@ class CardTouchAudio {
 
   repeat() {
     this.randomItem = cardText[this.randomNumber];
+    console.log(this.randomItem);
 
     setTimeout(() => {
       if (!isPaused) {
