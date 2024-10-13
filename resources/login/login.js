@@ -2,7 +2,7 @@
 //   passwordImageArray,
 //   passwordImageObject,
 // } from "./password-image-object.js";
-import { getImages, imageObject } from "../utilities/images.js";
+import { images } from "../utilities/images.js";
 
 const passwordImageNamesArray = [
   "rabbit-silhouette-1",
@@ -179,9 +179,9 @@ function loadStudentLoginImageGrid() {
   passwordImageNamesArray.forEach((image) => {
     const gridImage = document.createElement("div");
     gridImage.classList.add("grid-image");
-    gridImage.setAttribute("id", imageObject[image].id);
-    gridImage.setAttribute("content", imageObject[image].content);
-    gridImage.style.backgroundImage = `url(${imageObject[image].link})`;
+    gridImage.setAttribute("id", images.imageObject[image].id);
+    gridImage.setAttribute("content", images.imageObject[image].content);
+    gridImage.style.backgroundImage = `url(${images.imageObject[image].link})`;
     gridImage.addEventListener("click", (event) => {
       // deselects previously selected grid image
       const content = gridImage.getAttribute("content");
@@ -233,8 +233,8 @@ studentPasswordGridContainer.appendChild(studentPasswordGrid);
 function displaySelectedPasswordImages() {
   if (studentPasswordEntryArray[0] !== null) {
     studentSelectedPasswordImage1.style.backgroundImage = `url(${
-      imageObject[
-        Object.keys(imageObject).filter((image) =>
+      images.imageObject[
+        Object.keys(images.imageObject).filter((image) =>
           image.includes(studentPasswordEntryArray[0])
         )
       ].link
@@ -245,8 +245,8 @@ function displaySelectedPasswordImages() {
   }
   if (studentPasswordEntryArray[1] !== null) {
     studentSelectedPasswordImage2.style.backgroundImage = `url(${
-      imageObject[
-        Object.keys(imageObject).filter((image) =>
+      images.imageObject[
+        Object.keys(images.imageObject).filter((image) =>
           image.includes(studentPasswordEntryArray[1])
         )
       ].link
@@ -319,7 +319,7 @@ async function loginUser(id, firstname, lastname, access) {
   }
 }
 window.addEventListener("load", () => {
-  getImages("login", 1, null);
+  images.getImages("login", 1, null);
   getUsersForLogin();
   setTimeout(loadStudentLoginImageGrid, 500);
 });

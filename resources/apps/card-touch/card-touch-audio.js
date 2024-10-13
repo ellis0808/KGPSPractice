@@ -1,4 +1,4 @@
-import { getAudio, audioObject, audio } from "../../utilities/audio.js";
+import { audio } from "../../utilities/audio.js";
 import { cardText, isPaused } from "./card-touch-index.js";
 let correctCardID;
 let randomNumber;
@@ -15,7 +15,6 @@ function speak() {
 
   setTimeout(function () {
     audio.audioObject[randomWord].sound.play();
-    // audioObject[randomWord].sound.play();
   }, 1000);
 
   return (correctCardID = randomNumber);
@@ -27,7 +26,6 @@ function repeat() {
   setTimeout(function () {
     if (!isPaused) {
       audio.audioObject[randomItem].sound.play();
-      // audioObject[randomItem].sound.play();
     }
   }, 30);
 }
@@ -60,29 +58,28 @@ function startAudioFetch(style) {
     category = "alphabet";
     grouping = 1;
     audio.getAudio(category, grouping, grouping2);
-    // getAudio(category, grouping, grouping2);
   }
   if (style === 3) {
     category = "sight-words";
     grouping = 1;
-    getAudio(category, grouping, grouping2);
+    audio.getAudio(category, grouping, grouping2);
   }
   if (style === 4) {
     category = "sight-words";
     grouping = 1;
     grouping2 = 2;
-    getAudio(category, grouping, grouping2);
+    audio.getAudio(category, grouping, grouping2);
   }
   if (style === 5) {
     category = "sight-words";
     grouping = 1;
     grouping2 = 3;
-    getAudio(category, grouping, grouping2);
+    audio.getAudio(category, grouping, grouping2);
   }
   if (style === 6) {
     category = "phonics";
     grouping = 1;
-    getAudio(category, grouping, grouping2);
+    audio.getAudio(category, grouping, grouping2);
   }
 }
 

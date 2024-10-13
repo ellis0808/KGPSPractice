@@ -20,10 +20,10 @@ import {
 } from "../../../utilities/disable-enable-touch.js";
 import { sessionCheck, sessionData } from "../../../login/session-check.js";
 import { user } from "../../../utilities/user-object.js";
+import { audio } from "../../../utilities/audio.js";
 
 let style;
 let activityId;
-let audioObject = {};
 let interval = 2500;
 let run;
 let isPaused = false;
@@ -1025,4 +1025,4 @@ function createGrid() {
   }
 }
 
-export { numberFluencyApp, audioObject };
+export { numberFluencyApp };

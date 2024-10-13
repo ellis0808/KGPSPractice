@@ -1,5 +1,4 @@
 import { body } from "../../utilities/variables.js";
-audioObject;
 import { matchingSfx } from "./matching-audio.js";
 import {
   checkAllCorrect,
@@ -10,7 +9,7 @@ import {
   lines,
   numberOfItemsToBeDisplayed,
 } from "./matching-index.js";
-import { audioObject } from "../../utilities/audio.js";
+import { audio } from "../../utilities/audio.js";
 class DotAndLineCommand {
   constructor() {
     this.startDots = [];
@@ -167,9 +166,7 @@ class StartDot {
     matchingSfx.validConnection.play();
 
     setTimeout(() => {
-      console.log(audioObject);
-
-      audioObject[this.contentId.toLowerCase()].sound.play();
+      audio.audioObject[this.contentId.toLowerCase()].sound.play();
     }, 200);
 
     checkAllCorrect();

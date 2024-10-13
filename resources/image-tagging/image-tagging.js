@@ -1,4 +1,4 @@
-import { getImages, imageObject } from "../utilities/images.js";
+import { images } from "../utilities/images.js";
 
 const imageDataContainer = document.querySelector(".image-data-container");
 const getAllImagesBtn = document.querySelector(".get-all-images-btn");
@@ -8,18 +8,18 @@ window.addEventListener("load", () => {
   setTimeout(() => {
     document.getElementById("filename").value = "";
   }, 0);
-  getImages();
+  images.getImages();
 
   setTimeout(populateImageTable, 500);
 });
 
-getAllImagesBtn.addEventListener("pointerdown", getImages);
+getAllImagesBtn.addEventListener("pointerdown", images.getImages);
 
 searchBox.addEventListener("submit", (event) => {
   event.preventDefault();
   const searchItem = document.getElementById("filename").value;
 
-  getImages(searchItem);
+  images.getImages(searchItem);
   setTimeout(populateImageTable, 500);
 });
 
@@ -32,7 +32,7 @@ function populateImageTable() {
     });
   }
 
-  Object.keys(imageObject).forEach((item) => {
+  Object.keys(images.imageObject).forEach((item) => {
     ++i;
     const imageRow = document.createElement("div");
     imageRow.classList.add("image-row");
@@ -46,12 +46,12 @@ function populateImageTable() {
     number.classList.add("number");
     imageThumbnailContainer.classList.add("thumbnail");
     number.innerText = `${i}`;
-    imageTypeContainer.innerText = imageObject[item].type;
-    imageCategoryContainer.innerText = imageObject[item].category;
-    imageFileNameContainer.innerText = imageObject[item].filename;
-    imageFileTypeContainer.innerText = imageObject[item].filetype;
-    imageLinkContainer.innerText = imageObject[item].link;
-    imageThumbnailContainer.style.backgroundImage = `url(${imageObject[item].link})`;
+    imageTypeContainer.innerText = images.imageObject[item].type;
+    imageCategoryContainer.innerText = images.imageObject[item].category;
+    imageFileNameContainer.innerText = images.imageObject[item].filename;
+    imageFileTypeContainer.innerText = images.imageObject[item].filetype;
+    imageLinkContainer.innerText = images.imageObject[item].link;
+    imageThumbnailContainer.style.backgroundImage = `url(${images.imageObject[item].link})`;
     imageRow.appendChild(number);
     imageRow.appendChild(imageTypeContainer);
     imageRow.appendChild(imageCategoryContainer);

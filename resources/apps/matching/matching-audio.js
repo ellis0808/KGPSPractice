@@ -1,4 +1,4 @@
-import { audioObject, getAudio } from "../../utilities/audio.js";
+import { audio } from "../../utilities/audio.js";
 
 const matchingSfx = {
   validConnection: new Howl({
@@ -33,7 +33,7 @@ function startAudioFetch(style) {
   if (style === 1) {
     category = "alphabet";
     grouping = 1;
-    getAudio(category, grouping, grouping2);
+    audio.getAudio(category, grouping, grouping2);
   }
 }
 

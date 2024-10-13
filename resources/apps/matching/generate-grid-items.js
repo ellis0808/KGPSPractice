@@ -9,7 +9,7 @@ import {
   disableTouch,
 } from "./matching-index.js";
 import { alphabet } from "../card-touch/card-data.js";
-import { audioObject } from "../../utilities/audio.js";
+import { audio } from "../../utilities/audio.js";
 import {
   dotAndLineCommand,
   endDot,
@@ -69,7 +69,7 @@ function generateLetterDivsForMatching(array) {
       letter.classList.add(divGroup, "letter-matching-app");
       letter.innerText = `${letter.getAttribute("contentId")}`;
       letter.addEventListener("click", () => {
-        audioObject[item].sound.play();
+        audio.audioObject[item].sound.play();
       });
       lowercaseLetterDiv.appendChild(letter);
     });
@@ -82,11 +82,10 @@ function generateLetterDivsForMatching(array) {
     letter.classList.add(divGroup, "letter-matching-app");
     letter.innerText = `${letter.getAttribute("contentId")}`;
     letter.addEventListener("click", () => {
-      audioObject[item.toLowerCase()].sound.play();
+      audio.audioObject[item.toLowerCase()].sound.play();
     });
     capitalLettersDiv.appendChild(letter);
   });
-  console.log(audioObject);
 }
 /*
 C. Generating Start Dots, End Dots, and their Enclosures
