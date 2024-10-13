@@ -35,7 +35,7 @@ class CardTouchAudio {
 
     this.randomWord = cardText[this.randomNumber];
 
-    setTimeout(function () {
+    setTimeout(() => {
       audio.audioObject[this.randomWord].sound.play();
     }, 1000);
 
