@@ -2,7 +2,7 @@ import { audio } from "../../utilities/audio.js";
 
 class FluencyAudio {
   constructor() {
-    numbersFluencySfx = {
+    this.numbersFluencySfx = {
       restoreHeartSFX: new Howl({
         src: ["/KGPSEPaudio/sfx/sfx-poppop-1.mp3"],
         volume: 0.8,
