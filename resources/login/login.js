@@ -290,7 +290,7 @@ async function loginUser(id, firstname, lastname, access) {
     // return password;
   } else if (access === "student") {
     password = studentPasswordEntryArray.join("");
-    // return password;
+    return password;
   }
 
   try {
