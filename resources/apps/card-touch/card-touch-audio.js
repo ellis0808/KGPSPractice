@@ -44,12 +44,15 @@ class CardTouchAudio {
   }
 
   repeat() {
-    // this.randomItem = cardText[this.randomNumber];
-    // console.log(this.randomItem);
+    this.updateRandomNumber();
+    console.log(this.randomNumber);
+
+    this.randomItem = cardText[this.randomNumber];
+    console.log(this.randomItem);
 
     setTimeout(() => {
       if (!isPaused) {
-        audio.audioObject[this.randomWord].sound.play();
+        audio.audioObject[this.randomItem].sound.play();
       }
     }, 30);
   }
