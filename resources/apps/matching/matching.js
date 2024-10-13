@@ -411,7 +411,7 @@ function removeEndMessagesContainer() {
 }
 
 function startSession() {
-  amatchingSfx.startApp.play();
+  matchingAudio.matchingSfx.startApp.play();
   removeEndMessagesContainer();
   startBtn.classList.add("no-touch");
   startBtn.classList.add("spinfade");

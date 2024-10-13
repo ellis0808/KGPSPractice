@@ -5,11 +5,14 @@ import { writingApp } from "../writing/writing.js";
 // import { spellingTouchApp } from "../spelling/spelling-touch-app/spelling-touch-index.js";
 import { mainMenuSfx } from "./start-main-app.js";
 
-// Card Touch App
-function startCardTouchApp(set) {
-  mainMenuSfx.select2.play();
-  cardTouchApp(set);
+class AppLauncher {
+  startCardTouchApp(set) {
+    mainMenuSfx.select2.play();
+    cardTouchApp(set);
+  }
 }
+// Card Touch App
+function startCardTouchApp(set) {}
 
 // Matching App
 function startMatchingApp(set) {
