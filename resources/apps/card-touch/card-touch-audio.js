@@ -1,4 +1,4 @@
-import { getAudio, audioObject } from "../../utilities/audio.js";
+import { getAudio, audioObject, audio } from "../../utilities/audio.js";
 import { cardText, isPaused } from "./card-touch-index.js";
 let correctCardID;
 let randomNumber;
@@ -14,7 +14,8 @@ function speak() {
   const randomWord = cardText[randomNumber];
 
   setTimeout(function () {
-    audioObject[randomWord].sound.play();
+    audio.audioObject[randomWord].sound.play();
+    // audioObject[randomWord].sound.play();
   }, 1000);
 
   return (correctCardID = randomNumber);
@@ -25,7 +26,8 @@ function repeat() {
 
   setTimeout(function () {
     if (!isPaused) {
-      audioObject[randomItem].sound.play();
+      audio.audioObject[randomItem].sound.play();
+      // audioObject[randomItem].sound.play();
     }
   }, 30);
 }
