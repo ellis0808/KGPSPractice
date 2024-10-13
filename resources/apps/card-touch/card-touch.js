@@ -137,7 +137,7 @@ const repeatBtn = document.createElement("div");
 repeatBtn.classList.add("repeat-btn");
 repeatBtn.classList.add("card-touch-app");
 repeatBtn.setAttribute("id", "repeat-btn");
-repeatBtn.addEventListener("click", repeat);
+repeatBtn.addEventListener("click", cardTouchAudio.repeat);
 repeatBtn.textContent = "Repeat";
 toggleRepeatBtnHide();
 // toggleScoreDisplayHide();
