@@ -224,9 +224,6 @@ function checkAnswer(input) {
     setTimeout(() => {
       writingAudio.writingSfx.incorrect.play();
     }, 300);
-    setTimeout(() => {
-      writingAudio.writingSfx.incorrect.play();
-    }, 50);
     canvas.classList.add("error-border");
   }
 }
