@@ -223,18 +223,18 @@ function checkAnswer(input) {
     // setTimeout(() => {
     writingAudio.writingSfx.correct.play();
     // }, 300);
-    setTimeout(newWord, 1000);
-    setTimeout(resetCanvasAndBorder, 2000);
+    setTimeout(newWord, 1500);
   } else {
     // setTimeout(() => {
     writingAudio.writingSfx.incorrect.play();
     // }, 30);
     canvas.classList.add("border-error");
     setTimeout(resetCanvasAndBorder, 2000);
+    writingAudio.repeat();
   }
 }
 const newWord = () => {
-  resetCanvas();
+  resetCanvasAndBorder();
   setTimeout(writingAudio.speak, 300);
 };
 const resetCanvas = () => {
