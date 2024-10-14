@@ -821,8 +821,8 @@ function resetCorrectAnswerPoints() {
 /* AUDIO */
 
 function getCurrentItem() {
-  currentItem = currentArray[arrayItemCounter].toString();
   console.log(arrayItemCounter);
+  currentItem = currentArray[arrayItemCounter].toString();
   ++arrayItemCounter;
   console.log(arrayItemCounter);
   return currentItem;
