@@ -224,6 +224,7 @@ function checkAnswer(input) {
     writingAudio.writingSfx.correct.play();
     // }, 300);
     setTimeout(newWord, 1000);
+    setTimeout(resetCanvasAndBorder, 2000);
   } else {
     // setTimeout(() => {
     writingAudio.writingSfx.incorrect.play();
