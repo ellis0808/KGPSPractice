@@ -138,7 +138,7 @@ const setCanvasController = () => {
 clearBtn.addEventListener("pointerdown", (event) => {
   canvasController.erase();
 });
-undoBtn.addEventListener("pointerdown", (event, canvasController) => {
+undoBtn.addEventListener("pointerdown", (event) => {
   if (canvasController.trace.length === 0) {
     return;
   } else if (canvasController.trace.length === 1) {
@@ -148,11 +148,13 @@ undoBtn.addEventListener("pointerdown", (event, canvasController) => {
     canvasController.undo(event);
   }
 });
-if (canvasController.trace.length !== 0) {
-  checkBtn.addEventListener("pointerdown", (event) => {
+checkBtn.addEventListener("pointerdown", (event) => {
+  if (canvasController.trace.length !== 0) {
     canvasController.recognize(event);
-  });
-}
+  } else {
+    return;
+  }
+});
 
 startBtn.addEventListener("click", () => {
   startRound();
