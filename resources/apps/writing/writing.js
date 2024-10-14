@@ -178,39 +178,6 @@ const getRandomItem = () => {
 
 /* ----- End Item Generator ----- */
 
-function displayQuestion() {
-  questionDisplay.innerText = "Write the letter!";
-}
-
-const correctAnswer = "A";
-const letterA = new Howl({
-  src: ["v1-alphabet-a.mp3"],
-  volume: 0.8,
-});
-const correct = new Howl({
-  src: ["クイズ正解5.mp3"],
-  volume: 0.8,
-});
-const incorrect = new Howl({
-  src: ["クイズ不正解2.mp3"],
-  volume: 0.8,
-});
-function playLetter() {
-  letterA.play();
-}
-
-// if (!input) {
-//   setTimeout(() => {
-//     writingAudio.writingSfx.incorrect.play();
-//   }, 50);
-//   canvas.classList.add("error-border");
-// } else {
-//   console.log("input ", input);
-//   if (canvas.classList.contains("error-border")) {
-//     canvas.classList.remove("error-border");
-//   }
-// }
-
 function checkAnswer(input) {
   if (input[0] === writingAudio.randomWord) {
     if (canvas.classList.contains("border-error")) {
@@ -231,7 +198,7 @@ function checkAnswer(input) {
     canvas.classList.add("border-error");
     setTimeout(() => {
       resetCanvasAndBorder();
-      setTimeout(writingAudio.repeat, 400);
+      setTimeout(writingAudio.repeat, 700);
     }, 2000);
   }
 }
