@@ -387,6 +387,7 @@ function endSession() {
   document.querySelectorAll(".letter-matching-app, .line").forEach((item) => {
     item.remove();
   });
+  console.log(document.querySelectorAll(".line"));
   if (document.querySelector(".end-messages-container")) {
     document.querySelector(".end-messages-container").remove();
   }
