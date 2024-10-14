@@ -159,8 +159,32 @@ body:not(:has(*)) {
 .clear-btn {
   grid-area: clear-btn;
 }
+@media (hover: hover) and (pointer: fine) {
+  .clear-btn:hover {
+    scale: 1.05;
+    transition: 0.25s;
+  }
+}
+.clear-btn:active {
+  scale: 1;
+  transform: translateY(5px);
+  z-index: -10;
+  transition: 0.1s;
+}
 .undo-btn {
   grid-area: undo-btn;
+}
+@media (hover: hover) and (pointer: fine) {
+  .undo-btn:hover {
+    scale: 1.05;
+    transition: 0.25s;
+  }
+}
+.undo-btn:active {
+  scale: 1;
+  transform: translateY(5px);
+  z-index: -10;
+  transition: 0.1s;
 }
 .check-btn {
   grid-area: check-btn;
@@ -168,6 +192,7 @@ body:not(:has(*)) {
   height: 120px;
   color: var(--clr-wht);
   background-color: var(--clr-red);
+  transition: var(--transition);
 }
 @media (hover: hover) and (pointer: fine) {
   .check-btn:hover {
@@ -207,7 +232,8 @@ body:not(:has(*)) {
 }
 
 .error-border {
-  border: var(--clr-red), solid, 2px;
+  border: red, solid, 2px;
+  border-radius: 10px;
 }
 
 /*
