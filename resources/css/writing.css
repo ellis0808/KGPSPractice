@@ -16,10 +16,10 @@
   --clr-ylw: rgb(248, 245, 56);
   --clr-red: rgb(161, 29, 29);
   --clr-blu: rgb(26, 26, 168);
+  --clr-grn: rgb(0, 103, 71);
   --font-fam: "Noto Sans", sans-serif;
   --txt-md: 2rem;
   --transition: all 0.25s ease-in-out;
-  --clr-acc1: rgb(0, 103, 71);
   --clr-wht: #fff;
   --hvr-opc: 0.7;
 }
@@ -233,8 +233,13 @@ body:not(:has(*)) {
   transition: 0.6s;
 }
 
-.error-border {
+.border-error {
   border: var(--clr-red) solid 10px;
+  border-radius: 10px;
+  /* transition: 0.025; */
+}
+.border-correct {
+  border: var(--clr-grn) solid 10px;
   border-radius: 10px;
   /* transition: 0.025; */
 }

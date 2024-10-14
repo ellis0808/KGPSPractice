@@ -213,18 +213,22 @@ function playLetter() {
 
 function checkAnswer(input) {
   if (input[0] === writingAudio.randomWord) {
-    if (canvas.classList.contains("error-border")) {
-      canvas.classList.remove("error-border");
+    if (canvas.classList.contains("border-error")) {
+      canvas.classList.remove("border-error");
     }
-    setTimeout(() => {
-      writingAudio.writingSfx.correct.play();
-    }, 300);
+    if (canvas.classList.contains("border-correct")) {
+      canvas.classList.remove("border-correct");
+    }
+    canvas.classList.add("border-correct");
+    // setTimeout(() => {
+    writingAudio.writingSfx.correct.play();
+    // }, 300);
     setTimeout(newWord, 1000);
   } else {
-    setTimeout(() => {
-      writingAudio.writingSfx.incorrect.play();
-    }, 30);
-    canvas.classList.add("error-border");
+    // setTimeout(() => {
+    writingAudio.writingSfx.incorrect.play();
+    // }, 30);
+    canvas.classList.add("border-error");
     setTimeout(resetCanvasAndBorder, 2000);
   }
 }
@@ -237,8 +241,11 @@ const resetCanvas = () => {
 };
 const resetCanvasAndBorder = () => {
   canvasController.erase();
-  if (canvas.classList.contains("error-border")) {
-    canvas.classList.remove("error-border");
+  if (canvas.classList.contains("border-error")) {
+    canvas.classList.remove("border-error");
+  }
+  if (canvas.classList.contains("border-correct")) {
+    canvas.classList.remove("border-correct");
   }
 };
 
