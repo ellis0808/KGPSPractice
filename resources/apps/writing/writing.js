@@ -241,12 +241,13 @@ const resetCanvas = () => {
   canvasController.erase();
 };
 const resetCanvasAndBorder = () => {
-  canvasController.erase();
   if (canvas.classList.contains("border-error")) {
     canvas.classList.remove("border-error");
+    canvasController.erase();
   }
   if (canvas.classList.contains("border-correct")) {
     canvas.classList.remove("border-correct");
+    canvasController.erase();
   }
 };
 
