@@ -230,7 +230,7 @@ function checkAnswer(input) {
     // }, 30);
     canvas.classList.add("border-error");
     setTimeout(() => {
-      resetCanvasAndBorder;
+      resetCanvasAndBorder();
       setTimeout(writingAudio.repeat, 400);
     }, 2000);
   }
