@@ -138,7 +138,7 @@ const setCanvasController = () => {
 clearBtn.addEventListener("pointerdown", (event) => {
   canvasController.erase();
 });
-undoBtn.addEventListener("pointerdown", (event) => {
+undoBtn.addEventListener("pointerdown", (event, canvasController) => {
   if (canvasController.trace.length === 0) {
     return;
   } else if (canvasController.trace.length === 1) {
