@@ -384,13 +384,9 @@ function endSession() {
   resetNavigationBtns();
   appContainer.classList.add("hide");
   homeBtnContainer.classList.add("hide");
-  const stuff = document.querySelectorAll(".letter-matching-app, .line");
-  console.log(document.querySelectorAll(".line"));
-
-  stuff.forEach((item) => {
+  document.querySelectorAll(".letter-matching-app, .line").forEach((item) => {
     item.remove();
   });
-  console.log(document.querySelectorAll(".line"));
   if (document.querySelector(".end-messages-container")) {
     document.querySelector(".end-messages-container").remove();
   }
