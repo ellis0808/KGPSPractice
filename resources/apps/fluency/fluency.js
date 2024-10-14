@@ -759,6 +759,8 @@ function determineInterval() {
   }
 }
 function arrayGenerator() {
+  console.log(style);
+
   currentArray.length = 0;
   // if (round === 1) {
   currentArray.length = 0;
