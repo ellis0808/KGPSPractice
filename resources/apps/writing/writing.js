@@ -225,7 +225,7 @@ function checkAnswer(input) {
       writingAudio.writingSfx.incorrect.play();
     }, 30);
     canvas.classList.add("error-border");
-    setTimeout(resetCanvasAndBorder, 1500);
+    setTimeout(resetCanvasAndBorder, 2000);
   }
 }
 const newWord = () => {
