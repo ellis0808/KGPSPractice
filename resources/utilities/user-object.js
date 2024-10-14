@@ -2,16 +2,16 @@ import { score } from "./score-object.js";
 
 class User {
   constructor() {
-    id = null;
-    firstName = null;
-    lastName = null;
-    gradeLevel = null;
-    access = null;
-    cumulativeScore = 0;
-    currentScore = score.currentScore;
-    currentLoginTime = null;
-    totalLoginTime = null;
-    awards = [];
+    this.id = null;
+    this.firstName = null;
+    this.lastName = null;
+    this.gradeLevel = null;
+    this.access = null;
+    this.cumulativeScore = 0;
+    this.currentScore = score.currentScore;
+    this.currentLoginTime = null;
+    this.totalLoginTime = null;
+    this.awards = [];
   }
   async getCumulativeScore(id) {
     try {
