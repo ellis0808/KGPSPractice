@@ -384,7 +384,7 @@ function endSession() {
   resetNavigationBtns();
   appContainer.classList.add("hide");
   homeBtnContainer.classList.add("hide");
-  const stuff = document.querySelectorAll(".letter-matching-app");
+  const stuff = document.querySelectorAll(".letter-matching-app, .line");
 
   stuff.forEach((item) => {
     item.remove();
