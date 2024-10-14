@@ -257,7 +257,6 @@ async function updateUserTotalScore() {
       }
     );
     const data = await response.json();
-    console.log(data);
 
     if (!response.ok) {
       throw new Error("Network response was not okay");
@@ -759,8 +758,6 @@ function determineInterval() {
   }
 }
 function arrayGenerator() {
-  console.log(style);
-
   currentArray.length = 0;
   // if (round === 1) {
   currentArray.length = 0;
@@ -825,10 +822,8 @@ function resetCorrectAnswerPoints() {
 /* AUDIO */
 
 function getCurrentItem() {
-  console.log(arrayItemCounter);
   currentItem = currentArray[arrayItemCounter].toString();
   ++arrayItemCounter;
-  console.log(arrayItemCounter);
   return currentItem;
 }
 

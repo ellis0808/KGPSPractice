@@ -52,7 +52,7 @@ class CardTouchAudio {
 
     setTimeout(() => {
       if (!isPaused) {
-        audio.audioObject[this.randomItem].sound.play();
+        audio.audioObject[this.randomWord].sound.play();
       }
     }, 30);
   }

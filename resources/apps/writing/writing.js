@@ -67,6 +67,7 @@ const appContainer = document.createElement("div");
 appContainer.classList.add("container", "writing-app");
 const startBtn = document.createElement("div");
 startBtn.classList.add("start-btn");
+startBtn.innerText = "Start";
 
 // Sub-structure Containers
 const topRow = document.createElement("div");
@@ -83,6 +84,7 @@ btnContainer2.classList.add("btn-container2");
 const repeatBtn = document.createElement("div");
 repeatBtn.classList.add("repeat-btn", "btn", "writing-app");
 repeatBtn.innerText = "Repeat";
+repeatBtn.addEventListener("pointerdown", writingAudio.repeat);
 const questionDisplay = document.createElement("div");
 questionDisplay.classList.add("question-display", "writing-app");
 const checkBtn = document.createElement("div");
