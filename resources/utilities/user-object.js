@@ -1,17 +1,19 @@
 import { score } from "./score-object.js";
 
-const user = {
-  id: null,
-  firstName: null, //does this make sense?
-  lastName: null, //does this make sense?
-  gradeLevel: null,
-  access: null,
-  cumulativeScore: 0,
-  currentScore: score.currentScore,
-  currentLoginTime: null,
-  totalLoginTime: null,
-  awards: [],
-  getCumulativeScore: async function (id) {
+class User {
+  constructor() {
+    id = null;
+    firstName = null;
+    lastName = null;
+    gradeLevel = null;
+    access = null;
+    cumulativeScore = 0;
+    currentScore = score.currentScore;
+    currentLoginTime = null;
+    totalLoginTime = null;
+    awards = [];
+  }
+  async getCumulativeScore(id) {
     try {
       const response = await fetch(
         `/KGPSEnglishPractice-test/api/read_and_calculate_total_score.php?id=${id}`
@@ -35,7 +37,9 @@ const user = {
     } catch (error) {
       console.error("Error getting user data:", error);
     }
-  },
-};
+  }
+}
+
+const user = new User();
 
 export { user };

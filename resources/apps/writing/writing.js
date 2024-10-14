@@ -127,18 +127,9 @@ const setCanvasController = () => {
     if (error) {
       throw error;
     }
-    if (!input) {
-      setTimeout(() => {
-        writingAudio.writingSfx.incorrect.play();
-      }, 50);
-      canvas.classList.add("error-border");
-    } else {
-      console.log("input ", input);
-      if (canvas.classList.contains("error-border")) {
-        canvas.classList.remove("error-border");
-      }
-      checkAnswer(input);
-    }
+
+    checkAnswer(input);
+
     // return input;
   });
   return canvasController;
@@ -157,9 +148,11 @@ undoBtn.addEventListener("pointerdown", (event) => {
     canvasController.undo(event);
   }
 });
-checkBtn.addEventListener("pointerdown", (event) => {
-  canvasController.recognize(event);
-});
+if (canvasController.trace.length !== 0) {
+  checkBtn.addEventListener("pointerdown", (event) => {
+    canvasController.recognize(event);
+  });
+}
 
 startBtn.addEventListener("click", () => {
   startRound();
@@ -204,8 +197,23 @@ function playLetter() {
   letterA.play();
 }
 
+// if (!input) {
+//   setTimeout(() => {
+//     writingAudio.writingSfx.incorrect.play();
+//   }, 50);
+//   canvas.classList.add("error-border");
+// } else {
+//   console.log("input ", input);
+//   if (canvas.classList.contains("error-border")) {
+//     canvas.classList.remove("error-border");
+//   }
+// }
+
 function checkAnswer(input) {
   if (input[0] === writingAudio.randomWord) {
+    if (canvas.classList.contains("error-border")) {
+      canvas.classList.remove("error-border");
+    }
     setTimeout(() => {
       writingAudio.writingSfx.correct.play();
     }, 300);
@@ -214,6 +222,10 @@ function checkAnswer(input) {
     setTimeout(() => {
       writingAudio.writingSfx.incorrect.play();
     }, 300);
+    setTimeout(() => {
+      writingAudio.writingSfx.incorrect.play();
+    }, 50);
+    canvas.classList.add("error-border");
   }
 }
 const newWord = () => {

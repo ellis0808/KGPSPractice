@@ -169,6 +169,19 @@ body:not(:has(*)) {
   color: var(--clr-wht);
   background-color: var(--clr-red);
 }
+@media (hover: hover) and (pointer: fine) {
+  .check-btn:hover {
+    scale: 1.05;
+    transition: 0.25s;
+  }
+}
+.check-btn:active {
+  scale: 1;
+  transform: translateY(5px);
+  z-index: -10;
+  transition: 0.1s;
+}
+
 .repeat-btn {
   grid-area: repeat-btn;
   width: 150px;
