@@ -223,8 +223,9 @@ function checkAnswer(input) {
   } else {
     setTimeout(() => {
       writingAudio.writingSfx.incorrect.play();
-    }, 300);
+    }, 30);
     canvas.classList.add("error-border");
+    setTimeout(resetCanvasAndBorder, 1500);
   }
 }
 const newWord = () => {
@@ -233,6 +234,12 @@ const newWord = () => {
 };
 const resetCanvas = () => {
   canvasController.erase();
+};
+const resetCanvasAndBorder = () => {
+  canvasController.erase();
+  if (canvas.classList.contains("error-border")) {
+    canvas.classList.remove("error-border");
+  }
 };
 
 export { writingApp, randomItemArray };
