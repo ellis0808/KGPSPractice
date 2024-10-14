@@ -5,6 +5,7 @@ class WritingAudio {
   constructor() {
     this.randomNumber;
     this.randomWord;
+    this.repeat = this.repeat.bind(this);
     this.writingSfx = {
       correct: new Howl({
         src: ["/KGPSEPaudio/sfx/sfx-correct-1.mp3"],

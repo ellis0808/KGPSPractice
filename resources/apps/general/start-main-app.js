@@ -450,7 +450,7 @@ numberFluency1to20AppMenuItem.setAttribute(
 numberFluency1to20AppMenuItem.classList.add("div");
 numberFluency1to20AppMenuItem.innerText = "Touch 1-20";
 numberFluency1to20AppMenuItem.addEventListener("click", () => {
-  startFluencyApp(0);
+  appLauncher.startFluencyApp(0);
 });
 
 // 2. Number Fluency 21-40 App Menu Item
@@ -462,7 +462,7 @@ numberFluency21to40AppMenuItem.setAttribute(
 numberFluency21to40AppMenuItem.classList.add("div");
 numberFluency21to40AppMenuItem.innerText = "Touch 21-40";
 numberFluency21to40AppMenuItem.addEventListener("click", () => {
-  startFluencyApp(1);
+  appLauncher.startFluencyApp(1);
 });
 
 // 3. Number Fluency 41-60 App Menu Item
@@ -474,7 +474,7 @@ numberFluency41to60AppMenuItem.setAttribute(
 numberFluency41to60AppMenuItem.classList.add("div");
 numberFluency41to60AppMenuItem.innerText = "Touch 41-60";
 numberFluency41to60AppMenuItem.addEventListener("click", () => {
-  startFluencyApp(2);
+  appLauncher.startFluencyApp(2);
 });
 
 // 4. Number Fluency 61-80 App Menu Item
@@ -486,7 +486,7 @@ numberFluency61to80AppMenuItem.setAttribute(
 numberFluency61to80AppMenuItem.classList.add("div");
 numberFluency61to80AppMenuItem.innerText = "Touch 61-80";
 numberFluency61to80AppMenuItem.addEventListener("click", () => {
-  startFluencyApp(3);
+  appLauncher.startFluencyApp(3);
 });
 
 // 5. Number Fluency 81-100 App Menu Item
@@ -498,7 +498,7 @@ numberFluency81to100AppMenuItem.setAttribute(
 numberFluency81to100AppMenuItem.classList.add("div");
 numberFluency81to100AppMenuItem.innerText = "Touch 81-100";
 numberFluency81to100AppMenuItem.addEventListener("click", () => {
-  startFluencyApp(4);
+  appLauncher.startFluencyApp(4);
 });
 
 /* Number menu items fin */
