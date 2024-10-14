@@ -437,7 +437,7 @@ function endSession() {
   grid.remove();
 }
 function startSession() {
-  numbersFluencySfx.startApp.play();
+  fluencyAudio.numbersFluencySfx.startApp.play();
   startBtn.classList.add("no-touch");
   startBtn.classList.remove("intro");
   startBtn.classList.add("spinfade");
@@ -500,7 +500,7 @@ function newRound() {
     // if (!isPaused) {
     displayHeartsArray();
     if (round === 1) {
-      numbersFluencySfx.restoreHeartSFX.play();
+      fluencyAudio.numbersFluencySfx.restoreHeartSFX.play();
     }
     if (numberOfRightAnswers > 5) {
       restoreOneHeart();
@@ -651,7 +651,7 @@ function displayRound(round) {
   setTimeout(() => {
     appContainer.appendChild(bannerContainer);
     bannerContainer.appendChild(roundBanner);
-    numbersFluencySfx.newRound.play();
+    fluencyAudio.numbersFluencySfx.newRound.play();
     roundBanner.textContent = `Round ${round}`;
     roundDisplay.textContent = `Round ${round}`;
   }, 1500);
@@ -681,12 +681,12 @@ function userTouch(event) {
 
 function checkAnswer(currentAnswer, event) {
   if (currentAnswer === currentItem) {
-    numbersFluencySfx.correct.play();
+    fluencyAudio.numbersFluencySfx.correct.play();
     updatePositiveCount(correctAnswerPoints);
     ++numberOfRightAnswers;
     disableTouch(boxes);
   } else {
-    numbersFluencySfx.incorrect.play();
+    fluencyAudio.numbersFluencySfx.incorrect.play();
     heartsArray.pop();
     displayHeartsArray();
     gameOver();
@@ -724,7 +724,7 @@ function setHeartsArrayForRoundOne() {
 function restoreOneHeart() {
   if (heartsArray.length < maxNumberOfHearts) {
     heartsArray.push(`<i class="fa-solid fa-heart fa-1x"></i>`);
-    numbersFluencySfx.restoreHeartSFX.play();
+    fluencyAudio.numbersFluencySfx.restoreHeartSFX.play();
     displayHeartsArray();
   }
 }
