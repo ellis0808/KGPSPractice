@@ -21,10 +21,8 @@ import {
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
 import { audio } from "../../utilities/audio.js";
-// import { audio } from "../../utilities/audio.js";
+import { style, activityId } from "./fluency-set-style-and-activity-id.js";
 
-let style;
-let activityId;
 let interval = 2500;
 let run;
 let isPaused = false;
