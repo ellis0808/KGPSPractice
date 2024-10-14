@@ -38,10 +38,9 @@ class WritingAudio {
     return this.randomWord;
   };
   repeat = () => {
-    const randomItem = randomItemArray[this.randomNumber];
     setTimeout(() => {
       // if (!isPaused) {
-      audio.audioObject[randomItem].sound.play();
+      audio.audioObject[this.randomWord].sound.play();
       // }
     }, 30);
   };

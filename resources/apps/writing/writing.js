@@ -124,11 +124,21 @@ const setCanvasController = () => {
   canvasController.set_Undo_Redo(true, false);
 
   canvasController.setCallBack(function (input, error) {
-    console.log("input ", input);
     if (error) {
       throw error;
     }
-    checkAnswer(input);
+    if (!input) {
+      setTimeout(() => {
+        writingAudio.writingSfx.incorrect.play();
+      }, 50);
+      canvas.classList.add("error-border");
+    } else {
+      console.log("input ", input);
+      if (canvas.classList.contains("error-border")) {
+        canvas.classList.remove("error-border");
+      }
+      checkAnswer(input);
+    }
     // return input;
   });
   return canvasController;

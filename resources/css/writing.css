@@ -193,6 +193,10 @@ body:not(:has(*)) {
   transition: 0.6s;
 }
 
+.error-border {
+  border: var(--clr-red), solid, 2px;
+}
+
 /*
 
 *****

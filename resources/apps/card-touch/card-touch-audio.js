@@ -5,7 +5,6 @@ class CardTouchAudio {
   constructor() {
     this.randomNumber = null;
     this.randomWord = null;
-    this.randomItem = null;
     this.correctCardID = null;
     this.repeat = this.repeat.bind(this);
     this.cardTouchSfx = {
@@ -33,10 +32,7 @@ class CardTouchAudio {
   }
   speak() {
     this.updateRandomNumber();
-    console.log(this.randomNumber);
-
     this.randomWord = cardText[this.randomNumber];
-
     setTimeout(() => {
       audio.audioObject[this.randomWord].sound.play();
     }, 1000);
@@ -44,12 +40,6 @@ class CardTouchAudio {
     return (this.correctCardID = this.randomNumber);
   }
   repeat() {
-    // this.updateRandomNumber();
-    // console.log(this.randomNumber);
-
-    this.randomItem = cardText[this.randomNumber];
-    console.log(this.randomItem);
-
     setTimeout(() => {
       if (!isPaused) {
         audio.audioObject[this.randomWord].sound.play();
