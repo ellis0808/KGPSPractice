@@ -21,7 +21,11 @@ import {
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
 import { audio } from "../../utilities/audio.js";
-import { style, activityId } from "./fluency-set-style-and-activity-id.js";
+import {
+  style,
+  activityId,
+  setStyle,
+} from "./fluency-set-style-and-activity-id.js";
 
 let interval = 2500;
 let run;
@@ -196,7 +200,7 @@ Main App
 /* Starts Main App (exported to resources/js/general/app-launcher.js) */
 function fluencyApp(set) {
   sessionCheck();
-
+  setStyle(set);
   setTimeout(() => {
     mainContainer.appendChild(appContainer);
     appContainer.appendChild(btnContainer2);

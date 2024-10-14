@@ -29,6 +29,7 @@ function setStyle(set) {
       style = 5;
       fluencyAudio.startAudioFetch(style);
       setActivityId(style);
+      return style;
   }
 }
 
