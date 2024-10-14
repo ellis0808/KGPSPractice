@@ -822,7 +822,9 @@ function resetCorrectAnswerPoints() {
 
 function getCurrentItem() {
   currentItem = currentArray[arrayItemCounter].toString();
+  console.log(arrayItemCounter);
   ++arrayItemCounter;
+  console.log(arrayItemCounter);
   return currentItem;
 }
 

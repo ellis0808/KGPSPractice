@@ -223,7 +223,9 @@ if (navBar) {
 Specific Menu Items
 **********
 */
-
+class SpecificMenuItems {
+  constructor() {}
+}
 /* "Alphabet" Menu Items  (2) */
 
 // 1. Alphabet Capitals Touch App Menu Item
