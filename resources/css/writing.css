@@ -114,6 +114,7 @@ body:not(:has(*)) {
   border: solid black 5px;
   border-radius: 10px;
   position: absolute;
+  transition: var(--transition);
 }
 .question-display {
   grid-area: question-display;
@@ -233,8 +234,8 @@ body:not(:has(*)) {
 }
 
 .error-border {
-  border: var(--clr-red) solid 5px;
-  border-radius: 15px;
+  border: var(--clr-red) solid 10px;
+  border-radius: 10px;
 }
 
 /*
