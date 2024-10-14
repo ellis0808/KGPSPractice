@@ -229,8 +229,10 @@ function checkAnswer(input) {
     writingAudio.writingSfx.incorrect.play();
     // }, 30);
     canvas.classList.add("border-error");
-    setTimeout(resetCanvasAndBorder, 2000);
-    writingAudio.repeat();
+    setTimeout(() => {
+      resetCanvasAndBorder;
+      setTimeout(writingAudio.repeat, 400);
+    }, 2000);
   }
 }
 const newWord = () => {
