@@ -111,7 +111,8 @@ body:not(:has(*)) {
   width: 800px;
   height: 475px;
   background: white;
-  border: solid black 1px;
+  border: solid black 5px;
+  border-radius: 10px;
   position: absolute;
 }
 .question-display {
