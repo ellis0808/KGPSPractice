@@ -54,7 +54,7 @@ class WritingAudio {
         category = "sight-words";
         grouping = 1;
         audio.getAudio(category, grouping, grouping2);
-        console.log(audioObject);
+        console.log(audio.audioObject);
     }
   }
 }
