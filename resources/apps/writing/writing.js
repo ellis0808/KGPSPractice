@@ -179,7 +179,7 @@ let randomItemArray = [];
 
 const getRandomItem = () => {
   let i;
-  for (i = 0; i < maxNumberOfItems; ++i) {
+  for (i = 0; i < maxNumberOfWordsToWrite; ++i) {
     randomItem = items[Math.floor(Math.random() * items.length)];
 
     randomItemArray.push(randomItem);
