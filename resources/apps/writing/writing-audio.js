@@ -54,7 +54,9 @@ class WritingAudio {
         category = "sight-words";
         grouping = 1;
         audio.getAudio(category, grouping, grouping2);
-        setTimeout(() => {console.log(audio.audioObject),1000}
+        setTimeout(() => {
+          console.log(audio.audioObject), 1000;
+        });
     }
   }
 }
