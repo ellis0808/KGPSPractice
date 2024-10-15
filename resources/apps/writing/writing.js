@@ -58,7 +58,8 @@ const startRound = () => {
   startBtn.classList.add("hide");
   setTimeout(() => {
     // appContainer.removeChild(btnContainer2);
-    getRandomItem();
+    generateItems();
+    setTimeout(getRandomItem, 200);
   }, 500);
   setTimeout(writingAudio.speak, 1000);
 };
@@ -162,12 +163,16 @@ startBtn.addEventListener("click", () => {
 });
 
 /* -----  Item Generator ----- */
+const items = ["a", "the", "what", "this"];
 
-const itemGenerator = () => {
-  // audio.audioObject
+const generateItems = () => {
+  items.length = 0;
+  Object.keys(audio.audioObject).forEach((item) => {
+    items.push(item);
+  });
+  console.log(items);
 };
 
-const items = ["a", "the", "what", "this"];
 let maxNumberOfItems = 10;
 let randomItem;
 let randomItemArray = [];
