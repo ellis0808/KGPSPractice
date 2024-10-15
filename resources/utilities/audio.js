@@ -34,6 +34,7 @@ class Audio {
         }),
       });
     });
+    console.log(this.audioObject);
   }
 }
 const audio = new Audio();
