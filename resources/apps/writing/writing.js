@@ -163,7 +163,7 @@ startBtn.addEventListener("click", () => {
 });
 
 /* -----  Item Generator ----- */
-const items = ["a", "the", "what", "this"];
+const items = [];
 
 const generateItems = () => {
   items.length = 0;
@@ -173,7 +173,7 @@ const generateItems = () => {
   console.log(items);
 };
 
-let maxNumberOfItems = 10;
+let maxNumberOfWordsToWrite = 10;
 let randomItem;
 let randomItemArray = [];
 
