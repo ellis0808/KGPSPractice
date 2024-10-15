@@ -12,6 +12,7 @@ import {
 } from "./writing-set-style-and-activity-id.js";
 import { removeMenuPage } from "../../utilities/main-menu-display-toggle.js";
 import { writingAudio } from "./writing-audio.js";
+import { audio } from "../../utilities/audio.js";
 
 function writingApp(set) {
   sessionCheck();
@@ -161,6 +162,10 @@ startBtn.addEventListener("click", () => {
 });
 
 /* -----  Item Generator ----- */
+
+const itemGenerator = () => {
+  // audio.audioObject
+};
 
 const items = ["a", "the", "what", "this"];
 let maxNumberOfItems = 10;
