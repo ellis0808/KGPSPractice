@@ -311,7 +311,19 @@ class SpecificMenuItems {
 const specificMenuItems = new SpecificMenuItems();
 /* "Alphabet" Menu Items  (2) */
 
-// 2. Alphabet Capitals Touch App Menu Item
+// 1. Alphabet Capitals Touch App Menu Item
+const alphabetCapitalsCardTouchAppMenuItem = document.createElement("div");
+alphabetCapitalsCardTouchAppMenuItem.setAttribute(
+  "id",
+  "alphabet-card-touch-app-menu-item"
+);
+alphabetCapitalsCardTouchAppMenuItem.classList.add("div");
+alphabetCapitalsCardTouchAppMenuItem.innerText = "Card Touch!\r\n abc";
+alphabetCapitalsCardTouchAppMenuItem.addEventListener("click", () => {
+  appLauncher.startCardTouchApp("capitals");
+});
+
+// 2. Alphabet Lowercase Touch App Menu Item
 const alphabetLowercaseCardTouchAppMenuItem = document.createElement("div");
 alphabetLowercaseCardTouchAppMenuItem.setAttribute(
   "id",
