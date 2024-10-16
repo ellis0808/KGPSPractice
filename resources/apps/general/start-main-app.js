@@ -1,4 +1,3 @@
-import { score } from "../../utilities/score-object.js";
 import {
   body,
   navBar,
@@ -174,7 +173,7 @@ class MenuItems {
     this.alphabetCapitalsCardTouchAppMenuItem.classList.remove("hidden");
     this.alphabetLowercaseCardTouchAppMenuItem.classList.remove("hidden");
     this.alphabetMatchingAppMenuItem.classList.remove("hidden");
-    returnToMainMenuToggle();
+    menuItems.returnToMainMenuToggle();
   }
   createSightWordsSubMenu() {
     // 1. Sight Words 1 Touch App Menu Item
@@ -237,7 +236,7 @@ class MenuItems {
     this.sightWords2AppMenuItem.classList.remove("hidden");
     this.sightWords3AppMenuItem.classList.remove("hidden");
     this.sightWords1WritingAppMenuItem.classList.remove("hidden");
-    returnToMainMenuToggle();
+    menuItems.returnToMainMenuToggle();
   }
   createLetterSoundsSubMenu() {
     this.letterSoundsAMSFAppMenuItem.setAttribute("id", "amsf-app-menu-item");
@@ -258,7 +257,7 @@ class MenuItems {
     this.letterSoundsMenu.classList.add("hidden");
     menuContainer.appendChild(this.letterSoundsAMSFAppMenuItem);
     this.letterSoundsAMSFAppMenuItem.classList.remove("hidden");
-    returnToMainMenuToggle();
+    menuItems.returnToMainMenuToggle();
   }
   createNumbersSubMenu() {
     // 1. Number Fluency 1-20 App Menu Item
@@ -335,7 +334,7 @@ class MenuItems {
     this.numberFluency41to60AppMenuItem.classList.remove("hidden");
     this.numberFluency61to80AppMenuItem.classList.remove("hidden");
     this.numberFluency81to100AppMenuItem.classList.remove("hidden");
-    returnToMainMenuToggle();
+    menuItems.returnToMainMenuToggle();
   }
   removeMenuPage() {
     navBar.remove();
@@ -357,7 +356,6 @@ class MenuItems {
     this.abcMenu.classList.add("hidden");
     this.numbersMenu.classList.add("hidden");
     this.sightWordsMenu.classList.add("hidden");
-
     document.getElementById("parents-info").remove();
     document.getElementById("top-container").remove();
     document.getElementById("menu-container").remove();
@@ -400,7 +398,7 @@ class MenuItems {
     this.numberFluency61to80AppMenuItem.remove();
     this.numberFluency81to100AppMenuItem.remove();
     displayMainPage();
-    returnToMainMenuToggle();
+    menuItems.returnToMainMenuToggle();
   }
   returnToMainMenuToggle() {
     if (!isMainMenu) {
@@ -417,15 +415,6 @@ const navLogo = document.querySelector(".nav-logo");
 const navUserSpace = document.querySelector(".nav-user");
 const navUserName = document.querySelector(".nav-user-name");
 const navUserMenu = document.querySelector(".nav-user-menu");
-
-// Alphabet Menu
-
-// Numbers Main Menu Button
-
-// div4.setAttribute("id", "div4");
-
-// div4.classList.add("div", "div-start-menu4", "main-menu-div");
-// div4.innerText = "4";
 
 /* Top Page Menu Items Display Functions */
 
@@ -506,6 +495,7 @@ if (navBar) {
 }
 
 export {
+  menuItems,
   displayGreeting,
   displayMainPage,
   getCumulativeUserScore,

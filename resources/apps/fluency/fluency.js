@@ -7,11 +7,8 @@ import {
   updateNegativeCount,
   updatePositiveCount,
 } from "../../utilities/update-score.js";
+import { menuItems } from "../general/start-main-app.js";
 import { displayMainPage } from "../general/start-main-app.js";
-import {
-  removeMenuPage,
-  restoreMainMenu,
-} from "../../utilities/main-menu-display-toggle.js";
 import { fluencyAudio } from "./fluency-audio.js";
 import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import {
@@ -213,7 +210,7 @@ function fluencyApp(set) {
     "href",
     "/KGPSEnglishPractice-test/resources/css/number-fluency.css"
   );
-  removeMenuPage();
+  menuItems.removeMenuPage();
 
   setTimeout(displayStartBtn, 200);
 
@@ -279,7 +276,7 @@ function endApp() {
       "/KGPSEnglishPractice-test/resources/css/styles.css"
     );
     displayMainPage();
-    setTimeout(restoreMainMenu, 100);
+    setTimeout(menuItems.restoreMainMenu, 100);
   }, 500);
   scoreDisplay.innerText = score.currentScore;
 }

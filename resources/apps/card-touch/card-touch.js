@@ -4,6 +4,7 @@ import {
   navBar,
   stylesheet,
 } from "../../utilities/variables.js";
+import { menuItems } from "../general/start-main-app.js";
 import { cardTouchAudio } from "./card-touch-audio.js";
 import {
   alphabet,
@@ -20,10 +21,7 @@ import {
   updatePositiveCount,
 } from "../../utilities/update-score.js";
 import { displayMainPage, startMainApp } from "../general/start-main-app.js";
-import {
-  removeMenuPage,
-  restoreMainMenu,
-} from "../../utilities/main-menu-display-toggle.js";
+
 import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import { timer, toggleTimerHide } from "../../utilities/timer-object.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
@@ -56,7 +54,7 @@ function cardTouchApp(set) {
     "href",
     "/KGPSEnglishPractice-test/resources/css/card-touch.css"
   );
-  removeMenuPage();
+  menuItems.removeMenuPage();
 
   setTimeout(displayStartBtn, 200);
 
@@ -670,7 +668,7 @@ function endApp() {
         "/KGPSEnglishPractice-test/resources/css/styles.css"
       );
       displayMainPage();
-      setTimeout(restoreMainMenu, 100);
+      setTimeout(menuItems.restoreMainMenu, 100);
     }, 500);
   }, 500);
   scoreDisplay.innerText = score.currentScore;

@@ -5,6 +5,7 @@ import {
   stylesheet,
   body,
 } from "../../utilities/variables.js";
+import { menuItems } from "../general/start-main-app.js";
 import { alphabet } from "../card-touch/card-data.js";
 import { score } from "../../utilities/score-object.js";
 import { feedbackAudioObject } from "../../utilities/feedback-object.js";
@@ -18,16 +19,9 @@ import {
 import { matchingAudio } from "./matching-audio.js";
 import { displayMainPage } from "../general/start-main-app.js";
 import {
-  removeMenuPage,
-  restoreMainMenu,
-} from "../../utilities/main-menu-display-toggle.js";
-import {
   dotAndLineCommand,
   startDot,
   endDot,
-  StartDot,
-  EndDot,
-  DotAndLineCommand,
   Connector,
 } from "./dot-objects-control.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
@@ -166,7 +160,7 @@ function matchingApp(set) {
     "/KGPSEnglishPractice-test/resources/css/matching.css"
   );
 
-  removeMenuPage();
+  menuItems.removeMenuPage();
 
   setTimeout(displayStartBtn, 200);
 
@@ -197,7 +191,7 @@ function endApp() {
         "/KGPSEnglishPractice-test/resources/css/styles.css"
       );
       displayMainPage();
-      setTimeout(restoreMainMenu, 100);
+      setTimeout(menuItems.restoreMainMenu, 100);
     }, 500);
   }, 500);
   resetTimer();
