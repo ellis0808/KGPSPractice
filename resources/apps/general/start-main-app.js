@@ -83,6 +83,7 @@ class SpecificMenuItems {
     alphabetCapitalsCardTouchAppMenuItem.classList.remove("hidden");
     alphabetLowercaseCardTouchAppMenuItem.classList.remove("hidden");
     alphabetMatchingAppMenuItem.classList.remove("hidden");
+    returnToMainMenuToggle();
   }
   sightWordsMenu() {
     mainMenuSfx.select2.play();
@@ -104,6 +105,7 @@ class SpecificMenuItems {
     sightWords2AppMenuItem.classList.remove("hidden");
     sightWords3AppMenuItem.classList.remove("hidden");
     sightWords1WritingAppMenuItem.classList.remove("hidden");
+    returnToMainMenuToggle();
   }
   letterSoundsMenu() {
     mainMenuSfx.select2.play();
@@ -123,6 +125,7 @@ class SpecificMenuItems {
     letterSoundsAMSFAppMenuItem.classList.remove("hidden");
     // sightWords2AppMenuItem.classList.remove("hidden");
     // sightWords3AppMenuItem.classList.remove("hidden");
+    returnToMainMenuToggle();
   }
   numbersMenu() {
     mainMenuSfx.select2.play();
@@ -145,6 +148,7 @@ class SpecificMenuItems {
     numberFluency41to60AppMenuItem.classList.remove("hidden");
     numberFluency61to80AppMenuItem.classList.remove("hidden");
     numberFluency81to100AppMenuItem.classList.remove("hidden");
+    returnToMainMenuToggle();
   }
 }
 
