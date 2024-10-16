@@ -511,6 +511,5 @@ export {
   getCumulativeUserScore,
   hideParentsInfoBtn,
   startMainApp,
-  setTopMenuVariables,
   mainMenuSfx,
 };
