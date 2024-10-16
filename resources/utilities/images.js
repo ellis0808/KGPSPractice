@@ -34,9 +34,9 @@ class Images {
     }
   }
   loadImages(imageData) {
-    imageObject = {};
+    this.imageObject = {};
     imageData.map((item) => {
-      return (imageObject[item.filename] = {
+      return (this.imageObject[item.filename] = {
         id: item.image_id,
         type: item.type,
         category: item.category,
