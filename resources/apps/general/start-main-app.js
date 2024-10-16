@@ -117,10 +117,10 @@ class MenuItems {
     // this.letterSoundsMenu.innerText = "Letter Sounds";
   }
   displayMainMenuItems() {
-    menuContainer.appendChild(abcMenu);
-    menuContainer.appendChild(numbersMenu);
-    menuContainer.appendChild(sightWordsMenu);
-    // menuContainer.appendChild(letterSoundsMenu);
+    menuContainer.appendChild(this.abcMenu);
+    menuContainer.appendChild(this.numbersMenu);
+    menuContainer.appendChild(this.sightWordsMenu);
+    // menuContainer.appendChild(this.letterSoundsMenu);
   }
   createAlphabetMenu() {
     // 1. Alphabet Capitals Touch App Menu Item
