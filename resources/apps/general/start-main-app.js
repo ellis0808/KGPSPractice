@@ -101,7 +101,9 @@ class MenuItems {
     this.numbersMenu.setAttribute("id", "div2");
     this.numbersMenu.classList.add("div", "div-start-menu2", "main-menu-div");
     this.numbersMenu.innerText = "1,2,3";
-    this.numbersMenu.addEventListener("click", () => menuItems.numbersMenu());
+    this.numbersMenu.addEventListener("click", () =>
+      menuItems.displayNumbersMenu()
+    );
 
     // Sight Words
     this.sightWordsMenu.setAttribute("id", "div3");
@@ -111,7 +113,7 @@ class MenuItems {
       "main-menu-div"
     );
     this.sightWordsMenu.addEventListener("click", () =>
-      menuItems.sightWordsMenu()
+      menuItems.displaySightWordsMenu()
     );
     this.sightWordsMenu.innerText = "Sight Words";
 
@@ -122,7 +124,7 @@ class MenuItems {
     //   "div-start-menu5",
     //   "main-menu-div"
     // );
-    // this.letterSoundsMenu.addEventListener("click", () => menuItems.letterSoundsMenu());
+    // this.letterSoundsMenu.addEventListener("click", () => menuItems.displayLetterSoundsMenu());
     // this.letterSoundsMenu.innerText = "Letter Sounds";
   }
   displayMainMenuItems() {
