@@ -107,14 +107,14 @@ class MenuItems {
     this.sightWordsMenu.innerText = "Sight Words";
 
     // Letter Sounds
-    this.letterSoundsMenu.setAttribute("id", "div5");
-    this.letterSoundsMenu.classList.add(
-      "div",
-      "div-start-menu5",
-      "main-menu-div"
-    );
-    this.letterSoundsMenu.addEventListener("click", menuItems.letterSoundsMenu);
-    letterSoundsMenu.innerText = "Letter Sounds";
+    // this.letterSoundsMenu.setAttribute("id", "div5");
+    // this.letterSoundsMenu.classList.add(
+    //   "div",
+    //   "div-start-menu5",
+    //   "main-menu-div"
+    // );
+    // this.letterSoundsMenu.addEventListener("click", menuItems.letterSoundsMenu);
+    // this.letterSoundsMenu.innerText = "Letter Sounds";
   }
   displayMainMenuItems() {
     menuContainer.appendChild(abcMenu);
