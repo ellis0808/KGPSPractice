@@ -58,6 +58,98 @@ Main Menu Items
 **********
 */
 
+/*
+**********
+Specific Menu Items
+**********
+*/
+class SpecificMenuItems {
+  constructor() {}
+  alphabetMenu() {
+    mainMenuSfx.select2.play();
+    isMainMenu = false;
+    hideParentsInfoBtn();
+    topContainer.innerText = "Alphabet";
+    abcMenu.classList.add("hidden");
+    numbersMenu.classList.add("hidden");
+    sightWordsMenu.classList.add("hidden");
+    letterSoundsMenu.classList.add("hidden");
+    spellingMenu.classList.add("hidden");
+    div4.classList.add("hidden");
+    menuContainer.appendChild(alphabetCapitalsCardTouchAppMenuItem);
+    menuContainer.appendChild(alphabetLowercaseCardTouchAppMenuItem);
+    menuContainer.appendChild(alphabetMatchingAppMenuItem);
+    menuContainer.appendChild(returnToMainMenuBtn);
+    alphabetCapitalsCardTouchAppMenuItem.classList.remove("hidden");
+    alphabetLowercaseCardTouchAppMenuItem.classList.remove("hidden");
+    alphabetMatchingAppMenuItem.classList.remove("hidden");
+  }
+  sightWordsMenu() {
+    mainMenuSfx.select2.play();
+    isMainMenu = false;
+    hideParentsInfoBtn();
+    topContainer.innerText = "Sight Words";
+    abcMenu.classList.add("hidden");
+    numbersMenu.classList.add("hidden");
+    sightWordsMenu.classList.add("hidden");
+    letterSoundsMenu.classList.add("hidden");
+    spellingMenu.classList.add("hidden");
+    div4.classList.add("hidden");
+    menuContainer.appendChild(sightWords1AppMenuItem);
+    menuContainer.appendChild(sightWords2AppMenuItem);
+    menuContainer.appendChild(sightWords3AppMenuItem);
+    menuContainer.appendChild(sightWords1WritingAppMenuItem);
+    menuContainer.appendChild(returnToMainMenuBtn);
+    sightWords1AppMenuItem.classList.remove("hidden");
+    sightWords2AppMenuItem.classList.remove("hidden");
+    sightWords3AppMenuItem.classList.remove("hidden");
+    sightWords1WritingAppMenuItem.classList.remove("hidden");
+  }
+  letterSoundsMenu() {
+    mainMenuSfx.select2.play();
+    isMainMenu = false;
+    hideParentsInfoBtn();
+    topContainer.innerText = "Sight Words";
+    abcMenu.classList.add("hidden");
+    numbersMenu.classList.add("hidden");
+    sightWordsMenu.classList.add("hidden");
+    letterSoundsMenu.classList.add("hidden");
+    spellingMenu.classList.add("hidden");
+    div4.classList.add("hidden");
+    menuContainer.appendChild(letterSoundsAMSFAppMenuItem);
+    // menuContainer.appendChild(sightWords2AppMenuItem);
+    // menuContainer.appendChild(sightWords3AppMenuItem);
+    // menuContainer.appendChild(returnToMainMenuBtn);
+    letterSoundsAMSFAppMenuItem.classList.remove("hidden");
+    // sightWords2AppMenuItem.classList.remove("hidden");
+    // sightWords3AppMenuItem.classList.remove("hidden");
+  }
+  numbersMenu() {
+    mainMenuSfx.select2.play();
+    isMainMenu = false;
+    hideParentsInfoBtn();
+    topContainer.innerText = "Numbers";
+    abcMenu.classList.add("hidden");
+    numbersMenu.classList.add("hidden");
+    sightWordsMenu.classList.add("hidden");
+    spellingMenu.classList.add("hidden");
+    div4.classList.add("hidden");
+    menuContainer.appendChild(numberFluency1to20AppMenuItem);
+    menuContainer.appendChild(numberFluency21to40AppMenuItem);
+    menuContainer.appendChild(numberFluency41to60AppMenuItem);
+    menuContainer.appendChild(numberFluency61to80AppMenuItem);
+    menuContainer.appendChild(numberFluency81to100AppMenuItem);
+    menuContainer.appendChild(returnToMainMenuBtn);
+    numberFluency1to20AppMenuItem.classList.remove("hidden");
+    numberFluency21to40AppMenuItem.classList.remove("hidden");
+    numberFluency41to60AppMenuItem.classList.remove("hidden");
+    numberFluency61to80AppMenuItem.classList.remove("hidden");
+    numberFluency81to100AppMenuItem.classList.remove("hidden");
+  }
+}
+
+const specificMenuItems = new SpecificMenuItems();
+
 const navLogo = document.querySelector(".nav-logo");
 const navUserSpace = document.querySelector(".nav-user");
 const navUserName = document.querySelector(".nav-user-name");
@@ -218,97 +310,6 @@ if (navBar) {
   body.appendChild(navBar);
 }
 
-/*
-**********
-Specific Menu Items
-**********
-*/
-class SpecificMenuItems {
-  constructor() {}
-  alphabetMenu() {
-    mainMenuSfx.select2.play();
-    isMainMenu = false;
-    hideParentsInfoBtn();
-    topContainer.innerText = "Alphabet";
-    abcMenu.classList.add("hidden");
-    numbersMenu.classList.add("hidden");
-    sightWordsMenu.classList.add("hidden");
-    letterSoundsMenu.classList.add("hidden");
-    spellingMenu.classList.add("hidden");
-    div4.classList.add("hidden");
-    menuContainer.appendChild(alphabetCapitalsCardTouchAppMenuItem);
-    menuContainer.appendChild(alphabetLowercaseCardTouchAppMenuItem);
-    menuContainer.appendChild(alphabetMatchingAppMenuItem);
-    menuContainer.appendChild(returnToMainMenuBtn);
-    alphabetCapitalsCardTouchAppMenuItem.classList.remove("hidden");
-    alphabetLowercaseCardTouchAppMenuItem.classList.remove("hidden");
-    alphabetMatchingAppMenuItem.classList.remove("hidden");
-  }
-  sightWordsMenu() {
-    mainMenuSfx.select2.play();
-    isMainMenu = false;
-    hideParentsInfoBtn();
-    topContainer.innerText = "Sight Words";
-    abcMenu.classList.add("hidden");
-    numbersMenu.classList.add("hidden");
-    sightWordsMenu.classList.add("hidden");
-    letterSoundsMenu.classList.add("hidden");
-    spellingMenu.classList.add("hidden");
-    div4.classList.add("hidden");
-    menuContainer.appendChild(sightWords1AppMenuItem);
-    menuContainer.appendChild(sightWords2AppMenuItem);
-    menuContainer.appendChild(sightWords3AppMenuItem);
-    menuContainer.appendChild(sightWords1WritingAppMenuItem);
-    menuContainer.appendChild(returnToMainMenuBtn);
-    sightWords1AppMenuItem.classList.remove("hidden");
-    sightWords2AppMenuItem.classList.remove("hidden");
-    sightWords3AppMenuItem.classList.remove("hidden");
-    sightWords1WritingAppMenuItem.classList.remove("hidden");
-  }
-  letterSoundsMenu() {
-    mainMenuSfx.select2.play();
-    isMainMenu = false;
-    hideParentsInfoBtn();
-    topContainer.innerText = "Sight Words";
-    abcMenu.classList.add("hidden");
-    numbersMenu.classList.add("hidden");
-    sightWordsMenu.classList.add("hidden");
-    letterSoundsMenu.classList.add("hidden");
-    spellingMenu.classList.add("hidden");
-    div4.classList.add("hidden");
-    menuContainer.appendChild(letterSoundsAMSFAppMenuItem);
-    // menuContainer.appendChild(sightWords2AppMenuItem);
-    // menuContainer.appendChild(sightWords3AppMenuItem);
-    // menuContainer.appendChild(returnToMainMenuBtn);
-    letterSoundsAMSFAppMenuItem.classList.remove("hidden");
-    // sightWords2AppMenuItem.classList.remove("hidden");
-    // sightWords3AppMenuItem.classList.remove("hidden");
-  }
-  numbersMenu() {
-    mainMenuSfx.select2.play();
-    isMainMenu = false;
-    hideParentsInfoBtn();
-    topContainer.innerText = "Numbers";
-    abcMenu.classList.add("hidden");
-    numbersMenu.classList.add("hidden");
-    sightWordsMenu.classList.add("hidden");
-    spellingMenu.classList.add("hidden");
-    div4.classList.add("hidden");
-    menuContainer.appendChild(numberFluency1to20AppMenuItem);
-    menuContainer.appendChild(numberFluency21to40AppMenuItem);
-    menuContainer.appendChild(numberFluency41to60AppMenuItem);
-    menuContainer.appendChild(numberFluency61to80AppMenuItem);
-    menuContainer.appendChild(numberFluency81to100AppMenuItem);
-    menuContainer.appendChild(returnToMainMenuBtn);
-    numberFluency1to20AppMenuItem.classList.remove("hidden");
-    numberFluency21to40AppMenuItem.classList.remove("hidden");
-    numberFluency41to60AppMenuItem.classList.remove("hidden");
-    numberFluency61to80AppMenuItem.classList.remove("hidden");
-    numberFluency81to100AppMenuItem.classList.remove("hidden");
-  }
-}
-
-const specificMenuItems = new SpecificMenuItems();
 /* "Alphabet" Menu Items  (2) */
 
 // 1. Alphabet Capitals Touch App Menu Item
