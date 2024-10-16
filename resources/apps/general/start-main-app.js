@@ -102,9 +102,10 @@ class MenuItems {
     this.numbersMenu.setAttribute("id", "div2");
     this.numbersMenu.classList.add("div", "div-start-menu2", "main-menu-div");
     this.numbersMenu.innerText = "1,2,3";
-    this.numbersMenu.addEventListener("click", () =>
-      menuItems.displayNumbersMenu()
-    );
+    this.numbersMenu.addEventListener("click", () => {
+      menuItems.createNumbersSubMenu();
+      menuItems.displayNumbersMenu();
+    });
 
     // Sight Words
     this.sightWordsMenu.setAttribute("id", "div3");
@@ -113,9 +114,10 @@ class MenuItems {
       "div-start-menu4",
       "main-menu-div"
     );
-    this.sightWordsMenu.addEventListener("click", () =>
-      menuItems.displaySightWordsMenu()
-    );
+    this.sightWordsMenu.addEventListener("click", () => {
+      menuItems.createSightWordsSubMenu();
+      menuItems.displaySightWordsMenu();
+    });
     this.sightWordsMenu.innerText = "Sight Words";
 
     // Letter Sounds
