@@ -94,9 +94,10 @@ class MenuItems {
     this.abcMenu.setAttribute("id", "div1");
     this.abcMenu.classList.add("div", "div-start-menu1", "main-menu-div");
     this.abcMenu.innerText = "ABCs";
-    this.abcMenu.addEventListener("click", () =>
-      menuItems.displayAlphabetSubMenu()
-    );
+    this.abcMenu.addEventListener("click", () => {
+      menuItems.createAlphabetMenu();
+      menuItems.displayAlphabetSubMenu();
+    });
     // Numbers
     this.numbersMenu.setAttribute("id", "div2");
     this.numbersMenu.classList.add("div", "div-start-menu2", "main-menu-div");
