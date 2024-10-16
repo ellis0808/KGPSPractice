@@ -83,6 +83,11 @@ class MenuItems {
     this.numberFluency41to60AppMenuItem = document.createElement("div");
     this.numberFluency61to80AppMenuItem = document.createElement("div");
     this.numberFluency81to100AppMenuItem = document.createElement("div");
+    this.displayAlphabetSubMenu = this.displayAlphabetSubMenu.bind(this);
+    this.displayLetterSoundsMenu = this.displayLetterSoundsMenu.bind(this);
+    this.displayMainMenuItems = this.displayMainMenuItems.bind(this);
+    this.displayNumbersMenu = this.displayNumbersMenu.bind(this);
+    this.displaySightWordsMenu = this.displaySightWordsMenu.bind(this);
   }
   createMainMenuItems() {
     // Alphabet
