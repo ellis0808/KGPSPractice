@@ -371,9 +371,9 @@ class MenuItems {
     this.abcMenu.classList.add("hidden");
     this.numbersMenu.classList.add("hidden");
     this.sightWordsMenu.classList.add("hidden");
-    document.getElementById("parents-info").remove();
-    document.getElementById("top-container").remove();
-    document.getElementById("menu-container").remove();
+    parentsInfo.remove();
+    topContainer.remove();
+    menuContainer.remove();
   }
 
   restoreMainMenu() {
