@@ -88,8 +88,14 @@ class MenuItems {
     this.displayMainMenuItems = this.displayMainMenuItems.bind(this);
     this.displayNumbersMenu = this.displayNumbersMenu.bind(this);
     this.displaySightWordsMenu = this.displaySightWordsMenu.bind(this);
+    this.restoreMainMenu = this.restoreMainMenu.bind(this);
     this.returnToMainMenu = this.returnToMainMenu.bind(this);
   }
+
+  /******
+    Create and Display Main Menu
+  ******/
+
   createMainMenuItems() {
     // Alphabet
     this.abcMenu.setAttribute("id", "div1");
@@ -137,6 +143,11 @@ class MenuItems {
     menuContainer.appendChild(this.sightWordsMenu);
     // menuContainer.appendChild(this.letterSoundsMenu);
   }
+
+  /******
+    Create and Display Sub Menus
+  ******/
+
   createAlphabetMenu() {
     // 1. Alphabet Capitals Touch App Menu Item
     this.alphabetCapitalsCardTouchAppMenuItem.setAttribute(
@@ -351,6 +362,11 @@ class MenuItems {
     this.numberFluency81to100AppMenuItem.classList.remove("hidden");
     menuItems.returnToMainMenuToggle();
   }
+
+  /******
+    Removing and Restoring Menu
+  ******/
+
   removeMenuPage() {
     navBar.remove();
     this.alphabetCapitalsCardTouchAppMenuItem.remove();
@@ -375,7 +391,6 @@ class MenuItems {
     topContainer.remove();
     menuContainer.remove();
   }
-
   restoreMainMenu() {
     body.appendChild(navBar);
     topContainer.innerText = "";
