@@ -88,6 +88,7 @@ class MenuItems {
     this.displayMainMenuItems = this.displayMainMenuItems.bind(this);
     this.displayNumbersMenu = this.displayNumbersMenu.bind(this);
     this.displaySightWordsMenu = this.displaySightWordsMenu.bind(this);
+    this.returnToMainMenu = this.returnToMainMenu.bind(this);
   }
   createMainMenuItems() {
     // Alphabet
