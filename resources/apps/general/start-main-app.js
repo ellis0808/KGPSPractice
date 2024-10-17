@@ -346,7 +346,7 @@ class MenuItems {
     this.numberWriting1to10AppMenuItem.classList.add("div");
     this.numberWriting1to10AppMenuItem.innerText = "Writing 1-10";
     this.numberWriting1to10AppMenuItem.addEventListener("click", () =>
-      appLauncher.startFluencyApp("numbers1-10")
+      appLauncher.startWritingApp("numbers1-10")
     );
     // 7. Number Writing 11-20 App Menu Item
     this.numberWriting11to20AppMenuItem.setAttribute(
@@ -356,7 +356,7 @@ class MenuItems {
     this.numberWriting11to20AppMenuItem.classList.add("div");
     this.numberWriting11to20AppMenuItem.innerText = "Writing 11-20";
     this.numberWriting11to20AppMenuItem.addEventListener("click", () =>
-      appLauncher.startFluencyApp("numbers11-20")
+      appLauncher.startWritingApp("numbers11-20")
     );
     // 8. Number Writing 21-40 App Menu Item
     this.numberWriting21to40AppMenuItem.setAttribute(
@@ -366,7 +366,7 @@ class MenuItems {
     this.numberWriting21to40AppMenuItem.classList.add("div");
     this.numberWriting21to40AppMenuItem.innerText = "Writing 21-40";
     this.numberWriting21to40AppMenuItem.addEventListener("click", () =>
-      appLauncher.startFluencyApp("numbers21-40")
+      appLauncher.startWritingApp("numbers21-40")
     );
     // 9. Number Writing 1-50 App Menu Item
     this.numberWriting1to50AppMenuItem.setAttribute(
@@ -376,7 +376,7 @@ class MenuItems {
     this.numberWriting1to50AppMenuItem.classList.add("div");
     this.numberWriting1to50AppMenuItem.innerText = "Writing 1-50";
     this.numberWriting1to50AppMenuItem.addEventListener("click", () =>
-      appLauncher.startFluencyApp("numbers1-50")
+      appLauncher.startWritingApp("numbers1-50")
     );
   }
   displayNumbersMenu() {
