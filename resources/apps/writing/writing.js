@@ -10,7 +10,7 @@ import {
   setStyle,
   setActivityId,
 } from "./writing-set-style-and-activity-id.js";
-import { removeMenuPage } from "../../utilities/main-menu-display-toggle.js";
+import { menuItems } from "../general/start-main-app.js";
 import { writingAudio } from "./writing-audio.js";
 import { audio } from "../../utilities/audio.js";
 
@@ -26,7 +26,7 @@ function writingApp(set) {
     "href",
     "/KGPSEnglishPractice-test/resources/css/writing.css"
   );
-  removeMenuPage();
+  menuItems.removeMenuPage();
 
   setTimeout(() => {
     displayStartBtn();
