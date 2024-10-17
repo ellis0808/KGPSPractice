@@ -50,6 +50,38 @@ class WritingAudio {
     let grouping;
     let grouping2 = null;
     switch (style) {
+      case 1:
+        category = "numbers";
+        grouping = 1;
+        audio.getAudio(category, grouping, grouping2);
+    }
+    switch (style) {
+      case 2:
+        category = "numbers";
+        grouping = 2;
+        audio.getAudio(category, grouping, grouping2);
+    }
+    switch (style) {
+      case 3:
+        category = "numbers";
+        grouping = 3;
+        grouping = 4;
+        audio.getAudio(category, grouping, grouping2);
+    }
+    switch (style) {
+      case 7:
+        category = "numbers";
+        grouping = 1;
+        grouping2 = 5;
+        audio.getAudio(category, grouping, grouping2);
+    }
+    switch (style) {
+      case 9:
+        category = "sight-words";
+        grouping = 1;
+        audio.getAudio(category, grouping, grouping2);
+    }
+    switch (style) {
       case 9:
         category = "sight-words";
         grouping = 1;
