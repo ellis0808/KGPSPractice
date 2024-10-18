@@ -190,6 +190,7 @@ class MenuItems {
   }
   displayAlphabetSubMenu() {
     isSecondaryMenu = false;
+    isTertiaryMenu = true;
     mainMenuSfx.select2.play();
     isPrimaryMenu = false;
     hideParentsInfoBtn();
