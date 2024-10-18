@@ -154,10 +154,12 @@ class MenuItems {
     // 1. Alphabet Capitals Touch App Menu Item
     this.alphabetCapitalsCardTouchAppMenuItem.setAttribute(
       "id",
-      "alphabet-card-touch-app-menu-item",
+      "alphabet-card-touch-app-menu-item"
+    );
+    this.alphabetCapitalsCardTouchAppMenuItem.classList.add(
+      "div",
       "tertiary-menu-item"
     );
-    this.alphabetCapitalsCardTouchAppMenuItem.classList.add("div");
     this.alphabetCapitalsCardTouchAppMenuItem.innerText = "Card Touch!\r\n abc";
     this.alphabetCapitalsCardTouchAppMenuItem.addEventListener("click", () =>
       appLauncher.startCardTouchApp("capitals")
@@ -166,10 +168,12 @@ class MenuItems {
     // 2. Alphabet Lowercase Touch App Menu Item
     this.alphabetLowercaseCardTouchAppMenuItem.setAttribute(
       "id",
-      "alphabet-card-touch-app-menu-item",
+      "alphabet-card-touch-app-menu-item"
+    );
+    this.alphabetLowercaseCardTouchAppMenuItem.classList.add(
+      "div",
       "tertiary-menu-item"
     );
-    this.alphabetLowercaseCardTouchAppMenuItem.classList.add("div");
     this.alphabetLowercaseCardTouchAppMenuItem.innerText =
       "Card Touch!\r\n abc";
     this.alphabetLowercaseCardTouchAppMenuItem.addEventListener("click", () =>
@@ -179,10 +183,9 @@ class MenuItems {
     // 3. Alphabet Matching App Menu Item
     this.alphabetMatchingAppMenuItem.setAttribute(
       "id",
-      "alphabet-matching-app-menu-item",
-      "tertiary-menu-item"
+      "alphabet-matching-app-menu-item"
     );
-    this.alphabetMatchingAppMenuItem.classList.add("div");
+    this.alphabetMatchingAppMenuItem.classList.add("div", "tertiary-menu-item");
     this.alphabetMatchingAppMenuItem.innerText = "Letter Matching";
     this.alphabetMatchingAppMenuItem.addEventListener("click", () =>
       appLauncher.startMatchingApp("alphabet")
@@ -212,10 +215,9 @@ class MenuItems {
     // 1. Sight Words 1 Touch App Menu Item
     this.sightWords1AppMenuItem.setAttribute(
       "id",
-      "sight-words-1-app-menu-item",
-      "tertiary-menu-item"
+      "sight-words-1-app-menu-item"
     );
-    this.sightWords1AppMenuItem.classList.add("div");
+    this.sightWords1AppMenuItem.classList.add("div", "tertiary-menu-item");
     this.sightWords1AppMenuItem.innerText = "Sight Words 1";
     this.sightWords1AppMenuItem.addEventListener("click", () =>
       appLauncher.startCardTouchApp("sightwords1")
@@ -224,10 +226,9 @@ class MenuItems {
     // 2. Sight Words 2 Touch App Menu Item
     this.sightWords2AppMenuItem.setAttribute(
       "id",
-      "sight-words-2-app-menu-item",
-      "tertiary-menu-item"
+      "sight-words-2-app-menu-item"
     );
-    this.sightWords2AppMenuItem.classList.add("div");
+    this.sightWords2AppMenuItem.classList.add("div", "tertiary-menu-item");
     this.sightWords2AppMenuItem.innerText = "Sight Words 2";
     this.sightWords2AppMenuItem.addEventListener("click", () =>
       appLauncher.startCardTouchApp("sightwords2")
@@ -236,20 +237,21 @@ class MenuItems {
     // 3. Sight Words 3 Matching App Menu Item
     this.sightWords3AppMenuItem.setAttribute(
       "id",
-      "sight-words-3-app-menu-item",
-      "tertiary-menu-item"
+      "sight-words-3-app-menu-item"
     );
-    this.sightWords3AppMenuItem.classList.add("div");
+    this.sightWords3AppMenuItem.classList.add("div", "tertiary-menu-item");
     this.sightWords3AppMenuItem.innerText = "Sight Words 3";
     this.sightWords3AppMenuItem.addEventListener("click", () =>
       appLauncher.startCardTouchApp("sightwords3")
     );
     this.sightWords1WritingAppMenuItem.setAttribute(
       "id",
-      "sight-words-1-writing-app-menu-item",
+      "sight-words-1-writing-app-menu-item"
+    );
+    this.sightWords1WritingAppMenuItem.classList.add(
+      "div",
       "tertiary-menu-item"
     );
-    this.sightWords1WritingAppMenuItem.classList.add("div");
     this.sightWords1WritingAppMenuItem.innerText = "Sight Words Writing";
     this.sightWords1WritingAppMenuItem.addEventListener("click", () =>
       appLauncher.startWritingApp("sightwords1")
@@ -276,12 +278,8 @@ class MenuItems {
     menuItems.returnToMainMenuToggle();
   }
   createLetterSoundsSubMenu() {
-    this.letterSoundsAMSFAppMenuItem.setAttribute(
-      "id",
-      "amsf-app-menu-item",
-      "tertiary-menu-item"
-    );
-    this.letterSoundsAMSFAppMenuItem.classList.add("div");
+    this.letterSoundsAMSFAppMenuItem.setAttribute("id", "amsf-app-menu-item");
+    this.letterSoundsAMSFAppMenuItem.classList.add("div", "tertiary-menu-item");
     this.letterSoundsAMSFAppMenuItem.innerText = "a, m , s, f";
     this.letterSoundsAMSFAppMenuItem.addEventListener("click", () =>
       appLauncher.startCardTouchApp("letter-sounds-asmf")
@@ -304,10 +302,12 @@ class MenuItems {
     // 1. Number Fluency 1-20 App Menu Item
     this.numberFluency1to20AppMenuItem.setAttribute(
       "id",
-      "number-fluency-1-to-20-app-menu-item",
+      "number-fluency-1-to-20-app-menu-item"
+    );
+    this.numberFluency1to20AppMenuItem.classList.add(
+      "div",
       "tertiary-menu-item"
     );
-    this.numberFluency1to20AppMenuItem.classList.add("div");
     this.numberFluency1to20AppMenuItem.innerText = "Touch 1-20";
     this.numberFluency1to20AppMenuItem.addEventListener("click", () =>
       appLauncher.startFluencyApp(1)
@@ -316,10 +316,12 @@ class MenuItems {
     // 2. Number Fluency 21-40 App Menu Item
     this.numberFluency21to40AppMenuItem.setAttribute(
       "id",
-      "number-fluency-21-to-40-app-menu-item",
+      "number-fluency-21-to-40-app-menu-item"
+    );
+    this.numberFluency21to40AppMenuItem.classList.add(
+      "div",
       "tertiary-menu-item"
     );
-    this.numberFluency21to40AppMenuItem.classList.add("div");
     this.numberFluency21to40AppMenuItem.innerText = "Touch 21-40";
     this.numberFluency21to40AppMenuItem.addEventListener("click", () =>
       appLauncher.startFluencyApp(2)
@@ -328,10 +330,12 @@ class MenuItems {
     // 3. Number Fluency 41-60 App Menu Item
     this.numberFluency41to60AppMenuItem.setAttribute(
       "id",
-      "number-fluency-41-to-60-app-menu-item",
+      "number-fluency-41-to-60-app-menu-item"
+    );
+    this.numberFluency41to60AppMenuItem.classList.add(
+      "div",
       "tertiary-menu-item"
     );
-    this.numberFluency41to60AppMenuItem.classList.add("div");
     this.numberFluency41to60AppMenuItem.innerText = "Touch 41-60";
     this.numberFluency41to60AppMenuItem.addEventListener("click", () =>
       appLauncher.startFluencyApp(3)
@@ -340,10 +344,12 @@ class MenuItems {
     // 4. Number Fluency 61-80 App Menu Item
     this.numberFluency61to80AppMenuItem.setAttribute(
       "id",
-      "number-fluency-61-to-80-app-menu-item",
+      "number-fluency-61-to-80-app-menu-item"
+    );
+    this.numberFluency61to80AppMenuItem.classList.add(
+      "div",
       "tertiary-menu-item"
     );
-    this.numberFluency61to80AppMenuItem.classList.add("div");
     this.numberFluency61to80AppMenuItem.innerText = "Touch 61-80";
     this.numberFluency61to80AppMenuItem.addEventListener("click", () =>
       appLauncher.startFluencyApp(4)
@@ -352,10 +358,12 @@ class MenuItems {
     // 5. Number Fluency 81-100 App Menu Item
     this.numberFluency81to100AppMenuItem.setAttribute(
       "id",
-      "number-fluency-81-to-100-app-menu-item",
+      "number-fluency-81-to-100-app-menu-item"
+    );
+    this.numberFluency81to100AppMenuItem.classList.add(
+      "div",
       "tertiary-menu-item"
     );
-    this.numberFluency81to100AppMenuItem.classList.add("div");
     this.numberFluency81to100AppMenuItem.innerText = "Touch 81-100";
     this.numberFluency81to100AppMenuItem.addEventListener("click", () =>
       appLauncher.startFluencyApp(5)
@@ -363,10 +371,12 @@ class MenuItems {
     // 6. Number Writing 1-10 App Menu Item
     this.numberWriting1to10AppMenuItem.setAttribute(
       "id",
-      "number-writing-1-to-10-app-menu-item",
+      "number-writing-1-to-10-app-menu-item"
+    );
+    this.numberWriting1to10AppMenuItem.classList.add(
+      "div",
       "tertiary-menu-item"
     );
-    this.numberWriting1to10AppMenuItem.classList.add("div");
     this.numberWriting1to10AppMenuItem.innerText = "Writing 1-10";
     this.numberWriting1to10AppMenuItem.addEventListener("click", () =>
       appLauncher.startWritingApp("numbers1-10")
@@ -374,10 +384,12 @@ class MenuItems {
     // 7. Number Writing 11-20 App Menu Item
     this.numberWriting11to20AppMenuItem.setAttribute(
       "id",
-      "number-writing-11-to-20-app-menu-item",
+      "number-writing-11-to-20-app-menu-item"
+    );
+    this.numberWriting11to20AppMenuItem.classList.add(
+      "div",
       "tertiary-menu-item"
     );
-    this.numberWriting11to20AppMenuItem.classList.add("div");
     this.numberWriting11to20AppMenuItem.innerText = "Writing 11-20";
     this.numberWriting11to20AppMenuItem.addEventListener("click", () =>
       appLauncher.startWritingApp("numbers11-20")
@@ -385,10 +397,12 @@ class MenuItems {
     // 8. Number Writing 21-40 App Menu Item
     this.numberWriting21to40AppMenuItem.setAttribute(
       "id",
-      "number-writing-21-to-40-app-menu-item",
+      "number-writing-21-to-40-app-menu-item"
+    );
+    this.numberWriting21to40AppMenuItem.classList.add(
+      "div",
       "tertiary-menu-item"
     );
-    this.numberWriting21to40AppMenuItem.classList.add("div");
     this.numberWriting21to40AppMenuItem.innerText = "Writing 21-40";
     this.numberWriting21to40AppMenuItem.addEventListener("click", () =>
       appLauncher.startWritingApp("numbers21-40")
@@ -396,10 +410,12 @@ class MenuItems {
     // 9. Number Writing 1-50 App Menu Item
     this.numberWriting1to50AppMenuItem.setAttribute(
       "id",
-      "number-writing-1-to-50-app-menu-item",
+      "number-writing-1-to-50-app-menu-item"
+    );
+    this.numberWriting1to50AppMenuItem.classList.add(
+      "div",
       "tertiary-menu-item"
     );
-    this.numberWriting1to50AppMenuItem.classList.add("div");
     this.numberWriting1to50AppMenuItem.innerText = "Writing 1-50";
     this.numberWriting1to50AppMenuItem.addEventListener("click", () =>
       appLauncher.startWritingApp("numbers1-50")
