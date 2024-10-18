@@ -455,13 +455,13 @@ class MenuItems {
     //remove current menu
     if (isPrimaryMenu) {
       //remove main menu
-      document.querySelectorAll("primary-menu-item").forEach((item) => {
+      document.querySelectorAll(".primary-menu-item").forEach((item) => {
         item.remove();
       });
     }
     if (isSecondaryMenu) {
       //remove main menu
-      const items = document.querySelectorAll("secondary-menu-item");
+      const items = document.querySelectorAll(".secondary-menu-item");
       console.log(items);
 
       items.forEach((item) => {
@@ -470,7 +470,7 @@ class MenuItems {
     }
     if (isTertiaryMenu) {
       //remove tertiary menu
-      const items = document.querySelectorAll("tertiary-menu-item");
+      const items = document.querySelectorAll(".tertiary-menu-item");
       console.log(items);
 
       items.forEach((item) => {
