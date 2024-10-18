@@ -189,6 +189,7 @@ class MenuItems {
     );
   }
   displayAlphabetSubMenu() {
+    isSecondaryMenu = false;
     mainMenuSfx.select2.play();
     isPrimaryMenu = false;
     hideParentsInfoBtn();
