@@ -445,13 +445,19 @@ class MenuItems {
     }
     if (isSecondaryMenu) {
       //remove main menu
-      document.querySelectorAll("secondary-menu-item").forEach((item) => {
+      const items = document.querySelectorAll("secondary-menu-item");
+      console.log(items);
+
+      items.forEach((item) => {
         item.remove();
       });
     }
     if (isTertiaryMenu) {
       //remove tertiary menu
-      document.querySelectorAll("tertiary-menu-item").forEach((item) => {
+      const items = document.querySelectorAll("tertiary-menu-item");
+      console.log(items);
+
+      items.forEach((item) => {
         item.remove();
       });
     }
