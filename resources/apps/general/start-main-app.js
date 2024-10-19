@@ -248,12 +248,12 @@ class MenuItems {
     this.hidePrimaryMenu();
     mainContainer.appendChild(this.secondaryMenuContainer);
     this.secondaryMenuContainer.appendChild(this.touchMenu);
-    this.touchMenu.appendChild(this.touchMenuHeader);
     this.secondaryMenuContainer.appendChild(this.matchingMenu);
-    this.matchingMenu.appendChild(this.matchingMenuHeader);
     this.secondaryMenuContainer.appendChild(this.fluencyMenu);
-    this.fluencyMenu.appendChild(this.fluencyMenuHeader);
     this.secondaryMenuContainer.appendChild(this.writingMenu);
+    this.touchMenu.appendChild(this.touchMenuHeader);
+    this.matchingMenu.appendChild(this.matchingMenuHeader);
+    this.fluencyMenu.appendChild(this.fluencyMenuHeader);
     this.writingMenu.appendChild(this.writingMenuHeader);
 
     switch (section) {
@@ -263,14 +263,17 @@ class MenuItems {
         this.alphabetCapitalsCardTouchAppMenuItem.classList.remove("hidden");
         this.alphabetLowercaseCardTouchAppMenuItem.classList.remove("hidden");
         this.alphabetMatchingAppMenuItem.classList.remove("hidden");
-        const alphabetAppItems = document.querySelectorAll(
-          `[app-content="alphabet"]`
-        );
-        console.log(alphabetAppItems);
+        setTimeout(() => {
+          const alphabetAppItems = document.querySelectorAll(
+            `[app-content="alphabet"]`
+          );
+          console.log(alphabetAppItems);
 
-        alphabetAppItems.forEach((item) => {
-          this.sortMenuItemsforSecondaryMenu(item);
-        });
+          alphabetAppItems.forEach((item) => {
+            this.sortMenuItemsforSecondaryMenu(item);
+          });
+        }, 300);
+        menuItems.returnToMainMenuToggle();
       // this.touchMenu.appendChild(this.alphabetCapitalsCardTouchAppMenuItem)
       // this.touchMenu.appendChild(this.alphabetLowercaseCardTouchAppMenuItem)
       // this.matchingMenu.appendChild(this.alphabetMatchingAppMenuItem)
@@ -606,6 +609,7 @@ class MenuItems {
     isPrimaryMenu = false;
     hideParentsInfoBtn();
     topContainer.innerText = "";
+    primaryMenuContainer.classList.add("hidden");
     this.abcMenu.classList.add("hidden");
     this.numbersMenu.classList.add("hidden");
     this.sightWordsMenu.classList.add("hidden");
