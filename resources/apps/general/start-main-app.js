@@ -119,21 +119,46 @@ class MenuItems {
       "secondary-menu"
     );
     this.touchMenu = document.createElement("div");
-    this.touchMenu.classList.add("secondary-menu-row", "touch-menu");
+    this.touchMenu.classList.add(
+      "secondary-menu-row",
+      "secondary-menu",
+      "touch-menu"
+    );
     this.matchingMenu = document.createElement("div");
-    this.matchingMenu.classList.add("secondary-menu-row", "matching-menu");
+    this.matchingMenu.classList.add(
+      "secondary-menu-row",
+      "secondary-menu",
+      "matching-menu"
+    );
     this.fluencyMenu = document.createElement("div");
-    this.fluencyMenu.classList.add("secondary-menu-row", "fluency-menu");
+    this.fluencyMenu.classList.add(
+      "secondary-menu-row",
+      "secondary-menu",
+      "fluency-menu"
+    );
     this.writingMenu = document.createElement("div");
-    this.writingMenu.classList.add("secondary-menu-row", "writing-menu");
-    this.touchMenuHeader = document.createElement("secondary-menu-div");
-    this.matchingMenuHeader = document.createElement("secondary-menu-div");
-    this.fluencyMenuHeader = document.createElement("secondary-menu-div");
-    this.writingMenuHeader = document.createElement("secondary-menu-div");
-    this.touchMenuHeader.classList.add("secondary-menu-div");
-    this.matchingMenuHeader.classList.add("secondary-menu-div");
-    this.fluencyMenuHeader.classList.add("secondary-menu-div");
-    this.writingMenuHeader.classList.add("secondary-menu-div");
+    this.writingMenu.classList.add(
+      "secondary-menu-row",
+      "secondary-menu",
+      "writing-menu"
+    );
+    this.touchMenuHeader = document.createElement("div");
+    this.matchingMenuHeader = document.createElement("div");
+    this.fluencyMenuHeader = document.createElement("div");
+    this.writingMenuHeader = document.createElement("div");
+    this.touchMenuHeader.classList.add("secondary-menu-div", "secondary-menu");
+    this.matchingMenuHeader.classList.add(
+      "secondary-menu-div",
+      "secondary-menu"
+    );
+    this.fluencyMenuHeader.classList.add(
+      "secondary-menu-div",
+      "secondary-menu"
+    );
+    this.writingMenuHeader.classList.add(
+      "secondary-menu-div",
+      "secondary-menu"
+    );
     this.touchMenuHeader.innerText = "Touch";
     this.matchingMenuHeader.innerText = "Matching";
     this.fluencyMenuHeader.innerText = "Fluency";
@@ -528,8 +553,11 @@ class MenuItems {
     this.numbersMenu.classList.remove("hidden");
     this.sightWordsMenu.classList.remove("hidden");
   }
-  hideSecondaryMenu() {
+  removeSecondaryMenu() {
     document.querySelectorAll(".secondary-menu").forEach((item) => {
+      item.remove();
+    });
+    document.querySelectorAll(".secondary-menu-item").forEach((item) => {
       item.remove();
     });
   }
