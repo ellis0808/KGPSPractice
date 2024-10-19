@@ -248,7 +248,7 @@ body:not(:has(*)) {
   display: grid;
   column-gap: 2rem;
   grid-template-columns: 300px 1fr;
-  grid-template-rows: 0.2fr repeat(4, 1fr);
+  grid-template-rows: 0.05fr repeat(4, 1fr);
   grid-template-areas:
     ".....  returnToMainMenuBtn"
     "menu-headers  menu-apps-container"
