@@ -259,7 +259,7 @@ body:not(:has(*)) {
   height: 200px;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 1fr;
+  grid-template-rows: repeat(4, 1fr);
   align-items: center;
   overflow: hidden;
   overflow-x: scroll;
