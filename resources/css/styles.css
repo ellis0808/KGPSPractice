@@ -244,10 +244,10 @@ body:not(:has(*)) {
   grid-area: menu-container;
   width: 100%;
   height: 100%;
-  margin: auto;
+  /* margin: auto; */
   display: grid;
   column-gap: 2rem;
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 300px 1fr;
   grid-template-rows: 0.2fr repeat(4, 1fr);
   grid-template-areas:
     ".....  returnToMainMenuBtn"
@@ -303,7 +303,7 @@ body:not(:has(*)) {
 .parents-info {
   grid-area: parents-info;
   height: 50px;
-  width: 175px;
+  width: 225px;
   margin-top: 6rem;
   color: var(--clr-wht);
   background: var(--clr-acc1);
@@ -343,23 +343,6 @@ body:not(:has(*)) {
   transition: 0.2s ease-in-out;
 }
 
-.returnToMainMenuBtn {
-  grid-area: returnToMainMenuBtn;
-  height: 50px;
-  width: 175px;
-  margin-top: 6rem;
-  margin-left: auto;
-  color: var(--clr-wht);
-  background: var(--clr-acc1);
-  display: grid;
-  border-radius: 5px;
-  font-size: 1.5rem;
-  place-content: center;
-  place-items: center;
-  justify-self: end;
-  align-self: center;
-  transition: 0.3s;
-}
 .div {
   width: 330px;
   height: 175px;
@@ -418,6 +401,23 @@ body:not(:has(*)) {
   /* box-shadow: 0px 24px 35px 7px rgba(0, 0, 0, 0.3); */
   --stagger-delay: 0.1s;
   --card-entrance: 0.5s;
+}
+.returnToMainMenuBtn {
+  grid-area: returnToMainMenuBtn;
+  height: 50px;
+  width: 175px;
+  margin-top: 6rem;
+  margin-left: auto;
+  color: var(--clr-wht);
+  background: var(--clr-acc1);
+  display: grid;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  place-content: center;
+  place-items: center;
+  justify-self: end;
+  align-self: center;
+  transition: 0.3s;
 }
 .secondary-menu-div:hover {
   transform: translateY(-3px) scale(1.07);
