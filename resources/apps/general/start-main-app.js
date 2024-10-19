@@ -124,7 +124,7 @@ class MenuItems {
     this.abcMenu.classList.add("div", "div-start-menu1", "primary-menu-div");
     this.abcMenu.innerText = "ABCs";
     this.abcMenu.addEventListener("click", () => {
-      section = "alphabet";
+      this.section = "alphabet";
       menuItems.displaySecondaryMenu(section);
     });
     // Numbers
@@ -136,7 +136,7 @@ class MenuItems {
     );
     this.numbersMenu.innerText = "1,2,3";
     this.numbersMenu.addEventListener("click", () => {
-      section = "numbers";
+      this.section = "numbers";
       menuItems.displaySecondaryMenu(section);
     });
 
@@ -148,7 +148,7 @@ class MenuItems {
       "primary-menu-div"
     );
     this.sightWordsMenu.addEventListener("click", () => {
-      section = "sight-words";
+      this.section = "sight-words";
       menuItems.displaySecondaryMenu(section);
     });
     this.sightWordsMenu.innerText = "Sight Words";
@@ -160,7 +160,7 @@ class MenuItems {
     //   "div-start-menu5",
     //   "primary-menu-div"
     // );
-    // this.letterSoundsMenu.addEventListener("click", () => menuItems.section = "letter-sounds";
+    // this.letterSoundsMenu.addEventListener("click", () => menuItems.this.section = "letter-sounds";
     // menuItems.displaySecondaryMenu(section);
     // this.letterSoundsMenu.innerText = "Letter Sounds";
   }
