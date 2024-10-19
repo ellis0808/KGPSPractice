@@ -69,13 +69,13 @@ class MenuItems {
     this.secondaryMenuContainer = document.createElement("div");
     this.secondaryMenuContainer.classList.add("secondary-menu-container");
     this.touchMenu = document.createElement("div");
-    this.touchMenu.classList.add("secondary-menu-item", "touch-menu");
+    this.touchMenu.classList.add("secondary-menu-row", "touch-menu");
     this.matchingMenu = document.createElement("div");
-    this.matchingMenu.classList.add("secondary-menu-item", "matching-menu");
+    this.matchingMenu.classList.add("secondary-menu-row", "matching-menu");
     this.fluencyMenu = document.createElement("div");
-    this.fluencyMenu.classList.add("secondary-menu-item", "fluency-menu");
+    this.fluencyMenu.classList.add("secondary-menu-row", "fluency-menu");
     this.writingMenu = document.createElement("div");
-    this.writingMenu.classList.add("secondary-menu-item", "writing-menu");
+    this.writingMenu.classList.add("secondary-menu-row", "writing-menu");
     this.touchMenuHeader = document.createElement("div");
     this.matchingMenuHeader = document.createElement("div");
     this.fluencyMenuHeader = document.createElement("div");
