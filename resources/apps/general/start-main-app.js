@@ -260,6 +260,9 @@ class MenuItems {
       case "alphabet":
         topContainer.innerText = "Alphabet";
         // this.displayAlphabetSubMenu();
+        this.alphabetCapitalsCardTouchAppMenuItem.classList.remove("hidden");
+        this.alphabetLowercaseCardTouchAppMenuItem.classList.remove("hidden");
+        this.alphabetMatchingAppMenuItem.classList.remove("hidden");
         const alphabetAppItems = document.querySelectorAll(
           `[app-content="alphabet"]`
         );
