@@ -521,7 +521,6 @@ class MenuItems {
     this.sightWordsMenu.classList.add("hidden");
   }
   unhidePrimaryMenu() {
-    mainMenuSfx.select2.play();
     this.displayParentsInfoBtn();
     topContainer.innerText = "";
     primaryMenuContainer.classList.remove("hidden");
