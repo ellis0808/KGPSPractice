@@ -119,9 +119,9 @@ class MenuItems {
       "secondary-menu"
     );
     this.headersColumn = document.createElement("div");
-    this.headersColumn.classList.add("menu-apps-container", "secondary-menu");
+    this.headersColumn.classList.add("menu-headers", "secondary-menu");
     this.sectionColumn = document.createElement("div");
-    this.sectionColumn.classList.add("menu-headers", "secondary-menu");
+    this.sectionColumn.classList.add("menu-apps-container", "secondary-menu");
     this.touchMenu = document.createElement("div");
     this.touchMenu.classList.add(
       "secondary-menu-row",
