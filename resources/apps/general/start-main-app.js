@@ -403,11 +403,6 @@ class MenuItems {
     );
 
     // "this" Bindings
-    this.displayAlphabetSubMenu = this.displayAlphabetSubMenu.bind(this);
-    this.displayLetterSoundsMenu = this.displayLetterSoundsMenu.bind(this);
-    this.displayMainMenuItems = this.displayMainMenuItems.bind(this);
-    this.displayNumbersMenu = this.displayNumbersMenu.bind(this);
-    this.displaySightWordsMenu = this.displaySightWordsMenu.bind(this);
     this.restoreMainMenu = this.restoreMainMenu.bind(this);
     this.returnToMainMenu = this.returnToMainMenu.bind(this);
   }
