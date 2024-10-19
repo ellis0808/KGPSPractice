@@ -3,7 +3,7 @@ import {
   mainContainer,
   navBar,
   body,
-  menuContainer,
+  primaryMenuContainer,
   stylesheet,
 } from "../../utilities/variables";
 import {

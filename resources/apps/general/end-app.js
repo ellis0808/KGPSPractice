@@ -1,7 +1,7 @@
 import {
   navBar,
   mainContainer,
-  menuContainer,
+  primaryMenuContainer,
   stylesheet,
   user,
 } from "../../utilities/variables.js";

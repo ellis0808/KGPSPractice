@@ -1,7 +1,7 @@
 import {
   body,
   mainContainer,
-  menuContainer,
+  primaryMenuContainer,
   navBar,
   parentsInfo,
   topContainer,
@@ -25,7 +25,7 @@ function removeMenuPage() {
   sightWords1WritingAppMenuItem.remove();
   navBar.classList.add("hidden");
   topContainer.classList.add("hidden");
-  menuContainer.classList.add("hidden");
+  primaryMenuContainer.classList.add("hidden");
   abcMenu.classList.add("hidden");
   numbersMenu.classList.add("hidden");
   sightWordsMenu.classList.add("hidden");
@@ -42,12 +42,12 @@ function restoreMainMenu() {
   topContainer.innerText = "";
   body.appendChild(parentsInfo);
   mainContainer.appendChild(topContainer);
-  mainContainer.appendChild(menuContainer);
+  mainContainer.appendChild(primaryMenuContainer);
   navBar.classList.remove("hidden");
   topContainer.classList.remove("hidden");
   getCumulativeUserScore();
   setTimeout(displayGreeting, 500);
-  menuContainer.classList.remove("hidden");
+  primaryMenuContainer.classList.remove("hidden");
   abcMenu.classList.remove("hidden");
   numbersMenu.classList.remove("hidden");
   sightWordsMenu.classList.remove("hidden");

@@ -1,5 +1,5 @@
 import {
-  menuContainer,
+  primaryMenuContainer,
   mainContainer,
   navBar,
   stylesheet,
