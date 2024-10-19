@@ -252,7 +252,9 @@ class MenuItems {
 
     switch (section) {
       case "alphabet":
-        const alphabetAppItems = document.querySelectorAll("#alphabet-app");
+        const alphabetAppItems = document.querySelectorAll(
+          `[app-type="alphabet-app"]`
+        );
         console.log(alphabetAppItems);
 
         alphabetAppItems.forEach((item) => {
@@ -262,7 +264,9 @@ class MenuItems {
       // this.touchMenu.appendChild(this.alphabetLowercaseCardTouchAppMenuItem)
       // this.matchingMenu.appendChild(this.alphabetMatchingAppMenuItem)
       case "numbers":
-        const numbersAppItems = document.querySelectorAll("#numbers-app");
+        const numbersAppItems = document.querySelectorAll(
+          `[app-type="numbers-app"]`
+        );
         console.log(numbersAppItems);
 
         numbersAppItems.forEach((item) => {
@@ -279,7 +283,7 @@ class MenuItems {
         });
       case "sight-words":
         const sightWordsAppItems = document.querySelectorAll(
-          `[app-type*="sight-words-app"]`
+          `[app-type="sight-words-app"]`
         );
         console.log(sightWordsAppItems);
 
@@ -291,8 +295,9 @@ class MenuItems {
           // this.writingMenu.appendChild(this.sightWords1WritingAppMenuItem)
         });
       case "letter-sounds":
-        const letterSoundsAppItems =
-          document.querySelectorAll("#letter-sounds-app");
+        const letterSoundsAppItems = document.querySelectorAll(
+          `[app-type="letter-sounds-app"]`
+        );
         console.log(letterSoundsAppItems);
 
         letterSoundsAppItems.forEach((item) => {
