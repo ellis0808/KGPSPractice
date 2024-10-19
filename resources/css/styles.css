@@ -258,7 +258,7 @@ body:not(:has(*)) {
   width: 100%;
   height: 200px;
   display: grid;
-  grid-template-columns: 300px;
+  grid-auto-flow: column;
   grid-template-rows: 1fr;
   grid-auto-columns: 350px;
   /* align-items: center; */
