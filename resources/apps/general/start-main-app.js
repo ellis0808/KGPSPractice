@@ -103,6 +103,53 @@ class MenuItems {
     this.numberWriting11to20AppMenuItem = document.createElement("div");
     this.numberWriting21to40AppMenuItem = document.createElement("div");
     this.numberWriting1to50AppMenuItem = document.createElement("div");
+    // 1. Alphabet Capitals Touch App Menu Item
+    this.alphabetCapitalsCardTouchAppMenuItem.setAttribute(
+      "id",
+      "alphabet-card-touch-app-menu-item"
+    );
+    this.alphabetCapitalsCardTouchAppMenuItem.setAttribute(
+      "app-type",
+      "alphabet-app"
+    );
+    this.alphabetCapitalsCardTouchAppMenuItem.classList.add(
+      "div",
+      "tertiary-menu-item"
+    );
+    this.alphabetCapitalsCardTouchAppMenuItem.innerText = "Card Touch!\r\n abc";
+    this.alphabetCapitalsCardTouchAppMenuItem.addEventListener("click", () =>
+      appLauncher.startCardTouchApp("capitals")
+    );
+    // 2. Alphabet Lowercase Touch App Menu Item
+    this.alphabetLowercaseCardTouchAppMenuItem.setAttribute(
+      "id",
+      "alphabet-card-touch-app-menu-item"
+    );
+    this.alphabetLowercaseCardTouchAppMenuItem.setAttribute(
+      "app-type",
+      "alphabet-app"
+    );
+    this.alphabetLowercaseCardTouchAppMenuItem.classList.add(
+      "div",
+      "tertiary-menu-item"
+    );
+    this.alphabetLowercaseCardTouchAppMenuItem.innerText =
+      "Card Touch!\r\n abc";
+    this.alphabetLowercaseCardTouchAppMenuItem.addEventListener("click", () =>
+      appLauncher.startCardTouchApp("lowercase")
+    );
+
+    // 3. Alphabet Matching App Menu Item
+    this.alphabetMatchingAppMenuItem.setAttribute(
+      "id",
+      "alphabet-matching-app-menu-item"
+    );
+    this.alphabetMatchingAppMenuItem.setAttribute("app-type", "alphabet-app");
+    this.alphabetMatchingAppMenuItem.classList.add("div", "tertiary-menu-item");
+    this.alphabetMatchingAppMenuItem.innerText = "Letter Matching";
+    this.alphabetMatchingAppMenuItem.addEventListener("click", () =>
+      appLauncher.startMatchingApp("alphabet")
+    );
 
     // "this" Bindings
     this.displayAlphabetSubMenu = this.displayAlphabetSubMenu.bind(this);
@@ -231,8 +278,9 @@ class MenuItems {
           // this.writingMenu.appendChild(this.numberWriting1to50AppMenuItem)
         });
       case "sight-words":
-        const sightWordsAppItems =
-          document.querySelectorAll("#sight-words-app");
+        const sightWordsAppItems = document.querySelectorAll(
+          `[app-type*="sight-words-app"]`
+        );
         console.log(sightWordsAppItems);
 
         sightWordsAppItems.forEach((item) => {
@@ -255,56 +303,7 @@ class MenuItems {
       // this.matchingMenu.appendChild(this.alphabetMatchingAppMenuItem)
     }
   }
-  createAlphabetMenu() {
-    // 1. Alphabet Capitals Touch App Menu Item
-    this.alphabetCapitalsCardTouchAppMenuItem.setAttribute(
-      "id",
-      "alphabet-card-touch-app-menu-item"
-    );
-    this.alphabetCapitalsCardTouchAppMenuItem.setAttribute(
-      "app-type",
-      "alphabet-app"
-    );
-    this.alphabetCapitalsCardTouchAppMenuItem.classList.add(
-      "div",
-      "tertiary-menu-item"
-    );
-    this.alphabetCapitalsCardTouchAppMenuItem.innerText = "Card Touch!\r\n abc";
-    this.alphabetCapitalsCardTouchAppMenuItem.addEventListener("click", () =>
-      appLauncher.startCardTouchApp("capitals")
-    );
-
-    // 2. Alphabet Lowercase Touch App Menu Item
-    this.alphabetLowercaseCardTouchAppMenuItem.setAttribute(
-      "id",
-      "alphabet-card-touch-app-menu-item"
-    );
-    this.alphabetLowercaseCardTouchAppMenuItem.setAttribute(
-      "app-type",
-      "alphabet-app"
-    );
-    this.alphabetLowercaseCardTouchAppMenuItem.classList.add(
-      "div",
-      "tertiary-menu-item"
-    );
-    this.alphabetLowercaseCardTouchAppMenuItem.innerText =
-      "Card Touch!\r\n abc";
-    this.alphabetLowercaseCardTouchAppMenuItem.addEventListener("click", () =>
-      appLauncher.startCardTouchApp("lowercase")
-    );
-
-    // 3. Alphabet Matching App Menu Item
-    this.alphabetMatchingAppMenuItem.setAttribute(
-      "id",
-      "alphabet-matching-app-menu-item"
-    );
-    this.alphabetMatchingAppMenuItem.setAttribute("app-type", "alphabet-app");
-    this.alphabetMatchingAppMenuItem.classList.add("div", "tertiary-menu-item");
-    this.alphabetMatchingAppMenuItem.innerText = "Letter Matching";
-    this.alphabetMatchingAppMenuItem.addEventListener("click", () =>
-      appLauncher.startMatchingApp("alphabet")
-    );
-  }
+  createAlphabetMenu() {}
   displayAlphabetSubMenu() {
     secondaryMenu = "alphabet";
     isSecondaryMenu = false;
@@ -590,7 +589,7 @@ class MenuItems {
     mainMenuSfx.select2.play();
     isPrimaryMenu = false;
     hideParentsInfoBtn();
-    topContainer.innerText = "Numbers";
+    topContainer.innerText = "";
     this.abcMenu.classList.add("hidden");
     this.numbersMenu.classList.add("hidden");
     this.sightWordsMenu.classList.add("hidden");
