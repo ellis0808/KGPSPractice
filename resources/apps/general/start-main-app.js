@@ -191,7 +191,11 @@ class MenuItems {
     }
   }
   displaySecondaryMenu(section) {
-    this.removePrimaryMenu();
+    // this.removePrimaryMenu();
+    this.abcMenu.classList.add("hidden");
+    this.numbersMenu.classList.add("hidden");
+    this.sightWordsMenu.classList.add("hidden");
+    this.letterSoundsMenu.classList.add("hidden");
     mainContainer.appendChild(this.secondaryMenuContainer);
     this.secondaryMenuContainer.appendChild(this.touchMenu);
     this.touchMenu.appendChild(this.touchMenuHeader);
