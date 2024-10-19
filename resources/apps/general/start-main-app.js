@@ -544,7 +544,7 @@ class MenuItems {
     }
   }
   removeMenuPage() {
-    document.querySelectorAll();
+    document.querySelectorAll(".secondary-menu");
     navBar.remove();
     // this.alphabetCapitalsCardTouchAppMenuItem.remove();
     // this.alphabetLowercaseCardTouchAppMenuItem.remove();
@@ -633,6 +633,7 @@ function startMainApp() {
       "/KGPSEnglishPractice-test/resources/css/styles.css"
     );
     menuItems.displayMainMenuItems();
+    menuItems.secondaryMenuContainer.appendChild(returnToMainMenuBtn);
     setUser();
     getCumulativeUserScore();
     setTimeout(displayGreeting, 500);
