@@ -252,6 +252,7 @@ class MenuItems {
 
     switch (section) {
       case "alphabet":
+        this.displayAlphabetSubMenu();
         const alphabetAppItems = document.querySelectorAll(
           `[app-type="alphabet-app"]`
         );
