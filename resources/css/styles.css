@@ -247,14 +247,15 @@ body:not(:has(*)) {
   margin: auto;
   display: grid;
   grid-template-columns: 250px 1fr;
-  grid-template-rows: 4fr;
-  /* grid-template-areas:
-    "touch-menu"
-    "matching-menu"
-    "fluency-menu"
-    "writing-menu"; */
+  grid-template-rows: 0.2fr repeat(4, 1fr);
+  grid-template-areas:
+    "menu-headers  menu-apps-container"
+    "menu-headers  menu-apps-container"
+    "menu-headers  menu-apps-container"
+    "menu-headers  menu-apps-container";
 }
 .menu-headers {
+  grid-area: menu-headers;
   width: 100%;
   height: 100%;
   display: grid;
@@ -262,6 +263,7 @@ body:not(:has(*)) {
   grid-template-rows: 4fr;
 }
 .menu-apps-container {
+  grid-area: menu-apps-container;
   width: 100%;
   height: 100%;
   display: grid;
