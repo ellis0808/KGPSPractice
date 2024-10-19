@@ -67,7 +67,7 @@ class MenuItems {
 
     // Seondary Menu
     this.secondaryMenuContainer = document.createElement("div");
-    this.secondaryMenuContainer.classList.add(".secondary-menu-container");
+    this.secondaryMenuContainer.classList.add("secondary-menu-container");
     this.touchMenu = document.createElement("div");
     this.touchMenu.classList.add("secondary-menu-item", "touch-menu");
     this.matchingMenu = document.createElement("div");
@@ -192,10 +192,7 @@ class MenuItems {
   }
   displaySecondaryMenu(section) {
     // this.removePrimaryMenu();
-    this.abcMenu.classList.add("hidden");
-    this.numbersMenu.classList.add("hidden");
-    this.sightWordsMenu.classList.add("hidden");
-    this.letterSoundsMenu.classList.add("hidden");
+    this.hidePrimaryMenu();
     mainContainer.appendChild(this.secondaryMenuContainer);
     this.secondaryMenuContainer.appendChild(this.touchMenu);
     this.touchMenu.appendChild(this.touchMenuHeader);
@@ -589,6 +586,15 @@ class MenuItems {
     Removing and Restoring Menu
   ******/
 
+  hidePrimaryMenu() {
+    mainMenuSfx.select2.play();
+    isPrimaryMenu = false;
+    hideParentsInfoBtn();
+    topContainer.innerText = "Numbers";
+    this.abcMenu.classList.add("hidden");
+    this.numbersMenu.classList.add("hidden");
+    this.sightWordsMenu.classList.add("hidden");
+  }
   removeMenu() {
     //remove current menu
     if (isPrimaryMenu) {
