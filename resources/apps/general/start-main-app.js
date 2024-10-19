@@ -513,7 +513,7 @@ class MenuItems {
 
   hidePrimaryMenu() {
     mainMenuSfx.select2.play();
-    hideParentsInfoBtn();
+    this.hideParentsInfoBtn();
     topContainer.innerText = "";
     primaryMenuContainer.classList.add("hidden");
     this.abcMenu.classList.add("hidden");
@@ -687,7 +687,6 @@ export {
   menuItems,
   displayGreeting,
   getCumulativeUserScore,
-  hideParentsInfoBtn,
   startMainApp,
   mainMenuSfx,
 };
