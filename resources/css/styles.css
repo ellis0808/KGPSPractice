@@ -246,9 +246,11 @@ body:not(:has(*)) {
   height: 100%;
   margin: auto;
   display: grid;
+  column-gap: 2rem;
   grid-template-columns: 250px 1fr;
   grid-template-rows: 0.2fr repeat(4, 1fr);
   grid-template-areas:
+    ".....  returnToMainMenuBtn"
     "menu-headers  menu-apps-container"
     "menu-headers  menu-apps-container"
     "menu-headers  menu-apps-container"
@@ -338,17 +340,19 @@ body:not(:has(*)) {
 }
 
 .returnToMainMenuBtn {
+  grid-area: returnToMainMenuBtn;
   height: 50px;
   width: 175px;
   margin-top: 6rem;
   margin-left: auto;
   color: var(--clr-wht);
   background: var(--clr-acc1);
-  display: flex;
+  display: grid;
   border-radius: 5px;
   font-size: 1.5rem;
   place-content: center;
   place-items: center;
+  justify-self: end;
   transition: 0.3s;
 }
 .div {
