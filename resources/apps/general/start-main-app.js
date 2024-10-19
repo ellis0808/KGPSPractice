@@ -503,6 +503,7 @@ class MenuItems {
     this.headersColumn.appendChild(this.matchingMenuHeader);
     this.headersColumn.appendChild(this.fluencyMenuHeader);
     this.headersColumn.appendChild(this.writingMenuHeader);
+    this.secondaryMenuContainer.appendChild(returnToMainMenuBtn);
 
     switch (section) {
       case "alphabet":
@@ -669,7 +670,6 @@ function startMainApp() {
       "/KGPSEnglishPractice-test/resources/css/styles.css"
     );
     menuItems.displayMainMenuItems();
-    menuItems.secondaryMenuContainer.appendChild(returnToMainMenuBtn);
     setUser();
     getCumulativeUserScore();
     setTimeout(displayGreeting, 500);
