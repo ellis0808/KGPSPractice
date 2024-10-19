@@ -274,9 +274,9 @@ class MenuItems {
           });
         }, 300);
         menuItems.returnToMainMenuToggle();
-      // this.touchMenu.appendChild(this.alphabetCapitalsCardTouchAppMenuItem)
-      // this.touchMenu.appendChild(this.alphabetLowercaseCardTouchAppMenuItem)
-      // this.matchingMenu.appendChild(this.alphabetMatchingAppMenuItem)
+        this.touchMenu.appendChild(this.alphabetCapitalsCardTouchAppMenuItem);
+        this.touchMenu.appendChild(this.alphabetLowercaseCardTouchAppMenuItem);
+        this.matchingMenu.appendChild(this.alphabetMatchingAppMenuItem);
       case "numbers":
         const numbersAppItems = document.querySelectorAll(
           `[app-type="numbers-app"]`
