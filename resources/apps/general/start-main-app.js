@@ -568,6 +568,10 @@ class MenuItems {
         item.classList.add("hide");
         item.remove();
       });
+      document.querySelectorAll(".secondary-menu").forEach((item) => {
+        item.classList.add("hide");
+        item.remove();
+      });
     }
   }
   removeMenuPage() {
