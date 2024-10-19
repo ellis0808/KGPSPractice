@@ -125,7 +125,7 @@ class MenuItems {
     this.abcMenu.innerText = "ABCs";
     this.abcMenu.addEventListener("click", () => {
       this.section = "alphabet";
-      menuItems.displaySecondaryMenu(section);
+      menuItems.displaySecondaryMenu(this.section);
     });
     // Numbers
     this.numbersMenu.setAttribute("id", "div2");
@@ -137,7 +137,7 @@ class MenuItems {
     this.numbersMenu.innerText = "1,2,3";
     this.numbersMenu.addEventListener("click", () => {
       this.section = "numbers";
-      menuItems.displaySecondaryMenu(section);
+      menuItems.displaySecondaryMenu(this.section);
     });
 
     // Sight Words
@@ -149,7 +149,7 @@ class MenuItems {
     );
     this.sightWordsMenu.addEventListener("click", () => {
       this.section = "sight-words";
-      menuItems.displaySecondaryMenu(section);
+      menuItems.displaySecondaryMenu(this.section);
     });
     this.sightWordsMenu.innerText = "Sight Words";
 
@@ -160,8 +160,8 @@ class MenuItems {
     //   "div-start-menu5",
     //   "primary-menu-div"
     // );
-    // this.letterSoundsMenu.addEventListener("click", () => menuItems.this.section = "letter-sounds";
-    // menuItems.displaySecondaryMenu(section);
+    // this.letterSoundsMenu.addEventListener("click", () => menuItems.this.this.section = "letter-sounds";
+    // menuItems.displaySecondaryMenu(this.section);
     // this.letterSoundsMenu.innerText = "Letter Sounds";
   }
   displayMainMenuItems() {
