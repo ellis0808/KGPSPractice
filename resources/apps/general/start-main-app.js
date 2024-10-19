@@ -623,7 +623,7 @@ class MenuItems {
     mainMenuSfx.back.play();
     this.removeSecondaryMenu();
     this.unhidePrimaryMenu();
-    displayParentsInfoBtn();
+    this.displayParentsInfoBtn();
     topContainer.innerText = "";
     displayGreeting();
     // this.abcMenu.classList.remove("hidden");
