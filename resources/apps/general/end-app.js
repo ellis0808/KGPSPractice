@@ -8,7 +8,6 @@ import {
 import { clearBoard } from "../alphabet/alphabet-card-touch/clear-board.js";
 import {
   // displayNumbersMenu,
-  displayMainPage,
   startMainApp,
 } from "./start-main-app.js";
 

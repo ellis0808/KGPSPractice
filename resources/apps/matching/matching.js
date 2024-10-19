@@ -17,7 +17,6 @@ import {
   updatePositiveCount,
 } from "../../utilities/update-score.js";
 import { matchingAudio } from "./matching-audio.js";
-import { displayMainPage } from "../general/start-main-app.js";
 import {
   dotAndLineCommand,
   startDot,
@@ -190,7 +189,7 @@ function endApp() {
         "href",
         "/KGPSEnglishPractice-test/resources/css/styles.css"
       );
-      displayMainPage();
+      menuItems.displayMainPage();
       setTimeout(menuItems.restoreMainMenu, 100);
     }, 500);
   }, 500);

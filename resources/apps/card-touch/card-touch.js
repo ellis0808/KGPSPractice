@@ -20,8 +20,6 @@ import {
   updateNegativeCount,
   updatePositiveCount,
 } from "../../utilities/update-score.js";
-import { displayMainPage, startMainApp } from "../general/start-main-app.js";
-
 import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import { timer, toggleTimerHide } from "../../utilities/timer-object.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
@@ -667,7 +665,7 @@ function endApp() {
         "href",
         "/KGPSEnglishPractice-test/resources/css/styles.css"
       );
-      displayMainPage();
+      menuItems.displayMainPage();
       setTimeout(menuItems.restoreMainMenu, 100);
     }, 500);
   }, 500);

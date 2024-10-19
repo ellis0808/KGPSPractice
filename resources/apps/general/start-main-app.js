@@ -604,7 +604,7 @@ class MenuItems {
     this.numberFluency41to60AppMenuItem.remove();
     this.numberFluency61to80AppMenuItem.remove();
     this.numberFluency81to100AppMenuItem.remove();
-    displayMainPage();
+    this.displayMainPage();
     menuItems.returnToMainMenuToggle();
   }
   returnToMainMenuToggle() {
@@ -636,7 +636,7 @@ function startMainApp() {
     setUser();
     getCumulativeUserScore();
     setTimeout(displayGreeting, 500);
-    displayMainPage();
+    menuItems.displayMainPage();
   }, 1000);
 }
 
@@ -686,7 +686,6 @@ if (navBar) {
 export {
   menuItems,
   displayGreeting,
-  displayMainPage,
   getCumulativeUserScore,
   hideParentsInfoBtn,
   startMainApp,

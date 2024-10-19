@@ -8,7 +8,6 @@ import {
   updatePositiveCount,
 } from "../../utilities/update-score.js";
 import { menuItems } from "../general/start-main-app.js";
-import { displayMainPage } from "../general/start-main-app.js";
 import { fluencyAudio } from "./fluency-audio.js";
 import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import {
@@ -275,7 +274,7 @@ function endApp() {
       "href",
       "/KGPSEnglishPractice-test/resources/css/styles.css"
     );
-    displayMainPage();
+    menuItems.displayMainPage();
     setTimeout(menuItems.restoreMainMenu, 100);
   }, 500);
   scoreDisplay.innerText = score.currentScore;
