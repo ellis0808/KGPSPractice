@@ -461,6 +461,7 @@ class MenuItems {
         this.touchMenu.appendChild(this.alphabetCapitalsCardTouchAppMenuItem);
         this.touchMenu.appendChild(this.alphabetLowercaseCardTouchAppMenuItem);
         this.matchingMenu.appendChild(this.alphabetMatchingAppMenuItem);
+        break;
       case "numbers":
         // const numbersAppItems = document.querySelectorAll(
         //   `[app-type="numbers-app"]`
@@ -478,32 +479,34 @@ class MenuItems {
         this.writingMenu.appendChild(this.numberWriting1to10AppMenuItem);
         this.writingMenu.appendChild(this.numberWriting11to20AppMenuItem);
         this.writingMenu.appendChild(this.numberWriting1to50AppMenuItem);
-
+        break;
       case "sight-words":
         this.touchMenu.appendChild(this.sightWords1AppMenuItem);
         this.touchMenu.appendChild(this.sightWords2AppMenuItem);
         this.touchMenu.appendChild(this.sightWords3AppMenuItem);
         this.writingMenu.appendChild(this.sightWords1WritingAppMenuItem);
-      // const sightWordsAppItems = document.querySelectorAll(
-      //   `[app-type="sight-words-app"]`
-      // );
-      // console.log(sightWordsAppItems);
+        // const sightWordsAppItems = document.querySelectorAll(
+        //   `[app-type="sight-words-app"]`
+        // );
+        // console.log(sightWordsAppItems);
 
-      // sightWordsAppItems.forEach((item) => {
-      //   sortMenuItemsforSecondaryMenu(item);
-      // });
+        // sightWordsAppItems.forEach((item) => {
+        //   sortMenuItemsforSecondaryMenu(item);
+        // });
+        break;
       case "letter-sounds":
-      // const letterSoundsAppItems = document.querySelectorAll(
-      //   `[app-type="letter-sounds-app"]`
-      // );
-      // console.log(letterSoundsAppItems);
+        // const letterSoundsAppItems = document.querySelectorAll(
+        //   `[app-type="letter-sounds-app"]`
+        // );
+        // console.log(letterSoundsAppItems);
 
-      // letterSoundsAppItems.forEach((item) => {
-      //   sortMenuItemsforSecondaryMenu(item);
-      // });
-      // this.letterSoundsMenu.appendChild(this.alphabetCapitalsCardTouchAppMenuItem)
-      // this.touchMenu.appendChild(this.alphabetLowercaseCardTouchAppMenuItem)
-      // this.matchingMenu.appendChild(this.alphabetMatchingAppMenuItem)
+        // letterSoundsAppItems.forEach((item) => {
+        //   sortMenuItemsforSecondaryMenu(item);
+        // });
+        // this.letterSoundsMenu.appendChild(this.alphabetCapitalsCardTouchAppMenuItem)
+        // this.touchMenu.appendChild(this.alphabetLowercaseCardTouchAppMenuItem)
+        // this.matchingMenu.appendChild(this.alphabetMatchingAppMenuItem)
+        break;
     }
   }
   createAlphabetMenu() {}
