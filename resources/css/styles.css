@@ -260,7 +260,7 @@ body:not(:has(*)) {
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: 1fr;
-  place-items: center;
+  align-items: center;
   overflow: hidden;
   overflow-x: scroll;
 }
