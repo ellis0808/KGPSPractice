@@ -311,7 +311,7 @@ class MenuItems {
   }
   createAlphabetMenu() {}
   displayAlphabetSubMenu() {
-    secondaryMenu = "alphabet";
+    // secondaryMenu = "alphabet";
     isSecondaryMenu = false;
     isTertiaryMenu = true;
     mainMenuSfx.select2.play();
