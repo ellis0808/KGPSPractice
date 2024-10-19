@@ -80,10 +80,10 @@ class MenuItems {
     this.matchingMenuHeader = document.createElement("div");
     this.fluencyMenuHeader = document.createElement("div");
     this.writingMenuHeader = document.createElement("div");
-    this.touchMenuHeader.classList.add("div");
-    this.matchingMenuHeader.classList.add("div");
-    this.fluencyMenuHeader.classList.add("div");
-    this.writingMenuHeader.classList.add("div");
+    this.touchMenuHeader.classList.add("secondary-menu-div");
+    this.matchingMenuHeader.classList.add("secondary-menu-div");
+    this.fluencyMenuHeader.classList.add("secondary-menu-div");
+    this.writingMenuHeader.classList.add("secondary-menu-div");
     this.touchMenuHeader.innerText = "Touch";
     this.matchingMenuHeader.innerText = "Matching";
     this.fluencyMenuHeader.innerText = "Fluency";

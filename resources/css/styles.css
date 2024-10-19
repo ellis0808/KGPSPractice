@@ -276,6 +276,24 @@ body:not(:has(*)) {
 .writing-menu {
   grid-area: writing-menu;
 }
+
+.secondary-menu-div {
+  width: 300px;
+  height: 200px;
+  background: var(--clr-acc1);
+  color: var(--clr-wht);
+  display: flex;
+  border-radius: 20px;
+  /* place-content: center;
+  place-items: center; */
+  line-break: strict;
+  font-size: 4rem;
+  text-align: center;
+  transition: 0.3s;
+  box-shadow: 0px 24px 35px 7px rgba(0, 0, 0, 0.3);
+  --stagger-delay: 0.1s;
+  --card-entrance: 0.5s;
+}
 .parents-info {
   grid-area: parents-info;
   height: 50px;
