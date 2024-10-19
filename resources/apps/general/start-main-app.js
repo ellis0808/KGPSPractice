@@ -2,7 +2,7 @@ import {
   body,
   navBar,
   mainContainer,
-  menuContainer,
+  primaryMenuContainer,
   stylesheet,
   topContainer,
   parentsInfo,
@@ -58,12 +58,34 @@ Menu Class
 */
 class MenuItems {
   constructor() {
-    // Main Menu Items
+    this.section = null;
+    // Primary Menu
     this.abcMenu = document.createElement("div");
     this.numbersMenu = document.createElement("div");
     this.sightWordsMenu = document.createElement("div");
     this.letterSoundsMenu = document.createElement("div");
-    // Sub Menu Items
+
+    // Seondary Menu
+    this.secondaryMenuContainer = document.createElement("div");
+    this.secondaryMenuContainer.classList.add(".secondary-menu-container");
+    this.touchMenu = document.createElement("div");
+    this.touchMenu.classList.add("secondary-menu-item", "touch-menu");
+    this.matchingMenu = document.createElement("div");
+    this.matchingMenu.classList.add("secondary-menu-item", "matching-menu");
+    this.fluencyMenu = document.createElement("div");
+    this.fluencyMenu.classList.add("secondary-menu-item", "fluency-menu");
+    this.writingMenu = document.createElement("div");
+    this.writingMenu.classList.add("secondary-menu-item", "writing-menu");
+    this.touchMenuHeader = document.createElement("div");
+    this.matchingMenuHeader = document.createElement("div");
+    this.fluencyMenuHeader = document.createElement("div");
+    this.writingMenuHeader = document.createElement("div");
+    this.touchMenuHeader.innerText = "Touch";
+    this.matchingMenuHeader.innerText = "Matching";
+    this.fluencyMenuHeader.innerText = "Fluency";
+    this.writingMenuHeader.innerText = "Writing";
+
+    // Secondary Menu Items
     this.alphabetCapitalsCardTouchAppMenuItem = document.createElement("div");
     this.alphabetLowercaseCardTouchAppMenuItem = document.createElement("div");
     this.alphabetMatchingAppMenuItem = document.createElement("div");
@@ -81,6 +103,8 @@ class MenuItems {
     this.numberWriting11to20AppMenuItem = document.createElement("div");
     this.numberWriting21to40AppMenuItem = document.createElement("div");
     this.numberWriting1to50AppMenuItem = document.createElement("div");
+
+    // "this" Bindings
     this.displayAlphabetSubMenu = this.displayAlphabetSubMenu.bind(this);
     this.displayLetterSoundsMenu = this.displayLetterSoundsMenu.bind(this);
     this.displayMainMenuItems = this.displayMainMenuItems.bind(this);
@@ -100,8 +124,8 @@ class MenuItems {
     this.abcMenu.classList.add("div", "div-start-menu1", "primary-menu-div");
     this.abcMenu.innerText = "ABCs";
     this.abcMenu.addEventListener("click", () => {
-      menuItems.createAlphabetMenu();
-      menuItems.displayAlphabetSubMenu();
+      section = "alphabet";
+      menuItems.displaySecondaryMenu(section);
     });
     // Numbers
     this.numbersMenu.setAttribute("id", "div2");
@@ -112,8 +136,8 @@ class MenuItems {
     );
     this.numbersMenu.innerText = "1,2,3";
     this.numbersMenu.addEventListener("click", () => {
-      menuItems.createNumbersSubMenu();
-      menuItems.displayNumbersMenu();
+      section = "numbers";
+      menuItems.displaySecondaryMenu(section);
     });
 
     // Sight Words
@@ -124,8 +148,8 @@ class MenuItems {
       "primary-menu-div"
     );
     this.sightWordsMenu.addEventListener("click", () => {
-      menuItems.createSightWordsSubMenu();
-      menuItems.displaySightWordsMenu();
+      section = "sight-words";
+      menuItems.displaySecondaryMenu(section);
     });
     this.sightWordsMenu.innerText = "Sight Words";
 
@@ -136,25 +160,109 @@ class MenuItems {
     //   "div-start-menu5",
     //   "primary-menu-div"
     // );
-    // this.letterSoundsMenu.addEventListener("click", () => menuItems.displayLetterSoundsMenu());
+    // this.letterSoundsMenu.addEventListener("click", () => menuItems.section = "letter-sounds";
+    // menuItems.displaySecondaryMenu(section);
     // this.letterSoundsMenu.innerText = "Letter Sounds";
   }
   displayMainMenuItems() {
-    menuContainer.appendChild(this.abcMenu);
-    menuContainer.appendChild(this.numbersMenu);
-    menuContainer.appendChild(this.sightWordsMenu);
-    // menuContainer.appendChild(this.letterSoundsMenu);
+    primaryMenuContainer.appendChild(this.abcMenu);
+    primaryMenuContainer.appendChild(this.numbersMenu);
+    primaryMenuContainer.appendChild(this.sightWordsMenu);
+    // primaryMenuContainer.appendChild(this.letterSoundsMenu);
   }
 
   /******
     Create and Display Sub Menus
   ******/
 
+  sortMenuItemsforSecondaryMenu(item) {
+    if (item.hasAttribute("touch")) {
+      this.touchMenu.appendChild(item);
+    }
+    // should not exist
+    if (item.hasAttribute("matching")) {
+      this.matchingMenu.appendChild(item);
+    }
+    if (item.hasAttribute("fluency")) {
+      this.fluencyMenu.appendChild(item);
+    }
+    if (item.hasAttribute("writing")) {
+      this.writingMenu.appendChild(item);
+    }
+  }
+  displaySecondaryMenu(section) {
+    this.removePrimaryMenu();
+    mainContainer.appendChild(this.secondaryMenuContainer);
+    this.secondaryMenuContainer.appendChild(this.touchMenu);
+    this.touchMenu.appendChild(this.touchMenuHeader);
+    this.secondaryMenuContainer.appendChild(this.matchingMenu);
+    this.matchingMenu.appendChild(this.matchingMenuHeader);
+    this.secondaryMenuContainer.appendChild(this.fluencyMenu);
+    this.fluencyMenu.appendChild(this.fluencyMenuHeader);
+    this.secondaryMenuContainer.appendChild(this.writingMenu);
+    this.writingMenu.appendChild(this.writingMenuHeader);
+
+    switch (section) {
+      case "alphabet":
+        const alphabetAppItems = document.querySelectorAll("#alphabet-app");
+        console.log(alphabetAppItems);
+
+        alphabetAppItems.forEach((item) => {
+          this.sortMenuItemsforSecondaryMenu(item);
+        });
+      // this.touchMenu.appendChild(this.alphabetCapitalsCardTouchAppMenuItem)
+      // this.touchMenu.appendChild(this.alphabetLowercaseCardTouchAppMenuItem)
+      // this.matchingMenu.appendChild(this.alphabetMatchingAppMenuItem)
+      case "numbers":
+        const numbersAppItems = document.querySelectorAll("#numbers-app");
+        console.log(numbersAppItems);
+
+        numbersAppItems.forEach((item) => {
+          this.sortMenuItemsforSecondaryMenu(item);
+
+          // this.fluencyMenu.appendChild(this.numberFluency1to20AppMenuItem)
+          // this.fluencyMenu.appendChild(this.numberFluency21to40AppMenuItem)
+          // this.fluencyMenu.appendChild(this.numberFluency41to60AppMenuItem)
+          // this.fluencyMenu.appendChild(this.numberFluency61to80AppMenuItem)
+          // this.fluencyMenu.appendChild(this.numberFluency81to100AppMenuItem)
+          // this.writingMenu.appendChild(this.numberWriting1to10AppMenuItem)
+          // this.writingMenu.appendChild(this.numberWriting11to20AppMenuItem)
+          // this.writingMenu.appendChild(this.numberWriting1to50AppMenuItem)
+        });
+      case "sight-words":
+        const sightWordsAppItems =
+          document.querySelectorAll("#sight-words-app");
+        console.log(sightWordsAppItems);
+
+        sightWordsAppItems.forEach((item) => {
+          sortMenuItemsforSecondaryMenu(item);
+          // this.touchMenu.appendChild(this.sightWords1AppMenuItem)
+          // this.touchMenu.appendChild(this.sightWords2AppMenuItem)
+          // this.touchMenu.appendChild(this.sightWords3AppMenuItem)
+          // this.writingMenu.appendChild(this.sightWords1WritingAppMenuItem)
+        });
+      case "letter-sounds":
+        const letterSoundsAppItems =
+          document.querySelectorAll("#letter-sounds-app");
+        console.log(letterSoundsAppItems);
+
+        letterSoundsAppItems.forEach((item) => {
+          sortMenuItemsforSecondaryMenu(item);
+        });
+      // this.letterSoundsMenu.appendChild(this.alphabetCapitalsCardTouchAppMenuItem)
+      // this.touchMenu.appendChild(this.alphabetLowercaseCardTouchAppMenuItem)
+      // this.matchingMenu.appendChild(this.alphabetMatchingAppMenuItem)
+    }
+  }
   createAlphabetMenu() {
     // 1. Alphabet Capitals Touch App Menu Item
     this.alphabetCapitalsCardTouchAppMenuItem.setAttribute(
       "id",
       "alphabet-card-touch-app-menu-item"
+    );
+    this.alphabetCapitalsCardTouchAppMenuItem.setAttribute(
+      "app-type",
+      "alphabet-app"
     );
     this.alphabetCapitalsCardTouchAppMenuItem.classList.add(
       "div",
@@ -169,6 +277,10 @@ class MenuItems {
     this.alphabetLowercaseCardTouchAppMenuItem.setAttribute(
       "id",
       "alphabet-card-touch-app-menu-item"
+    );
+    this.alphabetLowercaseCardTouchAppMenuItem.setAttribute(
+      "app-type",
+      "alphabet-app"
     );
     this.alphabetLowercaseCardTouchAppMenuItem.classList.add(
       "div",
@@ -185,6 +297,7 @@ class MenuItems {
       "id",
       "alphabet-matching-app-menu-item"
     );
+    this.alphabetMatchingAppMenuItem.setAttribute("app-type", "alphabet-app");
     this.alphabetMatchingAppMenuItem.classList.add("div", "tertiary-menu-item");
     this.alphabetMatchingAppMenuItem.innerText = "Letter Matching";
     this.alphabetMatchingAppMenuItem.addEventListener("click", () =>
@@ -192,6 +305,7 @@ class MenuItems {
     );
   }
   displayAlphabetSubMenu() {
+    secondaryMenu = "alphabet";
     isSecondaryMenu = false;
     isTertiaryMenu = true;
     mainMenuSfx.select2.play();
@@ -202,10 +316,12 @@ class MenuItems {
     this.numbersMenu.classList.add("hidden");
     this.sightWordsMenu.classList.add("hidden");
     this.letterSoundsMenu.classList.add("hidden");
-    menuContainer.appendChild(this.alphabetCapitalsCardTouchAppMenuItem);
-    menuContainer.appendChild(this.alphabetLowercaseCardTouchAppMenuItem);
-    menuContainer.appendChild(this.alphabetMatchingAppMenuItem);
-    menuContainer.appendChild(returnToMainMenuBtn);
+    primaryMenuContainer.appendChild(this.alphabetCapitalsCardTouchAppMenuItem);
+    primaryMenuContainer.appendChild(
+      this.alphabetLowercaseCardTouchAppMenuItem
+    );
+    primaryMenuContainer.appendChild(this.alphabetMatchingAppMenuItem);
+    primaryMenuContainer.appendChild(returnToMainMenuBtn);
     this.alphabetCapitalsCardTouchAppMenuItem.classList.remove("hidden");
     this.alphabetLowercaseCardTouchAppMenuItem.classList.remove("hidden");
     this.alphabetMatchingAppMenuItem.classList.remove("hidden");
@@ -217,6 +333,7 @@ class MenuItems {
       "id",
       "sight-words-1-app-menu-item"
     );
+    this.sightWords1AppMenuItem.setAttribute("app-type", "sight-words-app");
     this.sightWords1AppMenuItem.classList.add("div", "tertiary-menu-item");
     this.sightWords1AppMenuItem.innerText = "Sight Words 1";
     this.sightWords1AppMenuItem.addEventListener("click", () =>
@@ -228,25 +345,33 @@ class MenuItems {
       "id",
       "sight-words-2-app-menu-item"
     );
+    this.sightWords2AppMenuItem.setAttribute("app-type", "sight-words-app");
     this.sightWords2AppMenuItem.classList.add("div", "tertiary-menu-item");
     this.sightWords2AppMenuItem.innerText = "Sight Words 2";
     this.sightWords2AppMenuItem.addEventListener("click", () =>
       appLauncher.startCardTouchApp("sightwords2")
     );
 
-    // 3. Sight Words 3 Matching App Menu Item
+    // 3. Sight Words 3 Touch App Menu Item
     this.sightWords3AppMenuItem.setAttribute(
       "id",
       "sight-words-3-app-menu-item"
     );
+    this.sightWords3AppMenuItem.setAttribute("app-type", "sight-words-app");
     this.sightWords3AppMenuItem.classList.add("div", "tertiary-menu-item");
     this.sightWords3AppMenuItem.innerText = "Sight Words 3";
     this.sightWords3AppMenuItem.addEventListener("click", () =>
       appLauncher.startCardTouchApp("sightwords3")
     );
+
+    // 4. Sight Words 1 Writing App Menu Item
     this.sightWords1WritingAppMenuItem.setAttribute(
       "id",
       "sight-words-1-writing-app-menu-item"
+    );
+    this.sightWords1WritingAppMenuItem.setAttribute(
+      "app-type",
+      "sight-words-app"
     );
     this.sightWords1WritingAppMenuItem.classList.add(
       "div",
@@ -266,11 +391,11 @@ class MenuItems {
     this.numbersMenu.classList.add("hidden");
     this.sightWordsMenu.classList.add("hidden");
     this.letterSoundsMenu.classList.add("hidden");
-    menuContainer.appendChild(this.sightWords1AppMenuItem);
-    menuContainer.appendChild(this.sightWords2AppMenuItem);
-    menuContainer.appendChild(this.sightWords3AppMenuItem);
-    menuContainer.appendChild(this.sightWords1WritingAppMenuItem);
-    menuContainer.appendChild(returnToMainMenuBtn);
+    primaryMenuContainer.appendChild(this.sightWords1AppMenuItem);
+    primaryMenuContainer.appendChild(this.sightWords2AppMenuItem);
+    primaryMenuContainer.appendChild(this.sightWords3AppMenuItem);
+    primaryMenuContainer.appendChild(this.sightWords1WritingAppMenuItem);
+    primaryMenuContainer.appendChild(returnToMainMenuBtn);
     this.sightWords1AppMenuItem.classList.remove("hidden");
     this.sightWords2AppMenuItem.classList.remove("hidden");
     this.sightWords3AppMenuItem.classList.remove("hidden");
@@ -294,7 +419,7 @@ class MenuItems {
     this.numbersMenu.classList.add("hidden");
     this.sightWordsMenu.classList.add("hidden");
     this.letterSoundsMenu.classList.add("hidden");
-    menuContainer.appendChild(this.letterSoundsAMSFAppMenuItem);
+    primaryMenuContainer.appendChild(this.letterSoundsAMSFAppMenuItem);
     this.letterSoundsAMSFAppMenuItem.classList.remove("hidden");
     menuItems.returnToMainMenuToggle();
   }
@@ -304,6 +429,7 @@ class MenuItems {
       "id",
       "number-fluency-1-to-20-app-menu-item"
     );
+    this.numberFluency1to20AppMenuItem.setAttribute("app-style", "numbers");
     this.numberFluency1to20AppMenuItem.classList.add(
       "div",
       "tertiary-menu-item"
@@ -318,6 +444,7 @@ class MenuItems {
       "id",
       "number-fluency-21-to-40-app-menu-item"
     );
+    this.numberFluency21to40AppMenuItem.setAttribute("app-style", "numbers");
     this.numberFluency21to40AppMenuItem.classList.add(
       "div",
       "tertiary-menu-item"
@@ -332,6 +459,7 @@ class MenuItems {
       "id",
       "number-fluency-41-to-60-app-menu-item"
     );
+    this.numberFluency41to60AppMenuItem.setAttribute("app-style", "numbers");
     this.numberFluency41to60AppMenuItem.classList.add(
       "div",
       "tertiary-menu-item"
@@ -346,6 +474,7 @@ class MenuItems {
       "id",
       "number-fluency-61-to-80-app-menu-item"
     );
+    this.numberFluency61to80AppMenuItem.setAttribute("app-style", "numbers");
     this.numberFluency61to80AppMenuItem.classList.add(
       "div",
       "tertiary-menu-item"
@@ -360,6 +489,7 @@ class MenuItems {
       "id",
       "number-fluency-81-to-100-app-menu-item"
     );
+    this.numberFluency81to100AppMenuItem.setAttribute("app-style", "numbers");
     this.numberFluency81to100AppMenuItem.classList.add(
       "div",
       "tertiary-menu-item"
@@ -373,6 +503,7 @@ class MenuItems {
       "id",
       "number-writing-1-to-10-app-menu-item"
     );
+    this.numberWriting1to10AppMenuItem.setAttribute("app-style", "numbers");
     this.numberWriting1to10AppMenuItem.classList.add(
       "div",
       "tertiary-menu-item"
@@ -386,6 +517,7 @@ class MenuItems {
       "id",
       "number-writing-11-to-20-app-menu-item"
     );
+    this.numberWriting11to20AppMenuItem.setAttribute("app-style", "numbers");
     this.numberWriting11to20AppMenuItem.classList.add(
       "div",
       "tertiary-menu-item"
@@ -399,6 +531,7 @@ class MenuItems {
       "id",
       "number-writing-21-to-40-app-menu-item"
     );
+    this.numberWriting21to40AppMenuItem.setAttribute("app-style", "numbers");
     this.numberWriting21to40AppMenuItem.classList.add(
       "div",
       "tertiary-menu-item"
@@ -412,6 +545,7 @@ class MenuItems {
       "id",
       "number-writing-1-to-50-app-menu-item"
     );
+    this.numberWriting1to50AppMenuItem.setAttribute("app-style", "numbers");
     this.numberWriting1to50AppMenuItem.classList.add(
       "div",
       "tertiary-menu-item"
@@ -429,16 +563,16 @@ class MenuItems {
     this.abcMenu.classList.add("hidden");
     this.numbersMenu.classList.add("hidden");
     this.sightWordsMenu.classList.add("hidden");
-    menuContainer.appendChild(this.numberFluency1to20AppMenuItem);
-    menuContainer.appendChild(this.numberFluency21to40AppMenuItem);
-    menuContainer.appendChild(this.numberFluency41to60AppMenuItem);
-    menuContainer.appendChild(this.numberFluency61to80AppMenuItem);
-    menuContainer.appendChild(this.numberFluency81to100AppMenuItem);
-    menuContainer.appendChild(this.numberWriting1to10AppMenuItem);
-    menuContainer.appendChild(this.numberWriting11to20AppMenuItem);
-    menuContainer.appendChild(this.numberWriting21to40AppMenuItem);
-    menuContainer.appendChild(this.numberWriting1to50AppMenuItem);
-    menuContainer.appendChild(returnToMainMenuBtn);
+    primaryMenuContainer.appendChild(this.numberFluency1to20AppMenuItem);
+    primaryMenuContainer.appendChild(this.numberFluency21to40AppMenuItem);
+    primaryMenuContainer.appendChild(this.numberFluency41to60AppMenuItem);
+    primaryMenuContainer.appendChild(this.numberFluency61to80AppMenuItem);
+    primaryMenuContainer.appendChild(this.numberFluency81to100AppMenuItem);
+    primaryMenuContainer.appendChild(this.numberWriting1to10AppMenuItem);
+    primaryMenuContainer.appendChild(this.numberWriting11to20AppMenuItem);
+    primaryMenuContainer.appendChild(this.numberWriting21to40AppMenuItem);
+    primaryMenuContainer.appendChild(this.numberWriting1to50AppMenuItem);
+    primaryMenuContainer.appendChild(returnToMainMenuBtn);
     this.numberFluency1to20AppMenuItem.classList.remove("hidden");
     this.numberFluency21to40AppMenuItem.classList.remove("hidden");
     this.numberFluency41to60AppMenuItem.classList.remove("hidden");
@@ -494,25 +628,25 @@ class MenuItems {
     this.sightWords1WritingAppMenuItem.remove();
     navBar.classList.add("hidden");
     topContainer.classList.add("hidden");
-    menuContainer.classList.add("hidden");
+    primaryMenuContainer.classList.add("hidden");
     this.abcMenu.classList.add("hidden");
     this.numbersMenu.classList.add("hidden");
     this.sightWordsMenu.classList.add("hidden");
     parentsInfo.remove();
     topContainer.remove();
-    menuContainer.remove();
+    primaryMenuContainer.remove();
   }
   restoreMainMenu() {
     body.appendChild(navBar);
     topContainer.innerText = "";
     body.appendChild(parentsInfo);
     mainContainer.appendChild(topContainer);
-    mainContainer.appendChild(menuContainer);
+    mainContainer.appendChild(primaryMenuContainer);
     navBar.classList.remove("hidden");
     topContainer.classList.remove("hidden");
     getCumulativeUserScore();
     setTimeout(displayGreeting, 500);
-    menuContainer.classList.remove("hidden");
+    primaryMenuContainer.classList.remove("hidden");
     this.abcMenu.classList.remove("hidden");
     this.numbersMenu.classList.remove("hidden");
     this.sightWordsMenu.classList.remove("hidden");
@@ -631,7 +765,7 @@ const returnToMainMenuBtn = document.createElement("button");
 returnToMainMenuBtn.innerText = `<- Back`;
 returnToMainMenuBtn.classList.add("returnToMainMenuBtn");
 returnToMainMenuBtn.setAttribute("id", "returnToMainMenuBtn");
-returnToMainMenuBtn.addEventListener("click", menuItems.removeMenu);
+returnToMainMenuBtn.addEventListener("click", menuItems.returnToMainMenu);
 
 if (navBar) {
   body.appendChild(navBar);

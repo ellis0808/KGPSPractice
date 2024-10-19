@@ -211,33 +211,24 @@ body:not(:has(*)) {
 .test {
   margin: auto;
 }
-.menu-container {
+.primary-menu-container {
   grid-area: menu-container;
   width: 100%;
   height: 100%;
   margin: auto;
   display: grid;
-  /* place-content: center; */
-  /* place-items: center; */
   grid-template-columns: 1fr;
-  /* grid-template-rows: repeat(auto-fill, 1fr); */
   grid-template-areas:
     "menu1"
     "menu2"
     "menu3"
     "menu4";
-  /* column-gap: 8rem; */
   row-gap: 2rem;
   place-content: center;
   place-items: center;
 }
 @media (width > 600px) {
-  .menu-container {
-    grid-area: menu-container;
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    display: grid;
+  .primary-menu-container {
     grid-template-columns: repeat(2, minmax(min(250px, 100%), 1fr));
     grid-template-rows: repeat(2, 1fr);
     grid-template-areas:
@@ -247,6 +238,42 @@ body:not(:has(*)) {
     column-gap: 8rem;
     row-gap: 4rem;
   }
+}
+
+.secondary-menu-container {
+  grid-area: menu-container;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 4fr;
+  grid-template-areas:
+    "touch-menu"
+    "matching-menu"
+    "fluency-menu"
+    "writing-menu";
+}
+.secondary-menu-row {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 1fr;
+  overflow: hidden;
+  overflow-x: scroll;
+}
+.touch-menu {
+  grid-area: touch-menu;
+}
+.matching-menu {
+  grid-area: matching-menu;
+}
+.fluency-menu {
+  grid-area: fluency-menu;
+}
+.writing-menu {
+  grid-area: writing-menu;
 }
 .parents-info {
   grid-area: parents-info;

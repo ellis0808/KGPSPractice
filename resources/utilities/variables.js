@@ -2,7 +2,7 @@ const body = document.body;
 const navBar = document.getElementById("navbar");
 const mainContainer = document.getElementById("main-container");
 const parentsInfo = document.getElementById("parents-info");
-const menuContainer = document.getElementById("menu-container");
+const primaryMenuContainer = document.getElementById("primary-menu-container");
 const topContainer = document.getElementById("top-container");
 let stylesheet = document.getElementById("stylesheet");
 
@@ -11,7 +11,7 @@ export {
   navBar,
   parentsInfo,
   mainContainer,
-  menuContainer,
+  primaryMenuContainer,
   stylesheet,
   topContainer,
 };
