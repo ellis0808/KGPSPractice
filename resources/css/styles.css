@@ -279,8 +279,8 @@ body:not(:has(*)) {
 } */
 
 .secondary-menu-div {
-  width: 300px;
-  height: 200px;
+  width: 275px;
+  height: 180px;
   background: var(--clr-acc1);
   color: var(--clr-wht);
   display: flex;
