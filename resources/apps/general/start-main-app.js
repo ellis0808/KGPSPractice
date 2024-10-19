@@ -520,6 +520,15 @@ class MenuItems {
     this.numbersMenu.classList.add("hidden");
     this.sightWordsMenu.classList.add("hidden");
   }
+  unhidePrimaryMenu() {
+    mainMenuSfx.select2.play();
+    this.displayParentsInfoBtn();
+    topContainer.innerText = "";
+    primaryMenuContainer.classList.remove("hidden");
+    this.abcMenu.classList.remove("hidden");
+    this.numbersMenu.classList.remove("hidden");
+    this.sightWordsMenu.classList.remove("hidden");
+  }
   hideSecondaryMenu() {
     document.querySelectorAll(".secondary-menu").forEach((item) => {
       item.remove();
@@ -585,27 +594,29 @@ class MenuItems {
   }
   returnToMainMenu() {
     mainMenuSfx.back.play();
-    topContainer.innerText = "";
+    this.hideSecondaryMenu();
+    this.unhidePrimaryMenu();
     displayParentsInfoBtn();
+    topContainer.innerText = "";
     displayGreeting();
-    this.abcMenu.classList.remove("hidden");
-    this.numbersMenu.classList.remove("hidden");
-    this.sightWordsMenu.classList.remove("hidden");
+    // this.abcMenu.classList.remove("hidden");
+    // this.numbersMenu.classList.remove("hidden");
+    // this.sightWordsMenu.classList.remove("hidden");
     // this.letterSoundsMenu.classList.remove("hidden");
-    this.alphabetCapitalsCardTouchAppMenuItem.remove();
-    this.alphabetLowercaseCardTouchAppMenuItem.remove();
-    this.alphabetMatchingAppMenuItem.remove();
-    this.sightWords1AppMenuItem.remove();
-    this.sightWords2AppMenuItem.remove();
-    this.sightWords3AppMenuItem.remove();
-    this.sightWords1WritingAppMenuItem.remove();
-    this.numberFluency1to20AppMenuItem.remove();
-    this.numberFluency21to40AppMenuItem.remove();
-    this.numberFluency41to60AppMenuItem.remove();
-    this.numberFluency61to80AppMenuItem.remove();
-    this.numberFluency81to100AppMenuItem.remove();
-    this.displayMainPage();
-    menuItems.returnToMainMenuToggle();
+    // this.alphabetCapitalsCardTouchAppMenuItem.remove();
+    // this.alphabetLowercaseCardTouchAppMenuItem.remove();
+    // this.alphabetMatchingAppMenuItem.remove();
+    // this.sightWords1AppMenuItem.remove();
+    // this.sightWords2AppMenuItem.remove();
+    // this.sightWords3AppMenuItem.remove();
+    // this.sightWords1WritingAppMenuItem.remove();
+    // this.numberFluency1to20AppMenuItem.remove();
+    // this.numberFluency21to40AppMenuItem.remove();
+    // this.numberFluency41to60AppMenuItem.remove();
+    // this.numberFluency61to80AppMenuItem.remove();
+    // this.numberFluency81to100AppMenuItem.remove();
+    // this.displayMainPage();
+    // menuItems.returnToMainMenuToggle();
   }
   returnToMainMenuToggle() {
     if (!this.isPrimaryMenu) {
