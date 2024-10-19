@@ -108,9 +108,10 @@ class MenuItems {
       "id",
       "alphabet-card-touch-app-menu-item"
     );
+    this.alphabetCapitalsCardTouchAppMenuItem.setAttribute("app-type", "touch");
     this.alphabetCapitalsCardTouchAppMenuItem.setAttribute(
-      "app-type",
-      "alphabet-app"
+      "app-content",
+      "alphabet"
     );
     this.alphabetCapitalsCardTouchAppMenuItem.classList.add(
       "div",
@@ -127,7 +128,11 @@ class MenuItems {
     );
     this.alphabetLowercaseCardTouchAppMenuItem.setAttribute(
       "app-type",
-      "alphabet-app"
+      "touch"
+    );
+    this.alphabetLowercaseCardTouchAppMenuItem.setAttribute(
+      "app-content",
+      "alphabet"
     );
     this.alphabetLowercaseCardTouchAppMenuItem.classList.add(
       "div",
@@ -144,7 +149,8 @@ class MenuItems {
       "id",
       "alphabet-matching-app-menu-item"
     );
-    this.alphabetMatchingAppMenuItem.setAttribute("app-type", "alphabet-app");
+    this.alphabetMatchingAppMenuItem.setAttribute("app-type", "touch");
+    this.alphabetMatchingAppMenuItem.setAttribute("app-content", "alphabet");
     this.alphabetMatchingAppMenuItem.classList.add("div", "tertiary-menu-item");
     this.alphabetMatchingAppMenuItem.innerText = "Letter Matching";
     this.alphabetMatchingAppMenuItem.addEventListener("click", () =>
@@ -252,9 +258,10 @@ class MenuItems {
 
     switch (section) {
       case "alphabet":
-        this.displayAlphabetSubMenu();
+        topContainer.innerText = "Alphabet";
+        // this.displayAlphabetSubMenu();
         const alphabetAppItems = document.querySelectorAll(
-          `[app-type="alphabet-app"]`
+          `[app-content="alphabet"]`
         );
         console.log(alphabetAppItems);
 
