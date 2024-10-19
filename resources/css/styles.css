@@ -248,11 +248,11 @@ body:not(:has(*)) {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 4fr;
-  grid-template-areas:
+  /* grid-template-areas:
     "touch-menu"
     "matching-menu"
     "fluency-menu"
-    "writing-menu";
+    "writing-menu"; */
 }
 .secondary-menu-row {
   width: 100%;
@@ -264,7 +264,7 @@ body:not(:has(*)) {
   overflow: hidden;
   overflow-x: scroll;
 }
-.touch-menu {
+/* .touch-menu {
   grid-area: touch-menu;
 }
 .matching-menu {
@@ -275,7 +275,7 @@ body:not(:has(*)) {
 }
 .writing-menu {
   grid-area: writing-menu;
-}
+} */
 
 .secondary-menu-div {
   width: 300px;
