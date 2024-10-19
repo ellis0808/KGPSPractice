@@ -119,7 +119,9 @@ class MenuItems {
       "secondary-menu"
     );
     this.headersColumn = document.createElement("div");
-    this.headersColumn.classList.add("menu-headers");
+    this.headersColumn.classList.add("menu-headers", "secondary-menu");
+    this.sectionColumn = document.createElement("div");
+    this.sectionColumn.classList.add("menu-headers", "secondary-menu");
     this.touchMenu = document.createElement("div");
     this.touchMenu.classList.add(
       "secondary-menu-row",
@@ -494,16 +496,17 @@ class MenuItems {
     this.isSecondaryMenu = true;
     this.returnToMainMenuToggle();
     mainContainer.appendChild(this.secondaryMenuContainer);
+    this.secondaryMenuContainer.appendChild(returnToMainMenuBtn);
     this.secondaryMenuContainer.appendChild(this.headersColumn);
-    this.secondaryMenuContainer.appendChild(this.touchMenu);
-    this.secondaryMenuContainer.appendChild(this.matchingMenu);
-    this.secondaryMenuContainer.appendChild(this.fluencyMenu);
-    this.secondaryMenuContainer.appendChild(this.writingMenu);
+    this.secondaryMenuContainer.appendChild(this.sectionColumn);
     this.headersColumn.appendChild(this.touchMenuHeader);
     this.headersColumn.appendChild(this.matchingMenuHeader);
     this.headersColumn.appendChild(this.fluencyMenuHeader);
     this.headersColumn.appendChild(this.writingMenuHeader);
-    this.secondaryMenuContainer.appendChild(returnToMainMenuBtn);
+    this.sectionColumn.appendChild(this.touchMenu);
+    this.sectionColumn.appendChild(this.matchingMenu);
+    this.sectionColumn.appendChild(this.fluencyMenu);
+    this.sectionColumn.appendChild(this.writingMenu);
 
     switch (section) {
       case "alphabet":
