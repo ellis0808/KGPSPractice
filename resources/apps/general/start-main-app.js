@@ -118,6 +118,8 @@ class MenuItems {
       "secondary-menu-container",
       "secondary-menu"
     );
+    this.headersColumn = document.createElement("div");
+    this.headersColumn.classList.add("menu-headers");
     this.touchMenu = document.createElement("div");
     this.touchMenu.classList.add(
       "secondary-menu-row",
@@ -492,14 +494,15 @@ class MenuItems {
     this.isSecondaryMenu = true;
     this.returnToMainMenuToggle();
     mainContainer.appendChild(this.secondaryMenuContainer);
+    this.secondaryMenuContainer.appendChild(this.headersColumn);
     this.secondaryMenuContainer.appendChild(this.touchMenu);
     this.secondaryMenuContainer.appendChild(this.matchingMenu);
     this.secondaryMenuContainer.appendChild(this.fluencyMenu);
     this.secondaryMenuContainer.appendChild(this.writingMenu);
-    this.touchMenu.appendChild(this.touchMenuHeader);
-    this.matchingMenu.appendChild(this.matchingMenuHeader);
-    this.fluencyMenu.appendChild(this.fluencyMenuHeader);
-    this.writingMenu.appendChild(this.writingMenuHeader);
+    this.headersColumn.appendChild(this.touchMenuHeader);
+    this.headersColumn.appendChild(this.matchingMenuHeader);
+    this.headersColumn.appendChild(this.fluencyMenuHeader);
+    this.headersColumn.appendChild(this.writingMenuHeader);
 
     switch (section) {
       case "alphabet":
