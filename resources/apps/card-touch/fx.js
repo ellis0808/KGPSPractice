@@ -1,11 +1,11 @@
-import { cardTouchAudio } from "./card-touch-audio.js";
+import { audio } from "../../utilities/audio.js";
 
 function wobble(e) {
   e.currentTarget.preventDefault;
   e.currentTarget.classList.remove("wobble");
   void e.currentTarget.offsetWidth;
   e.currentTarget.classList.add("wobble");
-  cardTouchAudio.cardTouchSfx.incorrectCard.play();
+  audio.appSfx.correct.play();
 }
 
 function spinfade(e) {
@@ -14,7 +14,7 @@ function spinfade(e) {
   void e.currentTarget.offsetWidth;
   e.currentTarget.classList.add("spinfade");
 
-  cardTouchAudio.cardTouchSfx.correcCard.play();
+  audio.appSfx.correct.play();
 }
 
 function newRoundCardFlip() {
