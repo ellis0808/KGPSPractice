@@ -7,23 +7,6 @@ class CardTouchAudio {
     this.randomWord = null;
     this.correctCardID = null;
     this.repeat = this.repeat.bind(this);
-    this.cardTouchSfx = {
-      correcCard: new Howl({
-        src: ["/KGPSEPaudio/sfx/sfx-correct-1.mp3"],
-      }),
-      incorrectCard: new Howl({
-        src: ["/KGPSEPaudio/sfx/sfx-incorrect-1.mp3"],
-      }),
-      startApp: new Howl({
-        src: ["/KGPSEPaudio/sfx/sfx-select-3.mp3"],
-        volume: 0.5,
-        onplayerror: function () {
-          sound.once("unlock", function () {
-            sound.play();
-          });
-        },
-      }),
-    };
   }
   updateRandomNumber() {
     this.randomNumber = Math.floor(Math.random() * cardText.length);

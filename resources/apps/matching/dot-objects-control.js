@@ -1,5 +1,4 @@
 import { body } from "../../utilities/variables.js";
-import { matchingAudio } from "./matching-audio.js";
 import {
   checkAllCorrect,
   currentDotId,
@@ -163,7 +162,7 @@ class StartDot {
   }
   markAsCorrect() {
     this.addCorrectPulse();
-    matchingAudio.matchingSfx.validConnection.play();
+    audio.appSfx.poppop.play();
 
     setTimeout(() => {
       audio.audioObject[this.contentId.toLowerCase()].sound.play();
@@ -172,7 +171,7 @@ class StartDot {
     checkAllCorrect();
   }
   markAsIncorrect() {
-    matchingAudio.matchingSfx.invalidConnection.play();
+    audio.appSfx.cancel.play();
   }
 }
 class EndDot {

@@ -9,7 +9,6 @@ import {
 } from "../../utilities/update-score.js";
 import { menuItems } from "../general/start-main-app.js";
 import { fluencyAudio } from "./fluency-audio.js";
-import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import {
   disableTouch,
   enableTouch,
@@ -481,9 +480,9 @@ function newRound() {
   clearInterval(run);
 
   if (numberOfRightAnswers === 10) {
-    feedbackAudioObject.positiveFeedback.greatJob.sound.play();
+    audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
   } else if (numberOfRightAnswers > 7 && numberOfRightAnswers < 10) {
-    feedbackAudioObject.positiveFeedback.goodJob.sound.play();
+    audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
   } else if (round !== 0 && numberOfRightAnswers < 5) {
     sessionOver();
     return;
@@ -610,22 +609,22 @@ function displayEndMessagesContainer() {
   setTimeout(() => {
     switch (true) {
       case score.currentScore < 10:
-        feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
+        audio.feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
         break;
       case score.currentScore >= 150:
-        feedbackAudioObject.positiveFeedback.outstanding.sound.play();
+        audio.feedbackAudioObject.positiveFeedback.outstanding.sound.play();
         break;
       case score.currentScore >= 90:
-        feedbackAudioObject.positiveFeedback.amazing.sound.play();
+        audio.feedbackAudioObject.positiveFeedback.amazing.sound.play();
         break;
       case score.currentScore >= 50:
-        feedbackAudioObject.positiveFeedback.excellent.sound.play();
+        audio.feedbackAudioObject.positiveFeedback.excellent.sound.play();
         break;
       case score.currentScore >= 30:
-        feedbackAudioObject.positiveFeedback.greatJob.sound.play();
+        audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
         break;
       case score.currentScore >= 10:
-        feedbackAudioObject.positiveFeedback.goodJob.sound.play();
+        audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
         break;
     }
   }, 300);
@@ -685,7 +684,7 @@ function checkAnswer(currentAnswer, event) {
     ++numberOfRightAnswers;
     disableTouch(boxes);
   } else {
-    audio.appSfx.incorrect.play();
+    audio.appSfx.cancel.play();
     heartsArray.pop();
     displayHeartsArray();
     gameOver();

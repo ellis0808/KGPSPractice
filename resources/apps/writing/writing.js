@@ -42,7 +42,7 @@ const displayStartBtn = () => {
 };
 
 const startRound = () => {
-  writingAudio.writingSfx.startApp.play();
+  audio.navigationSfx.startApp.play();
   appContainer.appendChild(topRow);
   appContainer.appendChild(secondRow);
   appContainer.appendChild(canvasRow);
@@ -198,12 +198,12 @@ function checkAnswer(input) {
     }
     canvas.classList.add("border-correct");
     // setTimeout(() => {
-    writingAudio.writingSfx.correct.play();
+    audio.appSfx.correct.play();
     // }, 300);
     setTimeout(newWord, 1500);
   } else {
     // setTimeout(() => {
-    writingAudio.writingSfx.incorrect.play();
+    audio.appSfx.incorrect.play();
     // }, 30);
     canvas.classList.add("border-error");
     setTimeout(() => {

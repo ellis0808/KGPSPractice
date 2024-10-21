@@ -20,7 +20,6 @@ import {
   updateNegativeCount,
   updatePositiveCount,
 } from "../../utilities/update-score.js";
-import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import { timer, toggleTimerHide } from "../../utilities/timer-object.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
@@ -29,6 +28,7 @@ import {
   activityId,
   setStyle,
 } from "./card-touch-set-style-and-activity-id.js";
+import { audio } from "../../utilities/audio.js";
 
 /* SCORING */
 const correctAnswerPoints = 2;
@@ -241,7 +241,7 @@ function displayStartBtn() {
 
 // Start Round
 function startSession() {
-  cardTouchAudio.cardTouchSfx.startApp.play();
+  audio.navigationSfx.startApp.play();
   removeEndMessagesContainer();
   startBtn.classList.add("no-touch");
   startBtn.classList.add("spinfade");
@@ -413,22 +413,22 @@ function displayEndMessagesContainer() {
   setTimeout(() => {
     switch (true) {
       case score.currentScore < 5:
-        feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
+        audio.feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
         break;
       case score.currentScore > 31:
-        feedbackAudioObject.positiveFeedback.outstanding.sound.play();
+        audio.feedbackAudioObject.positiveFeedback.outstanding.sound.play();
         break;
       case score.currentScore > 27:
-        feedbackAudioObject.positiveFeedback.amazing.sound.play();
+        audio.feedbackAudioObject.positiveFeedback.amazing.sound.play();
         break;
       case score.currentScore > 23:
-        feedbackAudioObject.positiveFeedback.excellent.sound.play();
+        audio.feedbackAudioObject.positiveFeedback.excellent.sound.play();
         break;
       case score.currentScore > 18:
-        feedbackAudioObject.positiveFeedback.greatJob.sound.play();
+        audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
         break;
       case score.currentScore > 13:
-        feedbackAudioObject.positiveFeedback.goodJob.sound.play();
+        audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
         break;
     }
   }, 300);
@@ -549,22 +549,22 @@ function touchCard(e) {
     setTimeout(() => {
       switch (score.currentScore) {
         case 6:
-          feedbackAudioObject.positiveFeedback.goodJob.sound.play();
+          audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
           break;
         case 14:
-          feedbackAudioObject.positiveFeedback.greatJob.sound.play();
+          audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
           break;
         case 20:
-          feedbackAudioObject.positiveFeedback.greatJob.sound.play();
+          audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
           break;
         case 26:
-          feedbackAudioObject.positiveFeedback.excellent.sound.play();
+          audio.feedbackAudioObject.positiveFeedback.excellent.sound.play();
           break;
         case 30:
-          feedbackAudioObject.positiveFeedback.amazing.sound.play();
+          audio.feedbackAudioObject.positiveFeedback.amazing.sound.play();
           break;
         case 32:
-          feedbackAudioObject.positiveFeedback.outstanding.sound.play();
+          audio.feedbackAudioObject.positiveFeedback.outstanding.sound.play();
           break;
       }
     }, 650);

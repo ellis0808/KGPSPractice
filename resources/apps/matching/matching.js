@@ -6,9 +6,7 @@ import {
   body,
 } from "../../utilities/variables.js";
 import { menuItems } from "../general/start-main-app.js";
-import { alphabet } from "../card-touch/card-data.js";
 import { score } from "../../utilities/score-object.js";
-import { feedbackAudioObject } from "../../utilities/feedback-object.js";
 import { timer, toggleTimerHide } from "../../utilities/timer-object.js";
 import {
   scoreDisplay,
@@ -16,7 +14,6 @@ import {
   updateNegativeCount,
   updatePositiveCount,
 } from "../../utilities/update-score.js";
-import { matchingAudio } from "./matching-audio.js";
 import {
   dotAndLineCommand,
   startDot,
@@ -36,6 +33,7 @@ import {
   letterSetGenerator,
   shuffle,
 } from "./generate-grid-items.js";
+import { audio } from "../../utilities/audio.js";
 
 /* SCORING */
 const correctAnswerPoints = 1;
@@ -402,7 +400,7 @@ function removeEndMessagesContainer() {
 }
 
 function startSession() {
-  matchingAudio.matchingSfx.startApp.play();
+  audio.navigationSfx.startApp.play();
   removeEndMessagesContainer();
   startBtn.classList.add("no-touch");
   startBtn.classList.add("spinfade");
@@ -566,22 +564,22 @@ function displayEndMessagesContainer() {
   setTimeout(() => {
     switch (true) {
       case score.currentScore < 5:
-        feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
+        audio.feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
         break;
       case score.currentScore > 31:
-        feedbackAudioObject.positiveFeedback.outstanding.sound.play();
+        audio.feedbackAudioObject.positiveFeedback.outstanding.sound.play();
         break;
       case score.currentScore > 27:
-        feedbackAudioObject.positiveFeedback.amazing.sound.play();
+        audio.feedbackAudioObject.positiveFeedback.amazing.sound.play();
         break;
       case score.currentScore > 23:
-        feedbackAudioObject.positiveFeedback.excellent.sound.play();
+        audio.feedbackAudioObject.positiveFeedback.excellent.sound.play();
         break;
       case score.currentScore > 18:
-        feedbackAudioObject.positiveFeedback.greatJob.sound.play();
+        audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
         break;
       case score.currentScore > 13:
-        feedbackAudioObject.positiveFeedback.goodJob.sound.play();
+        audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
         break;
     }
   }, 300);
@@ -608,7 +606,7 @@ function checkAllCorrect() {
     setTimeout(() => {
       updatePositiveCount(allCorrectDots.length * correctAnswerPoints);
       scoreDisplay.classList.add("pulse");
-      matchingAudio.matchingSfx.allCorrect.play();
+      audio.appSfx.correct.play();
       setTimeout(randomFeedback, 500);
     }, 500);
     setTimeout(() => {
@@ -621,14 +619,14 @@ function checkAllCorrect() {
 let positiveFeedbackAudioObjects = [];
 let negativeFeedbackAudioObjects = [];
 function randomFeedback() {
-  Object.keys(feedbackAudioObject.positiveFeedback).forEach((object) => {
+  Object.keys(audio.feedbackAudioObject.positiveFeedback).forEach((object) => {
     if (!positiveFeedbackAudioObjects.includes(object)) {
       if (object === "greatJob" || object === "goodJob") {
         positiveFeedbackAudioObjects.push(object);
       }
     }
   });
-  Object.keys(feedbackAudioObject.positiveFeedback).forEach((object) => {
+  Object.keys(audio.feedbackAudioObject.positiveFeedback).forEach((object) => {
     if (!negativeFeedbackAudioObjects.includes(object)) {
       negativeFeedbackAudioObjects.push(object);
     }
@@ -637,7 +635,7 @@ function randomFeedback() {
   let randomFeedbackNumber = Math.floor(
     Math.random() * positiveFeedbackAudioObjects.length
   );
-  feedbackAudioObject.positiveFeedback[
+  audio.feedbackAudioObject.positiveFeedback[
     positiveFeedbackAudioObjects[randomFeedbackNumber]
   ].sound.play();
 }
