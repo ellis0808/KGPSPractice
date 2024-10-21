@@ -86,7 +86,9 @@ btnContainer2.classList.add("btn-container2");
 const repeatBtn = document.createElement("div");
 repeatBtn.classList.add("repeat-btn", "btn", "writing-app");
 repeatBtn.innerText = "Repeat";
-repeatBtn.addEventListener("pointer", writingAudio.repeat);
+repeatBtn.addEventListener("pointerdown", () => {
+  writingAudio.repeat();
+});
 const questionDisplay = document.createElement("div");
 questionDisplay.classList.add("question-display", "writing-app");
 const checkBtn = document.createElement("div");
