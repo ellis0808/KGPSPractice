@@ -215,6 +215,7 @@ body:not(:has(*)) {
   height: 100px;
   color: var(--clr-wht);
   background-color: var(--clr-blu);
+  z-index: 10;
 }
 
 .start-btn {
