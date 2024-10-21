@@ -25,29 +25,29 @@ const mainMenuSfx = {
   select1: new Howl({
     src: ["/KGPSEPaudio/sfx/sfx-select-2.mp3"],
     volume: 0.8,
-    onplayerror: function () {
-      sound.once("unlock", function () {
-        sound.play();
-      });
-    },
+    // onplayerror: function () {
+    //   sound.once("unlock", function () {
+    //     sound.play();
+    //   });
+    // },
   }),
   select2: new Howl({
     src: ["/KGPSEPaudio/sfx/sfx-select-1.mp3"],
     volume: 0.5,
-    onplayerror: function () {
-      sound.once("unlock", function () {
-        sound.play();
-      });
-    },
+    // onplayerror: function () {
+    //   sound.once("unlock", function () {
+    //     sound.play();
+    //   });
+    // },
   }),
   back: new Howl({
     src: ["/KGPSEPaudio/sfx/sfx-select-1-reversed.mp3"],
     volume: 0.5,
-    onplayerror: function () {
-      sound.once("unlock", function () {
-        sound.play();
-      });
-    },
+    // onplayerror: function () {
+    //   sound.once("unlock", function () {
+    //     sound.play();
+    // });
+    // },
   }),
 };
 
