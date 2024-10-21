@@ -114,6 +114,7 @@ class Audio {
     }
   }
   loadAudio(audioData) {
+    this.audioObject = {};
     audioData.map((item) => {
       return (this.audioObject[item.content] = {
         content: item.content,
