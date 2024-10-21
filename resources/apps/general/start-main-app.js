@@ -14,6 +14,7 @@ import {
   sessionData,
 } from "/KGPSEnglishPractice-test/resources/login/session-check.js";
 import { user } from "../../utilities/user-object.js";
+import { audio } from "../../utilities/audio.js";
 
 /*
 **********
@@ -25,29 +26,11 @@ const mainMenuSfx = {
   select1: new Howl({
     src: ["/KGPSEPaudio/sfx/sfx-select-2.mp3"],
     volume: 0.8,
-    // onplayerror: function () {
-    //   sound.once("unlock", function () {
-    //     sound.play();
-    //   });
-    // },
-  }),
-  select2: new Howl({
-    src: ["/KGPSEPaudio/sfx/sfx-select-1.mp3"],
-    volume: 0.5,
-    // onplayerror: function () {
-    //   sound.once("unlock", function () {
-    //     sound.play();
-    //   });
-    // },
-  }),
-  back: new Howl({
-    src: ["/KGPSEPaudio/sfx/sfx-select-1-reversed.mp3"],
-    volume: 0.5,
-    // onplayerror: function () {
-    //   sound.once("unlock", function () {
-    //     sound.play();
-    // });
-    // },
+    onplayerror: function () {
+      sound.once("unlock", function () {
+        sound.play();
+      });
+    },
   }),
 };
 
@@ -544,7 +527,7 @@ class MenuItems {
   ******/
 
   hidePrimaryMenu() {
-    mainMenuSfx.select2.play();
+    audio.navigationSfx.selectMenu.play();
     this.hideParentsInfoBtn();
     topContainer.innerText = "";
     primaryMenuContainer.classList.add("hidden");
@@ -622,7 +605,7 @@ class MenuItems {
     this.sightWordsMenu.classList.remove("hidden");
   }
   returnToMainMenu() {
-    mainMenuSfx.back.play();
+    audio.navigationSfx.backToPreviousMenu.play();
     this.removeMenu();
     this.unhidePrimaryMenu();
     this.displayParentsInfoBtn();
@@ -723,10 +706,4 @@ if (navBar) {
   body.appendChild(navBar);
 }
 
-export {
-  menuItems,
-  displayGreeting,
-  getCumulativeUserScore,
-  startMainApp,
-  mainMenuSfx,
-};
+export { menuItems, displayGreeting, getCumulativeUserScore, startMainApp };

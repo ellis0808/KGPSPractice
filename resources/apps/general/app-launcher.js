@@ -3,17 +3,17 @@ import { matchingApp } from "../matching/matching.js";
 import { fluencyApp } from "../fluency/fluency.js";
 import { writingApp } from "../writing/writing.js";
 // import { spellingTouchApp } from "../spelling/spelling-touch-app/spelling-touch-index.js";
-import { mainMenuSfx } from "./start-main-app.js";
+import { audio } from "../../utilities/audio.js";
 
 class AppLauncher {
   // Card Touch App
   startCardTouchApp(set) {
-    mainMenuSfx.select2.play();
+    audio.navigationSfx.selectMenu.play();
     cardTouchApp(set);
   }
   // Matching App
   startMatchingApp(set) {
-    mainMenuSfx.select2.play();
+    audio.navigationSfx.selectMenu.play();
     matchingApp(set);
   }
   //  startSpellingTouchApp() {
@@ -26,12 +26,12 @@ class AppLauncher {
   // }
   // Fluency App
   startFluencyApp(set) {
-    mainMenuSfx.select2.play();
+    audio.navigationSfx.selectMenu.play();
     fluencyApp(set);
   }
   // Writing App
   startWritingApp(set) {
-    mainMenuSfx.select2.play();
+    audio.navigationSfx.selectMenu.play();
     writingApp(set);
   }
 }

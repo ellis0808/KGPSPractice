@@ -40,7 +40,7 @@ let maxWrongAnswers = 5;
 let correctAnswerPoints;
 let incorrectAnswerPoints;
 let boxes = ".box";
-
+let restoreHeartSFX = audio.appSfx.poppop.play();
 /* 
 *****************
 GENERAL VARIABLES
@@ -434,7 +434,7 @@ function endSession() {
   grid.remove();
 }
 function startSession() {
-  fluencyAudio.numbersFluencySfx.startApp.play();
+  // fluencyAudio.numbersFluencySfx.startApp.play();
   startBtn.classList.add("no-touch");
   startBtn.classList.remove("intro");
   startBtn.classList.add("spinfade");
@@ -497,7 +497,7 @@ function newRound() {
     // if (!isPaused) {
     displayHeartsArray();
     if (round === 1) {
-      fluencyAudio.numbersFluencySfx.restoreHeartSFX.play();
+      restoreHeartSFX;
     }
     if (numberOfRightAnswers > 5) {
       restoreOneHeart();
@@ -648,7 +648,7 @@ function displayRound(round) {
   setTimeout(() => {
     appContainer.appendChild(bannerContainer);
     bannerContainer.appendChild(roundBanner);
-    fluencyAudio.numbersFluencySfx.newRound.play();
+    audio.appSfx.newRound.play();
     roundBanner.textContent = `Round ${round}`;
     roundDisplay.textContent = `Round ${round}`;
   }, 1500);
@@ -678,12 +678,12 @@ function userTouch(event) {
 
 function checkAnswer(currentAnswer, event) {
   if (currentAnswer === currentItem) {
-    fluencyAudio.numbersFluencySfx.correct.play();
+    audio.appSfx.correct.play();
     updatePositiveCount(correctAnswerPoints);
     ++numberOfRightAnswers;
     disableTouch(boxes);
   } else {
-    fluencyAudio.numbersFluencySfx.incorrect.play();
+    audio.appSfx.incorrect.play();
     heartsArray.pop();
     displayHeartsArray();
     gameOver();
@@ -721,7 +721,7 @@ function setHeartsArrayForRoundOne() {
 function restoreOneHeart() {
   if (heartsArray.length < maxNumberOfHearts) {
     heartsArray.push(`<i class="fa-solid fa-heart fa-1x"></i>`);
-    fluencyAudio.numbersFluencySfx.restoreHeartSFX.play();
+    restoreHeartSFX;
     displayHeartsArray();
   }
 }
