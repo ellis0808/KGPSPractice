@@ -40,7 +40,9 @@ let maxWrongAnswers = 5;
 let correctAnswerPoints;
 let incorrectAnswerPoints;
 let boxes = ".box";
-let restoreHeartSFX = audio.appSfx.poppop.play();
+function restoreHeartSFX() {
+  audio.appSfx.poppop.play();
+}
 /* 
 *****************
 GENERAL VARIABLES
@@ -434,7 +436,7 @@ function endSession() {
   grid.remove();
 }
 function startSession() {
-  // fluencyAudio.numbersFluencySfx.startApp.play();
+  audio.navigationSfx.startApp.play();
   startBtn.classList.add("no-touch");
   startBtn.classList.remove("intro");
   startBtn.classList.add("spinfade");
@@ -497,7 +499,7 @@ function newRound() {
     // if (!isPaused) {
     displayHeartsArray();
     if (round === 1) {
-      restoreHeartSFX;
+      restoreHeartSFX();
     }
     if (numberOfRightAnswers > 5) {
       restoreOneHeart();
@@ -721,7 +723,7 @@ function setHeartsArrayForRoundOne() {
 function restoreOneHeart() {
   if (heartsArray.length < maxNumberOfHearts) {
     heartsArray.push(`<i class="fa-solid fa-heart fa-1x"></i>`);
-    restoreHeartSFX;
+    restoreHeartSFX();
     displayHeartsArray();
   }
 }

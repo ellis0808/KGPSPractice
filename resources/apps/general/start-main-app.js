@@ -25,7 +25,7 @@ Enable Audio
 const mainMenuSfx = {
   select1: new Howl({
     src: ["/KGPSEPaudio/sfx/sfx-select-2.mp3"],
-    volume: 0.8,
+    volume: 0.0,
     onplayerror: function () {
       sound.once("unlock", function () {
         sound.play();
