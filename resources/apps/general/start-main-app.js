@@ -162,6 +162,8 @@ class MenuItems {
     this.sightWords2AppMenuItem = document.createElement("div");
     this.sightWords3AppMenuItem = document.createElement("div");
     this.sightWords1WritingAppMenuItem = document.createElement("div");
+    this.sightWords2WritingAppMenuItem = document.createElement("div");
+    this.sightWords3WritingAppMenuItem = document.createElement("div");
     this.letterSoundsAMSFAppMenuItem = document.createElement("div");
     this.numberFluency1to20AppMenuItem = document.createElement("div");
     this.numberFluency21to40AppMenuItem = document.createElement("div");
@@ -298,38 +300,38 @@ class MenuItems {
       this.removeMenu();
     });
     // 4. Sight Words 2 Writing App Menu Item
-    this.sightWords1WritingAppMenuItem.setAttribute(
+    this.sightWords2WritingAppMenuItem.setAttribute(
       "id",
       "sight-words-2-writing-app-menu-item"
     );
-    this.sightWords1WritingAppMenuItem.setAttribute(
+    this.sightWords2WritingAppMenuItem.setAttribute(
       "app-type",
       "sight-words-app"
     );
-    this.sightWords1WritingAppMenuItem.classList.add(
+    this.sightWords2WritingAppMenuItem.classList.add(
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.sightWords1WritingAppMenuItem.innerText = "Group 2";
-    this.sightWords1WritingAppMenuItem.addEventListener("click", () => {
+    this.sightWords2WritingAppMenuItem.innerText = "Group 2";
+    this.sightWords2WritingAppMenuItem.addEventListener("click", () => {
       appLauncher.startWritingApp("sightwords2");
       this.removeMenu();
     });
     // 4. Sight Words 3 Writing App Menu Item
-    this.sightWords1WritingAppMenuItem.setAttribute(
+    this.sightWords3WritingAppMenuItem.setAttribute(
       "id",
       "sight-words-3-writing-app-menu-item"
     );
-    this.sightWords1WritingAppMenuItem.setAttribute(
+    this.sightWords3WritingAppMenuItem.setAttribute(
       "app-type",
       "sight-words-app"
     );
-    this.sightWords1WritingAppMenuItem.classList.add(
+    this.sightWords3WritingAppMenuItem.classList.add(
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.sightWords1WritingAppMenuItem.innerText = "Group 3";
-    this.sightWords1WritingAppMenuItem.addEventListener("click", () => {
+    this.sightWords3WritingAppMenuItem.innerText = "Group 3";
+    this.sightWords3WritingAppMenuItem.addEventListener("click", () => {
       appLauncher.startWritingApp("sightwords3");
       this.removeMenu();
     });
@@ -587,9 +589,8 @@ class MenuItems {
     this.sightWordsMenu.classList.remove("hidden");
   }
   removeMenu() {
-    //remove primary menu
+    // remove Primary menu
     if (this.isPrimaryMenu) {
-      //remove Primary Menu
       document.querySelectorAll(".primary-menu-item").forEach((item) => {
         item.classList.add("hide");
         item.remove();
@@ -610,25 +611,7 @@ class MenuItems {
   removeMenuPage() {
     document.querySelectorAll(".secondary-menu");
     navBar.remove();
-    // this.alphabetCapitalsCardTouchAppMenuItem.remove();
-    // this.alphabetLowercaseCardTouchAppMenuItem.remove();
-    // this.alphabetMatchingAppMenuItem.remove();
-    // this.numberFluency1to20AppMenuItem.remove();
-    // this.numberFluency21to40AppMenuItem.remove();
-    // this.numberFluency41to60AppMenuItem.remove();
-    // this.numberFluency61to80AppMenuItem.remove();
-    // this.numberFluency81to100AppMenuItem.remove();
-    // this.sightWords1AppMenuItem.remove();
-    // this.sightWords2AppMenuItem.remove();
-    // this.sightWords3AppMenuItem.remove();
-    // this.sightWords1WritingAppMenuItem.remove();
     navBar.classList.add("hidden");
-    // topContainer.classList.add("hidden");
-    // primaryMenuContainer.classList.add("hidden");
-    // this.abcMenu.classList.add("hidden");
-    // this.numbersMenu.classList.add("hidden");
-    // this.sightWordsMenu.classList.add("hidden");
-    parentsInfo.remove();
     topContainer.remove();
     primaryMenuContainer.remove();
   }
@@ -654,24 +637,6 @@ class MenuItems {
     this.displayParentsInfoBtn();
     topContainer.innerText = "";
     displayGreeting();
-    // this.abcMenu.classList.remove("hidden");
-    // this.numbersMenu.classList.remove("hidden");
-    // this.sightWordsMenu.classList.remove("hidden");
-    // this.letterSoundsMenu.classList.remove("hidden");
-    // this.alphabetCapitalsCardTouchAppMenuItem.remove();
-    // this.alphabetLowercaseCardTouchAppMenuItem.remove();
-    // this.alphabetMatchingAppMenuItem.remove();
-    // this.sightWords1AppMenuItem.remove();
-    // this.sightWords2AppMenuItem.remove();
-    // this.sightWords3AppMenuItem.remove();
-    // this.sightWords1WritingAppMenuItem.remove();
-    // this.numberFluency1to20AppMenuItem.remove();
-    // this.numberFluency21to40AppMenuItem.remove();
-    // this.numberFluency41to60AppMenuItem.remove();
-    // this.numberFluency61to80AppMenuItem.remove();
-    // this.numberFluency81to100AppMenuItem.remove();
-    // this.displayMainPage();
-    // menuItems.returnToMainMenuToggle();
   }
   returnToMainMenuToggle() {
     if (!this.isPrimaryMenu) {
