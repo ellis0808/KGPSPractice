@@ -308,7 +308,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.numberFluency1to20AppMenuItem.innerText = "Touch 1-20";
+    this.numberFluency1to20AppMenuItem.innerText = "1-20";
     this.numberFluency1to20AppMenuItem.addEventListener("click", () => {
       appLauncher.startFluencyApp(1);
       this.removeMenu();
@@ -324,7 +324,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.numberFluency21to40AppMenuItem.innerText = "Touch 21-40";
+    this.numberFluency21to40AppMenuItem.innerText = "21-40";
     this.numberFluency21to40AppMenuItem.addEventListener("click", () => {
       appLauncher.startFluencyApp(2);
       this.removeMenu();
@@ -340,7 +340,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.numberFluency41to60AppMenuItem.innerText = "Touch 41-60";
+    this.numberFluency41to60AppMenuItem.innerText = "41-60";
     this.numberFluency41to60AppMenuItem.addEventListener("click", () => {
       appLauncher.startFluencyApp(3);
       this.removeMenu();
@@ -356,7 +356,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.numberFluency61to80AppMenuItem.innerText = "Touch 61-80";
+    this.numberFluency61to80AppMenuItem.innerText = "61-80";
     this.numberFluency61to80AppMenuItem.addEventListener("click", () => {
       appLauncher.startFluencyApp(4);
       this.removeMenu();
@@ -372,7 +372,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.numberFluency81to100AppMenuItem.innerText = "Touch 81-100";
+    this.numberFluency81to100AppMenuItem.innerText = "81-100";
     this.numberFluency81to100AppMenuItem.addEventListener("click", () => {
       appLauncher.startFluencyApp(5);
       this.removeMenu();
@@ -387,7 +387,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.numberWriting1to10AppMenuItem.innerText = "Writing 1-10";
+    this.numberWriting1to10AppMenuItem.innerText = "1-10";
     this.numberWriting1to10AppMenuItem.addEventListener("click", () => {
       appLauncher.startWritingApp("numbers1-10");
       this.removeMenu();
@@ -402,7 +402,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.numberWriting11to20AppMenuItem.innerText = "Writing 11-20";
+    this.numberWriting11to20AppMenuItem.innerText = "11-20";
     this.numberWriting11to20AppMenuItem.addEventListener("click", () => {
       appLauncher.startWritingApp("numbers11-20");
       this.removeMenu();
@@ -417,7 +417,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.numberWriting21to40AppMenuItem.innerText = "Writing 21-40";
+    this.numberWriting21to40AppMenuItem.innerText = "21-40";
     this.numberWriting21to40AppMenuItem.addEventListener("click", () => {
       appLauncher.startWritingApp("numbers21-40");
       this.removeMenu();
@@ -432,7 +432,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.numberWriting1to50AppMenuItem.innerText = "Writing 1-50";
+    this.numberWriting1to50AppMenuItem.innerText = "1-50";
     this.numberWriting1to50AppMenuItem.addEventListener("click", () => {
       appLauncher.startWritingApp("numbers1-50");
       this.removeMenu();
@@ -505,6 +505,7 @@ class MenuItems {
         this.matchingMenu.appendChild(this.alphabetMatchingAppMenuItem);
         break;
       case "numbers":
+        topContainer.innerText = "Numbers";
         this.fluencyMenu.appendChild(this.numberFluency1to20AppMenuItem);
         this.fluencyMenu.appendChild(this.numberFluency21to40AppMenuItem);
         this.fluencyMenu.appendChild(this.numberFluency41to60AppMenuItem);
@@ -515,12 +516,14 @@ class MenuItems {
         this.writingMenu.appendChild(this.numberWriting1to50AppMenuItem);
         break;
       case "sight-words":
+        topContainer.innerText = "Sight Words";
         this.touchMenu.appendChild(this.sightWords1AppMenuItem);
         this.touchMenu.appendChild(this.sightWords2AppMenuItem);
         this.touchMenu.appendChild(this.sightWords3AppMenuItem);
         this.writingMenu.appendChild(this.sightWords1WritingAppMenuItem);
         break;
       case "letter-sounds":
+        topContainer.innerText = "Letter Sounds";
         break;
     }
   }

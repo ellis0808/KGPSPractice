@@ -246,15 +246,17 @@ body:not(:has(*)) {
   height: 100%;
   /* margin: auto; */
   display: grid;
+  align-items: center;
   column-gap: 2rem;
   grid-template-columns: 300px 1fr;
-  grid-template-rows: 0.05fr repeat(4, 1fr);
+  grid-template-rows: 70px repeat(4, 1fr);
   grid-template-areas:
     ".....  returnToMainMenuBtn"
     "menu-headers  menu-apps-container"
     "menu-headers  menu-apps-container"
     "menu-headers  menu-apps-container"
     "menu-headers  menu-apps-container";
+  overflow: hidden;
   overflow-x: scroll;
 }
 .menu-headers {
@@ -276,6 +278,7 @@ body:not(:has(*)) {
   grid-template-rows: 4fr;
   place-content: center;
   place-items: center;
+  overflow: hidden;
   overflow-x: scroll;
 }
 .secondary-menu-row {
