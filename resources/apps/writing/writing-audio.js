@@ -37,37 +37,33 @@ class WritingAudio {
         category = "numbers";
         grouping = 1;
         audio.getAudio(category, grouping, grouping2);
-    }
-    switch (style) {
       case 2:
         category = "numbers";
         grouping = 2;
         audio.getAudio(category, grouping, grouping2);
-    }
-    switch (style) {
       case 3:
         category = "numbers";
         grouping = 3;
         grouping = 4;
         audio.getAudio(category, grouping, grouping2);
-    }
-    switch (style) {
       case 7:
         category = "numbers";
         grouping = 1;
         grouping2 = 5;
         audio.getAudio(category, grouping, grouping2);
-    }
-    switch (style) {
       case 9:
         category = "sight-words";
         grouping = 1;
         audio.getAudio(category, grouping, grouping2);
-    }
-    switch (style) {
-      case 9:
+      case 10:
         category = "sight-words";
         grouping = 1;
+        grouping2 = 2;
+        audio.getAudio(category, grouping, grouping2);
+      case 11:
+        category = "sight-words";
+        grouping = 1;
+        grouping2 = 3;
         audio.getAudio(category, grouping, grouping2);
     }
   }
