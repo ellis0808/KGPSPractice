@@ -241,7 +241,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.sightWords1AppMenuItem.innerText = "Sight Words 1";
+    this.sightWords1AppMenuItem.innerText = "Group 1";
     this.sightWords1AppMenuItem.addEventListener("click", () => {
       appLauncher.startCardTouchApp("sightwords1");
       this.removeMenu();
@@ -257,7 +257,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.sightWords2AppMenuItem.innerText = "Sight Words 2";
+    this.sightWords2AppMenuItem.innerText = "Group 2";
     this.sightWords2AppMenuItem.addEventListener("click", () => {
       appLauncher.startCardTouchApp("sightwords2");
       this.removeMenu();
@@ -273,7 +273,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.sightWords3AppMenuItem.innerText = "Sight Words 3";
+    this.sightWords3AppMenuItem.innerText = "Group 3";
     this.sightWords3AppMenuItem.addEventListener("click", () => {
       appLauncher.startCardTouchApp("sightwords3");
       this.removeMenu();
@@ -292,9 +292,45 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.sightWords1WritingAppMenuItem.innerText = "Sight Words Writing";
+    this.sightWords1WritingAppMenuItem.innerText = "Group 1";
     this.sightWords1WritingAppMenuItem.addEventListener("click", () => {
       appLauncher.startWritingApp("sightwords1");
+      this.removeMenu();
+    });
+    // 4. Sight Words 2 Writing App Menu Item
+    this.sightWords1WritingAppMenuItem.setAttribute(
+      "id",
+      "sight-words-2-writing-app-menu-item"
+    );
+    this.sightWords1WritingAppMenuItem.setAttribute(
+      "app-type",
+      "sight-words-app"
+    );
+    this.sightWords1WritingAppMenuItem.classList.add(
+      "secondary-menu-div",
+      "secondary-menu-item"
+    );
+    this.sightWords1WritingAppMenuItem.innerText = "Group 2";
+    this.sightWords1WritingAppMenuItem.addEventListener("click", () => {
+      appLauncher.startWritingApp("sightwords2");
+      this.removeMenu();
+    });
+    // 4. Sight Words 3 Writing App Menu Item
+    this.sightWords1WritingAppMenuItem.setAttribute(
+      "id",
+      "sight-words-3-writing-app-menu-item"
+    );
+    this.sightWords1WritingAppMenuItem.setAttribute(
+      "app-type",
+      "sight-words-app"
+    );
+    this.sightWords1WritingAppMenuItem.classList.add(
+      "secondary-menu-div",
+      "secondary-menu-item"
+    );
+    this.sightWords1WritingAppMenuItem.innerText = "Group 3";
+    this.sightWords1WritingAppMenuItem.addEventListener("click", () => {
+      appLauncher.startWritingApp("sightwords3");
       this.removeMenu();
     });
 
@@ -496,7 +532,7 @@ class MenuItems {
 
     switch (section) {
       case "alphabet":
-        topContainer.innerText = "Alphabet";
+        greetingDisplay.innerText = "Alphabet";
         this.alphabetCapitalsCardTouchAppMenuItem.classList.remove("hidden");
         this.alphabetLowercaseCardTouchAppMenuItem.classList.remove("hidden");
         this.alphabetMatchingAppMenuItem.classList.remove("hidden");
@@ -505,7 +541,7 @@ class MenuItems {
         this.matchingMenu.appendChild(this.alphabetMatchingAppMenuItem);
         break;
       case "numbers":
-        topContainer.innerText = "Numbers";
+        greetingDisplay.innerText = "Numbers";
         this.fluencyMenu.appendChild(this.numberFluency1to20AppMenuItem);
         this.fluencyMenu.appendChild(this.numberFluency21to40AppMenuItem);
         this.fluencyMenu.appendChild(this.numberFluency41to60AppMenuItem);
@@ -516,14 +552,14 @@ class MenuItems {
         this.writingMenu.appendChild(this.numberWriting1to50AppMenuItem);
         break;
       case "sight-words":
-        topContainer.innerText = "Sight Words";
+        greetingDisplay.innerText = "Sight Words";
         this.touchMenu.appendChild(this.sightWords1AppMenuItem);
         this.touchMenu.appendChild(this.sightWords2AppMenuItem);
         this.touchMenu.appendChild(this.sightWords3AppMenuItem);
         this.writingMenu.appendChild(this.sightWords1WritingAppMenuItem);
         break;
       case "letter-sounds":
-        topContainer.innerText = "Letter Sounds";
+        greetingDisplay.innerText = "Letter Sounds";
         break;
     }
   }
