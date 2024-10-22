@@ -571,7 +571,8 @@ class MenuItems {
   hidePrimaryMenu() {
     audio.navigationSfx.selectMenu.play();
     this.hideParentsInfoBtn();
-    topContainer.innerText = "";
+    greetingDisplay.innerText = "";
+    pointsDisplay.innerText = "";
     primaryMenuContainer.classList.add("hidden");
     this.abcMenu.classList.add("hidden");
     this.numbersMenu.classList.add("hidden");
