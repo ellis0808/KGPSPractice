@@ -275,6 +275,7 @@ body:not(:has(*)) {
   grid-template-rows: 4fr;
   place-content: center;
   place-items: center;
+  overflow-x: scroll;
 }
 .secondary-menu-row {
   width: 100%;
@@ -283,9 +284,7 @@ body:not(:has(*)) {
   grid-auto-flow: column;
   grid-template-rows: 1fr;
   grid-auto-columns: 350px;
-  /* align-items: center; */
   overflow: hidden;
-  overflow-x: scroll;
 }
 /* .touch-menu {
   grid-area: touch-menu;
@@ -384,6 +383,22 @@ body:not(:has(*)) {
   .primary-menu-div {
     font-size: 4rem;
   }
+}
+.secondary-menu-header {
+  width: 275px;
+  height: 180px;
+  background: var(--clr-wht);
+  color: black;
+  display: flex;
+  border: black 3px solid;
+  border-radius: 20px;
+  place-content: center;
+  place-items: center;
+  line-break: strict;
+  font-size: 3rem;
+  transition: 0.3s;
+  --stagger-delay: 0.1s;
+  --card-entrance: 0.5s;
 }
 .secondary-menu-div {
   width: 275px;

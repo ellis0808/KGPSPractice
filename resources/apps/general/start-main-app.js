@@ -133,17 +133,20 @@ class MenuItems {
     this.matchingMenuHeader = document.createElement("div");
     this.fluencyMenuHeader = document.createElement("div");
     this.writingMenuHeader = document.createElement("div");
-    this.touchMenuHeader.classList.add("secondary-menu-div", "secondary-menu");
+    this.touchMenuHeader.classList.add(
+      "secondary-menu-header",
+      "secondary-menu"
+    );
     this.matchingMenuHeader.classList.add(
-      "secondary-menu-div",
+      "secondary-menu-header",
       "secondary-menu"
     );
     this.fluencyMenuHeader.classList.add(
-      "secondary-menu-div",
+      "secondary-menu-header",
       "secondary-menu"
     );
     this.writingMenuHeader.classList.add(
-      "secondary-menu-div",
+      "secondary-menu-header",
       "secondary-menu"
     );
     this.touchMenuHeader.innerText = "Touch";
