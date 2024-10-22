@@ -237,6 +237,7 @@ body:not(:has(*)) {
       "menu5  menu6";
     column-gap: 8rem;
     row-gap: 4rem;
+    margin-top: 50px;
   }
 }
 
