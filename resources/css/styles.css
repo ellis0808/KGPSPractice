@@ -242,13 +242,13 @@ body:not(:has(*)) {
 
 .secondary-menu-container {
   grid-area: menu-container;
-  width: 100%;
+  width: auto;
   height: 100%;
   /* margin: auto; */
   display: grid;
   align-items: center;
   column-gap: 2rem;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 200px 1fr;
   grid-template-rows: 70px repeat(4, 1fr);
   grid-template-areas:
     ".....  returnToMainMenuBtn"
@@ -288,7 +288,7 @@ body:not(:has(*)) {
   align-items: center;
   grid-auto-flow: column;
   grid-template-rows: 1fr;
-  grid-auto-columns: 350px;
+  grid-auto-columns: 250px;
   overflow: hidden;
 }
 .parents-info {
