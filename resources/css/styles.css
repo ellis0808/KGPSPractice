@@ -256,7 +256,7 @@ body:not(:has(*)) {
     "menu-headers  menu-apps-container"
     "menu-headers  menu-apps-container"
     "menu-headers  menu-apps-container";
-  overflow: hidden;
+  /* overflow: hidden; */
   overflow-x: scroll;
 }
 .menu-headers {
@@ -278,13 +278,14 @@ body:not(:has(*)) {
   grid-template-rows: 4fr;
   place-content: center;
   place-items: center;
-  overflow: hidden;
+  /* overflow: hidden; */
   overflow-x: scroll;
 }
 .secondary-menu-row {
   width: 100%;
   height: 200px;
   display: grid;
+  align-items: center;
   grid-auto-flow: column;
   grid-template-rows: 1fr;
   grid-auto-columns: 350px;
