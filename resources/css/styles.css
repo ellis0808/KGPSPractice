@@ -271,7 +271,7 @@ body:not(:has(*)) {
 }
 .menu-apps-container {
   grid-area: menu-apps-container;
-  width: 100%;
+  width: auto;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
@@ -376,7 +376,7 @@ body:not(:has(*)) {
   }
 }
 .secondary-menu-header {
-  width: 275px;
+  width: 200px;
   height: 140px;
   background: var(--clr-wht);
   color: black;
@@ -386,14 +386,14 @@ body:not(:has(*)) {
   place-content: center;
   place-items: center;
   line-break: strict;
-  font-size: 3rem;
+  font-size: 2.25rem;
   transition: 0.3s;
   --stagger-delay: 0.1s;
   --card-entrance: 0.5s;
 }
 .secondary-menu-div {
-  width: 275px;
-  height: 180px;
+  width: 225px;
+  height: 140px;
   background: var(--clr-acc1);
   color: var(--clr-wht);
   display: flex;
@@ -410,7 +410,6 @@ body:not(:has(*)) {
   grid-area: returnToMainMenuBtn;
   height: 50px;
   width: 175px;
-  margin-top: 6rem;
   margin-left: auto;
   color: var(--clr-wht);
   background: var(--clr-acc1);
@@ -422,6 +421,9 @@ body:not(:has(*)) {
   justify-self: end;
   align-self: center;
   transition: 0.3s;
+}
+.returnToMainMenuBtn:hover {
+  transform: translateY(-3px) scale(1.07);
 }
 .secondary-menu-div:hover {
   transform: translateY(-3px) scale(1.07);
