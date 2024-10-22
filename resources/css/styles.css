@@ -250,7 +250,7 @@ body:not(:has(*)) {
   align-items: center;
   column-gap: 2rem;
   grid-template-columns: 200px 1fr;
-  grid-template-rows: 70px repeat(4, 1fr);
+  grid-template-rows: 70px repeat(4, 180px);
   grid-template-areas:
     ".....  returnToMainMenuBtn"
     "menu-headers  menu-apps-container"
