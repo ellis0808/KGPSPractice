@@ -559,6 +559,8 @@ class MenuItems {
         this.touchMenu.appendChild(this.sightWords2AppMenuItem);
         this.touchMenu.appendChild(this.sightWords3AppMenuItem);
         this.writingMenu.appendChild(this.sightWords1WritingAppMenuItem);
+        this.writingMenu.appendChild(this.sightWords2WritingAppMenuItem);
+        this.writingMenu.appendChild(this.sightWords3WritingAppMenuItem);
         break;
       case "letter-sounds":
         greetingDisplay.innerText = "Letter Sounds";
