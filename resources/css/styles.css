@@ -255,6 +255,7 @@ body:not(:has(*)) {
     "menu-headers  menu-apps-container"
     "menu-headers  menu-apps-container"
     "menu-headers  menu-apps-container";
+  overflow-x: scroll;
 }
 .menu-headers {
   grid-area: menu-headers;
@@ -286,19 +287,6 @@ body:not(:has(*)) {
   grid-auto-columns: 350px;
   overflow: hidden;
 }
-/* .touch-menu {
-  grid-area: touch-menu;
-}
-.matching-menu {
-  grid-area: matching-menu;
-}
-.fluency-menu {
-  grid-area: fluency-menu;
-}
-.writing-menu {
-  grid-area: writing-menu;
-} */
-
 .parents-info {
   grid-area: parents-info;
   height: 50px;
@@ -386,12 +374,12 @@ body:not(:has(*)) {
 }
 .secondary-menu-header {
   width: 275px;
-  height: 180px;
+  height: 140px;
   background: var(--clr-wht);
   color: black;
   display: flex;
   border: black 3px solid;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   place-content: center;
   place-items: center;
   line-break: strict;
@@ -411,9 +399,7 @@ body:not(:has(*)) {
   place-items: center;
   line-break: strict;
   font-size: 3rem;
-  /* text-align: center; */
   transition: 0.3s;
-  /* box-shadow: 0px 24px 35px 7px rgba(0, 0, 0, 0.3); */
   --stagger-delay: 0.1s;
   --card-entrance: 0.5s;
 }
