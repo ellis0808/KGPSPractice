@@ -100,13 +100,13 @@ class MenuItems {
     this.moveMenuRightBtn.classList.add("move-menu-right-btn");
     this.moveMenuRightBtn.innerText = "Right";
     this.moveMenuRightBtn.addEventListener("pointerdown", () => {
-      this.sectionColumn.style.translate("-400px");
+      this.sectionColumn.style.translate = "-400px";
     });
     this.moveMenuLeftBtn = document.createElement("button");
     this.moveMenuLeftBtn.classList.add("move-menu-left-btn");
     this.moveMenuLeftBtn.innerText = "Left";
     this.moveMenuLeftBtn.addEventListener("pointerdown", () => {
-      this.sectionColumn.style.translate("400px");
+      this.sectionColumn.style.translate = "400px";
     });
     this.secondaryMenuContainer = document.createElement("div");
     this.secondaryMenuContainer.classList.add(
