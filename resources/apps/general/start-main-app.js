@@ -106,7 +106,7 @@ class MenuItems {
     this.moveMenuLeftBtn.classList.add("move-menu-left-btn");
     this.moveMenuLeftBtn.innerText = "Left";
     this.moveMenuLeftBtn.addEventListener("pointerdown", () => {
-      this.sectionColumn.style.translate = "400px";
+      this.sectionColumn.style.translate = "0px";
     });
     this.secondaryMenuContainer = document.createElement("div");
     this.secondaryMenuContainer.classList.add(
@@ -661,6 +661,9 @@ class MenuItems {
     } else if (this.isPrimaryMenu) {
       returnToMainMenuBtn.classList.add("hidden");
     }
+  }
+  resetSecondaryMenuPosition() {
+    this.sectionColumn.style.translate = "0px";
   }
 }
 
