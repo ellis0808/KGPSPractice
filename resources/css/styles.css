@@ -281,6 +281,7 @@ body:not(:has(*)) {
   /* place-content: center; */
   /* place-items: center; */
   overflow: hidden;
+  transition: 1s;
 }
 .secondary-menu-row {
   width: 1500px;
