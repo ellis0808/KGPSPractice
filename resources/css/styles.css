@@ -257,7 +257,7 @@ body:not(:has(*)) {
     "menu-headers  menu-apps-container  menu-apps-container menu-apps-container"
     "menu-headers  menu-apps-container  menu-apps-container menu-apps-container"
     "menu-headers  menu-apps-container  menu-apps-container menu-apps-container";
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 .menu-headers {
   grid-area: menu-headers;
