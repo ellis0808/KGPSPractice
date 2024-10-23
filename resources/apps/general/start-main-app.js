@@ -96,6 +96,18 @@ class MenuItems {
     // this.letterSoundsMenu.innerText = "Letter Sounds";
 
     // Seondary Menu
+    this.moveMenuRightBtn = document.createElement("button");
+    this.moveMenuRightclassList.add("move-menu-right-btn");
+    this.moveMenuRightBtn.innerText = "Right";
+    this.moveMenuRightBtn.addEventListener("pointerdown", () => {
+      this.sectionColumn.style.translate("-400px");
+    });
+    this.moveMenuLeftBtn = document.createElement("button");
+    this.moveMenuLeftBtn.classList.add("move-menu-left-btn");
+    this.moveMenuLeftBtn.innerText = "Left";
+    this.moveMenuLeftBtn.addEventListener("pointerdown", () => {
+      this.sectionColumn.style.translate("400px");
+    });
     this.secondaryMenuContainer = document.createElement("div");
     this.secondaryMenuContainer.classList.add(
       "secondary-menu-container",
@@ -520,6 +532,9 @@ class MenuItems {
     this.isSecondaryMenu = true;
     this.returnToMainMenuToggle();
     mainContainer.appendChild(this.secondaryMenuContainer);
+    this.secondaryMenuContainer.appendChild(returnToMainMenuBtn);
+    this.secondaryMenuContainer.appendChild(this.moveMenuLeftBtn);
+    this.secondaryMenuContainer.appendChild(this.moveMenuRightBtn);
     this.secondaryMenuContainer.appendChild(returnToMainMenuBtn);
     this.secondaryMenuContainer.appendChild(this.headersColumn);
     this.secondaryMenuContainer.appendChild(this.sectionColumn);
