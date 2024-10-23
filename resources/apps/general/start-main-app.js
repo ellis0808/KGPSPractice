@@ -651,6 +651,7 @@ class MenuItems {
     audio.navigationSfx.backToPreviousMenu.play();
     this.removeMenu();
     this.unhidePrimaryMenu();
+    this.resetSecondaryMenuPosition();
     this.displayParentsInfoBtn();
     topContainer.innerText = "";
     displayGreeting();
