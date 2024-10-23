@@ -273,7 +273,7 @@ body:not(:has(*)) {
 }
 .menu-apps-container {
   grid-area: menu-apps-container;
-  width: 100%;
+  width: 3000px;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
