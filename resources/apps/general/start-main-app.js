@@ -98,16 +98,18 @@ class MenuItems {
     // Seondary Menu
 
     this.moveMenuRightBtn = document.createElement("button");
-    this.moveMenuRightBtn.classList.add("move-menu-right-btn", "hide");
+    this.moveMenuRightBtn.classList.add("move-menu-right-btn");
     this.moveMenuRightBtn.innerText = "Right";
     this.moveMenuRightBtn.addEventListener("pointerdown", () => {
       this.sectionColumn.style.translate = "-590px";
+      this.displayMovementArrows();
     });
     this.moveMenuLeftBtn = document.createElement("button");
-    this.moveMenuLeftBtn.classList.add("move-menu-left-btn");
+    this.moveMenuLeftBtn.classList.add("move-menu-left-btn", "hide");
     this.moveMenuLeftBtn.innerText = "Left";
     this.moveMenuLeftBtn.addEventListener("pointerdown", () => {
       this.sectionColumn.style.translate = "0px";
+      this.displayMovementArrows();
     });
     this.secondaryMenuContainer = document.createElement("div");
     this.secondaryMenuContainer.classList.add(
