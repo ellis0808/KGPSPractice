@@ -96,6 +96,8 @@ class MenuItems {
     // this.letterSoundsMenu.innerText = "Letter Sounds";
 
     // Seondary Menu
+    this.moveMenuBtnContainer = document.createElement("div");
+    this.moveMenuBtnContainer.classList.add(".move-menu-btn-container");
     this.moveMenuRightBtn = document.createElement("button");
     this.moveMenuRightBtn.classList.add("move-menu-right-btn");
     this.moveMenuRightBtn.innerText = "Right";
@@ -523,7 +525,7 @@ class MenuItems {
   }
 
   /******
-    Display Sub Menus
+    Display Seconday Menu
   ******/
 
   displaySecondaryMenu(section) {
@@ -533,8 +535,6 @@ class MenuItems {
     this.returnToMainMenuToggle();
     mainContainer.appendChild(this.secondaryMenuContainer);
     this.secondaryMenuContainer.appendChild(returnToMainMenuBtn);
-    this.secondaryMenuContainer.appendChild(this.moveMenuLeftBtn);
-    this.secondaryMenuContainer.appendChild(this.moveMenuRightBtn);
     this.secondaryMenuContainer.appendChild(returnToMainMenuBtn);
     this.secondaryMenuContainer.appendChild(this.headersColumn);
     this.secondaryMenuContainer.appendChild(this.sectionColumn);
@@ -546,6 +546,9 @@ class MenuItems {
     this.sectionColumn.appendChild(this.matchingMenu);
     this.sectionColumn.appendChild(this.fluencyMenu);
     this.sectionColumn.appendChild(this.writingMenu);
+    this.moveMenuBtnContainer.appendChild(this.moveMenuLeftBtn);
+    this.moveMenuBtnContainer.appendChild(this.moveMenuRightBtn);
+    this.secondaryMenuContainer.appendChild(this.moveMenuBtnContainer);
 
     switch (section) {
       case "alphabet":
