@@ -97,11 +97,17 @@ class MenuItems {
 
     // Seondary Menu
     this.subMainContainer = document.createElement("div");
-    this.subMainContainer.classList.add("sub-main-container");
+    this.subMainContainer.classList.add(
+      "sub-main-container",
+      "secondary-menu-item"
+    );
     this.btnContainer1 = document.createElement("div");
-    this.btnContainer1.classList.add("btn-container1");
+    this.btnContainer1.classList.add("btn-container1", "secondary-menu-item");
     this.moveMenuBtnContainer = document.createElement("div");
-    this.moveMenuBtnContainer.classList.add("move-menu-btn-container");
+    this.moveMenuBtnContainer.classList.add(
+      "move-menu-btn-container",
+      "secondary-menu-item"
+    );
     this.moveMenuRightBtn = document.createElement("button");
     this.moveMenuRightBtn.classList.add("move-menu-right-btn");
     this.moveMenuRightBtn.innerText = "Right";
