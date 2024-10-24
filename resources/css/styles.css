@@ -410,17 +410,19 @@ body:not(:has(*)) {
 }
 .move-menu-left-btn,
 .move-menu-right-btn {
-  height: 50px;
   width: 100px;
-  background-color: var(--clr-acc1);
+  aspect-ratio: 1;
+  background: yellow;
   color: var(--clr-wht);
   z-index: 20;
 }
 .move-menu-left-btn {
   grid-area: move-menu-left-btn;
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
 }
 .move-menu-right-btn {
   grid-area: move-menu-right-btn;
+  clip-path: polygon(0 0, 0 100%, 100% 50%);
 }
 .returnToMainMenuBtn {
   grid-area: returnToMainMenuBtn;
