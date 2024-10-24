@@ -96,6 +96,8 @@ class MenuItems {
     // this.letterSoundsMenu.innerText = "Letter Sounds";
 
     // Seondary Menu
+    this.btnContainer1 = document.createElement("div");
+    this.moveMenuBtnContainer.classList.add("btn-container1");
     this.moveMenuBtnContainer = document.createElement("div");
     this.moveMenuBtnContainer.classList.add("move-menu-btn-container");
     this.moveMenuRightBtn = document.createElement("button");
@@ -548,7 +550,8 @@ class MenuItems {
     this.sectionColumn.appendChild(this.writingMenu);
     this.moveMenuBtnContainer.appendChild(this.moveMenuLeftBtn);
     this.moveMenuBtnContainer.appendChild(this.moveMenuRightBtn);
-    mainContainer.appendChild(this.moveMenuBtnContainer);
+    this.btnContainer1.appendChild(this.moveMenuBtnContainer);
+    mainContainer.appendChild(this.btnContainer1);
 
     switch (section) {
       case "alphabet":
