@@ -558,9 +558,9 @@ class MenuItems {
     this.sectionColumn.appendChild(this.writingMenu);
     this.moveMenuBtnContainer.appendChild(this.moveMenuLeftBtn);
     this.moveMenuBtnContainer.appendChild(this.moveMenuRightBtn);
-    this.btnContainer1.appendChild(this.moveMenuBtnContainer);
-    this.subMainContainer.appendChild(this.btnContainer1);
-    mainContainer.appendChild(this.subMainContainer);
+    mainContainer.appendChild(this.moveMenuBtnContainer);
+    // this.subMainContainer.appendChild(this.btnContainer1);
+    // mainContainer.appendChild(this.subMainContainer);
 
     switch (section) {
       case "alphabet":
