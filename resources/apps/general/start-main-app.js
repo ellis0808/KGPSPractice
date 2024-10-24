@@ -550,10 +550,6 @@ class MenuItems {
     this.sectionColumn.appendChild(this.fluencyMenu);
     this.sectionColumn.appendChild(this.writingMenu);
 
-    // this.moveMenuBtnContainer.appendChild(this.moveMenuLeftBtn);
-    // this.moveMenuBtnContainer.appendChild(this.moveMenuRightBtn);
-    // mainContainer.appendChild(this.moveMenuBtnContainer);
-
     switch (section) {
       case "alphabet":
         greetingDisplay.innerText = "Alphabet";
@@ -589,8 +585,12 @@ class MenuItems {
         break;
     }
   }
-  displayMovementArrows() {
+  getSectionColumnXPosition() {
     const rect = this.sectionColumn.getBoundingClientRect();
+    return rect;
+  }
+  displayMovementArrows() {
+    this.getSectionColumnXPosition();
     console.log(rect.left);
     if (!rect.left === 0) {
       this.moveMenuLeftBtn.classList.remove("hide");
