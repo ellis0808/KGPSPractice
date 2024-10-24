@@ -97,7 +97,7 @@ class MenuItems {
 
     // Seondary Menu
     this.btnContainer1 = document.createElement("div");
-    this.moveMenuBtnContainer.classList.add("btn-container1");
+    this.btnContainer1.classList.add("btn-container1");
     this.moveMenuBtnContainer = document.createElement("div");
     this.moveMenuBtnContainer.classList.add("move-menu-btn-container");
     this.moveMenuRightBtn = document.createElement("button");
