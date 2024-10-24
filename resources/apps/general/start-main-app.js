@@ -101,7 +101,7 @@ class MenuItems {
     this.moveMenuRightBtn.classList.add("move-menu-right-btn");
     this.moveMenuRightBtn.innerText = "Right";
     this.moveMenuRightBtn.addEventListener("pointerdown", () => {
-      this.sectionColumn.style.translate = "-520px";
+      this.sectionColumn.style.translate = "-560px";
     });
     this.moveMenuLeftBtn = document.createElement("button");
     this.moveMenuLeftBtn.classList.add("move-menu-left-btn");
