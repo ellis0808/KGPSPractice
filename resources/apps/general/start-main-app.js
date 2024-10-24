@@ -103,14 +103,18 @@ class MenuItems {
     this.moveMenuRightBtn.innerText = "Right";
     this.moveMenuRightBtn.addEventListener("pointerdown", () => {
       this.sectionColumn.style.translate = "-590px";
-      this.displayMovementArrows();
+      setTimeout(() => {
+        this.displayMovementArrows();
+      }, 500);
     });
     this.moveMenuLeftBtn = document.createElement("button");
     this.moveMenuLeftBtn.classList.add("move-menu-left-btn", "hide");
     this.moveMenuLeftBtn.innerText = "Left";
     this.moveMenuLeftBtn.addEventListener("pointerdown", () => {
       this.sectionColumn.style.translate = "0px";
-      this.displayMovementArrows();
+      setTimeout(() => {
+        this.displayMovementArrows();
+      }, 500);
     });
     this.secondaryMenuContainer = document.createElement("div");
     this.secondaryMenuContainer.classList.add(
@@ -593,7 +597,7 @@ class MenuItems {
   displayMovementArrows() {
     this.getSectionColumnXPosition();
     console.log(this.rect.left);
-    if (!this.rect.left === 0) {
+    if (this.rect.left !== 0) {
       this.moveMenuLeftBtn.classList.remove("hide");
     }
   }
