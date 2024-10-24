@@ -96,13 +96,6 @@ class MenuItems {
     // this.letterSoundsMenu.innerText = "Letter Sounds";
 
     // Seondary Menu
-    this.subMainContainer = document.createElement("div");
-    this.subMainContainer.classList.add(
-      "sub-main-container",
-      "secondary-menu-item"
-    );
-    this.btnContainer1 = document.createElement("div");
-    this.btnContainer1.classList.add("btn-container1", "secondary-menu-item");
     this.moveMenuBtnContainer = document.createElement("div");
     this.moveMenuBtnContainer.classList.add(
       "move-menu-btn-container",
@@ -556,11 +549,11 @@ class MenuItems {
     this.sectionColumn.appendChild(this.matchingMenu);
     this.sectionColumn.appendChild(this.fluencyMenu);
     this.sectionColumn.appendChild(this.writingMenu);
-    this.moveMenuBtnContainer.appendChild(this.moveMenuLeftBtn);
-    this.moveMenuBtnContainer.appendChild(this.moveMenuRightBtn);
-    mainContainer.appendChild(this.moveMenuBtnContainer);
-    // this.subMainContainer.appendChild(this.btnContainer1);
-    // mainContainer.appendChild(this.subMainContainer);
+    this.sectionColumn.appendChild(this.moveMenuLeftBtn);
+    this.sectionColumn.appendChild(this.moveMenuRightBtn);
+    // this.moveMenuBtnContainer.appendChild(this.moveMenuLeftBtn);
+    // this.moveMenuBtnContainer.appendChild(this.moveMenuRightBtn);
+    // mainContainer.appendChild(this.moveMenuBtnContainer);
 
     switch (section) {
       case "alphabet":

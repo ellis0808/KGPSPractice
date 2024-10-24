@@ -248,15 +248,14 @@ body:not(:has(*)) {
   /* margin: auto; */
   display: grid;
   align-items: center;
-  column-gap: 2rem;
-  grid-template-columns: 225px repeat(3, 1fr);
+  grid-template-columns: 225px 0.05fr 1fr 1fr 1fr 0.05fr;
   grid-template-rows: 70px repeat(4, 1fr);
   grid-template-areas:
-    ".....  move-menu-left-btn  move-menu-right-btn returnToMainMenuBtn"
-    "menu-headers  menu-apps-container  menu-apps-container menu-apps-container"
-    "menu-headers  menu-apps-container  menu-apps-container menu-apps-container"
-    "menu-headers  menu-apps-container  menu-apps-container menu-apps-container"
-    "menu-headers  menu-apps-container  menu-apps-container menu-apps-container";
+    ".....  ..... .....  ..... returnToMainMenuBtn"
+    "menu-headers  ..... menu-apps-container  menu-apps-container menu-apps-container ....."
+    "menu-headers  move-menu-left-btn menu-apps-container  menu-apps-container menu-apps-container move-menu-right-btn"
+    "menu-headers  move-menu-left-btn   menu-apps-container  menu-apps-container menu-apps-container move-menu-right-btn"
+    "menu-headers  ..... menu-apps-container  menu-apps-container menu-apps-container .....";
   overflow: hidden;
 }
 .menu-headers {
@@ -408,35 +407,6 @@ body:not(:has(*)) {
   transition: 0.3s;
   --stagger-delay: 0.1s;
   --card-entrance: 0.5s;
-}
-.sub-main-container {
-  width: 100%;
-  height: 100%;
-  max-width: 2000px;
-  max-height: 2000px;
-  /* margin: auto; */
-  display: grid;
-  place-items: center;
-  place-content: center;
-  overflow: hidden;
-}
-.btn-container1 {
-  width: 100%;
-  height: 100%;
-  /* margin: auto; */
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-template-areas:
-    "..... ..... ....."
-    "..... move-menu-btn-container move-menu-btn-container"
-    "..... move-menu-btn-container move-menu-btn-container"
-    "..... ..... .....";
-  position: absolute;
-  place-items: center;
-  place-content: center;
-  overflow: hidden;
-  z-index: 0;
 }
 .move-menu-btn-container {
   grid-area: menu-container;
