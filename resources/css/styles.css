@@ -437,7 +437,7 @@ body:not(:has(*)) {
     "..... ..... ....."
     "..... move-menu-left-btn move-menu-right-btn"
     "..... ..... .....";
-  position: absolute;
+  /* position: absolute; */
   place-items: center;
   place-content: center;
   z-index: 30;
