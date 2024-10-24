@@ -538,7 +538,8 @@ class MenuItems {
     this.returnToMainMenuToggle();
     mainContainer.appendChild(this.secondaryMenuContainer);
     this.secondaryMenuContainer.appendChild(returnToMainMenuBtn);
-    this.secondaryMenuContainer.appendChild(returnToMainMenuBtn);
+    this.secondaryMenuContainer.appendChild(this.moveMenuLeftBtn);
+    this.secondaryMenuContainer.appendChild(this.moveMenuRightBtn);
     this.secondaryMenuContainer.appendChild(this.headersColumn);
     this.secondaryMenuContainer.appendChild(this.sectionColumn);
     this.headersColumn.appendChild(this.touchMenuHeader);
@@ -549,8 +550,7 @@ class MenuItems {
     this.sectionColumn.appendChild(this.matchingMenu);
     this.sectionColumn.appendChild(this.fluencyMenu);
     this.sectionColumn.appendChild(this.writingMenu);
-    this.sectionColumn.appendChild(this.moveMenuLeftBtn);
-    this.sectionColumn.appendChild(this.moveMenuRightBtn);
+
     // this.moveMenuBtnContainer.appendChild(this.moveMenuLeftBtn);
     // this.moveMenuBtnContainer.appendChild(this.moveMenuRightBtn);
     // mainContainer.appendChild(this.moveMenuBtnContainer);
