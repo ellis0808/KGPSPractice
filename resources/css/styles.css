@@ -251,9 +251,9 @@ body:not(:has(*)) {
   grid-template-columns: 225px 0.05fr 1fr 1fr 1fr 0.05fr;
   grid-template-rows: 70px repeat(4, 1fr);
   grid-template-areas:
-    ".....  ..... .....  ..... returnToMainMenuBtn"
+    ".....  ..... .....  .....  ..... returnToMainMenuBtn"
     "menu-headers  ..... menu-apps-container  menu-apps-container menu-apps-container ....."
-    "menu-headers  move-menu-left-btn menu-apps-container  menu-apps-container menu-apps-container move-menu-right-btn"
+    "menu-headers  move-menu-left-btn   menu-apps-container  menu-apps-container menu-apps-container move-menu-right-btn"
     "menu-headers  move-menu-left-btn   menu-apps-container  menu-apps-container menu-apps-container move-menu-right-btn"
     "menu-headers  ..... menu-apps-container  menu-apps-container menu-apps-container .....";
   overflow: hidden;
@@ -407,22 +407,6 @@ body:not(:has(*)) {
   transition: 0.3s;
   --stagger-delay: 0.1s;
   --card-entrance: 0.5s;
-}
-.move-menu-btn-container {
-  grid-area: menu-container;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-template-areas:
-    "..... ..... ....."
-    "..... move-menu-left-btn move-menu-right-btn"
-    "..... ..... .....";
-  position: relative;
-  place-items: center;
-  place-content: center;
-  z-index: 30;
 }
 .move-menu-left-btn,
 .move-menu-right-btn {

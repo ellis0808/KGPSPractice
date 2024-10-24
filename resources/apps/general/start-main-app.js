@@ -96,11 +96,7 @@ class MenuItems {
     // this.letterSoundsMenu.innerText = "Letter Sounds";
 
     // Seondary Menu
-    this.moveMenuBtnContainer = document.createElement("div");
-    this.moveMenuBtnContainer.classList.add(
-      "move-menu-btn-container",
-      "secondary-menu-item"
-    );
+
     this.moveMenuRightBtn = document.createElement("button");
     this.moveMenuRightBtn.classList.add("move-menu-right-btn");
     this.moveMenuRightBtn.innerText = "Right";
