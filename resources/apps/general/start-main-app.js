@@ -590,7 +590,7 @@ class MenuItems {
   }
   displayMovementArrows() {
     rect = this.sectionColumn.getBoundingClientRect();
-    console.log(rect.left);
+    console.log(rect);
     if (!rect.left === 0) {
       this.moveMenuLeftBtn.classList.remove("hide");
     }
