@@ -409,9 +409,20 @@ body:not(:has(*)) {
   --stagger-delay: 0.1s;
   --card-entrance: 0.5s;
 }
+.sub-main-container {
+  width: 100%;
+  height: 100%;
+  max-width: 2000px;
+  max-height: 2000px;
+  margin: auto;
+  display: grid;
+  place-items: center;
+  place-content: center;
+  overflow: hidden;
+}
 .btn-container1 {
-  width: 2000px;
-  height: 2000px;
+  width: 100%;
+  height: 100%;
   max-width: 2000px;
   max-height: 2000px;
   margin: auto;
