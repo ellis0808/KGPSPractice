@@ -589,8 +589,8 @@ class MenuItems {
     }
   }
   displayMovementArrows() {
-    rect = this.sectionColumn.getBoundingClientRect();
-    console.log(rect);
+    const rect = this.sectionColumn.getBoundingClientRect();
+    console.log(rect.left);
     if (!rect.left === 0) {
       this.moveMenuLeftBtn.classList.remove("hide");
     }
