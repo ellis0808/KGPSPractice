@@ -415,6 +415,7 @@ body:not(:has(*)) {
   background: yellow;
   color: var(--clr-wht);
   z-index: 20;
+  transition: 0.3s;
 }
 .move-menu-left-btn {
   grid-area: move-menu-left-btn;
