@@ -418,15 +418,16 @@ body:not(:has(*)) {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  grid-template-areas:
+  /* grid-template-areas:
     "..... ..... ....."
     "..... move-menu-btn-container move-menu-btn-container"
     "..... move-menu-btn-container move-menu-btn-container"
-    "..... ..... .....";
+    "..... ..... ....."; */
   /* position: absolute; */
   place-items: center;
   place-content: center;
   overflow: hidden;
+  z-index: 0;
 }
 .move-menu-btn-container {
   grid-area: move-menu-btn-container;
@@ -439,7 +440,7 @@ body:not(:has(*)) {
     "..... ..... ....."
     "..... move-menu-left-btn move-menu-right-btn"
     "..... ..... .....";
-  /* position: absolute; */
+  position: absolute;
   place-items: center;
   place-content: center;
   z-index: 30;
