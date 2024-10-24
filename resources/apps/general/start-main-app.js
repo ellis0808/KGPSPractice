@@ -41,6 +41,7 @@ Menu Class
 */
 class MenuItems {
   constructor() {
+    this.rect = null;
     this.isPrimaryMenu = true;
     this.isSecondaryMenu = false;
     this.section = null;
@@ -586,8 +587,8 @@ class MenuItems {
     }
   }
   getSectionColumnXPosition() {
-    const rect = this.sectionColumn.getBoundingClientRect();
-    return rect;
+    this.rect = this.sectionColumn.getBoundingClientRect();
+    return this.rect;
   }
   displayMovementArrows() {
     this.getSectionColumnXPosition();
