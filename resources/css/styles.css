@@ -251,7 +251,7 @@ body:not(:has(*)) {
   grid-template-columns: 225px 0.05fr 1fr 1fr 1fr 0.05fr;
   grid-template-rows: 70px repeat(4, 1fr);
   grid-template-areas:
-    ".....  ..... .....  .....  ..... returnToMainMenuBtn"
+    ".....  ..... .....  .....  returnToMainMenuBtn returnToMainMenuBtn"
     "menu-headers  ..... menu-apps-container  menu-apps-container menu-apps-container ....."
     "menu-headers  move-menu-left-btn   menu-apps-container  menu-apps-container menu-apps-container move-menu-right-btn"
     "menu-headers  move-menu-left-btn   menu-apps-container  menu-apps-container menu-apps-container move-menu-right-btn"
