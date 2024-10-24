@@ -422,6 +422,7 @@ body:not(:has(*)) {
   position: absolute;
   place-items: center;
   place-content: center;
+  z-index: 30;
 }
 .move-menu-left-btn,
 .move-menu-right-btn {
@@ -433,7 +434,7 @@ body:not(:has(*)) {
 .move-menu-left-btn {
   grid-area: move-menu-left-btn;
 }
-.move-menu-left-btn {
+.move-menu-right-btn {
   grid-area: move-menu-right-btn;
 }
 .returnToMainMenuBtn {
