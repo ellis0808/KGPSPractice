@@ -600,6 +600,9 @@ class MenuItems {
     if (this.rect.left !== 0) {
       this.moveMenuLeftBtn.classList.remove("hide");
     }
+    if (this.rect.left === 0) {
+      this.moveMenuLeftBtn.classList.add("hide");
+    }
   }
 
   /******
