@@ -487,6 +487,10 @@ body:not(:has(*)) {
   transition: 0.3s;
 }
 
+.hide {
+  opacity: 0;
+  transition: 0.3s;
+}
 .hidden {
   display: none;
 }

@@ -98,7 +98,7 @@ class MenuItems {
     // Seondary Menu
 
     this.moveMenuRightBtn = document.createElement("button");
-    this.moveMenuRightBtn.classList.add("move-menu-right-btn");
+    this.moveMenuRightBtn.classList.add("move-menu-right-btn", "hide");
     this.moveMenuRightBtn.innerText = "Right";
     this.moveMenuRightBtn.addEventListener("pointerdown", () => {
       this.sectionColumn.style.translate = "-590px";
@@ -584,6 +584,13 @@ class MenuItems {
       case "letter-sounds":
         greetingDisplay.innerText = "Letter Sounds";
         break;
+    }
+  }
+  displayMovementArrows() {
+    rect = this.sectionColumn.getBoundingClientRect();
+    console.log(rect.left);
+    if (!rect.left === 0) {
+      this.moveMenuLeftBtn.classList.remove("hide");
     }
   }
 
