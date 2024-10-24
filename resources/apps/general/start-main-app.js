@@ -534,6 +534,7 @@ class MenuItems {
     this.isPrimaryMenu = false;
     this.isSecondaryMenu = true;
     this.returnToMainMenuToggle();
+    this.displayMovementArrows();
     mainContainer.appendChild(this.secondaryMenuContainer);
     this.secondaryMenuContainer.appendChild(returnToMainMenuBtn);
     this.secondaryMenuContainer.appendChild(this.moveMenuLeftBtn);
