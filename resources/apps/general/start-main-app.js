@@ -97,7 +97,7 @@ class MenuItems {
 
     // Seondary Menu
     this.subMainContainer = document.createElement("div");
-    this.mainSubContainer.classList.add("sub-main-container");
+    this.subMainContainer.classList.add("sub-main-container");
     this.btnContainer1 = document.createElement("div");
     this.btnContainer1.classList.add("btn-container1");
     this.moveMenuBtnContainer = document.createElement("div");
