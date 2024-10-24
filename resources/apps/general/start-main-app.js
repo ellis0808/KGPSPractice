@@ -15,7 +15,6 @@ import {
 } from "/KGPSEnglishPractice-test/resources/login/session-check.js";
 import { user } from "../../utilities/user-object.js";
 import { audio } from "../../utilities/audio.js";
-import { appContainer } from "../card-touch/card-touch.js";
 
 /*
 **********
@@ -549,7 +548,7 @@ class MenuItems {
     this.sectionColumn.appendChild(this.writingMenu);
     this.moveMenuBtnContainer.appendChild(this.moveMenuLeftBtn);
     this.moveMenuBtnContainer.appendChild(this.moveMenuRightBtn);
-    appContainer.appendChild(this.moveMenuBtnContainer);
+    mainContainer.appendChild(this.moveMenuBtnContainer);
 
     switch (section) {
       case "alphabet":
