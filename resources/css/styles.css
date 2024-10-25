@@ -12,6 +12,10 @@
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
 }
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
 :root {
   --clr-acc1: #006747;
   --clr-acc1-hvr: rgba(0, 103, 71, 0.7);
