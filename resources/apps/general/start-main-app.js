@@ -558,6 +558,7 @@ class MenuItems {
     switch (section) {
       case "alphabet":
         greetingDisplay.innerText = "Alphabet";
+        console.log(document.querySelectorAll("[app-content='alphabet']"));
         this.alphabetCapitalsCardTouchAppMenuItem.classList.remove("hidden");
         this.alphabetLowercaseCardTouchAppMenuItem.classList.remove("hidden");
         this.alphabetMatchingAppMenuItem.classList.remove("hidden");
@@ -640,9 +641,7 @@ class MenuItems {
   }
   unhideSecondaryMenu() {
     document
-      .querySelectorAll(
-        ".secondary-menu-item, .secondary-menu, .secondary-menu-container"
-      )
+      .querySelectorAll(".secondary-menu, .secondary-menu-container")
       .forEach((item) => {
         if (item.classList.contains("hidden")) {
           item.classList.remove("hidden");
