@@ -239,7 +239,7 @@ class MenuItems {
       "id",
       "alphabet-matching-app-menu-item"
     );
-    this.alphabetMatchingAppMenuItem.setAttribute("app-type", "touch");
+    this.alphabetMatchingAppMenuItem.setAttribute("app-type", "matching");
     this.alphabetMatchingAppMenuItem.setAttribute("app-content", "alphabet");
     this.alphabetMatchingAppMenuItem.classList.add(
       "secondary-menu-div",
@@ -558,13 +558,23 @@ class MenuItems {
     switch (section) {
       case "alphabet":
         greetingDisplay.innerText = "Alphabet";
-        console.log(document.querySelectorAll("[app-content='alphabet']"));
-        this.alphabetCapitalsCardTouchAppMenuItem.classList.remove("hidden");
-        this.alphabetLowercaseCardTouchAppMenuItem.classList.remove("hidden");
-        this.alphabetMatchingAppMenuItem.classList.remove("hidden");
-        this.touchMenu.appendChild(this.alphabetCapitalsCardTouchAppMenuItem);
-        this.touchMenu.appendChild(this.alphabetLowercaseCardTouchAppMenuItem);
-        this.matchingMenu.appendChild(this.alphabetMatchingAppMenuItem);
+        // this.touchMenu.appendChild(this.alphabetCapitalsCardTouchAppMenuItem);
+        // this.touchMenu.appendChild(this.alphabetLowercaseCardTouchAppMenuItem);
+        // this.matchingMenu.appendChild(this.alphabetMatchingAppMenuItem);
+        document
+          .querySelectorAll("[app-content='alphabet']")
+          .forEach((item) => {
+            // if (this.touchMenu
+
+            // )
+            this.touchMenu.appendChild(item);
+            if (item.classList.contains("hidden")) {
+              item.classList.remove("hidden");
+            }
+          });
+        // this.alphabetCapitalsCardTouchAppMenuItem.classList.remove("hidden");
+        // this.alphabetLowercaseCardTouchAppMenuItem.classList.remove("hidden");
+        // this.alphabetMatchingAppMenuItem.classList.remove("hidden");
         break;
       case "numbers":
         greetingDisplay.innerText = "Numbers";
