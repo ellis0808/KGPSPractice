@@ -567,7 +567,7 @@ class MenuItems {
             // if (this.touchMenu
 
             // )
-            this.touchMenu.appendChild(item);
+            // this.touchMenu.appendChild(item);
             if (item.classList.contains("hidden")) {
               item.classList.remove("hidden");
             }
