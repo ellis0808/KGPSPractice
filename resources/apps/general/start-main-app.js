@@ -558,9 +558,9 @@ class MenuItems {
     switch (section) {
       case "alphabet":
         greetingDisplay.innerText = "Alphabet";
-        // this.touchMenu.appendChild(this.alphabetCapitalsCardTouchAppMenuItem);
-        // this.touchMenu.appendChild(this.alphabetLowercaseCardTouchAppMenuItem);
-        // this.matchingMenu.appendChild(this.alphabetMatchingAppMenuItem);
+        this.touchMenu.appendChild(this.alphabetCapitalsCardTouchAppMenuItem);
+        this.touchMenu.appendChild(this.alphabetLowercaseCardTouchAppMenuItem);
+        this.matchingMenu.appendChild(this.alphabetMatchingAppMenuItem);
         document
           .querySelectorAll("[app-content='alphabet']")
           .forEach((item) => {
