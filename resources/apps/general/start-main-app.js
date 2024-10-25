@@ -256,7 +256,8 @@ class MenuItems {
       "id",
       "sight-words-1-app-menu-item"
     );
-    this.sightWords1AppMenuItem.setAttribute("app-type", "sight-words-app");
+    this.sightWords1AppMenuItem.setAttribute("app-type", "touch");
+    this.sightWords1AppMenuItem.setAttribute("app-content", "sight-words");
     this.sightWords1AppMenuItem.classList.add(
       "secondary-menu-div",
       "secondary-menu-item"
@@ -272,7 +273,8 @@ class MenuItems {
       "id",
       "sight-words-2-app-menu-item"
     );
-    this.sightWords2AppMenuItem.setAttribute("app-type", "sight-words-app");
+    this.sightWords2AppMenuItem.setAttribute("app-type", "touch");
+    this.sightWords2AppMenuItem.setAttribute("app-content", "sight-words");
     this.sightWords2AppMenuItem.classList.add(
       "secondary-menu-div",
       "secondary-menu-item"
@@ -288,7 +290,8 @@ class MenuItems {
       "id",
       "sight-words-3-app-menu-item"
     );
-    this.sightWords3AppMenuItem.setAttribute("app-type", "sight-words-app");
+    this.sightWords3AppMenuItem.setAttribute("app-type", "touch");
+    this.sightWords3AppMenuItem.setAttribute("app-content", "sight-words");
     this.sightWords3AppMenuItem.classList.add(
       "secondary-menu-div",
       "secondary-menu-item"
@@ -304,9 +307,10 @@ class MenuItems {
       "id",
       "sight-words-1-writing-app-menu-item"
     );
+    this.sightWords1WritingAppMenuItem.setAttribute("app-type", "writing");
     this.sightWords1WritingAppMenuItem.setAttribute(
-      "app-type",
-      "sight-words-app"
+      "app-content",
+      "sight-words"
     );
     this.sightWords1WritingAppMenuItem.classList.add(
       "secondary-menu-div",
@@ -322,9 +326,10 @@ class MenuItems {
       "id",
       "sight-words-2-writing-app-menu-item"
     );
+    this.sightWords2WritingAppMenuItem.setAttribute("app-type", "writing");
     this.sightWords2WritingAppMenuItem.setAttribute(
-      "app-type",
-      "sight-words-app"
+      "app-content",
+      "sight-words"
     );
     this.sightWords2WritingAppMenuItem.classList.add(
       "secondary-menu-div",
@@ -340,9 +345,10 @@ class MenuItems {
       "id",
       "sight-words-3-writing-app-menu-item"
     );
+    this.sightWords3WritingAppMenuItem.setAttribute("app-type", "writing");
     this.sightWords3WritingAppMenuItem.setAttribute(
-      "app-type",
-      "sight-words-app"
+      "app-content",
+      "sight-words"
     );
     this.sightWords3WritingAppMenuItem.classList.add(
       "secondary-menu-div",
@@ -359,7 +365,8 @@ class MenuItems {
       "id",
       "number-fluency-1-to-20-app-menu-item"
     );
-    this.numberFluency1to20AppMenuItem.setAttribute("app-style", "numbers");
+    this.numberFluency1to20AppMenuItem.setAttribute("app-type", "fluency");
+    this.numberFluency1to20AppMenuItem.setAttribute("app-content", "numbers");
     this.numberFluency1to20AppMenuItem.classList.add(
       "secondary-menu-div",
       "secondary-menu-item"
@@ -375,7 +382,8 @@ class MenuItems {
       "id",
       "number-fluency-21-to-40-app-menu-item"
     );
-    this.numberFluency21to40AppMenuItem.setAttribute("app-style", "numbers");
+    this.numberFluency21to40AppMenuItem.setAttribute("app-type", "fluency");
+    this.numberFluency21to40AppMenuItem.setAttribute("app-content", "numbers");
     this.numberFluency21to40AppMenuItem.classList.add(
       "secondary-menu-div",
       "secondary-menu-item"
@@ -391,7 +399,8 @@ class MenuItems {
       "id",
       "number-fluency-41-to-60-app-menu-item"
     );
-    this.numberFluency41to60AppMenuItem.setAttribute("app-style", "numbers");
+    this.numberFluency41to60AppMenuItem.setAttribute("app-type", "fluency");
+    this.numberFluency41to60AppMenuItem.setAttribute("app-content", "numbers");
     this.numberFluency41to60AppMenuItem.classList.add(
       "secondary-menu-div",
       "secondary-menu-item"
@@ -407,7 +416,8 @@ class MenuItems {
       "id",
       "number-fluency-61-to-80-app-menu-item"
     );
-    this.numberFluency61to80AppMenuItem.setAttribute("app-style", "numbers");
+    this.numberFluency61to80AppMenuItem.setAttribute("app-type", "fluency");
+    this.numberFluency61to80AppMenuItem.setAttribute("app-content", "numbers");
     this.numberFluency61to80AppMenuItem.classList.add(
       "secondary-menu-div",
       "secondary-menu-item"
@@ -423,7 +433,8 @@ class MenuItems {
       "id",
       "number-fluency-81-to-100-app-menu-item"
     );
-    this.numberFluency81to100AppMenuItem.setAttribute("app-style", "numbers");
+    this.numberFluency81to100AppMenuItem.setAttribute("app-type", "fluency");
+    this.numberFluency81to100AppMenuItem.setAttribute("app-content", "numbers");
     this.numberFluency81to100AppMenuItem.classList.add(
       "secondary-menu-div",
       "secondary-menu-item"
@@ -438,7 +449,8 @@ class MenuItems {
       "id",
       "number-writing-1-to-10-app-menu-item"
     );
-    this.numberWriting1to10AppMenuItem.setAttribute("app-style", "numbers");
+    this.numberWriting1to10AppMenuItem.setAttribute("app-type", "writing");
+    this.numberWriting1to10AppMenuItem.setAttribute("app-content", "numbers");
     this.numberWriting1to10AppMenuItem.classList.add(
       "secondary-menu-div",
       "secondary-menu-item"
@@ -453,7 +465,8 @@ class MenuItems {
       "id",
       "number-writing-11-to-20-app-menu-item"
     );
-    this.numberWriting11to20AppMenuItem.setAttribute("app-style", "numbers");
+    this.numberWriting11to20AppMenuItem.setAttribute("app-type", "writing");
+    this.numberWriting11to20AppMenuItem.setAttribute("app-content", "numbers");
     this.numberWriting11to20AppMenuItem.classList.add(
       "secondary-menu-div",
       "secondary-menu-item"
@@ -468,7 +481,8 @@ class MenuItems {
       "id",
       "number-writing-21-to-40-app-menu-item"
     );
-    this.numberWriting21to40AppMenuItem.setAttribute("app-style", "numbers");
+    this.numberWriting21to40AppMenuItem.setAttribute("app-type", "writing");
+    this.numberWriting21to40AppMenuItem.setAttribute("app-content", "numbers");
     this.numberWriting21to40AppMenuItem.classList.add(
       "secondary-menu-div",
       "secondary-menu-item"
@@ -483,7 +497,8 @@ class MenuItems {
       "id",
       "number-writing-1-to-50-app-menu-item"
     );
-    this.numberWriting1to50AppMenuItem.setAttribute("app-style", "numbers");
+    this.numberWriting1to50AppMenuItem.setAttribute("app-type", "writing");
+    this.numberWriting1to50AppMenuItem.setAttribute("app-content", "numbers");
     this.numberWriting1to50AppMenuItem.classList.add(
       "secondary-menu-div",
       "secondary-menu-item"
@@ -586,6 +601,15 @@ class MenuItems {
         this.writingMenu.appendChild(this.numberWriting1to10AppMenuItem);
         this.writingMenu.appendChild(this.numberWriting11to20AppMenuItem);
         this.writingMenu.appendChild(this.numberWriting1to50AppMenuItem);
+        document.querySelectorAll("[app-content='numbers']").forEach((item) => {
+          // if (this.touchMenu
+
+          // )
+          // this.touchMenu.appendChild(item);
+          if (item.classList.contains("hidden")) {
+            item.classList.remove("hidden");
+          }
+        });
         break;
       case "sight-words":
         greetingDisplay.innerText = "Sight Words";
@@ -595,9 +619,31 @@ class MenuItems {
         this.writingMenu.appendChild(this.sightWords1WritingAppMenuItem);
         this.writingMenu.appendChild(this.sightWords2WritingAppMenuItem);
         this.writingMenu.appendChild(this.sightWords3WritingAppMenuItem);
+        document
+          .querySelectorAll("[app-content='sight-words']")
+          .forEach((item) => {
+            // if (this.touchMenu
+
+            // )
+            // this.touchMenu.appendChild(item);
+            if (item.classList.contains("hidden")) {
+              item.classList.remove("hidden");
+            }
+          });
         break;
       case "letter-sounds":
         greetingDisplay.innerText = "Letter Sounds";
+        document
+          .querySelectorAll("[app-content='letter-sounds']")
+          .forEach((item) => {
+            // if (this.touchMenu
+
+            // )
+            // this.touchMenu.appendChild(item);
+            if (item.classList.contains("hidden")) {
+              item.classList.remove("hidden");
+            }
+          });
         break;
     }
   }
