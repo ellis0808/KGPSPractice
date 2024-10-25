@@ -535,6 +535,7 @@ class MenuItems {
 
   displaySecondaryMenu(section) {
     this.hidePrimaryMenu();
+    this.unhideSecondaryMenu();
     this.isPrimaryMenu = false;
     this.isSecondaryMenu = true;
     this.returnToMainMenuToggle();
