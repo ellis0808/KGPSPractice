@@ -15,6 +15,7 @@
 a {
   color: inherit;
   text-decoration: inherit;
+  font-size: 2rem;
 }
 :root {
   --clr-acc1: #006747;
@@ -416,10 +417,11 @@ body:not(:has(*)) {
 .move-menu-right-btn {
   width: 50px;
   aspect-ratio: 1;
-  background: yellow;
+  background: rgb(201, 201, 21);
   color: var(--clr-wht);
   z-index: 20;
   transition: 0.3s;
+  border: 2px black solid;
 }
 .move-menu-left-btn {
   grid-area: move-menu-left-btn;

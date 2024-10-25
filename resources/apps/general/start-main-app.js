@@ -100,7 +100,6 @@ class MenuItems {
 
     this.moveMenuRightBtn = document.createElement("button");
     this.moveMenuRightBtn.classList.add("move-menu-right-btn");
-    this.moveMenuRightBtn.innerText = "Right";
     this.moveMenuRightBtn.addEventListener("pointerdown", () => {
       this.sectionColumn.style.translate = "-590px";
       setTimeout(() => {
@@ -109,7 +108,6 @@ class MenuItems {
     });
     this.moveMenuLeftBtn = document.createElement("button");
     this.moveMenuLeftBtn.classList.add("move-menu-left-btn", "hide");
-    this.moveMenuLeftBtn.innerText = "Left";
     this.moveMenuLeftBtn.addEventListener("pointerdown", () => {
       this.sectionColumn.style.translate = "0px";
       setTimeout(() => {
