@@ -420,7 +420,7 @@ body:not(:has(*)) {
   background: rgb(201, 201, 21);
   color: var(--clr-wht);
   z-index: 20;
-  transition: 0.3s;
+  transition: 0.1s;
   border: 2px black solid;
 }
 .move-menu-left-btn {
@@ -496,7 +496,7 @@ body:not(:has(*)) {
 
 .hide {
   opacity: 0;
-  transition: 0.3s;
+  transition: 0.1s;
 }
 .hidden {
   display: none;

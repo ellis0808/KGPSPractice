@@ -503,6 +503,7 @@ class MenuItems {
     Display Main Menu
   ******/
   displayMainPage() {
+    this.hideSecondaryMenu();
     menuItems.isPrimaryMenu = true;
     menuItems.isSecondaryMenu = false;
     menuItems.returnToMainMenuToggle();
@@ -625,6 +626,18 @@ class MenuItems {
     this.numbersMenu.classList.remove("hidden");
     this.sightWordsMenu.classList.remove("hidden");
   }
+  hideSecondaryMenu() {
+    document.querySelectorAll(".secondary-menu-item").forEach((item) => {
+      item.classList.add("hidden");
+    });
+  }
+  unhideSecondaryMenu() {
+    document.querySelectorAll(".secondary-menu-item").forEach((item) => {
+      if (item.classList.contains("hidden")) {
+        item.classList.remove("hidden");
+      }
+    });
+  }
   removeMenu() {
     // remove Primary menu
     if (this.isPrimaryMenu) {
@@ -645,13 +658,13 @@ class MenuItems {
       });
     }
   }
-  removeMenuPage() {
-    document.querySelectorAll(".secondary-menu");
-    navBar.remove();
-    navBar.classList.add("hidden");
-    topContainer.remove();
-    primaryMenuContainer.remove();
-  }
+  // removeMenuPage() {
+  //   document.querySelectorAll(".secondary-menu");
+  //   navBar.remove();
+  //   navBar.classList.add("hidden");
+  //   topContainer.remove();
+  //   primaryMenuContainer.remove();
+  // }
   restoreMainMenu() {
     body.appendChild(navBar);
     topContainer.innerText = "";
@@ -669,7 +682,7 @@ class MenuItems {
   }
   returnToMainMenu() {
     audio.navigationSfx.backToPreviousMenu.play();
-    this.removeMenu();
+    this.hideSecondaryMenu();
     this.unhidePrimaryMenu();
     this.resetSecondaryMenuPosition();
     this.displayParentsInfoBtn();
