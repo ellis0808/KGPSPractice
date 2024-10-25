@@ -638,11 +638,15 @@ class MenuItems {
       });
   }
   unhideSecondaryMenu() {
-    document.querySelectorAll(".secondary-menu-item").forEach((item) => {
-      if (item.classList.contains("hidden")) {
-        item.classList.remove("hidden");
-      }
-    });
+    document
+      .querySelectorAll(
+        ".secondary-menu-item, .secondary-menu, .secondary-menu-container"
+      )
+      .forEach((item) => {
+        if (item.classList.contains("hidden")) {
+          item.classList.remove("hidden");
+        }
+      });
   }
   removeMenu() {
     // remove Primary menu
