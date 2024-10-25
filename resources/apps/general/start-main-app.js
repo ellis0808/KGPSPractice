@@ -509,7 +509,7 @@ class MenuItems {
     menuItems.isSecondaryMenu = false;
     menuItems.returnToMainMenuToggle();
     const navBarDisplay = `${user.firstName} ${user.lastName.slice(0, 1)}.`;
-    navLogo.innerHTML = `<a href ="/KPGSEnglishPractice-test/index.html>KGPS Extra English Practice</a>`;
+    navLogo.innerHTML = `<a href="/KPGSEnglishPractice-test/index.html>KGPS Extra English Practice</a>`;
     navUserName.innerText = navBarDisplay;
   }
   hideParentsInfoBtn() {
