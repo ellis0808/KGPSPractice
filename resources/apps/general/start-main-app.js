@@ -627,9 +627,15 @@ class MenuItems {
     this.sightWordsMenu.classList.remove("hidden");
   }
   hideSecondaryMenu() {
-    document.querySelectorAll(".secondary-menu-item").forEach((item) => {
-      item.classList.add("hidden");
-    });
+    document
+      .querySelectorAll(
+        ".secondary-menu-item, .secondary-menu, .secondary-menu-container"
+      )
+      .forEach((item) => {
+        if (!item.classList.contains("hidden")) {
+          item.classList.add("hidden");
+        }
+      });
   }
   unhideSecondaryMenu() {
     document.querySelectorAll(".secondary-menu-item").forEach((item) => {
