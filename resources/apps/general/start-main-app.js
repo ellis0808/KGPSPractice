@@ -725,7 +725,6 @@ class MenuItems {
     }
   }
   // removes the ENTIRE menu page when starting an app
-  // .primary-menu-container, .primary-menu-item, .secondary-menu-item
   removeMenuPage() {
     document
       .querySelectorAll(".primary-menu,  .secondary-menu")
