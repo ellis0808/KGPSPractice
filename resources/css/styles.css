@@ -416,7 +416,7 @@ body:not(:has(*)) {
 .move-menu-left-btn,
 .move-menu-right-btn {
   width: 50px;
-  aspect-ratio: 1;
+  aspect-ratio: 1 / cos(30deg);
   background: rgb(201, 201, 21);
   color: var(--clr-wht);
   z-index: 20;
@@ -425,11 +425,26 @@ body:not(:has(*)) {
 }
 .move-menu-left-btn {
   grid-area: move-menu-left-btn;
+  --r: 7px /*border radius */;
+  mask:/* a conic gradient to fill the middle area of the circle */ conic-gradient(
+        from -30deg at 50% calc(200% - 3 * var(--r) / 2),
+        #000 60deg,
+        #0000 0
+      )
+      0 100%/100% calc(100% - 3 * var(--r) / 2) no-repeat,
+    /* 3 radial gradients for 3 circles */
+      radial-gradient(var(--r) at 50% calc(2 * var(--r)), #000 98%, #0000 101%),
+    radial-gradient(var(--r) at left var(--_g)),
+    radial-gradient(var(--r) at right var(--_g));
   clip-path: polygon(0 50%, 100% 0, 100% 100%);
 }
 .move-menu-right-btn {
   grid-area: move-menu-right-btn;
   clip-path: polygon(0 0, 0 100%, 100% 50%);
+}
+.move-menu-left-btn:hover,
+.move-menu-right-btn:hover {
+  translate: 0 -4px;
 }
 .returnToMainMenuBtn {
   grid-area: returnToMainMenuBtn;
