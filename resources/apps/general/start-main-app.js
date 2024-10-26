@@ -98,7 +98,7 @@ class MenuItems {
 
     // Seondary Menu
 
-    this.moveMenuRightBtn = document.createElement("div");
+    this.moveMenuRightBtn = document.createElement("button");
     this.moveMenuRightBtn.classList.add("move-menu-right-btn");
     this.moveMenuRightBtn.addEventListener("pointerdown", () => {
       this.sectionColumn.style.translate = "-590px";
@@ -106,7 +106,7 @@ class MenuItems {
         this.displayMovementArrows();
       }, 500);
     });
-    this.moveMenuLeftBtn = document.createElement("div");
+    this.moveMenuLeftBtn = document.createElement("button");
     this.moveMenuLeftBtn.classList.add("move-menu-left-btn", "hide");
     this.moveMenuLeftBtn.addEventListener("pointerdown", () => {
       this.sectionColumn.style.translate = "0px";
@@ -550,7 +550,6 @@ class MenuItems {
 
   displaySecondaryMenu(section) {
     this.hidePrimaryMenu();
-    this.unhideSecondaryMenu();
     this.isPrimaryMenu = false;
     this.isSecondaryMenu = true;
     this.returnToMainMenuToggle();
@@ -569,6 +568,7 @@ class MenuItems {
     this.sectionColumn.appendChild(this.matchingMenu);
     this.sectionColumn.appendChild(this.fluencyMenu);
     this.sectionColumn.appendChild(this.writingMenu);
+    this.unhideSecondaryMenu();
 
     switch (section) {
       case "alphabet":
@@ -587,9 +587,6 @@ class MenuItems {
               item.classList.remove("hidden");
             }
           });
-        // this.alphabetCapitalsCardTouchAppMenuItem.classList.remove("hidden");
-        // this.alphabetLowercaseCardTouchAppMenuItem.classList.remove("hidden");
-        // this.alphabetMatchingAppMenuItem.classList.remove("hidden");
         break;
       case "numbers":
         greetingDisplay.innerText = "Numbers";
