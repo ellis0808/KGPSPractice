@@ -428,7 +428,7 @@ body:not(:has(*)) {
   --r: 2px /*border radius */;
   --_g: calc(tan(60deg) * var(--r)) bottom var(--r), #000 98%, #0000 101%;
   mask:/* a conic gradient to fill the middle area of the circle */ conic-gradient(
-        from -30deg at 50% calc(200% - 3 * var(--r) / 2),
+        from -30deg at 0% calc(200% - 3 * var(--r) / 2),
         #000 60deg,
         #0000 0
       )
@@ -445,7 +445,7 @@ body:not(:has(*)) {
 }
 .move-menu-left-btn:hover,
 .move-menu-right-btn:hover {
-  translate: 0 -4px;
+  scale: 1.01;
 }
 .returnToMainMenuBtn {
   grid-area: returnToMainMenuBtn;
