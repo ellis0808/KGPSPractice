@@ -428,7 +428,7 @@ body:not(:has(*)) {
   --r: 10px /*border radius */;
   --_g: calc(tan(60deg) * var(--r)) bottom var(--r), #000 98%, #0000 101%;
   mask:/* a conic gradient to fill the middle area of the circle */ conic-gradient(
-        from -from 0deg,
+        from 0deg,
         #000 60deg,
         #0000 120deg,
         #000 240deg,
