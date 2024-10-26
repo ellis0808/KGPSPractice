@@ -727,7 +727,9 @@ class MenuItems {
   // removes the ENTIRE menu page when starting an app
   removeMenuPage() {
     document
-      .querySelectorAll(".primary-menu, .secondary-menu")
+      .querySelectorAll(
+        ".primary-menu, .primary-menu-container, .primary-menu-item, .secondary-menu, secondary-menu-item"
+      )
       .forEach((item) => {
         item.classList.add("hidden");
         item.remove();
