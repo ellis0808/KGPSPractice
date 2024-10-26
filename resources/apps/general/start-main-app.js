@@ -724,13 +724,19 @@ class MenuItems {
       });
     }
   }
-  // removeMenuPage() {
-  //   document.querySelectorAll(".secondary-menu");
-  //   navBar.remove();
-  //   navBar.classList.add("hidden");
-  //   topContainer.remove();
-  //   primaryMenuContainer.remove();
-  // }
+  // removes the ENTIRE menu page when starting an app
+  removeMenuPage() {
+    document
+      .querySelectorAll(".primary-menu, .secondary-menu")
+      .forEach((item) => {
+        item.classList.add("hidden");
+        item.remove();
+      });
+    // navBar.remove();
+    // navBar.classList.add("hidden");
+    // topContainer.remove();
+    // primaryMenuContainer.remove();
+  }
   restoreMainMenu() {
     body.appendChild(navBar);
     topContainer.innerText = "";
