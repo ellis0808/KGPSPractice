@@ -425,18 +425,18 @@ body:not(:has(*)) {
 }
 .move-menu-left-btn {
   grid-area: move-menu-left-btn;
-  --r: 2px /*border radius */;
+  --r: 5px /*border radius */;
   --_g: calc(tan(60deg) * var(--r)) bottom var(--r), #000 98%, #0000 101%;
   mask:/* a conic gradient to fill the middle area of the circle */ conic-gradient(
-        from -30deg at 0% calc(200% - 3 * var(--r) / 2),
+        from -30deg at 50% calc(200% - 3 * var(--r) / 2),
         #000 60deg,
         #0000 0
       )
       0 100%/100% calc(100% - 3 * var(--r) / 2) no-repeat,
     /* 3 radial gradients for 3 circles */
       radial-gradient(var(--r) at 50% calc(2 * var(--r)), #000 98%, #0000 101%),
-    radial-gradient(var(--r) at left var(--_g)),
-    radial-gradient(var(--r) at right var(--_g));
+    radial-gradient(var(--r) at top right var(--_g)),
+    radial-gradient(var(--r) at bottom right var(--_g));
   clip-path: polygon(0 50%, 100% 0, 100% 100%);
 }
 .move-menu-right-btn {
