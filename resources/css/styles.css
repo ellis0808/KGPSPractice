@@ -441,6 +441,7 @@ body:not(:has(*)) {
     radial-gradient(var(--r) at top right var(--_g)),
     radial-gradient(var(--r) at bottom right var(--_g));
   clip-path: polygon(0 50%, 100% 0, 100% 100%);
+  background: linear-gradient(45deg, #fa6900, #c02942);
 }
 .move-menu-right-btn {
   grid-area: move-menu-right-btn;
