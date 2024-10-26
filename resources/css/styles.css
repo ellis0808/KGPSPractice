@@ -421,7 +421,7 @@ body:not(:has(*)) {
   color: var(--clr-wht);
   z-index: 20;
   transition: 0.1s;
-  border: 2px black solid;
+  /* border: 2px black solid; */
 }
 .move-menu-left-btn {
   grid-area: move-menu-left-btn;
