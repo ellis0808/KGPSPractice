@@ -278,7 +278,7 @@ document
       .value.toLowerCase();
     const lastname = document.getElementById("lastname").value;
     const admin = document.querySelector('input[name="admin"]:checked');
-    const password = document.egetElementById("password").value;
+    const password = document.getElementById("password").value;
     const access = "teacher";
     try {
       console.log("test 2");
