@@ -39,19 +39,24 @@ closeUpdateUserModalBtn.addEventListener("pointerdown", () => {
   updateUserDiv.close();
   document.getElementById("updateUser").reset();
 });
+let form;
 createStudentDisplayBtn.addEventListener("pointerdown", () => {
+  form = "student";
   createUserFormHeading.innerHTML = `<h2>Create New Student</h2>`;
   createStudentForm.classList.remove("hidden");
   createTeacherForm.classList.add("hidden");
   createStudentDisplayBtn.classList.add("hidden");
   createTeacherDisplayBtn.classList.remove("hidden");
+  return form;
 });
 createTeacherDisplayBtn.addEventListener("pointerdown", () => {
+  form = "teacher";
   createUserFormHeading.innerHTML = `<h2>Create New Teacher</h2>`;
   createStudentForm.classList.add("hidden");
   createTeacherForm.classList.remove("hidden");
   createStudentDisplayBtn.classList.remove("hidden");
   createTeacherDisplayBtn.classList.add("hidden");
+  return form;
 });
 
 // Gets and displays all students in the table made from CSS grid
@@ -220,7 +225,6 @@ function displaySingleUser2(data) {
 }
 
 // Create User
-let form;
 document
   .getElementById("createUser")
   .addEventListener("submit", async function (event) {
@@ -241,7 +245,7 @@ document
           .value.toLowerCase();
         lastname = document.getElementById("lastname").value;
         let admin = document
-          .querySelector('input[name="title"]:checked')
+          .querySelector('input[name="admin"]:checked')
           .value.toLowerCase();
         password = document.getElementById("password").value;
     }
@@ -272,10 +276,10 @@ document
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
+                title: title,
                 last_name: lastname,
-                first_name: firstname,
+                admin: admin,
                 password: password,
-                grade_level: gradelevel,
                 access: form,
               }),
             }

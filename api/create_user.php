@@ -27,10 +27,17 @@ $access = $data['access'] ?? '';
 
 $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
+
 try {
     $pdo = getDBConnection();
-    $stmt = $pdo->prepare("INSERT INTO students (last_name, first_name, grade_level, access, password) VALUES (:last_name, :first_name, :grade_level, :access, :password)");
-    $stmt->execute(['last_name' => $lastname, 'first_name' => $firstname, 'grade_level' => $gradelevel, 'access' => $access, 'password' => $hashedPassword]);
+    if ($access === 'student') {
+
+        $stmt = $pdo->prepare("INSERT INTO students (last_name, first_name, grade_level, access, password) VALUES (:last_name, :first_name, :grade_level, :access, :password)");
+        $stmt->execute(['last_name' => $lastname, 'first_name' => $firstname, 'grade_level' => $gradelevel, 'access' => $access, 'password' => $hashedPassword]);
+    } elseif ($access === 'teacher') {
+        $stmt = $pdo->prepare("INSERT INTO teachers (last_name, title, admin, access, password) VALUES (:last_name, :title, :admin, :access, :password)");
+        $stmt->execute(['last_name' => $lastname, 'title' => $title, 'admin' => $admin, 'access' => $access, 'password' => $hashedPassword]);
+    }
 
     echo json_encode(['message' => 'User created successfully']);
 } catch (PDOException $e) {

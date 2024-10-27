@@ -25,7 +25,7 @@
     <!-- Create New User Modal -->
     <dialog class="create-user-div modal">
       <div class="create-user-form-heading">
-        <h2>Create New User</h2>
+        <h2>Create New Student</h2>
       </div>
       <button class="create-teacher-display-btn">Create Teacher</button>
       <button class="create-student-display-btn hidden">Create Student</button>
@@ -54,17 +54,6 @@
             name="lastname"
             required
             maxlength="24"
-          />
-          <br />
-          <br />
-          <label for="password">Password (8 characters minimum):</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            required
-            minlength="8"
-            maxlength="32"
           />
           <br />
           <br />
@@ -111,6 +100,17 @@
             value="6"
           />
           <label for="6">6</label>
+          <br />
+          <br />
+          <label for="password">Password (8 characters minimum):</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            minlength="8"
+            maxlength="32"
+          />
           <br />
           <br />
           <input
@@ -166,8 +166,7 @@
             type="checkbox"
             id="admin"
             name="access"
-            value="Student"
-            checked
+            value="true"
           />
           <br />
           <br />
