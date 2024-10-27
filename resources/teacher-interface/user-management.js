@@ -247,6 +247,8 @@ document
         );
         break;
       case "teacher":
+        console.log("test");
+
         title = document
           .querySelector('input[name="title"]:checked')
           .value.toLowerCase();
@@ -277,6 +279,8 @@ document
           );
           break;
         case "teacher":
+          console.log("test 2");
+
           response = await fetch(
             "/KGPSEnglishPractice-test/api/create_user.php",
             {
