@@ -11,6 +11,9 @@ const openSingleUserDataModalBtn = document.querySelector(".open-modal-btn2");
 const closeSingleUserDataModalBtn = document.querySelector(".close-modal-btn2");
 const openUpdateUserModalBtn = document.querySelector(".open-modal-btn3");
 const closeUpdateUserModalBtn = document.querySelector(".close-modal-btn3");
+const createUserFormHeading = document.querySelector(
+  ".create-user-form-heading"
+);
 const createStudentDisplayBtn = document.querySelector(
   ".create-student-display-btn"
 );
@@ -37,12 +40,14 @@ closeUpdateUserModalBtn.addEventListener("pointerdown", () => {
   document.getElementById("updateUser").reset();
 });
 createStudentDisplayBtn.addEventListener("pointerdown", () => {
+  createUserFormHeading.innerHTML = `<h2>Create New Student</h2>`;
   createStudentForm.classList.remove("hidden");
   createTeacherForm.classList.add("hidden");
   createStudentDisplayBtn.classList.add("hidden");
   createTeacherDisplayBtn.classList.remove("hidden");
 });
 createTeacherDisplayBtn.addEventListener("pointerdown", () => {
+  createUserFormHeading.innerHTML = `<h2>Create New Teacher</h2>`;
   createStudentForm.classList.add("hidden");
   createTeacherForm.classList.remove("hidden");
   createStudentDisplayBtn.classList.remove("hidden");

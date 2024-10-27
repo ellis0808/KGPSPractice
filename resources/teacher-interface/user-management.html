@@ -24,9 +24,13 @@
 
     <!-- Create New User Modal -->
     <dialog class="create-user-div modal">
-      <h2>Create New User</h2>
-      <div class="create-teacher-display-btn hidden">Create Teacher</div>
-      <div class="create-student-display-btn">Create Student</div>
+      <div class="create-user-form-heading">
+        <h2>Create New User</h2>
+      </div>
+      <button class="create-teacher-display-btn hidden">Create Teacher</button>
+      <button class="create-student-display-btn">Create Student</button>
+      <br />
+      <br />
       <div class="create-student-form">
         <form
           class="form"
@@ -64,24 +68,6 @@
           />
           <br />
           <br />
-          <label>Access:</label>
-          <input
-            type="radio"
-            id="Student"
-            name="access"
-            value="Student"
-            checked
-          />
-          <!-- <label for="Student">Student</label>
-          <input
-            type="radio"
-            id="Teacher"
-            name="access"
-            value="Teacher"
-          />
-          <label for="Teacher">Teacher</label>
-          <br />
-          <br /> -->
           <label>Grade:</label>
           <input
             type="radio"
