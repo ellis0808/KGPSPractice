@@ -277,8 +277,8 @@ document
       .querySelector('input[name="title"]:checked')
       .value.toLowerCase();
     const lastname = document.getElementById("lastname").value;
-    console.log(document.querySelector('input[name="admin"]:checked').value);
-    const admin = document.querySelector('input[name="admin"]:checked').value;
+    console.log(document.getElementById("admin").checked ? "true" : "false");
+    const admin = document.getElementById("admin").checked ? "true" : "false";
 
     const password = document.getElementById("password").value;
     const access = "teacher";
