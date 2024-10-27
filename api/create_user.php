@@ -22,6 +22,8 @@ $data = json_decode(file_get_contents('php://input'), true);
 $lastname = $data['last_name'] ?? '';
 $firstname = $data['first_name'] ?? '';
 $gradelevel = $data['grade_level'] ?? '';
+$title = $data['title'] ?? '';
+$admin = $data['admin'] ?? '';
 $password = $data['password'] ?? '';
 $access = $data['access'] ?? '';
 
