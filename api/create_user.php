@@ -29,6 +29,7 @@ $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
 
 try {
+    header('Content-Type: application/json');
     $pdo = getDBConnection();
     if ($access === 'student') {
 
@@ -41,5 +42,6 @@ try {
 
     echo json_encode(['message' => 'User created successfully']);
 } catch (PDOException $e) {
-    echo json_encode(['error' => $e->getMessage()]);
+    http_response_code(500);
+    echo json_encode(['error' => 'Failed to create user: ' . $e->getMessage()]);
 }
