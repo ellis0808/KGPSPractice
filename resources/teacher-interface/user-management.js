@@ -39,7 +39,7 @@ closeUpdateUserModalBtn.addEventListener("pointerdown", () => {
   updateUserDiv.close();
   document.getElementById("updateUser").reset();
 });
-let form;
+let form = "student";
 createStudentDisplayBtn.addEventListener("pointerdown", () => {
   form = "student";
   createUserFormHeading.innerHTML = `<h2>Create New Student</h2>`;
