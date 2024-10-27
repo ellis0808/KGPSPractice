@@ -286,8 +286,6 @@ document
 async function loginUser(id, firstname, lastname, access) {
   let password;
   if (access === "teacher") {
-    console.log(document.getElementById("teacherpassword").value);
-
     password = document.getElementById("teacherpassword").value;
     // return password;
   } else if (access === "student") {
@@ -296,8 +294,6 @@ async function loginUser(id, firstname, lastname, access) {
   }
 
   try {
-    console.log(document.getElementById("teacherpassword").value);
-
     const response = await fetch("/KGPSEnglishPractice-test/api/login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -312,8 +308,6 @@ async function loginUser(id, firstname, lastname, access) {
       resetStudentPasswordEntryArray();
       throw new Error("Login error", data.error);
     } else {
-      console.log(data);
-
       routing(data);
     }
   } catch (error) {
@@ -336,8 +330,6 @@ closeTeacherLoginModalBtn.addEventListener("click", (event) => {
 });
 
 function routing(userData) {
-  console.log(userData);
-
   if (userData.access === "teacher") {
     window.location.href =
       "../resources/teacher-interface/user-management.html";
