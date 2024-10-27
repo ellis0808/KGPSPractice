@@ -51,6 +51,8 @@ createStudentDisplayBtn.addEventListener("pointerdown", () => {
 });
 createTeacherDisplayBtn.addEventListener("pointerdown", () => {
   form = "teacher";
+  console.log(form);
+
   createUserFormHeading.innerHTML = `<h2>Create New Teacher</h2>`;
   createStudentForm.classList.add("hidden");
   createTeacherForm.classList.remove("hidden");
@@ -237,6 +239,8 @@ document
     let title;
     let admin;
     let access;
+    console.log(form);
+
     switch (form) {
       case "student":
         firstname = document.getElementById("firstname").value;
