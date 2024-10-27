@@ -31,12 +31,12 @@
       <button class="create-student-display-btn hidden">Create Student</button>
       <br />
       <br />
-      <form
-        class="form"
-        id="createUser"
-        method="dialog"
-      >
-        <div class="create-student-form">
+      <div class="create-student-form">
+        <form
+          class="form"
+          id="createUser"
+          method="dialog"
+        >
           <label for="firstname">First Name:</label>
           <input
             type="text"
@@ -113,8 +113,19 @@
           />
           <br />
           <br />
-        </div>
-        <div class="create-teacher-form hidden">
+          <input
+            type="submit"
+            value="Create User"
+            class="create-new-user"
+          />
+        </form>
+      </div>
+      <div class="create-teacher-form hidden">
+        <form
+          class="form"
+          id="createUser"
+          method="dialog"
+        >
           <label for="title">Title:</label>
           <input
             type="radio"
@@ -170,13 +181,13 @@
           />
           <br />
           <br />
-        </div>
-        <input
-          type="submit"
-          value="Create User"
-          class="create-new-user"
-        />
-      </form>
+          <input
+            type="submit"
+            value="Create User"
+            class="create-new-user"
+          />
+        </form>
+      </div>
       <br />
       <br />
       <button class="close-modal-btn">Cancel</button>
