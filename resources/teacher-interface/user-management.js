@@ -230,21 +230,28 @@ document
   .addEventListener("submit", async function (event) {
     //  prevents default form submission
     event.preventDefault();
+    let firstname;
+    let lastname;
+    let password;
+    let gradelevel;
+    let title;
+    let admin;
+    let access;
     switch (form) {
       case "student":
-        const firstname = document.getElementById("firstname").value;
-        const lastname = document.getElementById("lastname").value;
-        const password = document.getElementById("password").value;
-        const gradelevel = parseInt(
+        firstname = document.getElementById("firstname").value;
+        lastname = document.getElementById("lastname").value;
+        password = document.getElementById("password").value;
+        gradelevel = parseInt(
           document.querySelector('input[name="gradelevel"]:checked').value
         );
         break;
       case "teacher":
-        let title = document
+        title = document
           .querySelector('input[name="title"]:checked')
           .value.toLowerCase();
         lastname = document.getElementById("lastname").value;
-        let admin = document
+        admin = document
           .querySelector('input[name="admin"]:checked')
           .value.toLowerCase();
         password = document.getElementById("password").value;
