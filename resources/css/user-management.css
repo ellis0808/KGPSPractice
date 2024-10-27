@@ -55,3 +55,6 @@
   background: linear-gradient(30deg, rgb(0 55 155), rgb(130 29 55));
   opacity: 0.2;
 }
+.hidden {
+  display: none;
+}

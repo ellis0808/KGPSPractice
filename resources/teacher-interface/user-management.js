@@ -11,21 +11,42 @@ const openSingleUserDataModalBtn = document.querySelector(".open-modal-btn2");
 const closeSingleUserDataModalBtn = document.querySelector(".close-modal-btn2");
 const openUpdateUserModalBtn = document.querySelector(".open-modal-btn3");
 const closeUpdateUserModalBtn = document.querySelector(".close-modal-btn3");
+const createStudentDisplayBtn = document.querySelector(
+  ".create-student-display-btn"
+);
+const createTeacherDisplayBtn = document.querySelector(
+  ".create-teacher-display-btn"
+);
+const createStudentForm = document.querySelector(".create-student-form");
+const createTeacherForm = document.querySelector(".create-teacher-form");
 
-openCreateUserModalBtn.addEventListener("click", () => {
+// Modal Controls
+openCreateUserModalBtn.addEventListener("pointerdown", () => {
   createUserDiv.showModal();
 });
-closeCreateUserModalBtn.addEventListener("click", () => {
+closeCreateUserModalBtn.addEventListener("pointerdown", () => {
   createUserDiv.close();
   document.getElementById("createUser").reset();
 });
-closeSingleUserDataModalBtn.addEventListener("click", () => {
+closeSingleUserDataModalBtn.addEventListener("pointerdown", () => {
   userDataDiv.close();
   document.getElementById("createUser").reset();
 });
-closeUpdateUserModalBtn.addEventListener("click", () => {
+closeUpdateUserModalBtn.addEventListener("pointerdown", () => {
   updateUserDiv.close();
   document.getElementById("updateUser").reset();
+});
+createStudentDisplayBtn.addEventListener("pointerdown", () => {
+  createStudentForm.classList.remove("hidden");
+  createTeacherForm.classList.add("hidden");
+  createStudentDisplayBtn.classList.add("hidden");
+  createTeacherDisplayBtn.classList.remove("hidden");
+});
+createTeacherDisplayBtn.addEventListener("pointerdown", () => {
+  createStudentForm.classList.add("hidden");
+  createTeacherForm.classList.remove("hidden");
+  createStudentDisplayBtn.classList.remove("hidden");
+  createTeacherDisplayBtn.classList.add("hidden");
 });
 
 // Gets and displays all students in the table made from CSS grid
@@ -194,35 +215,69 @@ function displaySingleUser2(data) {
 }
 
 // Create User
+let form;
 document
   .getElementById("createUser")
   .addEventListener("submit", async function (event) {
     //  prevents default form submission
     event.preventDefault();
-    const firstname = document.getElementById("firstname").value;
-    const lastname = document.getElementById("lastname").value;
-    const password = document.getElementById("password").value;
-    const gradelevel = parseInt(
-      document.querySelector('input[name="gradelevel"]:checked').value
-    );
-    const access = document
-      .querySelector('input[name="access"]:checked')
-      .value.toLowerCase();
+    switch (form) {
+      case "student":
+        const firstname = document.getElementById("firstname").value;
+        const lastname = document.getElementById("lastname").value;
+        const password = document.getElementById("password").value;
+        const gradelevel = parseInt(
+          document.querySelector('input[name="gradelevel"]:checked').value
+        );
+        break;
+      case "teacher":
+        let title = document
+          .querySelector('input[name="title"]:checked')
+          .value.toLowerCase();
+        lastname = document.getElementById("lastname").value;
+        let admin = document
+          .querySelector('input[name="title"]:checked')
+          .value.toLowerCase();
+        password = document.getElementById("password").value;
+    }
+
     try {
-      const response = await fetch(
-        "/KGPSEnglishPractice-test/api/create_user.php",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            last_name: lastname,
-            first_name: firstname,
-            password: password,
-            grade_level: gradelevel,
-            access: access,
-          }),
-        }
-      );
+      let response;
+      switch (form) {
+        case "student":
+          response = await fetch(
+            "/KGPSEnglishPractice-test/api/create_user.php",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                last_name: lastname,
+                first_name: firstname,
+                password: password,
+                grade_level: gradelevel,
+                access: form,
+              }),
+            }
+          );
+          break;
+        case "teacher":
+          response = await fetch(
+            "/KGPSEnglishPractice-test/api/create_user.php",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                last_name: lastname,
+                first_name: firstname,
+                password: password,
+                grade_level: gradelevel,
+                access: form,
+              }),
+            }
+          );
+          break;
+      }
+
       const data = await response.json();
       if (!response.ok) {
         throw new Error("Network response was not okay");
