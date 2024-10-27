@@ -226,82 +226,78 @@ function displaySingleUser2(data) {
   }
 }
 
-// Create User
+// Create Student
 document
-  .getElementById("createUser")
+  .getElementById("createStudent")
   .addEventListener("submit", async function (event) {
     //  prevents default form submission
     event.preventDefault();
-    let firstname;
-    let lastname;
-    let password;
-    let gradelevel;
-    let title;
-    let admin;
-    let access;
     console.log(form);
 
-    switch (form) {
-      case "student":
-        firstname = document.getElementById("firstname").value;
-        lastname = document.getElementById("lastname").value;
-        password = document.getElementById("password").value;
-        gradelevel = parseInt(
-          document.querySelector('input[name="gradelevel"]:checked').value
-        );
-        break;
-      case "teacher":
-        console.log("test");
-
-        title = document
-          .querySelector('input[name="title"]:checked')
-          .value.toLowerCase();
-        lastname = document.getElementById("lastname").value;
-        admin = document
-          .querySelector('input[name="admin"]:checked')
-          .value.toLowerCase();
-        password = document.getElementById("password").value;
-    }
-
+    const firstname = document.getElementById("firstname").value;
+    const lastname = document.getElementById("lastname").value;
+    const password = document.getElementById("password").value;
+    const gradelevel = parseInt(
+      document.querySelector('input[name="gradelevel"]:checked').value
+    );
     try {
-      let response;
-      switch (form) {
-        case "student":
-          response = await fetch(
-            "/KGPSEnglishPractice-test/api/create_user.php",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                last_name: lastname,
-                first_name: firstname,
-                password: password,
-                grade_level: gradelevel,
-                access: form,
-              }),
-            }
-          );
-          break;
-        case "teacher":
-          console.log("test 2");
+      const response = await fetch(
+        "/KGPSEnglishPractice-test/api/create_user.php",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            last_name: lastname,
+            first_name: firstname,
+            password: password,
+            grade_level: gradelevel,
+            access: form,
+          }),
+        }
+      );
+    } catch (error) {
+      console.error("Error creating new user:", error);
+    }
+    document.getElementById("createStudent").reset();
+    setTimeout(() => {
+      createUserDiv.close();
+    }, 1000);
+  });
+// Create Teacher
+document
+  .getElementById("createTeacher")
+  .addEventListener("submit", async function (event) {
+    //  prevents default form submission
+    event.preventDefault();
+    console.log(form);
 
-          response = await fetch(
-            "/KGPSEnglishPractice-test/api/create_user.php",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                title: title,
-                last_name: lastname,
-                admin: admin,
-                password: password,
-                access: form,
-              }),
-            }
-          );
-          break;
-      }
+    console.log("test");
 
+    const title = document
+      .querySelector('input[name="title"]:checked')
+      .value.toLowerCase();
+    const lastname = document.getElementById("lastname").value;
+    const admin = document
+      .querySelector('input[name="admin"]:checked')
+      .value.toLowerCase();
+    const password = document.egetElementById("password").value;
+    const access = "teacher";
+    try {
+      console.log("test 2");
+      const response = await fetch(
+        "/KGPSEnglishPractice-test/api/create_user.php",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            title: title,
+            last_name: lastname,
+            admin: admin,
+            password: password,
+            access: form,
+          }),
+        }
+      );
       const data = await response.json();
       console.log(data);
 
@@ -313,7 +309,7 @@ document
     } catch (error) {
       console.error("Error creating new user:", error);
     }
-    document.getElementById("createUser").reset();
+    document.getElementById("createTeacher").reset();
     setTimeout(() => {
       createUserDiv.close();
     }, 1000);
