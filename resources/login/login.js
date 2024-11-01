@@ -288,6 +288,7 @@ async function loginUser(id, firstname, lastname, access) {
   let password;
   if (access === "teacher") {
     password = document.getElementById("teacherpassword").value;
+    console.log(document.getElementById("teacherpassword").value);
   } else if (access === "student") {
     password = studentPasswordEntryArray.join("");
   }
