@@ -149,9 +149,9 @@ function displayUsersForLogin(data) {
         teacherUsernameContainer.innerText = `${user.first_name} ${user.last_name}`;
 
         teacherPasswordEntryForm.showModal();
+        console.log(selectedUser);
       });
       teacherNameContainer.appendChild(userContainer);
-      console.log(selectedUser);
     }
 
     userContainer.appendChild(userInitialsContainer);
