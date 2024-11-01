@@ -151,6 +151,7 @@ function displayUsersForLogin(data) {
         teacherPasswordEntryForm.showModal();
       });
       teacherNameContainer.appendChild(userContainer);
+      console.log(selectedUser);
     }
 
     userContainer.appendChild(userInitialsContainer);
@@ -286,13 +287,14 @@ document
 async function loginUser(id, firstname, lastname, access) {
   let password;
   if (access === "teacher") {
-    console.log("test");
+    console.log("test1");
 
     console.log(document.getElementById("teacherpassword"));
 
     password = document.getElementById("teacherpassword").value;
     // return password;
   } else if (access === "student") {
+    console.log("test2");
     password = studentPasswordEntryArray.join("");
     // return password;
   }
