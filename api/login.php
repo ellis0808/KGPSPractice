@@ -77,13 +77,13 @@ if ($access === 'student') {
             $_SESSION['loggedIn'] = true;
             $_SESSION['userId'] = $user['teacher_id'];
             $_SESSION['lastName'] = $user['last_name'];
-            $_SESSION['title'] = $user['title'];
+            // $_SESSION['title'] = $user['title'];
             $_SESSION['access'] = $user['access'];
-            $_SESSION['admin'] = $user['admin'];
+            // $_SESSION['admin'] = $user['admin'];
 
             echo json_encode($user);
         } else {
-            echo json_encode(['error' => 'Invalid ID, name or password']);
+            echo json_encode(['error' => 'Invalid ID, name, or password']);
         }
     } catch (PDOException $e) {
         echo json_encode(['error' => $e->getMessage()]);
