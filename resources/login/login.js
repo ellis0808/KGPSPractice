@@ -303,6 +303,7 @@ async function loginUser(id, firstname, lastname, access) {
 
     const rawText = await response.text();
     const data = JSON.parse(rawText);
+    console.log(data);
 
     if (!response.ok) {
       resetStudentPasswordEntryArray();
