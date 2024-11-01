@@ -331,8 +331,7 @@ closeTeacherLoginModalBtn.addEventListener("click", (event) => {
 
 function routing(userData) {
   if (userData.access === "teacher") {
-    window.location.href =
-      "../resources/teacher-interface/user-management.html";
+    window.location.href = "../teacher-interface/user-management.html";
   } else if (userData.access === "student") {
     window.location.href = "/KGPSEnglishPractice-test/index.html";
   }
