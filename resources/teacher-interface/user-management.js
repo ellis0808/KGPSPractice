@@ -51,7 +51,6 @@ createStudentDisplayBtn.addEventListener("pointerdown", () => {
 });
 createTeacherDisplayBtn.addEventListener("pointerdown", () => {
   form = "teacher";
-  console.log(form);
 
   createUserFormHeading.innerHTML = `<h2>Create New Teacher</h2>`;
   createStudentForm.classList.add("hidden");
@@ -232,7 +231,6 @@ document
   .addEventListener("submit", async function (event) {
     //  prevents default form submission
     event.preventDefault();
-    console.log(form);
 
     const firstname = document.getElementById("firstname").value;
     const lastname = document.getElementById("lastname").value;
@@ -269,9 +267,6 @@ document
   .addEventListener("submit", async function (event) {
     //  prevents default form submission
     event.preventDefault();
-    console.log(form);
-
-    console.log("test");
 
     const title = document
       .querySelector('input[name="title"]:checked')
@@ -282,7 +277,6 @@ document
     const password = document.getElementById("password").value;
     const access = "teacher";
     try {
-      console.log("test 2");
       const response = await fetch(
         "/KGPSEnglishPractice-test/api/create_user.php",
         {
@@ -298,7 +292,6 @@ document
         }
       );
       const data = await response.json();
-      console.log(data);
 
       if (!response.ok) {
         throw new Error("Network response was not okay");
@@ -347,7 +340,6 @@ document
     const id = document
       .querySelector(".single-user-data1")
       .getAttribute("userId");
-    console.log(id);
     updateUser(id);
   });
 async function updateUser(id) {
@@ -369,7 +361,6 @@ async function updateUser(id) {
   const access = accessElement ? accessElement.value : null;
 
   const newData = { student_id: id };
-  console.log(newData);
 
   if (firstname) {
     newData.first_name = firstname;
@@ -396,7 +387,6 @@ async function updateUser(id) {
       }
     );
     const data = await response.json();
-    console.log(data);
 
     if (!response.ok) {
       throw new Error("Network response was not okay");
