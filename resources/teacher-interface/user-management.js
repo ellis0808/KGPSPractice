@@ -276,7 +276,7 @@ document
     const title = document
       .querySelector('input[name="title"]:checked')
       .value.toLowerCase();
-    const lastname = document.getElementById("lastname").value;
+    const lastname = document.getElementById("teacherlastname").value;
     console.log(document.getElementById("admin").checked ? "true" : "false");
     const admin = document.getElementById("admin").checked ? "true" : "false";
 
