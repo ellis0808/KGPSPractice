@@ -76,7 +76,7 @@ if ($access === 'student') {
 
 
         $inputPassword = 'teacher1';
-        $storedHash = '$2y$10$3eSXMpxiiu/TNsTEfrW3dOJ3D.AhoF9O9roSe1HkMp/3qkrWQaFtu';
+        $storedHash = '$2y$10$B0LWLlMWS4AYMOTEEjMgHuZEyb0ng137LZrvDy66C9Vjent9wl70G';
 
         if (password_verify($inputPassword, $storedHash)) {
             echo "Password matches!";
