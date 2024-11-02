@@ -27,8 +27,8 @@ $admin = $data['admin'] ?? '';
 $password = $data['password'] ?? '';
 $access = $data['access'] ?? '';
 
+$password = trim($password);
 $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-$hashedPassword = trim($hashedPassword);
 
 try {
     header('Content-Type: application/json');
