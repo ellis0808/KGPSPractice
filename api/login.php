@@ -79,11 +79,11 @@ if ($access === 'student') {
         //password_verify($password, )
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['loggedIn'] = true;
-            // $_SESSION['userId'] = $user['teacher_id'];
-            // $_SESSION['lastName'] = $user['last_name'];
-            // $_SESSION['title'] = $user['title'];
-            // $_SESSION['access'] = $user['access'];
-            // $_SESSION['admin'] = $user['admin'];
+            $_SESSION['userId'] = $user['teacher_id'];
+            $_SESSION['lastName'] = $user['last_name'];
+            $_SESSION['title'] = $user['title'];
+            $_SESSION['access'] = $user['access'];
+            $_SESSION['admin'] = $user['admin'];
 
             echo json_encode($user);
         } else {
