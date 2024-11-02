@@ -323,6 +323,7 @@ window.addEventListener("load", () => {
 });
 closeStudentLoginModalBtn.addEventListener("click", (event) => {
   // event.preventDefault();
+  resetStudentPasswordEntryArray();
   studentPasswordEntryForm.close();
 });
 closeTeacherLoginModalBtn.addEventListener("click", (event) => {
