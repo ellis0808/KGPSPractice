@@ -79,12 +79,15 @@ if ($access === 'student') {
         //password_verify($password, $user['password'])
 
         if ($user) {
-            if (password_verify($password, $user['password'])) {
-                echo json_encode(['success' => 'passwords match']);
-            } else {
-                echo json_encode(['error' => "passwords don't match"]);
-            }
-        } else {
+            echo json_encode(['db_password' => $user['password'], 'input_password' => $password]);
+            exit;
+        }
+        // if (password_verify($password, $user['password'])) {
+        //     echo json_encode(['success' => 'passwords match']);
+        // } else {
+        //     echo json_encode(['error' => "passwords don't match"]);
+        // }
+        else {
             echo json_encode(['error' => 'user not found']);
         }
 
