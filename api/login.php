@@ -78,22 +78,27 @@ if ($access === 'student') {
         $inputPassword = 'teacher1';
         $storedHash = '$2y$10$3eSXMpxiiu/TNsTEfrW3dOJ3D.AhoF9O9roSe1HkMp/3qkrWQaFtu';
 
-
-        if ($user && password_verify(
-            $inputPassword,
-            $storedHash
-        )) {
-            $_SESSION['loggedIn'] = true;
-            $_SESSION['userId'] = $user['teacher_id'];
-            $_SESSION['lastName'] = $user['last_name'];
-            $_SESSION['title'] = $user['title'];
-            $_SESSION['access'] = $user['access'];
-            $_SESSION['admin'] = $user['admin'];
-
-            echo json_encode($user);
+        if (password_verify($inputPassword, $storedHash)) {
+            echo "Password matches!";
         } else {
-            echo json_encode(['error' => 'Invalid ID, name, or password']);
+            echo "Password does not match.";
         }
+
+        // if ($user && password_verify(
+        //     $inputPassword,
+        //     $storedHash
+        // )) {
+        //     $_SESSION['loggedIn'] = true;
+        //     $_SESSION['userId'] = $user['teacher_id'];
+        //     $_SESSION['lastName'] = $user['last_name'];
+        //     $_SESSION['title'] = $user['title'];
+        //     $_SESSION['access'] = $user['access'];
+        //     $_SESSION['admin'] = $user['admin'];
+
+        //     echo json_encode($user);
+        // } else {
+        //     echo json_encode(['error' => 'Invalid ID, name, or password']);
+        // }
     } catch (PDOException $e) {
         echo json_encode(['error' => $e->getMessage()]);
     }
