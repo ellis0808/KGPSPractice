@@ -30,10 +30,10 @@ if (!$password) {
     echo json_encode(['error' => 'Password is required']);
     exit;
 }
-// if ($password) {
-//     echo json_encode($password);
-//     exit;
-// }
+if ($firstname) {
+    echo json_encode($firstname);
+    exit;
+}
 // Student login
 if ($access === 'student') {
 
