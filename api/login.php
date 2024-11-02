@@ -17,10 +17,10 @@ require './db_connect.php';
 $data = json_decode(file_get_contents('php://input'), true);
 $id = (int)$data['id'] ?? null;
 $firstname = $data['firstname'] ?? null;
+$title = $data['firstname'] ?? null;
 $lastname = $data['lastname'] ?? null;
 $access = $data['access'] ?? null;
 $password = $data['password'] ?? null;
-$title = null;
 
 if (!$id) {
     echo json_encode(['error' => 'User ID is required']);
@@ -30,10 +30,7 @@ if (!$password) {
     echo json_encode(['error' => 'Password is required']);
     exit;
 }
-if ($firstname) {
-    echo json_encode($firstname);
-    exit;
-}
+
 // Student login
 if ($access === 'student') {
 
@@ -73,8 +70,8 @@ if ($access === 'student') {
         $pdo = getDBConnection();
         $stmt = $pdo->prepare('SELECT teacher_id, last_name, title, access, admin, password
         FROM teachers
-        WHERE teacher_id = :teacher_id AND last_name = :last_name');
-        $stmt->execute(['teacher_id' => $id, 'last_name' => $lastname]);
+        WHERE teacher_id = :teacher_id AND last_name = :last_name AND title = :title');
+        $stmt->execute(['teacher_id' => $id, 'last_name' => $lastname, 'title' => $title]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['password'])) {
