@@ -76,23 +76,8 @@ if ($access === 'student') {
         WHERE teacher_id = :teacher_id AND last_name = :last_name');
         $stmt->execute(['teacher_id' => $id, 'last_name' => $lastname]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        //password_verify($password, $user['password'])
 
-        // if ($user) {
-        //     echo json_encode(['db_password' => $user['password'], 'input_password' => $password]);
-        //     exit;
-        // }
-        // if (password_verify($password, $user['password'])) {
-        //     echo json_encode(['success' => 'passwords match']);
-        // } else {
-        //     echo json_encode(['error' => "passwords don't match"]);
-        // }
-        // else {
-        //     echo json_encode(['error' => 'user not found']);
-        // }
-
-
-        if ($user && $user['password']) {
+        if ($user && password_verify($password, $user['password'])) {
             $_SESSION['loggedIn'] = true;
             $_SESSION['userId'] = $user['teacher_id'];
             $_SESSION['lastName'] = $user['last_name'];
