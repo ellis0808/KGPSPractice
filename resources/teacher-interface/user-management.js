@@ -233,7 +233,7 @@ document
     event.preventDefault();
 
     const firstname = document.getElementById("firstname").value;
-    const lastname = document.getElementById("lastname").value;
+    const lastname = document.getElementById("studentlastname").value;
     const password = document.getElementById("password").value;
     const gradelevel = parseInt(
       document.querySelector('input[name="gradelevel"]:checked').value
