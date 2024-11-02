@@ -75,8 +75,8 @@ if ($access === 'student') {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-        $inputPassword = 'teacher1';
-        $storedHash = '$2y$10$B0LWLlMWS4AYMOTEEjMgHuZEyb0ng137LZrvDy66C9Vjent9wl70G';
+        $inputPassword = $password;
+        $storedHash = '$2y$10$gKUgD9/g3T3DTavBbdC2WuPCM6R9TV47vK.ZY2LT.iv0YYwQAinKm';
 
         if (password_verify($inputPassword, $storedHash)) {
             echo json_encode(['message' => "Password matches!"]);
