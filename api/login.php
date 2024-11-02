@@ -78,32 +78,32 @@ if ($access === 'student') {
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         //password_verify($password, $user['password'])
 
-        if ($user) {
-            echo json_encode(['db_password' => $user['password'], 'input_password' => $password]);
-            exit;
-        }
+        // if ($user) {
+        //     echo json_encode(['db_password' => $user['password'], 'input_password' => $password]);
+        //     exit;
+        // }
         // if (password_verify($password, $user['password'])) {
         //     echo json_encode(['success' => 'passwords match']);
         // } else {
         //     echo json_encode(['error' => "passwords don't match"]);
         // }
-        else {
-            echo json_encode(['error' => 'user not found']);
-        }
-
-
-        // if ($user && password_verify($password, $user['password'])) {
-        //     $_SESSION['loggedIn'] = true;
-        //     $_SESSION['userId'] = $user['teacher_id'];
-        //     $_SESSION['lastName'] = $user['last_name'];
-        //     $_SESSION['title'] = $user['title'];
-        //     $_SESSION['access'] = $user['access'];
-        //     $_SESSION['admin'] = $user['admin'];
-
-        //     echo json_encode($user);
-        // } else {
-        //     echo json_encode(['error' => 'Invalid ID, name, or password']);
+        // else {
+        //     echo json_encode(['error' => 'user not found']);
         // }
+
+
+        if ($user && password_verify($password, $user['password'])) {
+            $_SESSION['loggedIn'] = true;
+            $_SESSION['userId'] = $user['teacher_id'];
+            $_SESSION['lastName'] = $user['last_name'];
+            $_SESSION['title'] = $user['title'];
+            $_SESSION['access'] = $user['access'];
+            $_SESSION['admin'] = $user['admin'];
+
+            echo json_encode($user);
+        } else {
+            echo json_encode(['error' => 'Invalid ID, name, or password']);
+        }
     } catch (PDOException $e) {
         echo json_encode(['error' => $e->getMessage()]);
     }
