@@ -83,39 +83,39 @@ async function getUsers() {
 }
 const displayUsers = {
   createUserElementsForDisplay() {
-    const userDataHeader = document.createElement("div");
-    const numberHeader = document.createElement("div");
-    const nameHeader = document.createElement("div");
-    const gradeLevelHeader = document.createElement("div");
-    const accessHeader = document.createElement("div");
-    numberHeader.classList.add("number", "table-header");
-    gradeLevelHeader.classList.add("number", "table-header");
-    nameHeader.classList.add("table-header");
-    accessHeader.classList.add("table-header");
-    numberHeader.textContent = "";
-    nameHeader.textContent = "Last Name, First Name";
-    accessHeader.textContent = "Access";
-    gradeLevelHeader.textContent = "Grade";
-    userDataHeader.classList.add("user-data-header");
+    this.userDataHeader = document.createElement("div");
+    this.numberHeader = document.createElement("div");
+    this.nameHeader = document.createElement("div");
+    this.gradeLevelHeader = document.createElement("div");
+    this.accessHeader = document.createElement("div");
+    this.numberHeader.classList.add("number", "table-header");
+    this.gradeLevelHeader.classList.add("number", "table-header");
+    this.nameHeader.classList.add("table-header");
+    this.accessHeader.classList.add("table-header");
+    this.numberHeader.textContent = "";
+    this.nameHeader.textContent = "Last Name, First Name";
+    this.accessHeader.textContent = "Access";
+    this.gradeLevelHeader.textContent = "Grade";
+    this.userDataHeader.classList.add("user-data-header");
   },
   appendUserDataHeaders() {
-    userDataHeader.appendChild(numberHeader);
-    userDataHeader.appendChild(nameHeader);
-    userDataHeader.appendChild(gradeLevelHeader);
-    userDataHeader.appendChild(accessHeader);
+    this.userDataHeader.appendChild(numberHeader);
+    this.userDataHeader.appendChild(nameHeader);
+    this.userDataHeader.appendChild(gradeLevelHeader);
+    this.userDataHeader.appendChild(accessHeader);
     userList.appendChild(userDataHeader);
   },
   setUserDataInRows() {
     let i = 0;
     data.forEach((user) => {
       ++i;
-      const userData = document.createElement("div");
-      const number = document.createElement("div");
-      const userName = document.createElement("div");
-      const userGradeLevel = document.createElement("div");
-      const userAccess = document.createElement("div");
-      const editUserBtn = document.createElement("button");
-      const deleteUserBtn = document.createElement("button");
+      this.userData = document.createElement("div");
+      this.number = document.createElement("div");
+      this.userName = document.createElement("div");
+      this.userGradeLevel = document.createElement("div");
+      this.userAccess = document.createElement("div");
+      this.editUserBtn = document.createElement("button");
+      this.deleteUserBtn = document.createElement("button");
       userName.setAttribute("userId", user.student_id);
       userName.classList.add("open-modal-btn2", "user-name");
       userName.addEventListener("click", (event) => {
