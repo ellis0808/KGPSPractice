@@ -159,8 +159,8 @@ function displayUsersForLogin(data) {
   });
 }
 
-function removeSelectedClassFromPasswordEntryArrayImage() {
-  document.querySelector(`[content='${content}']`).classList.remove("selected");
+function removeSelectedClassFromPasswordEntryArrayImage(item) {
+  document.querySelector(`[content='${item}']`).classList.remove("selected");
 }
 function resetStudentPasswordEntryArray() {
   if (
@@ -169,7 +169,7 @@ function resetStudentPasswordEntryArray() {
   ) {
     console.log(studentPasswordEntryArray[0]);
     studentPasswordEntryArray.forEach((item) => {
-      removeSelectedClassFromPasswordEntryArrayImage();
+      removeSelectedClassFromPasswordEntryArrayImage(item);
     });
     // studentPasswordEntryArray.forEach((item) => {
     //   if (item) {
