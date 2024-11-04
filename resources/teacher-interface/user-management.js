@@ -61,26 +61,6 @@ createTeacherDisplayBtn.addEventListener("pointerdown", () => {
   return form;
 });
 
-// Gets and displays all students in the table made from CSS grid
-
-// async function getUsers() {
-// try {
-//   const response = await fetch(
-//     "/KGPSEnglishPractice-test/api/read_users.php"
-//   );
-//   if (!response.ok) {
-//     throw new Error("Network response was not okay");
-//   }
-//   const data = await response.json();
-//   if (data.users) {
-//     displayUsers.displayAllUsers(data.users);
-//   } else {
-//     console.log("No students found");
-//   }
-// } catch (error) {
-//   console.error("Error getting user data:", error);
-// }
-// }
 const displayUsers = {
   createUserElementsForDisplay() {
     this.userDataHeader = document.createElement("div");
@@ -124,42 +104,58 @@ const displayUsers = {
         // document.getElementById("single-user-data-div").reset();
         userDataDiv.showModal();
       });
-      this.editUserBtn.textContent = "Edit";
-      this.deleteUserBtn.textContent = "Delete";
-      this.editUserBtn.setAttribute("userId", user.student_id);
-      this.editUserBtn.setAttribute("type", user.access);
-      this.deleteUserBtn.setAttribute("userId", user.student_id);
-      this.deleteUserBtn.setAttribute("type", user.access);
-      this.editUserBtn.classList.add("open-modal-btn3");
-      this.editUserBtn.addEventListener("click", (event) => {
-        const id = event.target.getAttribute("userId");
-        const type = event.target.getAttribute("type");
-        const funct = "edit"; // funct is short for 'function', but it's a reserved word
-        getUserInfo.getSingleUser(id, type, funct);
-        document.getElementById("updateUser").reset();
-        updateUserDiv.showModal();
-      });
-      this.deleteUserBtn.addEventListener("click", (event) => {
-        const id = event.target.getAttribute("userId");
-        const type = event.target.getAttribute("type");
-        deleteUser(id, type);
-      });
+      if (user.access === "student") {
+        this.userGradeLevel.textContent = `${user.grade_level}`;
+        this.userAccess.textContent = `${user.access}`;
+        this.editUserBtn.textContent = "Edit";
+        this.deleteUserBtn.textContent = "Delete";
+        this.editUserBtn.setAttribute("userId", user.student_id);
+        this.editUserBtn.setAttribute("type", user.access);
+        this.deleteUserBtn.setAttribute("userId", user.student_id);
+        this.deleteUserBtn.setAttribute("type", user.access);
+        this.editUserBtn.classList.add("open-modal-btn3");
+        this.editUserBtn.addEventListener("click", (event) => {
+          const id = event.target.getAttribute("userId");
+          const type = event.target.getAttribute("type");
+          const funct = "edit"; // funct is short for 'function', but it's a reserved word
+          getUserInfo.getSingleUser(id, type, funct);
+          document.getElementById("updateUser").reset();
+          updateUserDiv.showModal();
+        });
+        this.deleteUserBtn.addEventListener("click", (event) => {
+          const id = event.target.getAttribute("userId");
+          const type = event.target.getAttribute("type");
+          deleteUser(id, type);
+        });
+      } else if (user.access === "teacher") {
+        this.editUserBtn.textContent = "Edit";
+        this.deleteUserBtn.textContent = "Delete";
+        this.editUserBtn.setAttribute("userId", user.student_id);
+        this.editUserBtn.setAttribute("type", user.access);
+        this.deleteUserBtn.setAttribute("userId", user.student_id);
+        this.deleteUserBtn.setAttribute("type", user.access);
+        this.editUserBtn.classList.add("open-modal-btn3");
+        this.editUserBtn.addEventListener("click", (event) => {
+          const id = event.target.getAttribute("userId");
+          const type = event.target.getAttribute("type");
+          const funct = "edit"; // funct is short for 'function', but it's a reserved word
+          getUserInfo.getSingleUser(id, type, funct);
+          document.getElementById("updateUser").reset();
+          updateUserDiv.showModal();
+        });
+        this.deleteUserBtn.addEventListener("click", (event) => {
+          const id = event.target.getAttribute("userId");
+          const type = event.target.getAttribute("type");
+          deleteUser(id, type);
+        });
+        this.userGradeLevel.textContent = ``;
+        this.userAccess.textContent = `teacher`;
+      }
       this.number.classList.add("number");
       this.userGradeLevel.classList.add("number");
       this.number.textContent = `${i}`;
       this.userName.textContent = `${user.last_name}, ${user.first_name}`;
-      if (user.access === "teacher") {
-        this.userGradeLevel.textContent = ``;
-      } else {
-        this.userGradeLevel.textContent = `${user.grade_level}`;
-      }
-      if (user.access !== "student") {
-        if (user.access === "1") {
-          this.userAccess.textContent = `Admin`;
-        } else this.userAccess.textContent = `Teacher`;
-      } else {
-        this.userAccess.textContent = `${user.access}`;
-      }
+
       this.userData.classList.add("user-slot");
       this.userData.classList.add("user-slot");
       this.userData.appendChild(this.number);
@@ -264,28 +260,6 @@ const getUserInfo = {
     }
   },
 };
-
-// Get and Display data for single user when clicking on name
-// async function getSingleUser2(id) {
-//   try {
-//     const response = await fetch(
-//       `/KGPSEnglishPractice-test/api/read_users.php?id=${id}`
-//     );
-
-//     if (!response.ok) {
-//       throw new Error("Network response was not okay");
-//     }
-//     const data = await response.json();
-
-//     if (data) {
-//       displayUsers.displaySingleUserInfo(data);
-//     } else {
-//       console.log("No students found");
-//     }
-//   } catch (error) {
-//     console.error("Error getting user data:", error);
-//   }
-// }
 
 // Create Student
 document
