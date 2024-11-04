@@ -221,6 +221,7 @@ const getUserInfo = {
         throw new Error("Network response was not okay");
       }
       const data = await response.json();
+      console.log(data);
 
       if (data.users) {
         displayUsers.displayAllUsers(data.users);
@@ -234,7 +235,7 @@ const getUserInfo = {
   async getSingleUser(id, type, funct) {
     try {
       const response = await fetch(
-        `/KGPSEnglishPractice-test/api/read_users.php?id=${id}&type=${type}`
+        `/KGPSEnglishPractice-test/api/read_users.php?id1=${id}&id2=${type}`
       );
 
       if (!response.ok) {

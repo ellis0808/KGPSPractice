@@ -12,9 +12,10 @@ try {
     $pdo = getDBConnection();
 
     header('Content-Type: application/json');
-    $type = $_GET['type'];
-    if (isset($_GET['id'])) {
+    $id = $_GET['id'] ?? null;
+    $type = $_GET['type'] ?? null;
 
+    if ($id && $type) {
         if ($type === 'student') {
             $stmt = $pdo->prepare("SELECT student_id, last_name, first_name, grade_level, access FROM students WHERE student_id = :student_id");
             $stmt->execute(['student_id' => $_GET['id']]);
