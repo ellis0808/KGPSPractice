@@ -179,10 +179,16 @@ const displayUsers = {
   },
   displaySingleUserInfoForEditing(data, type) {
     const singleUserData1 = document.querySelector(".single-user-data1");
+    console.log(data.access);
+
     if (data.access === "teacher") {
+      console.log("test1");
+
       singleUserData1.setAttribute("userID", data.teacher_id);
       singleUserData1.innerText = `${data.title}, ${data.last_name}\r\nAccess: ${data.access}`;
     } else {
+      console.log("test2");
+
       singleUserData1.setAttribute("userID", data.student_id);
       singleUserData1.innerText = `${data.last_name}, ${data.first_name}\r\nGrade: ${data.grade_level}\r\nAccess: ${data.access}`;
     }
