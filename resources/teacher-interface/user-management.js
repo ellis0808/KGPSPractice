@@ -61,26 +61,25 @@ createTeacherDisplayBtn.addEventListener("pointerdown", () => {
 });
 
 // Gets and displays all students in the table made from CSS grid
-async function getUsers() {
-  try {
-    const response = await fetch(
-      "/KGPSEnglishPractice-test/api/read_users.php"
-    );
 
-    if (!response.ok) {
-      throw new Error("Network response was not okay");
-    }
-    const data = await response.json();
-
-    if (data.users) {
-      displayUsers.displayAllUsers(data.users);
-    } else {
-      console.log("No students found");
-    }
-  } catch (error) {
-    console.error("Error getting user data:", error);
-  }
-}
+// async function getUsers() {
+// try {
+//   const response = await fetch(
+//     "/KGPSEnglishPractice-test/api/read_users.php"
+//   );
+//   if (!response.ok) {
+//     throw new Error("Network response was not okay");
+//   }
+//   const data = await response.json();
+//   if (data.users) {
+//     displayUsers.displayAllUsers(data.users);
+//   } else {
+//     console.log("No students found");
+//   }
+// } catch (error) {
+//   console.error("Error getting user data:", error);
+// }
+// }
 const displayUsers = {
   createUserElementsForDisplay() {
     this.userDataHeader = document.createElement("div");
@@ -127,17 +126,22 @@ const displayUsers = {
       this.editUserBtn.textContent = "Edit";
       this.deleteUserBtn.textContent = "Delete";
       this.editUserBtn.setAttribute("userId", user.student_id);
+      this.editUserBtn.setAttribute("type", user.access);
       this.deleteUserBtn.setAttribute("userId", user.student_id);
+      this.deleteUserBtn.setAttribute("type", user.access);
       this.editUserBtn.classList.add("open-modal-btn3");
       this.editUserBtn.addEventListener("click", (event) => {
         const id = event.target.getAttribute("userId");
-        getSingleUser(id);
+        const type = event.target.getAttribute("type");
+        const funct = "edit"; // funct is short for 'function', but it's a reserved word
+        getUserInfo.getSingleUser(id, type, funct);
         document.getElementById("updateUser").reset();
         updateUserDiv.showModal();
       });
       this.deleteUserBtn.addEventListener("click", (event) => {
         const id = event.target.getAttribute("userId");
-        deleteUser(id);
+        const type = event.target.getAttribute("type");
+        deleteUser(id, type);
       });
       this.number.classList.add("number");
       this.userGradeLevel.classList.add("number");
@@ -172,6 +176,25 @@ const displayUsers = {
     this.appendUserDataHeaders();
     this.setUserDataInRows(data);
   },
+  displaySingleUserInfoForEditing(data, type) {
+    const singleUserData1 = document.querySelector(".single-user-data1");
+    singleUserData1.setAttribute("userID", data.student_id);
+    if (data.access === "teacher") {
+      singleUserData1.innerText = `${data.last_name}, ${data.first_name}\r\nAccess: ${data.access}`;
+    } else {
+      singleUserData1.innerText = `${data.last_name}, ${data.first_name}\r\nGrade: ${data.grade_level}\r\nAccess: ${data.access}`;
+    }
+  },
+  displaySingleUserInfo(data) {
+    const userName = document.querySelector(".user-data-modal-name");
+    const singleUserData2 = document.querySelector(".single-user-data2");
+    userName.innerText = `${data.last_name}, ${data.first_name}`;
+    if (data.access === "teacher") {
+      singleUserData2.innerText = `Access: ${data.access}`;
+    } else {
+      singleUserData2.innerText = `Grade: ${data.grade_level}\r\nAccess: ${data.access}`;
+    }
+  },
 };
 function appendItems(items, intermediateTarget, finalTarget) {
   if (intermediateTarget) {
@@ -185,149 +208,72 @@ function appendItems(items, intermediateTarget, finalTarget) {
     });
   }
 }
-// function displayUsers(data) {
-//   userList.textContent = "";
-// const userDataHeader = document.createElement("div");
-// const numberHeader = document.createElement("div");
-// const nameHeader = document.createElement("div");
-// const gradeLevelHeader = document.createElement("div");
-// const accessHeader = document.createElement("div");
-// numberHeader.classList.add("number", "table-header");
-// gradeLevelHeader.classList.add("number", "table-header");
-// nameHeader.classList.add("table-header");
-// accessHeader.classList.add("table-header");
-// numberHeader.textContent = "";
-// nameHeader.textContent = "Last Name, First Name";
-// accessHeader.textContent = "Access";
-// gradeLevelHeader.textContent = "Grade";
-// userDataHeader.classList.add("user-data-header");
-// userDataHeader.appendChild(numberHeader);
-// userDataHeader.appendChild(nameHeader);
-// userDataHeader.appendChild(gradeLevelHeader);
-// userDataHeader.appendChild(accessHeader);
-// userList.appendChild(userDataHeader);
-// let i = 0;
-// data.forEach((user) => {
-//   ++i;
-//   const userData = document.createElement("div");
-//   const number = document.createElement("div");
-//   const userName = document.createElement("div");
-//   const userGradeLevel = document.createElement("div");
-//   const userAccess = document.createElement("div");
-//   const editUserBtn = document.createElement("button");
-//   const deleteUserBtn = document.createElement("button");
-//   userName.setAttribute("userId", user.student_id);
-//   userName.classList.add("open-modal-btn2", "user-name");
-//   userName.addEventListener("click", (event) => {
-//     const id = event.target.getAttribute("userId");
-//     getSingleUser2(id);
-//     // document.getElementById("single-user-data-div").reset();
-//     userDataDiv.showModal();
-//   });
-//   editUserBtn.textContent = "Edit";
-//   deleteUserBtn.textContent = "Delete";
-//   editUserBtn.setAttribute("userId", user.student_id);
-//   deleteUserBtn.setAttribute("userId", user.student_id);
-//   editUserBtn.classList.add("open-modal-btn3");
-//   editUserBtn.addEventListener("click", (event) => {
-//     const id = event.target.getAttribute("userId");
-//     getSingleUser(id);
-//     document.getElementById("updateUser").reset();
-//     updateUserDiv.showModal();
-//   });
-//   deleteUserBtn.addEventListener("click", (event) => {
-//     const id = event.target.getAttribute("userId");
-//     deleteUser(id);
-//   });
-//   number.classList.add("number");
-//   userGradeLevel.classList.add("number");
-//   number.textContent = `${i}`;
-//   userName.textContent = `${user.last_name}, ${user.first_name}`;
-//   if (user.access === "teacher") {
-//     userGradeLevel.textContent = ``;
-//   } else {
-//     userGradeLevel.textContent = `${user.grade_level}`;
-//   }
-//   if (user.access !== "student") {
-//     if (user.access === "1") {
-//       userAccess.textContent = `Admin`;
-//     } else userAccess.textContent = `Teacher`;
-//   } else {
-//     userAccess.textContent = `${user.access}`;
-//   }
-//   userData.classList.add("user-slot");
-//   userData.appendChild(number);
-//   userData.appendChild(userName);
-//   userData.appendChild(userGradeLevel);
-//   userData.appendChild(userAccess);
-//   userData.appendChild(editUserBtn);
-//   userData.appendChild(deleteUserBtn);
-//   userList.appendChild(userData);
-// });
-// }
 
-// Get and Display data for single user when editing a user
-async function getSingleUser(id) {
-  try {
-    const response = await fetch(
-      `/KGPSEnglishPractice-test/api/read_users.php?id=${id}`
-    );
+const getUserInfo = {
+  async getAllUsers() {
+    try {
+      const response = await fetch(
+        "/KGPSEnglishPractice-test/api/read_users.php"
+      );
 
-    if (!response.ok) {
-      throw new Error("Network response was not okay");
+      if (!response.ok) {
+        throw new Error("Network response was not okay");
+      }
+      const data = await response.json();
+
+      if (data.users) {
+        displayUsers.displayAllUsers(data.users);
+      } else {
+        console.log("No students found");
+      }
+    } catch (error) {
+      console.error("Error getting user data:", error);
     }
-    const data = await response.json();
+  },
+  async getSingleUser(id, type, funct) {
+    try {
+      const response = await fetch(
+        `/KGPSEnglishPractice-test/api/read_users.php?id=${id}`
+      );
 
-    if (data) {
-      displaySingleUser(data);
-    } else {
-      console.log("No students found");
+      if (!response.ok) {
+        throw new Error("Network response was not okay");
+      }
+      const data = await response.json();
+      if (data) {
+        if ((funct = "edit")) {
+          displayUsers.displaySingleUserInfoForEditing(data, type);
+        } else {
+          displayUsers.displaySingleUserInfo(data);
+        }
+      }
+    } catch (error) {
+      console.error("Error getting user data:", error);
     }
-  } catch (error) {
-    console.error("Error getting user data:", error);
-  }
-}
-function displaySingleUser(data) {
-  const singleUserData1 = document.querySelector(".single-user-data1");
-  singleUserData1.setAttribute("userID", data.student_id);
-  if (data.access === "teacher") {
-    singleUserData1.innerText = `${data.last_name}, ${data.first_name}\r\nAccess: ${data.access}`;
-  } else {
-    singleUserData1.innerText = `${data.last_name}, ${data.first_name}\r\nGrade: ${data.grade_level}\r\nAccess: ${data.access}`;
-  }
-}
+  },
+};
 
 // Get and Display data for single user when clicking on name
-async function getSingleUser2(id) {
-  try {
-    const response = await fetch(
-      `/KGPSEnglishPractice-test/api/read_users.php?id=${id}`
-    );
+// async function getSingleUser2(id) {
+//   try {
+//     const response = await fetch(
+//       `/KGPSEnglishPractice-test/api/read_users.php?id=${id}`
+//     );
 
-    if (!response.ok) {
-      throw new Error("Network response was not okay");
-    }
-    const data = await response.json();
+//     if (!response.ok) {
+//       throw new Error("Network response was not okay");
+//     }
+//     const data = await response.json();
 
-    if (data) {
-      displaySingleUser2(data);
-    } else {
-      console.log("No students found");
-    }
-  } catch (error) {
-    console.error("Error getting user data:", error);
-  }
-}
-function displaySingleUser2(data) {
-  const userName = document.querySelector(".user-data-modal-name");
-  const singleUserData2 = document.querySelector(".single-user-data2");
-  userName.innerText = `${data.last_name}, ${data.first_name}`;
-  if (data.access === "teacher") {
-    singleUserData2.innerText = `Access: ${data.access}`;
-  } else {
-    singleUserData2.innerText = `Grade: ${data.grade_level}\r\nAccess: ${data.access}`;
-  }
-}
+//     if (data) {
+//       displayUsers.displaySingleUserInfo(data);
+//     } else {
+//       console.log("No students found");
+//     }
+//   } catch (error) {
+//     console.error("Error getting user data:", error);
+//   }
+// }
 
 // Create Student
 document
@@ -400,7 +346,7 @@ document
       if (!response.ok) {
         throw new Error("Network response was not okay");
       } else {
-        getUsers();
+        getUserInfo.getAllUsers();
       }
     } catch (error) {
       console.error("Error creating new user:", error);
@@ -428,7 +374,7 @@ async function deleteUser(id) {
     if (!response.ok) {
       throw new Error("Network response was not okay");
     } else {
-      getUsers();
+      getUserInfo.getAllUsers();
     }
   } catch (error) {
     console.error("Error deleting user:", error);
@@ -447,7 +393,7 @@ document
     updateUser(id);
   });
 async function updateUser(id) {
-  getSingleUser(id);
+  getUserInfo.getSingleUser(id, type, funct);
   const firstname = document.getElementById("updatefirstname").value;
 
   const lastname = document.getElementById("updatelastname").value;
@@ -495,8 +441,8 @@ async function updateUser(id) {
     if (!response.ok) {
       throw new Error("Network response was not okay");
     } else {
-      getSingleUser(id);
-      getUsers();
+      getUserInfo.getSingleUser(id, type, funct);
+      getUserInfo.getAllUsers();
     }
   } catch (error) {
     console.error("Error updating user:", error);
@@ -508,6 +454,4 @@ async function updateUser(id) {
   }, 1000);
 }
 
-window.addEventListener("load", getUsers);
-
-export { getUsers };
+window.addEventListener("load", getUserInfo.getAllUsers);
