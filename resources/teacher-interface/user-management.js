@@ -73,7 +73,7 @@ async function getUsers() {
     const data = await response.json();
 
     if (data.users) {
-      displayUsers(data.users);
+      displayUsers.displayAllUsers(data.users);
     } else {
       console.log("No students found");
     }
@@ -81,86 +81,190 @@ async function getUsers() {
     console.error("Error getting user data:", error);
   }
 }
-function displayUsers(data) {
-  userList.textContent = "";
-  const userDataHeader = document.createElement("div");
-  const numberHeader = document.createElement("div");
-  const nameHeader = document.createElement("div");
-  const gradeLevelHeader = document.createElement("div");
-  const accessHeader = document.createElement("div");
-  numberHeader.classList.add("number", "table-header");
-  gradeLevelHeader.classList.add("number", "table-header");
-  nameHeader.classList.add("table-header");
-  accessHeader.classList.add("table-header");
-  numberHeader.textContent = "";
-  nameHeader.textContent = "Last Name, First Name";
-  accessHeader.textContent = "Access";
-  gradeLevelHeader.textContent = "Grade";
-  userDataHeader.classList.add("user-data-header");
-  userDataHeader.appendChild(numberHeader);
-  userDataHeader.appendChild(nameHeader);
-  userDataHeader.appendChild(gradeLevelHeader);
-  userDataHeader.appendChild(accessHeader);
-  userList.appendChild(userDataHeader);
-  let i = 0;
-  data.forEach((user) => {
-    ++i;
-    const userData = document.createElement("div");
-    const number = document.createElement("div");
-    const userName = document.createElement("div");
-    const userGradeLevel = document.createElement("div");
-    const userAccess = document.createElement("div");
-    const editUserBtn = document.createElement("button");
-    const deleteUserBtn = document.createElement("button");
-    userName.setAttribute("userId", user.student_id);
-    userName.classList.add("open-modal-btn2", "user-name");
-    userName.addEventListener("click", (event) => {
-      const id = event.target.getAttribute("userId");
-      getSingleUser2(id);
-      // document.getElementById("single-user-data-div").reset();
-      userDataDiv.showModal();
+const displayUsers = {
+  createUserElementsForDisplay() {
+    const userDataHeader = document.createElement("div");
+    const numberHeader = document.createElement("div");
+    const nameHeader = document.createElement("div");
+    const gradeLevelHeader = document.createElement("div");
+    const accessHeader = document.createElement("div");
+    numberHeader.classList.add("number", "table-header");
+    gradeLevelHeader.classList.add("number", "table-header");
+    nameHeader.classList.add("table-header");
+    accessHeader.classList.add("table-header");
+    numberHeader.textContent = "";
+    nameHeader.textContent = "Last Name, First Name";
+    accessHeader.textContent = "Access";
+    gradeLevelHeader.textContent = "Grade";
+    userDataHeader.classList.add("user-data-header");
+  },
+  appendUserDataHeaders() {
+    userDataHeader.appendChild(numberHeader);
+    userDataHeader.appendChild(nameHeader);
+    userDataHeader.appendChild(gradeLevelHeader);
+    userDataHeader.appendChild(accessHeader);
+    userList.appendChild(userDataHeader);
+  },
+  setUserDataInRows() {
+    let i = 0;
+    data.forEach((user) => {
+      ++i;
+      const userData = document.createElement("div");
+      const number = document.createElement("div");
+      const userName = document.createElement("div");
+      const userGradeLevel = document.createElement("div");
+      const userAccess = document.createElement("div");
+      const editUserBtn = document.createElement("button");
+      const deleteUserBtn = document.createElement("button");
+      userName.setAttribute("userId", user.student_id);
+      userName.classList.add("open-modal-btn2", "user-name");
+      userName.addEventListener("click", (event) => {
+        const id = event.target.getAttribute("userId");
+        getSingleUser2(id);
+        // document.getElementById("single-user-data-div").reset();
+        userDataDiv.showModal();
+      });
+      editUserBtn.textContent = "Edit";
+      deleteUserBtn.textContent = "Delete";
+      editUserBtn.setAttribute("userId", user.student_id);
+      deleteUserBtn.setAttribute("userId", user.student_id);
+      editUserBtn.classList.add("open-modal-btn3");
+      editUserBtn.addEventListener("click", (event) => {
+        const id = event.target.getAttribute("userId");
+        getSingleUser(id);
+        document.getElementById("updateUser").reset();
+        updateUserDiv.showModal();
+      });
+      deleteUserBtn.addEventListener("click", (event) => {
+        const id = event.target.getAttribute("userId");
+        deleteUser(id);
+      });
+      number.classList.add("number");
+      userGradeLevel.classList.add("number");
+      number.textContent = `${i}`;
+      userName.textContent = `${user.last_name}, ${user.first_name}`;
+      if (user.access === "teacher") {
+        userGradeLevel.textContent = ``;
+      } else {
+        userGradeLevel.textContent = `${user.grade_level}`;
+      }
+      if (user.access !== "student") {
+        if (user.access === "1") {
+          userAccess.textContent = `Admin`;
+        } else userAccess.textContent = `Teacher`;
+      } else {
+        userAccess.textContent = `${user.access}`;
+      }
+      userData.classList.add("user-slot");
+      userData.classList.add("user-slot");
+      userData.appendChild(number);
+      userData.appendChild(userName);
+      userData.appendChild(userGradeLevel);
+      userData.appendChild(userAccess);
+      userData.appendChild(editUserBtn);
+      userData.appendChild(deleteUserBtn);
+      userList.appendChild(userData);
     });
-    editUserBtn.textContent = "Edit";
-    deleteUserBtn.textContent = "Delete";
-    editUserBtn.setAttribute("userId", user.student_id);
-    deleteUserBtn.setAttribute("userId", user.student_id);
-    editUserBtn.classList.add("open-modal-btn3");
-    editUserBtn.addEventListener("click", (event) => {
-      const id = event.target.getAttribute("userId");
-      getSingleUser(id);
-      document.getElementById("updateUser").reset();
-      updateUserDiv.showModal();
+  },
+  displayAllUsers(data) {
+    userList.textContent = "";
+    this.createUserElementsForDisplay();
+    this.appendUserDataHeaders();
+    this.setUserDataInRows();
+  },
+};
+function appendItems(items, intermediateTarget, finalTarget) {
+  if (intermediateTarget) {
+    items.forEach((item) => {
+      intermediateTarget.appendChild(item);
     });
-    deleteUserBtn.addEventListener("click", (event) => {
-      const id = event.target.getAttribute("userId");
-      deleteUser(id);
+    finalTarget.appendChild(intermediateTarget);
+  } else {
+    items.forEach((item) => {
+      finalTarget.appendChild(item);
     });
-    number.classList.add("number");
-    userGradeLevel.classList.add("number");
-    number.textContent = `${i}`;
-    userName.textContent = `${user.last_name}, ${user.first_name}`;
-    if (user.access === "teacher") {
-      userGradeLevel.textContent = ``;
-    } else {
-      userGradeLevel.textContent = `${user.grade_level}`;
-    }
-    if (user.access !== "student") {
-      if (user.access === "1") {
-        userAccess.textContent = `Admin`;
-      } else userAccess.textContent = `Teacher`;
-    } else {
-      userAccess.textContent = `${user.access}`;
-    }
-    userData.classList.add("user-slot");
-    userData.appendChild(number);
-    userData.appendChild(userName);
-    userData.appendChild(userGradeLevel);
-    userData.appendChild(userAccess);
-    userData.appendChild(editUserBtn);
-    userData.appendChild(deleteUserBtn);
-    userList.appendChild(userData);
-  });
+  }
 }
+// function displayUsers(data) {
+//   userList.textContent = "";
+// const userDataHeader = document.createElement("div");
+// const numberHeader = document.createElement("div");
+// const nameHeader = document.createElement("div");
+// const gradeLevelHeader = document.createElement("div");
+// const accessHeader = document.createElement("div");
+// numberHeader.classList.add("number", "table-header");
+// gradeLevelHeader.classList.add("number", "table-header");
+// nameHeader.classList.add("table-header");
+// accessHeader.classList.add("table-header");
+// numberHeader.textContent = "";
+// nameHeader.textContent = "Last Name, First Name";
+// accessHeader.textContent = "Access";
+// gradeLevelHeader.textContent = "Grade";
+// userDataHeader.classList.add("user-data-header");
+// userDataHeader.appendChild(numberHeader);
+// userDataHeader.appendChild(nameHeader);
+// userDataHeader.appendChild(gradeLevelHeader);
+// userDataHeader.appendChild(accessHeader);
+// userList.appendChild(userDataHeader);
+// let i = 0;
+// data.forEach((user) => {
+//   ++i;
+//   const userData = document.createElement("div");
+//   const number = document.createElement("div");
+//   const userName = document.createElement("div");
+//   const userGradeLevel = document.createElement("div");
+//   const userAccess = document.createElement("div");
+//   const editUserBtn = document.createElement("button");
+//   const deleteUserBtn = document.createElement("button");
+//   userName.setAttribute("userId", user.student_id);
+//   userName.classList.add("open-modal-btn2", "user-name");
+//   userName.addEventListener("click", (event) => {
+//     const id = event.target.getAttribute("userId");
+//     getSingleUser2(id);
+//     // document.getElementById("single-user-data-div").reset();
+//     userDataDiv.showModal();
+//   });
+//   editUserBtn.textContent = "Edit";
+//   deleteUserBtn.textContent = "Delete";
+//   editUserBtn.setAttribute("userId", user.student_id);
+//   deleteUserBtn.setAttribute("userId", user.student_id);
+//   editUserBtn.classList.add("open-modal-btn3");
+//   editUserBtn.addEventListener("click", (event) => {
+//     const id = event.target.getAttribute("userId");
+//     getSingleUser(id);
+//     document.getElementById("updateUser").reset();
+//     updateUserDiv.showModal();
+//   });
+//   deleteUserBtn.addEventListener("click", (event) => {
+//     const id = event.target.getAttribute("userId");
+//     deleteUser(id);
+//   });
+//   number.classList.add("number");
+//   userGradeLevel.classList.add("number");
+//   number.textContent = `${i}`;
+//   userName.textContent = `${user.last_name}, ${user.first_name}`;
+//   if (user.access === "teacher") {
+//     userGradeLevel.textContent = ``;
+//   } else {
+//     userGradeLevel.textContent = `${user.grade_level}`;
+//   }
+//   if (user.access !== "student") {
+//     if (user.access === "1") {
+//       userAccess.textContent = `Admin`;
+//     } else userAccess.textContent = `Teacher`;
+//   } else {
+//     userAccess.textContent = `${user.access}`;
+//   }
+//   userData.classList.add("user-slot");
+//   userData.appendChild(number);
+//   userData.appendChild(userName);
+//   userData.appendChild(userGradeLevel);
+//   userData.appendChild(userAccess);
+//   userData.appendChild(editUserBtn);
+//   userData.appendChild(deleteUserBtn);
+//   userList.appendChild(userData);
+// });
+// }
 
 // Get and Display data for single user when editing a user
 async function getSingleUser(id) {
