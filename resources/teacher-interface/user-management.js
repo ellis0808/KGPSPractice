@@ -29,11 +29,12 @@ openCreateUserModalBtn.addEventListener("pointerdown", () => {
 });
 closeCreateUserModalBtn.addEventListener("pointerdown", () => {
   createUserDiv.close();
-  document.getElementById("createUser").reset();
+  document.getElementById("createStudent").reset();
+  document.getElementById("createTeacher").reset();
 });
 closeSingleUserDataModalBtn.addEventListener("pointerdown", () => {
   userDataDiv.close();
-  document.getElementById("createUser").reset();
+  // document.getElementById("single-user-data-div").reset();
 });
 closeUpdateUserModalBtn.addEventListener("pointerdown", () => {
   updateUserDiv.close();
