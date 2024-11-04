@@ -155,8 +155,8 @@ const displayUsers = {
       } else {
         this.userAccess.textContent = `${user.access}`;
       }
-      userData.classList.add("user-slot");
-      userData.classList.add("user-slot");
+      this.userData.classList.add("user-slot");
+      this.userData.classList.add("user-slot");
       this.userData.appendChild(this.number);
       this.userData.appendChild(this.userName);
       this.userData.appendChild(this.userGradeLevel);
