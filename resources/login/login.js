@@ -165,13 +165,10 @@ function resetStudentPasswordEntryArray() {
     studentPasswordEntryArray[1] !== null
   ) {
     studentPasswordEntryArray.forEach((item) => {
-      document
-        .querySelector(`[content='${item}']`)
-        .classList.remove("selected");
-      item = null;
+      item.classList.remove("selected");
     });
-    // studentPasswordEntryArray[0] = null;
-    // studentPasswordEntryArray[1] = null;
+    studentPasswordEntryArray[0] = null;
+    studentPasswordEntryArray[1] = null;
     displaySelectedPasswordImages();
   }
 }
