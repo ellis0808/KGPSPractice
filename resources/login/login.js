@@ -169,7 +169,9 @@ function resetStudentPasswordEntryArray() {
   ) {
     console.log(studentPasswordEntryArray[0]);
     studentPasswordEntryArray.forEach((item) => {
-      removeSelectedClassFromPasswordEntryArrayImage(item);
+      if (item) {
+        removeSelectedClassFromPasswordEntryArrayImage(item);
+      }
     });
     // studentPasswordEntryArray.forEach((item) => {
     //   if (item) {
