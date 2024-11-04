@@ -163,7 +163,7 @@ const displayUsers = {
       this.userData.appendChild(this.userAccess);
       this.userData.appendChild(this.editUserBtn);
       this.userData.appendChild(this.deleteUserBtn);
-      this.userList.appendChild(this.userData);
+      userList.appendChild(this.userData);
     });
   },
   displayAllUsers(data) {
