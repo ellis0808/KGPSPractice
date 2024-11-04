@@ -164,6 +164,8 @@ function resetStudentPasswordEntryArray() {
     studentPasswordEntryArray[0] !== null ||
     studentPasswordEntryArray[1] !== null
   ) {
+    console.log(studentPasswordEntryArray);
+
     studentPasswordEntryArray.forEach((item) => {
       if (item !== null) {
         item.classList.remove("selected");
