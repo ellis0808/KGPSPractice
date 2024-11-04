@@ -105,7 +105,7 @@ const displayUsers = {
     this.userDataHeader.appendChild(this.accessHeader);
     userList.appendChild(this.userDataHeader);
   },
-  setUserDataInRows() {
+  setUserDataInRows(data) {
     let i = 0;
     data.forEach((user) => {
       ++i;
@@ -170,7 +170,7 @@ const displayUsers = {
     userList.textContent = "";
     this.createUserElementsForDisplay();
     this.appendUserDataHeaders();
-    this.setUserDataInRows();
+    this.setUserDataInRows(data);
   },
 };
 function appendItems(items, intermediateTarget, finalTarget) {
