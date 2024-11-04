@@ -135,7 +135,7 @@ const displayUsers = {
         document.getElementById("updateUser").reset();
         updateUserDiv.showModal();
       });
-      deleteUserBtn.addEventListener("click", (event) => {
+      this.eleteUserBtn.addEventListener("click", (event) => {
         const id = event.target.getAttribute("userId");
         deleteUser(id);
       });
