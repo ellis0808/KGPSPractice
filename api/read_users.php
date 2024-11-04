@@ -39,10 +39,19 @@ try {
         }
     } else {
         // Retrieve all teachers if no specific ID is requested
-        $stmt = $pdo->query(("SELECT student_id, last_name, first_name, grade_level, access FROM students UNION SELECT teacher_id, last_name, title, admin, access FROM teachers"));
-        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $pdo->query(("SELECT student_id, last_name, first_name, grade_level, access FROM students"));
+        $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        echo json_encode(['users' => $users]);
+        $stmt = $pdo->query(("SELECT teacher_id, last_name, title, admin, access FROM teachers"));
+        $teachers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        //combines students and teachers into one object and keeps the key naming distinct
+        $users = [
+            'students' => $students,
+            'teachers' => $teachers
+        ];
+
+        echo json_encode($users);
     }
 } catch (PDOException $e) {
     echo json_encode(['error' => $e->getMessage()]);
