@@ -251,6 +251,8 @@ const getUserInfo = {
       }
       const data = await response.json();
       if (data) {
+        console.log(data);
+
         if ((funct = "edit")) {
           displayUsers.displaySingleUserInfoForEditing(data, type);
         } else {
