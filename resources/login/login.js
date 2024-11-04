@@ -168,10 +168,11 @@ function resetStudentPasswordEntryArray() {
       document
         .querySelector(`[content='${item}']`)
         .classList.remove("selected");
+      item = null;
     });
-    studentPasswordEntryArray[0] = null;
-    studentPasswordEntryArray[1] = null;
-    // displaySelectedPasswordImages();
+    // studentPasswordEntryArray[0] = null;
+    // studentPasswordEntryArray[1] = null;
+    displaySelectedPasswordImages();
   }
 }
 
