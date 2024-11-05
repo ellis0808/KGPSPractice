@@ -199,7 +199,6 @@ const displayUsers = {
     this.appendUserDataHeaders();
     this.setStudentDataInRows(data.students);
     this.setTeacherDataInRows(data.teachers);
-    this.setUserDataInRows(data);
     this.setUserDataInUserList();
   },
   displaySingleUserInfoForEditing(data, type) {
