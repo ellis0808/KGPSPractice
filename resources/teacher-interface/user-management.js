@@ -202,7 +202,7 @@ const displayUsers = {
     // this.setStudentDataInRows(data.students);
     // this.setTeacherDataInRows(data.teachers);
     let i = 0;
-    for (i = 0; i > data.students.length + data.teachers.length; ++i) {
+    for (i = 0; i < data.students.length + data.teachers.length; ++i) {
       const userData = document.createElement("div");
       const number = document.createElement("div");
       const userName = document.createElement("div");
