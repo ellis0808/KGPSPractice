@@ -87,7 +87,7 @@ const displayUsers = {
   },
   createUserDataRowElements(data) {
     this.userData = document.createElement("div");
-    this.number = document.createElement("div");
+    const number = document.createElement("div");
     this.userName = document.createElement("div");
     this.userGradeLevel = document.createElement("div");
     this.userAccess = document.createElement("div");
@@ -106,8 +106,8 @@ const displayUsers = {
     console.log(students);
 
     students.forEach((student) => {
-      this.number.textContent = `${this.i}`;
-      this.number.classList.add("number");
+      number.textContent = `${this.i}`;
+      number.classList.add("number");
       this.userGradeLevel.classList.add("number");
 
       this.userData.classList.add("user-slot");
@@ -147,8 +147,8 @@ const displayUsers = {
   },
   setTeacherDataInRows(teachers) {
     teachers.forEach((teacher) => {
-      this.number.textContent = `${this.i}`;
-      this.number.classList.add("number");
+      number.textContent = `${this.i}`;
+      number.classList.add("number");
       this.userGradeLevel.classList.add("number");
 
       this.userData.classList.add("user-slot");
