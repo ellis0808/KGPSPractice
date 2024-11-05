@@ -106,6 +106,11 @@ const displayUsers = {
     students.forEach((student) => {
       this.setUserDataInRowsSharedElements();
       this.number.textContent = `${this.i}`;
+      this.number.classList.add("number");
+      this.userGradeLevel.classList.add("number");
+
+      this.userData.classList.add("user-slot");
+      this.userData.classList.add("user-slot");
       this.userName.setAttribute("userId", students.student_id);
       this.userName.setAttribute("type", students.access);
       this.userName.textContent = `${students.last_name}, ${students.first_name}`;
@@ -125,6 +130,12 @@ const displayUsers = {
         getUserInfo.getSingleUser(id, type, funct);
         document.getElementById("updateUser").reset();
         updateUserDiv.showModal();
+        this.userData.appendChild(this.number);
+        this.userData.appendChild(this.userName);
+        this.userData.appendChild(this.userGradeLevel);
+        this.userData.appendChild(this.userAccess);
+        this.userData.appendChild(this.editUserBtn);
+        this.userData.appendChild(this.deleteUserBtn);
       });
       this.deleteUserBtn.addEventListener("click", (event) => {
         const id = event.target.getAttribute("userId");
@@ -137,7 +148,11 @@ const displayUsers = {
     teachers.forEach((teacher) => {
       this.setUserDataInRowsSharedElements();
       this.number.textContent = `${this.i}`;
+      this.number.classList.add("number");
+      this.userGradeLevel.classList.add("number");
 
+      this.userData.classList.add("user-slot");
+      this.userData.classList.add("user-slot");
       this.userName.setAttribute("userId", teachers.teacher_id);
       this.userName.setAttribute("type", teachers.access);
       this.userName.textContent = `${teachers.title} ${teachers.last_name}`;
@@ -157,6 +172,12 @@ const displayUsers = {
         getUserInfo.getSingleUser(id, type, funct);
         document.getElementById("updateUser").reset();
         updateUserDiv.showModal();
+        this.userData.appendChild(this.number);
+        this.userData.appendChild(this.userName);
+        this.userData.appendChild(this.userGradeLevel);
+        this.userData.appendChild(this.userAccess);
+        this.userData.appendChild(this.editUserBtn);
+        this.userData.appendChild(this.deleteUserBtn);
       });
       this.deleteUserBtn.addEventListener("click", (event) => {
         const id = event.target.getAttribute("userId");
@@ -166,22 +187,10 @@ const displayUsers = {
     });
   },
   setUserDataInRows(data) {
-    data.forEach((user) => {
-      ++this.i;
-
-      this.number.classList.add("number");
-      this.userGradeLevel.classList.add("number");
-
-      this.userData.classList.add("user-slot");
-      this.userData.classList.add("user-slot");
-      this.userData.appendChild(this.number);
-      this.userData.appendChild(this.userName);
-      this.userData.appendChild(this.userGradeLevel);
-      this.userData.appendChild(this.userAccess);
-      this.userData.appendChild(this.editUserBtn);
-      this.userData.appendChild(this.deleteUserBtn);
-      userList.appendChild(this.userData);
-    });
+    data.forEach((user) => {});
+  },
+  setUserDataInUserList() {
+    userList.appendChild(this.userData);
   },
   displayAllUsers(data) {
     userList.textContent = "";
@@ -191,6 +200,7 @@ const displayUsers = {
     this.setStudentDataInRows(data.students);
     this.setTeacherDataInRows(data.teachers);
     this.setUserDataInRows(data);
+    this.setUserDataInUserList();
   },
   displaySingleUserInfoForEditing(data, type) {
     const singleUserData1 = document.querySelector(".single-user-data1");
