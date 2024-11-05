@@ -103,6 +103,8 @@ const displayUsers = {
     });
   },
   setStudentDataInRows(students) {
+    console.log(students);
+
     students.forEach((student) => {
       this.setUserDataInRowsSharedElements();
       this.number.textContent = `${this.i}`;
@@ -193,8 +195,6 @@ const displayUsers = {
     userList.appendChild(this.userData);
   },
   displayAllUsers(data) {
-    console.log(data.students, data.teachers);
-
     userList.textContent = "";
     this.i = 0;
     this.createUserElementsForDisplay();
