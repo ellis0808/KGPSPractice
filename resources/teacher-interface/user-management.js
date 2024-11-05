@@ -147,6 +147,8 @@ const displayUsers = {
   },
   setTeacherDataInRows(teachers) {
     teachers.forEach((teacher) => {
+      console.log(teacher.last_name);
+
       ++this.i;
       this.number.textContent = `${this.i}`;
       this.number.classList.add("number");
