@@ -85,7 +85,7 @@ const displayUsers = {
     this.userDataHeader.appendChild(this.accessHeader);
     userList.appendChild(this.userDataHeader);
   },
-  setUserDataInRowsSharedElements() {
+  createUserDataRowElements(data) {
     this.userData = document.createElement("div");
     this.number = document.createElement("div");
     this.userName = document.createElement("div");
@@ -132,18 +132,18 @@ const displayUsers = {
         getUserInfo.getSingleUser(id, type, funct);
         document.getElementById("updateUser").reset();
         updateUserDiv.showModal();
-        this.userData.appendChild(this.number);
-        this.userData.appendChild(this.userName);
-        this.userData.appendChild(this.userGradeLevel);
-        this.userData.appendChild(this.userAccess);
-        this.userData.appendChild(this.editUserBtn);
-        this.userData.appendChild(this.deleteUserBtn);
       });
       this.deleteUserBtn.addEventListener("click", (event) => {
         const id = event.target.getAttribute("userId");
         const type = event.target.getAttribute("type");
         deleteUser(id, type);
       });
+      this.userData.appendChild(this.number);
+      this.userData.appendChild(this.userName);
+      this.userData.appendChild(this.userGradeLevel);
+      this.userData.appendChild(this.userAccess);
+      this.userData.appendChild(this.editUserBtn);
+      this.userData.appendChild(this.deleteUserBtn);
     });
   },
   setTeacherDataInRows(teachers) {
@@ -174,18 +174,18 @@ const displayUsers = {
         getUserInfo.getSingleUser(id, type, funct);
         document.getElementById("updateUser").reset();
         updateUserDiv.showModal();
-        this.userData.appendChild(this.number);
-        this.userData.appendChild(this.userName);
-        this.userData.appendChild(this.userGradeLevel);
-        this.userData.appendChild(this.userAccess);
-        this.userData.appendChild(this.editUserBtn);
-        this.userData.appendChild(this.deleteUserBtn);
       });
       this.deleteUserBtn.addEventListener("click", (event) => {
         const id = event.target.getAttribute("userId");
         const type = event.target.getAttribute("type");
         deleteUser(id, type);
       });
+      this.userData.appendChild(this.number);
+      this.userData.appendChild(this.userName);
+      this.userData.appendChild(this.userGradeLevel);
+      this.userData.appendChild(this.userAccess);
+      this.userData.appendChild(this.editUserBtn);
+      this.userData.appendChild(this.deleteUserBtn);
     });
   },
   setUserDataInRows(data) {
