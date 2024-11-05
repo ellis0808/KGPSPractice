@@ -184,6 +184,7 @@ const displayUsers = {
       this.userData.appendChild(this.userAccess);
       this.userData.appendChild(this.editUserBtn);
       this.userData.appendChild(this.deleteUserBtn);
+      this.setUserDataInUserList();
     });
   },
   setUserDataInRows(data) {
@@ -200,7 +201,6 @@ const displayUsers = {
     this.appendUserDataHeaders();
     this.setStudentDataInRows(data.students);
     this.setTeacherDataInRows(data.teachers);
-    this.setUserDataInUserList();
   },
   displaySingleUserInfoForEditing(data, type) {
     const singleUserData1 = document.querySelector(".single-user-data1");
