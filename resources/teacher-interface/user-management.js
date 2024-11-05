@@ -196,6 +196,8 @@ const displayUsers = {
   displayAllUsers(data) {
     const students = data.students;
     const teachers = data.teachers;
+    console.log(students, teachers);
+
     userList.textContent = "";
     // this.i = 0;
     // this.createUserElementsForDisplay();
@@ -347,7 +349,6 @@ const getUserInfo = {
         throw new Error("Network response was not okay");
       }
       const data = await response.json();
-      console.log(data);
 
       if (data) {
         displayUsers.displayAllUsers(data);
