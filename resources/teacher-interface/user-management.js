@@ -103,9 +103,8 @@ const displayUsers = {
     });
   },
   setStudentDataInRows(students) {
-    console.log(students);
-
     students.forEach((student) => {
+      ++this.i;
       this.number.textContent = `${this.i}`;
       this.number.classList.add("number");
       this.userGradeLevel.classList.add("number");
@@ -143,10 +142,12 @@ const displayUsers = {
       this.userData.appendChild(this.userAccess);
       this.userData.appendChild(this.editUserBtn);
       this.userData.appendChild(this.deleteUserBtn);
+      this.setUserDataInUserList(this.userData);
     });
   },
   setTeacherDataInRows(teachers) {
     teachers.forEach((teacher) => {
+      ++this.i;
       this.number.textContent = `${this.i}`;
       this.number.classList.add("number");
       this.userGradeLevel.classList.add("number");
@@ -186,9 +187,6 @@ const displayUsers = {
       this.userData.appendChild(this.deleteUserBtn);
       this.setUserDataInUserList();
     });
-  },
-  setUserDataInRows(data) {
-    data.forEach((user) => {});
   },
   setUserDataInUserList() {
     userList.appendChild(this.userData);
