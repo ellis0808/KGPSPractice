@@ -201,7 +201,7 @@ const displayUsers = {
     // this.appendUserDataHeaders();
     // this.setStudentDataInRows(data.students);
     // this.setTeacherDataInRows(data.teachers);
-    let i = 0;
+    let i;
     for (i = 0; i < data.students.length + data.teachers.length; ++i) {
       const userData = document.createElement("div");
       const number = document.createElement("div");
@@ -284,6 +284,13 @@ const displayUsers = {
           deleteUser(id, type);
         });
       }
+      this.userData.appendChild(this.number);
+      this.userData.appendChild(this.userName);
+      this.userData.appendChild(this.userGradeLevel);
+      this.userData.appendChild(this.userAccess);
+      this.userData.appendChild(this.editUserBtn);
+      this.userData.appendChild(this.deleteUserBtn);
+      userList.appendChild(this.userData);
     }
   },
   displaySingleUserInfoForEditing(data, type) {
