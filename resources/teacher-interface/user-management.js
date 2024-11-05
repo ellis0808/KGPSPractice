@@ -105,6 +105,7 @@ const displayUsers = {
   setStudentDataInRows(students) {
     students.forEach((student) => {
       this.setUserDataInRowsSharedElements();
+      this.number.textContent = `${this.i}`;
       this.userName.setAttribute("userId", students.student_id);
       this.userName.setAttribute("type", students.access);
       this.userName.textContent = `${students.last_name}, ${students.first_name}`;
@@ -135,7 +136,7 @@ const displayUsers = {
   setTeacherDataInRows(teachers) {
     teachers.forEach((teacher) => {
       this.setUserDataInRowsSharedElements();
-      this.number.textContent = `${i}`;
+      this.number.textContent = `${this.i}`;
 
       this.userName.setAttribute("userId", teachers.teacher_id);
       this.userName.setAttribute("type", teachers.access);
@@ -165,9 +166,8 @@ const displayUsers = {
     });
   },
   setUserDataInRows(data) {
-    this.i = 0;
     data.forEach((user) => {
-      ++i;
+      ++this.i;
 
       this.number.classList.add("number");
       this.userGradeLevel.classList.add("number");
