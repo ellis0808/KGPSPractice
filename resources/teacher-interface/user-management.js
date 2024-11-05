@@ -230,7 +230,7 @@ const displayUsers = {
         userData.setAttribute("data-id", students.teacher_id);
         userName.setAttribute("userId", students.student_id);
         userName.setAttribute("type", students.access);
-        ts.userName.textContent = `${students.last_name}, ${students.first_name}`;
+        userName.textContent = `${students.last_name}, ${students.first_name}`;
         userGradeLevel.textContent = `${students.grade_level}`;
         userAccess.textContent = `${students.access}`;
         editUserBtn.textContent = "Edit";
