@@ -111,17 +111,17 @@ const displayUsers = {
 
       this.userData.classList.add("user-slot");
       this.userData.classList.add("user-slot");
-      this.userName.setAttribute("userId", students.student_id);
-      this.userName.setAttribute("type", students.access);
-      this.userName.textContent = `${students.last_name}, ${students.first_name}`;
-      this.userGradeLevel.textContent = `${students.grade_level}`;
-      this.userAccess.textContent = `${students.access}`;
+      this.userName.setAttribute("userId", student.student_id);
+      this.userName.setAttribute("type", student.access);
+      this.userName.textContent = `${student.last_name}, ${student.first_name}`;
+      this.userGradeLevel.textContent = `${student.grade_level}`;
+      this.userAccess.textContent = `${student.access}`;
       this.editUserBtn.textContent = "Edit";
       this.deleteUserBtn.textContent = "Delete";
-      this.editUserBtn.setAttribute("userId", students.student_id);
-      this.editUserBtn.setAttribute("type", students.access);
-      this.deleteUserBtn.setAttribute("userId", students.student_id);
-      this.deleteUserBtn.setAttribute("type", students.access);
+      this.editUserBtn.setAttribute("userId", student.student_id);
+      this.editUserBtn.setAttribute("type", student.access);
+      this.deleteUserBtn.setAttribute("userId", student.student_id);
+      this.deleteUserBtn.setAttribute("type", student.access);
       this.editUserBtn.classList.add("open-modal-btn3");
       this.editUserBtn.addEventListener("click", (event) => {
         const id = event.target.getAttribute("userId");
@@ -153,17 +153,17 @@ const displayUsers = {
 
       this.userData.classList.add("user-slot");
       this.userData.classList.add("user-slot");
-      this.userName.setAttribute("userId", teachers.teacher_id);
-      this.userName.setAttribute("type", teachers.access);
-      this.userName.textContent = `${teachers.title} ${teachers.last_name}`;
+      this.userName.setAttribute("userId", teacher.teacher_id);
+      this.userName.setAttribute("type", teacher.access);
+      this.userName.textContent = `${teacher.title} ${teacher.last_name}`;
       this.userGradeLevel.textContent = ``;
       this.userAccess.textContent = `teacher`;
       this.editUserBtn.textContent = "Edit";
       this.deleteUserBtn.textContent = "Delete";
-      this.editUserBtn.setAttribute("userId", teachers.teacher_id);
-      this.editUserBtn.setAttribute("type", teachers.access);
-      this.deleteUserBtn.setAttribute("userId", teachers.teacher_id);
-      this.deleteUserBtn.setAttribute("type", teachers.access);
+      this.editUserBtn.setAttribute("userId", teacher.teacher_id);
+      this.editUserBtn.setAttribute("type", teacher.access);
+      this.deleteUserBtn.setAttribute("userId", teacher.teacher_id);
+      this.deleteUserBtn.setAttribute("type", teacher.access);
       this.editUserBtn.classList.add("open-modal-btn3");
       this.editUserBtn.addEventListener("click", (event) => {
         const id = event.target.getAttribute("userId");
