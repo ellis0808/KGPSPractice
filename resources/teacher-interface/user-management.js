@@ -185,7 +185,7 @@ const displayUsers = {
       this.userData.appendChild(this.userAccess);
       this.userData.appendChild(this.editUserBtn);
       this.userData.appendChild(this.deleteUserBtn);
-      this.setUserDataInUserList();
+      userList.appendChild(this.userData);
     });
   },
   setUserDataInUserList() {
