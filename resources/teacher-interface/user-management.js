@@ -153,9 +153,8 @@ const displayUsers = {
       this.number.textContent = `${this.i}`;
       this.number.classList.add("number");
       this.userGradeLevel.classList.add("number");
-
       this.userData.classList.add("user-slot");
-      this.userData.classList.add("user-slot");
+      this.userData.setAttribute("data-id", teacher.teacher_id);
       this.userName.setAttribute("userId", teacher.teacher_id);
       this.userName.setAttribute("type", teacher.access);
       this.userName.textContent = `${teacher.title} ${teacher.last_name}`;
