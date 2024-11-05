@@ -103,73 +103,74 @@ const displayUsers = {
     });
   },
   setStudentDataInRows(students) {
-    // students.forEach((student) => {
-    this.userName.setAttribute("userId", students.student_id);
-    this.userName.setAttribute("type", students.access);
-    this.userName.textContent = `${students.last_name}, ${students.first_name}`;
-    this.userGradeLevel.textContent = `${students.grade_level}`;
-    this.userAccess.textContent = `${students.access}`;
-    this.editUserBtn.textContent = "Edit";
-    this.deleteUserBtn.textContent = "Delete";
-    this.editUserBtn.setAttribute("userId", students.student_id);
-    this.editUserBtn.setAttribute("type", students.access);
-    this.deleteUserBtn.setAttribute("userId", students.student_id);
-    this.deleteUserBtn.setAttribute("type", students.access);
-    this.editUserBtn.classList.add("open-modal-btn3");
-    this.editUserBtn.addEventListener("click", (event) => {
-      const id = event.target.getAttribute("userId");
-      const type = event.target.getAttribute("type");
-      const funct = "edit"; // funct is short for 'function', but it's a reserved word
-      getUserInfo.getSingleUser(id, type, funct);
-      document.getElementById("updateUser").reset();
-      updateUserDiv.showModal();
+    students.forEach((student) => {
+      this.setUserDataInRowsSharedElements();
+      this.userName.setAttribute("userId", students.student_id);
+      this.userName.setAttribute("type", students.access);
+      this.userName.textContent = `${students.last_name}, ${students.first_name}`;
+      this.userGradeLevel.textContent = `${students.grade_level}`;
+      this.userAccess.textContent = `${students.access}`;
+      this.editUserBtn.textContent = "Edit";
+      this.deleteUserBtn.textContent = "Delete";
+      this.editUserBtn.setAttribute("userId", students.student_id);
+      this.editUserBtn.setAttribute("type", students.access);
+      this.deleteUserBtn.setAttribute("userId", students.student_id);
+      this.deleteUserBtn.setAttribute("type", students.access);
+      this.editUserBtn.classList.add("open-modal-btn3");
+      this.editUserBtn.addEventListener("click", (event) => {
+        const id = event.target.getAttribute("userId");
+        const type = event.target.getAttribute("type");
+        const funct = "edit"; // funct is short for 'function', but it's a reserved word
+        getUserInfo.getSingleUser(id, type, funct);
+        document.getElementById("updateUser").reset();
+        updateUserDiv.showModal();
+      });
+      this.deleteUserBtn.addEventListener("click", (event) => {
+        const id = event.target.getAttribute("userId");
+        const type = event.target.getAttribute("type");
+        deleteUser(id, type);
+      });
     });
-    this.deleteUserBtn.addEventListener("click", (event) => {
-      const id = event.target.getAttribute("userId");
-      const type = event.target.getAttribute("type");
-      deleteUser(id, type);
-    });
-    // });
   },
   setTeacherDataInRows(teachers) {
-    // teachers.forEach((teacher) => {
-    this.userName.setAttribute("userId", teachers.teacher_id);
-    this.userName.setAttribute("type", teachers.access);
-    this.userName.textContent = `${teachers.title} ${teachers.last_name}`;
-    this.userGradeLevel.textContent = ``;
-    this.userAccess.textContent = `teacher`;
-    this.editUserBtn.textContent = "Edit";
-    this.deleteUserBtn.textContent = "Delete";
-    this.editUserBtn.setAttribute("userId", teachers.teacher_id);
-    this.editUserBtn.setAttribute("type", teachers.access);
-    this.deleteUserBtn.setAttribute("userId", teachers.teacher_id);
-    this.deleteUserBtn.setAttribute("type", teachers.access);
-    this.editUserBtn.classList.add("open-modal-btn3");
-    this.editUserBtn.addEventListener("click", (event) => {
-      const id = event.target.getAttribute("userId");
-      const type = event.target.getAttribute("type");
-      const funct = "edit"; // funct is short for 'function', but it's a reserved word
-      getUserInfo.getSingleUser(id, type, funct);
-      document.getElementById("updateUser").reset();
-      updateUserDiv.showModal();
+    teachers.forEach((teacher) => {
+      this.setUserDataInRowsSharedElements();
+      this.number.textContent = `${i}`;
+
+      this.userName.setAttribute("userId", teachers.teacher_id);
+      this.userName.setAttribute("type", teachers.access);
+      this.userName.textContent = `${teachers.title} ${teachers.last_name}`;
+      this.userGradeLevel.textContent = ``;
+      this.userAccess.textContent = `teacher`;
+      this.editUserBtn.textContent = "Edit";
+      this.deleteUserBtn.textContent = "Delete";
+      this.editUserBtn.setAttribute("userId", teachers.teacher_id);
+      this.editUserBtn.setAttribute("type", teachers.access);
+      this.deleteUserBtn.setAttribute("userId", teachers.teacher_id);
+      this.deleteUserBtn.setAttribute("type", teachers.access);
+      this.editUserBtn.classList.add("open-modal-btn3");
+      this.editUserBtn.addEventListener("click", (event) => {
+        const id = event.target.getAttribute("userId");
+        const type = event.target.getAttribute("type");
+        const funct = "edit"; // funct is short for 'function', but it's a reserved word
+        getUserInfo.getSingleUser(id, type, funct);
+        document.getElementById("updateUser").reset();
+        updateUserDiv.showModal();
+      });
+      this.deleteUserBtn.addEventListener("click", (event) => {
+        const id = event.target.getAttribute("userId");
+        const type = event.target.getAttribute("type");
+        deleteUser(id, type);
+      });
     });
-    this.deleteUserBtn.addEventListener("click", (event) => {
-      const id = event.target.getAttribute("userId");
-      const type = event.target.getAttribute("type");
-      deleteUser(id, type);
-    });
-    // });
   },
   setUserDataInRows(data) {
-    let i = 0;
+    this.i = 0;
     data.forEach((user) => {
       ++i;
-      this.setUserDataInRowsSharedElements();
-      this.setStudentDataInRows(data.students);
-      this.setTeacherDataInRows(data.teachers);
+
       this.number.classList.add("number");
       this.userGradeLevel.classList.add("number");
-      this.number.textContent = `${i}`;
 
       this.userData.classList.add("user-slot");
       this.userData.classList.add("user-slot");
@@ -184,8 +185,11 @@ const displayUsers = {
   },
   displayAllUsers(data) {
     userList.textContent = "";
+    this.i = 0;
     this.createUserElementsForDisplay();
     this.appendUserDataHeaders();
+    this.setStudentDataInRows(data.students);
+    this.setTeacherDataInRows(data.teachers);
     this.setUserDataInRows(data);
   },
   displaySingleUserInfoForEditing(data, type) {
