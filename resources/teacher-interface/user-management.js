@@ -194,6 +194,8 @@ const displayUsers = {
     userList.appendChild(this.userData);
   },
   displayAllUsers(data) {
+    const students = data.students;
+    const teachers = data.teachers;
     userList.textContent = "";
     // this.i = 0;
     // this.createUserElementsForDisplay();
