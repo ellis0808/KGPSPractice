@@ -106,7 +106,6 @@ const displayUsers = {
     console.log(students);
 
     students.forEach((student) => {
-      this.setUserDataInRowsSharedElements();
       this.number.textContent = `${this.i}`;
       this.number.classList.add("number");
       this.userGradeLevel.classList.add("number");
@@ -148,7 +147,6 @@ const displayUsers = {
   },
   setTeacherDataInRows(teachers) {
     teachers.forEach((teacher) => {
-      this.setUserDataInRowsSharedElements();
       this.number.textContent = `${this.i}`;
       this.number.classList.add("number");
       this.userGradeLevel.classList.add("number");
