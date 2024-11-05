@@ -196,7 +196,7 @@ const displayUsers = {
   displayAllUsers(data) {
     const students = data.students;
     const teachers = data.teachers;
-    console.log(students, teachers);
+    console.log(students.teacher_id);
 
     userList.textContent = "";
     // this.i = 0;
