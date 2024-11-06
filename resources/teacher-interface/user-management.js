@@ -224,7 +224,7 @@ const displayUsers = {
         // document.getElementById("single-user-data-div").reset();
         userDataDiv.showModal();
       });
-      if (i < students.length) {
+      if (i <= students.length) {
         console.log(i);
 
         number.textContent = `${i + 1}`;
