@@ -357,10 +357,8 @@ const getUserInfo = {
         let i = 0;
         let q = 0;
         students.map((student) => {
-          ++i;
-
           return (userObject.studentObject = {
-            id: student.id,
+            id: student.student_id,
             firstName: student.first_name,
             lastName: student.last_name,
             gradeLevel: student.grade_level,
@@ -369,7 +367,7 @@ const getUserInfo = {
         });
         teachers.map((teacher) => {
           return (userObject.teacherObject = {
-            id: teacher.id,
+            id: teacher.teacher_id,
             title: teacher.title,
             lastName: teacher.last_name,
             admin: teacher.admin,
