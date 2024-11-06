@@ -204,9 +204,9 @@ const displayUsers = {
     // this.appendUserDataHeaders();
     // this.setStudentDataInRows(data.students);
     // this.setTeacherDataInRows(data.teachers);
-    let i;
+    let i = 0;
     let q = 0;
-    for (i = 0; i < students.length + teachers.length; ++i) {
+    for (i; i < students.length + teachers.length; ++i) {
       const userData = document.createElement("div");
       const number = document.createElement("div");
       const userName = document.createElement("div");
@@ -224,7 +224,7 @@ const displayUsers = {
         // document.getElementById("single-user-data-div").reset();
         userDataDiv.showModal();
       });
-      if (i <= students.length) {
+      if (i < students.length) {
         console.log(i);
 
         number.textContent = `${i + 1}`;
