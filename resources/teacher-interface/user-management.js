@@ -210,7 +210,7 @@ const displayUsers = {
     // this.setTeacherDataInRows(data.teachers);
     let i = 0;
     let q = 0;
-    for (i; i < students.length + teachers.length; ++i) {
+    for (i; i < studentIds.length + teacherIds.length; ++i) {
       const userData = document.createElement("div");
       const number = document.createElement("div");
       const userName = document.createElement("div");
@@ -229,7 +229,7 @@ const displayUsers = {
         // document.getElementById("single-user-data-div").reset();
         userDataDiv.showModal();
       });
-      if (i < students.length) {
+      if (i < studentIds.length) {
         number.textContent = `${i + 1}`;
         number.classList.add("number");
         userGradeLevel.classList.add("number");
@@ -266,7 +266,7 @@ const displayUsers = {
           deleteUser(id, type);
         });
       }
-      if (i >= students.length) {
+      if (i >= studentIds.length) {
         number.textContent = `${i}`;
         number.classList.add("number");
         userGradeLevel.classList.add("number");
