@@ -226,8 +226,6 @@ const displayUsers = {
         userDataDiv.showModal();
       });
       if (i < students.length) {
-        console.log(i);
-
         number.textContent = `${i + 1}`;
         number.classList.add("number");
         userGradeLevel.classList.add("number");
@@ -312,8 +310,8 @@ const displayUsers = {
     } else {
       console.log("test2");
 
-      singleUserData1.setAttribute("userID", data.student_id);
-      singleUserData1.innerText = `${data.last_name}, ${data.first_name}\r\nGrade: ${data.grade_level}\r\nAccess: ${data.access}`;
+      singleUserData1.setAttribute("userID", students.student_id);
+      singleUserData1.innerText = `${students.last_name}, ${students.first_name}\r\nGrade: ${students.grade_level}\r\nAccess: ${students.access}`;
     }
   },
   displaySingleUserInfo(data) {
