@@ -200,6 +200,7 @@ const displayUsers = {
     const studentIds = Object.keys(students);
     const teacherIds = Object.keys(teachers);
     console.log(studentIds, teacherIds);
+    console.log(students, teachers);
 
     userList.textContent = "";
     // this.i = 0;
