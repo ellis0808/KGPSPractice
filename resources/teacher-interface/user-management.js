@@ -233,7 +233,7 @@ const displayUsers = {
 
         userData.classList.add("user-slot");
         userData.classList.add("user-slot");
-        userData.setAttribute("data-id", students[i].teacher_id);
+        userData.setAttribute("data-id", students[i].student_id);
         userName.setAttribute("userId", students[i].student_id);
         userName.setAttribute("type", students[i].access);
         userName.textContent = `${students[i].last_name}, ${students[i].first_name}`;
