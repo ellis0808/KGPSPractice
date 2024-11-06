@@ -16,6 +16,7 @@ try {
     $type = $_GET['type'] ?? null;
 
     if ($id && $type) {
+        echo json_encode($id, $type);
         if ($type === 'student') {
             $stmt = $pdo->prepare("SELECT student_id, last_name, first_name, grade_level, access FROM students WHERE student_id = :student_id");
             $stmt->execute(['student_id' => $_GET['id']]);

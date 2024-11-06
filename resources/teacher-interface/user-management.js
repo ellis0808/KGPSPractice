@@ -300,13 +300,15 @@ const displayUsers = {
   },
   displaySingleUserInfoForEditing(data, type) {
     const singleUserData1 = document.querySelector(".single-user-data1");
+    const students = data.students;
+    const teachers = data.teachers;
     console.log(data);
 
     if (type === "teacher") {
       console.log("test1");
 
-      singleUserData1.setAttribute("userID", data.teacher_id);
-      singleUserData1.innerText = `${data.title}, ${data.last_name}\r\nAccess: ${data.access}`;
+      singleUserData1.setAttribute("userID", teachers.teacher_id);
+      singleUserData1.innerText = `${teachers.title}, ${teachers.last_name}\r\nAccess: ${teachers.access}`;
     } else {
       console.log("test2");
 
