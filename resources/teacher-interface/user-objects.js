@@ -1,28 +1,36 @@
-class UserObject {
-  constructor() {
-    this.id;
-    this.access;
-    this.lastName;
-  }
-}
+// class UserObject {
+//   constructor(id, access, lastName) {
+//     this.id = id;
 
-class StudentObject extends UserObject {
-  constructor() {
-    super();
-    this.firstName;
-    this.gradeLevel;
-  }
-}
+//     this.access = access;
+//     this.lastName = lastName;
+//   }
+// }
 
-class TeacherObject extends UserObject {
-  constructor() {
-    super();
-    this.title;
-    this.admin;
-  }
-}
-const userObject = new UserObject();
-const studentObject = new StudentObject();
-const teacherObject = new TeacherObject();
+// class StudentObject extends UserObject {
+//   constructor(firstName, gradeLevel) {
+//     super(id, this.access, this.lastName);
+//     this.firstName = firstName;
+//     this.gradeLevel = gradeLevel;
+//   }
+// }
 
-console.log(studentObject, teacherObject);
+// class TeacherObject extends UserObject {
+//   constructor(title, admin) {
+//     super(id, this.access, this.lastName);
+//     this.title = title;
+//     this.admin = admin;
+//   }
+// }
+// const userObject = new UserObject();
+// const studentObject = new StudentObject();
+// const teacherObject = new TeacherObject();
+
+// console.log(studentObject, teacherObject);
+
+const userObject = {
+  studentObject: {},
+  teacherObject: {},
+};
+
+export { userObject };

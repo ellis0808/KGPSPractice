@@ -1,4 +1,5 @@
 import { sessionCheck } from "../login/session-check.js";
+import { userObject } from "./user-objects.js";
 
 const userList = document.querySelector(".div1");
 const createUserBtn = document.querySelector(".create-new-user");
@@ -350,9 +351,33 @@ const getUserInfo = {
         throw new Error("Network response was not okay");
       }
       const data = await response.json();
-
+      const students = data.students;
+      const teachers = data.teachers;
       if (data) {
-        displayUsers.displayAllUsers(data);
+        let i = 0;
+        let q = 0;
+        students.map((student) => {
+          ++i;
+
+          return (userObject.studentObject = {
+            id: student.id,
+            firstName: student.first_name,
+            lastName: student.last_name,
+            gradeLevel: student.grade_level,
+            access: student.access,
+          });
+        });
+        teachers.map((teacher) => {
+          return (userObject.teacherObject = {
+            id: teacher.id,
+            title: teacher.title,
+            lastName: teacher.last_name,
+            admin: teacher.admin,
+            access: teacher.access,
+          });
+        });
+        // displayUsers.displayAllUsers(data);
+        console.log(userObject.studentObject, userObject.teacherObject);
       } else {
         console.log("No students found");
       }
