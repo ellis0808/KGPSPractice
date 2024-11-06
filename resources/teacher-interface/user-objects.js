@@ -28,9 +28,9 @@
 
 // console.log(studentObject, teacherObject);
 
-const userObject = {
-  studentObject: {},
-  teacherObject: {},
+const userObjects = {
+  studentObjects: {},
+  teacherObjects: {},
 };
 
-export { userObject };
+export { userObjects };

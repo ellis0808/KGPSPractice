@@ -1,5 +1,5 @@
 import { sessionCheck } from "../login/session-check.js";
-import { userObject } from "./user-objects.js";
+import { userObjects } from "./user-objects.js";
 
 const userList = document.querySelector(".div1");
 const createUserBtn = document.querySelector(".create-new-user");
@@ -194,9 +194,10 @@ const displayUsers = {
   setUserDataInUserList() {
     userList.appendChild(this.userData);
   },
-  displayAllUsers(data) {
-    const students = data.students;
-    const teachers = data.teachers;
+  displayAllUsers() {
+    const students = userObjects.studentObjects;
+    const teachers = userObjects.teacherObjects;
+    console.log(students, teachers);
 
     userList.textContent = "";
     // this.i = 0;
@@ -359,7 +360,7 @@ const getUserInfo = {
         let i = 0;
         let q = 0;
         students.map((student) => {
-          return (userObject.studentObject[student.student_id] = {
+          return (userObjects.studentObjects[student.student_id] = {
             id: student.student_id,
             firstName: student.first_name,
             lastName: student.last_name,
@@ -368,7 +369,7 @@ const getUserInfo = {
           });
         });
         teachers.map((teacher) => {
-          return (userObject.teacherObject[teacher.teacher_id] = {
+          return (userObjects.teacherObjects[teacher.teacher_id] = {
             id: teacher.teacher_id,
             title: teacher.title,
             lastName: teacher.last_name,
@@ -376,8 +377,8 @@ const getUserInfo = {
             access: teacher.access,
           });
         });
-        // displayUsers.displayAllUsers(data);
-        console.log(userObject.studentObject, userObject.teacherObject);
+        displayUsers.displayAllUsers();
+        console.log(userObjects.studentObjects, userObjects.teacherObjects);
       } else {
         console.log("No students found");
       }
