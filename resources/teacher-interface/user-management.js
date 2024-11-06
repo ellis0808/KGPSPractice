@@ -353,6 +353,8 @@ const getUserInfo = {
       const data = await response.json();
       const students = data.students;
       const teachers = data.teachers;
+      console.log(students, teachers);
+
       if (data) {
         let i = 0;
         let q = 0;
