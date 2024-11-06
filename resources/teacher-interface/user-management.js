@@ -197,7 +197,9 @@ const displayUsers = {
   displayAllUsers() {
     const students = userObjects.studentObjects;
     const teachers = userObjects.teacherObjects;
-    console.log(students, teachers);
+    const studentIds = Object.keys(students);
+    const teacherIds = Object.keys(teachers);
+    console.log(studentIds, teacherIds);
 
     userList.textContent = "";
     // this.i = 0;
@@ -354,7 +356,6 @@ const getUserInfo = {
       const data = await response.json();
       const students = data.students;
       const teachers = data.teachers;
-      console.log(students, teachers);
 
       if (data) {
         let i = 0;
@@ -378,7 +379,6 @@ const getUserInfo = {
           });
         });
         displayUsers.displayAllUsers();
-        console.log(userObjects.studentObjects, userObjects.teacherObjects);
       } else {
         console.log("No students found");
       }
