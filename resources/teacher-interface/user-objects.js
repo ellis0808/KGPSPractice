@@ -8,6 +8,7 @@ class UserObject {
 
 class StudentObject extends UserObject {
   constructor() {
+    super();
     this.firstName;
     this.gradeLevel;
   }
@@ -15,6 +16,7 @@ class StudentObject extends UserObject {
 
 class TeacherObject extends UserObject {
   constructor() {
+    super();
     this.title;
     this.admin;
   }
