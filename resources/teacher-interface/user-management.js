@@ -205,7 +205,7 @@ const displayUsers = {
     // this.setStudentDataInRows(data.students);
     // this.setTeacherDataInRows(data.teachers);
     let i;
-    let q;
+    let q = 0;
     for (i = 0; i < students.length + teachers.length; ++i) {
       const userData = document.createElement("div");
       const number = document.createElement("div");
