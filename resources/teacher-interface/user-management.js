@@ -270,7 +270,7 @@ const displayUsers = {
         userName.textContent = `${teachers[q].title} ${teachers[q].last_name}`;
         userGradeLevel.textContent = ``;
         userAccess.textContent = `${teachers[q].access}`;
-        editUserBtn.setAttribute("userId", teachers[i].teacher_id);
+        editUserBtn.setAttribute("userId", teachers[q].teacher_id);
         editUserBtn.setAttribute("type", teachers[q].access);
         deleteUserBtn.setAttribute("userId", teachers[q].teacher_id);
         deleteUserBtn.setAttribute("type", teachers[q].access);
