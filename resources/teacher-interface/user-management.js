@@ -213,6 +213,7 @@ const displayUsers = {
       const userGradeLevel = document.createElement("div");
       const userAccess = document.createElement("div");
       const editUserBtn = document.createElement("button");
+      editUserBtn.classList.add("open-modal-btn3");
       editUserBtn.textContent = "Edit";
       const deleteUserBtn = document.createElement("button");
       deleteUserBtn.textContent = "Delete";
@@ -244,7 +245,6 @@ const displayUsers = {
         editUserBtn.setAttribute("type", students[i].access);
         deleteUserBtn.setAttribute("userId", students[i].student_id);
         deleteUserBtn.setAttribute("type", students[i].access);
-        editUserBtn.classList.add("open-modal-btn3");
         editUserBtn.addEventListener("click", (event) => {
           const id = event.target.getAttribute("userId");
           const type = event.target.getAttribute("type");
@@ -274,7 +274,6 @@ const displayUsers = {
         editUserBtn.setAttribute("type", teachers[q].access);
         deleteUserBtn.setAttribute("userId", teachers[q].teacher_id);
         deleteUserBtn.setAttribute("type", teachers[q].access);
-        editUserBtn.classList.add("open-modal-btn3");
         editUserBtn.addEventListener("click", (event) => {
           const id = event.target.getAttribute("userId");
           const type = event.target.getAttribute("type");
@@ -301,7 +300,7 @@ const displayUsers = {
   },
   displaySingleUserInfoForEditing(data, type) {
     const singleUserData1 = document.querySelector(".single-user-data1");
-    console.log(data.access);
+    console.log(data);
 
     if (type === "teacher") {
       console.log("test1");
