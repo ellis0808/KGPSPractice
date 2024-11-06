@@ -196,7 +196,7 @@ const displayUsers = {
   displayAllUsers(data) {
     const students = data.students;
     const teachers = data.teachers;
-    console.log(students);
+    console.log(students[0]);
     console.log(teachers);
     console.log(students.length + teachers.length);
 
