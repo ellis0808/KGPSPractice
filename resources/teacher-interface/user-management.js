@@ -205,6 +205,7 @@ const displayUsers = {
     // this.setStudentDataInRows(data.students);
     // this.setTeacherDataInRows(data.teachers);
     let i;
+    let q;
     for (i = 0; i < students.length + teachers.length; ++i) {
       const userData = document.createElement("div");
       const number = document.createElement("div");
@@ -263,16 +264,16 @@ const displayUsers = {
         number.classList.add("number");
         userGradeLevel.classList.add("number");
         userData.classList.add("user-slot");
-        userData.setAttribute("data-id", teachers[i].teacher_id);
-        userName.setAttribute("userId", teachers[i].teacher_id);
-        userName.setAttribute("type", teachers[i].access);
-        userName.textContent = `${teachers[i].title} ${teachers[i].last_name}`;
+        userData.setAttribute("data-id", teachers[q].teacher_id);
+        userName.setAttribute("userId", teachers[q].teacher_id);
+        userName.setAttribute("type", teachers[q].access);
+        userName.textContent = `${teachers[q].title} ${teachers[q].last_name}`;
         userGradeLevel.textContent = ``;
-        userAccess.textContent = `teacher`;
+        userAccess.textContent = `${teachers[q].access}`;
         editUserBtn.setAttribute("userId", teachers[i].teacher_id);
-        editUserBtn.setAttribute("type", teachers[i].access);
-        deleteUserBtn.setAttribute("userId", teachers[i].teacher_id);
-        deleteUserBtn.setAttribute("type", teachers[i].access);
+        editUserBtn.setAttribute("type", teachers[q].access);
+        deleteUserBtn.setAttribute("userId", teachers[q].teacher_id);
+        deleteUserBtn.setAttribute("type", teachers[q].access);
         editUserBtn.classList.add("open-modal-btn3");
         editUserBtn.addEventListener("click", (event) => {
           const id = event.target.getAttribute("userId");
@@ -287,6 +288,7 @@ const displayUsers = {
           const type = event.target.getAttribute("type");
           deleteUser(id, type);
         });
+        ++q;
       }
       userData.appendChild(number);
       userData.appendChild(userName);
