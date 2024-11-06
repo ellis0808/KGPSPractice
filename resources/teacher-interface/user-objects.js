@@ -19,6 +19,7 @@ class TeacherObject extends UserObject {
     this.admin;
   }
 }
+const userObject = new UserObject();
 const studentObject = new StudentObject();
 const teacherObject = new TeacherObject();
 
