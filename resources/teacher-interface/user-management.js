@@ -196,9 +196,6 @@ const displayUsers = {
   displayAllUsers(data) {
     const students = data.students;
     const teachers = data.teachers;
-    console.log(students[0].student_id);
-    console.log(teachers);
-    console.log(students.length + teachers.length);
 
     userList.textContent = "";
     // this.i = 0;
@@ -227,6 +224,8 @@ const displayUsers = {
         userDataDiv.showModal();
       });
       if (i < students.length) {
+        console.log(i);
+
         number.textContent = `${i + 1}`;
         number.classList.add("number");
         userGradeLevel.classList.add("number");
@@ -234,16 +233,16 @@ const displayUsers = {
         userData.classList.add("user-slot");
         userData.classList.add("user-slot");
         userData.setAttribute("data-id", students[i].teacher_id);
-        userName.setAttribute("userId", students.student_id);
-        userName.setAttribute("type", students.access);
-        userName.textContent = `${students.last_name}, ${students.first_name}`;
-        userGradeLevel.textContent = `${students.grade_level}`;
-        userAccess.textContent = `${students.access}`;
+        userName.setAttribute("userId", students[i].student_id);
+        userName.setAttribute("type", students[i].access);
+        userName.textContent = `${students[i].last_name}, ${students[i].first_name}`;
+        userGradeLevel.textContent = `${students[i].grade_level}`;
+        userAccess.textContent = `${students[i].access}`;
 
-        editUserBtn.setAttribute("userId", students.student_id);
-        editUserBtn.setAttribute("type", students.access);
-        deleteUserBtn.setAttribute("userId", students.student_id);
-        deleteUserBtn.setAttribute("type", students.access);
+        editUserBtn.setAttribute("userId", students[i].student_id);
+        editUserBtn.setAttribute("type", students[i].access);
+        deleteUserBtn.setAttribute("userId", students[i].student_id);
+        deleteUserBtn.setAttribute("type", students[i].access);
         editUserBtn.classList.add("open-modal-btn3");
         editUserBtn.addEventListener("click", (event) => {
           const id = event.target.getAttribute("userId");
@@ -264,16 +263,16 @@ const displayUsers = {
         number.classList.add("number");
         userGradeLevel.classList.add("number");
         userData.classList.add("user-slot");
-        userData.setAttribute("data-id", teachers.teacher_id);
-        userName.setAttribute("userId", teachers.teacher_id);
-        userName.setAttribute("type", teachers.access);
-        userName.textContent = `${teachers.title} ${teachers.last_name}`;
+        userData.setAttribute("data-id", teachers[i].teacher_id);
+        userName.setAttribute("userId", teachers[i].teacher_id);
+        userName.setAttribute("type", teachers[i].access);
+        userName.textContent = `${teachers[i].title} ${teachers[i].last_name}`;
         userGradeLevel.textContent = ``;
         userAccess.textContent = `teacher`;
-        editUserBtn.setAttribute("userId", teachers.teacher_id);
-        editUserBtn.setAttribute("type", teachers.access);
-        deleteUserBtn.setAttribute("userId", teachers.teacher_id);
-        deleteUserBtn.setAttribute("type", teachers.access);
+        editUserBtn.setAttribute("userId", teachers[i].teacher_id);
+        editUserBtn.setAttribute("type", teachers[i].access);
+        deleteUserBtn.setAttribute("userId", teachers[i].teacher_id);
+        deleteUserBtn.setAttribute("type", teachers[i].access);
         editUserBtn.classList.add("open-modal-btn3");
         editUserBtn.addEventListener("click", (event) => {
           const id = event.target.getAttribute("userId");
