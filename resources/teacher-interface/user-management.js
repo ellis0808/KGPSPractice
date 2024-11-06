@@ -196,7 +196,9 @@ const displayUsers = {
   displayAllUsers(data) {
     const students = data.students;
     const teachers = data.teachers;
-    console.log(students[0].teacher_id);
+    console.log(students);
+    console.log(teachers);
+    console.log(students.length + teachers.length);
 
     userList.textContent = "";
     // this.i = 0;
@@ -206,14 +208,16 @@ const displayUsers = {
     // this.setStudentDataInRows(data.students);
     // this.setTeacherDataInRows(data.teachers);
     let i;
-    for (i = 0; i < data.students.length + data.teachers.length; ++i) {
+    for (i = 0; i < students.length + teachers.length; ++i) {
       const userData = document.createElement("div");
       const number = document.createElement("div");
       const userName = document.createElement("div");
       const userGradeLevel = document.createElement("div");
       const userAccess = document.createElement("div");
       const editUserBtn = document.createElement("button");
+      editUserBtn.textContent = "Edit";
       const deleteUserBtn = document.createElement("button");
+      deleteUserBtn.textContent = "Delete";
       userName.classList.add("open-modal-btn2", "user-name");
       userName.addEventListener("click", (event) => {
         const type = event.target.getAttribute("type");
@@ -223,7 +227,7 @@ const displayUsers = {
         userDataDiv.showModal();
       });
       if (i < data.students.length) {
-        number.textContent = `${i}`;
+        number.textContent = `${i + 1}`;
         number.classList.add("number");
         userGradeLevel.classList.add("number");
 
@@ -235,8 +239,7 @@ const displayUsers = {
         userName.textContent = `${students.last_name}, ${students.first_name}`;
         userGradeLevel.textContent = `${students.grade_level}`;
         userAccess.textContent = `${students.access}`;
-        editUserBtn.textContent = "Edit";
-        deleteUserBtn.textContent = "Delete";
+
         editUserBtn.setAttribute("userId", students.student_id);
         editUserBtn.setAttribute("type", students.access);
         deleteUserBtn.setAttribute("userId", students.student_id);
@@ -267,8 +270,6 @@ const displayUsers = {
         userName.textContent = `${teachers.title} ${teachers.last_name}`;
         userGradeLevel.textContent = ``;
         userAccess.textContent = `teacher`;
-        editUserBtn.textContent = "Edit";
-        deleteUserBtn.textContent = "Delete";
         editUserBtn.setAttribute("userId", teachers.teacher_id);
         editUserBtn.setAttribute("type", teachers.access);
         deleteUserBtn.setAttribute("userId", teachers.teacher_id);
