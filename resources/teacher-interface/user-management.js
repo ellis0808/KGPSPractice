@@ -226,7 +226,7 @@ const displayUsers = {
         // document.getElementById("single-user-data-div").reset();
         userDataDiv.showModal();
       });
-      if (i < data.students.length) {
+      if (i < students.length) {
         number.textContent = `${i + 1}`;
         number.classList.add("number");
         userGradeLevel.classList.add("number");
@@ -259,7 +259,7 @@ const displayUsers = {
           deleteUser(id, type);
         });
       }
-      if (i > data.students.length) {
+      if (i > students.length) {
         number.textContent = `${i}`;
         number.classList.add("number");
         userGradeLevel.classList.add("number");
