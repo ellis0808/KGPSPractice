@@ -237,21 +237,18 @@ const displayUsers = {
 
         userData.classList.add("user-slot");
         userData.classList.add("user-slot");
-        userData.setAttribute("data-id", students[studentIds[i]].student_id);
-        userName.setAttribute("userId", students[studentIds[i]].student_id);
+        userData.setAttribute("data-id", students[studentIds[i]].id);
+        userName.setAttribute("userId", students[studentIds[i]].id);
         userName.setAttribute("type", students[studentIds[i]].access);
-        userName.textContent = `${students[studentIds[i]].last_name}, ${
-          students[studentIds[i]].first_name
+        userName.textContent = `${students[studentIds[i]].lastName}, ${
+          students[studentIds[i]].firstName
         }`;
         userGradeLevel.textContent = `${students[studentIds[i]].grade_level}`;
         userAccess.textContent = `${students[studentIds[i]].access}`;
 
-        editUserBtn.setAttribute("userId", students[studentIds[i]].student_id);
+        editUserBtn.setAttribute("userId", students[studentIds[i]].id);
         editUserBtn.setAttribute("type", students[studentIds[i]].access);
-        deleteUserBtn.setAttribute(
-          "userId",
-          students[studentIds[i]].student_id
-        );
+        deleteUserBtn.setAttribute("userId", students[studentIds[i]].id);
         deleteUserBtn.setAttribute("type", students[studentIds[i]].access);
         editUserBtn.addEventListener("click", (event) => {
           const id = event.target.getAttribute("userId");
@@ -272,20 +269,17 @@ const displayUsers = {
         number.classList.add("number");
         userGradeLevel.classList.add("number");
         userData.classList.add("user-slot");
-        userData.setAttribute("data-id", teachers[teacherIds[q]].teacher_id);
-        userName.setAttribute("userId", teachers[teacherIds[q]].teacher_id);
+        userData.setAttribute("data-id", teachers[teacherIds[q]].id);
+        userName.setAttribute("userId", teachers[teacherIds[q]].id);
         userName.setAttribute("type", teachers[teacherIds[q]].access);
         userName.textContent = `${teachers[teacherIds[q]].title} ${
-          teachers[teacherIds[q]].last_name
+          teachers[teacherIds[q]].lastName
         }`;
         userGradeLevel.textContent = ``;
         userAccess.textContent = `${teachers[teacherIds[q]].access}`;
-        editUserBtn.setAttribute("userId", teachers[teacherIds[q]].teacher_id);
+        editUserBtn.setAttribute("userId", teachers[teacherIds[q]].id);
         editUserBtn.setAttribute("type", teachers[teacherIds[q]].access);
-        deleteUserBtn.setAttribute(
-          "userId",
-          teachers[teacherIds[q]].teacher_id
-        );
+        deleteUserBtn.setAttribute("userId", teachers[teacherIds[q]].id);
         deleteUserBtn.setAttribute("type", teachers[teacherIds[q]].access);
         editUserBtn.addEventListener("click", (event) => {
           const id = event.target.getAttribute("userId");
