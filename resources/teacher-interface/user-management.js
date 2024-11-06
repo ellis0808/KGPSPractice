@@ -359,7 +359,7 @@ const getUserInfo = {
         let i = 0;
         let q = 0;
         students.map((student) => {
-          return (userObject.studentObject[student_id] = {
+          return (userObject.studentObject[student.student_id] = {
             id: student.student_id,
             firstName: student.first_name,
             lastName: student.last_name,
@@ -368,7 +368,7 @@ const getUserInfo = {
           });
         });
         teachers.map((teacher) => {
-          return (userObject.teacherObject[teacher_id] = {
+          return (userObject.teacherObject[teacher.teacher_id] = {
             id: teacher.teacher_id,
             title: teacher.title,
             lastName: teacher.last_name,
