@@ -130,6 +130,7 @@ function displayUsersForLogin() {
         "userlastname",
         students[studentIds[i]].lastName
       );
+      userContainer.setAttribute("useraccess", students[studentIds[i]].access);
       userInitialsContainer.classList.add(
         "user-initials-container",
         `user-initials-container-${i}`
@@ -142,6 +143,10 @@ function displayUsersForLogin() {
       userInitialsContainer.setAttribute(
         "userlastname",
         students[studentIds[i]].lastName
+      );
+      userInitialsContainer.setAttribute(
+        "useraccess",
+        students[studentIds[i]].access
       );
       userNameContainer.classList.add("user-name-container");
       userNameContainer.setAttribute("userId", students[studentIds[i]].id);
@@ -191,6 +196,7 @@ function displayUsersForLogin() {
         "userlastname",
         teachers[teacherIds[q]].lastName
       );
+      userContainer.setAttribute("useraccess", teachers[teacherIds[q]].access);
       userInitialsContainer.classList.add(
         "user-initials-container",
         `user-initials-container-${i}`
@@ -203,6 +209,10 @@ function displayUsersForLogin() {
       userInitialsContainer.setAttribute(
         "userlastname",
         teachers[teacherIds[q]].lastName
+      );
+      userInitialsContainer.setAttribute(
+        "useraccess",
+        teachers[teacherIds[q]].access
       );
       userNameContainer.classList.add("user-name-container");
       userNameContainer.setAttribute("userId", teachers[teacherIds[q]].id);
