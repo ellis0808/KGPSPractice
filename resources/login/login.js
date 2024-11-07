@@ -110,7 +110,6 @@ function displayUsersForLogin() {
   const teachers = userObjects.teacherObjects;
   const studentIds = Object.keys(students);
   const teacherIds = Object.keys(teachers);
-  console.log(students, teachers);
 
   let i = 0;
   let q = 0;
@@ -245,12 +244,9 @@ function displayUsersForLogin() {
         const teacherUsernameContainer = document.querySelector(
           ".teacher-username-container"
         );
-        teacherUsernameContainer.innerText = `${
-          teachers[teacherIds[q]].title
-        } ${teachers[teacherIds[q]].lastName}`;
+        teacherUsernameContainer.innerText = `${selectedUser.firstName} ${selectedUser.lastName}`;
 
         teacherPasswordEntryForm.showModal();
-        console.log(selectedUser);
       });
       teacherNameContainer.appendChild(userContainer);
       ++q;
@@ -402,7 +398,6 @@ async function loginUser(id, firstName, lastName, access) {
   let password;
   if (access === "teacher") {
     password = document.getElementById("teacherpassword").value;
-    console.log(document.getElementById("teacherpassword").value);
   } else if (access === "student") {
     password = studentPasswordEntryArray.join("");
   }
