@@ -285,7 +285,7 @@ const displayUsers = {
           const id = event.target.getAttribute("userId");
           const type = event.target.getAttribute("type");
           const funct = "edit"; // funct is short for 'function', but it's a reserved word
-          getUserInfo.getSingleUser(id, type, funct);
+          getUserInfo.getSingleUser(id, type, "edit");
           document.getElementById("updateUser").reset();
           updateUserDiv.showModal();
         });
@@ -392,27 +392,7 @@ const getUserInfo = {
     }
   },
   async getSingleUser(id, type, funct) {
-    try {
-      const response = await fetch(
-        `/KGPSEnglishPractice-test/api/read_users.php?id1=${id}&id2=${type}`
-      );
-
-      if (!response.ok) {
-        throw new Error("Network response was not okay");
-      }
-      const data = await response.json();
-      if (data) {
-        console.log(data);
-
-        if ((funct = "edit")) {
-          displayUsers.displaySingleUserInfoForEditing(data, type);
-        } else {
-          displayUsers.displaySingleUserInfo(data);
-        }
-      }
-    } catch (error) {
-      console.error("Error getting user data:", error);
-    }
+    console.log(userObjects[`${type}Objects`][id]);
   },
 };
 
