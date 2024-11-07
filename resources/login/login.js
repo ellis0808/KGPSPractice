@@ -94,7 +94,7 @@ async function getUsersForLogin() {
       });
     });
     if (data) {
-      displayUsersForLogin(data.users);
+      displayUsersForLogin();
     } else {
     }
   } catch (error) {
@@ -102,23 +102,22 @@ async function getUsersForLogin() {
   }
 }
 // Displays students and teachers
-function displayUsersForLogin(data) {
+function displayUsersForLogin() {
   studentNameContainer.innerText = "";
   teacherNameContainer.innerText = "";
-  let i = 0;
-  let q = 0;
 
   const students = userObjects.studentObjects;
   const teachers = userObjects.teacherObjects;
   const studentIds = Object.keys(students);
   const teacherIds = Object.keys(teachers);
-  const userNameContainer = document.createElement("div");
-  const userContainer = document.createElement("div");
-  const userInitialsContainer = document.createElement("div");
 
+  let i = 0;
+  let q = 0;
   for (i; i < studentIds.length + teacherIds.length; ++i) {
     console.log("loop test");
-
+    const userNameContainer = document.createElement("div");
+    const userContainer = document.createElement("div");
+    const userInitialsContainer = document.createElement("div");
     if (i < studentIds.length) {
       userContainer.classList.add("user-container");
       userContainer.setAttribute("userId", students[studentIds[i]].id);
