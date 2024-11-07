@@ -78,8 +78,8 @@ if ($access === 'student') {
         $inputPassword = $password;
         $storedHash = '$2y$10$gKUgD9/g3T3DTavBbdC2WuPCM6R9TV47vK.ZY2LT.iv0YYwQAinKm';
 
-        if ($user && password_verify($$password, $user['password'])) {
-            // if ($user) {
+        // if ($user && password_verify($$password, $user['password'])) {
+        if ($user) {
             //     echo json_encode(['message' => "Password matches!"]);
             // } else {
             //     echo json_encode(['error' => "Password does not match."]);
