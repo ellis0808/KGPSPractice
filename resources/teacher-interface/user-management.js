@@ -243,7 +243,7 @@ const displayUsers = {
         userName.textContent = `${students[studentIds[i]].lastName}, ${
           students[studentIds[i]].firstName
         }`;
-        userGradeLevel.textContent = `${students[studentIds[i]].gradLevel}`;
+        userGradeLevel.textContent = `${students[studentIds[i]].gradeLevel}`;
         userAccess.textContent = `${students[studentIds[i]].access}`;
 
         editUserBtn.setAttribute("userId", students[studentIds[i]].id);
