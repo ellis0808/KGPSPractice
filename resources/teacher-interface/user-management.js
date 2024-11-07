@@ -207,15 +207,22 @@ const displayUsers = {
     }
     updateUserDiv.showModal();
   },
-  displaySingleUserInfo(data) {
-    const userName = document.querySelector(".user-data-modal-name");
+  displaySingleUserInfo(id, type) {
+    const modalUserName = document.querySelector(".user-data-modal-name");
     const singleUserData2 = document.querySelector(".single-user-data2");
-    if (data.access === "teacher") {
-      userName.innerText = `${data.title}, ${data.last_name}`;
+
+    if (type === "teacher") {
+      userName.innerText = `${userObjects[`${type}Objects`][id].title}, ${
+        userObjects[`${type}Objects`][id].lastName
+      }`;
       singleUserData2.innerText = `Access: ${data.access}`;
     } else {
-      userName.innerText = `${data.last_name}, ${data.first_name}`;
-      singleUserData2.innerText = `Grade: ${data.grade_level}\r\nAccess: ${data.access}`;
+      userName.innerText = `${userObjects[`${type}Objects`][id].lastName}, ${
+        userObjects[`${type}Objects`][id].firstName
+      }`;
+      singleUserData2.innerText = `Grade: ${
+        userObjects[`${type}Objects`][id].gradeLevel
+      }\r\nAccess: ${userObjects[`${type}Objects`][id].access}`;
     }
   },
 };
