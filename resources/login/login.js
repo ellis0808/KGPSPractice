@@ -371,6 +371,8 @@ function displaySelectedPasswordImages() {
 document
   .getElementById("studentPasswordEntryForm")
   .addEventListener("submit", (event) => {
+    console.log(selectedUser);
+
     loginUser(
       selectedUser.id,
       selectedUser.firstName,
@@ -384,6 +386,7 @@ document
 document
   .getElementById("teacherPasswordEntryForm")
   .addEventListener("submit", (event) => {
+    console.log(selectedUser);
     loginUser(
       selectedUser.id,
       selectedUser.firstName,
