@@ -212,14 +212,14 @@ const displayUsers = {
     const singleUserData2 = document.querySelector(".single-user-data2");
 
     if (type === "teacher") {
-      userName.innerText = `${userObjects[`${type}Objects`][id].title}, ${
+      modalUserName.innerText = `${userObjects[`${type}Objects`][id].title}, ${
         userObjects[`${type}Objects`][id].lastName
       }`;
       singleUserData2.innerText = `Access: ${data.access}`;
     } else {
-      userName.innerText = `${userObjects[`${type}Objects`][id].lastName}, ${
-        userObjects[`${type}Objects`][id].firstName
-      }`;
+      modalUserName.innerText = `${
+        userObjects[`${type}Objects`][id].lastName
+      }, ${userObjects[`${type}Objects`][id].firstName}`;
       singleUserData2.innerText = `Grade: ${
         userObjects[`${type}Objects`][id].gradeLevel
       }\r\nAccess: ${userObjects[`${type}Objects`][id].access}`;
