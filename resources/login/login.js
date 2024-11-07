@@ -171,14 +171,12 @@ function displayUsersForLogin() {
       userContainer.addEventListener("click", (event) => {
         selectedUser = {
           id: event.target.getAttribute("userId"),
-          firstname: event.target.getAttribute("userfirstname"),
-          lastname: event.target.getAttribute("userlastname"),
+          firstName: event.target.getAttribute("userfirstname"),
+          lastName: event.target.getAttribute("userlastname"),
           access: event.target.getAttribute("access"),
         };
 
-        studentPasswordGridNameHeader.innerText = `${
-          students[studentIds[i]].firstName
-        } ${students[studentIds[i]].lastName}`;
+        studentPasswordGridNameHeader.innerText = `${selectedUser.firstName} ${selectedUser.lastName}`;
 
         resetStudentPasswordEntryArray();
         studentPasswordEntryForm.showModal();
@@ -229,9 +227,9 @@ function displayUsersForLogin() {
       userContainer.addEventListener("click", (event) => {
         selectedUser = {
           id: event.target.getAttribute("userId"),
-          firstname: event.target.getAttribute("userfirstname"),
-          lastname: event.target.getAttribute("userlastname"),
-          access: teachers[teacherIds[q]].access,
+          firstName: event.target.getAttribute("userfirstname"),
+          lastName: event.target.getAttribute("userlastname"),
+          access: event.target.getAttribute("access"),
         };
         const teacherUsernameContainer = document.querySelector(
           ".teacher-username-container"
@@ -365,8 +363,8 @@ document
   .addEventListener("submit", (event) => {
     loginUser(
       selectedUser.id,
-      selectedUser.firstname,
-      selectedUser.lastname,
+      selectedUser.firstName,
+      selectedUser.lastName,
       selectedUser.access
     );
     document.getElementById("studentPasswordEntryForm").reset();
@@ -378,15 +376,15 @@ document
   .addEventListener("submit", (event) => {
     loginUser(
       selectedUser.id,
-      selectedUser.firstname,
-      selectedUser.lastname,
+      selectedUser.firstName,
+      selectedUser.lastName,
       selectedUser.access
     );
     document.getElementById("teacherPasswordEntryForm").reset();
   });
 
 // Login logic
-async function loginUser(id, firstname, lastname, access) {
+async function loginUser(id, firstName, lastName, access) {
   let password;
   if (access === "teacher") {
     password = document.getElementById("teacherpassword").value;
@@ -399,7 +397,7 @@ async function loginUser(id, firstname, lastname, access) {
     const response = await fetch("/KGPSEnglishPractice-test/api/login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, firstname, lastname, access, password }),
+      body: JSON.stringify({ id, firstName, lastName, access, password }),
       credentials: "include",
     });
     console.log(password);
