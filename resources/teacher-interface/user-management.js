@@ -91,8 +91,6 @@ const displayUsers = {
     const teachers = userObjects.teacherObjects;
     const studentIds = Object.keys(students);
     const teacherIds = Object.keys(teachers);
-    console.log(studentIds, teacherIds);
-    console.log(students, teachers);
 
     userList.textContent = "";
 
@@ -283,7 +281,6 @@ const getUserInfo = {
     }
   },
   async getSingleUser(id, type, funct) {
-    console.log(userObjects[`${type}Objects`][id]);
     const singleUserData1 = document.querySelector(".single-user-data1");
   },
 };
@@ -406,7 +403,7 @@ document
     updateUser(id);
   });
 async function updateUser(id) {
-  getUserInfo.getSingleUser(id, type, funct);
+  // getUserInfo.getSingleUser(id, type, funct);
   const firstname = document.getElementById("updatefirstname").value;
 
   const lastname = document.getElementById("updatelastname").value;
@@ -454,7 +451,7 @@ async function updateUser(id) {
     if (!response.ok) {
       throw new Error("Network response was not okay");
     } else {
-      getUserInfo.getSingleUser(id, type, funct);
+      // getUserInfo.getSingleUser(id, type, funct);
       getUserInfo.getAllUsers();
     }
   } catch (error) {
