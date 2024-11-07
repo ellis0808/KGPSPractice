@@ -284,10 +284,7 @@ const displayUsers = {
         editUserBtn.addEventListener("click", (event) => {
           const id = event.target.getAttribute("userId");
           const type = event.target.getAttribute("type");
-          const funct = "edit"; // funct is short for 'function', but it's a reserved word
           this.displaySingleUserInfoInEditModal(id, type);
-          document.getElementById("updateUser").reset();
-          updateUserDiv.showModal();
         });
         deleteUserBtn.addEventListener("click", (event) => {
           const id = event.target.getAttribute("userId");
@@ -306,17 +303,21 @@ const displayUsers = {
     }
   },
   displaySingleUserInfoInEditModal(id, type) {
+    document.getElementById("updateUser").reset();
+
     const singleUserData1 = document.querySelector(".single-user-data1");
-
-    singleUserData1.innerText = `${userObjects[`${type}Objects`][id].title}, ${
-      userObjects[`${type}Objects`][id].lastName
-    }, \r\nAccess: ${userObjects[`${type}Objects`][id].access}`;
-    // } else {
-    //   console.log("test2");
-
-    //   singleUserData1.setAttribute("userID", students.student_id);
-    //   singleUserData1.innerText = `${students.last_name}, ${students.first_name}\r\nGrade: ${students.grade_level}\r\nAccess: ${students.access}`;
-    // }
+    if (type === "teacher") {
+      singleUserData1.innerText = `${userObjects[`${type}Objects`][id].title} ${
+        userObjects[`${type}Objects`][id].lastName
+      }, \r\nAccess: ${userObjects[`${type}Objects`][id].access}`;
+    } else {
+      singleUserData1.innerText = `${
+        userObjects[`${type}Objects`][id].lastName
+      }, ${userObjects[`${type}Objects`][id].firstName}\r\nGrade: ${
+        userObjects[`${type}Objects`][id].gradeLevel
+      }\r\nAccess: ${userObjects[`${type}Objects`][id].access}`;
+    }
+    updateUserDiv.showModal();
   },
   displaySingleUserInfo(data) {
     const userName = document.querySelector(".user-data-modal-name");
