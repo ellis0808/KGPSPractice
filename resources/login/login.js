@@ -93,7 +93,7 @@ async function getUsersForLogin() {
         access: teacher.access,
       });
     });
-    if (data.users) {
+    if (data) {
       displayUsersForLogin(data.users);
     } else {
     }
