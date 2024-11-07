@@ -86,114 +86,6 @@ const displayUsers = {
     this.userDataHeader.appendChild(this.accessHeader);
     userList.appendChild(this.userDataHeader);
   },
-  createUserDataRowElements(data) {
-    this.userData = document.createElement("div");
-    this.number = document.createElement("div");
-    this.userName = document.createElement("div");
-    this.userGradeLevel = document.createElement("div");
-    this.userAccess = document.createElement("div");
-    this.editUserBtn = document.createElement("button");
-    this.deleteUserBtn = document.createElement("button");
-    this.userName.classList.add("open-modal-btn2", "user-name");
-    this.userName.addEventListener("click", (event) => {
-      const type = event.target.getAttribute("type");
-      const id = event.target.getAttribute("userId");
-      displayUsers.displaySingleUserInfo(id, type);
-      // document.getElementById("single-user-data-div").reset();
-      userDataDiv.showModal();
-    });
-  },
-  setStudentDataInRows(students) {
-    students.forEach((student) => {
-      ++this.i;
-      this.number.textContent = `${this.i}`;
-      this.number.classList.add("number");
-      this.userGradeLevel.classList.add("number");
-
-      this.userData.classList.add("user-slot");
-      this.userData.classList.add("user-slot");
-      this.userData.setAttribute("data-id", student.teacher_id);
-      this.userName.setAttribute("userId", student.student_id);
-      this.userName.setAttribute("type", student.access);
-      this.userName.textContent = `${student.last_name}, ${student.first_name}`;
-      this.userGradeLevel.textContent = `${student.grade_level}`;
-      this.userAccess.textContent = `${student.access}`;
-      this.editUserBtn.textContent = "Edit";
-      this.deleteUserBtn.textContent = "Delete";
-      this.editUserBtn.setAttribute("userId", student.student_id);
-      this.editUserBtn.setAttribute("type", student.access);
-      this.deleteUserBtn.setAttribute("userId", student.student_id);
-      this.deleteUserBtn.setAttribute("type", student.access);
-      this.editUserBtn.classList.add("open-modal-btn3");
-      this.editUserBtn.addEventListener("click", (event) => {
-        const id = event.target.getAttribute("userId");
-        const type = event.target.getAttribute("type");
-        const funct = "edit"; // funct is short for 'function', but it's a reserved word
-        getUserInfo.getSingleUser(id, type, funct);
-        document.getElementById("updateUser").reset();
-        updateUserDiv.showModal();
-      });
-      this.deleteUserBtn.addEventListener("click", (event) => {
-        const id = event.target.getAttribute("userId");
-        const type = event.target.getAttribute("type");
-        deleteUser(id, type);
-      });
-      this.userData.appendChild(this.number);
-      this.userData.appendChild(this.userName);
-      this.userData.appendChild(this.userGradeLevel);
-      this.userData.appendChild(this.userAccess);
-      this.userData.appendChild(this.editUserBtn);
-      this.userData.appendChild(this.deleteUserBtn);
-      this.setUserDataInUserList(this.userData);
-    });
-  },
-  setTeacherDataInRows(teachers) {
-    teachers.forEach((teacher) => {
-      console.log(teacher.last_name);
-
-      ++this.i;
-      this.number.textContent = `${this.i}`;
-      this.number.classList.add("number");
-      this.userGradeLevel.classList.add("number");
-      this.userData.classList.add("user-slot");
-      this.userData.setAttribute("data-id", teacher.teacher_id);
-      this.userName.setAttribute("userId", teacher.teacher_id);
-      this.userName.setAttribute("type", teacher.access);
-      this.userName.textContent = `${teacher.title} ${teacher.last_name}`;
-      this.userGradeLevel.textContent = ``;
-      this.userAccess.textContent = `teacher`;
-      this.editUserBtn.textContent = "Edit";
-      this.deleteUserBtn.textContent = "Delete";
-      this.editUserBtn.setAttribute("userId", teacher.teacher_id);
-      this.editUserBtn.setAttribute("type", teacher.access);
-      this.deleteUserBtn.setAttribute("userId", teacher.teacher_id);
-      this.deleteUserBtn.setAttribute("type", teacher.access);
-      this.editUserBtn.classList.add("open-modal-btn3");
-      this.editUserBtn.addEventListener("click", (event) => {
-        const id = event.target.getAttribute("userId");
-        const type = event.target.getAttribute("type");
-        const funct = "edit"; // funct is short for 'function', but it's a reserved word
-        getUserInfo.getSingleUser(id, type, funct);
-        document.getElementById("updateUser").reset();
-        updateUserDiv.showModal();
-      });
-      this.deleteUserBtn.addEventListener("click", (event) => {
-        const id = event.target.getAttribute("userId");
-        const type = event.target.getAttribute("type");
-        deleteUser(id, type);
-      });
-      this.userData.appendChild(this.number);
-      this.userData.appendChild(this.userName);
-      this.userData.appendChild(this.userGradeLevel);
-      this.userData.appendChild(this.userAccess);
-      this.userData.appendChild(this.editUserBtn);
-      this.userData.appendChild(this.deleteUserBtn);
-      userList.appendChild(this.userData);
-    });
-  },
-  setUserDataInUserList() {
-    userList.appendChild(this.userData);
-  },
   displayAllUsers() {
     const students = userObjects.studentObjects;
     const teachers = userObjects.teacherObjects;
@@ -203,12 +95,10 @@ const displayUsers = {
     console.log(students, teachers);
 
     userList.textContent = "";
-    // this.i = 0;
+
     this.createTableHeaders();
-    // this.createUserDataRowElements();
     this.appendUserDataHeaders();
-    // this.setStudentDataInRows(data.students);
-    // this.setTeacherDataInRows(data.teachers);
+
     let i = 0;
     let q = 0;
     for (i; i < studentIds.length + teacherIds.length; ++i) {
@@ -251,12 +141,7 @@ const displayUsers = {
         deleteUserBtn.setAttribute("userId", students[studentIds[i]].id);
         deleteUserBtn.setAttribute("type", students[studentIds[i]].access);
         editUserBtn.addEventListener("click", (event) => {
-          const id = event.target.getAttribute("userId");
-          const type = event.target.getAttribute("type");
-          const funct = "edit"; // funct is short for 'function', but it's a reserved word
-          getUserInfo.getSingleUser(id, type, funct);
-          document.getElementById("updateUser").reset();
-          updateUserDiv.showModal();
+          this.displayEditModal(event);
         });
         deleteUserBtn.addEventListener("click", (event) => {
           const id = event.target.getAttribute("userId");
@@ -282,9 +167,7 @@ const displayUsers = {
         deleteUserBtn.setAttribute("userId", teachers[teacherIds[q]].id);
         deleteUserBtn.setAttribute("type", teachers[teacherIds[q]].access);
         editUserBtn.addEventListener("click", (event) => {
-          const id = event.target.getAttribute("userId");
-          const type = event.target.getAttribute("type");
-          this.displaySingleUserInfoInEditModal(id, type);
+          this.displayEditModal(event);
         });
         deleteUserBtn.addEventListener("click", (event) => {
           const id = event.target.getAttribute("userId");
@@ -301,6 +184,11 @@ const displayUsers = {
       userData.appendChild(deleteUserBtn);
       userList.appendChild(userData);
     }
+  },
+  displayEditModal(event) {
+    const id = event.target.getAttribute("userId");
+    const type = event.target.getAttribute("type");
+    this.displaySingleUserInfoInEditModal(id, type);
   },
   displaySingleUserInfoInEditModal(id, type) {
     document.getElementById("updateUser").reset();
