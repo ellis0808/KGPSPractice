@@ -190,7 +190,7 @@ function displayUsersForLogin() {
     if (i >= studentIds.length) {
       userContainer.setAttribute(
         "userfirstname",
-        teachers[teacherIds[q]].firstName
+        teachers[teacherIds[q]].title
       );
       userContainer.setAttribute(
         "userlastname",
@@ -204,7 +204,7 @@ function displayUsersForLogin() {
       userInitialsContainer.setAttribute("userId", teachers[teacherIds[q]].id);
       userInitialsContainer.setAttribute(
         "userfirstname",
-        teachers[teacherIds[q]].firstName
+        teachers[teacherIds[q]].title
       );
       userInitialsContainer.setAttribute(
         "userlastname",
@@ -218,7 +218,7 @@ function displayUsersForLogin() {
       userNameContainer.setAttribute("userId", teachers[teacherIds[q]].id);
       userNameContainer.setAttribute(
         "userfirstname",
-        teachers[teacherIds[q]].firstName
+        teachers[teacherIds[q]].title
       );
       userNameContainer.setAttribute(
         "userlastname",
@@ -368,8 +368,6 @@ function displaySelectedPasswordImages() {
 document
   .getElementById("studentPasswordEntryForm")
   .addEventListener("submit", (event) => {
-    console.log(selectedUser);
-
     loginUser(
       selectedUser.id,
       selectedUser.firstName,
