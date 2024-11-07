@@ -110,6 +110,7 @@ function displayUsersForLogin() {
   const teachers = userObjects.teacherObjects;
   const studentIds = Object.keys(students);
   const teacherIds = Object.keys(teachers);
+  console.log(students, teachers);
 
   let i = 0;
   let q = 0;
