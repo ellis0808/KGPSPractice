@@ -111,8 +111,6 @@ function displayUsersForLogin() {
   const studentIds = Object.keys(students);
   const teacherIds = Object.keys(teachers);
 
-  console.log(students, teachers);
-
   let i = 0;
   let q = 0;
   for (i; i < studentIds.length + teacherIds.length; ++i) {
@@ -120,6 +118,8 @@ function displayUsersForLogin() {
     const userContainer = document.createElement("div");
     const userInitialsContainer = document.createElement("div");
     if (i < studentIds.length) {
+      console.log(students[studentIds[i]].id);
+
       userContainer.classList.add("user-container");
       userContainer.setAttribute("userId", students[studentIds[i]].id);
       userContainer.setAttribute(
