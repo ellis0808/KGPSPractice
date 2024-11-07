@@ -117,7 +117,9 @@ function displayUsersForLogin(data) {
   const userInitialsContainer = document.createElement("div");
 
   for (i; i < studentIds.length + teacherIds.length; ++i) {
-    if (user.access === "student") {
+    console.log("loop test");
+
+    if (i < studentIds.length) {
       userContainer.classList.add("user-container");
       userContainer.setAttribute("userId", students[studentIds[i]].id);
       userContainer.setAttribute(
@@ -243,6 +245,7 @@ function displayUsersForLogin(data) {
         console.log(selectedUser);
       });
       teacherNameContainer.appendChild(userContainer);
+      ++q;
     }
 
     userContainer.appendChild(userInitialsContainer);
