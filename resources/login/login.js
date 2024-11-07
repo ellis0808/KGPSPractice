@@ -179,7 +179,7 @@ function displayUsersForLogin() {
           id: event.target.getAttribute("userId"),
           firstName: event.target.getAttribute("userfirstname"),
           lastName: event.target.getAttribute("userlastname"),
-          access: event.target.getAttribute("access"),
+          access: event.target.getAttribute("useraccess"),
         };
 
         studentPasswordGridNameHeader.innerText = `${selectedUser.firstName} ${selectedUser.lastName}`;
@@ -240,7 +240,7 @@ function displayUsersForLogin() {
           id: event.target.getAttribute("userId"),
           firstName: event.target.getAttribute("userfirstname"),
           lastName: event.target.getAttribute("userlastname"),
-          access: event.target.getAttribute("access"),
+          access: event.target.getAttribute("useraccess"),
         };
         const teacherUsernameContainer = document.querySelector(
           ".teacher-username-container"
