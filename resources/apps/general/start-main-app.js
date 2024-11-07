@@ -534,7 +534,9 @@ class MenuItems {
   }
   enableLogout() {
     if (document.querySelector(".logout")) {
-      document.querySelector(".logout").addEventListener("pointerdown", logout);
+      document.querySelector(".logout").addEventListener("pointerdown", () => {
+        logout();
+      });
     }
   }
   displayMainMenuItems() {
