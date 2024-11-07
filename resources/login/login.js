@@ -74,8 +74,24 @@ async function getUsersForLogin() {
       throw new Error("Network response was not okay");
     }
     const data = await response.json();
-    console.log(data);
-
+    const students = data.students;
+    const teachers = data.teachers;
+    students.map((student) => {
+      return (userObjects.studentObjects[student.student_id] = {
+        id: student.student_id,
+        firstName: student.first_name,
+        lastName: student.last_name,
+        access: student.access,
+      });
+    });
+    teachers.map((teacher) => {
+      return (userObjects.teacherObjects[teacher.teacher_id] = {
+        id: teacher.teacher_id,
+        title: teacher.title,
+        lastName: teacher.last_name,
+        access: teacher.access,
+      });
+    });
     if (data.users) {
       displayUsersForLogin(data.users);
     } else {
@@ -89,65 +105,138 @@ function displayUsersForLogin(data) {
   studentNameContainer.innerText = "";
   teacherNameContainer.innerText = "";
   let i = 0;
-  data.forEach((user) => {
-    ++i;
-    const userContainer = document.createElement("div");
-    userContainer.classList.add("user-container");
-    userContainer.setAttribute("userId", user.student_id);
-    userContainer.setAttribute("userfirstname", user.first_name);
-    userContainer.setAttribute("userlastname", user.last_name);
-    const userInitialsContainer = document.createElement("div");
-    userInitialsContainer.classList.add(
-      "user-initials-container",
-      `user-initials-container-${i}`
-    );
-    userInitialsContainer.setAttribute("userId", user.student_id);
-    userInitialsContainer.setAttribute("userfirstname", user.first_name);
-    userInitialsContainer.setAttribute("userlastname", user.last_name);
-    const userNameContainer = document.createElement("div");
-    userNameContainer.classList.add("user-name-container");
-    userNameContainer.setAttribute("userId", user.student_id);
-    userNameContainer.setAttribute("userfirstname", user.first_name);
-    userNameContainer.setAttribute("userlastname", user.last_name);
-    userNameContainer.setAttribute("useraccess", user.access);
+  let q = 0;
 
+  const students = userObjects.studentObjects;
+  const teachers = userObjects.teacherObjects;
+  const studentIds = Object.keys(students);
+  const teacherIds = Object.keys(teachers);
+  const userNameContainer = document.createElement("div");
+  const userContainer = document.createElement("div");
+  const userInitialsContainer = document.createElement("div");
+
+  for (i; i < studentIds.length + teacherIds.length; ++i) {
     if (user.access === "student") {
-      userInitialsContainer.innerText = `${user.first_name.slice(
-        0,
-        1
-      )}. ${user.last_name.slice(0, 1)}.`;
-      userNameContainer.innerText = `${user.first_name} ${user.last_name.slice(
+      userContainer.classList.add("user-container");
+      userContainer.setAttribute("userId", students[studentIds[i]].id);
+      userContainer.setAttribute(
+        "userfirstname",
+        students[studentIds[i]].firstName
+      );
+      userContainer.setAttribute(
+        "userlastname",
+        students[studentIds[i]].lastName
+      );
+      userInitialsContainer.classList.add(
+        "user-initials-container",
+        `user-initials-container-${i}`
+      );
+      userInitialsContainer.setAttribute("userId", students[studentIds[i]].id);
+      userInitialsContainer.setAttribute(
+        "userfirstname",
+        students[studentIds[i]].firstName
+      );
+      userInitialsContainer.setAttribute(
+        "userlastname",
+        students[studentIds[i]].lastName
+      );
+      userNameContainer.classList.add("user-name-container");
+      userNameContainer.setAttribute("userId", students[studentIds[i]].id);
+      userNameContainer.setAttribute(
+        "userfirstname",
+        students[studentIds[i]].firstName
+      );
+      userNameContainer.setAttribute(
+        "userlastname",
+        students[studentIds[i]].lastName
+      );
+      userNameContainer.setAttribute(
+        "useraccess",
+        students[studentIds[i]].access
+      );
+
+      userInitialsContainer.innerText = `${students[
+        studentIds[i]
+      ].firstName.slice(0, 1)}. ${students[studentIds[i]].lastName.slice(
         0,
         1
       )}.`;
+      userNameContainer.innerText = `${
+        students[studentIds[i]].firstName
+      } ${students[studentIds[i]].lastName.slice(0, 1)}.`;
       studentNameContainer.appendChild(userContainer);
       userContainer.addEventListener("click", (event) => {
         selectedUser = {
           id: event.target.getAttribute("userId"),
           firstname: event.target.getAttribute("userfirstname"),
           lastname: event.target.getAttribute("userlastname"),
-          access: user.access,
+          access: students[studentIds[i]].access,
         };
 
-        studentPasswordGridNameHeader.innerText = `${user.first_name} ${user.last_name}`;
+        studentPasswordGridNameHeader.innerText = `${
+          students[studentIds[i]].firstName
+        } ${students[studentIds[i]].lastName}`;
 
         resetStudentPasswordEntryArray();
         studentPasswordEntryForm.showModal();
       });
     } else {
-      userInitialsContainer.innerText = `${user.last_name.slice(0, 1)}`;
-      userNameContainer.innerText = `${user.first_name} ${user.last_name}`;
+      userContainer.setAttribute(
+        "userfirstname",
+        teachers[teacherIds[q]].firstName
+      );
+      userContainer.setAttribute(
+        "userlastname",
+        teachers[teacherIds[q]].lastName
+      );
+      const userInitialsContainer = document.createElement("div");
+      userInitialsContainer.classList.add(
+        "user-initials-container",
+        `user-initials-container-${i}`
+      );
+      userInitialsContainer.setAttribute("userId", teachers[teacherIds[q]].id);
+      userInitialsContainer.setAttribute(
+        "userfirstname",
+        teachers[teacherIds[q]].firstName
+      );
+      userInitialsContainer.setAttribute(
+        "userlastname",
+        teachers[teacherIds[q]].lastName
+      );
+      const userNameContainer = document.createElement("div");
+      userNameContainer.classList.add("user-name-container");
+      userNameContainer.setAttribute("userId", teachers[teacherIds[q]].id);
+      userNameContainer.setAttribute(
+        "userfirstname",
+        teachers[teacherIds[q]].firstName
+      );
+      userNameContainer.setAttribute(
+        "userlastname",
+        teachers[teacherIds[q]].lastName
+      );
+      userNameContainer.setAttribute(
+        "useraccess",
+        teachers[teacherIds[q]].access
+      );
+      userInitialsContainer.innerText = `${teachers[
+        teacherIds[q]
+      ].lastName.slice(0, 1)}`;
+      userNameContainer.innerText = `${teachers[teacherIds[q]].title} ${
+        teachers[teacherIds[q]].lastName
+      }`;
       userContainer.addEventListener("click", (event) => {
         selectedUser = {
           id: event.target.getAttribute("userId"),
           firstname: event.target.getAttribute("userfirstname"),
           lastname: event.target.getAttribute("userlastname"),
-          access: user.access,
+          access: teachers[teacherIds[q]].access,
         };
         const teacherUsernameContainer = document.querySelector(
           ".teacher-username-container"
         );
-        teacherUsernameContainer.innerText = `${user.first_name} ${user.last_name}`;
+        teacherUsernameContainer.innerText = `${
+          teachers[teacherIds[q]].title
+        } ${teachers[teacherIds[q]].lastName}`;
 
         teacherPasswordEntryForm.showModal();
         console.log(selectedUser);
@@ -157,7 +246,7 @@ function displayUsersForLogin(data) {
 
     userContainer.appendChild(userInitialsContainer);
     userContainer.appendChild(userNameContainer);
-  });
+  }
 }
 
 function removeSelectedClassFromPasswordEntryArrayImage(item) {

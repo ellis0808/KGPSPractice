@@ -252,8 +252,6 @@ const getUserInfo = {
       const teachers = data.teachers;
 
       if (data) {
-        let i = 0;
-        let q = 0;
         students.map((student) => {
           return (userObjects.studentObjects[student.student_id] = {
             id: student.student_id,
