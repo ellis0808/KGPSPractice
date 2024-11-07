@@ -78,11 +78,6 @@ const displayUsers = {
     this.accessHeader.textContent = "Access";
     this.gradeLevelHeader.textContent = "Grade";
     this.userDataHeader.classList.add("user-data-header");
-    this.userDataHeader.appendChild(this.numberHeader);
-    this.userDataHeader.appendChild(this.nameHeader);
-    this.userDataHeader.appendChild(this.gradeLevelHeader);
-    this.userDataHeader.appendChild(this.accessHeader);
-    userList.appendChild(this.userDataHeader);
   },
   appendUserDataHeaders() {
     this.userDataHeader.appendChild(this.numberHeader);
@@ -210,8 +205,8 @@ const displayUsers = {
     userList.textContent = "";
     // this.i = 0;
     this.createTableHeaders();
-    this.createUserDataRowElements();
-    // this.appendUserDataHeaders();
+    // this.createUserDataRowElements();
+    this.appendUserDataHeaders();
     // this.setStudentDataInRows(data.students);
     // this.setTeacherDataInRows(data.teachers);
     let i = 0;
