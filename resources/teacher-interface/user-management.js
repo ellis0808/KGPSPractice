@@ -204,8 +204,8 @@ const displayUsers = {
 
     userList.textContent = "";
     // this.i = 0;
-    // this.createUserElementsForDisplay();
-    // this.createUserDataRowElements();
+    this.createUserElementsForDisplay();
+    this.createUserDataRowElements();
     // this.appendUserDataHeaders();
     // this.setStudentDataInRows(data.students);
     // this.setTeacherDataInRows(data.teachers);
@@ -243,7 +243,7 @@ const displayUsers = {
         userName.textContent = `${students[studentIds[i]].lastName}, ${
           students[studentIds[i]].firstName
         }`;
-        userGradeLevel.textContent = `${students[studentIds[i]].grade_level}`;
+        userGradeLevel.textContent = `${students[studentIds[i]].gradLevel}`;
         userAccess.textContent = `${students[studentIds[i]].access}`;
 
         editUserBtn.setAttribute("userId", students[studentIds[i]].id);
