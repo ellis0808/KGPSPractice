@@ -111,10 +111,11 @@ function displayUsersForLogin() {
   const studentIds = Object.keys(students);
   const teacherIds = Object.keys(teachers);
 
+  console.log(students, teachers);
+
   let i = 0;
   let q = 0;
   for (i; i < studentIds.length + teacherIds.length; ++i) {
-    console.log("loop test");
     const userNameContainer = document.createElement("div");
     const userContainer = document.createElement("div");
     const userInitialsContainer = document.createElement("div");
