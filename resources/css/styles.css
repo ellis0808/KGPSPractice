@@ -73,7 +73,7 @@ body:not(:has(*)) {
   grid-template-columns: 0.075fr 1fr 0.5fr 0.075fr;
   grid-template-areas: "..... nav-logo  nav-user-space .....";
   transition: 0.3s;
-  z-index: 10;
+  z-index: 35;
   position: absolute;
 }
 .nav-logo,
