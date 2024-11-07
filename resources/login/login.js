@@ -172,7 +172,7 @@ function displayUsersForLogin() {
           id: event.target.getAttribute("userId"),
           firstname: event.target.getAttribute("userfirstname"),
           lastname: event.target.getAttribute("userlastname"),
-          access: students[studentIds[i]].access,
+          access: event.target.getAttribute("access"),
         };
 
         studentPasswordGridNameHeader.innerText = `${
@@ -182,7 +182,8 @@ function displayUsersForLogin() {
         resetStudentPasswordEntryArray();
         studentPasswordEntryForm.showModal();
       });
-    } else {
+    }
+    if (i >= studentIds.length) {
       userContainer.setAttribute(
         "userfirstname",
         teachers[teacherIds[q]].firstName
@@ -191,7 +192,6 @@ function displayUsersForLogin() {
         "userlastname",
         teachers[teacherIds[q]].lastName
       );
-      const userInitialsContainer = document.createElement("div");
       userInitialsContainer.classList.add(
         "user-initials-container",
         `user-initials-container-${i}`
@@ -205,7 +205,6 @@ function displayUsersForLogin() {
         "userlastname",
         teachers[teacherIds[q]].lastName
       );
-      const userNameContainer = document.createElement("div");
       userNameContainer.classList.add("user-name-container");
       userNameContainer.setAttribute("userId", teachers[teacherIds[q]].id);
       userNameContainer.setAttribute(
