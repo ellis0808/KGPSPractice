@@ -16,9 +16,9 @@ require './db_connect.php';
 
 $data = json_decode(file_get_contents('php://input'), true);
 $id = (int)$data['id'] ?? null;
-$firstname = $data['firstname'] ?? null;
-$title = $data['firstname'] ?? null;
-$lastname = $data['lastname'] ?? null;
+$firstname = $data['firstName'] ?? null;
+$title = $data['firstName'] ?? null;
+$lastname = $data['lastName'] ?? null;
 $access = $data['access'] ?? null;
 $password = $data['password'] ?? null;
 $password = trim($password);
