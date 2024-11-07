@@ -305,23 +305,18 @@ const displayUsers = {
       userList.appendChild(userData);
     }
   },
-  displaySingleUserInfoForEditing(data, type) {
+  displaySingleUserInfoForEditing(id, type) {
     const singleUserData1 = document.querySelector(".single-user-data1");
-    const students = data.students;
-    const teachers = data.teachers;
-    console.log(data);
 
-    if (type === "teacher") {
-      console.log("test1");
+    singleUserData1.innerText = `${userObjects[`${type}Objects`][id].title}, ${
+      userObjects[`${type}Objects`][id].lastName
+    }, \r\nAccess: ${userObjects[`${type}Objects`][id].access}`;
+    // } else {
+    //   console.log("test2");
 
-      singleUserData1.setAttribute("userID", teachers.teacher_id);
-      singleUserData1.innerText = `${teachers.title}, ${teachers.last_name}\r\nAccess: ${teachers.access}`;
-    } else {
-      console.log("test2");
-
-      singleUserData1.setAttribute("userID", students.student_id);
-      singleUserData1.innerText = `${students.last_name}, ${students.first_name}\r\nGrade: ${students.grade_level}\r\nAccess: ${students.access}`;
-    }
+    //   singleUserData1.setAttribute("userID", students.student_id);
+    //   singleUserData1.innerText = `${students.last_name}, ${students.first_name}\r\nGrade: ${students.grade_level}\r\nAccess: ${students.access}`;
+    // }
   },
   displaySingleUserInfo(data) {
     const userName = document.querySelector(".user-data-modal-name");
@@ -393,6 +388,7 @@ const getUserInfo = {
   },
   async getSingleUser(id, type, funct) {
     console.log(userObjects[`${type}Objects`][id]);
+    const singleUserData1 = document.querySelector(".single-user-data1");
   },
 };
 
