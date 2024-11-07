@@ -3,6 +3,7 @@
 //   passwordImageObject,
 // } from "./password-image-object.js";
 import { images } from "../utilities/images.js";
+import { userObjects } from "../teacher-interface/user-objects.js";
 
 const passwordImageNamesArray = [
   "rabbit-silhouette-1",
