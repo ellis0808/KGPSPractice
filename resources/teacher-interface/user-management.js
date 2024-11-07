@@ -285,7 +285,7 @@ const displayUsers = {
           const id = event.target.getAttribute("userId");
           const type = event.target.getAttribute("type");
           const funct = "edit"; // funct is short for 'function', but it's a reserved word
-          getUserInfo.getSingleUser(id, type, "edit");
+          this.displaySingleUserInfoInEditModal(id, type);
           document.getElementById("updateUser").reset();
           updateUserDiv.showModal();
         });
@@ -305,7 +305,7 @@ const displayUsers = {
       userList.appendChild(userData);
     }
   },
-  displaySingleUserInfoForEditing(id, type) {
+  displaySingleUserInfoInEditModal(id, type) {
     const singleUserData1 = document.querySelector(".single-user-data1");
 
     singleUserData1.innerText = `${userObjects[`${type}Objects`][id].title}, ${
