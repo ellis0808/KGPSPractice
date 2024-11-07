@@ -80,26 +80,26 @@ if ($access === 'student') {
 
         // if ($user && password_verify($$password, $user['password'])) {
         if ($user) {
-            echo json_encode(['message' => "Password matches!"]);
+            //     echo json_encode(['message' => "Password matches!"]);
+            // } else {
+            //     echo json_encode(['error' => "Password does not match."]);
+            // }
+
+            // if ($user && password_verify(
+            //     $inputPassword,
+            //     $storedHash
+            // )) {
+            $_SESSION['loggedIn'] = true;
+            $_SESSION['userId'] = $user['teacher_id'];
+            $_SESSION['lastName'] = $user['last_name'];
+            $_SESSION['title'] = $user['title'];
+            $_SESSION['access'] = $user['access'];
+            $_SESSION['admin'] = $user['admin'];
+
+            echo json_encode($user);
         } else {
-            echo json_encode(['error' => "Password does not match."]);
+            echo json_encode(['error' => 'Invalid ID, name, or password']);
         }
-
-        // if ($user && password_verify(
-        //     $inputPassword,
-        //     $storedHash
-        // )) {
-        //     $_SESSION['loggedIn'] = true;
-        //     $_SESSION['userId'] = $user['teacher_id'];
-        //     $_SESSION['lastName'] = $user['last_name'];
-        //     $_SESSION['title'] = $user['title'];
-        //     $_SESSION['access'] = $user['access'];
-        //     $_SESSION['admin'] = $user['admin'];
-
-        //     echo json_encode($user);
-        // } else {
-        //     echo json_encode(['error' => 'Invalid ID, name, or password']);
-        // }
     } catch (PDOException $e) {
         echo json_encode(['error' => $e->getMessage()]);
     }
