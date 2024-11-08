@@ -71,12 +71,9 @@ if ($access === 'student') {
         $stmt = $pdo->prepare('SELECT teacher_id, last_name, title, access, admin, password
         FROM teachers
         WHERE teacher_id = :teacher_id AND last_name = :last_name AND title = :title');
-        $stmt->execute(['teacher_id' => $id, 'last_name' => $lastname, 'title' => $title]);
+        $stmt->execute(['teacher_id' => $id, 'last_name' => $lastname, 'title' => $firstname]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
-        $inputPassword = $password;
-        $storedHash = '$2y$10$gKUgD9/g3T3DTavBbdC2WuPCM6R9TV47vK.ZY2LT.iv0YYwQAinKm';
 
         if ($user && password_verify($$password, $user['password'])) {
             // if ($user) {
