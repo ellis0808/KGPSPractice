@@ -29,7 +29,7 @@ if (!$password) {
     echo json_encode(['error' => 'Password is required']);
     exit;
 }
-echo json_encode($access);
+
 
 // Student login
 // if ($access === 'student') {
@@ -63,43 +63,44 @@ echo json_encode($access);
 //         echo json_encode(['error' => $e->getMessage()]);
 //     }
 // } elseif ($access === 'teacher') {
-//     // Teacher login
-//     try {
+if ($access === 'teacher') {
+    // Teacher login
+    try {
 
-//         $pdo = getDBConnection();
-//         $stmt = $pdo->prepare('SELECT teacher_id, last_name, title, access, admin, password
-//         FROM teachers
-//         WHERE teacher_id = :teacher_id AND last_name = :last_name AND title = :title');
-//         $stmt->execute(['teacher_id' => $id, 'last_name' => $lastname, 'title' => $firstname]);
-//         $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $pdo = getDBConnection();
+        $stmt = $pdo->prepare('SELECT teacher_id, last_name, title, access, admin, password
+        FROM teachers
+        WHERE teacher_id = :teacher_id AND last_name = :last_name AND title = :title');
+        $stmt->execute(['teacher_id' => $id, 'last_name' => $lastname, 'title' => $firstname]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
-//         if ($user && password_verify($$password, $user['password'])) {
-//             // if ($user) {
-//             //     echo json_encode(['message' => "Password matches!"]);
-//             // } else {
-//             //     echo json_encode(['error' => "Password does not match."]);
-//             // }
+        if ($user && password_verify($password, $user['password'])) {
+            // if ($user) {
+            //     echo json_encode(['message' => "Password matches!"]);
+            // } else {
+            //     echo json_encode(['error' => "Password does not match."]);
+            // }
 
-//             // if ($user && password_verify(
-//             //     $inputPassword,
-//             //     $storedHash
-//             // )) {
-//             $_SESSION['loggedIn'] = true;
-//             $_SESSION['userId'] = $user['teacher_id'];
-//             $_SESSION['lastName'] = $user['last_name'];
-//             $_SESSION['title'] = $user['title'];
-//             $_SESSION['access'] = $user['access'];
-//             $_SESSION['admin'] = $user['admin'];
+            // if ($user && password_verify(
+            //     $inputPassword,
+            //     $storedHash
+            // )) {
+            $_SESSION['loggedIn'] = true;
+            $_SESSION['userId'] = $user['teacher_id'];
+            $_SESSION['lastName'] = $user['last_name'];
+            $_SESSION['title'] = $user['title'];
+            $_SESSION['access'] = $user['access'];
+            $_SESSION['admin'] = $user['admin'];
 
-//             echo json_encode($user);
-//         } else {
-//             echo json_encode(['error' => 'Invalid ID, name, or password']);
-//         }
-//     } catch (PDOException $e) {
-//         echo json_encode(['error' => $e->getMessage()]);
-//     }
-// }
+            echo json_encode($user);
+        } else {
+            echo json_encode(['error' => 'Invalid ID, name, or password']);
+        }
+    } catch (PDOException $e) {
+        echo json_encode(['error' => $e->getMessage()]);
+    }
+}
 
 
 // function get_failed_attempts($ip)
