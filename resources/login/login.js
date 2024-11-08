@@ -409,8 +409,7 @@ async function loginUser(id, firstName, lastName, access) {
     });
     console.log(id, firstName, lastName, access, password);
 
-    const rawText = await response.text();
-    const data = JSON.parse(rawText);
+    const data = await response.json();
 
     if (!response.ok) {
       resetStudentPasswordEntryArray();
