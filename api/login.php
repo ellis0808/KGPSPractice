@@ -30,6 +30,7 @@ if (!$password) {
     echo json_encode(['error' => 'Password is required']);
     exit;
 }
+echo json_encode($access);
 
 // Student login
 if ($access === 'student') {
@@ -64,7 +65,6 @@ if ($access === 'student') {
     }
 } elseif ($access === 'teacher') {
     // Teacher login
-    echo json_encode($access);
     try {
 
         $pdo = getDBConnection();
