@@ -118,8 +118,6 @@ function displayUsersForLogin() {
     const userContainer = document.createElement("div");
     const userInitialsContainer = document.createElement("div");
     if (i < studentIds.length) {
-      console.log(students[studentIds[i]].id);
-
       userContainer.classList.add("user-container");
       userContainer.setAttribute("userId", students[studentIds[i]].id);
       userContainer.setAttribute(
@@ -395,6 +393,8 @@ document
 async function loginUser(id, firstName, lastName, access) {
   let password;
   if (access === "teacher") {
+    console.log(access);
+
     password = document.getElementById("teacherpassword").value;
   } else if (access === "student") {
     password = studentPasswordEntryArray.join("");
@@ -408,6 +408,7 @@ async function loginUser(id, firstName, lastName, access) {
       credentials: "include",
     });
     console.log(password);
+    console.log(access);
 
     const rawText = await response.text();
     const data = JSON.parse(rawText);
