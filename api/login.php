@@ -64,7 +64,7 @@ if ($access === 'student') {
     }
 } elseif ($access === 'teacher') {
     // Teacher login
-
+    echo json_encode($access);
     try {
 
         $pdo = getDBConnection();

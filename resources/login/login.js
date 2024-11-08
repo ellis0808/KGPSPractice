@@ -407,8 +407,7 @@ async function loginUser(id, firstName, lastName, access) {
       body: JSON.stringify({ id, firstName, lastName, access, password }),
       credentials: "include",
     });
-    console.log(password);
-    console.log(access);
+    console.log(id, firstName, lastName, access, password);
 
     const rawText = await response.text();
     const data = JSON.parse(rawText);
