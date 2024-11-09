@@ -367,14 +367,14 @@ document
   });
 
 // Delete User
-async function deleteUser(id) {
+async function deleteUser(id, type) {
   try {
     const response = await fetch(
       "/KGPSEnglishPractice-test/api/delete_user.php",
       {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: id }),
+        body: JSON.stringify({ id: id, type: type }),
       }
     );
 
