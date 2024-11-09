@@ -74,24 +74,14 @@ if ($access === 'teacher') {
     try {
 
         $pdo = getDBConnection();
-        $stmt = $pdo->prepare('SELECT teacher_id, last_name, title, access, admin, password
+        $stmt = $pdo->prepare('SELECT *
         FROM teachers
-        WHERE teacher_id = :teacher_id AND last_name = :last_name AND title = :title');
-        $stmt->execute(['teacher_id' => $id, 'last_name' => $lastname, 'title' => $title]);
+        WHERE teacher_id = :teacher_id');
+        $stmt->execute(['teacher_id' => $id]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
         if ($user && password_verify($password, $user['password'])) {
-            // if ($user) {
-            //     echo json_encode(['message' => "Password matches!"]);
-            // } else {
-            //     echo json_encode(['error' => "Password does not match."]);
-            // }
-
-            // if ($user && password_verify(
-            //     $inputPassword,
-            //     $storedHash
-            // )) {
             $_SESSION['loggedIn'] = true;
             $_SESSION['userId'] = $user['teacher_id'];
             $_SESSION['lastName'] = $user['last_name'];
@@ -99,9 +89,9 @@ if ($access === 'teacher') {
             $_SESSION['access'] = $user['access'];
             $_SESSION['admin'] = $user['admin'];
 
-            echo json_encode($user);
+            echo json_encode(['success' => true, 'data' => $user]);
         } else {
-            echo json_encode(['error' => 'Invalid ID, name, or password']);
+            echo json_encode(['success' => false, 'error' => 'Invalid ID, name, or password']);
         }
     } catch (PDOException $e) {
         echo json_encode(['error' => $e->getMessage()]);
