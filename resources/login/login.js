@@ -380,25 +380,33 @@ document
 
 // Login logic
 async function loginUser() {
-  if (selectedUser.access === "teacher") {
-    selectedUser.password = document.getElementById("teacherpassword").value;
-  } else if (selectedUser.access === "student") {
-    selectedUser.password = studentPasswordEntryArray.join("");
-  }
-  console.log(selectedUser);
-
+  let response;
   try {
-    const response = await fetch("/KGPSEnglishPractice-test/api/login.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ selectedUser }),
-      credentials: "include",
-    });
+    if (selectedUser.access === "teacher") {
+      selectedUser.password = document.getElementById("teacherpassword").value;
+      response = await fetch(
+        "/KGPSEnglishPractice-test/api/login-teacher.php",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ selectedUser }),
+          credentials: "include",
+        }
+      );
+    } else if (selectedUser.access === "student") {
+      selectedUser.password = studentPasswordEntryArray.join("");
 
-    const rawText = await response.text();
-    console.log(rawText);
-
-    const data = JSON.parse(rawText);
+      response = await fetch(
+        "/KGPSEnglishPractice-test/api/login-student.php",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ selectedUser }),
+          credentials: "include",
+        }
+      );
+    }
+    const data = await response.text();
     console.log(data);
 
     if (!response.ok) {
