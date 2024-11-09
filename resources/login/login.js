@@ -381,10 +381,9 @@ document
 
 // Login logic
 async function loginUser() {
-  let password;
-  if (access === "teacher") {
+  if (selectedUser.access === "teacher") {
     selectedUser.password = document.getElementById("teacherpassword").value;
-  } else if (access === "student") {
+  } else if (selectedUser.access === "student") {
     selectedUser.password = studentPasswordEntryArray.join("");
   }
   console.log(selectedUser);
