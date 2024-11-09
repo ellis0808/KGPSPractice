@@ -15,12 +15,13 @@ error_reporting(0);
 // }
 
 $data = json_decode(file_get_contents('php://input'), true);
-$id = $data['id'] ?? null;
-$firstname = $data['firstName'] ?? null;
-$title = $data['title'] ?? null;
-$lastname = $data['lastName'] ?? null;
-$access = $data['access'] ?? null;
-$password = $data['password'] ?? null;
+$selectedUser = $data['selectedUser'] ?? [];
+$id = $selectedUser['id'] ?? null;
+$firstname = $selectedUser['firstName'] ?? null;
+$title = $selectedUser['title'] ?? null;
+$lastname = $selectedUser['lastName'] ?? null;
+$access = $selectedUser['access'] ?? null;
+$password = $selectedUser['password'] ?? null;
 
 $response = [$id, $title, $lastname, $access, $password];
 
