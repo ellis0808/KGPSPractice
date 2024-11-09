@@ -41,7 +41,8 @@ try {
     $stmt->execute(['teacher_id' => $id]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     $tpass = 'teacher1';
-    $enpass = '$2y$10$3eSXMpxiiu/TNsTEfrW3dOJ3D.AhoF9O9roSe1HkMp/3qkrWQaFtu';
+    $enpass = '$2y$10$o9oGxSJFTQPePRoFTl/fIOBWm3T0RAyLlH4N3/FeImnA436kLoo8q';
+    // '$2y$10$o9oGxSJFTQPePRoFTl/fIOBWm3T0RAyLlH4N3/FeImnA436kLoo8q'
     if ($user && password_verify($tpass, $enpass)) {
         $_SESSION['loggedIn'] = true;
         $_SESSION['userId'] = $user['teacher_id'];
