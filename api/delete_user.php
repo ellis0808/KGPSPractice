@@ -28,15 +28,20 @@ try {
 
         // Bind parameters and execute the query
         $stmt->execute(['student_id' => $id]);
+        if ($stmt->rowCount()) {
+            echo json_encode(['message' => 'User deleted successfully']);
+        } else {
+            echo json_encode(['message' => 'User not found']);
+        }
     } elseif ($type === 'teacher') {
         $sql = "DELETE FROM teachers WHERE teacher_id = :teacher_id";
         $stmt = $pdo->prepare($sql);
         $stmt->execute(['teacher_id' => $id]);
-    }
-    if ($stmt->rowCount()) {
-        echo json_encode(['message' => 'User deleted successfully']);
-    } else {
-        echo json_encode(['message' => 'User not found']);
+        if ($stmt->rowCount()) {
+            echo json_encode(['message' => 'User deleted successfully']);
+        } else {
+            echo json_encode(['message' => 'User not found']);
+        }
     }
 } catch (PDOException $e) {
     echo json_encode(['error' => $e->getMessage()]);
