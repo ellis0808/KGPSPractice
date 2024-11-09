@@ -17,9 +17,11 @@ require './db_connect.php';
 $data = json_decode(file_get_contents('php://input'), true);
 $id = (int)$data['id'] ?? null;
 $firstname = $data['firstName'] ?? null;
+$title = $data['title'] ?? null;
 $lastname = $data['lastName'] ?? null;
 $access = $data['access'] ?? null;
 $password = $data['password'] ?? null;
+echo json_encode($id, $firstname, $title, $lastname, $access, $password);
 
 if (!$id) {
     echo json_encode(['error' => 'User ID is required']);

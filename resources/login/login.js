@@ -235,7 +235,7 @@ function displayUsersForLogin() {
       userContainer.addEventListener("click", (event) => {
         selectedUser = {
           id: event.target.getAttribute("userId"),
-          firstName: event.target.getAttribute("userfirstname"),
+          title: event.target.getAttribute("userfirstname"),
           lastName: event.target.getAttribute("userlastname"),
           access: event.target.getAttribute("useraccess"),
         };
@@ -366,12 +366,7 @@ function displaySelectedPasswordImages() {
 document
   .getElementById("studentPasswordEntryForm")
   .addEventListener("submit", (event) => {
-    loginUser(
-      selectedUser.id,
-      selectedUser.firstName,
-      selectedUser.lastName,
-      selectedUser.access
-    );
+    loginUser();
     document.getElementById("studentPasswordEntryForm").reset();
   });
 
@@ -380,34 +375,27 @@ document
   .getElementById("teacherPasswordEntryForm")
   .addEventListener("submit", (event) => {
     console.log(selectedUser);
-    loginUser(
-      selectedUser.id,
-      selectedUser.firstName,
-      selectedUser.lastName,
-      selectedUser.access
-    );
+    loginUser();
     document.getElementById("teacherPasswordEntryForm").reset();
   });
 
 // Login logic
-async function loginUser(id, firstName, lastName, access) {
+async function loginUser() {
   let password;
   if (access === "teacher") {
-    console.log(access);
-
-    password = document.getElementById("teacherpassword").value;
+    selectedUser.password = document.getElementById("teacherpassword").value;
   } else if (access === "student") {
-    password = studentPasswordEntryArray.join("");
+    selectedUser.password = studentPasswordEntryArray.join("");
   }
+  console.log(selectedUser);
 
   try {
     const response = await fetch("/KGPSEnglishPractice-test/api/login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, firstName, lastName, access, password }),
+      body: JSON.stringify({ selectedUser }),
       credentials: "include",
     });
-    console.log(id, firstName, lastName, access, password);
 
     const data = await response.json();
     console.log(data);
