@@ -21,8 +21,8 @@ $title = $data['title'] ?? null;
 $lastname = $data['lastName'] ?? null;
 $access = $data['access'] ?? null;
 $password = $data['password'] ?? null;
-$response = [];
-echo json_encode([$id, $title, $lastname, $access, $password]);
+$response = [$id, $title, $lastname, $access, $password];
+echo json_encode($response);
 
 if (!$id) {
     echo json_encode(['error' => 'User ID is required']);
