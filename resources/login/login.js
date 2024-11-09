@@ -396,6 +396,8 @@ async function loginUser() {
     });
 
     const rawText = await response.text();
+    console.log(rawText);
+
     const data = JSON.parse(rawText);
     console.log(data);
 
