@@ -26,7 +26,7 @@ $password = $selectedUser['password'] ?? null;
 $response = [$id, $title, $lastname, $access, $password];
 
 // echo json_encode($response);
-exit;
+// exit;
 if (!$id) {
     echo json_encode(['error' => 'User ID is required']);
     exit;
