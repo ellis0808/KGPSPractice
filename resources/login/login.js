@@ -242,7 +242,7 @@ function displayUsersForLogin() {
         const teacherUsernameContainer = document.querySelector(
           ".teacher-username-container"
         );
-        teacherUsernameContainer.innerText = `${selectedUser.firstName} ${selectedUser.lastName}`;
+        teacherUsernameContainer.innerText = `${selectedUser.title} ${selectedUser.lastName}`;
 
         teacherPasswordEntryForm.showModal();
       });
@@ -263,7 +263,6 @@ function resetStudentPasswordEntryArray() {
     studentPasswordEntryArray[0] !== null ||
     studentPasswordEntryArray[1] !== null
   ) {
-    console.log(studentPasswordEntryArray[0]);
     studentPasswordEntryArray.forEach((item) => {
       if (item) {
         removeSelectedClassFromPasswordEntryArrayImage(item);

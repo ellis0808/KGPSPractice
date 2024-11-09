@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 require './db_connect.php';
 
-
+error_reporting(0);
 // $ip = $_SERVER['REMOTE_ADDR'];
 // $failed_attempts = get_failed_attempts($ip);
 
@@ -21,17 +21,19 @@ $title = $data['title'] ?? null;
 $lastname = $data['lastName'] ?? null;
 $access = $data['access'] ?? null;
 $password = $data['password'] ?? null;
-$response = [$id, $title, $lastname, $access, $password];
-echo json_encode($response);
 
-if (!$id) {
-    echo json_encode(['error' => 'User ID is required']);
-    exit;
-}
-if (!$password) {
-    echo json_encode(['error' => 'Password is required']);
-    exit;
-}
+$response = [$id, $title, $lastname, $access, $password];
+
+echo json_encode($response);
+exit;
+// if (!$id) {
+//     echo json_encode(['error' => 'User ID is required']);
+//     exit;
+// }
+// if (!$password) {
+//     echo json_encode(['error' => 'Password is required']);
+//     exit;
+// }
 
 
 // Student login
