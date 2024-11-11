@@ -292,7 +292,7 @@ document
 
     const firstname = document.getElementById("firstname").value;
     const lastname = document.getElementById("studentlastname").value;
-    const password = document.getElementById("password").value;
+    const password = document.getElementById("student-password").value;
     const gradelevel = parseInt(
       document.querySelector('input[name="gradelevel"]:checked').value
     );
@@ -332,7 +332,7 @@ document
     const lastname = document.getElementById("teacherlastname").value;
     const admin = document.getElementById("admin").checked ? "true" : "false";
 
-    const password = document.getElementById("password").value;
+    const password = document.getElementById("teacher-password").value;
     const access = "teacher";
     try {
       const response = await fetch(
