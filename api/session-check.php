@@ -10,9 +10,9 @@ if (session_status() == PHP_SESSION_NONE) {
 header('Content-Type: application/json');
 
 
-if (isset($_SESSION['loggedIn'])) {
-    echo json_encode($_SESSION['access']);
-    exit;
+// if (isset($_SESSION['loggedIn'])) {
+echo json_encode($_SESSION['access']);
+exit;
     // if ($_SESSION['access'] === 'student') {
     //     echo json_encode([
     //         'loggedIn' => true,
@@ -23,6 +23,6 @@ if (isset($_SESSION['loggedIn'])) {
     //         'gradeLevel' => $_SESSION['gradeLevel']
     //     ]);
     // } elseif ($_SESSION['access'] === 'teacher') {}
-} else {
-    echo json_encode(['loggedIn' => false]);
-}
+// } else {
+//     echo json_encode(['loggedIn' => false]);
+// }
