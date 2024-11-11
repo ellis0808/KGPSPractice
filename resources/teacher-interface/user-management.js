@@ -349,6 +349,8 @@ document
           }),
         }
       );
+      console.log(password);
+
       const data = await response.json();
       console.log(data);
 
