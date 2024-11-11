@@ -382,7 +382,11 @@ document
 async function loginUser() {
   let response;
   try {
-    selectedUser.password = document.getElementById("teacherpassword").value;
+    if (selectedUser.access === "student") {
+      selectedUser.password = studentPasswordEntryArray.join("");
+    } else if (selectedUser.access === "teacher") {
+      selectedUser.password = document.getElementById("teacherpassword").value;
+    }
     response = await fetch("/KGPSEnglishPractice-test/api/login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
