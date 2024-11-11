@@ -1,5 +1,6 @@
 import { sessionCheck } from "../login/session-check.js";
 import { userObjects } from "./user-objects.js";
+import { logout } from "../utilities/logout.js";
 
 const logoutBtn = document.querySelector(".logout-btn");
 const userList = document.querySelector(".div1");
@@ -24,6 +25,9 @@ const createTeacherDisplayBtn = document.querySelector(
 );
 const createStudentForm = document.querySelector(".create-student-form");
 const createTeacherForm = document.querySelector(".create-teacher-form");
+
+// Logout
+logoutBtn.addEventListener("pointerdown", logout);
 
 // Modal Controls
 openCreateUserModalBtn.addEventListener("pointerdown", () => {
