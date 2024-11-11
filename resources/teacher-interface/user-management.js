@@ -2,6 +2,7 @@ import { sessionCheck } from "../login/session-check.js";
 import { userObjects } from "./user-objects.js";
 import { logout } from "../utilities/logout.js";
 
+sessionCheck();
 const logoutBtn = document.querySelector(".logout-btn");
 const userList = document.querySelector(".div1");
 const createUserBtn = document.querySelector(".create-new-user");
