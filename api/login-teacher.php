@@ -48,7 +48,7 @@ try {
         $_SESSION['access'] = $user['access'];
         $_SESSION['admin'] = $user['admin'];
 
-        echo json_encode(['success' => true, 'data' => $user]);
+        echo json_encode($user);
     } else {
         echo json_encode(['success' => false, 'error' => 'Invalid ID or password']);
     }
