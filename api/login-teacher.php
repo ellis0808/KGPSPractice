@@ -35,21 +35,18 @@ if (!$password) {
 try {
 
     $pdo = getDBConnection();
-    $stmt = $pdo->prepare('SELECT teacher_id, last_name
+    $stmt = $pdo->prepare('SELECT *
         FROM teachers
         WHERE teacher_id = :teacher_id');
     $stmt->execute(['teacher_id' => $id]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    $tpass = 'teacher1';
-    $enpass = '$2y$10$o9oGxSJFTQPePRoFTl/fIOBWm3T0RAyLlH4N3/FeImnA436kLoo8q';
-    // '$2y$10$o9oGxSJFTQPePRoFTl/fIOBWm3T0RAyLlH4N3/FeImnA436kLoo8q'
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['loggedIn'] = true;
         $_SESSION['userId'] = $user['teacher_id'];
         $_SESSION['lastName'] = $user['last_name'];
-        // $_SESSION['title'] = $user['title'];
-        // $_SESSION['access'] = $user['access'];
-        // $_SESSION['admin'] = $user['admin'];
+        $_SESSION['title'] = $user['title'];
+        $_SESSION['access'] = $user['access'];
+        $_SESSION['admin'] = $user['admin'];
 
         echo json_encode(['success' => true, 'data' => $user]);
     } else {
