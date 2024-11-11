@@ -41,7 +41,7 @@ try {
         $stmt->execute(['last_name' => $lastname, 'title' => $title, 'admin' => $admin, 'access' => $access, 'password' => $hashedPassword]);
     }
 
-    echo json_encode(['message' => 'User created successfully', 'password' => $hashedPassword]);
+    echo json_encode(['message' => 'User created successfully', 'password' => $password, 'password' => $hashedPassword]);
 } catch (PDOException $e) {
     http_response_code(500);
     echo json_encode(['error' => 'Failed to create user: ' . $e->getMessage()]);
