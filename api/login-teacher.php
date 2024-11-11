@@ -35,7 +35,7 @@ if (!$password) {
 try {
 
     $pdo = getDBConnection();
-    $stmt = $pdo->prepare('SELECT *
+    $stmt = $pdo->prepare('SELECT teacher_id, last_name
         FROM teachers
         WHERE teacher_id = :teacher_id');
     $stmt->execute(['teacher_id' => $id]);
@@ -47,9 +47,9 @@ try {
         $_SESSION['loggedIn'] = true;
         $_SESSION['userId'] = $user['teacher_id'];
         $_SESSION['lastName'] = $user['last_name'];
-        $_SESSION['title'] = $user['title'];
-        $_SESSION['access'] = $user['access'];
-        $_SESSION['admin'] = $user['admin'];
+        // $_SESSION['title'] = $user['title'];
+        // $_SESSION['access'] = $user['access'];
+        // $_SESSION['admin'] = $user['admin'];
 
         echo json_encode(['success' => true, 'data' => $user]);
     } else {
