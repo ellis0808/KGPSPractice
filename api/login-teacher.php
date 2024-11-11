@@ -43,7 +43,7 @@ try {
     $tpass = 'teacher1';
     $enpass = '$2y$10$o9oGxSJFTQPePRoFTl/fIOBWm3T0RAyLlH4N3/FeImnA436kLoo8q';
     // '$2y$10$o9oGxSJFTQPePRoFTl/fIOBWm3T0RAyLlH4N3/FeImnA436kLoo8q'
-    if ($user && password_verify($tpass, $enpass)) {
+    if ($user && password_verify($password, $user['password'])) {
         $_SESSION['loggedIn'] = true;
         $_SESSION['userId'] = $user['teacher_id'];
         $_SESSION['lastName'] = $user['last_name'];
