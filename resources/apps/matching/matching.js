@@ -34,6 +34,7 @@ import {
   shuffle,
 } from "./generate-grid-items.js";
 import { audio } from "../../utilities/audio.js";
+import { pauseFunction } from "../../utilities/pause-function.js";
 
 /* SCORING */
 const correctAnswerPoints = 1;
@@ -109,10 +110,10 @@ const cancelGoHomeBtn = document.createElement("button");
 cancelGoHomeBtn.classList.add("cancel-go-home-btn");
 cancelGoHomeBtn.textContent = "Cancel";
 cancelGoHomeBtn.addEventListener("click", returnToApp);
-const pauseBtn = document.createElement("div");
-pauseBtn.classList.add("pause-btn");
-pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
-pauseBtn.addEventListener("click", pause);
+// const pauseBtn = document.createElement("div");
+// pauseBtn.classList.add("pause-btn");
+// pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
+// pauseBtn.addEventListener("click", pause);
 
 let endDotId;
 let startDotId;
@@ -459,7 +460,7 @@ function startNewRound() {
     btnContainer1.appendChild(scoreDisplay);
     appContainer.appendChild(homeBtnContainer);
     homeBtnContainer.appendChild(homeBtn);
-    homeBtnContainer.appendChild(pauseBtn);
+    homeBtnContainer.appendChild(pauseFunction.pauseBtn);
     setTimeout(() => {
       activateEventListeners();
     }, 200);
