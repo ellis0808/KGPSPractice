@@ -1,16 +1,16 @@
 class PauseFunction {
-  constructor() {
+  constructor(elements) {
     this.pauseBtn = document.createElement("div");
     this.pauseBtn.classList.add("pause-btn");
     this.pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
-    this.pauseBtn.addEventListener("pointerdown", this.pause);
+    this.pauseBtn.addEventListener("pointerdown", (elements) => this.pause);
     this.pause = this.pause.bind(this);
     this.unpause = this.unpause.bind(this);
     this.isPaused = false;
   }
   pause(elements) {
     this.isPaused = true;
-    this.pauseBtn.removeEventListener("pointerdown", this.pause);
+    this.pauseBtn.removeEventListener("pointerdown", (elements) => this.pause);
     this.disableTouch(elements);
   }
   unpause(elements) {
