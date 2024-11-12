@@ -117,8 +117,11 @@ function displayUsersForLogin() {
     const userNameContainer = document.createElement("div");
     const userContainer = document.createElement("div");
     const userInitialsContainer = document.createElement("div");
+    userContainer.classList.add("user-container");
+    userInitialsContainer.classList.add("user-initials-container");
+    userNameContainer.classList.add("user-name-container");
+
     if (i < studentIds.length) {
-      userContainer.classList.add("user-container");
       userContainer.setAttribute("userId", students[studentIds[i]].id);
       userContainer.setAttribute(
         "userfirstname",
@@ -129,10 +132,7 @@ function displayUsersForLogin() {
         students[studentIds[i]].lastName
       );
       userContainer.setAttribute("useraccess", students[studentIds[i]].access);
-      userInitialsContainer.classList.add(
-        "user-initials-container",
-        `user-initials-container-${i}`
-      );
+
       userInitialsContainer.setAttribute("userId", students[studentIds[i]].id);
       userInitialsContainer.setAttribute(
         "userfirstname",
@@ -146,7 +146,7 @@ function displayUsersForLogin() {
         "useraccess",
         students[studentIds[i]].access
       );
-      userNameContainer.classList.add("user-name-container");
+
       userNameContainer.setAttribute("userId", students[studentIds[i]].id);
       userNameContainer.setAttribute(
         "userfirstname",
@@ -186,8 +186,6 @@ function displayUsersForLogin() {
       });
     }
     if (i >= studentIds.length) {
-      userContainer.classList.add("user-container");
-
       userContainer.setAttribute(
         "userfirstname",
         teachers[teacherIds[q]].title
@@ -197,10 +195,7 @@ function displayUsersForLogin() {
         teachers[teacherIds[q]].lastName
       );
       userContainer.setAttribute("useraccess", teachers[teacherIds[q]].access);
-      userInitialsContainer.classList.add(
-        "user-initials-container",
-        `user-initials-container-${i}`
-      );
+
       userInitialsContainer.setAttribute("userId", teachers[teacherIds[q]].id);
       userInitialsContainer.setAttribute(
         "userfirstname",
@@ -214,7 +209,6 @@ function displayUsersForLogin() {
         "useraccess",
         teachers[teacherIds[q]].access
       );
-      userNameContainer.classList.add("user-name-container");
       userNameContainer.setAttribute("userId", teachers[teacherIds[q]].id);
       userNameContainer.setAttribute(
         "userfirstname",
