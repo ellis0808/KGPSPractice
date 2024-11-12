@@ -26,8 +26,6 @@ class Images {
 
       const imageData = await response.json();
 
-      // console.log(imageData);
-
       this.loadImages(imageData);
     } catch (error) {
       console.error("Error getting images ", error);

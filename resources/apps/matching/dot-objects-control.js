@@ -283,12 +283,6 @@ class Connector {
   buttonUp() {
     this.isPressed = false;
   }
-  // setLineId(currentDotId) {
-  //   this.id = `${currentDotId}-line`;
-  // }
-  // setLineEndDotId(endDotId) {
-  //   this.lineEndId = `${endDotId}-line`;
-  // }
   getStartPosition(event) {
     this.start = this.getCenter(event);
   }
@@ -302,8 +296,6 @@ class Connector {
     this.end = this.getCenter2(dot);
   }
   getCenter(event) {
-    // let target = event.target.getBoundingClientRect();
-    const bodyRect = body.getBoundingClientRect();
     let center = {
       x: event.target.offsetLeft + event.target.offsetWidth / 2,
       y: event.target.offsetTop + event.target.offsetHeight / 2 - 5,
@@ -333,7 +325,6 @@ class Connector {
     newLine.style.transform = `rotate(${this.slope}deg)`;
     grid.appendChild(newLine);
     this.element = newLine;
-    // newLine.setAttribute("lineStartId", currentDotId);
     newLine.setAttribute("startDotId", startDotId);
     newLine.setAttribute("endDotId", endDotId);
   }

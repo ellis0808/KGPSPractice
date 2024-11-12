@@ -360,10 +360,8 @@ document
           }),
         }
       );
-      console.log(password);
 
       const data = await response.json();
-      console.log(data);
 
       if (!response.ok) {
         throw new Error("Network response was not okay");
@@ -382,8 +380,6 @@ document
 // Delete User
 async function deleteUser(id, type) {
   try {
-    console.log(type);
-
     const response = await fetch(
       "/KGPSEnglishPractice-test/api/delete_user.php",
       {
@@ -394,7 +390,6 @@ async function deleteUser(id, type) {
     );
 
     const data = await response.json();
-    console.log(data);
 
     if (!response.ok) {
       throw new Error("Network response was not okay");
@@ -473,7 +468,6 @@ async function updateUser(id) {
     console.error("Error updating user:", error);
   }
   document.getElementById("updateUser").reset();
-  // updateUserDiv.innerText = "User information updated.";
   setTimeout(() => {
     updateUserDiv.close();
   }, 1000);

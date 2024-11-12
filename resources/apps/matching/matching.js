@@ -1065,41 +1065,13 @@ function updateLinePositions() {
 
 function redrawAllLines() {
   getOldLines2();
-  // getOldLines();
-  // const { startDotId, endDotId } = oldLines5;
 
-  // if (startDotId < 4) {
-  //   startDot[startDotId].connectedToLine.getStartPosition2(
-  //     startDot[startDotId]
-  //   );
-  //   endDot[endDotId].connectedToLine.getEndPosition2(endDot[endDotId]);
-  //   lines.length = 0;
-
-  //   // lines.pop();
-  //   lines.push(startDot[startDotId].connectedToLine);
-
-  //   document.querySelectorAll(".final").forEach((item) => {
-  //     item.remove();
-  //   });
   draw();
-  // }
   document.querySelectorAll(".unconnected").forEach((line) => {
     line.classList.add("final");
   });
-  // lines.forEach((item) => {
-  //   if (item) {
-  //     item.classList.remove("unconnected");
-  //     item.classList.add("final");
-  //   }
-  // });
-  // draw();
 }
 function getOldLines2() {
-  // document.querySelectorAll(".final").forEach((line) => {
-
-  //   line.remove;
-  // });
-  // lines.length = 0;
   startDot.forEach((item) => {
     if (item.connected) {
       item.connectedToLine.element.remove();
@@ -1107,13 +1079,11 @@ function getOldLines2() {
       let endCenter;
       startCenter = item.connectedToLine.getCenter2(item);
 
-      // item.connectedToLine.getStartPosition2(item.connectedTo)
       item.connectedToLine.element.style.left = `${startCenter.x}px`;
       item.connectedToLine.element.style.top = `${startCenter.y}px`;
 
       item.connectedToLine.getEndPosition2(item.connectedTo);
       item.connectedToLine.drawLine();
-      // lines.pop();
       lines.push(item.connectedToLine.element);
     }
   });
@@ -1129,33 +1099,12 @@ function getOldLines() {
       endDot[endDotId].connectedToLine.getEndPosition2(endDot[endDotId]);
       lines.length = 0;
 
-      // lines.pop();
       lines.push(startDot[startDotId].connectedToLine);
-
-      // document.querySelectorAll(".final").forEach((item) => {
-      //   item.remove();
-      // });
     }
-    // oldLines5 = {
-    //   startDotId: startDotId,
-    //   endDotId: endDotId,
-    // };
-    // return oldLines5;
     line.remove();
   });
-
-  // return oldLines5;
 }
 
-function getCenter(dot, center) {
-  // let target = event.target.getBoundingClientRect();
-  const bodyRect = body.getBoundingClientRect();
-  center = {
-    x: dot.offsetLeft + dot.offsetWidth / 2,
-    y: dot.offsetTop + dot.offsetHeight / 2 - 5,
-  };
-  return center;
-}
 // Event Listeners
 function activateEventListeners() {
   setTimeout(() => {

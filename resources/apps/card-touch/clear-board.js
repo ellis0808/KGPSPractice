@@ -3,8 +3,7 @@ function clearBoard(repeatBtn) {
   setTimeout(newRoundCardFlip, 1000);
   const container = document.querySelector(".container");
   // remove all cards including grid, then regenerate grid
-  console.log(repeatBtn);
-  //   repeatBtn.classList.add("hide2");
+
   setTimeout(function (e) {
     startBtn.classList.toggle("hide");
     startBtn.preventDefault;

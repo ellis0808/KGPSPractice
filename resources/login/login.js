@@ -369,7 +369,6 @@ document
 document
   .getElementById("teacherPasswordEntryForm")
   .addEventListener("submit", (event) => {
-    console.log(selectedUser);
     loginUser();
     document.getElementById("teacherPasswordEntryForm").reset();
   });
@@ -391,7 +390,6 @@ async function loginUser() {
     });
 
     const data = await response.json();
-    console.log(data);
 
     if (!response.ok) {
       resetStudentPasswordEntryArray();
