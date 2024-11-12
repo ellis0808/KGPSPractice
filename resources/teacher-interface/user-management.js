@@ -1,5 +1,4 @@
 import { sessionCheck } from "../login/session-check.js";
-import { userObjects } from "./user-objects.js";
 import { logout } from "../utilities/logout.js";
 
 setTimeout(() => {
@@ -69,6 +68,11 @@ createTeacherDisplayBtn.addEventListener("pointerdown", () => {
   createTeacherDisplayBtn.classList.add("hidden");
   return form;
 });
+
+const userObjects = {
+  studentObjects: {},
+  teacherObjects: {},
+};
 
 const displayUsers = {
   createTableHeaders() {
