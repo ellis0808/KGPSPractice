@@ -186,6 +186,8 @@ function displayUsersForLogin() {
       });
     }
     if (i >= studentIds.length) {
+      userContainer.classList.add("user-container");
+
       userContainer.setAttribute(
         "userfirstname",
         teachers[teacherIds[q]].title

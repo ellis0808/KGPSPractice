@@ -132,7 +132,6 @@ const displayUsers = {
         userGradeLevel.classList.add("number");
 
         userData.classList.add("user-slot");
-        userData.classList.add("user-slot");
         userData.setAttribute("data-id", students[studentIds[i]].id);
         userName.setAttribute("userId", students[studentIds[i]].id);
         userName.setAttribute("type", students[studentIds[i]].access);
