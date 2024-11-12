@@ -4,6 +4,8 @@ class PauseFunction {
     this.pauseBtn.classList.add("pause-btn");
     this.pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
     this.pauseBtn.addEventListener("pointerdown", this.pause);
+    this.pause = this.pause.bind(this);
+    this.unpause = this.unpause.bind(this);
     this.isPaused = false;
   }
   pause(elements) {
