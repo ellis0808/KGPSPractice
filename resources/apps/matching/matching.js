@@ -118,7 +118,6 @@ cancelGoHomeBtn.addEventListener("click", returnToApp);
 let endDotId;
 let startDotId;
 
-let isPaused = false;
 let appStarted = false;
 
 let numberOfItemsToBeDisplayed = 4;
@@ -197,29 +196,29 @@ function endApp() {
 }
 
 // pauses app
-function pause() {
-  isPaused = true;
-  disableTouch();
-  pauseBtn.removeEventListener("click", pause);
-  setTimeout(() => {
-    btnContainer1.classList.add("strong-blur");
-    grid.classList.add("strong-blur");
-  }, 50);
-  pauseBtn.addEventListener("click", unpause);
-}
-function unpause() {
-  pauseBtn.removeEventListener("click", unpause);
-  enableTouch();
-  btnContainer1.classList.remove("strong-blur");
-  grid.classList.remove("strong-blur");
-  setTimeout(() => {
-    isPaused = false;
-    if (!grid.hasChildNodes()) {
-      startNewRound();
-    }
-  }, 500);
-  pauseBtn.addEventListener("click", pause);
-}
+// function pause() {
+//   isPaused = true;
+//   disableTouch();
+//   pauseBtn.removeEventListener("click", pause);
+//   setTimeout(() => {
+//     btnContainer1.classList.add("strong-blur");
+//     grid.classList.add("strong-blur");
+//   }, 50);
+//   pauseBtn.addEventListener("click", unpause);
+// }
+// function unpause() {
+//   pauseBtn.removeEventListener("click", unpause);
+//   enableTouch();
+//   btnContainer1.classList.remove("strong-blur");
+//   grid.classList.remove("strong-blur");
+//   setTimeout(() => {
+//     isPaused = false;
+//     if (!grid.hasChildNodes()) {
+//       startNewRound();
+//     }
+//   }, 500);
+//   pauseBtn.addEventListener("click", pause);
+// }
 function unpause2() {
   pauseBtn.removeEventListener("click", unpause);
   enableTouch();
@@ -236,14 +235,14 @@ let pauseBtnPauses = true;
 function resetNavigationBtns() {
   homeBtnIsGoHome = true;
   pauseBtnPauses = true;
-  homeBtn.removeEventListener("click", returnToApp);
-  homeBtn.addEventListener("click", goHome);
-  pauseBtn.removeEventListener("click", returnToApp);
-  pauseBtn.addEventListener("click", pause);
+  homeBtn.removeEventListener("pointerdown", returnToApp);
+  homeBtn.addEventListener("pointerdown", goHome);
+  pauseBtn.removeEventListener("pointerdown", returnToApp);
+  pauseBtn.addEventListener("pointerdown", pauseFunction.isPaused);
   homeBtnReturnToNormal();
 }
 function goHome() {
-  pause();
+  pauseFunction.pause();
   homeBtnEnlarge();
   displayGoHomeConfirmation();
   if (homeBtnIsGoHome) {
@@ -269,13 +268,13 @@ function displayGoHomeConfirmation() {
 function returnToApp() {
   btnContainer4.removeChild(reallyGoHomeContainer);
   homeBtnReturnToNormal();
-  unpause();
+  pauseFunction.unpause();
   homeBtnIsGoHome = true;
   pauseBtnPauses = true;
   homeBtn.removeEventListener("click", returnToApp);
   homeBtn.addEventListener("click", goHome);
   pauseBtn.removeEventListener("click", returnToApp);
-  pauseBtn.addEventListener("click", pause);
+  pauseBtn.addEventListener("click", pauseFunction.pause);
 }
 
 function removeBlur() {
@@ -641,7 +640,7 @@ function randomFeedback() {
   ].sound.play();
 }
 function continueToNextRound() {
-  if (!isPaused) {
+  if (!pauseFunction.isPaused) {
     setTimeout(() => {
       clearBoard();
     }, 1000);
@@ -666,7 +665,7 @@ function startTimer() {
 }
 function displayTimer() {
   countDown = setInterval(() => {
-    if (!isPaused) {
+    if (!pauseFunction.isPaused) {
       --time;
       if (time < 10) {
         timer.textContent = `0:0${time}`;
