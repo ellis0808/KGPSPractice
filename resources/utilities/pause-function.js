@@ -28,14 +28,19 @@ class PauseFunction {
     }
   }
   disableTouch(elements) {
-    elements.forEach((item) => {
-      item.classList.add("no-touch", "strong-blur");
-    });
+    if (elements) {
+      console.log(elements);
+      elements.forEach((item) => {
+        item.classList.add("no-touch", "strong-blur");
+      });
+    }
   }
   enableTouch(elements) {
-    elements.forEach((item) => {
-      item.classList.remove("no-touch", "strong-blur");
-    });
+    if (elements) {
+      elements.forEach((item) => {
+        item.classList.remove("no-touch", "strong-blur");
+      });
+    }
   }
 }
 
