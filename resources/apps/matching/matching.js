@@ -139,6 +139,7 @@ I. MAIN APP
 
 function matchingApp(set) {
   sessionCheck();
+  pauseFunction.unpause();
   setStyle(set);
   mainContainer.appendChild(appContainer);
   appContainer.appendChild(leftMenuContainer);
