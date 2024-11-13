@@ -668,7 +668,7 @@ function startTimer() {
 }
 function displayTimer() {
   countDown = setInterval(() => {
-    if (pauseFunction.isPaused) {
+    if (!pauseFunction.isPaused) {
       --time;
       if (time < 10) {
         timer.textContent = `0:0${time}`;
