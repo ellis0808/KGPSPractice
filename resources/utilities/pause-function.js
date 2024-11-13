@@ -11,13 +11,13 @@ class PauseFunction {
   pause(elements) {
     this.isPaused = true;
     this.pauseBtn.removeEventListener("pointerdown", (elements) => this.pause);
-    this.disableTouch(elements);
+    // this.disableTouch(elements);
   }
   unpause(elements) {
     this.isPaused = false;
     this.pauseBtn.removeEventListener("pointerdown", this.unpause);
     this.pauseBtn.addEventListener("pointerdown", this.pause);
-    this.enableTouch(elements);
+    // this.enableTouch(elements);
   }
   disableTouch(elements) {
     elements.forEach((item) => {
