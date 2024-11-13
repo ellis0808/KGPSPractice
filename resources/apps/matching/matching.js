@@ -114,7 +114,7 @@ cancelGoHomeBtn.addEventListener("click", returnToApp);
 // pauseBtn.classList.add("pause-btn");
 // pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
 // pauseBtn.addEventListener("click", pause);
-
+let elements = document.querySelectorAll(".btn-container1, .grid");
 let endDotId;
 let startDotId;
 
@@ -665,7 +665,7 @@ function startTimer() {
 }
 function displayTimer() {
   countDown = setInterval(() => {
-    if (!pauseFunction.isPaused) {
+    if (pauseFunction.isPaused) {
       --time;
       if (time < 10) {
         timer.textContent = `0:0${time}`;
