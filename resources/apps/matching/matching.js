@@ -114,8 +114,8 @@ cancelGoHomeBtn.addEventListener("click", returnToApp);
 // pauseBtn.classList.add("pause-btn");
 // pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
 // pauseBtn.addEventListener("click", pause);
-let elements = document.querySelectorAll(".btn-container1, .grid");
-console.log(elements);
+
+let elements;
 
 let endDotId;
 let startDotId;
@@ -177,6 +177,9 @@ function matchingApp(set, elements) {
   }
 
   setTimeout(setUser, 2000);
+  elements = document.querySelectorAll(".btn-container1, .grid");
+  console.log(elements);
+  return elements;
 }
 
 function endApp() {
@@ -468,6 +471,8 @@ function startNewRound() {
     setTimeout(() => {
       grid.classList.remove("gridHide");
     }, 100);
+    elements = document.querySelectorAll(".btn-container1, .grid");
+    console.log(elements);
   }, 1000);
 }
 
