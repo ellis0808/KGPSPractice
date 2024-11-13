@@ -115,6 +115,8 @@ cancelGoHomeBtn.addEventListener("click", returnToApp);
 // pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
 // pauseBtn.addEventListener("click", pause);
 let elements = document.querySelectorAll(".btn-container1, .grid");
+console.log(elements);
+
 let endDotId;
 let startDotId;
 
@@ -137,7 +139,7 @@ I. MAIN APP
 *******
 */
 
-function matchingApp(set) {
+function matchingApp(set, elements) {
   sessionCheck();
   pauseFunction.unpause(elements);
   setStyle(set);
