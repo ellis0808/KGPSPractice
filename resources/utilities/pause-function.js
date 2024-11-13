@@ -17,22 +17,22 @@ class PauseFunction {
     this.isPaused = true;
     this.pauseBtn.removeEventListener("pointerdown", this.pause);
     this.pauseBtn.addEventListener("pointerdown", () => this.unpause(elements));
-    // this.disableTouch(elements);
+    this.disableTouch(elements);
   }
   unpause(elements) {
     this.isPaused = false;
     this.pauseBtn.removeEventListener("pointerdown", this.unpause);
     this.pauseBtn.addEventListener("pointerdown", () => this.pause(elements));
-    // this.enableTouch(elements);
+    this.enableTouch(elements);
   }
   disableTouch(elements) {
     elements.forEach((item) => {
-      item.classList.add("no-touch");
+      item.classList.add("no-touch", "strong-blur");
     });
   }
   enableTouch(elements) {
     elements.forEach((item) => {
-      item.classList.remove("no-touch");
+      item.classList.remove("no-touch", "strong-blur");
     });
   }
 }

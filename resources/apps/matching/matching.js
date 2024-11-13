@@ -253,7 +253,6 @@ function goHome() {
   displayGoHomeConfirmation();
   if (homeBtnIsGoHome) {
     homeBtnIsGoHome = false;
-    pauseBtnPauses = false;
     homeBtn.removeEventListener("click", goHome);
     homeBtn.addEventListener("click", returnToApp);
     returnToApp();
