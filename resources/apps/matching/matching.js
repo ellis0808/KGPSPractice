@@ -253,8 +253,7 @@ function goHome() {
     pauseBtnPauses = false;
     homeBtn.removeEventListener("click", goHome);
     homeBtn.addEventListener("click", returnToApp);
-    pauseBtn.removeEventListener("click", unpause);
-    pauseBtn.addEventListener("click", returnToApp);
+    returnToApp();
   }
 }
 function homeBtnEnlarge() {
@@ -273,11 +272,8 @@ function returnToApp() {
   homeBtnReturnToNormal();
   pauseFunction.unpause();
   homeBtnIsGoHome = true;
-  pauseBtnPauses = true;
   homeBtn.removeEventListener("click", returnToApp);
   homeBtn.addEventListener("click", goHome);
-  pauseBtn.removeEventListener("click", returnToApp);
-  pauseBtn.addEventListener("click", pauseFunction.pause);
 }
 
 function removeBlur() {
