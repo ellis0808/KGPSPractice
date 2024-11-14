@@ -20,7 +20,7 @@ const userManagementStartup = {
 
       userManagementStructure.setModalControls();
       userManagementStructure.setEventListeners();
-      getUserInfo.getAllUsers;
+      getUserInfo.getAllUsers();
     });
   },
 };
