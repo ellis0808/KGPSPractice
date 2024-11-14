@@ -14,7 +14,7 @@ const userObjects = {
 
 const userManagementStartup = {
   startup() {
-    window.addEventListener("load", () => {
+    window.addEventListener("DOMContetLoaded", () => {
       userManagementStructure.setPageElements();
       console.log(userManagementStructure.createStudentDisplayBtn);
 
@@ -40,10 +40,10 @@ const userManagementStructure = {
   createUserFormHeading: null,
   createStudentDisplayBtn: null,
   createTeacherDisplayBtn: null,
-  createStudentForm: document.querySelector(".create-student-form"),
-  createTeacherForm: document.querySelector(".create-teacher-form"),
+  createStudentForm: null,
+  createTeacherForm: null,
   setPageElements() {
-    (this.userList = document.querySelector(".div1")),
+    (this.userList = document.querySelector(".users-list")),
       (this.createUserBtn = document.querySelector(".create-new-user")),
       (this.createUserDiv = document.querySelector(".create-user-div")),
       (this.updateUserDiv = document.querySelector(".update-user-div")),
