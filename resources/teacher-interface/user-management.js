@@ -14,7 +14,7 @@ const userObjects = {
 
 const userManagementStartup = {
   startup() {
-    window.addEventListener("DOMContetLoaded", (event) => {
+    window.addEventListener("load", () => {
       userManagementStructure.setPageElements();
       console.log(userManagementStructure.createStudentDisplayBtn);
 
