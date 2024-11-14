@@ -25,6 +25,36 @@ const userManagementStructure = {
   ),
   createStudentForm: document.querySelector(".create-student-form"),
   createTeacherForm: document.querySelector(".create-teacher-form"),
+  setModalControls() {
+    this.userManagementStructure.openCreateUserModalBtn.addEventListener(
+      "pointerdown",
+      () => {
+        this.userManagementStructure.createUserDiv.showModal();
+      }
+    );
+    this.userManagementStructure.closeCreateUserModalBtn.addEventListener(
+      "pointerdown",
+      () => {
+        this.userManagementStructure.createUserDiv.close();
+        document.getElementById("createStudent").reset();
+        document.getElementById("createTeacher").reset();
+      }
+    );
+    this.userManagementStructure.closeSingleUserDataModalBtn.addEventListener(
+      "pointerdown",
+      () => {
+        this.userManagementStructure.userDataDiv.close();
+        // document.getElementById("single-user-data-div").reset();
+      }
+    );
+    this.userManagementStructure.closeUpdateUserModalBtn.addEventListener(
+      "pointerdown",
+      () => {
+        this.userManagementStructure.updateUserDiv.close();
+        document.getElementById("updateUser").reset();
+      }
+    );
+  },
 };
 
 // Logout
@@ -33,37 +63,6 @@ if (window.location.href === "./user-management.html") {
   logoutBtn.addEventListener("pointerdown", logout);
 }
 
-// Modal Controls
-function setModalControls() {
-  userManagementStructure.openCreateUserModalBtn.addEventListener(
-    "pointerdown",
-    () => {
-      userManagementStructure.createUserDiv.showModal();
-    }
-  );
-  userManagementStructure.closeCreateUserModalBtn.addEventListener(
-    "pointerdown",
-    () => {
-      userManagementStructure.createUserDiv.close();
-      document.getElementById("createStudent").reset();
-      document.getElementById("createTeacher").reset();
-    }
-  );
-  userManagementStructure.closeSingleUserDataModalBtn.addEventListener(
-    "pointerdown",
-    () => {
-      userManagementStructure.userDataDiv.close();
-      // document.getElementById("single-user-data-div").reset();
-    }
-  );
-  userManagementStructure.closeUpdateUserModalBtn.addEventListener(
-    "pointerdown",
-    () => {
-      userManagementStructure.updateUserDiv.close();
-      document.getElementById("updateUser").reset();
-    }
-  );
-}
 let form = "student";
 userManagementStructure.createStudentDisplayBtn.addEventListener(
   "pointerdown",
