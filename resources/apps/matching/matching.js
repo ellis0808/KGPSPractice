@@ -115,7 +115,7 @@ cancelGoHomeBtn.addEventListener("click", returnToApp);
 // pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
 // pauseBtn.addEventListener("click", pause);
 
-let elements;
+// let elements;
 
 let endDotId;
 let startDotId;
@@ -138,11 +138,14 @@ const finalLinesIdArray = [];
 I. MAIN APP
 *******
 */
-function getElements() {
-  elements = document.querySelectorAll(".btn-container1, .grid");
-  console.log(elements);
-  return elements;
-}
+const elements = {
+  items: document.querySelectorAll(".btn-container1, .grid"),
+  getElements() {
+    this.items = document.querySelectorAll(".btn-container1, .grid");
+    console.log(this.items);
+    return this.items;
+  },
+};
 function matchingApp(set, elements) {
   sessionCheck();
   pauseFunction.unpause(elements);
@@ -181,7 +184,8 @@ function matchingApp(set, elements) {
   }
 
   setTimeout(setUser, 2000);
-  getElements();
+  elements.getElements();
+  console.log(elements.items);
 }
 
 function endApp() {
@@ -472,7 +476,8 @@ function startNewRound() {
     setTimeout(() => {
       grid.classList.remove("gridHide");
     }, 100);
-    getElements();
+    elements.getElements();
+    console.log(elements.items);
   }, 1000);
 }
 
@@ -1163,4 +1168,5 @@ export {
   endDotsDiv,
   startDotsDiv,
   numberOfItemsToBeDisplayed,
+  elements,
 };
