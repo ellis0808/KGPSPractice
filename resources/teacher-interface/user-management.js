@@ -138,7 +138,7 @@ const displayUsers = {
     this.userDataHeader.appendChild(this.nameHeader);
     this.userDataHeader.appendChild(this.gradeLevelHeader);
     this.userDataHeader.appendChild(this.accessHeader);
-    userList.appendChild(this.userDataHeader);
+    userManagementStructure.userList.appendChild(this.userDataHeader);
   },
   displayAllUsers() {
     const students = userObjects.studentObjects;
@@ -146,7 +146,7 @@ const displayUsers = {
     const studentIds = Object.keys(students);
     const teacherIds = Object.keys(teachers);
 
-    userList.textContent = "";
+    userManagementStructure.userList.textContent = "";
 
     this.createTableHeaders();
     this.appendUserDataHeaders();
@@ -170,7 +170,7 @@ const displayUsers = {
         const id = event.target.getAttribute("userId");
         displayUsers.displaySingleUserInfo(id, type);
         // document.getElementById("single-user-data-div").reset();
-        userDataDiv.showModal();
+        userManagementStructure.userDataDiv.showModal();
       });
       if (i < studentIds.length) {
         number.textContent = `${i + 1}`;
@@ -233,7 +233,7 @@ const displayUsers = {
       userData.appendChild(userAccess);
       userData.appendChild(editUserBtn);
       userData.appendChild(deleteUserBtn);
-      userList.appendChild(userData);
+      userManagementStructure.userList.appendChild(userData);
     }
   },
   displayEditModal(event) {
