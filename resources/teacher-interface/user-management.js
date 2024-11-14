@@ -68,6 +68,27 @@ const userManagementStructure = {
       document.getElementById("updateUser").reset();
     });
   },
+  addEventListeners() {
+    this.createStudentDisplayBtn.addEventListener("pointerdown", () => {
+      form = "student";
+      this.createUserFormHeading.innerHTML = `<h2>Create New Student</h2>`;
+      this.createStudentForm.classList.remove("hidden");
+      this.createTeacherForm.classList.add("hidden");
+      this.createStudentDisplayBtn.classList.add("hidden");
+      this.createTeacherDisplayBtn.classList.remove("hidden");
+      return form;
+    });
+    this.createTeacherDisplayBtn.addEventListener("pointerdown", () => {
+      form = "teacher";
+
+      this.createUserFormHeading.innerHTML = `<h2>Create New Teacher</h2>`;
+      this.createStudentForm.classList.add("hidden");
+      this.createTeacherForm.classList.remove("hidden");
+      this.createStudentDisplayBtn.classList.remove("hidden");
+      this.createTeacherDisplayBtn.classList.add("hidden");
+      return form;
+    });
+  },
 };
 console.log(userManagementStructure.createStudentDisplayBtn);
 
@@ -78,31 +99,6 @@ if (window.location.href === "./user-management.html") {
 }
 
 let form = "student";
-userManagementStructure.createStudentDisplayBtn.addEventListener(
-  "pointerdown",
-  () => {
-    form = "student";
-    userManagementStructure.createUserFormHeading.innerHTML = `<h2>Create New Student</h2>`;
-    userManagementStructure.createStudentForm.classList.remove("hidden");
-    userManagementStructure.createTeacherForm.classList.add("hidden");
-    userManagementStructure.createStudentDisplayBtn.classList.add("hidden");
-    userManagementStructure.createTeacherDisplayBtn.classList.remove("hidden");
-    return form;
-  }
-);
-userManagementStructure.createTeacherDisplayBtn.addEventListener(
-  "pointerdown",
-  () => {
-    form = "teacher";
-
-    userManagementStructure.createUserFormHeading.innerHTML = `<h2>Create New Teacher</h2>`;
-    userManagementStructure.createStudentForm.classList.add("hidden");
-    userManagementStructure.createTeacherForm.classList.remove("hidden");
-    userManagementStructure.createStudentDisplayBtn.classList.remove("hidden");
-    userManagementStructure.createTeacherDisplayBtn.classList.add("hidden");
-    return form;
-  }
-);
 
 const userObjects = {
   studentObjects: {},
