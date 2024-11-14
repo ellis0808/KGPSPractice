@@ -495,8 +495,7 @@ async function updateUser(id) {
 }
 
 window.addEventListener("load", () => {
-  setupUserManagement();
-  setModalControls();
+  userManagementStructure.setModalControls();
   getUserInfo.getAllUsers;
 });
 
