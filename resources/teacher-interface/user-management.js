@@ -4,7 +4,7 @@ import { logout } from "../utilities/logout.js";
 setTimeout(() => {
   sessionCheck();
 }, 1000);
-const logoutBtn = document.querySelector(".logout-btn");
+
 const userList = document.querySelector(".div1");
 const createUserBtn = document.querySelector(".create-new-user");
 const createUserDiv = document.querySelector(".create-user-div");
@@ -29,7 +29,10 @@ const createStudentForm = document.querySelector(".create-student-form");
 const createTeacherForm = document.querySelector(".create-teacher-form");
 
 // Logout
-logoutBtn.addEventListener("pointerdown", logout);
+if (window.location.href === "./user-management.html") {
+  const logoutBtn = document.querySelector(".logout-btn");
+  logoutBtn.addEventListener("pointerdown", logout);
+}
 
 // Modal Controls
 openCreateUserModalBtn.addEventListener("pointerdown", () => {

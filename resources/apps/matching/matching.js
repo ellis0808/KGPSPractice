@@ -36,6 +36,8 @@ import {
 import { audio } from "../../utilities/audio.js";
 import { pauseFunction } from "../../utilities/pause-function.js";
 
+const matchingSetup = {};
+
 /* SCORING */
 const correctAnswerPoints = 1;
 const incorrectAnswerPoints = 1;
