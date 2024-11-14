@@ -44,33 +44,30 @@ const userManagementStructure = {
   createStudentForm: null,
   createTeacherForm: null,
   setPageElements() {
-    (this.userList = document.querySelector(".users-list")),
-      (this.createUserBtn = document.querySelector(".create-new-user")),
-      (this.createUserDiv = document.querySelector(".create-user-div")),
-      (this.updateUserDiv = document.querySelector(".update-user-div")),
-      (this.userDataDiv = document.querySelector(".user-data-div")),
-      (this.openCreateUserModalBtn = document.querySelector(".open-modal-btn")),
-      (this.closeCreateUserModalBtn =
-        document.querySelector(".close-modal-btn")),
-      (this.openSingleUserDataModalBtn =
-        document.querySelector(".open-modal-btn2")),
-      (this.closeSingleUserDataModalBtn =
-        document.querySelector(".close-modal-btn2")),
-      (this.openUpdateUserModalBtn =
-        document.querySelector(".open-modal-btn3")),
-      (this.closeUpdateUserModalBtn =
-        document.querySelector(".close-modal-btn3")),
-      (this.createUserFormHeading = document.querySelector(
-        ".create-user-form-heading"
-      )),
-      (this.createStudentDisplayBtn = document.querySelector(
-        ".create-student-display-btn"
-      )),
-      (this.createTeacherDisplayBtn = document.querySelector(
-        ".create-teacher-display-btn"
-      )),
-      (this.createStudentForm = document.querySelector(".create-student-form")),
-      (this.createTeacherForm = document.querySelector(".create-teacher-form"));
+    this.userList = document.querySelector(".users-list");
+    this.createUserBtn = document.querySelector(".create-new-user");
+    this.createUserDiv = document.querySelector(".create-user-div");
+    this.updateUserDiv = document.querySelector(".update-user-div");
+    this.userDataDiv = document.querySelector(".user-data-div");
+    this.openCreateUserModalBtn = document.querySelector(".open-modal-btn");
+    this.closeCreateUserModalBtn = document.querySelector(".close-modal-btn");
+    this.openSingleUserDataModalBtn =
+      document.querySelector(".open-modal-btn2");
+    this.closeSingleUserDataModalBtn =
+      document.querySelector(".close-modal-btn2");
+    this.openUpdateUserModalBtn = document.querySelector(".open-modal-btn3");
+    this.closeUpdateUserModalBtn = document.querySelector(".close-modal-btn3");
+    this.createUserFormHeading = document.querySelector(
+      ".create-user-form-heading"
+    );
+    this.createStudentDisplayBtn = document.querySelector(
+      ".create-student-display-btn"
+    );
+    this.createTeacherDisplayBtn = document.querySelector(
+      ".create-teacher-display-btn"
+    );
+    this.createStudentForm = document.querySelector(".create-student-form");
+    this.createTeacherForm = document.querySelector(".create-teacher-form");
   },
   setModalControls() {
     this.openCreateUserModalBtn.addEventListener("pointerdown", () => {
