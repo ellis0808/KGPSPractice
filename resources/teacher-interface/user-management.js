@@ -201,7 +201,7 @@ const displayUsers = {
         });
       }
       if (i >= studentIds.length) {
-        number.textContent = `${i}`;
+        number.textContent = `${i + 1}`;
         number.classList.add("number");
         userGradeLevel.classList.add("number");
         userData.classList.add("user-slot");
