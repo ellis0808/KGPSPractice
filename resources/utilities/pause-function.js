@@ -18,17 +18,20 @@ class PauseFunction {
   pause() {
     this.isPaused = true;
     this.pauseBtn.removeEventListener("pointerdown", this.pause);
-    this.pauseBtn.addEventListener("pointerdown", () => this.unpause());
     this.disableTouch();
-    console.log(elements.items);
+    setTimeout(() => {
+      this.pauseBtn.addEventListener("pointerdown", () => this.unpause());
+    }, 200);
   }
   unpause() {
     this.isPaused = false;
     this.pauseBtn.removeEventListener("pointerdown", this.unpause);
-    this.pauseBtn.addEventListener("pointerdown", () => this.pause());
     if (elements.items) {
       this.enableTouch();
     }
+    setTimeout(() => {
+      this.pauseBtn.addEventListener("pointerdown", () => this.pause());
+    }, 200);
   }
   disableTouch() {
     if (elements.items) {
