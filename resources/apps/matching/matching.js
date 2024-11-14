@@ -146,9 +146,9 @@ const elements = {
     return this.items;
   },
 };
-function matchingApp(set, elements) {
+function matchingApp(set) {
   sessionCheck();
-  pauseFunction.unpause(elements);
+  pauseFunction.unpause();
   setStyle(set);
   mainContainer.appendChild(appContainer);
   appContainer.appendChild(leftMenuContainer);
