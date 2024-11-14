@@ -510,6 +510,8 @@ async function updateUser(id) {
 
 window.addEventListener("load", () => {
   userManagementStructure.setPageElements();
+  console.log(userManagementStructure.createStudentDisplayBtn);
+
   userManagementStructure.setModalControls();
   getUserInfo.getAllUsers;
 });
