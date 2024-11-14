@@ -39,6 +39,8 @@ import { pauseFunction } from "../../utilities/pause-function.js";
 const matchingSetup = {
   grid: document.createElement("div"),
   btnContainer1: document.createElement("div"),
+  btnContainer2: document.createElement("div"),
+  startBtn: document.createElement("button"),
 };
 
 /* SCORING */

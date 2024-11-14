@@ -4,31 +4,28 @@ import { logout } from "../utilities/logout.js";
 setTimeout(() => {
   sessionCheck();
 }, 1000);
-function setupUserManagement() {
-  const userList = document.querySelector(".div1");
-  const createUserBtn = document.querySelector(".create-new-user");
-  const createUserDiv = document.querySelector(".create-user-div");
-  const updateUserDiv = document.querySelector(".update-user-div");
-  const userDataDiv = document.querySelector(".user-data-div");
-  const openCreateUserModalBtn = document.querySelector(".open-modal-btn");
-  const closeCreateUserModalBtn = document.querySelector(".close-modal-btn");
-  const openSingleUserDataModalBtn = document.querySelector(".open-modal-btn2");
-  const closeSingleUserDataModalBtn =
-    document.querySelector(".close-modal-btn2");
-  const openUpdateUserModalBtn = document.querySelector(".open-modal-btn3");
-  const closeUpdateUserModalBtn = document.querySelector(".close-modal-btn3");
-  const createUserFormHeading = document.querySelector(
-    ".create-user-form-heading"
-  );
-  const createStudentDisplayBtn = document.querySelector(
+const userManagementStructure = {
+  userList: document.querySelector(".div1"),
+  createUserBtn: document.querySelector(".create-new-user"),
+  createUserDiv: document.querySelector(".create-user-div"),
+  updateUserDiv: document.querySelector(".update-user-div"),
+  userDataDiv: document.querySelector(".user-data-div"),
+  openCreateUserModalBtn: document.querySelector(".open-modal-btn"),
+  closeCreateUserModalBtn: document.querySelector(".close-modal-btn"),
+  openSingleUserDataModalBtn: document.querySelector(".open-modal-btn2"),
+  closeSingleUserDataModalBtn: document.querySelector(".close-modal-btn2"),
+  openUpdateUserModalBtn: document.querySelector(".open-modal-btn3"),
+  closeUpdateUserModalBtn: document.querySelector(".close-modal-btn3"),
+  createUserFormHeading: document.querySelector(".create-user-form-heading"),
+  createStudentDisplayBtn: document.querySelector(
     ".create-student-display-btn"
-  );
-  const createTeacherDisplayBtn = document.querySelector(
+  ),
+  createTeacherDisplayBtn: document.querySelector(
     ".create-teacher-display-btn"
-  );
-  const createStudentForm = document.querySelector(".create-student-form");
-  const createTeacherForm = document.querySelector(".create-teacher-form");
-}
+  ),
+  createStudentForm: document.querySelector(".create-student-form"),
+  createTeacherForm: document.querySelector(".create-teacher-form"),
+};
 
 // Logout
 if (window.location.href === "./user-management.html") {
@@ -38,43 +35,61 @@ if (window.location.href === "./user-management.html") {
 
 // Modal Controls
 function setModalControls() {
-  openCreateUserModalBtn.addEventListener("pointerdown", () => {
-    createUserDiv.showModal();
-  });
-  closeCreateUserModalBtn.addEventListener("pointerdown", () => {
-    createUserDiv.close();
-    document.getElementById("createStudent").reset();
-    document.getElementById("createTeacher").reset();
-  });
-  closeSingleUserDataModalBtn.addEventListener("pointerdown", () => {
-    userDataDiv.close();
-    // document.getElementById("single-user-data-div").reset();
-  });
-  closeUpdateUserModalBtn.addEventListener("pointerdown", () => {
-    updateUserDiv.close();
-    document.getElementById("updateUser").reset();
-  });
+  userManagementStructure.openCreateUserModalBtn.addEventListener(
+    "pointerdown",
+    () => {
+      userManagementStructure.createUserDiv.showModal();
+    }
+  );
+  userManagementStructure.closeCreateUserModalBtn.addEventListener(
+    "pointerdown",
+    () => {
+      userManagementStructure.createUserDiv.close();
+      document.getElementById("createStudent").reset();
+      document.getElementById("createTeacher").reset();
+    }
+  );
+  userManagementStructure.closeSingleUserDataModalBtn.addEventListener(
+    "pointerdown",
+    () => {
+      userManagementStructure.userDataDiv.close();
+      // document.getElementById("single-user-data-div").reset();
+    }
+  );
+  userManagementStructure.closeUpdateUserModalBtn.addEventListener(
+    "pointerdown",
+    () => {
+      userManagementStructure.updateUserDiv.close();
+      document.getElementById("updateUser").reset();
+    }
+  );
 }
 let form = "student";
-createStudentDisplayBtn.addEventListener("pointerdown", () => {
-  form = "student";
-  createUserFormHeading.innerHTML = `<h2>Create New Student</h2>`;
-  createStudentForm.classList.remove("hidden");
-  createTeacherForm.classList.add("hidden");
-  createStudentDisplayBtn.classList.add("hidden");
-  createTeacherDisplayBtn.classList.remove("hidden");
-  return form;
-});
-createTeacherDisplayBtn.addEventListener("pointerdown", () => {
-  form = "teacher";
+userManagementStructure.createStudentDisplayBtn.addEventListener(
+  "pointerdown",
+  () => {
+    form = "student";
+    userManagementStructure.createUserFormHeading.innerHTML = `<h2>Create New Student</h2>`;
+    userManagementStructure.createStudentForm.classList.remove("hidden");
+    userManagementStructure.createTeacherForm.classList.add("hidden");
+    userManagementStructure.createStudentDisplayBtn.classList.add("hidden");
+    userManagementStructure.createTeacherDisplayBtn.classList.remove("hidden");
+    return form;
+  }
+);
+userManagementStructure.createTeacherDisplayBtn.addEventListener(
+  "pointerdown",
+  () => {
+    form = "teacher";
 
-  createUserFormHeading.innerHTML = `<h2>Create New Teacher</h2>`;
-  createStudentForm.classList.add("hidden");
-  createTeacherForm.classList.remove("hidden");
-  createStudentDisplayBtn.classList.remove("hidden");
-  createTeacherDisplayBtn.classList.add("hidden");
-  return form;
-});
+    userManagementStructure.createUserFormHeading.innerHTML = `<h2>Create New Teacher</h2>`;
+    userManagementStructure.createStudentForm.classList.add("hidden");
+    userManagementStructure.createTeacherForm.classList.remove("hidden");
+    userManagementStructure.createStudentDisplayBtn.classList.remove("hidden");
+    userManagementStructure.createTeacherDisplayBtn.classList.add("hidden");
+    return form;
+  }
+);
 
 const userObjects = {
   studentObjects: {},
@@ -221,7 +236,7 @@ const displayUsers = {
         userObjects[`${type}Objects`][id].gradeLevel
       }\r\nAccess: ${userObjects[`${type}Objects`][id].access}`;
     }
-    updateUserDiv.showModal();
+    userManagementStructure.updateUserDiv.showModal();
   },
   displaySingleUserInfo(id, type) {
     const modalUserName = document.querySelector(".user-data-modal-name");
@@ -476,7 +491,7 @@ async function updateUser(id) {
   }
   document.getElementById("updateUser").reset();
   setTimeout(() => {
-    updateUserDiv.close();
+    userManagementStructure.updateUserDiv.close();
   }, 1000);
 }
 
