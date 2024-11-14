@@ -4,6 +4,9 @@ import { logout } from "../utilities/logout.js";
 setTimeout(() => {
   sessionCheck();
 }, 1000);
+
+userManagementStartup.startup();
+
 const userManagementStructure = {
   userList: null,
   createUserBtn: null,
@@ -518,13 +521,17 @@ const updateUser = {
   },
 };
 
-window.addEventListener("load", () => {
-  userManagementStructure.setPageElements();
-  console.log(userManagementStructure.createStudentDisplayBtn);
+const userManagementStartup = {
+  startup() {
+    window.addEventListener("load", () => {
+      userManagementStructure.setPageElements();
+      console.log(userManagementStructure.createStudentDisplayBtn);
 
-  userManagementStructure.setModalControls();
-  userManagementStructure.setEventListeners();
-  getUserInfo.getAllUsers;
-});
+      userManagementStructure.setModalControls();
+      userManagementStructure.setEventListeners();
+      getUserInfo.getAllUsers;
+    });
+  },
+};
 
 export { userObjects };
