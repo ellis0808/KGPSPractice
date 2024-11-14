@@ -14,13 +14,14 @@ const userObjects = {
 
 const userManagementStartup = {
   startup() {
-    window.addEventListener("DOMContetLoaded", () => {
+    window.addEventListener("DOMContetLoaded", (event) => {
       userManagementStructure.setPageElements();
       console.log(userManagementStructure.createStudentDisplayBtn);
 
       userManagementStructure.setModalControls();
       userManagementStructure.setEventListeners();
       getUserInfo.getAllUsers();
+      console.log(userManagementStructure.createStudentDisplayBtn);
     });
   },
 };
@@ -111,7 +112,6 @@ const userManagementStructure = {
     });
   },
 };
-console.log(userManagementStructure.createStudentDisplayBtn);
 
 // Logout
 if (window.location.href === "./user-management.html") {
