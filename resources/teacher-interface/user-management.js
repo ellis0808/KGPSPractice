@@ -44,6 +44,7 @@ const userManagementStructure = {
     });
   },
 };
+console.log(userManagementStructure.createStudentDisplayBtn);
 
 // Logout
 if (window.location.href === "./user-management.html") {
