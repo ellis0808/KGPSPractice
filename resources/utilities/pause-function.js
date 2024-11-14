@@ -22,7 +22,7 @@ class PauseFunction {
     this.disableTouch();
     console.log(elements.items);
   }
-  unpause(elements) {
+  unpause() {
     this.isPaused = false;
     this.pauseBtn.removeEventListener("pointerdown", this.unpause);
     this.pauseBtn.addEventListener("pointerdown", () => this.pause());
@@ -38,8 +38,8 @@ class PauseFunction {
       });
     }
   }
-  enableTouch(elements) {
-    if (elements) {
+  enableTouch() {
+    if (elements.items) {
       elements.items.forEach((item) => {
         item.classList.remove("no-touch", "strong-blur");
       });
