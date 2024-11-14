@@ -36,7 +36,10 @@ import {
 import { audio } from "../../utilities/audio.js";
 import { pauseFunction } from "../../utilities/pause-function.js";
 
-const matchingSetup = {};
+const matchingSetup = {
+  grid: document.createElement("div"),
+  btnContainer1: document.createElement("div"),
+};
 
 /* SCORING */
 const correctAnswerPoints = 1;

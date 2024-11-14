@@ -4,29 +4,31 @@ import { logout } from "../utilities/logout.js";
 setTimeout(() => {
   sessionCheck();
 }, 1000);
-
-const userList = document.querySelector(".div1");
-const createUserBtn = document.querySelector(".create-new-user");
-const createUserDiv = document.querySelector(".create-user-div");
-const updateUserDiv = document.querySelector(".update-user-div");
-const userDataDiv = document.querySelector(".user-data-div");
-const openCreateUserModalBtn = document.querySelector(".open-modal-btn");
-const closeCreateUserModalBtn = document.querySelector(".close-modal-btn");
-const openSingleUserDataModalBtn = document.querySelector(".open-modal-btn2");
-const closeSingleUserDataModalBtn = document.querySelector(".close-modal-btn2");
-const openUpdateUserModalBtn = document.querySelector(".open-modal-btn3");
-const closeUpdateUserModalBtn = document.querySelector(".close-modal-btn3");
-const createUserFormHeading = document.querySelector(
-  ".create-user-form-heading"
-);
-const createStudentDisplayBtn = document.querySelector(
-  ".create-student-display-btn"
-);
-const createTeacherDisplayBtn = document.querySelector(
-  ".create-teacher-display-btn"
-);
-const createStudentForm = document.querySelector(".create-student-form");
-const createTeacherForm = document.querySelector(".create-teacher-form");
+function setupUserManagement() {
+  const userList = document.querySelector(".div1");
+  const createUserBtn = document.querySelector(".create-new-user");
+  const createUserDiv = document.querySelector(".create-user-div");
+  const updateUserDiv = document.querySelector(".update-user-div");
+  const userDataDiv = document.querySelector(".user-data-div");
+  const openCreateUserModalBtn = document.querySelector(".open-modal-btn");
+  const closeCreateUserModalBtn = document.querySelector(".close-modal-btn");
+  const openSingleUserDataModalBtn = document.querySelector(".open-modal-btn2");
+  const closeSingleUserDataModalBtn =
+    document.querySelector(".close-modal-btn2");
+  const openUpdateUserModalBtn = document.querySelector(".open-modal-btn3");
+  const closeUpdateUserModalBtn = document.querySelector(".close-modal-btn3");
+  const createUserFormHeading = document.querySelector(
+    ".create-user-form-heading"
+  );
+  const createStudentDisplayBtn = document.querySelector(
+    ".create-student-display-btn"
+  );
+  const createTeacherDisplayBtn = document.querySelector(
+    ".create-teacher-display-btn"
+  );
+  const createStudentForm = document.querySelector(".create-student-form");
+  const createTeacherForm = document.querySelector(".create-teacher-form");
+}
 
 // Logout
 if (window.location.href === "./user-management.html") {
@@ -35,22 +37,24 @@ if (window.location.href === "./user-management.html") {
 }
 
 // Modal Controls
-openCreateUserModalBtn.addEventListener("pointerdown", () => {
-  createUserDiv.showModal();
-});
-closeCreateUserModalBtn.addEventListener("pointerdown", () => {
-  createUserDiv.close();
-  document.getElementById("createStudent").reset();
-  document.getElementById("createTeacher").reset();
-});
-closeSingleUserDataModalBtn.addEventListener("pointerdown", () => {
-  userDataDiv.close();
-  // document.getElementById("single-user-data-div").reset();
-});
-closeUpdateUserModalBtn.addEventListener("pointerdown", () => {
-  updateUserDiv.close();
-  document.getElementById("updateUser").reset();
-});
+function setModalControls() {
+  openCreateUserModalBtn.addEventListener("pointerdown", () => {
+    createUserDiv.showModal();
+  });
+  closeCreateUserModalBtn.addEventListener("pointerdown", () => {
+    createUserDiv.close();
+    document.getElementById("createStudent").reset();
+    document.getElementById("createTeacher").reset();
+  });
+  closeSingleUserDataModalBtn.addEventListener("pointerdown", () => {
+    userDataDiv.close();
+    // document.getElementById("single-user-data-div").reset();
+  });
+  closeUpdateUserModalBtn.addEventListener("pointerdown", () => {
+    updateUserDiv.close();
+    document.getElementById("updateUser").reset();
+  });
+}
 let form = "student";
 createStudentDisplayBtn.addEventListener("pointerdown", () => {
   form = "student";
@@ -476,6 +480,10 @@ async function updateUser(id) {
   }, 1000);
 }
 
-window.addEventListener("load", getUserInfo.getAllUsers);
+window.addEventListener("load", () => {
+  setupUserManagement();
+  setModalControls();
+  getUserInfo.getAllUsers;
+});
 
 export { userObjects };
