@@ -68,7 +68,7 @@ const userManagementStructure = {
       document.getElementById("updateUser").reset();
     });
   },
-  addEventListeners() {
+  setEventListeners() {
     this.createStudentDisplayBtn.addEventListener("pointerdown", () => {
       form = "student";
       this.createUserFormHeading.innerHTML = `<h2>Create New Student</h2>`;
@@ -509,6 +509,7 @@ window.addEventListener("load", () => {
   console.log(userManagementStructure.createStudentDisplayBtn);
 
   userManagementStructure.setModalControls();
+  userManagementStructure.setEventListeners();
   getUserInfo.getAllUsers;
 });
 
