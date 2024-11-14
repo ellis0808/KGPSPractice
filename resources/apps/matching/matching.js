@@ -138,7 +138,11 @@ const finalLinesIdArray = [];
 I. MAIN APP
 *******
 */
-
+function getElements() {
+  elements = document.querySelectorAll(".btn-container1, .grid");
+  console.log(elements);
+  return elements;
+}
 function matchingApp(set, elements) {
   sessionCheck();
   pauseFunction.unpause(elements);
@@ -177,9 +181,7 @@ function matchingApp(set, elements) {
   }
 
   setTimeout(setUser, 2000);
-  elements = document.querySelectorAll(".btn-container1, .grid");
-  console.log(elements);
-  return elements;
+  getElements();
 }
 
 function endApp() {
@@ -371,7 +373,7 @@ document.addEventListener("keydown", (event) => {
 });
 
 function endSession() {
-  unpause2();
+  pauseFunction.unpause();
   homeBtnReturnToNormal();
   resetNavigationBtns();
   appContainer.classList.add("hide");
@@ -470,8 +472,7 @@ function startNewRound() {
     setTimeout(() => {
       grid.classList.remove("gridHide");
     }, 100);
-    elements = document.querySelectorAll(".btn-container1, .grid");
-    console.log(elements);
+    getElements();
   }, 1000);
 }
 
