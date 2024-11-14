@@ -326,87 +326,99 @@ const getUserInfo = {
 };
 
 // Create Student
-document
-  .getElementById("createStudent")
-  .addEventListener("submit", async function (event) {
-    //  prevents default form submission
-    event.preventDefault();
+const createTeacher = {
+  createStudentSubmitBtn: document.getElementById("createStudent"),
+  createTeacherSubmitBtn: document.getElementById("createTeacher"),
+  createStudent() {
+    this.createStudentSubmitBtn.addEventListener(
+      "submit",
+      async function (event) {
+        //  prevents default form submission
+        event.preventDefault();
 
-    const firstname = document.getElementById("firstname").value;
-    const lastname = document.getElementById("studentlastname").value;
-    const password = document.getElementById("student-password").value;
-    const gradelevel = parseInt(
-      document.querySelector('input[name="gradelevel"]:checked').value
-    );
-    try {
-      const response = await fetch(
-        "/KGPSEnglishPractice-test/api/create_user.php",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            last_name: lastname,
-            first_name: firstname,
-            password: password,
-            grade_level: gradelevel,
-            access: form,
-          }),
+        const firstname = document.getElementById("firstname").value;
+        const lastname = document.getElementById("studentlastname").value;
+        const password = document.getElementById("student-password").value;
+        const gradelevel = parseInt(
+          document.querySelector('input[name="gradelevel"]:checked').value
+        );
+        try {
+          const response = await fetch(
+            "/KGPSEnglishPractice-test/api/create_user.php",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                last_name: lastname,
+                first_name: firstname,
+                password: password,
+                grade_level: gradelevel,
+                access: form,
+              }),
+            }
+          );
+        } catch (error) {
+          console.error("Error creating new user:", error);
         }
-      );
-    } catch (error) {
-      console.error("Error creating new user:", error);
-    }
-    document.getElementById("createStudent").reset();
-    setTimeout(() => {
-      createUserDiv.close();
-    }, 1000);
-  });
-// Create Teacher
-document
-  .getElementById("createTeacher")
-  .addEventListener("submit", async function (event) {
-    //  prevents default form submission
-    event.preventDefault();
-
-    const title = document
-      .querySelector('input[name="title"]:checked')
-      .value.toLowerCase();
-    const lastname = document.getElementById("teacherlastname").value;
-    const admin = document.getElementById("admin").checked ? "true" : "false";
-
-    const password = document.getElementById("teacher-password").value;
-    const access = "teacher";
-    try {
-      const response = await fetch(
-        "/KGPSEnglishPractice-test/api/create_user.php",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            title: title,
-            last_name: lastname,
-            admin: admin,
-            password: password,
-            access: form,
-          }),
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error("Network response was not okay");
-      } else {
-        getUserInfo.getAllUsers();
+        document.getElementById("createStudent").reset();
+        setTimeout(() => {
+          createUserDiv.close();
+        }, 1000);
       }
-    } catch (error) {
-      console.error("Error creating new user:", error);
-    }
-    document.getElementById("createTeacher").reset();
-    setTimeout(() => {
-      createUserDiv.close();
-    }, 1000);
-  });
+    );
+  },
+  createTeacher() {
+    // Create Teacher
+    this.createTeacherSubmitBtn.addEventListener(
+      "submit",
+      async function (event) {
+        //  prevents default form submission
+        event.preventDefault();
+
+        const title = document
+          .querySelector('input[name="title"]:checked')
+          .value.toLowerCase();
+        const lastname = document.getElementById("teacherlastname").value;
+        const admin = document.getElementById("admin").checked
+          ? "true"
+          : "false";
+
+        const password = document.getElementById("teacher-password").value;
+        const access = "teacher";
+        try {
+          const response = await fetch(
+            "/KGPSEnglishPractice-test/api/create_user.php",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                title: title,
+                last_name: lastname,
+                admin: admin,
+                password: password,
+                access: form,
+              }),
+            }
+          );
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error("Network response was not okay");
+          } else {
+            getUserInfo.getAllUsers();
+          }
+        } catch (error) {
+          console.error("Error creating new user:", error);
+        }
+        document.getElementById("createTeacher").reset();
+        setTimeout(() => {
+          createUserDiv.close();
+        }, 1000);
+      }
+    );
+  },
+};
 
 // Delete User
 async function deleteUser(id, type) {
