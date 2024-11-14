@@ -474,3 +474,5 @@ async function updateUser(id) {
 }
 
 window.addEventListener("load", getUserInfo.getAllUsers);
+
+export { userObjects };
