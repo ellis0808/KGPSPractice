@@ -5,7 +5,25 @@ setTimeout(() => {
   sessionCheck();
 }, 1000);
 
-userManagementStartup.startup();
+let form = "student";
+
+const userObjects = {
+  studentObjects: {},
+  teacherObjects: {},
+};
+
+const userManagementStartup = {
+  startup() {
+    window.addEventListener("load", () => {
+      userManagementStructure.setPageElements();
+      console.log(userManagementStructure.createStudentDisplayBtn);
+
+      userManagementStructure.setModalControls();
+      userManagementStructure.setEventListeners();
+      getUserInfo.getAllUsers;
+    });
+  },
+};
 
 const userManagementStructure = {
   userList: null,
@@ -100,13 +118,6 @@ if (window.location.href === "./user-management.html") {
   const logoutBtn = document.querySelector(".logout-btn");
   logoutBtn.addEventListener("pointerdown", logout);
 }
-
-let form = "student";
-
-const userObjects = {
-  studentObjects: {},
-  teacherObjects: {},
-};
 
 const displayUsers = {
   createTableHeaders() {
@@ -269,18 +280,6 @@ const displayUsers = {
     }
   },
 };
-function appendItems(items, intermediateTarget, finalTarget) {
-  if (intermediateTarget) {
-    items.forEach((item) => {
-      intermediateTarget.appendChild(item);
-    });
-    finalTarget.appendChild(intermediateTarget);
-  } else {
-    items.forEach((item) => {
-      finalTarget.appendChild(item);
-    });
-  }
-}
 
 const getUserInfo = {
   async getAllUsers() {
@@ -521,17 +520,6 @@ const updateUser = {
   },
 };
 
-const userManagementStartup = {
-  startup() {
-    window.addEventListener("load", () => {
-      userManagementStructure.setPageElements();
-      console.log(userManagementStructure.createStudentDisplayBtn);
-
-      userManagementStructure.setModalControls();
-      userManagementStructure.setEventListeners();
-      getUserInfo.getAllUsers;
-    });
-  },
-};
+userManagementStartup.startup();
 
 export { userObjects };
