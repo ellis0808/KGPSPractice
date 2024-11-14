@@ -445,76 +445,78 @@ async function deleteUser(id, type) {
 }
 
 // Update User
-document
-  .getElementById("updateUser")
-  .addEventListener("submit", async function (event) {
-    //  prevents default form submission
-    event.preventDefault();
-    const id = document
-      .querySelector(".single-user-data1")
-      .getAttribute("userId");
-    updateUser(id);
-  });
-async function updateUser(id) {
-  // getUserInfo.getSingleUser(id, type, funct);
-  const firstname = document.getElementById("updatefirstname").value;
+const updateUser = {
+  updateUserSubmitBtn: document.getElementById("updateUser"),
+  submitUpdateUserInfo() {
+    this.updateUserSubmitBtn.addEventListener("submit", async function (event) {
+      //  prevents default form submission
+      event.preventDefault();
+      const id = document
+        .querySelector(".single-user-data1")
+        .getAttribute("userId");
+      updateUser.updateUser(id);
+    });
+  },
+  async updateUser() {
+    const firstname = document.getElementById("updatefirstname").value;
 
-  const lastname = document.getElementById("updatelastname").value;
-  const password = document.getElementById("updatepassword").value;
+    const lastname = document.getElementById("updatelastname").value;
+    const password = document.getElementById("updatepassword").value;
 
-  const gradelevelElement = document.querySelector(
-    'input[name="updategradelevel"]:checked'
-  );
-  const gradelevel = gradelevelElement
-    ? parseInt(gradelevelElement.value)
-    : null;
-  const accessElement = document.querySelector(
-    'input[name="updateaccess"]:checked'
-  );
-  const access = accessElement ? accessElement.value : null;
-
-  const newData = { student_id: id };
-
-  if (firstname) {
-    newData.first_name = firstname;
-  }
-  if (lastname) {
-    newData.last_name = lastname;
-  }
-  if (password) {
-    newData.password = password;
-  }
-  if (gradelevel) {
-    newData.grade_level = gradelevel;
-  }
-  if (access) {
-    newData.access = access;
-  }
-  try {
-    const response = await fetch(
-      "/KGPSEnglishPractice-test/api/update_user.php",
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newData),
-      }
+    const gradelevelElement = document.querySelector(
+      'input[name="updategradelevel"]:checked'
     );
-    const data = await response.json();
+    const gradelevel = gradelevelElement
+      ? parseInt(gradelevelElement.value)
+      : null;
+    const accessElement = document.querySelector(
+      'input[name="updateaccess"]:checked'
+    );
+    const access = accessElement ? accessElement.value : null;
 
-    if (!response.ok) {
-      throw new Error("Network response was not okay");
-    } else {
-      // getUserInfo.getSingleUser(id, type, funct);
-      getUserInfo.getAllUsers();
+    const newData = { student_id: id };
+
+    if (firstname) {
+      newData.first_name = firstname;
     }
-  } catch (error) {
-    console.error("Error updating user:", error);
-  }
-  document.getElementById("updateUser").reset();
-  setTimeout(() => {
-    userManagementStructure.updateUserDiv.close();
-  }, 1000);
-}
+    if (lastname) {
+      newData.last_name = lastname;
+    }
+    if (password) {
+      newData.password = password;
+    }
+    if (gradelevel) {
+      newData.grade_level = gradelevel;
+    }
+    if (access) {
+      newData.access = access;
+    }
+    try {
+      const response = await fetch(
+        "/KGPSEnglishPractice-test/api/update_user.php",
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newData),
+        }
+      );
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error("Network response was not okay");
+      } else {
+        // getUserInfo.getSingleUser(id, type, funct);
+        getUserInfo.getAllUsers();
+      }
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+    document.getElementById("updateUser").reset();
+    setTimeout(() => {
+      userManagementStructure.updateUserDiv.close();
+    }, 1000);
+  },
+};
 
 window.addEventListener("load", () => {
   userManagementStructure.setPageElements();
