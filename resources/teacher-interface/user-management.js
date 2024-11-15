@@ -115,6 +115,51 @@ if (window.location.href === "./user-management.html") {
   const logoutBtn = document.querySelector(".logout-btn");
   logoutBtn.addEventListener("pointerdown", logout);
 }
+const getUserInfo = {
+  async getAllUsers() {
+    try {
+      const response = await fetch(
+        "/KGPSEnglishPractice-test/api/read_users.php"
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not okay");
+      }
+      const data = await response.json();
+      const students = data.students;
+      const teachers = data.teachers;
+
+      if (data) {
+        students.map((student) => {
+          return (userObjects.studentObjects[student.student_id] = {
+            id: student.student_id,
+            firstName: student.first_name,
+            lastName: student.last_name,
+            gradeLevel: student.grade_level,
+            access: student.access,
+          });
+        });
+        teachers.map((teacher) => {
+          return (userObjects.teacherObjects[teacher.teacher_id] = {
+            id: teacher.teacher_id,
+            title: teacher.title,
+            lastName: teacher.last_name,
+            admin: teacher.admin,
+            access: teacher.access,
+          });
+        });
+        displayUsers.displayAllUsers();
+      } else {
+        console.log("No students found");
+      }
+    } catch (error) {
+      console.error("Error getting user data:", error);
+    }
+  },
+  async getSingleUser(id, type, funct) {
+    const singleUserData1 = document.querySelector(".single-user-data1");
+  },
+};
 
 const displayUsers = {
   createTableHeaders() {
@@ -275,52 +320,6 @@ const displayUsers = {
         userObjects[`${type}Objects`][id].gradeLevel
       }\r\nAccess: ${userObjects[`${type}Objects`][id].access}`;
     }
-  },
-};
-
-const getUserInfo = {
-  async getAllUsers() {
-    try {
-      const response = await fetch(
-        "/KGPSEnglishPractice-test/api/read_users.php"
-      );
-
-      if (!response.ok) {
-        throw new Error("Network response was not okay");
-      }
-      const data = await response.json();
-      const students = data.students;
-      const teachers = data.teachers;
-
-      if (data) {
-        students.map((student) => {
-          return (userObjects.studentObjects[student.student_id] = {
-            id: student.student_id,
-            firstName: student.first_name,
-            lastName: student.last_name,
-            gradeLevel: student.grade_level,
-            access: student.access,
-          });
-        });
-        teachers.map((teacher) => {
-          return (userObjects.teacherObjects[teacher.teacher_id] = {
-            id: teacher.teacher_id,
-            title: teacher.title,
-            lastName: teacher.last_name,
-            admin: teacher.admin,
-            access: teacher.access,
-          });
-        });
-        displayUsers.displayAllUsers();
-      } else {
-        console.log("No students found");
-      }
-    } catch (error) {
-      console.error("Error getting user data:", error);
-    }
-  },
-  async getSingleUser(id, type, funct) {
-    const singleUserData1 = document.querySelector(".single-user-data1");
   },
 };
 
