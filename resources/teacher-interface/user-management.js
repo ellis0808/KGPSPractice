@@ -197,7 +197,7 @@ const displayUsers = {
         deleteUserBtn.addEventListener("click", (event) => {
           const id = event.target.getAttribute("userId");
           const type = event.target.getAttribute("type");
-          deleteUser(id, type);
+          deleteUser.deleteUser(id, type);
         });
       }
       if (i >= studentIds.length) {
@@ -223,7 +223,7 @@ const displayUsers = {
         deleteUserBtn.addEventListener("click", (event) => {
           const id = event.target.getAttribute("userId");
           const type = event.target.getAttribute("type");
-          deleteUser(id, type);
+          deleteUser.deleteUser(id, type);
         });
         ++q;
       }
@@ -420,28 +420,30 @@ const createTeacher = {
 };
 
 // Delete User
-async function deleteUser(id, type) {
-  try {
-    const response = await fetch(
-      "/KGPSEnglishPractice-test/api/delete_user.php",
-      {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: id, type: type }),
+const deleteUser = {
+  async deleteUser(id, type) {
+    try {
+      const response = await fetch(
+        "/KGPSEnglishPractice-test/api/delete_user.php",
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: id, type: type }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error("Network response was not okay");
+      } else {
+        getUserInfo.getAllUsers();
       }
-    );
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error("Network response was not okay");
-    } else {
-      getUserInfo.getAllUsers();
+    } catch (error) {
+      console.error("Error deleting user:", error);
     }
-  } catch (error) {
-    console.error("Error deleting user:", error);
-  }
-}
+  },
+};
 
 // Update User
 const updateUser = {
