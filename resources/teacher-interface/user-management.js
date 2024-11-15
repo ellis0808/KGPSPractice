@@ -16,12 +16,9 @@ const userManagementStartup = {
   startup() {
     window.addEventListener("load", () => {
       userManagementStructure.setPageElements();
-      console.log(userManagementStructure.createStudentDisplayBtn);
-
       userManagementStructure.setModalControls();
       userManagementStructure.setEventListeners();
       getUserInfo.getAllUsers();
-      console.log(userManagementStructure.createStudentDisplayBtn);
     });
   },
 };
@@ -311,7 +308,9 @@ const displayUsers = {
       modalUserName.innerText = `${userObjects[`${type}Objects`][id].title}, ${
         userObjects[`${type}Objects`][id].lastName
       }`;
-      singleUserData2.innerText = `Access: ${data.access}`;
+      singleUserData2.innerText = `Access: ${
+        userObjects[`${type}Objects`][id].access
+      }`;
     } else {
       modalUserName.innerText = `${
         userObjects[`${type}Objects`][id].lastName
