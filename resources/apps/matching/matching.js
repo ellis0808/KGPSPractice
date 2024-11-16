@@ -44,6 +44,7 @@ const matchingStructureElements = {
     this.grid = document.createElement("div");
     this.btnContainer1 = document.createElement("div");
     this.btnContainer2 = document.createElement("div");
+    this.btnContainer4 = document.createElement("div");
     this.leftMenuContainer = document.createElement("div");
     this.homeBtnContainer = document.createElement("div");
     this.appContainer.classList.add("container", "letter-matching-app");
