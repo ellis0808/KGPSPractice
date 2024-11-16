@@ -1,17 +1,23 @@
+const elements = {
+  structureElements: null,
+  interactiveElements: null,
+  getElements(queryparameter) {
+    elements.structureElements = document.querySelectorAll(queryparameter[0]);
+  },
+};
 class ToggleTouchFunction {
-  disableTouch(elements) {
+  disableTouch() {
     console.log(elements);
 
-    if (elements.items) {
-      console.log();
-      elements.items.forEach((item) => {
+    if (elements.structureElements || elements.interactiveElements) {
+      elements.structureElements.forEach((item) => {
         item.classList.add("no-touch", "strong-blur");
       });
     }
   }
-  enableTouch(elements) {
-    if (elements.items) {
-      elements.items.forEach((item) => {
+  enableTouch() {
+    if (elements.structureElements) {
+      elements.structureElements.forEach((item) => {
         item.classList.remove("no-touch", "strong-blur");
       });
     }
@@ -32,19 +38,21 @@ class PauseFunction {
       this.pauseBtn.removeEventListener("pointerdown", this.pause);
     }
   }
-  pause(elements) {
+  pause() {
     this.isPaused = true;
     this.pauseBtn.removeEventListener("pointerdown", this.pause);
-    toggleTouchFunction.disableTouch(elements);
+    console.log(elements);
+
+    toggleTouchFunction.disableTouch();
     setTimeout(() => {
       this.pauseBtn.addEventListener("pointerdown", () => this.unpause());
     }, 200);
   }
-  unpause(elements) {
+  unpause() {
     this.isPaused = false;
     this.pauseBtn.removeEventListener("pointerdown", this.unpause);
-    if (elements.items) {
-      toggleTouchFunction.enableTouch(elements);
+    if (elements.structureElements) {
+      toggleTouchFunction.enableTouch();
     }
     setTimeout(() => {
       this.pauseBtn.addEventListener("pointerdown", () => this.pause());
@@ -55,4 +63,4 @@ class PauseFunction {
 const toggleTouchFunction = new ToggleTouchFunction();
 const pauseFunction = new PauseFunction();
 
-export { pauseFunction, toggleTouchFunction };
+export { elements, pauseFunction, toggleTouchFunction };

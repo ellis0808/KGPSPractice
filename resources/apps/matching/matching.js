@@ -35,6 +35,7 @@ import {
 } from "./generate-grid-items.js";
 import { audio } from "../../utilities/audio.js";
 import {
+  elements,
   pauseFunction,
   toggleTouchFunction,
 } from "../../utilities/pause-function.js";
@@ -160,7 +161,7 @@ const matchingAppSessions = {
     }, 1000);
   },
   endSession() {
-    pauseFunction.unpause(elements);
+    pauseFunction.unpause();
     homeBtnReturnToNormal();
     resetNavigationBtns();
     matchingStructureElements.appContainer.classList.add("hide");
@@ -241,14 +242,7 @@ I. MAIN APP
 const matchingAppElements = [
   ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid",
 ];
-const elements = {
-  items: document.querySelectorAll(matchingAppElements),
-  getElements() {
-    this.items = document.querySelectorAll(matchingAppElements);
-    console.log(this.items);
-    return this.items;
-  },
-};
+
 const matchingApp = {
   startApp(set) {
     sessionCheck();
@@ -260,9 +254,9 @@ const matchingApp = {
     matchingStructureElements.setMainStructureElements();
     matchingStructureElements.grid.classList.add("gridHide");
     matchingStructureElements.setGridStructureElements();
-    elements.getElements();
-    console.log(elements.items);
-    pauseFunction.unpause(elements);
+    elements.getElements(matchingAppElements);
+    console.log(elements);
+    pauseFunction.unpause();
     stylesheet.setAttribute(
       "href",
       "/KGPSEnglishPractice-test/resources/css/matching.css"
@@ -331,7 +325,7 @@ function resetNavigationBtns() {
   homeBtnReturnToNormal();
 }
 function goHome() {
-  pauseFunction.pause(elements);
+  pauseFunction.pause();
   homeBtnEnlarge();
   displayGoHomeConfirmation();
   if (homeBtnIsGoHome) {
@@ -355,7 +349,7 @@ function displayGoHomeConfirmation() {
 function returnToApp() {
   matchingStructureElements.btnContainer4.removeChild(reallyGoHomeContainer);
   homeBtnReturnToNormal();
-  pauseFunction.unpause(elements);
+  pauseFunction.unpause();
   homeBtnIsGoHome = true;
   homeBtn.removeEventListener("click", returnToApp);
   homeBtn.addEventListener("click", goHome);
@@ -498,7 +492,6 @@ function startNewRound() {
       matchingStructureElements.grid.classList.remove("gridHide");
     }, 100);
     elements.getElements();
-    console.log(elements.items);
   }, 1000);
 }
 
