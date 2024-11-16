@@ -101,7 +101,7 @@ const matchingStructureElements = {
     matchingStructureElements.exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
     this.exitBtn.addEventListener("click", endApp);
   },
-  setStarScreenElements: function () {
+  setStartScreenElements: function () {
     this.btnContainer2.appendChild(this.startBtn);
     this.btnContainer2.appendChild(this.exitBtn);
   },
@@ -133,7 +133,7 @@ scoreDisplay.textContent = `${score.currentScore}`;
 const tryAgainBtn = document.createElement("div");
 tryAgainBtn.classList.add("try-again-btn", "button");
 tryAgainBtn.innerText = "One More Time";
-tryAgainBtn.addEventListener("click", startNewSession);
+tryAgainBtn.addEventListener("click", matchingAppSessions.startSession);
 const finishBtn = document.createElement("div");
 finishBtn.classList.add("finish-btn", "button");
 finishBtn.addEventListener("click", endApp);
@@ -192,62 +192,64 @@ const elements = {
     return this.items;
   },
 };
-function matchingApp(set) {
-  sessionCheck();
-  setStyle(set);
-  matchingStructureElements.createMainStructureElements();
-  matchingStructureElements.createStartScreenElements();
-  matchingStructureElements.setStarScreenElements();
-  matchingStructureElements.creaGridStructureElements();
-  matchingStructureElements.setMainStructureElements();
-  matchingStructureElements.grid.classList.add("gridHide");
-  matchingStructureElements.setGridStructureElements();
-  elements.getElements();
-  console.log(elements.items);
-  pauseFunction.unpause(elements);
-  stylesheet.setAttribute(
-    "href",
-    "/KGPSEnglishPractice-test/resources/css/matching.css"
-  );
+const matchingApp = {
+  startApp(set) {
+    sessionCheck();
+    setStyle(set);
+    matchingStructureElements.createMainStructureElements();
+    matchingStructureElements.createStartScreenElements();
+    matchingStructureElements.setStartScreenElements();
+    matchingStructureElements.creaGridStructureElements();
+    matchingStructureElements.setMainStructureElements();
+    matchingStructureElements.grid.classList.add("gridHide");
+    matchingStructureElements.setGridStructureElements();
+    elements.getElements();
+    console.log(elements.items);
+    pauseFunction.unpause(elements);
+    stylesheet.setAttribute(
+      "href",
+      "/KGPSEnglishPractice-test/resources/css/matching.css"
+    );
 
-  menuItems.removeMenuPage();
+    menuItems.removeMenuPage();
 
-  setTimeout(displayStartBtn, 200);
+    setTimeout(matchingAppSessions.displayStartBtn, 200);
 
-  score.resetScore();
-  resetTimer();
-  scoreDisplay.innerText = score.currentScore;
+    score.resetScore();
+    resetTimer();
+    scoreDisplay.innerText = score.currentScore;
 
-  matchingStructureElements.appContainer.classList.remove("hide");
-  if (!scoreDisplay.classList.contains("hide2")) {
-    toggleScoreDisplayHide();
-  }
-  if (!timer.classList.contains("hide2")) {
-    toggleTimerHide();
-  }
+    matchingStructureElements.appContainer.classList.remove("hide");
+    if (!scoreDisplay.classList.contains("hide2")) {
+      toggleScoreDisplayHide();
+    }
+    if (!timer.classList.contains("hide2")) {
+      toggleTimerHide();
+    }
 
-  setTimeout(setUser, 2000);
-  removeBlur();
-}
+    setTimeout(setUser, 2000);
+    removeBlur();
+  },
 
-function endApp() {
-  endSession();
-  setTimeout(() => {
-    document.querySelectorAll(".letter-matching-app").forEach((item) => {
-      item.remove();
-    });
+  endApp() {
+    matchingAppSessions.endSession();
     setTimeout(() => {
-      stylesheet.setAttribute(
-        "href",
-        "/KGPSEnglishPractice-test/resources/css/styles.css"
-      );
-      menuItems.displayMainPage();
-      setTimeout(menuItems.restoreMainMenu, 100);
+      document.querySelectorAll(".letter-matching-app").forEach((item) => {
+        item.remove();
+      });
+      setTimeout(() => {
+        stylesheet.setAttribute(
+          "href",
+          "/KGPSEnglishPractice-test/resources/css/styles.css"
+        );
+        menuItems.displayMainPage();
+        setTimeout(menuItems.restoreMainMenu, 100);
+      }, 500);
     }, 500);
-  }, 500);
-  resetTimer();
-  scoreDisplay.innerText = score.currentScore;
-}
+    resetTimer();
+    scoreDisplay.innerText = score.currentScore;
+  },
+};
 
 function unpause2() {
   pauseBtn.removeEventListener("click", unpause);
@@ -362,22 +364,63 @@ II. SESSIONS & ROUNDS
 *******
 */
 
-function displayStartBtn() {
-  // matchingStructureElements.startBtn.textContent = "Start";
-  // matchingStructureElements.btnContainer2.appendChild(exitBtn);
-  if (
-    matchingStructureElements.startBtn.classList.contains("no-touch") ||
-    matchingStructureElements.startBtn.classList.contains("spinfade")
-  ) {
-    matchingStructureElements.startBtn.classList.remove("no-touch");
-    matchingStructureElements.startBtn.classList.remove("spinfade");
-    matchingStructureElements.exitBtn.classList.remove("no-touch");
-    matchingStructureElements.exitBtn.classList.remove("hide2");
-  }
-  matchingStructureElements.exitBtn.classList.remove("hide");
-  matchingStructureElements.startBtn.addEventListener("click", startSession);
-  score.resetScore();
-}
+const matchingAppSessions = {
+  displayStartBtn() {
+    if (
+      matchingStructureElements.startBtn.classList.contains("no-touch") ||
+      matchingStructureElements.startBtn.classList.contains("spinfade")
+    ) {
+      matchingStructureElements.startBtn.classList.remove("no-touch");
+      matchingStructureElements.startBtn.classList.remove("spinfade");
+      matchingStructureElements.exitBtn.classList.remove("no-touch");
+      matchingStructureElements.exitBtn.classList.remove("hide2");
+    }
+    matchingStructureElements.exitBtn.classList.remove("hide");
+    matchingStructureElements.startBtn.addEventListener(
+      "click",
+      matchingAppSessions.startSession
+    );
+    score.resetScore();
+  },
+  startSession() {
+    audio.navigationSfx.startApp.play();
+    removeEndMessagesContainer();
+    matchingStructureElements.startBtn.classList.add("no-touch");
+    matchingStructureElements.startBtn.classList.add("spinfade");
+    matchingStructureElements.exitBtn.classList.remove("intro");
+    matchingStructureElements.exitBtn.classList.add("no-touch");
+    matchingStructureElements.exitBtn.classList.add("hide2");
+    matchingStructureElements.exitBtn.classList.remove("intro");
+    setTimeout(startNewRound, 950);
+    setTimeout(() => {
+      appStarted = true;
+    }, 1);
+    setTimeout(() => {
+      startTimer();
+    }, 1000);
+  },
+  endSession() {
+    pauseFunction.unpause(elements);
+    homeBtnReturnToNormal();
+    resetNavigationBtns();
+    matchingStructureElements.appContainer.classList.add("hide");
+    matchingStructureElements.homeBtnContainer.classList.add("hide");
+    document.querySelectorAll(".letter-matching-app, .line").forEach((item) => {
+      item.remove();
+    });
+    if (document.querySelector(".end-messages-container")) {
+      document.querySelector(".end-messages-container").remove();
+    }
+    if (document.querySelector(".go-home-container")) {
+      document.querySelector(".go-home-container").remove();
+    }
+    appStarted = false;
+    removeBlur();
+    clearBoard();
+    toggleScoreDisplayHide();
+    toggleTimerHide();
+  },
+};
 
 document.addEventListener("keydown", (event) => {
   if (appStarted) {
@@ -393,28 +436,6 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-function endSession() {
-  pauseFunction.unpause(elements);
-  homeBtnReturnToNormal();
-  resetNavigationBtns();
-  matchingStructureElements.appContainer.classList.add("hide");
-  matchingStructureElements.homeBtnContainer.classList.add("hide");
-  document.querySelectorAll(".letter-matching-app, .line").forEach((item) => {
-    item.remove();
-  });
-  if (document.querySelector(".end-messages-container")) {
-    document.querySelector(".end-messages-container").remove();
-  }
-  if (document.querySelector(".go-home-container")) {
-    document.querySelector(".go-home-container").remove();
-  }
-  appStarted = false;
-  removeBlur();
-  clearBoard();
-  toggleScoreDisplayHide();
-  toggleTimerHide();
-}
-
 function removeEndMessagesContainer() {
   if (document.querySelector(".end-messages-container")) {
     tryAgainBtn.classList.add("no-touch");
@@ -423,23 +444,6 @@ function removeEndMessagesContainer() {
   }
 }
 
-function startSession() {
-  audio.navigationSfx.startApp.play();
-  removeEndMessagesContainer();
-  matchingStructureElements.startBtn.classList.add("no-touch");
-  matchingStructureElements.startBtn.classList.add("spinfade");
-  matchingStructureElements.exitBtn.classList.remove("intro");
-  matchingStructureElements.exitBtn.classList.add("no-touch");
-  matchingStructureElements.exitBtn.classList.add("hide2");
-  matchingStructureElements.exitBtn.classList.remove("intro");
-  setTimeout(startNewRound, 950);
-  setTimeout(() => {
-    appStarted = true;
-  }, 1);
-  setTimeout(() => {
-    startTimer();
-  }, 1000);
-}
 function startNewSession() {
   tryAgainBtn.classList.add("no-touch");
   finishBtn.classList.add("no-touch");
@@ -453,7 +457,7 @@ function startNewSession() {
     scoreDisplay.classList.remove("blur");
   }, 50);
 
-  setTimeout(startSession, 300);
+  setTimeout(matchingAppSessions.startSession, 300);
   setTimeout(() => {
     enableTouch();
     tryAgainBtn.classList.remove("no-touch");
