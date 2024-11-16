@@ -499,7 +499,7 @@ function roundOver() {
   setTimeout(displayEndMessagesContainer, 600);
   setTimeout(disableTouch, 500);
   setTimeout(disableTouch, 1000);
-  grid.classList.add("blur");
+  matchingStructureElements.grid.classList.add("blur");
   timer.classList.add("blur");
   scoreDisplay.classList.add("blur");
 }
