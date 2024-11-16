@@ -119,8 +119,6 @@ const matchingStructureElements = {
     this.homeBtnContainer = document.createElement("div");
     this.startDotsContainer = document.createElement("div");
   },
-  addClassesToStructureElements: function () {},
-  setStructureElements: function () {},
 };
 
 /* SCORING */
@@ -194,11 +192,11 @@ function matchingApp(set) {
   setStyle(set);
   matchingStructureElements.createMainStructureElements();
   matchingStructureElements.createStartScreenElements();
+  matchingStructureElements.setStarScreenElements();
   matchingStructureElements.creaGridStructureElements();
   matchingStructureElements.setMainStructureElements();
   matchingStructureElements.grid.classList.add("gridHide");
   matchingStructureElements.setGridStructureElements();
-
   stylesheet.setAttribute(
     "href",
     "/KGPSEnglishPractice-test/resources/css/matching.css"
