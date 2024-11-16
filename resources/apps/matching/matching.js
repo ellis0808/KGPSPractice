@@ -193,7 +193,7 @@ tryAgainBtn.innerText = "One More Time";
 tryAgainBtn.addEventListener("click", matchingAppSessions.startSession);
 const finishBtn = document.createElement("div");
 finishBtn.classList.add("finish-btn", "button");
-finishBtn.addEventListener("click", endApp);
+finishBtn.addEventListener("click", matchingAppSessions.endApp);
 finishBtn.innerText = "Finish";
 
 const homeBtn = document.createElement("button");
