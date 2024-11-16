@@ -46,6 +46,20 @@ const matchingStructureElements = {
     this.btnContainer2 = document.createElement("div");
     this.leftMenuContainer = document.createElement("div");
     this.homeBtnContainer = document.createElement("div");
+    appContainer.classList.add("container", "letter-matching-app");
+    this.grid.classList.add("grid", "letter-matching-app");
+    this.btnContainer1.classList.add("btn-container1");
+    this.btnContainer2.classList.add("btn-container2");
+    this.btnContainer4.classList.add("btn-container4");
+    this.homeBtnContainer.classList.add(
+      "home-btn-container",
+      "hide",
+      "letter-matching-app"
+    );
+    this.leftMenuContainer.classList.add(
+      "left-menu-container",
+      "letter-matching-app"
+    );
   },
   setMainStructureElements: function () {
     mainContainer.appendChild(this.appContainer);
@@ -54,18 +68,37 @@ const matchingStructureElements = {
     this.appContainer.appendChild(this.btnContainer2);
     this.appContainer.appendChild(this.btnContainer4);
     this.appContainer.appendChild(this.grid);
+    this.appContainer.appendChild(this.homeBtnContainer);
   },
   creaGridStructureElements: function () {
     this.startRowContainer = document.createElement("div");
     this.endRowContainer = document.createElement("div");
     this.startDotsContainer = document.createElement("div");
     this.endDotsContainer = document.createElement("div");
+    this.startRowContainer.classList.add("capitals");
+    this.endRowContainer.classList.add("lowercase");
+    this.startDotsContainer.classList.add("start-dot-div");
+    this.endDotsContainer.classList.add("end-dot-div");
   },
   setGridStructureElements: function () {
     this.grid.appendChild(this.startRowContainer);
     this.grid.appendChild(this.endRowContainer);
     this.grid.appendChild(this.startDotsContainer);
     this.grid.appendChild(this.endDotsContainer);
+  },
+  createStartScreenElements: function () {
+    this.startBtn = document.createElement("button");
+    this.exitBtn = document.createElement("div");
+    this.startBtn.setAttribute("id", "start-btn");
+    this.startBtn.classList.add("letter-matching-app");
+    this.startBtn.textContent = "Start";
+    this.exitBtn.setAttribute("id", "exit-btn");
+    this.exitBtn.classList.add("letter-matching-app", "hide");
+    this.exitBtn.addEventListener("click", endApp);
+  },
+  setStarScreenElements: function () {
+    this.btnContainer2.appendChild(this.startBtn);
+    this.btnContainer2.appendChild(this.exitBtn);
   },
   createEndContainerElements: function () {
     this.appContainer = document.createElement("div");
@@ -84,24 +117,7 @@ const matchingStructureElements = {
     this.homeBtnContainer = document.createElement("div");
     this.startDotsContainer = document.createElement("div");
   },
-  addClassesToStructureElements: function () {
-    this.grid.classList.add("grid", "letter-matching-app");
-    this.btnContainer1.classList.add("btn-container1");
-    this.btnContainer2.classList.add("btn-container2");
-    this.startBtn.setAttribute("id", "start-btn");
-    this.startBtn.classList.add("letter-matching-app");
-    this.startBtn.textContent = "Start";
-    this.exitBtn.setAttribute("id", "exit-btn");
-    this.exitBtn.classList.add("letter-matching-app", "hide");
-    this.startRowContainer.classList.add("capitals");
-    this.endRowContainer.classList.add("lowercase");
-    this.startDotsContainer.classList.add("start-dot-div");
-    this.endDotsContainer.classList.add("end-dot-div");
-    this.leftMenuContainer.classList.add(
-      "left-menu-container",
-      "letter-matching-app"
-    );
-  },
+  addClassesToStructureElements: function () {},
   setStructureElements: function () {},
 };
 
@@ -109,16 +125,7 @@ const matchingStructureElements = {
 const correctAnswerPoints = 1;
 const incorrectAnswerPoints = 1;
 
-// Main App Container
-const appContainer = document.createElement("div");
-appContainer.classList.add("container", "letter-matching-app");
-
-// Button Container 1 (Timer & Score Display)
-
-// toggleScoreDisplayHide();
 scoreDisplay.textContent = `${score.currentScore}`;
-
-exitBtn.addEventListener("click", endApp);
 
 const tryAgainBtn = document.createElement("div");
 tryAgainBtn.classList.add("try-again-btn", "button");
@@ -129,19 +136,12 @@ finishBtn.classList.add("finish-btn", "button");
 finishBtn.addEventListener("click", endApp);
 finishBtn.innerText = "Finish";
 
-const homeBtnContainer = document.createElement("div");
-homeBtnContainer.classList.add(
-  "home-btn-container",
-  "hide",
-  "letter-matching-app"
-);
 const homeBtn = document.createElement("button");
 homeBtn.classList.add("home-btn");
 homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
 homeBtn.addEventListener("click", goHome);
-appContainer.appendChild(homeBtnContainer);
-const btnContainer4 = document.createElement("div");
-btnContainer4.classList.add("btn-container4");
+// matchingStructureElements.homeBtnContainer.appendChild(homeBtn);
+
 const reallyGoHomeContainer = document.createElement("div");
 reallyGoHomeContainer.classList.add("go-home-container", "letter-matching-app");
 const reallyGoHomeMessageContainer = document.createElement("div");
@@ -156,12 +156,6 @@ const cancelGoHomeBtn = document.createElement("button");
 cancelGoHomeBtn.classList.add("cancel-go-home-btn");
 cancelGoHomeBtn.textContent = "Cancel";
 cancelGoHomeBtn.addEventListener("click", returnToApp);
-// const pauseBtn = document.createElement("div");
-// pauseBtn.classList.add("pause-btn");
-// pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
-// pauseBtn.addEventListener("click", pause);
-
-// let elements;
 
 let endDotId;
 let startDotId;
@@ -197,6 +191,7 @@ function matchingApp(set) {
   pauseFunction.unpause();
   setStyle(set);
   matchingStructureElements.createMainStructureElements();
+  createStartScreenElements();
   matchingStructureElements.creaGridStructureElements();
   matchingStructureElements.setMainStructureElements();
   matchingStructureElements.grid.classList.add("gridHide");
@@ -287,12 +282,12 @@ function homeBtnReturnToNormal() {
   homeBtn.classList.remove("home-btn-enlarge");
 }
 function displayGoHomeConfirmation() {
-  btnContainer4.appendChild(reallyGoHomeContainer);
+  matchingStructureElements.btnContainer4.appendChild(reallyGoHomeContainer);
   reallyGoHomeContainer.appendChild(reallyGoHomeBtn);
   reallyGoHomeContainer.appendChild(cancelGoHomeBtn);
 }
 function returnToApp() {
-  btnContainer4.removeChild(reallyGoHomeContainer);
+  matchingStructureElements.btnContainer4.removeChild(reallyGoHomeContainer);
   homeBtnReturnToNormal();
   pauseFunction.unpause();
   homeBtnIsGoHome = true;
