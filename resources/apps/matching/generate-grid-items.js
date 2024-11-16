@@ -1,12 +1,12 @@
 import {
   alphabetCapitals,
   alphabetLowercase,
+  matchingStructureElements,
   capitalLettersDiv,
   endDotsDiv,
   startDotsDiv,
   lowercaseLetterDiv,
   numberOfItemsToBeDisplayed,
-  disableTouch,
 } from "./matching.js";
 import { alphabet } from "../card-touch/card-data.js";
 import { audio } from "../../utilities/audio.js";
@@ -17,6 +17,7 @@ import {
   EndDot,
   StartDot,
 } from "./dot-objects-control.js";
+import { pauseFunction } from "../../utilities/pause-function.js";
 
 /*
 V. GRID POPULATION
@@ -71,7 +72,7 @@ function generateLetterDivsForMatching(array) {
       letter.addEventListener("click", () => {
         audio.audioObject[item].sound.play();
       });
-      lowercaseLetterDiv.appendChild(letter);
+      matchingStructureElements.endRowContainer.appendChild(letter);
     });
     return;
   }
@@ -84,7 +85,7 @@ function generateLetterDivsForMatching(array) {
     letter.addEventListener("click", () => {
       audio.audioObject[item.toLowerCase()].sound.play();
     });
-    capitalLettersDiv.appendChild(letter);
+    matchingStructureElements.startRowContainer.appendChild(letter);
   });
 }
 /*
@@ -110,7 +111,7 @@ function createDots(array) {
         "end-target",
         "letter-matching-app"
       );
-      endDotsDiv.appendChild(endDotEnclosure);
+      matchingStructureElements.endDotsContainer.appendChild(endDotEnclosure);
       // Create dot for each Enclosure
       endDot[i] = new EndDot(`endDot${[i]}`);
       endDot[i].id = i + numberOfItemsToBeDisplayed;
@@ -142,7 +143,7 @@ function createDots(array) {
       "start-target",
       "letter-matching-app"
     );
-    startDotsDiv.appendChild(startDotEnclosure);
+    matchingStructureElements.startDotsContainer.appendChild(startDotEnclosure);
     startDot[i] = new StartDot(`startDot${[i]}`);
     startDot[i].id = i;
     startDot[i].contentId = item;
@@ -158,7 +159,7 @@ function createDots(array) {
     ++dotNumber;
     ++i;
   });
-  setTimeout(disableTouch, 300);
+  setTimeout(pauseFunction.disableTouch, 300);
 }
 
 export {
