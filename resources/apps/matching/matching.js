@@ -188,7 +188,6 @@ const elements = {
 };
 function matchingApp(set) {
   sessionCheck();
-  pauseFunction.unpause();
   setStyle(set);
   matchingStructureElements.createMainStructureElements();
   matchingStructureElements.createStartScreenElements();
@@ -197,6 +196,7 @@ function matchingApp(set) {
   matchingStructureElements.setMainStructureElements();
   matchingStructureElements.grid.classList.add("gridHide");
   matchingStructureElements.setGridStructureElements();
+  pauseFunction.unpause();
   stylesheet.setAttribute(
     "href",
     "/KGPSEnglishPractice-test/resources/css/matching.css"
