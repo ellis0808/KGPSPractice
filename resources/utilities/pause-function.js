@@ -2,7 +2,9 @@ const elements = {
   structureElements: null,
   interactiveElements: null,
   getElements(queryparameter) {
-    elements.structureElements = document.querySelectorAll(queryparameter[0]);
+    if (queryparameter) {
+      elements.structureElements = document.querySelectorAll(queryparameter[0]);
+    }
   },
 };
 class ToggleTouchFunction {
