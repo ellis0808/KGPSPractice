@@ -34,7 +34,10 @@ import {
   shuffle,
 } from "./generate-grid-items.js";
 import { audio } from "../../utilities/audio.js";
-import { pauseFunction } from "../../utilities/pause-function.js";
+import {
+  pauseFunction,
+  toggleTouchFunction,
+} from "../../utilities/pause-function.js";
 
 console.log("test");
 
@@ -178,10 +181,13 @@ const finalLinesIdArray = [];
 I. MAIN APP
 *******
 */
+const matchingAppElements = [
+  ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid",
+];
 const elements = {
-  items: document.querySelectorAll(".btn-container1, .grid"),
+  items: document.querySelectorAll(matchingAppElements),
   getElements() {
-    this.items = document.querySelectorAll(".btn-container1, .grid");
+    this.items = document.querySelectorAll(matchingAppElements);
     console.log(this.items);
     return this.items;
   },
@@ -392,7 +398,7 @@ function endSession() {
   homeBtnReturnToNormal();
   resetNavigationBtns();
   matchingStructureElements.appContainer.classList.add("hide");
-  homeBtnContainer.classList.add("hide");
+  matchingStructureElements.homeBtnContainer.classList.add("hide");
   document.querySelectorAll(".letter-matching-app, .line").forEach((item) => {
     item.remove();
   });
@@ -497,10 +503,10 @@ function startNewRound() {
 A. Overall Function
 */
 function roundOver() {
-  disableTouch();
+  toggleTouchFunction.disableTouch();
   setTimeout(displayEndMessagesContainer, 600);
-  setTimeout(disableTouch, 500);
-  setTimeout(disableTouch, 1000);
+  setTimeout(toggleTouchFunction.disableTouch, 500);
+  setTimeout(toggleTouchFunction.disableTouch, 1000);
   matchingStructureElements.grid.classList.add("blur");
   timer.classList.add("blur");
   scoreDisplay.classList.add("blur");
@@ -631,7 +637,7 @@ function checkAllCorrect() {
       setTimeout(randomFeedback, 500);
     }, 500);
     setTimeout(() => {
-      disableTouch();
+      toggleTouchFunction.disableTouch();
       continueToNextRound();
     }, 1000);
   }
@@ -696,7 +702,7 @@ function displayTimer() {
       if (time < 0) {
         timer.textContent = "0:00";
         clearInterval(countDown);
-        disableTouch();
+        toggleTouchFunction.disableTouch();
         timer.classList.add("wobble");
         timer.classList.remove("wobble");
         timer.classList.add("wobble");
