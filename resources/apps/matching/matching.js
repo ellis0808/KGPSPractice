@@ -192,7 +192,7 @@ function matchingApp(set) {
   pauseFunction.unpause();
   setStyle(set);
   matchingStructureElements.createMainStructureElements();
-  createStartScreenElements();
+  matchingStructureElements.createStartScreenElements();
   matchingStructureElements.creaGridStructureElements();
   matchingStructureElements.setMainStructureElements();
   matchingStructureElements.grid.classList.add("gridHide");
