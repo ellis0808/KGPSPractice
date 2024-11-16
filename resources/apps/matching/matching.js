@@ -297,17 +297,18 @@ function returnToApp() {
 }
 
 function removeBlur() {
-  if (document.querySelector(".blur")) {
-    let blurredItems = document.querySelectorAll(".blur").forEach((item) => {
-      item.classList.remove("blur");
-    });
-  }
-  if (document.querySelector(".strong-blur")) {
-    let stronglyBlurredItems = document
-      .querySelectorAll(".strong-blur")
-      .forEach((item) => {
+  if (
+    document.querySelectorAll(".blur") ||
+    document.querySelectorAll(".strong-blur")
+  ) {
+    document.querySelectorAll(".blur, .strong-blur").forEach((item) => {
+      console.log(item);
+      if (item.classList.contains("blur")) {
+        item.classList.remove("blur");
+      } else {
         item.classList.remove("strong-blur");
-      });
+      }
+    });
   }
 }
 function setUser() {
