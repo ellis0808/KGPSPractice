@@ -36,11 +36,73 @@ import {
 import { audio } from "../../utilities/audio.js";
 import { pauseFunction } from "../../utilities/pause-function.js";
 
-const matchingSetup = {
-  grid: document.createElement("div"),
-  btnContainer1: document.createElement("div"),
-  btnContainer2: document.createElement("div"),
-  startBtn: document.createElement("button"),
+console.log("test");
+
+const matchingStructureElements = {
+  createMainStructureElements: function () {
+    this.appContainer = document.createElement("div");
+    this.grid = document.createElement("div");
+    this.btnContainer1 = document.createElement("div");
+    this.btnContainer2 = document.createElement("div");
+    this.leftMenuContainer = document.createElement("div");
+    this.homeBtnContainer = document.createElement("div");
+  },
+  setMainStructureElements: function () {
+    mainContainer.appendChild(this.appContainer);
+    this.appContainer.appendChild(this.leftMenuContainer);
+    this.appContainer.appendChild(this.btnContainer1);
+    this.appContainer.appendChild(this.btnContainer2);
+    this.appContainer.appendChild(this.btnContainer4);
+    this.appContainer.appendChild(this.grid);
+  },
+  creaGridStructureElements: function () {
+    this.startRowContainer = document.createElement("div");
+    this.endRowContainer = document.createElement("div");
+    this.startDotsContainer = document.createElement("div");
+    this.endDotsContainer = document.createElement("div");
+  },
+  setGridStructureElements: function () {
+    this.grid.appendChild(this.startRowContainer);
+    this.grid.appendChild(this.endRowContainer);
+    this.grid.appendChild(this.startDotsContainer);
+    this.grid.appendChild(this.endDotsContainer);
+  },
+  createEndContainerElements: function () {
+    this.appContainer = document.createElement("div");
+    this.grid = document.createElement("div");
+    this.btnContainer1 = document.createElement("div");
+    this.btnContainer2 = document.createElement("div");
+    this.startBtn = document.createElement("button");
+    this.exitBtn = document.createElement("div");
+    this.startRowContainer = document.createElement("div");
+    this.endRowContainer = document.createElement("div");
+    this.startDotsContainer = document.createElement("div");
+    this.endDotsContainer = document.createElement("div");
+    this.leftMenuContainer = document.createElement("div");
+    this.tryAgainBtn = document.createElement("div");
+    this.finishBtn = document.createElement("div");
+    this.homeBtnContainer = document.createElement("div");
+    this.startDotsContainer = document.createElement("div");
+  },
+  addClassesToStructureElements: function () {
+    this.grid.classList.add("grid", "letter-matching-app");
+    this.btnContainer1.classList.add("btn-container1");
+    this.btnContainer2.classList.add("btn-container2");
+    this.startBtn.setAttribute("id", "start-btn");
+    this.startBtn.classList.add("letter-matching-app");
+    this.startBtn.textContent = "Start";
+    this.exitBtn.setAttribute("id", "exit-btn");
+    this.exitBtn.classList.add("letter-matching-app", "hide");
+    this.startRowContainer.classList.add("capitals");
+    this.endRowContainer.classList.add("lowercase");
+    this.startDotsContainer.classList.add("start-dot-div");
+    this.endDotsContainer.classList.add("end-dot-div");
+    this.leftMenuContainer.classList.add(
+      "left-menu-container",
+      "letter-matching-app"
+    );
+  },
+  setStructureElements: function () {},
 };
 
 /* SCORING */
@@ -56,30 +118,7 @@ appContainer.classList.add("container", "letter-matching-app");
 // toggleScoreDisplayHide();
 scoreDisplay.textContent = `${score.currentScore}`;
 
-const grid = document.createElement("div");
-grid.classList.add("grid", "letter-matching-app");
-const btnContainer1 = document.createElement("div");
-btnContainer1.classList.add("btn-container1");
-const btnContainer2 = document.createElement("div");
-btnContainer2.classList.add("btn-container2");
-const startBtn = document.createElement("button");
-startBtn.setAttribute("id", "start-btn");
-startBtn.classList.add("letter-matching-app");
-startBtn.textContent = "Start";
-const exitBtn = document.createElement("div");
-exitBtn.setAttribute("id", "exit-btn");
-exitBtn.classList.add("letter-matching-app", "hide");
 exitBtn.addEventListener("click", endApp);
-const capitalLettersDiv = document.createElement("div");
-capitalLettersDiv.classList.add("capitals");
-const lowercaseLetterDiv = document.createElement("div");
-lowercaseLetterDiv.classList.add("lowercase");
-const startDotsDiv = document.createElement("div");
-startDotsDiv.classList.add("start-dot-div");
-const endDotsDiv = document.createElement("div");
-endDotsDiv.classList.add("end-dot-div");
-const leftMenuContainer = document.createElement("div");
-leftMenuContainer.classList.add("left-menu-container", "letter-matching-app");
 
 const tryAgainBtn = document.createElement("div");
 tryAgainBtn.classList.add("try-again-btn", "button");
@@ -157,17 +196,11 @@ function matchingApp(set) {
   sessionCheck();
   pauseFunction.unpause();
   setStyle(set);
-  mainContainer.appendChild(appContainer);
-  appContainer.appendChild(leftMenuContainer);
-  appContainer.appendChild(btnContainer1);
-  appContainer.appendChild(btnContainer2);
-  appContainer.appendChild(btnContainer4);
-  appContainer.appendChild(grid);
-  grid.classList.add("gridHide");
-  grid.appendChild(capitalLettersDiv);
-  grid.appendChild(lowercaseLetterDiv);
-  grid.appendChild(startDotsDiv);
-  grid.appendChild(endDotsDiv);
+  matchingStructureElements.createMainStructureElements();
+  matchingStructureElements.creaGridStructureElements();
+  matchingStructureElements.setMainStructureElements();
+  matchingStructureElements.grid.classList.add("gridHide");
+  matchingStructureElements.setGridStructureElements();
 
   stylesheet.setAttribute(
     "href",
@@ -214,30 +247,6 @@ function endApp() {
   scoreDisplay.innerText = score.currentScore;
 }
 
-// pauses app
-// function pause() {
-//   isPaused = true;
-//   disableTouch();
-//   pauseBtn.removeEventListener("click", pause);
-//   setTimeout(() => {
-//     btnContainer1.classList.add("strong-blur");
-//     grid.classList.add("strong-blur");
-//   }, 50);
-//   pauseBtn.addEventListener("click", unpause);
-// }
-// function unpause() {
-//   pauseBtn.removeEventListener("click", unpause);
-//   enableTouch();
-//   btnContainer1.classList.remove("strong-blur");
-//   grid.classList.remove("strong-blur");
-//   setTimeout(() => {
-//     isPaused = false;
-//     if (!grid.hasChildNodes()) {
-//       startNewRound();
-//     }
-//   }, 500);
-//   pauseBtn.addEventListener("click", pause);
-// }
 function unpause2() {
   pauseBtn.removeEventListener("click", unpause);
   enableTouch();
@@ -438,7 +447,7 @@ function startNewSession() {
     clearBoard();
     score.resetScore();
     scoreDisplay.innerText = score.currentScore;
-    grid.classList.remove("blur");
+    matchingStructureElements.grid.classList.remove("blur");
     timer.classList.remove("blur");
     scoreDisplay.classList.remove("blur");
   }, 50);
@@ -459,7 +468,7 @@ function startNewRound() {
     toggleTimerHide();
   }
   homeBtnContainer.classList.remove("hide");
-  grid.classList.remove("blur");
+  matchingStructureElements.grid.classList.remove("blur");
   timer.classList.remove("blur");
   scoreDisplay.classList.remove("blur");
   setTimeout(() => {
@@ -481,7 +490,7 @@ function startNewRound() {
       enableTouch();
     }, 300);
     setTimeout(() => {
-      grid.classList.remove("gridHide");
+      matchingStructureElements.grid.classList.remove("gridHide");
     }, 100);
     elements.getElements();
     console.log(elements.items);
@@ -506,7 +515,7 @@ B. Clearing the Grid & Resetting Arrays
 */
 function clearBoard() {
   setTimeout(() => {
-    grid.classList.add("gridHide");
+    matchingStructureElements.grid.classList.add("gridHide");
   }, 50);
   setTimeout(() => {
     correctDotsAndLines.length = 0;
@@ -1161,19 +1170,13 @@ document.body.addEventListener("touchstart", createDoubleTapPreventer(500), {
 export {
   matchingApp,
   checkAllCorrect,
-  disableTouch,
-  enableTouch,
   alphabetCapitals,
   alphabetLowercase,
   currentDotId,
   endDotId,
   startDotId,
-  grid,
   lines,
-  lowercaseLetterDiv,
-  capitalLettersDiv,
-  endDotsDiv,
-  startDotsDiv,
   numberOfItemsToBeDisplayed,
   elements,
+  matchingStructureElements,
 };

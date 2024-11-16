@@ -4,7 +4,7 @@ import {
   currentDotId,
   endDotId,
   startDotId,
-  grid,
+  matchingStructureElements,
   lines,
   numberOfItemsToBeDisplayed,
 } from "./matching.js";
@@ -323,7 +323,7 @@ class Connector {
     newLine.style.width = `${this.distance}px`;
     newLine.style.transformOrigin = `-0%`;
     newLine.style.transform = `rotate(${this.slope}deg)`;
-    grid.appendChild(newLine);
+    matchingStructureElements.grid.appendChild(newLine);
     this.element = newLine;
     newLine.setAttribute("startDotId", startDotId);
     newLine.setAttribute("endDotId", endDotId);
