@@ -281,7 +281,6 @@ const matchingApp = {
     setTimeout(setUser, 2000);
     removeBlur();
   },
-
   endApp() {
     matchingAppSessions.endSession();
     setTimeout(() => {
@@ -493,6 +492,7 @@ function startNewRound() {
     }, 100);
     elements.getElements();
   }, 1000);
+  removeBlur();
 }
 
 /*
