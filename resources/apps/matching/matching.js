@@ -221,7 +221,7 @@ function matchingApp(set) {
   }
 
   setTimeout(setUser, 2000);
-  // elements.getElements();
+  removeBlur();
 }
 
 function endApp() {
