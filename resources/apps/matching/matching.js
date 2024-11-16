@@ -95,6 +95,7 @@ const matchingStructureElements = {
     this.startBtn.textContent = "Start";
     this.exitBtn.setAttribute("id", "exit-btn");
     this.exitBtn.classList.add("letter-matching-app", "hide");
+    matchingStructureElements.exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
     this.exitBtn.addEventListener("click", endApp);
   },
   setStarScreenElements: function () {
@@ -211,7 +212,7 @@ function matchingApp(set) {
   resetTimer();
   scoreDisplay.innerText = score.currentScore;
 
-  appContainer.classList.remove("hide");
+  matchingStructureElements.appContainer.classList.remove("hide");
   if (!scoreDisplay.classList.contains("hide2")) {
     toggleScoreDisplayHide();
   }
@@ -356,21 +357,19 @@ II. SESSIONS & ROUNDS
 */
 
 function displayStartBtn() {
-  btnContainer2.appendChild(startBtn);
-  startBtn.textContent = "Start";
-  exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
-  btnContainer2.appendChild(exitBtn);
+  // matchingStructureElements.startBtn.textContent = "Start";
+  // matchingStructureElements.btnContainer2.appendChild(exitBtn);
   if (
-    startBtn.classList.contains("no-touch") ||
-    startBtn.classList.contains("spinfade")
+    matchingStructureElements.startBtn.classList.contains("no-touch") ||
+    matchingStructureElements.startBtn.classList.contains("spinfade")
   ) {
-    startBtn.classList.remove("no-touch");
-    startBtn.classList.remove("spinfade");
-    exitBtn.classList.remove("no-touch");
-    exitBtn.classList.remove("hide2");
+    matchingStructureElements.startBtn.classList.remove("no-touch");
+    matchingStructureElements.startBtn.classList.remove("spinfade");
+    matchingStructureElements.exitBtn.classList.remove("no-touch");
+    matchingStructureElements.exitBtn.classList.remove("hide2");
   }
-  exitBtn.classList.remove("hide");
-  startBtn.addEventListener("click", startSession);
+  matchingStructureElements.exitBtn.classList.remove("hide");
+  matchingStructureElements.startBtn.addEventListener("click", startSession);
   score.resetScore();
 }
 
@@ -392,7 +391,7 @@ function endSession() {
   pauseFunction.unpause();
   homeBtnReturnToNormal();
   resetNavigationBtns();
-  appContainer.classList.add("hide");
+  matchingStructureElements.appContainer.classList.add("hide");
   homeBtnContainer.classList.add("hide");
   document.querySelectorAll(".letter-matching-app, .line").forEach((item) => {
     item.remove();
@@ -421,12 +420,12 @@ function removeEndMessagesContainer() {
 function startSession() {
   audio.navigationSfx.startApp.play();
   removeEndMessagesContainer();
-  startBtn.classList.add("no-touch");
-  startBtn.classList.add("spinfade");
-  exitBtn.classList.remove("intro");
-  exitBtn.classList.add("no-touch");
-  exitBtn.classList.add("hide2");
-  exitBtn.classList.remove("intro");
+  matchingStructureElements.startBtn.classList.add("no-touch");
+  matchingStructureElements.startBtn.classList.add("spinfade");
+  matchingStructureElements.exitBtn.classList.remove("intro");
+  matchingStructureElements.exitBtn.classList.add("no-touch");
+  matchingStructureElements.exitBtn.classList.add("hide2");
+  matchingStructureElements.exitBtn.classList.remove("intro");
   setTimeout(startNewRound, 950);
   setTimeout(() => {
     appStarted = true;
@@ -474,9 +473,9 @@ function startNewRound() {
     generateLetterDivsForMatching(alphabetLowercase);
     createDots(shuffledAlphabetCapitals);
     createDots(alphabetLowercase);
-    btnContainer1.appendChild(timer);
-    btnContainer1.appendChild(scoreDisplay);
-    appContainer.appendChild(homeBtnContainer);
+    matchingStructureElements.btnContainer1.appendChild(timer);
+    matchingStructureElements.btnContainer1.appendChild(scoreDisplay);
+    matchingStructureElements.appContainer.appendChild(homeBtnContainer);
     homeBtnContainer.appendChild(homeBtn);
     homeBtnContainer.appendChild(pauseFunction.pauseBtn);
     setTimeout(() => {
@@ -548,7 +547,7 @@ function displayEndMessagesContainer() {
     "end-messages-container",
     "letter-matching-app"
   );
-  appContainer.appendChild(btnContainer5);
+  matchingStructureElements.appContainer.appendChild(btnContainer5);
   btnContainer5.appendChild(endMessagesContainer);
   const finalScoreAssessment = document.createElement("div");
   finalScoreAssessment.classList.add("final-score-assessment");
