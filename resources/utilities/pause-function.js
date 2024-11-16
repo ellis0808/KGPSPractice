@@ -1,5 +1,7 @@
 class ToggleTouchFunction {
   disableTouch(elements) {
+    console.log(elements);
+
     if (elements.items) {
       console.log();
       elements.items.forEach((item) => {
