@@ -204,7 +204,7 @@ function matchingApp(set) {
   matchingStructureElements.setGridStructureElements();
   elements.getElements();
   console.log(elements.items);
-  pauseFunction.unpause();
+  pauseFunction.unpause(elements);
   stylesheet.setAttribute(
     "href",
     "/KGPSEnglishPractice-test/resources/css/matching.css"
@@ -272,7 +272,7 @@ function resetNavigationBtns() {
   homeBtnReturnToNormal();
 }
 function goHome() {
-  pauseFunction.pause();
+  pauseFunction.pause(elements);
   homeBtnEnlarge();
   displayGoHomeConfirmation();
   if (homeBtnIsGoHome) {
@@ -296,7 +296,7 @@ function displayGoHomeConfirmation() {
 function returnToApp() {
   matchingStructureElements.btnContainer4.removeChild(reallyGoHomeContainer);
   homeBtnReturnToNormal();
-  pauseFunction.unpause();
+  pauseFunction.unpause(elements);
   homeBtnIsGoHome = true;
   homeBtn.removeEventListener("click", returnToApp);
   homeBtn.addEventListener("click", goHome);
@@ -394,7 +394,7 @@ document.addEventListener("keydown", (event) => {
 });
 
 function endSession() {
-  pauseFunction.unpause();
+  pauseFunction.unpause(elements);
   homeBtnReturnToNormal();
   resetNavigationBtns();
   matchingStructureElements.appContainer.classList.add("hide");

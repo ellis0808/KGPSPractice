@@ -1,7 +1,5 @@
-import { elements } from "../apps/matching/matching.js";
-
 class ToggleTouchFunction {
-  disableTouch() {
+  disableTouch(elements) {
     if (elements.items) {
       console.log();
       elements.items.forEach((item) => {
@@ -9,7 +7,7 @@ class ToggleTouchFunction {
       });
     }
   }
-  enableTouch() {
+  enableTouch(elements) {
     if (elements.items) {
       elements.items.forEach((item) => {
         item.classList.remove("no-touch", "strong-blur");
@@ -32,19 +30,19 @@ class PauseFunction {
       this.pauseBtn.removeEventListener("pointerdown", this.pause);
     }
   }
-  pause() {
+  pause(elements) {
     this.isPaused = true;
     this.pauseBtn.removeEventListener("pointerdown", this.pause);
-    toggleTouchFunction.disableTouch();
+    toggleTouchFunction.disableTouch(elements);
     setTimeout(() => {
       this.pauseBtn.addEventListener("pointerdown", () => this.unpause());
     }, 200);
   }
-  unpause() {
+  unpause(elements) {
     this.isPaused = false;
     this.pauseBtn.removeEventListener("pointerdown", this.unpause);
     if (elements.items) {
-      toggleTouchFunction.enableTouch();
+      toggleTouchFunction.enableTouch(elements);
     }
     setTimeout(() => {
       this.pauseBtn.addEventListener("pointerdown", () => this.pause());
