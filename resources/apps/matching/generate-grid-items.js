@@ -2,10 +2,6 @@ import {
   alphabetCapitals,
   alphabetLowercase,
   matchingStructureElements,
-  capitalLettersDiv,
-  endDotsDiv,
-  startDotsDiv,
-  lowercaseLetterDiv,
   numberOfItemsToBeDisplayed,
 } from "./matching.js";
 import { alphabet } from "../card-touch/card-data.js";
