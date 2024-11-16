@@ -196,6 +196,8 @@ function matchingApp(set) {
   matchingStructureElements.setMainStructureElements();
   matchingStructureElements.grid.classList.add("gridHide");
   matchingStructureElements.setGridStructureElements();
+  elements.getElements();
+  console.log(elements.items);
   pauseFunction.unpause();
   stylesheet.setAttribute(
     "href",
@@ -219,8 +221,7 @@ function matchingApp(set) {
   }
 
   setTimeout(setUser, 2000);
-  elements.getElements();
-  console.log(elements.items);
+  // elements.getElements();
 }
 
 function endApp() {
