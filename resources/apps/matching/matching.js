@@ -124,6 +124,63 @@ const matchingStructureElements = {
   },
 };
 
+const matchingAppSessions = {
+  displayStartBtn() {
+    if (
+      matchingStructureElements.startBtn.classList.contains("no-touch") ||
+      matchingStructureElements.startBtn.classList.contains("spinfade")
+    ) {
+      matchingStructureElements.startBtn.classList.remove("no-touch");
+      matchingStructureElements.startBtn.classList.remove("spinfade");
+      matchingStructureElements.exitBtn.classList.remove("no-touch");
+      matchingStructureElements.exitBtn.classList.remove("hide2");
+    }
+    matchingStructureElements.exitBtn.classList.remove("hide");
+    matchingStructureElements.startBtn.addEventListener(
+      "click",
+      matchingAppSessions.startSession
+    );
+    score.resetScore();
+  },
+  startSession() {
+    audio.navigationSfx.startApp.play();
+    removeEndMessagesContainer();
+    matchingStructureElements.startBtn.classList.add("no-touch");
+    matchingStructureElements.startBtn.classList.add("spinfade");
+    matchingStructureElements.exitBtn.classList.remove("intro");
+    matchingStructureElements.exitBtn.classList.add("no-touch");
+    matchingStructureElements.exitBtn.classList.add("hide2");
+    matchingStructureElements.exitBtn.classList.remove("intro");
+    setTimeout(startNewRound, 950);
+    setTimeout(() => {
+      appStarted = true;
+    }, 1);
+    setTimeout(() => {
+      startTimer();
+    }, 1000);
+  },
+  endSession() {
+    pauseFunction.unpause(elements);
+    homeBtnReturnToNormal();
+    resetNavigationBtns();
+    matchingStructureElements.appContainer.classList.add("hide");
+    matchingStructureElements.homeBtnContainer.classList.add("hide");
+    document.querySelectorAll(".letter-matching-app, .line").forEach((item) => {
+      item.remove();
+    });
+    if (document.querySelector(".end-messages-container")) {
+      document.querySelector(".end-messages-container").remove();
+    }
+    if (document.querySelector(".go-home-container")) {
+      document.querySelector(".go-home-container").remove();
+    }
+    appStarted = false;
+    removeBlur();
+    clearBoard();
+    toggleScoreDisplayHide();
+    toggleTimerHide();
+  },
+};
 /* SCORING */
 const correctAnswerPoints = 1;
 const incorrectAnswerPoints = 1;
@@ -363,64 +420,6 @@ async function updateUserTotalScore() {
 II. SESSIONS & ROUNDS
 *******
 */
-
-const matchingAppSessions = {
-  displayStartBtn() {
-    if (
-      matchingStructureElements.startBtn.classList.contains("no-touch") ||
-      matchingStructureElements.startBtn.classList.contains("spinfade")
-    ) {
-      matchingStructureElements.startBtn.classList.remove("no-touch");
-      matchingStructureElements.startBtn.classList.remove("spinfade");
-      matchingStructureElements.exitBtn.classList.remove("no-touch");
-      matchingStructureElements.exitBtn.classList.remove("hide2");
-    }
-    matchingStructureElements.exitBtn.classList.remove("hide");
-    matchingStructureElements.startBtn.addEventListener(
-      "click",
-      matchingAppSessions.startSession
-    );
-    score.resetScore();
-  },
-  startSession() {
-    audio.navigationSfx.startApp.play();
-    removeEndMessagesContainer();
-    matchingStructureElements.startBtn.classList.add("no-touch");
-    matchingStructureElements.startBtn.classList.add("spinfade");
-    matchingStructureElements.exitBtn.classList.remove("intro");
-    matchingStructureElements.exitBtn.classList.add("no-touch");
-    matchingStructureElements.exitBtn.classList.add("hide2");
-    matchingStructureElements.exitBtn.classList.remove("intro");
-    setTimeout(startNewRound, 950);
-    setTimeout(() => {
-      appStarted = true;
-    }, 1);
-    setTimeout(() => {
-      startTimer();
-    }, 1000);
-  },
-  endSession() {
-    pauseFunction.unpause(elements);
-    homeBtnReturnToNormal();
-    resetNavigationBtns();
-    matchingStructureElements.appContainer.classList.add("hide");
-    matchingStructureElements.homeBtnContainer.classList.add("hide");
-    document.querySelectorAll(".letter-matching-app, .line").forEach((item) => {
-      item.remove();
-    });
-    if (document.querySelector(".end-messages-container")) {
-      document.querySelector(".end-messages-container").remove();
-    }
-    if (document.querySelector(".go-home-container")) {
-      document.querySelector(".go-home-container").remove();
-    }
-    appStarted = false;
-    removeBlur();
-    clearBoard();
-    toggleScoreDisplayHide();
-    toggleTimerHide();
-  },
-};
 
 document.addEventListener("keydown", (event) => {
   if (appStarted) {
