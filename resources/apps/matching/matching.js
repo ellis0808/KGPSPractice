@@ -460,7 +460,7 @@ function startNewRound() {
   if (timer.classList.contains("hide2")) {
     toggleTimerHide();
   }
-  homeBtnContainer.classList.remove("hide");
+  matchingStructureElements.homeBtnContainer.classList.remove("hide");
   matchingStructureElements.grid.classList.remove("blur");
   timer.classList.remove("blur");
   scoreDisplay.classList.remove("blur");
@@ -473,9 +473,10 @@ function startNewRound() {
     createDots(alphabetLowercase);
     matchingStructureElements.btnContainer1.appendChild(timer);
     matchingStructureElements.btnContainer1.appendChild(scoreDisplay);
-    matchingStructureElements.appContainer.appendChild(homeBtnContainer);
-    homeBtnContainer.appendChild(homeBtn);
-    homeBtnContainer.appendChild(pauseFunction.pauseBtn);
+    matchingStructureElements.homeBtnContainer.appendChild(homeBtn);
+    matchingStructureElements.homeBtnContainer.appendChild(
+      pauseFunction.pauseBtn
+    );
     setTimeout(() => {
       activateEventListeners();
     }, 200);
