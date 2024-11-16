@@ -99,7 +99,7 @@ const matchingStructureElements = {
     this.exitBtn.setAttribute("id", "exit-btn");
     this.exitBtn.classList.add("letter-matching-app", "hide");
     matchingStructureElements.exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
-    this.exitBtn.addEventListener("click", endApp);
+    this.exitBtn.addEventListener("click", matchingAppSessions.endApp);
   },
   setStartScreenElements: function () {
     this.btnContainer2.appendChild(this.startBtn);
@@ -211,7 +211,7 @@ reallyGoHomeContainer.appendChild(reallyGoHomeMessageContainer);
 const reallyGoHomeBtn = document.createElement("button");
 reallyGoHomeBtn.classList.add("go-home-btn");
 reallyGoHomeBtn.textContent = "Yes";
-reallyGoHomeBtn.addEventListener("click", endApp);
+reallyGoHomeBtn.addEventListener("click", matchingAppSessions.endApp);
 const cancelGoHomeBtn = document.createElement("button");
 cancelGoHomeBtn.classList.add("cancel-go-home-btn");
 cancelGoHomeBtn.textContent = "Cancel";
