@@ -1,6 +1,6 @@
 import { mainContainer } from "./variables.js";
 const appStructureElements = {
-  createMainStructureElements: function () {
+  createMainStructureElements() {
     this.appContainer = document.createElement("div");
     this.grid = document.createElement("div");
     this.btnContainer1 = document.createElement("div");
@@ -16,7 +16,7 @@ const appStructureElements = {
     this.homeBtnContainer.classList.add("home-btn-container", "hide");
     this.leftMenuContainer.classList.add("left-menu-container");
   },
-  setMainStructureElements: function () {
+  setMainStructureElements() {
     mainContainer.appendChild(this.appContainer);
     this.appContainer.appendChild(this.leftMenuContainer);
     this.appContainer.appendChild(this.btnContainer1);
@@ -24,6 +24,9 @@ const appStructureElements = {
     this.appContainer.appendChild(this.btnContainer4);
     this.appContainer.appendChild(this.grid);
     this.appContainer.appendChild(this.homeBtnContainer);
+  },
+  removeMainStructureElements() {
+    delete this.appContainer;
   },
 };
 

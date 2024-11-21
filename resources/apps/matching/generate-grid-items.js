@@ -13,7 +13,7 @@ import {
   EndDot,
   StartDot,
 } from "./dot-objects-control.js";
-import { pauseFunction } from "../../utilities/pause-function.js";
+import { pauseFunction } from "../../utilities/pause-functions.js";
 
 /*
 V. GRID POPULATION
