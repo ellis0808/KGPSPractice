@@ -68,7 +68,7 @@ const matchingStructureElements = {
     this.exitBtn.setAttribute("id", "exit-btn");
     this.exitBtn.classList.add("letter-matching-app", "hide");
     matchingStructureElements.exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
-    this.exitBtn.addEventListener("click", matchingAppSessions.endApp);
+    this.exitBtn.addEventListener("click", matchingApp.endApp);
   },
   setStartScreenElements: function () {
     appStructureElements.btnContainer2.appendChild(this.startBtn);
@@ -146,7 +146,7 @@ tryAgainBtn.innerText = "One More Time";
 tryAgainBtn.addEventListener("click", matchingAppSessions.startSession);
 const finishBtn = document.createElement("div");
 finishBtn.classList.add("finish-btn", "button");
-finishBtn.addEventListener("click", matchingAppSessions.endApp);
+finishBtn.addEventListener("click", matchingApp.endApp);
 finishBtn.innerText = "Finish";
 
 const homeBtn = document.createElement("button");
@@ -164,7 +164,7 @@ reallyGoHomeContainer.appendChild(reallyGoHomeMessageContainer);
 const reallyGoHomeBtn = document.createElement("button");
 reallyGoHomeBtn.classList.add("go-home-btn");
 reallyGoHomeBtn.textContent = "Yes";
-reallyGoHomeBtn.addEventListener("click", matchingAppSessions.endApp);
+reallyGoHomeBtn.addEventListener("click", matchingApp.endApp);
 const cancelGoHomeBtn = document.createElement("button");
 cancelGoHomeBtn.classList.add("cancel-go-home-btn");
 cancelGoHomeBtn.textContent = "Cancel";
@@ -550,11 +550,11 @@ function checkAllCorrect() {
       scoreDisplay.classList.add("pulse");
       audio.appSfx.correct.play();
       setTimeout(randomFeedback, 500);
-    }, 500);
+    }, 200);
     setTimeout(() => {
       toggleTouchFunction.disableTouch();
       continueToNextRound();
-    }, 1000);
+    }, 500);
   }
 }
 
