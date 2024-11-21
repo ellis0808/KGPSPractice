@@ -285,16 +285,6 @@ const matchingApp = {
   },
 };
 
-function unpause2() {
-  pauseBtn.removeEventListener("click", unpause);
-  enableTouch();
-  btnContainer1.classList.remove("strong-blur");
-  grid.classList.remove("strong-blur");
-  setTimeout(() => {
-    isPaused = false;
-  }, 500);
-  pauseBtn.addEventListener("click", pause);
-}
 let homeBtnIsGoHome = true;
 let pauseBtnPauses = true;
 
@@ -418,27 +408,6 @@ function removeEndMessagesContainer() {
     finishBtn.classList.add("no-touch");
     document.querySelector(".end-messages-container").remove();
   }
-}
-
-function startNewSession() {
-  tryAgainBtn.classList.add("no-touch");
-  finishBtn.classList.add("no-touch");
-  setTimeout(() => {
-    document.querySelector(".end-messages-container").remove();
-    clearBoard();
-    score.resetScore();
-    scoreDisplay.innerText = score.currentScore;
-    appStructureElements.grid.classList.remove("blur");
-    timer.classList.remove("blur");
-    scoreDisplay.classList.remove("blur");
-  }, 50);
-
-  setTimeout(matchingAppSessions.startSession, 300);
-  setTimeout(() => {
-    enableTouch();
-    tryAgainBtn.classList.remove("no-touch");
-    finishBtn.classList.remove("no-touch");
-  }, 4000);
 }
 
 function startNewRound() {

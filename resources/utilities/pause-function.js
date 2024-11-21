@@ -13,14 +13,14 @@ const toggleTouchFunction = {
 
     if (elements.structureElements || elements.interactiveElements) {
       elements.structureElements.forEach((item) => {
-        item.classList.add("no-touch", "strong-blur");
+        item.classList.add("no-touch");
       });
     }
   },
   enableTouch() {
     if (elements.structureElements) {
       elements.structureElements.forEach((item) => {
-        item.classList.remove("no-touch", "strong-blur");
+        item.classList.remove("no-touch");
       });
     }
   },
