@@ -39,42 +39,42 @@ import {
   pauseFunction,
   toggleTouchFunction,
 } from "../../utilities/pause-function.js";
-
+import { appStructureElements } from "../../utilities/app-structure-object.js";
 console.log("test");
 
 const matchingStructureElements = {
-  createMainStructureElements: function () {
-    this.appContainer = document.createElement("div");
-    this.grid = document.createElement("div");
-    this.btnContainer1 = document.createElement("div");
-    this.btnContainer2 = document.createElement("div");
-    this.btnContainer4 = document.createElement("div");
-    this.leftMenuContainer = document.createElement("div");
-    this.homeBtnContainer = document.createElement("div");
-    this.appContainer.classList.add("container", "letter-matching-app");
-    this.grid.classList.add("grid", "letter-matching-app");
-    this.btnContainer1.classList.add("btn-container1");
-    this.btnContainer2.classList.add("btn-container2");
-    this.btnContainer4.classList.add("btn-container4");
-    this.homeBtnContainer.classList.add(
-      "home-btn-container",
-      "hide",
-      "letter-matching-app"
-    );
-    this.leftMenuContainer.classList.add(
-      "left-menu-container",
-      "letter-matching-app"
-    );
-  },
-  setMainStructureElements: function () {
-    mainContainer.appendChild(this.appContainer);
-    this.appContainer.appendChild(this.leftMenuContainer);
-    this.appContainer.appendChild(this.btnContainer1);
-    this.appContainer.appendChild(this.btnContainer2);
-    this.appContainer.appendChild(this.btnContainer4);
-    this.appContainer.appendChild(this.grid);
-    this.appContainer.appendChild(this.homeBtnContainer);
-  },
+  // createMainStructureElements: function () {
+  //   this.appContainer = document.createElement("div");
+  //   this.grid = document.createElement("div");
+  //   this.btnContainer1 = document.createElement("div");
+  //   this.btnContainer2 = document.createElement("div");
+  //   this.btnContainer4 = document.createElement("div");
+  //   this.leftMenuContainer = document.createElement("div");
+  //   this.homeBtnContainer = document.createElement("div");
+  //   this.appContainer.classList.add("container", "letter-matching-app");
+  //   this.grid.classList.add("grid", "letter-matching-app");
+  //   this.btnContainer1.classList.add("btn-container1");
+  //   this.btnContainer2.classList.add("btn-container2");
+  //   this.btnContainer4.classList.add("btn-container4");
+  //   this.homeBtnContainer.classList.add(
+  //     "home-btn-container",
+  //     "hide",
+  //     "letter-matching-app"
+  //   );
+  //   this.leftMenuContainer.classList.add(
+  //     "left-menu-container",
+  //     "letter-matching-app"
+  //   );
+  // },
+  // setMainStructureElements: function () {
+  //   mainContainer.appendChild(this.appContainer);
+  //   this.appContainer.appendChild(this.leftMenuContainer);
+  //   this.appContainer.appendChild(this.btnContainer1);
+  //   this.appContainer.appendChild(this.btnContainer2);
+  //   this.appContainer.appendChild(this.btnContainer4);
+  //   this.appContainer.appendChild(this.grid);
+  //   this.appContainer.appendChild(this.homeBtnContainer);
+  // },
   creaGridStructureElements: function () {
     this.startRowContainer = document.createElement("div");
     this.endRowContainer = document.createElement("div");
@@ -86,10 +86,10 @@ const matchingStructureElements = {
     this.endDotsContainer.classList.add("end-dot-div");
   },
   setGridStructureElements: function () {
-    this.grid.appendChild(this.startRowContainer);
-    this.grid.appendChild(this.endRowContainer);
-    this.grid.appendChild(this.startDotsContainer);
-    this.grid.appendChild(this.endDotsContainer);
+    appStructureElements.grid.appendChild(this.startRowContainer);
+    appStructureElements.grid.appendChild(this.endRowContainer);
+    appStructureElements.grid.appendChild(this.startDotsContainer);
+    appStructureElements.grid.appendChild(this.endDotsContainer);
   },
   createStartScreenElements: function () {
     this.startBtn = document.createElement("button");
@@ -103,26 +103,10 @@ const matchingStructureElements = {
     this.exitBtn.addEventListener("click", matchingAppSessions.endApp);
   },
   setStartScreenElements: function () {
-    this.btnContainer2.appendChild(this.startBtn);
-    this.btnContainer2.appendChild(this.exitBtn);
+    appStructureElements.btnContainer2.appendChild(this.startBtn);
+    appStructureElements.btnContainer2.appendChild(this.exitBtn);
   },
-  createEndContainerElements: function () {
-    this.appContainer = document.createElement("div");
-    this.grid = document.createElement("div");
-    this.btnContainer1 = document.createElement("div");
-    this.btnContainer2 = document.createElement("div");
-    this.startBtn = document.createElement("button");
-    this.exitBtn = document.createElement("div");
-    this.startRowContainer = document.createElement("div");
-    this.endRowContainer = document.createElement("div");
-    this.startDotsContainer = document.createElement("div");
-    this.endDotsContainer = document.createElement("div");
-    this.leftMenuContainer = document.createElement("div");
-    this.tryAgainBtn = document.createElement("div");
-    this.finishBtn = document.createElement("div");
-    this.homeBtnContainer = document.createElement("div");
-    this.startDotsContainer = document.createElement("div");
-  },
+  createEndContainerElements: function () {},
 };
 
 const matchingAppSessions = {
@@ -164,8 +148,8 @@ const matchingAppSessions = {
     pauseFunction.unpause();
     homeBtnReturnToNormal();
     resetNavigationBtns();
-    matchingStructureElements.appContainer.classList.add("hide");
-    matchingStructureElements.homeBtnContainer.classList.add("hide");
+    appStructureElements.appContainer.classList.add("hide");
+    appStructureElements.homeBtnContainer.classList.add("hide");
     document.querySelectorAll(".letter-matching-app, .line").forEach((item) => {
       item.remove();
     });
@@ -247,12 +231,12 @@ const matchingApp = {
   startApp(set) {
     sessionCheck();
     setStyle(set);
-    matchingStructureElements.createMainStructureElements();
+    appStructureElements.createMainStructureElements();
     matchingStructureElements.createStartScreenElements();
     matchingStructureElements.setStartScreenElements();
     matchingStructureElements.creaGridStructureElements();
-    matchingStructureElements.setMainStructureElements();
-    matchingStructureElements.grid.classList.add("gridHide");
+    appStructureElements.setMainStructureElements();
+    appStructureElements.grid.classList.add("gridHide");
     matchingStructureElements.setGridStructureElements();
     elements.getElements(matchingAppElements);
     console.log(elements);
@@ -270,7 +254,7 @@ const matchingApp = {
     resetTimer();
     scoreDisplay.innerText = score.currentScore;
 
-    matchingStructureElements.appContainer.classList.remove("hide");
+    appStructureElements.appContainer.classList.remove("hide");
     if (!scoreDisplay.classList.contains("hide2")) {
       toggleScoreDisplayHide();
     }
@@ -341,12 +325,12 @@ function homeBtnReturnToNormal() {
   homeBtn.classList.remove("home-btn-enlarge");
 }
 function displayGoHomeConfirmation() {
-  matchingStructureElements.btnContainer4.appendChild(reallyGoHomeContainer);
+  appStructureElements.btnContainer4.appendChild(reallyGoHomeContainer);
   reallyGoHomeContainer.appendChild(reallyGoHomeBtn);
   reallyGoHomeContainer.appendChild(cancelGoHomeBtn);
 }
 function returnToApp() {
-  matchingStructureElements.btnContainer4.removeChild(reallyGoHomeContainer);
+  appStructureElements.btnContainer4.removeChild(reallyGoHomeContainer);
   homeBtnReturnToNormal();
   pauseFunction.unpause();
   homeBtnIsGoHome = true;
@@ -444,7 +428,7 @@ function startNewSession() {
     clearBoard();
     score.resetScore();
     scoreDisplay.innerText = score.currentScore;
-    matchingStructureElements.grid.classList.remove("blur");
+    appStructureElements.grid.classList.remove("blur");
     timer.classList.remove("blur");
     scoreDisplay.classList.remove("blur");
   }, 50);
@@ -458,14 +442,15 @@ function startNewSession() {
 }
 
 function startNewRound() {
+  pauseFunction.enableTouch();
   if (scoreDisplay.classList.contains("hide2")) {
     toggleScoreDisplayHide();
   }
   if (timer.classList.contains("hide2")) {
     toggleTimerHide();
   }
-  matchingStructureElements.homeBtnContainer.classList.remove("hide");
-  matchingStructureElements.grid.classList.remove("blur");
+  appStructureElements.homeBtnContainer.classList.remove("hide");
+  appStructureElements.grid.classList.remove("blur");
   timer.classList.remove("blur");
   scoreDisplay.classList.remove("blur");
   setTimeout(() => {
@@ -475,12 +460,10 @@ function startNewRound() {
     generateLetterDivsForMatching(alphabetLowercase);
     createDots(shuffledAlphabetCapitals);
     createDots(alphabetLowercase);
-    matchingStructureElements.btnContainer1.appendChild(timer);
-    matchingStructureElements.btnContainer1.appendChild(scoreDisplay);
-    matchingStructureElements.homeBtnContainer.appendChild(homeBtn);
-    matchingStructureElements.homeBtnContainer.appendChild(
-      pauseFunction.pauseBtn
-    );
+    appStructureElements.btnContainer1.appendChild(timer);
+    appStructureElements.btnContainer1.appendChild(scoreDisplay);
+    appStructureElements.homeBtnContainer.appendChild(homeBtn);
+    appStructureElements.homeBtnContainer.appendChild(pauseFunction.pauseBtn);
     setTimeout(() => {
       activateEventListeners();
     }, 200);
@@ -488,7 +471,7 @@ function startNewRound() {
       enableTouch();
     }, 300);
     setTimeout(() => {
-      matchingStructureElements.grid.classList.remove("gridHide");
+      appStructureElements.grid.classList.remove("gridHide");
     }, 100);
     elements.getElements();
   }, 1000);
@@ -503,9 +486,7 @@ function roundOver() {
   setTimeout(displayEndMessagesContainer, 600);
   setTimeout(toggleTouchFunction.disableTouch, 500);
   setTimeout(toggleTouchFunction.disableTouch, 1000);
-  matchingStructureElements.grid.classList.add("blur");
-  timer.classList.add("blur");
-  scoreDisplay.classList.add("blur");
+  pauseFunction.disableTouch();
 }
 
 /*
@@ -513,7 +494,7 @@ B. Clearing the Grid & Resetting Arrays
 */
 function clearBoard() {
   setTimeout(() => {
-    matchingStructureElements.grid.classList.add("gridHide");
+    appStructureElements.grid.classList.add("gridHide");
   }, 50);
   setTimeout(() => {
     correctDotsAndLines.length = 0;
@@ -550,7 +531,7 @@ function displayEndMessagesContainer() {
     "end-messages-container",
     "letter-matching-app"
   );
-  matchingStructureElements.appContainer.appendChild(btnContainer5);
+  appStructureElements.appContainer.appendChild(btnContainer5);
   btnContainer5.appendChild(endMessagesContainer);
   const finalScoreAssessment = document.createElement("div");
   finalScoreAssessment.classList.add("final-score-assessment");
