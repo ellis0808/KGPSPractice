@@ -7,7 +7,7 @@ const elements = {
     }
   },
 };
-class ToggleTouchFunction {
+const toggleTouchFunction = {
   disableTouch() {
     console.log(elements);
 
@@ -16,15 +16,49 @@ class ToggleTouchFunction {
         item.classList.add("no-touch", "strong-blur");
       });
     }
-  }
+  },
   enableTouch() {
     if (elements.structureElements) {
       elements.structureElements.forEach((item) => {
         item.classList.remove("no-touch", "strong-blur");
       });
     }
-  }
-}
+  },
+};
+const toggleBlur = {
+  addWeakBlur() {
+    console.log(elements);
+
+    if (elements.structureElements || elements.interactiveElements) {
+      elements.structureElements.forEach((item) => {
+        item.classList.add("blur");
+      });
+    }
+  },
+  removeWeakBlur() {
+    if (elements.structureElements) {
+      elements.structureElements.forEach((item) => {
+        item.classList.remove("blur");
+      });
+    }
+  },
+  addStrongBlur() {
+    console.log(elements);
+
+    if (elements.structureElements || elements.interactiveElements) {
+      elements.structureElements.forEach((item) => {
+        item.classList.add("strong-blur");
+      });
+    }
+  },
+  removeStrongBlur() {
+    if (elements.structureElements) {
+      elements.structureElements.forEach((item) => {
+        item.classList.remove("strong-blur");
+      });
+    }
+  },
+};
 class PauseFunction {
   constructor() {
     this.pauseBtn = document.createElement("div");
@@ -46,6 +80,7 @@ class PauseFunction {
     console.log(elements);
 
     toggleTouchFunction.disableTouch();
+    toggleBlur.addStrongBlur();
     setTimeout(() => {
       this.pauseBtn.addEventListener("pointerdown", () => this.unpause());
     }, 200);
@@ -55,6 +90,7 @@ class PauseFunction {
     this.pauseBtn.removeEventListener("pointerdown", this.unpause);
     if (elements.structureElements) {
       toggleTouchFunction.enableTouch();
+      toggleBlur.removeStrongBlur();
     }
     setTimeout(() => {
       this.pauseBtn.addEventListener("pointerdown", () => this.pause());
@@ -62,7 +98,6 @@ class PauseFunction {
   }
 }
 
-const toggleTouchFunction = new ToggleTouchFunction();
 const pauseFunction = new PauseFunction();
 
-export { elements, pauseFunction, toggleTouchFunction };
+export { elements, pauseFunction, toggleTouchFunction, toggleBlur };

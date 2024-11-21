@@ -442,7 +442,7 @@ function startNewSession() {
 }
 
 function startNewRound() {
-  pauseFunction.enableTouch();
+  toggleTouchFunction.enableTouch();
   if (scoreDisplay.classList.contains("hide2")) {
     toggleScoreDisplayHide();
   }
@@ -486,7 +486,7 @@ function roundOver() {
   setTimeout(displayEndMessagesContainer, 600);
   setTimeout(toggleTouchFunction.disableTouch, 500);
   setTimeout(toggleTouchFunction.disableTouch, 1000);
-  pauseFunction.disableTouch();
+  toggleTouchFunction.disableTouch();
 }
 
 /*
