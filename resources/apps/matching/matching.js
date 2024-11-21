@@ -261,8 +261,7 @@ function resetNavigationBtns() {
   pauseBtnPauses = true;
   homeBtn.removeEventListener("pointerdown", returnToApp);
   homeBtn.addEventListener("pointerdown", goHome);
-  pauseBtn.removeEventListener("pointerdown", returnToApp);
-  pauseBtn.addEventListener("pointerdown", pauseFunction.isPaused);
+
   homeBtnReturnToNormal();
 }
 function goHome() {

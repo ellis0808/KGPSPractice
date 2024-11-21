@@ -77,7 +77,6 @@ class PauseFunction {
   pause() {
     this.isPaused = true;
     this.pauseBtn.removeEventListener("pointerdown", this.pause);
-    console.log(elements);
 
     toggleTouchFunction.disableTouch();
     toggleBlur.addStrongBlur();
