@@ -140,36 +140,6 @@ const incorrectAnswerPoints = 1;
 
 scoreDisplay.textContent = `${score.currentScore}`;
 
-const tryAgainBtn = document.createElement("div");
-tryAgainBtn.classList.add("try-again-btn", "button");
-tryAgainBtn.innerText = "One More Time";
-tryAgainBtn.addEventListener("click", matchingAppSessions.startSession);
-const finishBtn = document.createElement("div");
-finishBtn.classList.add("finish-btn", "button");
-finishBtn.addEventListener("click", matchingApp.endApp);
-finishBtn.innerText = "Finish";
-
-const homeBtn = document.createElement("button");
-homeBtn.classList.add("home-btn");
-homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
-homeBtn.addEventListener("click", goHome);
-// matchingStructureElements.homeBtnContainer.appendChild(homeBtn);
-
-const reallyGoHomeContainer = document.createElement("div");
-reallyGoHomeContainer.classList.add("go-home-container", "letter-matching-app");
-const reallyGoHomeMessageContainer = document.createElement("div");
-reallyGoHomeMessageContainer.classList.add("go-home-message");
-reallyGoHomeMessageContainer.textContent = "Go back to Menu?";
-reallyGoHomeContainer.appendChild(reallyGoHomeMessageContainer);
-const reallyGoHomeBtn = document.createElement("button");
-reallyGoHomeBtn.classList.add("go-home-btn");
-reallyGoHomeBtn.textContent = "Yes";
-reallyGoHomeBtn.addEventListener("click", matchingApp.endApp);
-const cancelGoHomeBtn = document.createElement("button");
-cancelGoHomeBtn.classList.add("cancel-go-home-btn");
-cancelGoHomeBtn.textContent = "Cancel";
-cancelGoHomeBtn.addEventListener("click", returnToApp);
-
 let endDotId;
 let startDotId;
 
@@ -256,6 +226,35 @@ const matchingApp = {
 
 let homeBtnIsGoHome = true;
 let pauseBtnPauses = true;
+const tryAgainBtn = document.createElement("div");
+tryAgainBtn.classList.add("try-again-btn", "button");
+tryAgainBtn.innerText = "One More Time";
+tryAgainBtn.addEventListener("click", matchingAppSessions.startSession);
+const finishBtn = document.createElement("div");
+finishBtn.classList.add("finish-btn", "button");
+finishBtn.addEventListener("click", matchingApp.endApp);
+finishBtn.innerText = "Finish";
+
+const homeBtn = document.createElement("button");
+homeBtn.classList.add("home-btn");
+homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
+homeBtn.addEventListener("click", goHome);
+// matchingStructureElements.homeBtnContainer.appendChild(homeBtn);
+
+const reallyGoHomeContainer = document.createElement("div");
+reallyGoHomeContainer.classList.add("go-home-container", "letter-matching-app");
+const reallyGoHomeMessageContainer = document.createElement("div");
+reallyGoHomeMessageContainer.classList.add("go-home-message");
+reallyGoHomeMessageContainer.textContent = "Go back to Menu?";
+reallyGoHomeContainer.appendChild(reallyGoHomeMessageContainer);
+const reallyGoHomeBtn = document.createElement("button");
+reallyGoHomeBtn.classList.add("go-home-btn");
+reallyGoHomeBtn.textContent = "Yes";
+reallyGoHomeBtn.addEventListener("click", matchingApp.endApp);
+const cancelGoHomeBtn = document.createElement("button");
+cancelGoHomeBtn.classList.add("cancel-go-home-btn");
+cancelGoHomeBtn.textContent = "Cancel";
+cancelGoHomeBtn.addEventListener("click", returnToApp);
 
 function resetNavigationBtns() {
   homeBtnIsGoHome = true;
