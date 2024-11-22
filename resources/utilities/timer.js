@@ -55,6 +55,7 @@ const timerFunction = {
 
           toggleTouchFunction.disableTouch();
         }
+        console.log(pauseFunction.isPaused);
       }
     }, 1000);
   },
