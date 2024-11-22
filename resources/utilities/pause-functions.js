@@ -85,6 +85,8 @@ class PauseFunction {
   }
   unpause() {
     this.isPaused = false;
+    console.log(this.isPaused);
+
     this.pauseBtn.removeEventListener("pointerdown", () => this.unpause());
     if (elements.structureElements) {
       toggleTouchFunction.enableTouch();
