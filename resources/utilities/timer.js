@@ -56,14 +56,16 @@ const timerFunction = {
   },
   setTimer(time) {
     this.time = time;
-    timer.textContent = this.time;
+    this.timer.textContent = this.time;
   },
   toggleTimerHide() {
     this.timer.classList.toggle("hide2");
   },
   startTimer(time) {
     this.setTimer(time);
-    setTimeout(this.displayTimer, 500);
+    setTimeout(() => {
+      this.displayTimer;
+    }, 500);
   },
 };
 
