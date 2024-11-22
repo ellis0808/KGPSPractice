@@ -67,4 +67,4 @@ const timerFunction = {
   },
 };
 
-export { timerFunction, toggleTimerHide };
+export { timerFunction, toggleTimerHide, timer };
