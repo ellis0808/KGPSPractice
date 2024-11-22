@@ -190,7 +190,7 @@ const matchingApp = {
     setTimeout(matchingAppSessions.displayStartBtn, 200);
 
     score.resetScore();
-    resetTimer();
+    // resetTimer();
     scoreDisplay.innerText = score.currentScore;
 
     appStructureElements.appContainer.classList.remove("hide");
@@ -220,7 +220,7 @@ const matchingApp = {
         setTimeout(menuItems.restoreMainMenu, 100);
       }, 500);
     }, 500);
-    resetTimer();
+    // resetTimer();
     scoreDisplay.innerText = score.currentScore;
   },
 };
