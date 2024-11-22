@@ -35,8 +35,8 @@ const timerFunction = {
   time: null,
   counter: null,
   countDown() {
-    this.counter = setInterval(() => {
-      if (!pauseFunction.isPaused) {
+    if (!pauseFunction.isPaused) {
+      this.counter = setInterval(() => {
         --this.time;
         if (this.time < 10) {
           this.timer.textContent = `0:0${this.time}`;
@@ -48,8 +48,8 @@ const timerFunction = {
           clearInterval(this.counter);
           toggleTouchFunction.disableTouch();
         }
-      }
-    }, 1000);
+      }, 1000);
+    }
   },
   displayTimer() {
     this.countDown();
