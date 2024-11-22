@@ -598,10 +598,10 @@ III. TIMER
 let time;
 let countDown;
 const roundTime = 60;
-function startTimer() {
-  time = roundTime;
-  setTimeout(displayTimer, 500);
-}
+// function startTimer() {
+//   time = roundTime;
+//   setTimeout(displayTimer, 500);
+// }
 function displayTimer() {
   countDown = setInterval(() => {
     if (!pauseFunction.isPaused) {

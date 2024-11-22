@@ -48,7 +48,7 @@ const timerFunction = {
         } else {
           this.timer.textContent = `0:${this.time}`;
         }
-        if (this.time < 0) {
+        if (this.time <= 0) {
           this.timer.textContent = "0:00";
           clearInterval(this.counter);
           toggleTouchFunction.disableTouch();
