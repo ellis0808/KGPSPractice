@@ -38,15 +38,14 @@ const timerFunction = {
     this.counter = setInterval(() => {
       if (!pauseFunction.isPaused) {
         --this.time;
-        if (this.time < 10) {
+        if (this.time >= 60) {
+          this.timer.textContent = `1:00`;
+          // let minutes = Math.floor(this.time / 60);
+          // let seconds = this.time % 60;
+          // this.timer.textContent = `${minutes}:${seconds}`
+        } else if (this.time < 10) {
           this.timer.textContent = `0:0${this.time}`;
         } else {
-          if (this.time >= 60) {
-            this.timer.textContent = `1:00`;
-            // let minutes = Math.floor(this.time / 60);
-            // let seconds = this.time % 60;
-            // this.timer.textContent = `${minutes}:${seconds}`
-          }
           this.timer.textContent = `0:${this.time}`;
         }
         if (this.time < 0) {
