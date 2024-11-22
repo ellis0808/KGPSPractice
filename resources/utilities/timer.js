@@ -49,7 +49,7 @@ const timerFunction = {
           toggleTouchFunction.disableTouch();
         }
       }
-    });
+    }, 1000);
   },
   displayTimer() {
     this.countDown();
