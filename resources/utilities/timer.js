@@ -39,7 +39,7 @@ const timerFunction = {
       if (!pauseFunction.isPaused) {
         --this.time;
         if (this.time < 10) {
-          timer.textContent = `0:0${this.time}`;
+          this.timer.textContent = `0:0${this.time}`;
         } else {
           this.timer.textContent = `0:${this.time}`;
         }
