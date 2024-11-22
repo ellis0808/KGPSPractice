@@ -38,6 +38,8 @@ const timerFunction = {
     this.counter = setInterval(() => {
       if (!pauseFunction.isPaused) {
         --this.time;
+        console.log(this.time);
+
         if (this.time >= 60) {
           this.timer.textContent = `1:00`;
           // let minutes = Math.floor(this.time / 60);

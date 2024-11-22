@@ -74,7 +74,6 @@ class PauseFunction {
 
     toggleTouchFunction.disableTouch();
     toggleBlur.addStrongBlur();
-    return this.isPaused;
   }
   unpause() {
     this.isPaused = false;
@@ -88,8 +87,8 @@ class PauseFunction {
       toggleTouchFunction.enableTouch();
       toggleBlur.removeStrongBlur();
     }
-    return this.isPaused;
   }
+  getIsPausedStatus() {}
 }
 
 const pauseFunction = new PauseFunction();
