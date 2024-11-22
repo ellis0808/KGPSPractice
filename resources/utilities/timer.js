@@ -64,7 +64,7 @@ const timerFunction = {
   startTimer(time) {
     this.setTimer(time);
     setTimeout(() => {
-      this.displayTimer;
+      this.displayTimer();
     }, 500);
   },
 };
