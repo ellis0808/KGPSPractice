@@ -63,38 +63,30 @@ class PauseFunction {
     this.unpause = this.unpause.bind(this);
     this.isPaused = false;
   }
-  togglePauseBtn() {
-    if (this.isPaused) {
-      this.pauseBtn.removeEventListener("pointerdown", this.pause);
-    }
-    if (!this.isPaused) {
-      this.pauseBtn.addEventListener("pointerdown", this.pause);
-    }
-  }
   pause() {
     this.isPaused = true;
     console.log(this.isPaused);
 
-    this.pauseBtn.removeEventListener("pointerdown", () => this.pause());
+    this.pauseBtn.removeEventListener("pointerdown", this.pause);
+    setTimeout(() => {
+      this.pauseBtn.addEventListener("pointerdown", this.unpause);
+    }, 200);
 
     toggleTouchFunction.disableTouch();
     toggleBlur.addStrongBlur();
-    setTimeout(() => {
-      this.pauseBtn.addEventListener("pointerdown", () => this.unpause());
-    }, 200);
   }
   unpause() {
     this.isPaused = false;
     console.log(this.isPaused);
 
-    this.pauseBtn.removeEventListener("pointerdown", () => this.unpause());
+    this.pauseBtn.removeEventListener("pointerdown", this.unpause);
+    setTimeout(() => {
+      this.pauseBtn.addEventListener("pointerdown", this.pause);
+    }, 200);
     if (elements.structureElements) {
       toggleTouchFunction.enableTouch();
       toggleBlur.removeStrongBlur();
     }
-    setTimeout(() => {
-      this.pauseBtn.addEventListener("pointerdown", () => this.pause());
-    }, 200);
   }
 }
 
