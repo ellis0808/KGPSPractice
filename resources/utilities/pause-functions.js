@@ -67,13 +67,16 @@ class PauseFunction {
     if (this.isPaused) {
       this.pauseBtn.removeEventListener("pointerdown", this.pause);
     }
+    if (!this.isPaused) {
+      this.pauseBtn.addEventListener("pointerdown", this.pause);
+    }
   }
   pause() {
     console.log(this.isPaused);
     this.isPaused = true;
     console.log(this.isPaused);
 
-    this.pauseBtn.removeEventListener("pointerdown", this.pause);
+    this.pauseBtn.removeEventListener("pointerdown", () => this.pause);
 
     toggleTouchFunction.disableTouch();
     toggleBlur.addStrongBlur();
@@ -83,7 +86,7 @@ class PauseFunction {
   }
   unpause() {
     this.isPaused = false;
-    this.pauseBtn.removeEventListener("pointerdown", this.unpause);
+    this.pauseBtn.removeEventListener("pointerdown", () => this.unpause);
     if (elements.structureElements) {
       toggleTouchFunction.enableTouch();
       toggleBlur.removeStrongBlur();
