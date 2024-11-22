@@ -240,7 +240,7 @@ const homeBtn = document.createElement("button");
 homeBtn.classList.add("home-btn");
 homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
 homeBtn.addEventListener("click", goHome);
-appStructureElements.homeBtnContainer.appendChild(homeBtn);
+// appStructureElements.homeBtnContainer.appendChild(homeBtn);
 
 const reallyGoHomeContainer = document.createElement("div");
 reallyGoHomeContainer.classList.add("go-home-container", "letter-matching-app");
