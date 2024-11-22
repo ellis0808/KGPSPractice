@@ -7,11 +7,7 @@ import {
 } from "../../utilities/variables.js";
 import { menuItems } from "../general/start-main-app.js";
 import { score } from "../../utilities/score.js";
-import {
-  timer,
-  timerFunction,
-  toggleTimerHide,
-} from "../../utilities/timer.js";
+import { timerFunction, toggleTimerHide } from "../../utilities/timer.js";
 import {
   scoreDisplay,
   toggleScoreDisplayHide,
