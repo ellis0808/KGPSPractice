@@ -6,8 +6,12 @@ import {
   body,
 } from "../../utilities/variables.js";
 import { menuItems } from "../general/start-main-app.js";
-import { score } from "../../utilities/score-object.js";
-import { timer, toggleTimerHide } from "../../utilities/timer-object.js";
+import { score } from "../../utilities/score.js";
+import {
+  timer,
+  timerFunction,
+  toggleTimerHide,
+} from "../../utilities/timer.js";
 import {
   scoreDisplay,
   toggleScoreDisplayHide,
@@ -37,6 +41,7 @@ import { audio } from "../../utilities/audio.js";
 import {
   elements,
   pauseFunction,
+  toggleBlur,
   toggleTouchFunction,
 } from "../../utilities/pause-functions.js";
 import { appStructureElements } from "../../utilities/app-structure-object.js";
@@ -109,7 +114,7 @@ const matchingAppSessions = {
       appStarted = true;
     }, 1);
     setTimeout(() => {
-      startTimer();
+      timerFunction.startTimer(60);
     }, 1000);
   },
   endSession() {
@@ -196,8 +201,8 @@ const matchingApp = {
     if (!scoreDisplay.classList.contains("hide2")) {
       toggleScoreDisplayHide();
     }
-    if (!timer.classList.contains("hide2")) {
-      toggleTimerHide();
+    if (!timerFunction.timer.classList.contains("hide2")) {
+      timerFunction.toggleTimerHide();
     }
 
     setTimeout(setUser, 2000);
@@ -239,7 +244,7 @@ const homeBtn = document.createElement("button");
 homeBtn.classList.add("home-btn");
 homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
 homeBtn.addEventListener("click", goHome);
-// matchingStructureElements.homeBtnContainer.appendChild(homeBtn);
+appStructureElements.homeBtnContainer.appendChild(homeBtn);
 
 const reallyGoHomeContainer = document.createElement("div");
 reallyGoHomeContainer.classList.add("go-home-container", "letter-matching-app");
@@ -383,11 +388,10 @@ function startNewRound() {
     toggleScoreDisplayHide();
   }
   if (timer.classList.contains("hide2")) {
-    toggleTimerHide();
+    timerFunction.toggleTimerHide();
   }
   appStructureElements.homeBtnContainer.classList.remove("hide");
-  appStructureElements.grid.classList.remove("blur");
-  timer.classList.remove("blur");
+  toggleBlur.removeWeakBlur();
   scoreDisplay.classList.remove("blur");
   setTimeout(() => {
     letterSetGenerator();
@@ -396,7 +400,7 @@ function startNewRound() {
     generateLetterDivsForMatching(alphabetLowercase);
     createDots(shuffledAlphabetCapitals);
     createDots(alphabetLowercase);
-    appStructureElements.btnContainer1.appendChild(timer);
+    appStructureElements.btnContainer1.appendChild(timerFunction.timer);
     appStructureElements.btnContainer1.appendChild(scoreDisplay);
     appStructureElements.homeBtnContainer.appendChild(homeBtn);
     appStructureElements.homeBtnContainer.appendChild(pauseFunction.pauseBtn);

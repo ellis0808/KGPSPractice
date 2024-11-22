@@ -9,8 +9,6 @@ const elements = {
 };
 const toggleTouchFunction = {
   disableTouch() {
-    console.log(elements);
-
     if (elements.structureElements || elements.interactiveElements) {
       elements.structureElements.forEach((item) => {
         item.classList.add("no-touch");
@@ -27,8 +25,6 @@ const toggleTouchFunction = {
 };
 const toggleBlur = {
   addWeakBlur() {
-    console.log(elements);
-
     if (elements.structureElements || elements.interactiveElements) {
       elements.structureElements.forEach((item) => {
         item.classList.add("blur");
@@ -43,8 +39,6 @@ const toggleBlur = {
     }
   },
   addStrongBlur() {
-    console.log(elements);
-
     if (elements.structureElements || elements.interactiveElements) {
       elements.structureElements.forEach((item) => {
         item.classList.add("strong-blur");

@@ -1,6 +1,6 @@
 /* Imports */
 import { mainContainer, stylesheet } from "../../utilities/variables.js";
-import { score } from "../../utilities/score-object.js";
+import { score } from "../../utilities/score.js";
 import {
   scoreDisplay,
   toggleScoreDisplayHide,

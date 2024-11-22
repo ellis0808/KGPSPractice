@@ -1,4 +1,4 @@
-import { score } from "./score-object.js";
+import { score } from "./score.js";
 
 const scoreDisplay = document.createElement("div");
 scoreDisplay.classList.add("score-display");

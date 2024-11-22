@@ -27,6 +27,12 @@ const appStructureElements = {
   },
   removeMainStructureElements() {
     delete this.appContainer;
+    delete this.grid;
+    delete this.btnContainer1;
+    delete this.btnContainer2;
+    delete this.btnContainer4;
+    delete this.homeBtnContainer;
+    delete this.leftMenuContainer;
   },
 };
 
