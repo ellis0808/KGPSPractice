@@ -50,6 +50,9 @@ const timerFunction = {
         } else {
           this.timer.textContent = "0:00";
           clearInterval(this.counter);
+          console.log("test2");
+          console.log(this.counter);
+
           toggleTouchFunction.disableTouch();
         }
       }
