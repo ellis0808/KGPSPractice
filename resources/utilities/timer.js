@@ -34,7 +34,7 @@ const timerFunction = {
   })(),
   time: null,
   counter: null,
-  countDown: () => {
+  countDown() {
     this.counter = setInterval(() => {
       if (!pauseFunction.isPaused) {
         --this.time;

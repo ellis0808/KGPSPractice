@@ -178,7 +178,6 @@ const matchingApp = {
     appStructureElements.grid.classList.add("gridHide");
     matchingStructureElements.setGridStructureElements();
     elements.getElements(matchingAppElements);
-    console.log(elements);
     pauseFunction.unpause();
     stylesheet.setAttribute(
       "href",
@@ -383,7 +382,7 @@ function startNewRound() {
   if (scoreDisplay.classList.contains("hide2")) {
     toggleScoreDisplayHide();
   }
-  if (timer.classList.contains("hide2")) {
+  if (timerFunction.timer.classList.contains("hide2")) {
     timerFunction.toggleTimerHide();
   }
   appStructureElements.homeBtnContainer.classList.remove("hide");
