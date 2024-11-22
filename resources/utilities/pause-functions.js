@@ -65,7 +65,9 @@ class PauseFunction {
   }
   togglePauseBtn() {
     if (this.isPaused) {
+      console.log(this.isPaused);
       this.pauseBtn.removeEventListener("pointerdown", this.pause);
+      console.log(this.isPaused);
     }
   }
   pause() {

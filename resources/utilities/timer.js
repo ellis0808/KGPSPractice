@@ -35,12 +35,18 @@ const timerFunction = {
   time: null,
   counter: null,
   countDown() {
-    if (!pauseFunction.isPaused) {
-      this.counter = setInterval(() => {
+    this.counter = setInterval(() => {
+      if (!pauseFunction.isPaused) {
         --this.time;
         if (this.time < 10) {
           this.timer.textContent = `0:0${this.time}`;
         } else {
+          if (this.time >= 60) {
+            this.timer.textContent = `1:00`;
+            // let minutes = Math.floor(this.time / 60);
+            // let seconds = this.time % 60;
+            // this.timer.textContent = `${minutes}:${seconds}`
+          }
           this.timer.textContent = `0:${this.time}`;
         }
         if (this.time < 0) {
@@ -48,8 +54,8 @@ const timerFunction = {
           clearInterval(this.counter);
           toggleTouchFunction.disableTouch();
         }
-      }, 1000);
-    }
+      }
+    }, 1000);
   },
   displayTimer() {
     this.countDown();
