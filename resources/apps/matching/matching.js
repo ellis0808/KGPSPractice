@@ -144,7 +144,7 @@ const matchingApp = {
   startApp(set) {
     sessionCheck();
     setStyle(set);
-    appStructure.createAndSetappStructureAndHideGrid();
+    appStructure.createAndSetAppStructureThenHideGrid();
     matchingAppStructure.createAndSetStructure();
     elements.get(matchingApp);
     pauseFunction.unpause();
