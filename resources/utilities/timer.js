@@ -19,31 +19,33 @@ const timerFunction = {
       if (!pauseFunction.isPaused) {
         console.log(pauseFunction.isPaused);
         --this.time;
-        if (this.time >= 60) {
-          this.timer.textContent = `1:00`;
-          // let minutes = Math.floor(this.time / 60);
-          // let seconds = this.time % 60;
-          // this.timer.textContent = `${minutes}:${seconds}`
-        } else if (this.time < 10 && this.time >= 0) {
-          this.timer.textContent = `0:0${this.time}`;
-        } else if (this.time >= 0) {
-          this.timer.textContent = `0:${this.time}`;
-        } else {
-          this.timer.textContent = "0:00";
-          clearInterval(this.counter);
-          console.log(this.counter);
-
-          toggleTouchFunction.disableTouch();
-        }
+        this.updateTimerDisplay();
+        // if (this.time < 10 && this.time >= 0) {
+        //   this.timer.textContent = `0:0${this.time}`;
+        // } else if (this.time >= 0) {
+        //   this.timer.textContent = `0:${this.time}`;
+        // } else {
+        // this.timer.textContent = "0:00";
+        clearInterval(this.counter);
+        toggleTouchFunction.disableTouch();
+        // }
       }
     }, 1000);
   },
   displayTimer() {
     this.countDown();
   },
+  updateTimerDisplay() {
+    this.timer.textContent =
+      this.time > 10 ? `0:${this.time}` : `0:${this.time}`;
+  },
   setTimer(time) {
     this.time = time;
-    this.timer.textContent = this.time;
+    if (this.time === 60) {
+      this.timer.textContent = "1:00";
+    } else {
+      this.timer.textContent = this.time;
+    }
   },
   toggleTimerHide() {
     this.timer.classList.toggle("hide2");
