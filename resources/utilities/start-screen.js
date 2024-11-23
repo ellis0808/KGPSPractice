@@ -27,15 +27,15 @@ const startScreen = {
   },
   displayStartScreen() {
     console.log("b");
-    if (
-      this.startBtn.classList.contains("no-touch") ||
-      this.startBtn.classList.contains("spinfade")
-    ) {
-      this.startBtn.classList.remove("no-touch");
-      this.startBtn.classList.remove("spinfade");
-      this.exitBtn.classList.remove("no-touch");
-      this.exitBtn.classList.remove("hide2");
-    }
+    // if (
+    //   this.startBtn.classList.contains("no-touch") ||
+    //   this.startBtn.classList.contains("spinfade")
+    // ) {
+    this.startBtn.classList.remove("no-touch");
+    this.startBtn.classList.remove("spinfade");
+    this.exitBtn.classList.remove("no-touch");
+    this.exitBtn.classList.remove("hide2");
+    // }
     this.exitBtn.classList.remove("hide");
     score.resetScore();
   },
