@@ -109,7 +109,7 @@ const matchingAppSessions = {
     setTimeout(() => {
       appStarted = true;
     }, 1);
-    setTimeout(timerFunction.startTimer(60), 1000);
+    setTimeout(() => timerFunction.startTimer(60), 1000);
   },
   endSession() {
     pauseFunction.unpause();
