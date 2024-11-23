@@ -16,10 +16,13 @@ const startScreen = {
     appStructure.setBtnContainer2(this.startBtn, this.exitBtn);
   },
   createAndSetStartScreen() {
+    console.log("a");
+
     this.createStartScreen();
     this.setStartScreen();
   },
   displayStartScreen() {
+    console.log("b");
     if (
       this.startBtn.classList.contains("no-touch") ||
       this.startBtn.classList.contains("spinfade")
