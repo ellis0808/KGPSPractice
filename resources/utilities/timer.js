@@ -51,9 +51,7 @@ const timerFunction = {
     this.timer.classList.toggle("hide2");
   },
   startTimer() {
-    setTimeout(() => {
-      this.displayTimer();
-    }, 500);
+    setTimeout(this.displayTimer, 500);
   },
 };
 
