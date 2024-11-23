@@ -16,6 +16,7 @@ const timerFunction = {
   counter: null,
   countDown() {
     this.counter = setInterval(() => {
+      this.updateTimerDisplay();
       if (!pauseFunction.isPaused) {
         console.log(pauseFunction.isPaused);
         --this.time;
@@ -36,21 +37,19 @@ const timerFunction = {
     this.countDown();
   },
   updateTimerDisplay() {
-    this.timer.textContent =
-      this.time > 10 ? `0:${this.time}` : `0:0${this.time}`;
-  },
-  setTimer(time) {
-    this.time = time;
     if (this.time === 60) {
       this.timer.textContent = "1:00";
     } else {
-      this.timer.textContent = this.time;
+      this.timer.textContent =
+        this.time > 10 ? `0:${this.time}` : `0:0${this.time}`;
     }
   },
+  setTimer() {},
   toggleTimerHide() {
     this.timer.classList.toggle("hide2");
   },
-  startTimer() {
+  startTimer(time) {
+    this.time = time;
     setTimeout(this.displayTimer, 500);
     console.log("timer started");
   },

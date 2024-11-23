@@ -109,7 +109,7 @@ const matchingAppSessions = {
     setTimeout(() => {
       appStarted = true;
     }, 1);
-    setTimeout(timerFunction.startTimer, 1000);
+    setTimeout(timerFunction.startTimer(60), 1000);
   },
   endSession() {
     pauseFunction.unpause();
@@ -168,7 +168,6 @@ const matchingApp = {
   startApp(set) {
     sessionCheck();
     setStyle(set);
-    timerFunction.setTimer(60);
     appStructureElements.createMainStructureElements();
     matchingStructureElements.createStartScreenElements();
     matchingStructureElements.setStartScreenElements();
