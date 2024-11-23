@@ -1,7 +1,7 @@
 import {
   alphabetCapitals,
   alphabetLowercase,
-  matchingStructureElements,
+  matchingAppStructure,
   numberOfItemsToBeDisplayed,
 } from "./matching.js";
 import { alphabet } from "../card-touch/card-data.js";
@@ -81,7 +81,7 @@ function generateLetterDivsForMatching(array) {
     letter.addEventListener("click", () => {
       audio.audioObject[item.toLowerCase()].sound.play();
     });
-    matchingStructureElements.startRowContainer.appendChild(letter);
+    matchingAppStructure.startRowContainer.appendChild(letter);
   });
 }
 /*
