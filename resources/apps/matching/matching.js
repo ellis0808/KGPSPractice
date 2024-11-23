@@ -393,8 +393,8 @@ function startNewRound() {
     generateLetterDivsForMatching(alphabetLowercase);
     createDots(shuffledAlphabetCapitals);
     createDots(alphabetLowercase);
-    appendChild(timerFunction.timer);
-    appStructureElements.btnContainer1.timerFunction.setTimer(60);
+    timerFunction.setTimer(60);
+    appStructureElements.btnContainer1.appendChild(timerFunction.timer);
     appStructureElements.btnContainer1.appendChild(scoreDisplay);
     appStructureElements.homeBtnContainer.appendChild(homeBtn);
     appStructureElements.homeBtnContainer.appendChild(pauseFunction.pauseBtn);
