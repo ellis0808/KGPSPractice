@@ -15,22 +15,24 @@ const timerFunction = {
   time: null,
   counter: null,
   countDown() {
-    this.counter = setInterval(() => {
-      if (!pauseFunction.isPaused) {
-        console.log(pauseFunction.isPaused);
-        --this.time;
-        this.updateTimerDisplay();
-        if (this.time < 10 && this.time >= 0) {
-          this.timer.textContent = `0:0${this.time}`;
-        } else if (this.time >= 0) {
-          this.timer.textContent = `0:${this.time}`;
-        } else {
-          this.timer.textContent = "0:00";
-          clearInterval(this.counter);
-          toggleTouchFunction.disableTouch();
+    setTimeout(() => {
+      this.counter = setInterval(() => {
+        if (!pauseFunction.isPaused) {
+          console.log(pauseFunction.isPaused);
+          --this.time;
+          this.updateTimerDisplay();
+          if (this.time < 10 && this.time >= 0) {
+            this.timer.textContent = `0:0${this.time}`;
+          } else if (this.time >= 0) {
+            this.timer.textContent = `0:${this.time}`;
+          } else {
+            this.timer.textContent = "0:00";
+            clearInterval(this.counter);
+            toggleTouchFunction.disableTouch();
+          }
         }
-      }
-    }, 1000);
+      }, 1000);
+    }, 500);
   },
   displayTimer() {
     this.countDown();
