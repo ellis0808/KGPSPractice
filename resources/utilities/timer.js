@@ -18,7 +18,6 @@ const timerFunction = {
     setTimeout(() => {
       this.counter = setInterval(() => {
         if (!pauseFunction.isPaused) {
-          console.log(pauseFunction.isPaused);
           --this.time;
           this.updateTimerDisplay();
           if (this.time < 10 && this.time >= 0) {

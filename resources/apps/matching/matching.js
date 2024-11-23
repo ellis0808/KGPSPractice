@@ -40,11 +40,17 @@ import {
   toggleBlur,
   toggleTouchFunction,
 } from "../../utilities/pause-functions.js";
-import { appStructureElements } from "../../utilities/app-structure-object.js";
+import { appStructure } from "../../utilities/app-structure-object.js";
+import { startScreen } from "../../utilities/start-screen.js";
 console.log("test");
 
-const matchingStructureElements = {
-  creaGridStructureElements: function () {
+const matchingAppStructure = {
+  createAndSetStructure() {
+    startScreen.createAndSetStartScreen();
+    this.createGrid();
+    this.setGrid();
+  },
+  createGrid: function () {
     this.startRowContainer = document.createElement("div");
     this.endRowContainer = document.createElement("div");
     this.startDotsContainer = document.createElement("div");
@@ -54,57 +60,21 @@ const matchingStructureElements = {
     this.startDotsContainer.classList.add("start-dot-div");
     this.endDotsContainer.classList.add("end-dot-div");
   },
-  setGridStructureElements: function () {
-    appStructureElements.grid.appendChild(this.startRowContainer);
-    appStructureElements.grid.appendChild(this.endRowContainer);
-    appStructureElements.grid.appendChild(this.startDotsContainer);
-    appStructureElements.grid.appendChild(this.endDotsContainer);
+  setGrid: function () {
+    appStructure.grid.appendChild(this.startRowContainer);
+    appStructure.grid.appendChild(this.endRowContainer);
+    appStructure.grid.appendChild(this.startDotsContainer);
+    appStructure.grid.appendChild(this.endDotsContainer);
   },
-  createStartScreenElements: function () {
-    this.startBtn = document.createElement("button");
-    this.exitBtn = document.createElement("div");
-    this.startBtn.setAttribute("id", "start-btn");
-    this.startBtn.classList.add("letter-matching-app");
-    this.startBtn.textContent = "Start";
-    this.exitBtn.setAttribute("id", "exit-btn");
-    this.exitBtn.classList.add("letter-matching-app", "hide");
-    matchingStructureElements.exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
-    this.exitBtn.addEventListener("click", matchingApp.endApp);
-  },
-  setStartScreenElements: function () {
-    appStructureElements.btnContainer2.appendChild(this.startBtn);
-    appStructureElements.btnContainer2.appendChild(this.exitBtn);
-  },
-  createEndContainerElements: function () {},
+
+  createEndContainer: function () {},
 };
 
 const matchingAppSessions = {
-  displayStartBtn() {
-    if (
-      matchingStructureElements.startBtn.classList.contains("no-touch") ||
-      matchingStructureElements.startBtn.classList.contains("spinfade")
-    ) {
-      matchingStructureElements.startBtn.classList.remove("no-touch");
-      matchingStructureElements.startBtn.classList.remove("spinfade");
-      matchingStructureElements.exitBtn.classList.remove("no-touch");
-      matchingStructureElements.exitBtn.classList.remove("hide2");
-    }
-    matchingStructureElements.exitBtn.classList.remove("hide");
-    matchingStructureElements.startBtn.addEventListener(
-      "click",
-      matchingAppSessions.startSession
-    );
-    score.resetScore();
-  },
   startSession() {
     audio.navigationSfx.startApp.play();
     removeEndMessagesContainer();
-    matchingStructureElements.startBtn.classList.add("no-touch");
-    matchingStructureElements.startBtn.classList.add("spinfade");
-    matchingStructureElements.exitBtn.classList.remove("intro");
-    matchingStructureElements.exitBtn.classList.add("no-touch");
-    matchingStructureElements.exitBtn.classList.add("hide2");
-    matchingStructureElements.exitBtn.classList.remove("intro");
+    startScreen.removeStartScreen();
     setTimeout(startNewRound, 950);
     setTimeout(() => {
       appStarted = true;
@@ -115,8 +85,8 @@ const matchingAppSessions = {
     pauseFunction.unpause();
     homeBtnReturnToNormal();
     resetNavigationBtns();
-    appStructureElements.appContainer.classList.add("hide");
-    appStructureElements.homeBtnContainer.classList.add("hide");
+    appStructure.appContainer.classList.add("hide");
+    appStructure.homeBtnContainer.classList.add("hide");
     document.querySelectorAll(".letter-matching-app, .line").forEach((item) => {
       item.remove();
     });
@@ -165,32 +135,29 @@ const matchingAppElements = [
 ];
 
 const matchingApp = {
-  startApp(set) {
-    sessionCheck();
-    setStyle(set);
-    appStructureElements.createMainStructureElements();
-    matchingStructureElements.createStartScreenElements();
-    matchingStructureElements.setStartScreenElements();
-    matchingStructureElements.creaGridStructureElements();
-    appStructureElements.setMainStructureElements();
-    appStructureElements.grid.classList.add("gridHide");
-    matchingStructureElements.setGridStructureElements();
-    elements.getElements(matchingAppElements);
-    pauseFunction.unpause();
+  setStyleSheet() {
     stylesheet.setAttribute(
       "href",
       "/KGPSEnglishPractice-test/resources/css/matching.css"
     );
-
+  },
+  startApp(set) {
+    sessionCheck();
+    setStyle(set);
+    appStructure.createAndSetappStructureAndHideGrid();
+    matchingAppStructure.createAndSetStructure();
+    elements.get(matchingApp);
+    pauseFunction.unpause();
+    this.setStyleSheet();
     menuItems.removeMenuPage();
 
-    setTimeout(matchingAppSessions.displayStartBtn, 200);
+    setTimeout(startScreen.displayStartScreen, 200);
 
     score.resetScore();
     // resetTimer();
     scoreDisplay.innerText = score.currentScore;
 
-    appStructureElements.appContainer.classList.remove("hide");
+    appStructure.appContainer.classList.remove("hide");
     if (!scoreDisplay.classList.contains("hide2")) {
       toggleScoreDisplayHide();
     }
@@ -204,7 +171,7 @@ const matchingApp = {
   endApp() {
     matchingAppSessions.endSession();
     setTimeout(() => {
-      appStructureElements.removeMainStructureElements();
+      appStructure.removeMainStructure();
       // document.querySelectorAll(".letter-matching-app").forEach((item) => {
       //   item.remove();
       // });
@@ -237,7 +204,7 @@ const homeBtn = document.createElement("button");
 homeBtn.classList.add("home-btn");
 homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
 homeBtn.addEventListener("click", goHome);
-// appStructureElements.homeBtnContainer.appendChild(homeBtn);
+// appStructure.homeBtnContainer.appendChild(homeBtn);
 
 const reallyGoHomeContainer = document.createElement("div");
 reallyGoHomeContainer.classList.add("go-home-container", "letter-matching-app");
@@ -280,12 +247,12 @@ function homeBtnReturnToNormal() {
   homeBtn.classList.remove("home-btn-enlarge");
 }
 function displayGoHomeConfirmation() {
-  appStructureElements.btnContainer4.appendChild(reallyGoHomeContainer);
+  appStructure.btnContainer4.appendChild(reallyGoHomeContainer);
   reallyGoHomeContainer.appendChild(reallyGoHomeBtn);
   reallyGoHomeContainer.appendChild(cancelGoHomeBtn);
 }
 function returnToApp() {
-  appStructureElements.btnContainer4.removeChild(reallyGoHomeContainer);
+  appStructure.btnContainer4.removeChild(reallyGoHomeContainer);
   homeBtnReturnToNormal();
   pauseFunction.unpause();
   homeBtnIsGoHome = true;
@@ -383,7 +350,7 @@ function startNewRound() {
   if (timerFunction.timer.classList.contains("hide2")) {
     timerFunction.toggleTimerHide();
   }
-  appStructureElements.homeBtnContainer.classList.remove("hide");
+  appStructure.homeBtnContainer.classList.remove("hide");
   toggleBlur.removeWeakBlur();
   scoreDisplay.classList.remove("blur");
   setTimeout(() => {
@@ -393,10 +360,10 @@ function startNewRound() {
     generateLetterDivsForMatching(alphabetLowercase);
     createDots(shuffledAlphabetCapitals);
     createDots(alphabetLowercase);
-    appStructureElements.btnContainer1.appendChild(timerFunction.timer);
-    appStructureElements.btnContainer1.appendChild(scoreDisplay);
-    appStructureElements.homeBtnContainer.appendChild(homeBtn);
-    appStructureElements.homeBtnContainer.appendChild(pauseFunction.pauseBtn);
+    appStructure.btnContainer1.appendChild(timerFunction.timer);
+    appStructure.btnContainer1.appendChild(scoreDisplay);
+    appStructure.homeBtnContainer.appendChild(homeBtn);
+    appStructure.homeBtnContainer.appendChild(pauseFunction.pauseBtn);
     setTimeout(() => {
       activateEventListeners();
     }, 200);
@@ -404,9 +371,9 @@ function startNewRound() {
       enableTouch();
     }, 300);
     setTimeout(() => {
-      appStructureElements.grid.classList.remove("gridHide");
+      appStructure.grid.classList.remove("gridHide");
     }, 100);
-    elements.getElements();
+    elements.get();
   }, 1000);
   removeBlur();
 }
@@ -427,7 +394,7 @@ B. Clearing the Grid & Resetting Arrays
 */
 function clearBoard() {
   setTimeout(() => {
-    appStructureElements.grid.classList.add("gridHide");
+    appStructure.grid.classList.add("gridHide");
   }, 50);
   setTimeout(() => {
     correctDotsAndLines.length = 0;
@@ -464,7 +431,7 @@ function displayEndMessagesContainer() {
     "end-messages-container",
     "letter-matching-app"
   );
-  appStructureElements.appContainer.appendChild(btnContainer5);
+  appStructure.appContainer.appendChild(btnContainer5);
   btnContainer5.appendChild(endMessagesContainer);
   const finalScoreAssessment = document.createElement("div");
   finalScoreAssessment.classList.add("final-score-assessment");
@@ -1090,5 +1057,5 @@ export {
   lines,
   numberOfItemsToBeDisplayed,
   elements,
-  matchingStructureElements,
+  matchingAppStructure,
 };
