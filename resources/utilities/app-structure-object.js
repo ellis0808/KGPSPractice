@@ -25,6 +25,30 @@ const appStructure = {
     this.appContainer.appendChild(this.grid);
     this.appContainer.appendChild(this.appControlsContainer);
   },
+  setBtnContainer1(item1, item2) {
+    this.btnContainer1.appendChild(item1);
+    this.btnContainer1.appendChild(item2);
+  },
+  setBtnContainer2(item1, item2) {
+    this.btnContainer2.appendChild(item1);
+    this.btnContainer2.appendChild(item2);
+  },
+  setBtnContainer3(item) {
+    this.btnContainer3.appendChild(item);
+  },
+  setBtnContainer4(item) {
+    this.btnContainer4.appendChild(item);
+  },
+  setBtnContainer5(item) {
+    this.btnContainer5.appendChild(item);
+  },
+  setAppControlsContainer(item1, item2) {
+    this.appControlsContainer.appendChild(item1);
+    this.appControlsContainer.appendChild(item2);
+  },
+  setBtnContainer5(item) {
+    this.btnContainer5.appendChild(item);
+  },
   createAndSetAppStructureThenHideGrid() {
     this.createMainAppStructure();
     this.setMainAppStructure();
