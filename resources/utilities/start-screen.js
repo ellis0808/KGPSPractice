@@ -10,15 +10,19 @@ const startScreen = {
     this.exitBtn.setAttribute("id", "exit-btn");
     this.exitBtn.classList.add("letter-matching-app", "hide");
     this.exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
-    this.exitBtn.addEventListener("click", matchingApp.endApp);
   },
   setStartScreen() {
     appStructure.setBtnContainer2(this.startBtn, this.exitBtn);
   },
-  createAndSetStartScreen() {
+  setStartEndAppBtnFunctions(startApp, endApp) {
+    this.startBtn.addEventListener("pointerdown", startApp);
+    this.exitBtn.addEventListener("pointerdown", endApp);
+  },
+  createAndSetStartScreen(startApp, EndApp) {
     console.log("a");
 
     this.createStartScreen();
+    this.setStartEndAppBtnFunctions(startApp, EndApp);
     this.setStartScreen();
   },
   displayStartScreen() {
@@ -33,7 +37,6 @@ const startScreen = {
       this.exitBtn.classList.remove("hide2");
     }
     this.exitBtn.classList.remove("hide");
-    this.startBtn.addEventListener("click", matchingAppSessions.startSession);
     score.resetScore();
   },
   removeStartScreen() {

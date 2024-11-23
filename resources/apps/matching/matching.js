@@ -46,7 +46,10 @@ console.log("test");
 
 const matchingAppStructure = {
   createAndSetStructure() {
-    startScreen.createAndSetStartScreen();
+    startScreen.createAndSetStartScreen(
+      matchingAppSessions.startSession,
+      matchingApp.endApp
+    );
     this.createGrid();
     this.setGrid();
   },
