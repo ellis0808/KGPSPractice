@@ -9,7 +9,7 @@ const startScreen = {
     this.startBtn.textContent = "Start";
     this.exitBtn.setAttribute("id", "exit-btn");
     this.exitBtn.classList.add("letter-matching-app", "hide");
-    matchingApp.exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
+    this.exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
     this.exitBtn.addEventListener("click", matchingApp.endApp);
   },
   setStartScreen() {
