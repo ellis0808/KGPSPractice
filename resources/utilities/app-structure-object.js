@@ -16,7 +16,7 @@ const appStructure = {
     this.appControlsContainer.classList.add("home-btn-container", "hide");
     this.leftMenuContainer.classList.add("left-menu-container");
   },
-  createMainAppStructure() {
+  setMainAppStructure() {
     mainContainer.appendChild(this.appContainer);
     this.appContainer.appendChild(this.leftMenuContainer);
     this.appContainer.appendChild(this.btnContainer1);
@@ -27,7 +27,7 @@ const appStructure = {
   },
   createAndSetAppStructureThenHideGrid() {
     this.createMainAppStructure();
-    this.createMainAppStructure;
+    this.setMainAppStructure();
     this.hideGrid();
   },
   removeMainAppStructure() {
