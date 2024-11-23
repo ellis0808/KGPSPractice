@@ -16,7 +16,7 @@ const timerFunction = {
   counter: null,
   countDown() {
     this.counter = setInterval(() => {
-      if (!pauseFunction.isPaused()) {
+      if (!pauseFunction.isPaused) {
         console.log(pauseFunction.isPaused);
         --this.time;
         if (this.time >= 60) {
