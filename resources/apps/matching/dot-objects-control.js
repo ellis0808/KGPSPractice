@@ -4,12 +4,11 @@ import {
   currentDotId,
   endDotId,
   startDotId,
-  matchingStructureElements,
   lines,
   numberOfItemsToBeDisplayed,
 } from "./matching.js";
 import { audio } from "../../utilities/audio.js";
-import { appStructureElements } from "../../utilities/app-structure-object.js";
+import { appStructure } from "../../utilities/app-structure-object.js";
 class DotAndLineCommand {
   constructor() {
     this.startDots = [];
@@ -324,7 +323,7 @@ class Connector {
     newLine.style.width = `${this.distance}px`;
     newLine.style.transformOrigin = `-0%`;
     newLine.style.transform = `rotate(${this.slope}deg)`;
-    appStructureElements.grid.appendChild(newLine);
+    appStructure.grid.appendChild(newLine);
     this.element = newLine;
     newLine.setAttribute("startDotId", startDotId);
     newLine.setAttribute("endDotId", endDotId);
