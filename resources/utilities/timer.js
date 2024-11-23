@@ -16,7 +16,7 @@ const timerFunction = {
   counter: null,
   countDown() {
     this.counter = setInterval(() => {
-      this.updateTimerDisplay();
+      // this.updateTimerDisplay();
       if (!pauseFunction.isPaused) {
         console.log(pauseFunction.isPaused);
         --this.time;
