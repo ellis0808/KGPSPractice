@@ -1,4 +1,4 @@
-import { pauseFunction, toggleTouchFunction } from "./pause-functions";
+import { pauseFunction, toggleTouchFunction } from "./pause-functions.js";
 
 const timer = document.createElement("div");
 
@@ -16,7 +16,7 @@ const timerFunction = {
   counter: null,
   countDown() {
     this.counter = setInterval(() => {
-      if (!pauseFunction.getIsPausedStatus()) {
+      if (!pauseFunction.isPaused()) {
         console.log(pauseFunction.isPaused);
         --this.time;
         if (this.time >= 60) {
