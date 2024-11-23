@@ -40,7 +40,7 @@ const timerFunction = {
       pauseFunction.getIsPausedStatus();
       console.log("after: ", pauseFunction.isPaused);
 
-      if (!pauseFunction.isPaused) {
+      if (pauseFunction.isPaused) {
         --this.time;
         if (this.time >= 60) {
           this.timer.textContent = `1:00`;
