@@ -16,11 +16,8 @@ const timerFunction = {
   counter: null,
   countDown() {
     this.counter = setInterval(() => {
-      console.log("before: ", pauseFunction.isPaused);
-      pauseFunction.getIsPausedStatus();
-      console.log("after: ", pauseFunction.isPaused);
-
-      if (!pauseFunction.isPaused) {
+      if (!pauseFunction.getIsPausedStatus()) {
+        console.log(pauseFunction.isPaused);
         --this.time;
         if (this.time >= 60) {
           this.timer.textContent = `1:00`;
