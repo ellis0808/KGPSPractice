@@ -149,12 +149,12 @@ const matchingApp = {
     setStyle(set);
     appStructure.createAndSetAppStructureThenHideGrid();
     matchingAppStructure.createAndSetStructure();
-    elements.getElements(matchingApp);
+    elements.getElements(matchingAppElements);
     pauseFunction.unpause();
     this.setStyleSheet();
     menuItems.removeMenuPage();
 
-    setTimeout(startScreen.displayStartScreen, 200);
+    setTimeout(startScreen.displayStartScreen, 500);
 
     score.resetScore();
     // resetTimer();
