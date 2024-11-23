@@ -146,7 +146,7 @@ const matchingApp = {
     setStyle(set);
     appStructure.createAndSetAppStructureThenHideGrid();
     matchingAppStructure.createAndSetStructure();
-    elements.get(matchingApp);
+    elements.getElements(matchingApp);
     pauseFunction.unpause();
     this.setStyleSheet();
     menuItems.removeMenuPage();
