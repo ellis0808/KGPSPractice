@@ -168,6 +168,7 @@ const matchingApp = {
   startApp(set) {
     sessionCheck();
     setStyle(set);
+    timerFunction.setTimer(60);
     appStructureElements.createMainStructureElements();
     matchingStructureElements.createStartScreenElements();
     matchingStructureElements.setStartScreenElements();
@@ -393,7 +394,6 @@ function startNewRound() {
     generateLetterDivsForMatching(alphabetLowercase);
     createDots(shuffledAlphabetCapitals);
     createDots(alphabetLowercase);
-    timerFunction.setTimer(60);
     appStructureElements.btnContainer1.appendChild(timerFunction.timer);
     appStructureElements.btnContainer1.appendChild(scoreDisplay);
     appStructureElements.homeBtnContainer.appendChild(homeBtn);
