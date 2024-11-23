@@ -65,7 +65,6 @@ class PauseFunction {
   }
   pause() {
     this.isPaused = true;
-    console.log(this.isPaused);
 
     this.pauseBtn.removeEventListener("pointerdown", this.pause);
     setTimeout(() => {
@@ -77,7 +76,6 @@ class PauseFunction {
   }
   unpause() {
     this.isPaused = false;
-    console.log(this.isPaused);
 
     this.pauseBtn.removeEventListener("pointerdown", this.unpause);
     setTimeout(() => {
@@ -88,7 +86,9 @@ class PauseFunction {
       toggleBlur.removeStrongBlur();
     }
   }
-  getIsPausedStatus() {}
+  getIsPausedStatus() {
+    return this.isPaused;
+  }
 }
 
 const pauseFunction = new PauseFunction();
