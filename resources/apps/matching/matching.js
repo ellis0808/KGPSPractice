@@ -109,9 +109,7 @@ const matchingAppSessions = {
     setTimeout(() => {
       appStarted = true;
     }, 1);
-    setTimeout(() => {
-      timerFunction.startTimer(60);
-    }, 1000);
+    setTimeout(timerFunction.startTimer, 1000);
   },
   endSession() {
     pauseFunction.unpause();
@@ -395,7 +393,8 @@ function startNewRound() {
     generateLetterDivsForMatching(alphabetLowercase);
     createDots(shuffledAlphabetCapitals);
     createDots(alphabetLowercase);
-    appStructureElements.btnContainer1.appendChild(timerFunction.timer);
+    appStructureElements.btnContainer1.timerFunction.setTimer(60);
+    appendChild(timerFunction.timer);
     appStructureElements.btnContainer1.appendChild(scoreDisplay);
     appStructureElements.homeBtnContainer.appendChild(homeBtn);
     appStructureElements.homeBtnContainer.appendChild(pauseFunction.pauseBtn);
