@@ -1,23 +1,3 @@
-// const timer = {
-//   time: 0,
-//   timeDisplay: null,
-//   countUp: function (limit) {
-//     this.countUp = setInterval(() => {
-//       if (time < limit) {
-//         ++this.fromZero;
-//         if (time < 10) {
-//           this.timeDisplay = `0:0${time}`;
-//         } else if (time < limit) {
-//           this.timeDisplay = `0:${time}`;
-//         }
-//         if (time > 60) {
-//           this.timeDisplay = `1:00`;
-//         }
-//       }
-//     });
-//   },
-// };
-
 import { pauseFunction, toggleTouchFunction } from "./pause-functions";
 
 const timer = document.createElement("div");
@@ -40,7 +20,7 @@ const timerFunction = {
       pauseFunction.getIsPausedStatus();
       console.log("after: ", pauseFunction.isPaused);
 
-      if (pauseFunction.isPaused) {
+      if (!pauseFunction.isPaused) {
         --this.time;
         if (this.time >= 60) {
           this.timer.textContent = `1:00`;
@@ -60,7 +40,6 @@ const timerFunction = {
         }
       }
     }, 1000);
-    return this.counter;
   },
   displayTimer() {
     this.countDown();

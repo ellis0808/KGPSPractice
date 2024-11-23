@@ -65,6 +65,7 @@ class PauseFunction {
   }
   pause() {
     this.isPaused = true;
+    console.log(this.isPaused);
 
     this.pauseBtn.removeEventListener("pointerdown", this.pause);
     setTimeout(() => {
