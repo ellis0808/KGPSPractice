@@ -52,6 +52,7 @@ const timerFunction = {
   },
   startTimer() {
     setTimeout(this.displayTimer, 500);
+    console.log("timer started");
   },
 };
 
