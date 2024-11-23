@@ -89,7 +89,7 @@ const matchingAppSessions = {
     homeBtnReturnToNormal();
     resetNavigationBtns();
     appStructure.appContainer.classList.add("hide");
-    appStructure.homeBtnContainer.classList.add("hide");
+    appStructure.appControlsContainer.classList.add("hide");
     document.querySelectorAll(".letter-matching-app, .line").forEach((item) => {
       item.remove();
     });
@@ -207,7 +207,7 @@ const homeBtn = document.createElement("button");
 homeBtn.classList.add("home-btn");
 homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
 homeBtn.addEventListener("click", goHome);
-// appStructure.homeBtnContainer.appendChild(homeBtn);
+// appStructure.appControlsContainer.appendChild(homeBtn);
 
 const reallyGoHomeContainer = document.createElement("div");
 reallyGoHomeContainer.classList.add("go-home-container", "letter-matching-app");
@@ -353,7 +353,7 @@ function startNewRound() {
   if (timerFunction.timer.classList.contains("hide2")) {
     timerFunction.toggleTimerHide();
   }
-  appStructure.homeBtnContainer.classList.remove("hide");
+  appStructure.appControlsContainer.classList.remove("hide");
   toggleBlur.removeWeakBlur();
   scoreDisplay.classList.remove("blur");
   setTimeout(() => {
@@ -365,8 +365,8 @@ function startNewRound() {
     createDots(alphabetLowercase);
     appStructure.btnContainer1.appendChild(timerFunction.timer);
     appStructure.btnContainer1.appendChild(scoreDisplay);
-    appStructure.homeBtnContainer.appendChild(homeBtn);
-    appStructure.homeBtnContainer.appendChild(pauseFunction.pauseBtn);
+    appStructure.appControlsContainer.appendChild(homeBtn);
+    appStructure.appControlsContainer.appendChild(pauseFunction.pauseBtn);
     setTimeout(() => {
       activateEventListeners();
     }, 200);

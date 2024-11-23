@@ -1,6 +1,9 @@
+import { startBtn } from "../apps/card-touch/card-touch.js";
 import { matchingApp } from "../apps/matching/matching.js";
 import { appStructure } from "./app-structure-object.js";
 const startScreen = {
+  startBtn: null,
+  exitBtn: null,
   createStartScreen() {
     this.startBtn = document.createElement("button");
     this.exitBtn = document.createElement("div");
@@ -27,15 +30,15 @@ const startScreen = {
   },
   displayStartScreen() {
     console.log("b");
-    // if (
-    //   this.startBtn.classList.contains("no-touch") ||
-    //   this.startBtn.classList.contains("spinfade")
-    // ) {
-    this.startBtn.classList.remove("no-touch");
-    this.startBtn.classList.remove("spinfade");
-    this.exitBtn.classList.remove("no-touch");
-    this.exitBtn.classList.remove("hide2");
-    // }
+    if (
+      this.startBtn.classList.contains("no-touch") ||
+      this.startBtn.classList.contains("spinfade")
+    ) {
+      this.startBtn.classList.remove("no-touch");
+      this.startBtn.classList.remove("spinfade");
+      this.exitBtn.classList.remove("no-touch");
+      this.exitBtn.classList.remove("hide2");
+    }
     this.exitBtn.classList.remove("hide");
     score.resetScore();
   },
