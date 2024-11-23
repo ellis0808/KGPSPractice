@@ -37,7 +37,7 @@ const timerFunction = {
   },
   updateTimerDisplay() {
     this.timer.textContent =
-      this.time > 10 ? `0:${this.time}` : `0:${this.time}`;
+      this.time > 10 ? `0:${this.time}` : `0:0${this.time}`;
   },
   setTimer(time) {
     this.time = time;
