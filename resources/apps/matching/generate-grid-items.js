@@ -31,7 +31,6 @@ const gridItems = {
     itemArrays.loadItemSetArray(array);
     itemGenerator.generateAndShuffle();
     gridGenerator.generateAndSetFullGrid(
-      itemArrays.setArray,
       itemArrays.startRowArray,
       itemArrays.endRowArray
     );
@@ -92,10 +91,10 @@ const itemGenerator = {
 
 const gridGenerator = {
   setGrid() {},
-  generateAndSetFullGrid(array1, array3, array4) {
+  generateAndSetFullGrid(array1, array2) {
     this.generateStartDivs(array1);
-    this.generateEndDivs(array3);
-    this.createDots(array3, array4);
+    this.generateEndDivs(array2);
+    this.createDots(array1, array2);
     // this.setGrid();
   },
   generateEndDivs(array) {
