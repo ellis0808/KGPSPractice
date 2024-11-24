@@ -172,7 +172,7 @@ const gridGenerator = {
     }
   },
   createStartDots() {
-    i = 0;
+    let i = 0;
     dotNumber = 0;
     array.forEach((item) => {
       // Create dot Enclosures for a wider hit-map
