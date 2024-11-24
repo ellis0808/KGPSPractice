@@ -84,6 +84,7 @@ const matchingAppSessions = {
       appStarted = true;
     }, 1);
     setTimeout(() => timerFunction.startTimer(60), 1000);
+    timerFunction.setRoundEnd(matchingAppSessions.endRound());
   },
   endSession() {
     pauseFunction.unpause();
@@ -160,7 +161,6 @@ const matchingApp = {
     pauseFunction.unpause();
     this.setStyleSheet();
     menuItems.removeMenuPage();
-    timerFunction.setRoundEnd(matchingAppSessions.endRound());
     // setTimeout(startScreen.displayStartScreen, 500);
 
     score.resetScore();
