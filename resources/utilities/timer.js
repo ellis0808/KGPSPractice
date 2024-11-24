@@ -30,6 +30,7 @@ const timerFunction = {
             clearInterval(this.counter);
             toggleTouchFunction.disableTouch();
             this.endCurrentAppRound();
+            console.log("0");
           }
         }
       }, 1000);
@@ -37,9 +38,11 @@ const timerFunction = {
   },
   endCurrentAppRound() {
     this.roundEnd();
+    console.log("2");
   },
   setRoundEnd(arg) {
     this.roundEnd = arg;
+    console.log("1");
   },
   displayTimer() {
     this.countDown();
