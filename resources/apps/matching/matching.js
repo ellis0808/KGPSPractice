@@ -108,11 +108,13 @@ const matchingAppSessions = {
   },
   startRound() {},
   endRound() {
-    toggleTouchFunction.disableTouch();
-    setTimeout(displayEndMessagesContainer, 600);
-    setTimeout(toggleTouchFunction.disableTouch, 500);
-    setTimeout(toggleTouchFunction.disableTouch, 1000);
-    toggleTouchFunction.disableTouch();
+    if (timerFunction.time === 0) {
+      toggleTouchFunction.disableTouch();
+      setTimeout(displayEndMessagesContainer, 600);
+      setTimeout(toggleTouchFunction.disableTouch, 500);
+      setTimeout(toggleTouchFunction.disableTouch, 1000);
+      toggleTouchFunction.disableTouch();
+    }
   },
 };
 /* SCORING */
