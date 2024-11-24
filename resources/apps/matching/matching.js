@@ -111,7 +111,7 @@ const matchingAppSessions = {
   },
   startRound() {},
   endRound() {
-    if (timerFunction.time <= 0) {
+    if (timerFunction.checkCounterFinished()) {
       toggleTouchFunction.disableTouch();
       setTimeout(displayEndMessagesContainer, 600);
       toggleTouchFunction.disableTouch();
