@@ -29,7 +29,10 @@ A. Generating Letters
 const gridItems = {
   loadAndGenerateItems(array) {
     itemArrays.loadItemSetArray(array);
-    itemGenerator.generateAndShuffle();
+    itemGenerator.generateAndShuffle(
+      itemArrays.startRowArray,
+      itemArrays.endRowArray
+    );
     gridGenerator.generateAndSetFullGrid(
       itemArrays.startRowArray,
       itemArrays.endRowArray
@@ -83,9 +86,10 @@ const itemGenerator = {
     }
     return array;
   },
-  generateAndShuffle(array) {
+  generateAndShuffle(array1, array2) {
     this.generate();
-    this.shuffle(itemArrays.setArray);
+    this.shuffle(array1);
+    this.shuffle(array2);
   },
 };
 
