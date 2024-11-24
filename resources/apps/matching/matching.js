@@ -85,7 +85,7 @@ const matchingAppSessions = {
     }, 1);
     setTimeout(() => {
       timerFunction.startTimer(60);
-      timerFunction.setRoundEnd(matchingAppSessions.endRound());
+      // timerFunction.setRoundEnd(matchingAppSessions.endRound());
     }, 1000);
   },
   endSession() {
@@ -111,11 +111,11 @@ const matchingAppSessions = {
   },
   startRound() {},
   endRound() {
-    if (timerFunction.checkCounterFinished()) {
-      toggleTouchFunction.disableTouch();
-      setTimeout(displayEndMessagesContainer, 600);
-      toggleTouchFunction.disableTouch();
-    }
+    // if () {
+    //   toggleTouchFunction.disableTouch();
+    //   setTimeout(displayEndMessagesContainer, 600);
+    //   toggleTouchFunction.disableTouch();
+    // }
   },
 };
 /* SCORING */
