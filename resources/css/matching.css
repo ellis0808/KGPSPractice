@@ -448,8 +448,8 @@ body:not(:has(*)) {
 *****
 
 */
-.capitals-,
-.lowercase- {
+.startrow-,
+.endrow- {
   width: 80px;
   height: 80px;
   margin-top: 10px;
@@ -469,8 +469,8 @@ body:not(:has(*)) {
   z-index: 1;
 }
 @media (min-width: 600px) {
-  .capitals-,
-  .lowercase- {
+  .startrow-,
+  .endrow- {
     width: 125px;
     height: 125px;
     font-size: 5rem;
@@ -478,8 +478,8 @@ body:not(:has(*)) {
   }
 }
 @media (min-width: 1200px) {
-  .capitals-,
-  .lowercase- {
+  .startrow-,
+  .endrow- {
     width: 150px;
     height: 150px;
     font-size: 5rem;
@@ -487,8 +487,8 @@ body:not(:has(*)) {
   }
 }
 @media (min-width: 2000px) {
-  .capitals-,
-  .lowercase- {
+  .startrow-,
+  .endrow- {
     width: 250px;
     height: 250px;
     font-size: 8rem;
@@ -497,13 +497,13 @@ body:not(:has(*)) {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .capitals-:hover,
-  .lowercase-:hover {
+  .startrow-:hover,
+  .endrow-:hover {
     scale: 1.04;
     transition: 0.3s;
   }
-  .capitals-:active,
-  .lowercase-:active {
+  .startrow-:active,
+  .endrow-:active {
     scale: 1;
     transform: translateY(4px);
     z-index: -10;

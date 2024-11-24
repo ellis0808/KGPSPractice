@@ -98,7 +98,7 @@ const gridGenerator = {
     // this.setGrid();
   },
   generateEndDivs(array) {
-    let divGroup = "endRow-";
+    let divGroup = "endrow-";
     array.forEach((thing) => {
       const item = document.createElement("div");
       item.setAttribute("contentId", `${thing}`);
@@ -115,7 +115,7 @@ const gridGenerator = {
     return;
   },
   generateStartDivs(array) {
-    let divGroup = "start-row";
+    let divGroup = "startrow-";
     array.forEach((thing) => {
       const item = document.createElement("div");
       item.setAttribute("contentId", thing);
@@ -137,7 +137,6 @@ const gridGenerator = {
   createEndDots(array) {
     let i = 0;
     let dotNumber;
-    // if (array === itemGenerator.endRowArray) {
     dotNumber = numberOfItemsToBeDisplayed + 1;
     array.forEach((item) => {
       // Create dot Enclosures for a wider hit-map
