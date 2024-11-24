@@ -106,6 +106,14 @@ const matchingAppSessions = {
     toggleScoreDisplayHide();
     toggleTimerHide();
   },
+  startRound() {},
+  endRound() {
+    toggleTouchFunction.disableTouch();
+    setTimeout(displayEndMessagesContainer, 600);
+    setTimeout(toggleTouchFunction.disableTouch, 500);
+    setTimeout(toggleTouchFunction.disableTouch, 1000);
+    toggleTouchFunction.disableTouch();
+  },
 };
 /* SCORING */
 const correctAnswerPoints = 1;
@@ -152,7 +160,7 @@ const matchingApp = {
     pauseFunction.unpause();
     this.setStyleSheet();
     menuItems.removeMenuPage();
-
+    timerFunction.setRoundEnd(matchingAppSessions.endRound());
     // setTimeout(startScreen.displayStartScreen, 500);
 
     score.resetScore();
@@ -356,14 +364,8 @@ function startNewRound() {
   toggleBlur.removeWeakBlur();
   scoreDisplay.classList.remove("blur");
   setTimeout(() => {
-    gridItems.loadAndGenerateItems(alphabet); // to be changed to dyname value!
+    gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
 
-    // itemGenerator.generate();
-    // const shuffledAlphabetCapitals = itemGenerator.shuffle(alphabetCapitals);
-    // generateLetterDivsForMatching(shuffledAlphabetCapitals);
-    // generateLetterDivsForMatching(alphabetLowercase);
-    // createDots(shuffledAlphabetCapitals);
-    // createDots(alphabetLowercase);
     appStructure.btnContainer1.appendChild(timerFunction.timer);
     appStructure.btnContainer1.appendChild(scoreDisplay);
     appStructure.appControlsContainer.appendChild(homeBtn);

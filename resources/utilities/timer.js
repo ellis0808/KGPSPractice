@@ -7,6 +7,7 @@ function toggleTimerHide() {
 }
 
 const timerFunction = {
+  roundEnd: null,
   timer: (() => {
     const div = document.createElement("div");
     div.classList.add("timer");
@@ -28,10 +29,17 @@ const timerFunction = {
             this.timer.textContent = "0:00";
             clearInterval(this.counter);
             toggleTouchFunction.disableTouch();
+            this.endCurrentAppRound();
           }
         }
       }, 1000);
     }, 500);
+  },
+  endCurrentAppRound() {
+    this.roundEnd();
+  },
+  setRoundEnd(arg) {
+    this.roundEnd = arg;
   },
   displayTimer() {
     this.countDown();
