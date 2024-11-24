@@ -99,9 +99,7 @@ const gridGenerator = {
     // this.setGrid();
   },
   generateEndDivs(array) {
-    let divGroup = "startRow-";
-
-    divGroup = "endRow-";
+    let divGroup = "endRow-";
     array.forEach((thing) => {
       const item = document.createElement("div");
       item.setAttribute("contentId", `${thing}`);
@@ -118,6 +116,7 @@ const gridGenerator = {
     return;
   },
   generateStartDivs(array) {
+    let divGroup = "start-row";
     array.forEach((thing) => {
       const item = document.createElement("div");
       item.setAttribute("contentId", thing);
