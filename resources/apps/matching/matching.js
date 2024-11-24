@@ -83,8 +83,10 @@ const matchingAppSessions = {
     setTimeout(() => {
       appStarted = true;
     }, 1);
-    setTimeout(() => timerFunction.startTimer(60), 1000);
-    timerFunction.setRoundEnd(matchingAppSessions.endRound());
+    setTimeout(() => {
+      timerFunction.startTimer(60);
+      timerFunction.setRoundEnd(matchingAppSessions.endRound());
+    }, 1000);
   },
   endSession() {
     pauseFunction.unpause();
