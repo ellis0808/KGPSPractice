@@ -63,7 +63,7 @@ const itemGenerator = {
   generate() {
     for (
       let i = 0;
-      this.startRowArray.length < numberOfItemsToBeDisplayed;
+      itemArrays.startRowArray.length < numberOfItemsToBeDisplayed;
       ++i
     ) {
       let item = `${
@@ -71,9 +71,9 @@ const itemGenerator = {
           Math.floor(Math.random() * itemArrays.setArray.length)
         ]
       }`;
-      if (!this.endRowArray.includes(item)) {
-        this.endRowArray.push(item);
-        this.startRowArray.push(item.toUpperCase());
+      if (!itemArrays.endRowArray.includes(item)) {
+        itemArrays.endRowArray.push(item);
+        itemArrays.startRowArray.push(item.toUpperCase());
       }
     }
   },
