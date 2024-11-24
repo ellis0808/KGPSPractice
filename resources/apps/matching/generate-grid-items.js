@@ -135,8 +135,8 @@ const gridGenerator = {
     this.createEndDots(array2);
   },
   createEndDots(array) {
+    let i = 0;
     let dotNumber;
-    let i = 1;
     if (array === itemGenerator.endRowArray) {
       dotNumber = numberOfItemsToBeDisplayed + 1;
       array.forEach((item) => {
