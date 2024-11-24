@@ -171,7 +171,7 @@ const gridGenerator = {
       return;
     }
   },
-  createStartDots() {
+  createStartDots(array) {
     let i = 0;
     let dotNumber = 0;
     array.forEach((item) => {
