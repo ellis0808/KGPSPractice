@@ -14,6 +14,7 @@ import {
   StartDot,
 } from "./dot-objects-control.js";
 import { pauseFunction } from "../../utilities/pause-functions.js";
+import { body } from "../../utilities/variables.js";
 
 /*
 V. GRID POPULATION
@@ -26,28 +27,186 @@ A. Generating Letters
   --> The four letters are then sent to the lowercase and capital (after being converted to uppercase) letter arrays.
   --> If one of the letters already exists in the array, it is rejected and a new one is chosen
 */
-function letterSetGenerator() {
-  for (let i = 0; alphabetCapitals.length < numberOfItemsToBeDisplayed; ++i) {
-    let letter = `${alphabet[Math.floor(Math.random() * alphabet.length)]}`;
-    if (!alphabetLowercase.includes(letter)) {
-      alphabetLowercase.push(letter);
-      alphabetCapitals.push(letter.toUpperCase());
+
+const gridItems = {
+  loadAndGenerateItems(array) {
+    itemArrays.loadItemSetArray(array);
+    itemGenerator.generateAndShuffle(array);
+    gridGenerator.generateFullGrid();
+    gridGenerator.setGrid();
+  },
+};
+
+const itemArrays = {
+  startRowArray: [],
+  endRowArray: [],
+  itemSet: [],
+  loadItemSetArray(array) {
+    array.forEach((item) => {
+      this.itemSet.push(item);
+    });
+  },
+  async getItemsForSet(set) {
+    try {
+      const response = await fetch("");
+      if (!response.ok) {
+        throw new Error("Network response was not okay");
+      }
+      const data = await response.json();
+      this.loadItemSetArray(data);
+    } catch (error) {
+      console.error("Error getting items for set: ", error);
     }
-  }
-}
+  },
+};
+
+const itemGenerator = {
+  generate() {
+    for (
+      let i = 0;
+      this.startRowArray.length < numberOfItemsToBeDisplayed;
+      ++i
+    ) {
+      let item = `${
+        itemArrays.itemSet[
+          Math.floor(Math.random() * itemArrays.itemSet.length)
+        ]
+      }`;
+      if (!this.endRowArray.includes(item)) {
+        this.endRowArray.push(item);
+        this.startRowArray.push(item.toUpperCase());
+      }
+    }
+  },
+  shuffle(array) {
+    for (let i = array.length - 1; i > 0; --i) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  },
+  generateAndShuffle(array) {
+    this.generate();
+    this.shuffle(array);
+  },
+};
+
+const gridGenerator = {
+  setGrid() {},
+  generateAndSetFullGrid(array) {
+    this.generateStartGrid(array);
+    this.generateEndGrid(array);
+    this.setGrid();
+  },
+  generateEndGrid(array) {
+    let divGroup = "startRow-";
+    if (array === itemGenerator.endRowArray) {
+      divGroup = "endRow-";
+      array.forEach((thing) => {
+        const item = document.createElement("div");
+        item.setAttribute("contentId", `${thing}`);
+        item.setAttribute("data-id", `${divGroup}${thing}`);
+        item.classList.add(divGroup, "matching-app");
+        item.innerText = `${item.getAttribute("contentId")}`;
+        item.addEventListener("click", () => {
+          audio.audioObject[thing].sound.play();
+        });
+        matchingAppStructure.endRowContainer.appendChild(item);
+      });
+      return;
+    }
+  },
+  generateStartGrid() {
+    array.forEach((thing) => {
+      const item = document.createElement("div");
+      item.setAttribute("contentId", thing);
+      item.setAttribute("data-id", `${divGroup}${thing}`);
+      item.classList.add(divGroup, "matching-app");
+      item.innerText = `${item.getAttribute("contentId")}`;
+      item.addEventListener("click", () => {
+        audio.audioObject[thing.toLowerCase()].sound.play();
+      });
+      matchingAppStructure.startRowContainer.appendChild(item);
+    });
+  },
+  createDots() {
+    this.createEndDots(array);
+    this.createStartDots(array);
+  },
+  createEndDots(array) {
+    let dotNumber;
+    let i = 1;
+    if (array === itemGenerator.endRowArray) {
+      dotNumber = numberOfItemsToBeDisplayed + 1;
+      array.forEach((item) => {
+        // Create dot Enclosures for a wider hit-map
+        const endDotEnclosure = document.createElement("div");
+        endDotEnclosure.setAttribute("id", dotNumber);
+        endDotEnclosure.setAttribute("contentId", item.toUpperCase());
+        endDotEnclosure.classList.add(
+          "dot-enclosure",
+          "end-target",
+          "letter-matching-app"
+        );
+        matchingAppStructure.endDotsContainer.appendChild(endDotEnclosure);
+        // Create dot for each Enclosure
+        endDot[i] = new EndDot(`endDot${[i]}`);
+        endDot[i].id = i + numberOfItemsToBeDisplayed;
+        endDot[i].contentId = item.toUpperCase();
+        endDot[i].element.setAttribute("id", dotNumber);
+        endDot[i].element.classList.add(
+          "end-dot",
+          "dot",
+          "end-target",
+          "letter-matching-app"
+        );
+        endDot[i].element.style.zIndex = "30";
+        endDotEnclosure.appendChild(endDot[i].element);
+        dotAndLineCommand.registerEndDot(endDot[i]);
+        ++dotNumber;
+        ++i;
+      });
+      return;
+    }
+  },
+  createStartDots() {
+    i = 0;
+    dotNumber = 0;
+    array.forEach((item) => {
+      // Create dot Enclosures for a wider hit-map
+      const startDotEnclosure = document.createElement("div");
+      startDotEnclosure.setAttribute("id", dotNumber);
+      startDotEnclosure.setAttribute("contentId", item);
+      startDotEnclosure.classList.add(
+        "dot-enclosure",
+        "start-target",
+        "letter-matching-app"
+      );
+      matchingAppStructure.startDotsContainer.appendChild(startDotEnclosure);
+      startDot[i] = new StartDot(`startDot${[i]}`);
+      startDot[i].id = i;
+      startDot[i].contentId = item;
+      startDot[i].element.setAttribute("id", i);
+      startDot[i].element.classList.add(
+        "start-dot",
+        "dot",
+        "start-target",
+        "letter-matching-app"
+      );
+      startDotEnclosure.appendChild(startDot[i].element);
+      dotAndLineCommand.registerStartDot(startDot[i]);
+      ++dotNumber;
+      ++i;
+    });
+    setTimeout(pauseFunction.disableTouch, 300);
+  },
+};
 
 /*
   A.1. Shuffling Letter Arrays
     --> This function shuffles an array input as a parameter.
     --> This is to keep the letters from appearing right across from another every time.
   */
-const shuffle = (array) => {
-  for (let i = array.length - 1; i > 0; --i) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-};
 
 /*
 B. Generating Letter Divs for Matching
@@ -55,35 +214,6 @@ B. Generating Letter Divs for Matching
   --> They are given two dataset ids, then attached to their respective group.
 */
 
-function generateLetterDivsForMatching(array) {
-  let divGroup = "capitals-";
-  if (array === alphabetLowercase) {
-    divGroup = "lowercase-";
-    array.forEach((item) => {
-      const letter = document.createElement("div");
-      letter.setAttribute("contentId", `${item}`);
-      letter.setAttribute("data-id", `${divGroup}${item}`);
-      letter.classList.add(divGroup, "letter-matching-app");
-      letter.innerText = `${letter.getAttribute("contentId")}`;
-      letter.addEventListener("click", () => {
-        audio.audioObject[item].sound.play();
-      });
-      matchingStructureElements.endRowContainer.appendChild(letter);
-    });
-    return;
-  }
-  array.forEach((item) => {
-    const letter = document.createElement("div");
-    letter.setAttribute("contentId", item);
-    letter.setAttribute("data-id", `${divGroup}${item}`);
-    letter.classList.add(divGroup, "letter-matching-app");
-    letter.innerText = `${letter.getAttribute("contentId")}`;
-    letter.addEventListener("click", () => {
-      audio.audioObject[item.toLowerCase()].sound.play();
-    });
-    matchingAppStructure.startRowContainer.appendChild(letter);
-  });
-}
 /*
 C. Generating Start Dots, End Dots, and their Enclosures
   --> One dot is generate for each letter in the two letter arrays.
@@ -92,75 +222,4 @@ C. Generating Start Dots, End Dots, and their Enclosures
   --> The dots are given several classes and ids, and given a zIndex of 30, to ensure they are on top when the lines are drawn.
 */
 
-function createDots(array) {
-  let dotNumber;
-  let i = 1;
-  if (array === alphabetLowercase) {
-    dotNumber = numberOfItemsToBeDisplayed + 1;
-    array.forEach((item) => {
-      // Create dot Enclosures for a wider hit-map
-      const endDotEnclosure = document.createElement("div");
-      endDotEnclosure.setAttribute("id", dotNumber);
-      endDotEnclosure.setAttribute("contentId", item.toUpperCase());
-      endDotEnclosure.classList.add(
-        "dot-enclosure",
-        "end-target",
-        "letter-matching-app"
-      );
-      matchingStructureElements.endDotsContainer.appendChild(endDotEnclosure);
-      // Create dot for each Enclosure
-      endDot[i] = new EndDot(`endDot${[i]}`);
-      endDot[i].id = i + numberOfItemsToBeDisplayed;
-      endDot[i].contentId = item.toUpperCase();
-      endDot[i].element.setAttribute("id", dotNumber);
-      endDot[i].element.classList.add(
-        "end-dot",
-        "dot",
-        "end-target",
-        "letter-matching-app"
-      );
-      endDot[i].element.style.zIndex = "30";
-      endDotEnclosure.appendChild(endDot[i].element);
-      dotAndLineCommand.registerEndDot(endDot[i]);
-      ++dotNumber;
-      ++i;
-    });
-    return;
-  }
-  i = 0;
-  dotNumber = 0;
-  array.forEach((item) => {
-    // Create dot Enclosures for a wider hit-map
-    const startDotEnclosure = document.createElement("div");
-    startDotEnclosure.setAttribute("id", dotNumber);
-    startDotEnclosure.setAttribute("contentId", item);
-    startDotEnclosure.classList.add(
-      "dot-enclosure",
-      "start-target",
-      "letter-matching-app"
-    );
-    matchingStructureElements.startDotsContainer.appendChild(startDotEnclosure);
-    startDot[i] = new StartDot(`startDot${[i]}`);
-    startDot[i].id = i;
-    startDot[i].contentId = item;
-    startDot[i].element.setAttribute("id", i);
-    startDot[i].element.classList.add(
-      "start-dot",
-      "dot",
-      "start-target",
-      "letter-matching-app"
-    );
-    startDotEnclosure.appendChild(startDot[i].element);
-    dotAndLineCommand.registerStartDot(startDot[i]);
-    ++dotNumber;
-    ++i;
-  });
-  setTimeout(pauseFunction.disableTouch, 300);
-}
-
-export {
-  createDots,
-  generateLetterDivsForMatching,
-  letterSetGenerator,
-  shuffle,
-};
+export { itemGenerator, gridGenerator, gridItems, itemArrays };

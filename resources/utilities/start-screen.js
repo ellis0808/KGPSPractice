@@ -11,11 +11,12 @@ const startScreen = {
     this.startBtn.classList.add("letter-matching-app");
     this.startBtn.textContent = "Start";
     this.exitBtn.setAttribute("id", "exit-btn");
-    this.exitBtn.classList.add("letter-matching-app", "hide");
+    this.exitBtn.classList.add("hide");
     this.exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
   },
   setStartScreen() {
     appStructure.setBtnContainer2(this.startBtn, this.exitBtn);
+    this.exitBtn.classList.remove("hide");
   },
   setStartEndAppBtnFunctions(startApp, endApp) {
     this.startBtn.addEventListener("pointerdown", startApp);

@@ -32,6 +32,8 @@ import {
   generateLetterDivsForMatching,
   letterSetGenerator,
   shuffle,
+  itemGenerator,
+  gridGenerator,
 } from "./generate-grid-items.js";
 import { audio } from "../../utilities/audio.js";
 import {
@@ -154,7 +156,7 @@ const matchingApp = {
     this.setStyleSheet();
     menuItems.removeMenuPage();
 
-    setTimeout(startScreen.displayStartScreen, 500);
+    // setTimeout(startScreen.displayStartScreen, 500);
 
     score.resetScore();
     // resetTimer();
@@ -357,8 +359,8 @@ function startNewRound() {
   toggleBlur.removeWeakBlur();
   scoreDisplay.classList.remove("blur");
   setTimeout(() => {
-    letterSetGenerator();
-    const shuffledAlphabetCapitals = shuffle(alphabetCapitals);
+    itemGenerator.generate();
+    const shuffledAlphabetCapitals = itemGenerator.shuffle(alphabetCapitals);
     generateLetterDivsForMatching(shuffledAlphabetCapitals);
     generateLetterDivsForMatching(alphabetLowercase);
     createDots(shuffledAlphabetCapitals);
