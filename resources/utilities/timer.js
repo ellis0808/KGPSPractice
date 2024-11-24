@@ -38,7 +38,7 @@ const timerFunction = {
   },
   endCurrentAppRound() {
     toggleTouchFunction.disableTouch();
-    setTimeout(displayEndMessagesContainer, 600);
+    setTimeout(this.displayEndMessagesContainer, 600);
     toggleTouchFunction.disableTouch();
   },
   displayEndMessagesContainer() {
