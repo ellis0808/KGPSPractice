@@ -27,14 +27,7 @@ import {
   activityId,
   setStyle,
 } from "./matching-set-style-and-activity-id.js";
-import {
-  createDots,
-  generateLetterDivsForMatching,
-  letterSetGenerator,
-  shuffle,
-  itemGenerator,
-  gridGenerator,
-} from "./generate-grid-items.js";
+import { itemGenerator, gridGenerator } from "./generate-grid-items.js";
 import { audio } from "../../utilities/audio.js";
 import {
   elements,
@@ -359,12 +352,12 @@ function startNewRound() {
   toggleBlur.removeWeakBlur();
   scoreDisplay.classList.remove("blur");
   setTimeout(() => {
-    itemGenerator.generate();
-    const shuffledAlphabetCapitals = itemGenerator.shuffle(alphabetCapitals);
-    generateLetterDivsForMatching(shuffledAlphabetCapitals);
-    generateLetterDivsForMatching(alphabetLowercase);
-    createDots(shuffledAlphabetCapitals);
-    createDots(alphabetLowercase);
+    // itemGenerator.generate();
+    // const shuffledAlphabetCapitals = itemGenerator.shuffle(alphabetCapitals);
+    // generateLetterDivsForMatching(shuffledAlphabetCapitals);
+    // generateLetterDivsForMatching(alphabetLowercase);
+    // createDots(shuffledAlphabetCapitals);
+    // createDots(alphabetLowercase);
     appStructure.btnContainer1.appendChild(timerFunction.timer);
     appStructure.btnContainer1.appendChild(scoreDisplay);
     appStructure.appControlsContainer.appendChild(homeBtn);
