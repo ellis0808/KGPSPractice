@@ -100,25 +100,24 @@ const gridGenerator = {
   },
   generateEndDivs(array) {
     let divGroup = "startRow-";
-    if (array === itemGenerator.endRowArray) {
-      divGroup = "endRow-";
-      array.forEach((thing) => {
-        const item = document.createElement("div");
-        item.setAttribute("contentId", `${thing}`);
-        item.setAttribute("data-id", `${divGroup}${thing}`);
-        item.classList.add(divGroup, "matching-app");
-        item.innerText = `${item.getAttribute("contentId")}`;
-        if (Object.keys(audio.audioObject).length !== 0) {
-          item.addEventListener("click", () => {
-            audio.audioObject[thing].sound.play();
-          });
-        }
-        matchingAppStructure.endRowContainer.appendChild(item);
-      });
-      return;
-    }
+
+    divGroup = "endRow-";
+    array.forEach((thing) => {
+      const item = document.createElement("div");
+      item.setAttribute("contentId", `${thing}`);
+      item.setAttribute("data-id", `${divGroup}${thing}`);
+      item.classList.add(divGroup, "matching-app");
+      item.innerText = `${item.getAttribute("contentId")}`;
+      if (Object.keys(audio.audioObject).length !== 0) {
+        item.addEventListener("click", () => {
+          audio.audioObject[thing].sound.play();
+        });
+      }
+      matchingAppStructure.endRowContainer.appendChild(item);
+    });
+    return;
   },
-  generateStartDivs() {
+  generateStartDivs(array) {
     array.forEach((thing) => {
       const item = document.createElement("div");
       item.setAttribute("contentId", thing);
