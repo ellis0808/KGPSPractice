@@ -137,38 +137,39 @@ const gridGenerator = {
   createEndDots(array) {
     let i = 0;
     let dotNumber;
-    if (array === itemGenerator.endRowArray) {
-      dotNumber = numberOfItemsToBeDisplayed + 1;
-      array.forEach((item) => {
-        // Create dot Enclosures for a wider hit-map
-        const endDotEnclosure = document.createElement("div");
-        endDotEnclosure.setAttribute("id", dotNumber);
-        endDotEnclosure.setAttribute("contentId", item.toUpperCase());
-        endDotEnclosure.classList.add(
-          "dot-enclosure",
-          "end-target",
-          "matching-app"
-        );
-        matchingAppStructure.endDotsContainer.appendChild(endDotEnclosure);
-        // Create dot for each Enclosure
-        endDot[i] = new EndDot(`endDot${[i]}`);
-        endDot[i].id = i + numberOfItemsToBeDisplayed;
-        endDot[i].contentId = item.toUpperCase();
-        endDot[i].element.setAttribute("id", dotNumber);
-        endDot[i].element.classList.add(
-          "end-dot",
-          "dot",
-          "end-target",
-          "matching-app"
-        );
-        endDot[i].element.style.zIndex = "30";
-        endDotEnclosure.appendChild(endDot[i].element);
-        dotAndLineCommand.registerEndDot(endDot[i]);
-        ++dotNumber;
-        ++i;
-      });
-      return;
-    }
+    // if (array === itemGenerator.endRowArray) {
+    dotNumber = numberOfItemsToBeDisplayed + 1;
+    array.forEach((item) => {
+      // Create dot Enclosures for a wider hit-map
+      const endDotEnclosure = document.createElement("div");
+      endDotEnclosure.setAttribute("id", dotNumber);
+      endDotEnclosure.setAttribute("contentId", item.toUpperCase());
+      endDotEnclosure.classList.add(
+        "dot-enclosure",
+        "end-target",
+        "matching-app"
+      );
+      matchingAppStructure.endDotsContainer.appendChild(endDotEnclosure);
+      // Create dot for each Enclosure
+      endDot[i] = new EndDot(`endDot${[i]}`);
+      endDot[i].id = i + numberOfItemsToBeDisplayed;
+      endDot[i].contentId = item.toUpperCase();
+      endDot[i].element.setAttribute("id", dotNumber);
+      endDot[i].element.classList.add(
+        "end-dot",
+        "dot",
+        "end-target",
+        "matching-app"
+      );
+      endDot[i].element.style.zIndex = "30";
+      endDotEnclosure.appendChild(endDot[i].element);
+      dotAndLineCommand.registerEndDot(endDot[i]);
+      ++dotNumber;
+      ++i;
+    });
+    setTimeout(pauseFunction.disableTouch, 300);
+
+    // }
   },
   createStartDots(array) {
     let i = 0;
