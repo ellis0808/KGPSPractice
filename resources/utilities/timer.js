@@ -28,15 +28,15 @@ const timerFunction = {
             this.timer.textContent = "0:00";
             clearInterval(this.counter);
             toggleTouchFunction.disableTouch();
-            this.endCurrentAppRound(roundEnd);
+            // this.endCurrentAppRound();
             console.log("0");
           }
         }
       }, 1000);
     }, 500);
   },
-  endCurrentAppRound(arg) {
-    arg;
+  endCurrentAppRound(r) {
+    roundEnd;
     console.log("2");
   },
   setRoundEnd(arg) {
