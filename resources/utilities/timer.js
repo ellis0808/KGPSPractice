@@ -7,7 +7,6 @@ function toggleTimerHide() {
 }
 
 const timerFunction = {
-  roundEnd: null,
   timer: (() => {
     const div = document.createElement("div");
     div.classList.add("timer");
@@ -26,23 +25,24 @@ const timerFunction = {
           } else if (this.time >= 0) {
             this.timer.textContent = `0:${this.time}`;
           } else {
-            this.timer.textContent < "0:00";
+            this.timer.textContent = "0:00";
             clearInterval(this.counter);
             toggleTouchFunction.disableTouch();
-            this.endCurrentAppRound();
+            this.endCurrentAppRound(roundEnd);
             console.log("0");
           }
         }
       }, 1000);
     }, 500);
   },
-  endCurrentAppRound() {
-    this.roundEnd();
+  endCurrentAppRound(arg) {
+    arg;
     console.log("2");
   },
   setRoundEnd(arg) {
-    this.roundEnd = arg;
+    let roundEnd;
     console.log("1");
+    return (roundEnd = arg);
   },
   displayTimer() {
     this.countDown();
