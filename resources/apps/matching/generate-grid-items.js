@@ -1,6 +1,4 @@
 import {
-  alphabetCapitals,
-  alphabetLowercase,
   matchingAppStructure,
   numberOfItemsToBeDisplayed,
 } from "./matching.js";
@@ -31,20 +29,21 @@ A. Generating Letters
 const gridItems = {
   loadAndGenerateItems(array) {
     itemArrays.loadItemSetArray(array);
-    itemGenerator.generateAndShuffle(array);
-    gridGenerator.generateFullGrid();
-    gridGenerator.setGrid();
+    itemGenerator.generateAndShuffle();
+    gridGenerator.generateAndSetFullGrid(
+      itemArrays.setArray,
+      itemArrays.startRowArray,
+      itemArrays.endRowArray
+    );
   },
 };
 
 const itemArrays = {
   startRowArray: [],
   endRowArray: [],
-  itemSet: [],
+  setArray: null,
   loadItemSetArray(array) {
-    array.forEach((item) => {
-      this.itemSet.push(item);
-    });
+    this.setArray = array;
   },
   async getItemsForSet(set) {
     try {
@@ -68,8 +67,8 @@ const itemGenerator = {
       ++i
     ) {
       let item = `${
-        itemArrays.itemSet[
-          Math.floor(Math.random() * itemArrays.itemSet.length)
+        itemArrays.setArray[
+          Math.floor(Math.random() * itemArrays.setArray.length)
         ]
       }`;
       if (!this.endRowArray.includes(item)) {
@@ -87,18 +86,19 @@ const itemGenerator = {
   },
   generateAndShuffle(array) {
     this.generate();
-    this.shuffle(array);
+    this.shuffle(itemArrays.setArray);
   },
 };
 
 const gridGenerator = {
   setGrid() {},
-  generateAndSetFullGrid(array) {
-    this.generateStartGrid(array);
-    this.generateEndGrid(array);
-    this.setGrid();
+  generateAndSetFullGrid(array1, array3, array4) {
+    this.generateStartDivs(array1);
+    this.generateEndDivs(array3);
+    this.createDots(array3, array4);
+    // this.setGrid();
   },
-  generateEndGrid(array) {
+  generateEndDivs(array) {
     let divGroup = "startRow-";
     if (array === itemGenerator.endRowArray) {
       divGroup = "endRow-";
@@ -108,30 +108,34 @@ const gridGenerator = {
         item.setAttribute("data-id", `${divGroup}${thing}`);
         item.classList.add(divGroup, "matching-app");
         item.innerText = `${item.getAttribute("contentId")}`;
-        item.addEventListener("click", () => {
-          audio.audioObject[thing].sound.play();
-        });
+        if (Object.keys(audio.audioObject).length !== 0) {
+          item.addEventListener("click", () => {
+            audio.audioObject[thing].sound.play();
+          });
+        }
         matchingAppStructure.endRowContainer.appendChild(item);
       });
       return;
     }
   },
-  generateStartGrid() {
+  generateStartDivs() {
     array.forEach((thing) => {
       const item = document.createElement("div");
       item.setAttribute("contentId", thing);
       item.setAttribute("data-id", `${divGroup}${thing}`);
       item.classList.add(divGroup, "matching-app");
       item.innerText = `${item.getAttribute("contentId")}`;
-      item.addEventListener("click", () => {
-        audio.audioObject[thing.toLowerCase()].sound.play();
-      });
+      if (Object.keys(audio.audioObject).length !== 0) {
+        item.addEventListener("click", () => {
+          audio.audioObject[thing.toLowerCase()].sound.play();
+        });
+      }
       matchingAppStructure.startRowContainer.appendChild(item);
     });
   },
-  createDots() {
-    this.createEndDots(array);
-    this.createStartDots(array);
+  createDots(array1, array2) {
+    this.createStartDots(array1);
+    this.createEndDots(array2);
   },
   createEndDots(array) {
     let dotNumber;
@@ -146,7 +150,7 @@ const gridGenerator = {
         endDotEnclosure.classList.add(
           "dot-enclosure",
           "end-target",
-          "letter-matching-app"
+          "matching-app"
         );
         matchingAppStructure.endDotsContainer.appendChild(endDotEnclosure);
         // Create dot for each Enclosure
@@ -158,7 +162,7 @@ const gridGenerator = {
           "end-dot",
           "dot",
           "end-target",
-          "letter-matching-app"
+          "matching-app"
         );
         endDot[i].element.style.zIndex = "30";
         endDotEnclosure.appendChild(endDot[i].element);
@@ -180,7 +184,7 @@ const gridGenerator = {
       startDotEnclosure.classList.add(
         "dot-enclosure",
         "start-target",
-        "letter-matching-app"
+        "matching-app"
       );
       matchingAppStructure.startDotsContainer.appendChild(startDotEnclosure);
       startDot[i] = new StartDot(`startDot${[i]}`);
@@ -191,7 +195,7 @@ const gridGenerator = {
         "start-dot",
         "dot",
         "start-target",
-        "letter-matching-app"
+        "matching-app"
       );
       startDotEnclosure.appendChild(startDot[i].element);
       dotAndLineCommand.registerStartDot(startDot[i]);

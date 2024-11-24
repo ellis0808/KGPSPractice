@@ -27,7 +27,12 @@ import {
   activityId,
   setStyle,
 } from "./matching-set-style-and-activity-id.js";
-import { itemGenerator, gridGenerator } from "./generate-grid-items.js";
+import {
+  itemGenerator,
+  gridGenerator,
+  gridItems,
+  itemArrays,
+} from "./generate-grid-items.js";
 import { audio } from "../../utilities/audio.js";
 import {
   elements,
@@ -37,6 +42,7 @@ import {
 } from "../../utilities/pause-functions.js";
 import { appStructure } from "../../utilities/app-structure-object.js";
 import { startScreen } from "../../utilities/start-screen.js";
+import { alphabet } from "../card-touch/card-data.js";
 console.log("test");
 
 const matchingAppStructure = {
@@ -113,15 +119,13 @@ let startDotId;
 let appStarted = false;
 
 let numberOfItemsToBeDisplayed = 4;
-const alphabetLowercase = [];
-const alphabetCapitals = [];
 
 let currentDotId = null;
 const correctDotsAndLines = [];
 const currentDotIdArray = [];
-const endDotsIdArray = [];
-const currentLinesIdArray = [];
-const finalLinesIdArray = [];
+// const endDotsIdArray = [];
+// const currentLinesIdArray = [];
+// const finalLinesIdArray = [];
 
 /*
 *******
@@ -352,6 +356,8 @@ function startNewRound() {
   toggleBlur.removeWeakBlur();
   scoreDisplay.classList.remove("blur");
   setTimeout(() => {
+    gridItems.loadAndGenerateItems(alphabet); // to be changed to dyname value!
+
     // itemGenerator.generate();
     // const shuffledAlphabetCapitals = itemGenerator.shuffle(alphabetCapitals);
     // generateLetterDivsForMatching(shuffledAlphabetCapitals);
@@ -371,7 +377,7 @@ function startNewRound() {
     setTimeout(() => {
       appStructure.grid.classList.remove("gridHide");
     }, 100);
-    elements.get();
+    elements.getElements(matchingAppElements);
   }, 1000);
   removeBlur();
 }
@@ -395,11 +401,11 @@ function clearBoard() {
     appStructure.grid.classList.add("gridHide");
   }, 50);
   setTimeout(() => {
-    correctDotsAndLines.length = 0;
+    // correctDotsAndLines.length = 0;
     currentDotIdArray.length = 0;
-    currentLinesIdArray.length = 0;
-    alphabetLowercase.length = 0;
-    alphabetCapitals.length = 0;
+    // currentLinesIdArray.length = 0;
+    itemArrays.startRowArray.length = 0;
+    itemArrays.endRowArray.length = 0;
     const dotsAndLines = document.querySelectorAll("[contentId],.dot,.line");
     dotsAndLines.forEach((item) => {
       item.remove();
@@ -412,9 +418,9 @@ function clearBoard() {
 function clearArrays() {
   currentDotId = null;
   currentDotIdArray.length = 0;
-  endDotsIdArray.length = 0;
-  currentLinesIdArray.length = 0;
-  finalLinesIdArray.length = 0;
+  // endDotsIdArray.length = 0;
+  // currentLinesIdArray.length = 0;
+  // finalLinesIdArray.length = 0;
 }
 /*
 C. Displaying the Final Score Message Overlay
@@ -1047,8 +1053,6 @@ document.body.addEventListener("touchstart", createDoubleTapPreventer(500), {
 export {
   matchingApp,
   checkAllCorrect,
-  alphabetCapitals,
-  alphabetLowercase,
   currentDotId,
   endDotId,
   startDotId,
