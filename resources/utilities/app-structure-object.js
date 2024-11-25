@@ -1,4 +1,3 @@
-import { appContainer } from "../apps/card-touch/card-touch.js";
 import { mainContainer } from "./variables.js";
 const appStructure = {
   createMainAppStructure() {
@@ -44,7 +43,7 @@ const appStructure = {
   },
   setBtnContainer5(item) {
     this.btnContainer5.appendChild(item);
-    appContainer.appendChild(this.btnContainer5);
+    this.appContainer.appendChild(this.btnContainer5);
   },
   setAppControlsContainer(item1, item2) {
     this.appControlsContainer.appendChild(item1);
