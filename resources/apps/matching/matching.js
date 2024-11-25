@@ -150,7 +150,7 @@ const matchingApp = {
     sessionCheck();
     setStyle(set);
     appStructure.createAndSetAppStructureThenHideGrid();
-    matchingAppStructure.createAndSetStructure();
+    this.createAndSetStructure();
     elements.getElements(matchingAppElements);
     pauseFunction.unpause();
     this.setStyleSheet();
