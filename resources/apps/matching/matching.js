@@ -175,9 +175,11 @@ const matchingApp = {
     endRoundScreen.removeContainer();
     setTimeout(() => {
       console.log(mainContainer.childNodes);
-      mainContainer.childNodes.forEach((item) => {
-        item.remove();
-      });
+      document.querySelector(".container").remove();
+      // mainContainer.childNodes.forEach((item) => {
+      //   item.remove();
+      // });
+      console.log(mainContainer.childNodes);
       appStructure.removeMainAppStructure();
       setTimeout(() => {
         stylesheet.setAttribute(
