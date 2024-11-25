@@ -7,6 +7,7 @@ const appStructure = {
     this.btnContainer1 = document.createElement("div");
     this.btnContainer2 = document.createElement("div");
     this.btnContainer4 = document.createElement("div");
+    this.btnContainer5 = document.createElement("div");
     this.leftMenuContainer = document.createElement("div");
     this.appControlsContainer = document.createElement("div");
     this.appContainer.classList.add("container");
@@ -14,6 +15,7 @@ const appStructure = {
     this.btnContainer1.classList.add("btn-container1");
     this.btnContainer2.classList.add("btn-container2");
     this.btnContainer4.classList.add("btn-container4");
+    this.btnContainer4.classList.add("btn-container5");
     this.appControlsContainer.classList.add("home-btn-container", "hide");
     this.leftMenuContainer.classList.add("left-menu-container");
   },
