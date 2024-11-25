@@ -36,16 +36,6 @@ const timerFunction = {
       }, 1000);
     }, 500);
   },
-  endCurrentAppRound() {
-    toggleTouchFunction.disableTouch();
-    setTimeout(this.displayEndMessagesContainer, 600);
-    toggleTouchFunction.disableTouch();
-  },
-  setRoundEnd(arg) {
-    let roundEnd;
-    console.log("1");
-    return (roundEnd = arg);
-  },
   displayTimer() {
     this.countDown();
   },

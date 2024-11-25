@@ -88,7 +88,6 @@ const matchingAppSessions = {
     }, 1);
     setTimeout(() => {
       timerFunction.startTimer(60);
-      // timerFunction.setRoundEnd(matchingAppSessions.endRound());
     }, 1000);
   },
   endSession() {
