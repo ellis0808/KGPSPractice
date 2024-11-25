@@ -42,4 +42,5 @@ const score = {
   },
 };
 
+const scoreAssessment = {};
 export { score };

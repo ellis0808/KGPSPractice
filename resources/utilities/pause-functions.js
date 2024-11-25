@@ -52,6 +52,13 @@ const toggleBlur = {
       });
     }
   },
+  removeAllBlur() {
+    if (elements.structureElements) {
+      elements.structureElements.forEach((item) => {
+        item.classList.remove("blur", "strong-blur");
+      });
+    }
+  },
 };
 class PauseFunction {
   constructor() {

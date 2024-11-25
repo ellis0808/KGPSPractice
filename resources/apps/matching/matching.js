@@ -106,19 +106,13 @@ const matchingAppSessions = {
       document.querySelector(".go-home-container").remove();
     }
     appStarted = false;
-    removeBlur();
+    toggleBlur.removeAllBlur();
     clearBoard();
     toggleScoreDisplayHide();
     toggleTimerHide();
   },
   startRound() {},
-  endRound() {
-    // if () {
-    //   toggleTouchFunction.disableTouch();
-    //   setTimeout(displayEndMessagesContainer, 600);
-    //   toggleTouchFunction.disableTouch();
-    // }
-  },
+  endRound() {},
 };
 /* SCORING */
 const correctAnswerPoints = 1;
@@ -161,10 +155,8 @@ const matchingApp = {
     pauseFunction.unpause();
     this.setStyleSheet();
     menuItems.removeMenuPage();
-    // setTimeout(startScreen.displayStartScreen, 500);
 
     score.resetScore();
-    // resetTimer();
     scoreDisplay.innerText = score.currentScore;
 
     appStructure.appContainer.classList.remove("hide");
@@ -176,15 +168,13 @@ const matchingApp = {
     }
 
     setTimeout(setUser, 2000);
-    removeBlur();
+    toggleBlur.removeAllBlur();
   },
   endApp() {
     matchingAppSessions.endSession();
+    endRoundScreen.removeContainer();
     setTimeout(() => {
-      appStructure.removeMainStructure();
-      // document.querySelectorAll(".letter-matching-app").forEach((item) => {
-      //   item.remove();
-      // });
+      appStructure.removeMainAppStructure();
       setTimeout(() => {
         stylesheet.setAttribute(
           "href",
@@ -194,21 +184,12 @@ const matchingApp = {
         setTimeout(menuItems.restoreMainMenu, 100);
       }, 500);
     }, 500);
-    // resetTimer();
     scoreDisplay.innerText = score.currentScore;
   },
 };
 
 let homeBtnIsGoHome = true;
 let pauseBtnPauses = true;
-const tryAgainBtn = document.createElement("div");
-tryAgainBtn.classList.add("try-again-btn", "button");
-tryAgainBtn.innerText = "One More Time";
-tryAgainBtn.addEventListener("click", matchingAppSessions.startSession);
-const finishBtn = document.createElement("div");
-finishBtn.classList.add("finish-btn", "button");
-finishBtn.addEventListener("click", matchingApp.endApp);
-finishBtn.innerText = "Finish";
 
 const homeBtn = document.createElement("button");
 homeBtn.classList.add("home-btn");
@@ -270,21 +251,6 @@ function returnToApp() {
   homeBtn.addEventListener("click", goHome);
 }
 
-function removeBlur() {
-  if (
-    document.querySelectorAll(".blur") ||
-    document.querySelectorAll(".strong-blur")
-  ) {
-    document.querySelectorAll(".blur, .strong-blur").forEach((item) => {
-      console.log(item);
-      if (item.classList.contains("blur")) {
-        item.classList.remove("blur");
-      } else {
-        item.classList.remove("strong-blur");
-      }
-    });
-  }
-}
 function setUser() {
   user.gradeLevel = sessionData.gradeLevel;
   user.firstName = sessionData.firstName;
@@ -344,14 +310,6 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-function removeEndMessagesContainer() {
-  if (document.querySelector(".end-messages-container")) {
-    tryAgainBtn.classList.add("no-touch");
-    finishBtn.classList.add("no-touch");
-    document.querySelector(".end-messages-container").remove();
-  }
-}
-
 function startNewRound() {
   toggleTouchFunction.enableTouch();
   if (scoreDisplay.classList.contains("hide2")) {
@@ -374,25 +332,14 @@ function startNewRound() {
       activateEventListeners();
     }, 200);
     setTimeout(() => {
-      enableTouch();
+      toggleTouchFunction.enableTouch();
     }, 300);
     setTimeout(() => {
       appStructure.grid.classList.remove("gridHide");
     }, 100);
     elements.getElements(matchingAppElements);
   }, 1000);
-  removeBlur();
-}
-
-/*
-A. Overall Function
-*/
-function roundOver() {
-  toggleTouchFunction.disableTouch();
-  setTimeout(displayEndMessagesContainer, 600);
-  setTimeout(toggleTouchFunction.disableTouch, 500);
-  setTimeout(toggleTouchFunction.disableTouch, 1000);
-  toggleTouchFunction.disableTouch();
+  toggleBlur.removeAllBlur();
 }
 
 /*
@@ -555,64 +502,6 @@ function continueToNextRound() {
   }
 }
 
-/* 
-*******
-III. TIMER
-*******
-*/
-
-let time;
-let countDown;
-const roundTime = 60;
-// function startTimer() {
-//   time = roundTime;
-//   setTimeout(displayTimer, 500);
-// }
-function displayTimer() {
-  countDown = setInterval(() => {
-    if (!pauseFunction.isPaused) {
-      --time;
-      if (time < 10) {
-        timer.textContent = `0:0${time}`;
-      } else {
-        timer.textContent = `0:${time}`;
-      }
-      if (time < 0) {
-        timer.textContent = "0:00";
-        clearInterval(countDown);
-        toggleTouchFunction.disableTouch();
-        timer.classList.add("wobble");
-        timer.classList.remove("wobble");
-        timer.classList.add("wobble");
-        timer.classList.remove("wobble");
-        timer.classList.add("wobble");
-        roundOver();
-      }
-    }
-  }, 1000);
-  return countDown;
-}
-
-function resetTimer() {
-  timer.innerText = "1:00";
-  timer.classList.remove("wobble");
-  time = roundTime;
-  clearInterval(countDown);
-}
-function disableTouch() {
-  const allTargets = document.querySelectorAll(
-    ".dot,.dot-enclosure,.capitals,.lowercase"
-  );
-  allTargets.forEach((target) => {
-    target.classList.add("no-touch");
-  });
-}
-function enableTouch() {
-  const allTargets = document.querySelectorAll(".no-touch");
-  allTargets.forEach((target) => {
-    target.classList.remove("no-touch");
-  });
-}
 /*
 *******
 IV. ROUND OVER

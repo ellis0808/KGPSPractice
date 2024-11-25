@@ -48,7 +48,7 @@ const timerFunction = {
     if (this.time === 60) {
       this.timer.textContent = "1:00";
     } else {
-      this.timer.textContent = this.time;
+      this.timer.textContent = `0:${this.time}`;
     }
   },
   toggleTimerHide() {
