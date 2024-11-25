@@ -174,6 +174,7 @@ const matchingApp = {
     matchingAppSessions.endSession();
     endRoundScreen.removeContainer();
     setTimeout(() => {
+      console.log(mainContainer.childNodes);
       mainContainer.childNodes.forEach((item) => {
         item.remove();
       });
