@@ -1,10 +1,13 @@
 import { appStructure } from "./app-structure-object.js";
 
 const endRoundScreen = {
-  tryAgainBtn: document.createElement("div"),
-  finishBtn: document.createElement("div"),
-  endMessagesContainer: document.createElement("div"),
+  createBtnsAndContainer() {
+    this.tryAgainBtn = document.createElement("div");
+    this.finishBtn = document.createElement("div");
+    this.endMessagesContainer = document.createElement("div");
+  },
   initializeContainer(link1, link2) {
+    this.createBtnsAndContainer();
     this.addClassesAndText();
     this.setBtnLinks(link1, link2);
   },
