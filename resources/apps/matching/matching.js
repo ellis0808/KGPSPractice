@@ -43,6 +43,7 @@ import {
 import { appStructure } from "../../utilities/app-structure-object.js";
 import { startScreen } from "../../utilities/start-screen.js";
 import { alphabet } from "../card-touch/card-data.js";
+import { endRoundScreen } from "../../utilities/end-round-screen.js";
 console.log("test");
 
 const matchingAppStructure = {
@@ -51,10 +52,14 @@ const matchingAppStructure = {
       matchingAppSessions.startSession,
       matchingApp.endApp
     );
+    endRoundScreen.initializeContainer(
+      matchingAppSessions.startSession,
+      matchingApp.endApp
+    );
     this.createGrid();
     this.setGrid();
   },
-  createGrid: function () {
+  createGrid() {
     this.startRowContainer = document.createElement("div");
     this.endRowContainer = document.createElement("div");
     this.startDotsContainer = document.createElement("div");
@@ -64,20 +69,18 @@ const matchingAppStructure = {
     this.startDotsContainer.classList.add("start-dot-div");
     this.endDotsContainer.classList.add("end-dot-div");
   },
-  setGrid: function () {
+  setGrid() {
     appStructure.grid.appendChild(this.startRowContainer);
     appStructure.grid.appendChild(this.endRowContainer);
     appStructure.grid.appendChild(this.startDotsContainer);
     appStructure.grid.appendChild(this.endDotsContainer);
   },
-
-  createEndContainer: function () {},
 };
 
 const matchingAppSessions = {
   startSession() {
     audio.navigationSfx.startApp.play();
-    removeEndMessagesContainer();
+    endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
     setTimeout(startNewRound, 950);
     setTimeout(() => {
@@ -132,11 +135,7 @@ let appStarted = false;
 let numberOfItemsToBeDisplayed = 4;
 
 let currentDotId = null;
-const correctDotsAndLines = [];
 const currentDotIdArray = [];
-// const endDotsIdArray = [];
-// const currentLinesIdArray = [];
-// const finalLinesIdArray = [];
 
 /*
 *******
@@ -405,9 +404,7 @@ function clearBoard() {
     appStructure.grid.classList.add("gridHide");
   }, 50);
   setTimeout(() => {
-    // correctDotsAndLines.length = 0;
     currentDotIdArray.length = 0;
-    // currentLinesIdArray.length = 0;
     itemArrays.startRowArray.length = 0;
     itemArrays.endRowArray.length = 0;
     const dotsAndLines = document.querySelectorAll("[contentId],.dot,.line");
@@ -422,9 +419,6 @@ function clearBoard() {
 function clearArrays() {
   currentDotId = null;
   currentDotIdArray.length = 0;
-  // endDotsIdArray.length = 0;
-  // currentLinesIdArray.length = 0;
-  // finalLinesIdArray.length = 0;
 }
 /*
 C. Displaying the Final Score Message Overlay

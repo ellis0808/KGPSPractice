@@ -1,5 +1,5 @@
 import { pauseFunction, toggleTouchFunction } from "./pause-functions.js";
-
+import { endRoundScreen } from "./end-round-screen.js";
 const timer = document.createElement("div");
 
 function toggleTimerHide() {
@@ -29,7 +29,7 @@ const timerFunction = {
             this.timer.textContent = "0:00";
             toggleTouchFunction.disableTouch();
             clearInterval(this.counter);
-            this.endCurrentAppRound();
+            endRoundScreen.displayContainer();
             console.log("0");
           }
         }
@@ -40,73 +40,6 @@ const timerFunction = {
     toggleTouchFunction.disableTouch();
     setTimeout(this.displayEndMessagesContainer, 600);
     toggleTouchFunction.disableTouch();
-  },
-  displayEndMessagesContainer() {
-    score.updateUserScore();
-    updateUserTotalScore();
-    const btnContainer5 = document.createElement("div");
-    btnContainer5.classList.add("btn-container5");
-    const endMessagesContainer = document.createElement("div");
-    endMessagesContainer.classList.add(
-      "end-messages-container",
-      "letter-matching-app"
-    );
-    appStructure.appContainer.appendChild(btnContainer5);
-    btnContainer5.appendChild(endMessagesContainer);
-    const finalScoreAssessment = document.createElement("div");
-    finalScoreAssessment.classList.add("final-score-assessment");
-    const finalScoreAlertScore = document.createElement("div");
-    finalScoreAlertScore.classList.add("final-score-alert-score");
-
-    switch (true) {
-      case score.currentScore < 5:
-        finalScoreAssessment.innerText = "Better Luck\r\nNext Time!";
-        break;
-      case score.currentScore > 31:
-        finalScoreAssessment.innerText = "Outstanding!";
-        break;
-      case score.currentScore > 27:
-        finalScoreAssessment.innerText = "Amazing!";
-        break;
-      case score.currentScore > 23:
-        finalScoreAssessment.innerText = "Excellent!";
-        break;
-      case score.currentScore > 18:
-        finalScoreAssessment.innerText = "Great Job!";
-
-        break;
-      case score.currentScore > 13:
-        finalScoreAssessment.innerText = "Good Job!";
-        break;
-    }
-    finalScoreAlertScore.innerText = `${score.currentScore}`;
-    endMessagesContainer.appendChild(finalScoreAssessment);
-    endMessagesContainer.appendChild(finalScoreAlertScore);
-    endMessagesContainer.appendChild(tryAgainBtn);
-    endMessagesContainer.appendChild(finishBtn);
-    score.updateUserScore();
-    setTimeout(() => {
-      switch (true) {
-        case score.currentScore < 5:
-          audio.feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
-          break;
-        case score.currentScore > 31:
-          audio.feedbackAudioObject.positiveFeedback.outstanding.sound.play();
-          break;
-        case score.currentScore > 27:
-          audio.feedbackAudioObject.positiveFeedback.amazing.sound.play();
-          break;
-        case score.currentScore > 23:
-          audio.feedbackAudioObject.positiveFeedback.excellent.sound.play();
-          break;
-        case score.currentScore > 18:
-          audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
-          break;
-        case score.currentScore > 13:
-          audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
-          break;
-      }
-    }, 300);
   },
   setRoundEnd(arg) {
     let roundEnd;
