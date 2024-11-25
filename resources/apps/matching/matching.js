@@ -47,18 +47,6 @@ import { endRoundScreen } from "../../utilities/end-round-screen.js";
 console.log("test");
 
 const matchingAppStructure = {
-  createAndSetStructure() {
-    startScreen.createAndSetStartScreen(
-      matchingAppSessions.startSession,
-      matchingApp.endApp
-    );
-    endRoundScreen.initializeContainer(
-      matchingAppSessions.startSession,
-      matchingApp.endApp
-    );
-    this.createGrid();
-    this.setGrid();
-  },
   createGrid() {
     this.startRowContainer = document.createElement("div");
     this.endRowContainer = document.createElement("div");
@@ -140,6 +128,18 @@ const matchingAppElements = [
 ];
 
 const matchingApp = {
+  createAndSetStructure() {
+    startScreen.createAndSetStartScreen(
+      matchingAppSessions.startSession,
+      this.endApp
+    );
+    endRoundScreen.initializeContainer(
+      matchingAppSessions.startSession,
+      this.endApp
+    );
+    matchingAppStructure.createGrid();
+    matchingAppStructure.setGrid();
+  },
   setStyleSheet() {
     stylesheet.setAttribute(
       "href",
@@ -174,6 +174,9 @@ const matchingApp = {
     matchingAppSessions.endSession();
     endRoundScreen.removeContainer();
     setTimeout(() => {
+      mainContainer.childNodes.forEach((item) => {
+        item.remove();
+      });
       appStructure.removeMainAppStructure();
       setTimeout(() => {
         stylesheet.setAttribute(
