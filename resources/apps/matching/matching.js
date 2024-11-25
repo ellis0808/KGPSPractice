@@ -80,7 +80,7 @@ const matchingAppStructure = {
 const matchingAppSessions = {
   startSession() {
     audio.navigationSfx.startApp.play();
-    endRoundScreen.removeContainer();
+    // endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
     setTimeout(startNewRound, 950);
     setTimeout(() => {
