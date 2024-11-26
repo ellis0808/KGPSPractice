@@ -139,7 +139,8 @@ const matchingApp = {
       "/KGPSEnglishPractice-test/resources/css/matching.css"
     );
   },
-  setForeignBtns(startSession, endApp) {
+  setForeignElements(startSession, endApp) {
+    homeBtn.initialize();
     goHomeContainer.initializeContainer(endApp);
     startScreen.createAndSetStartScreen(startSession, endApp);
     endRoundScreen.initializeContainer(startSession, endApp);
@@ -148,16 +149,11 @@ const matchingApp = {
       pauseFunction.pauseBtn
     );
   },
-  initializeForeignElements() {
-    homeBtn.initialize();
-    goHomeContainer.initializeContainer();
-  },
   startApp(set) {
     sessionCheck();
     setStyle(set);
     appStructure.createAndSetAppStructureThenHideGrid();
-    this.initializeForeignElements();
-    this.setForeignBtns(matchingAppSessions.startSession, this.endApp);
+    this.setForeignElements(matchingAppSessions.startSession, this.endApp);
     this.createAndSetStructure();
     elements.getElements(matchingAppElements);
     pauseFunction.unpause();
