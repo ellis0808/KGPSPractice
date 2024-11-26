@@ -94,7 +94,7 @@ class PauseFunction {
       toggleTouchFunction.enableTouch();
       toggleBlur.removeStrongBlur();
     }
-    if (homeBtnFunction.goHomeContainer) {
+    if (document.querySelector(".go-home-container")) {
       homeBtnFunction.returnToApp();
     }
   }
