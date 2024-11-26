@@ -11,7 +11,7 @@ const homeBtn = {
   },
   initialize(link1) {
     this.createStructure();
-    this.addClassesAndIcon();
+    this.addClassesTextAndIcon();
     this.homeBtn.addEventListener("pointerdown", this.homeBtnPause);
     this.initializeEscapeKey();
     this.setBtnLink(link1);
