@@ -32,10 +32,10 @@ const homeBtnFunction = {
     this.cancelBtn.textContent = "Cancel";
   },
   homeBtnPauseUnpause() {
-    console.log(this);
     console.log(this.homeBtn);
     if (!pauseFunction.isPaused) {
       pauseFunction.pause();
+      return;
     } else {
       pauseFunction.unpause();
     }
