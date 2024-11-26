@@ -29,22 +29,22 @@ const homeBtnFunction = {
     this.cancelBtn.textContent = "Cancel";
   },
   homeBtnPauseUnpause() {
+    console.log(this);
     console.log(this.homeBtn);
     if (!pauseFunction.isPaused) {
       pauseFunction.unpause();
     } else {
       pauseFunction.pause();
     }
-    this.homeBtn.removeEventListener("pointerdown", this.homeBtnPauseUnpause);
+    this.homeBtn.removeEventListener(
+      "pointerdown",
+      this.homeBtnPauseUnpause.bind(this)
+    );
     setTimeout(() => {
-      this.homeBtn.addEventListener("pointerdown", this.homeBtnPauseUnpause);
-    }, 200);
-  },
-  homeBtnUnpause() {
-    pauseFunction.unpause();
-    this.homeBtn.removeEventListener("pointerdown", this.homeBtnUnpause);
-    setTimeout(() => {
-      this.homeBtn.addEventListener("pointerdown", this.homeBtnPause);
+      this.homeBtn.addEventListener(
+        "pointerdown",
+        this.homeBtnPauseUnpause.bind(this)
+      );
     }, 200);
   },
   initializeEscapeKey() {
@@ -54,10 +54,9 @@ const homeBtnFunction = {
       }
     });
   },
-  addClassesAndText() {},
   setBtnLink(endAppLink) {
     this.goHomeBtn.addEventListener("pointerdown", endAppLink);
-    this.cancelBtn.addEventListener("pointerdown", this.returnToApp);
+    this.cancelBtn.addEventListener("pointerdown", this.returnToApp.bind(this));
   },
   displayContainer() {
     console.log("test");
