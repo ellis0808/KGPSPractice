@@ -81,7 +81,7 @@ const matchingAppSessions = {
   },
   endSession() {
     pauseFunction.unpause();
-    homeBtnReturnToNormal();
+    // homeBtnReturnToNormal();
     // resetNavigationBtns();
     appStructure.appContainer.classList.add("hide");
     appStructure.appControlsContainer.classList.add("hide");

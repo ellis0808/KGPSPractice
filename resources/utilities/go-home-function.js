@@ -56,7 +56,9 @@ const goHomeContainer = {
     this.goHomeBtn.addEventListener("pointerdown", endAppLink);
     this.cancelBtn.addEventListener("pointerdown", this.returnToApp);
   },
-  display() {},
+  display() {
+    console.log("hello!");
+  },
   returnToApp() {
     this.goHomeContainer.remove();
   },
