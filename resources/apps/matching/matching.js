@@ -166,7 +166,7 @@ const matchingApp = {
 
     score.resetScore();
     scoreDisplay.innerText = score.currentScore;
-    homeBtn.initializeBtn();
+    homeBtn.initialize();
     appStructure.appContainer.classList.remove("hide");
     if (!scoreDisplay.classList.contains("hide2")) {
       toggleScoreDisplayHide();
