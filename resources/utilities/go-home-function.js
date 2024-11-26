@@ -10,6 +10,7 @@ const homeBtn = {
     this.addClassesAndIcon();
     this.homeBtn.addEventListener("pointerdown", this.homeBtnPause);
     this.initializeEscapeKey();
+    console.log(this.homeBtn);
   },
   addClassesAndIcon() {
     this.homeBtn.classList.add("home-btn");

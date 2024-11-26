@@ -3,6 +3,8 @@ import { appStructure } from "./app-structure-object.js";
 const endRoundScreen = {
   createBtnsAndContainer() {
     this.tryAgainBtn = document.createElement("div");
+    console.log(this.tryAgainBtn);
+
     this.finishBtn = document.createElement("div");
     this.endMessagesContainer = document.createElement("div");
   },
