@@ -1,4 +1,5 @@
 import { appStructure } from "./app-structure-object.js";
+import { pauseFunction } from "./pause-functions.js";
 
 const homeBtn = {
   createBtn() {
@@ -7,16 +8,33 @@ const homeBtn = {
   setBtn() {
     appStructure.setBtnContainer4(this.homeBtn);
   },
-  initializeBtn() {
+  initialize() {
     this.createBtn();
     this.setBtn();
     this.addClassesAndIcon();
-    this.homeBtn.addEventListener("click", goHomeContainer.display);
+    this.homeBtn.addEventListener("pointerdown", goHomeContainer.display);
     this.initializeEscapeKey();
   },
   addClassesAndIcon() {
     this.homeBtn.classList.add("home-btn");
     this.homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
+  },
+  homeBtnPause() {
+    pauseFunction.pause();
+    this.homeBtn.removeEventListener("pointerdown", goHomeContainer.display);
+    setTimeout(() => {
+      this.homeBtn.addEventListener("pointerdown", goHomeContainer.returnToApp);
+    }, 200);
+  },
+  homeBtnUnpause() {
+    pauseFunction.unpause();
+    this.homeBtn.removeEventListener(
+      "pointerdown",
+      goHomeContainer.returnToApp
+    );
+    setTimeout(() => {
+      this.homeBtn.addEventListener("pointerdown", goHomeContainer.display);
+    }, 200);
   },
   initializeEscapeKey() {
     document.addEventListener("keydown", (event) => {
@@ -57,7 +75,7 @@ const goHomeContainer = {
     this.cancelBtn.addEventListener("pointerdown", this.returnToApp);
   },
   display() {
-    console.log("hello!");
+    appStructure.setBtnContainer5(this.goHomeContainer);
   },
   returnToApp() {
     this.goHomeContainer.remove();

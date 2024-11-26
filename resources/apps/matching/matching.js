@@ -76,7 +76,7 @@ const matchingAppSessions = {
       appStarted = true;
     }, 1);
     setTimeout(() => {
-      timerFunction.startTimer(10);
+      timerFunction.startTimer(20);
     }, 1000);
   },
   endSession() {
@@ -149,7 +149,7 @@ const matchingApp = {
     );
   },
   initializeForeignElements() {
-    homeBtn.initializeBtn();
+    homeBtn.initialize();
     goHomeContainer.initializeContainer();
   },
   startApp(set) {
