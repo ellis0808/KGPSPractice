@@ -29,6 +29,8 @@ const homeBtn = {
     this.cancelBtn.textContent = "Cancel";
   },
   homeBtnPause() {
+    console.log(this.homeBtn);
+
     pauseFunction.pause();
     this.homeBtn.removeEventListener("pointerdown", this.displayContainer);
     setTimeout(() => {
