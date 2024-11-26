@@ -44,6 +44,7 @@ import { appStructure } from "../../utilities/app-structure-object.js";
 import { startScreen } from "../../utilities/start-screen.js";
 import { alphabet } from "../card-touch/card-data.js";
 import { endRoundScreen } from "../../utilities/end-round-screen.js";
+import { goHomeContainer } from "../../utilities/home.js";
 console.log("test");
 
 const matchingAppStructure = {
@@ -129,14 +130,6 @@ const matchingAppElements = [
 
 const matchingApp = {
   createAndSetStructure() {
-    startScreen.createAndSetStartScreen(
-      matchingAppSessions.startSession,
-      this.endApp
-    );
-    endRoundScreen.initializeContainer(
-      matchingAppSessions.startSession,
-      this.endApp
-    );
     matchingAppStructure.createGrid();
     matchingAppStructure.setGrid();
   },
@@ -146,9 +139,19 @@ const matchingApp = {
       "/KGPSEnglishPractice-test/resources/css/matching.css"
     );
   },
+  initializeForeignBtns(startSession, endApp) {
+    goHomeContainer.initializeContainer(endApp);
+    startScreen.createAndSetStartScreen(startSession, endApp);
+    endRoundScreen.initializeContainer(startSession, endApp);
+    appStructure.setAppControlsContainer(
+      homeBtn.homeBtn,
+      pauseFunction.pauseBtn
+    );
+  },
   startApp(set) {
     sessionCheck();
     setStyle(set);
+    this.initializeForeignBtns(matchingAppSessions.startSession, this.endApp);
     appStructure.createAndSetAppStructureThenHideGrid();
     this.createAndSetStructure();
     elements.getElements(matchingAppElements);
@@ -333,7 +336,7 @@ function startNewRound() {
     appStructure.btnContainer1.appendChild(timerFunction.timer);
     appStructure.btnContainer1.appendChild(scoreDisplay);
     appStructure.appControlsContainer.appendChild(homeBtn);
-    appStructure.appControlsContainer.appendChild(pauseFunction.pauseBtn);
+    // appStructure.appControlsContainer.appendChild(pauseFunction.pauseBtn);
     setTimeout(() => {
       activateEventListeners();
     }, 200);
