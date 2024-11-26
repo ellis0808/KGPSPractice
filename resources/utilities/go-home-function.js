@@ -12,7 +12,10 @@ const homeBtnFunction = {
   initialize(link1) {
     this.createStructure();
     this.addClassesTextAndIcon();
-    this.homeBtn.addEventListener("pointerdown", this.homeBtnPauseUnpause);
+    this.homeBtn.addEventListener(
+      "pointerdown",
+      this.homeBtnPauseUnpause.bind(this)
+    );
     this.initializeEscapeKey();
     this.setBtnLink(link1);
     console.log(this.homeBtn);
@@ -32,9 +35,9 @@ const homeBtnFunction = {
     console.log(this);
     console.log(this.homeBtn);
     if (!pauseFunction.isPaused) {
-      pauseFunction.unpause();
-    } else {
       pauseFunction.pause();
+    } else {
+      pauseFunction.unpause();
     }
     this.homeBtn.removeEventListener(
       "pointerdown",
