@@ -151,8 +151,8 @@ const matchingApp = {
   startApp(set) {
     sessionCheck();
     setStyle(set);
-    this.initializeForeignBtns(matchingAppSessions.startSession, this.endApp);
     appStructure.createAndSetAppStructureThenHideGrid();
+    this.initializeForeignBtns(matchingAppSessions.startSession, this.endApp);
     this.createAndSetStructure();
     elements.getElements(matchingAppElements);
     pauseFunction.unpause();
