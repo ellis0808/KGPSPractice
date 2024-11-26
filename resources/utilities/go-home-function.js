@@ -5,14 +5,10 @@ const homeBtn = {
   createBtn() {
     this.homeBtn = document.createElement("button");
   },
-  setBtn() {
-    appStructure.setBtnContainer4(this.homeBtn);
-  },
   initialize() {
     this.createBtn();
-    this.setBtn();
     this.addClassesAndIcon();
-    this.homeBtn.addEventListener("pointerdown", goHomeContainer.display);
+    this.homeBtn.addEventListener("pointerdown", this.homeBtnPause);
     this.initializeEscapeKey();
   },
   addClassesAndIcon() {
@@ -50,14 +46,14 @@ const homeBtn = {
 };
 
 const goHomeContainer = {
-  createConatiner() {
+  createContainer() {
     this.goHomeContainer = document.createElement("div");
     this.goHomeMessage = document.createElement("div");
     this.goHomeBtn = document.createElement("button");
     this.cancelBtn = document.createElement("button");
   },
   initializeContainer(link1) {
-    this.createConatiner();
+    this.createContainer();
     this.addClassesAndText();
     this.setBtnLink(link1);
   },
@@ -75,6 +71,7 @@ const goHomeContainer = {
     this.cancelBtn.addEventListener("pointerdown", this.returnToApp);
   },
   display() {
+    console.log("test");
     console.log(this.goHomeContainer);
 
     appStructure.setBtnContainer4(this.goHomeContainer);
