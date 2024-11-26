@@ -34,9 +34,12 @@ const homeBtnFunction = {
   homeBtnPauseUnpause() {
     if (!pauseFunction.isPaused) {
       pauseFunction.pause();
+      this.displayContainer();
     } else if (pauseFunction.isPaused) {
       pauseFunction.unpause();
+      this.returnToApp();
     }
+
     this.homeBtn.removeEventListener(
       "pointerdown",
       this.homeBtnPauseUnpause.bind(this)
