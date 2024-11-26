@@ -44,7 +44,7 @@ import { appStructure } from "../../utilities/app-structure-object.js";
 import { startScreen } from "../../utilities/start-screen.js";
 import { alphabet } from "../card-touch/card-data.js";
 import { endRoundScreen } from "../../utilities/end-round-screen.js";
-import { homeBtn, goHomeContainer } from "../../utilities/go-home-function.js";
+import { homeBtn } from "../../utilities/go-home-function.js";
 console.log("test");
 
 const matchingAppStructure = {
@@ -140,8 +140,7 @@ const matchingApp = {
     );
   },
   setForeignElements(startSession, endApp) {
-    goHomeContainer.initializeContainer(endApp);
-    homeBtn.initialize();
+    homeBtn.initialize(endApp);
     startScreen.createAndSetStartScreen(startSession, endApp);
     endRoundScreen.initializeContainer(startSession, endApp);
     appStructure.setAppControlsContainer(
