@@ -2,9 +2,9 @@ import { appStructure } from "./app-structure-object.js";
 import { pauseFunction } from "./pause-functions.js";
 
 const homeBtnFunction = {
-  homeBtn: document.createElement("button"),
   createStructure() {
-    this.goHomeBtn = document.createElement("button");
+    (this.homeBtn = document.createElement("button")),
+      (this.goHomeBtn = document.createElement("button"));
     this.cancelBtn = document.createElement("button");
     this.goHomeContainer = document.createElement("div");
     this.goHomeMessage = document.createElement("div");
@@ -34,7 +34,7 @@ const homeBtnFunction = {
   homeBtnPauseUnpause() {
     if (!pauseFunction.isPaused) {
       pauseFunction.pause();
-    } else {
+    } else if (pauseFunction.isPaused) {
       pauseFunction.unpause();
     }
     this.homeBtn.removeEventListener(
