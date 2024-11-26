@@ -340,7 +340,7 @@ function startNewRound() {
 
     appStructure.btnContainer1.appendChild(timerFunction.timer);
     appStructure.btnContainer1.appendChild(scoreDisplay);
-    appStructure.appControlsContainer.appendChild(homeBtn);
+    // appStructure.appControlsContainer.appendChild(homeBtn);
     // appStructure.appControlsContainer.appendChild(pauseFunction.pauseBtn);
     setTimeout(() => {
       activateEventListeners();
