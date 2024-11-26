@@ -44,7 +44,7 @@ import { appStructure } from "../../utilities/app-structure-object.js";
 import { startScreen } from "../../utilities/start-screen.js";
 import { alphabet } from "../card-touch/card-data.js";
 import { endRoundScreen } from "../../utilities/end-round-screen.js";
-import { homeBtn } from "../../utilities/go-home-function.js";
+import { homeBtnFunction } from "../../utilities/go-home-function.js";
 console.log("matching");
 
 const matchingAppStructure = {
@@ -140,11 +140,11 @@ const matchingApp = {
     );
   },
   setForeignElements(startSession, endApp) {
-    homeBtn.initialize(endApp);
+    homeBtnFunction.initialize(endApp);
     startScreen.createAndSetStartScreen(startSession, endApp);
     endRoundScreen.initializeContainer(startSession, endApp);
     appStructure.setAppControlsContainer(
-      homeBtn.homeBtn,
+      homeBtnFunction.homeBtn,
       pauseFunction.pauseBtn
     );
   },
@@ -161,7 +161,7 @@ const matchingApp = {
 
     score.resetScore();
     scoreDisplay.innerText = score.currentScore;
-    homeBtn.initialize();
+    homeBtnFunction.initialize();
     appStructure.appContainer.classList.remove("hide");
     if (!scoreDisplay.classList.contains("hide2")) {
       toggleScoreDisplayHide();

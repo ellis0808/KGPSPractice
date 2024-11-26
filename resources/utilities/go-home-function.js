@@ -1,7 +1,7 @@
 import { appStructure } from "./app-structure-object.js";
 import { pauseFunction } from "./pause-functions.js";
 
-const homeBtn = {
+const homeBtnFunction = {
   homeBtn: document.createElement("button"),
   createStructure() {
     this.goHomeBtn = document.createElement("button");
@@ -50,11 +50,7 @@ const homeBtn = {
   initializeEscapeKey() {
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
-        if (!pauseFunction.isPaused) {
-          this.homeBtnPause();
-        } else {
-          this.homeBtnUnpause();
-        }
+        this.homeBtnPauseUnpause();
       }
     });
   },
@@ -74,4 +70,4 @@ const homeBtn = {
   },
 };
 
-export { homeBtn };
+export { homeBtnFunction };
