@@ -51,6 +51,7 @@ const homeBtnFunction = {
   initializeEscapeKey() {
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
+        console.log("escape!");
         this.homeBtnPauseUnpause();
       }
     });
