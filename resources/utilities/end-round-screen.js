@@ -3,8 +3,6 @@ import { appStructure } from "./app-structure-object.js";
 const endRoundScreen = {
   createBtnsAndContainer() {
     this.tryAgainBtn = document.createElement("div");
-    console.log(this.tryAgainBtn);
-
     this.finishBtn = document.createElement("div");
     this.endMessagesContainer = document.createElement("div");
   },
@@ -22,15 +20,12 @@ const endRoundScreen = {
     this.tryAgainBtn.innerText = "One More Time";
     this.finishBtn.classList.add("finish-btn", "button");
     this.finishBtn.innerText = "Finish";
-    console.log(this.endMessagesContainer);
   },
   setBtnLinks(link1, link2) {
     this.tryAgainBtn.addEventListener("pointerdown", link1);
     this.finishBtn.addEventListener("pointerdown", link2);
   },
   displayContainer() {
-    console.log(this.endMessagesContainer);
-
     this.endMessagesContainer.appendChild(this.tryAgainBtn);
     this.endMessagesContainer.appendChild(this.finishBtn);
     appStructure.setBtnContainer5(this.endMessagesContainer);

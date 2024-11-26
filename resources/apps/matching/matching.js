@@ -45,7 +45,7 @@ import { startScreen } from "../../utilities/start-screen.js";
 import { alphabet } from "../card-touch/card-data.js";
 import { endRoundScreen } from "../../utilities/end-round-screen.js";
 import { homeBtn } from "../../utilities/go-home-function.js";
-console.log("test");
+console.log("matching");
 
 const matchingAppStructure = {
   createGrid() {

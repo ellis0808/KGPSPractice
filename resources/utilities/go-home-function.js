@@ -12,7 +12,7 @@ const homeBtn = {
   initialize(link1) {
     this.createStructure();
     this.addClassesTextAndIcon();
-    this.homeBtn.addEventListener("pointerdown", this.homeBtnPause);
+    this.homeBtn.addEventListener("pointerdown", this.homeBtnPauseUnpause);
     this.initializeEscapeKey();
     this.setBtnLink(link1);
     console.log(this.homeBtn);
@@ -28,20 +28,23 @@ const homeBtn = {
     this.goHomeBtn.textContent = "Yes";
     this.cancelBtn.textContent = "Cancel";
   },
-  homeBtnPause() {
+  homeBtnPauseUnpause() {
     console.log(this.homeBtn);
-
-    pauseFunction.pause();
-    this.homeBtn.removeEventListener("pointerdown", this.displayContainer);
+    if (!pauseFunction.isPaused) {
+      pauseFunction.unpause();
+    } else {
+      pauseFunction.pause();
+    }
+    this.homeBtn.removeEventListener("pointerdown", this.homeBtnPauseUnpause);
     setTimeout(() => {
-      this.homeBtn.addEventListener("pointerdown", this.returnToApp);
+      this.homeBtn.addEventListener("pointerdown", this.homeBtnPauseUnpause);
     }, 200);
   },
   homeBtnUnpause() {
     pauseFunction.unpause();
-    this.homeBtn.removeEventListener("pointerdown", this.returnToApp);
+    this.homeBtn.removeEventListener("pointerdown", this.homeBtnUnpause);
     setTimeout(() => {
-      this.homeBtn.addEventListener("pointerdown", this.displayContainer);
+      this.homeBtn.addEventListener("pointerdown", this.homeBtnPause);
     }, 200);
   },
   initializeEscapeKey() {
