@@ -10,7 +10,7 @@ const homeBtn = {
     this.goHomeMessage = document.createElement("div");
   },
   initialize(link1) {
-    this.createBtn();
+    this.createStructure();
     this.addClassesAndIcon();
     this.homeBtn.addEventListener("pointerdown", this.homeBtnPause);
     this.initializeEscapeKey();
