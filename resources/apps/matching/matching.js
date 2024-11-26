@@ -44,7 +44,7 @@ import { appStructure } from "../../utilities/app-structure-object.js";
 import { startScreen } from "../../utilities/start-screen.js";
 import { alphabet } from "../card-touch/card-data.js";
 import { endRoundScreen } from "../../utilities/end-round-screen.js";
-import { goHomeContainer } from "../../utilities/home.js";
+import { homeBtn, goHomeContainer } from "../../utilities/go-home-function.js";
 console.log("test");
 
 const matchingAppStructure = {
@@ -82,7 +82,7 @@ const matchingAppSessions = {
   endSession() {
     pauseFunction.unpause();
     homeBtnReturnToNormal();
-    resetNavigationBtns();
+    // resetNavigationBtns();
     appStructure.appContainer.classList.add("hide");
     appStructure.appControlsContainer.classList.add("hide");
     document.querySelectorAll(".letter-matching-app, .line").forEach((item) => {
@@ -139,7 +139,7 @@ const matchingApp = {
       "/KGPSEnglishPractice-test/resources/css/matching.css"
     );
   },
-  initializeForeignBtns(startSession, endApp) {
+  setForeignBtns(startSession, endApp) {
     goHomeContainer.initializeContainer(endApp);
     startScreen.createAndSetStartScreen(startSession, endApp);
     endRoundScreen.initializeContainer(startSession, endApp);
@@ -148,11 +148,15 @@ const matchingApp = {
       pauseFunction.pauseBtn
     );
   },
+  initializeForeignElements() {
+    homeBtn.initializeBtn();
+    goHomeContainer.initializeContainer();
+  },
   startApp(set) {
     sessionCheck();
     setStyle(set);
     appStructure.createAndSetAppStructureThenHideGrid();
-    this.initializeForeignBtns(matchingAppSessions.startSession, this.endApp);
+    this.setForeignBtns(matchingAppSessions.startSession, this.endApp);
     this.createAndSetStructure();
     elements.getElements(matchingAppElements);
     pauseFunction.unpause();
@@ -161,7 +165,7 @@ const matchingApp = {
 
     score.resetScore();
     scoreDisplay.innerText = score.currentScore;
-
+    homeBtn.initializeBtn();
     appStructure.appContainer.classList.remove("hide");
     if (!scoreDisplay.classList.contains("hide2")) {
       toggleScoreDisplayHide();
@@ -200,65 +204,65 @@ const matchingApp = {
 let homeBtnIsGoHome = true;
 let pauseBtnPauses = true;
 
-const homeBtn = document.createElement("button");
-homeBtn.classList.add("home-btn");
-homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
-homeBtn.addEventListener("click", goHome);
+// const homeBtn = document.createElement("button");
+// homeBtn.classList.add("home-btn");
+// homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
+// homeBtn.addEventListener("click", goHome);
 // appStructure.appControlsContainer.appendChild(homeBtn);
 
-const reallyGoHomeContainer = document.createElement("div");
-reallyGoHomeContainer.classList.add("go-home-container", "letter-matching-app");
-const reallyGoHomeMessageContainer = document.createElement("div");
-reallyGoHomeMessageContainer.classList.add("go-home-message");
-reallyGoHomeMessageContainer.textContent = "Go back to Menu?";
-reallyGoHomeContainer.appendChild(reallyGoHomeMessageContainer);
-const reallyGoHomeBtn = document.createElement("button");
-reallyGoHomeBtn.classList.add("go-home-btn");
-reallyGoHomeBtn.textContent = "Yes";
-reallyGoHomeBtn.addEventListener("click", matchingApp.endApp);
-const cancelGoHomeBtn = document.createElement("button");
-cancelGoHomeBtn.classList.add("cancel-go-home-btn");
-cancelGoHomeBtn.textContent = "Cancel";
-cancelGoHomeBtn.addEventListener("click", returnToApp);
+// const reallyGoHomeContainer = document.createElement("div");
+// reallyGoHomeContainer.classList.add("go-home-container", "letter-matching-app");
+// const reallyGoHomeMessageContainer = document.createElement("div");
+// reallyGoHomeMessageContainer.classList.add("go-home-message");
+// reallyGoHomeMessageContainer.textContent = "Go back to Menu?";
+// reallyGoHomeContainer.appendChild(reallyGoHomeMessageContainer);
+// const reallyGoHomeBtn = document.createElement("button");
+// reallyGoHomeBtn.classList.add("go-home-btn");
+// reallyGoHomeBtn.textContent = "Yes";
+// reallyGoHomeBtn.addEventListener("click", matchingApp.endApp);
+// const cancelGoHomeBtn = document.createElement("button");
+// cancelGoHomeBtn.classList.add("cancel-go-home-btn");
+// cancelGoHomeBtn.textContent = "Cancel";
+// cancelGoHomeBtn.addEventListener("click", returnToApp);
 
-function resetNavigationBtns() {
-  homeBtnIsGoHome = true;
-  pauseBtnPauses = true;
-  homeBtn.removeEventListener("pointerdown", returnToApp);
-  homeBtn.addEventListener("pointerdown", goHome);
+// function resetNavigationBtns() {
+//   homeBtnIsGoHome = true;
+//   pauseBtnPauses = true;
+//   homeBtn.removeEventListener("pointerdown", returnToApp);
+//   homeBtn.addEventListener("pointerdown", goHome);
 
-  homeBtnReturnToNormal();
-}
-function goHome() {
-  pauseFunction.pause();
-  homeBtnEnlarge();
-  displayGoHomeConfirmation();
-  if (homeBtnIsGoHome) {
-    homeBtnIsGoHome = false;
-    homeBtn.removeEventListener("click", goHome);
-    homeBtn.addEventListener("click", returnToApp);
-    returnToApp();
-  }
-}
-function homeBtnEnlarge() {
-  homeBtn.classList.add("home-btn-enlarge");
-}
-function homeBtnReturnToNormal() {
-  homeBtn.classList.remove("home-btn-enlarge");
-}
-function displayGoHomeConfirmation() {
-  appStructure.btnContainer4.appendChild(reallyGoHomeContainer);
-  reallyGoHomeContainer.appendChild(reallyGoHomeBtn);
-  reallyGoHomeContainer.appendChild(cancelGoHomeBtn);
-}
-function returnToApp() {
-  appStructure.btnContainer4.removeChild(reallyGoHomeContainer);
-  homeBtnReturnToNormal();
-  pauseFunction.unpause();
-  homeBtnIsGoHome = true;
-  homeBtn.removeEventListener("click", returnToApp);
-  homeBtn.addEventListener("click", goHome);
-}
+//   homeBtnReturnToNormal();
+// }
+// function goHome() {
+//   pauseFunction.pause();
+//   homeBtnEnlarge();
+//   displayGoHomeConfirmation();
+//   if (homeBtnIsGoHome) {
+//     homeBtnIsGoHome = false;
+//     homeBtn.removeEventListener("click", goHome);
+//     homeBtn.addEventListener("click", returnToApp);
+//     returnToApp();
+//   }
+// }
+// function homeBtnEnlarge() {
+//   homeBtn.classList.add("home-btn-enlarge");
+// }
+// function homeBtnReturnToNormal() {
+//   homeBtn.classList.remove("home-btn-enlarge");
+// }
+// function displayGoHomeConfirmation() {
+//   appStructure.btnContainer4.appendChild(reallyGoHomeContainer);
+//   reallyGoHomeContainer.appendChild(reallyGoHomeBtn);
+//   reallyGoHomeContainer.appendChild(cancelGoHomeBtn);
+// }
+// function returnToApp() {
+//   appStructure.btnContainer4.removeChild(reallyGoHomeContainer);
+//   homeBtnReturnToNormal();
+//   pauseFunction.unpause();
+//   homeBtnIsGoHome = true;
+//   homeBtn.removeEventListener("click", returnToApp);
+//   homeBtn.addEventListener("click", goHome);
+// }
 
 function setUser() {
   user.gradeLevel = sessionData.gradeLevel;
@@ -305,19 +309,19 @@ II. SESSIONS & ROUNDS
 *******
 */
 
-document.addEventListener("keydown", (event) => {
-  if (appStarted) {
-    if (event.key === "Escape") {
-      if (homeBtnIsGoHome) {
-        goHome();
-      } else {
-        returnToApp();
-      }
-    }
-  } else {
-    return;
-  }
-});
+// document.addEventListener("keydown", (event) => {
+//   if (appStarted) {
+//     if (event.key === "Escape") {
+//       if (homeBtnIsGoHome) {
+//         goHome();
+//       } else {
+//         returnToApp();
+//       }
+//     }
+//   } else {
+//     return;
+//   }
+// });
 
 function startNewRound() {
   toggleTouchFunction.enableTouch();

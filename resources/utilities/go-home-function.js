@@ -1,4 +1,4 @@
-import { appStructure } from "./app-structure-object";
+import { appStructure } from "./app-structure-object.js";
 
 const homeBtn = {
   createBtn() {
