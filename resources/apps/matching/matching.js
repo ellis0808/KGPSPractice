@@ -156,6 +156,7 @@ const matchingApp = {
     sessionCheck();
     setStyle(set);
     appStructure.createAndSetAppStructureThenHideGrid();
+    this.initializeForeignElements();
     this.setForeignBtns(matchingAppSessions.startSession, this.endApp);
     this.createAndSetStructure();
     elements.getElements(matchingAppElements);
