@@ -39,10 +39,10 @@ const homeBtn = {
   initializeEscapeKey() {
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
-        if (homeBtnIsGoHome) {
-          goHomeContainer.display();
+        if (!pauseFunction.isPaused) {
+          this.homeBtnPause();
         } else {
-          returnToApp();
+          this.homeBtnUnpause();
         }
       }
     });

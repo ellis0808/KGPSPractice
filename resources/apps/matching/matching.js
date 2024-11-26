@@ -140,8 +140,8 @@ const matchingApp = {
     );
   },
   setForeignElements(startSession, endApp) {
-    homeBtn.initialize();
     goHomeContainer.initializeContainer(endApp);
+    homeBtn.initialize();
     startScreen.createAndSetStartScreen(startSession, endApp);
     endRoundScreen.initializeContainer(startSession, endApp);
     appStructure.setAppControlsContainer(
