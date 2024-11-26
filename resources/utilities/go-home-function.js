@@ -2,9 +2,8 @@ import { appStructure } from "./app-structure-object.js";
 import { pauseFunction } from "./pause-functions.js";
 
 const homeBtn = {
-  homeBtn: null,
+  homeBtn: document.createElement("button"),
   createStructure() {
-    this.homeBtn = document.createElement("button");
     this.goHomeBtn = document.createElement("button");
     this.cancelBtn = document.createElement("button");
     this.goHomeContainer = document.createElement("div");
