@@ -1,3 +1,5 @@
+import { homeBtnFunction } from "./go-home-function";
+
 const elements = {
   structureElements: null,
   interactiveElements: null,
@@ -91,6 +93,9 @@ class PauseFunction {
     if (elements.structureElements) {
       toggleTouchFunction.enableTouch();
       toggleBlur.removeStrongBlur();
+    }
+    if (homeBtnFunction.goHomeContainer) {
+      homeBtnFunction.returnToApp();
     }
   }
   getIsPausedStatus() {
