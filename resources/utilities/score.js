@@ -1,6 +1,7 @@
 import { sessionCheck } from "../login/session-check.js";
 
 sessionCheck();
+setUser();
 const score = {
   currentScore: 0,
   userScore: 0,
@@ -43,7 +44,7 @@ const score = {
     }
     return this.userScore;
   },
-  async updateStudentTotalScore(activityId) {
+  async updateStudentTotalScore(activityId, user) {
     //  For student users; teachers will differ on user type, etc
     const newScore = {
       activity_id: activityId,
@@ -74,6 +75,14 @@ const score = {
     }
   },
 };
+
+function setUser() {
+  user.gradeLevel = sessionData.gradeLevel;
+  user.firstName = sessionData.firstName;
+  user.lastName = sessionData.lastName;
+  user.access = sessionData.access;
+  user.id = sessionData.userId;
+}
 
 const scoreAssessment = {
   assessmentMessage: null,
