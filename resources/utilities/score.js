@@ -44,36 +44,36 @@ const score = {
     }
     return this.userScore;
   },
-  async updateStudentTotalScore(activityId, user) {
-    //  For student users; teachers will differ on user type, etc
-    const newScore = {
-      activity_id: activityId,
-      user_id: user.id,
-      user_type: user.access,
-      correct_answer_count: 0,
-      incorrect_answer_count: 0,
-      time_to_correct_answer_duration_in_seconds: 0,
-      answer_attempts: 0,
-      activity_score: score.currentScore,
-    };
-    try {
-      const response = await fetch(
-        "/KGPSEnglishPractice-test/api/add_user_activity_record.php",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newScore),
-        }
-      );
-      const data = await response.json();
+  // async updateStudentTotalScore(activityId, user) {
+  //   //  For student users; teachers will differ on user type, etc
+  //   const newScore = {
+  //     activity_id: activityId,
+  //     user_id: user.id,
+  //     user_type: user.access,
+  //     correct_answer_count: 0,
+  //     incorrect_answer_count: 0,
+  //     time_to_correct_answer_duration_in_seconds: 0,
+  //     answer_attempts: 0,
+  //     activity_score: score.currentScore,
+  //   };
+  //   try {
+  //     const response = await fetch(
+  //       "/KGPSEnglishPractice-test/api/add_user_activity_record.php",
+  //       {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify(newScore),
+  //       }
+  //     );
+  //     const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error("Network response was not okay");
-      }
-    } catch (error) {
-      console.error("Error adding record:", error);
-    }
-  },
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not okay");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error adding record:", error);
+  //   }
+  // },
 };
 
 const scoreAssessment = {
