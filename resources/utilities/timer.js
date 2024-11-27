@@ -29,6 +29,7 @@ const timerFunction = {
           } else {
             this.timer.textContent = "0:00";
             this.setTimerFinishedValue(true);
+            this.endRound();
             console.log(this.timerFinished);
 
             toggleTouchFunction.disableTouch();
@@ -63,7 +64,7 @@ const timerFunction = {
     }, 500);
   },
   setEndRoundFunction(endRound) {
-    this.endRound = endRound();
+    this.endRound = endRound;
   },
   setTimerFinishedValue(value) {
     this.timerFinished = value;
