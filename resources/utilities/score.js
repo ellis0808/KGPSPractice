@@ -1,3 +1,6 @@
+import { sessionCheck } from "../login/session-check.js";
+
+sessionCheck();
 const score = {
   currentScore: 0,
   userScore: 0,
@@ -40,7 +43,7 @@ const score = {
     }
     return this.userScore;
   },
-  async updateStudentTotalScore() {
+  async updateStudentTotalScore(activityId) {
     //  For student users; teachers will differ on user type, etc
     const newScore = {
       activity_id: activityId,
