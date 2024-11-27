@@ -1,6 +1,7 @@
 import { sessionCheck } from "../login/session-check.js";
 import { user } from "./user-object.js";
 
+sessionCheck();
 const score = {
   currentScore: 0,
   userScore: 0,
@@ -74,15 +75,6 @@ const score = {
     }
   },
 };
-sessionCheck();
-setUser();
-function setUser() {
-  user.gradeLevel = sessionData.gradeLevel;
-  user.firstName = sessionData.firstName;
-  user.lastName = sessionData.lastName;
-  user.access = sessionData.access;
-  user.id = sessionData.userId;
-}
 
 const scoreAssessment = {
   assessmentMessage: null,
@@ -112,4 +104,13 @@ const scoreAssessment = {
     }
   },
 };
+
+// setUser();
+// function setUser() {
+//   user.gradeLevel = sessionData.gradeLevel;
+//   user.firstName = sessionData.firstName;
+//   user.lastName = sessionData.lastName;
+//   user.access = sessionData.access;
+//   user.id = sessionData.userId;
+// }
 export { score, scoreAssessment };
