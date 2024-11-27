@@ -32,7 +32,7 @@ const endRoundScreen = {
     this.finishBtn.addEventListener("pointerdown", link2);
   },
   displayContainer() {
-    if (timerFunction.time <= 0) {
+    if (timerFunction.timerFinished) {
       this.endMessagesContainer.appendChild(this.tryAgainBtn);
       this.endMessagesContainer.appendChild(this.finishBtn);
       this.setScoreMessage();

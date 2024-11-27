@@ -67,6 +67,13 @@ const matchingAppStructure = {
 };
 
 const matchingAppSessions = {
+  //   appFinished = false;
+  //   setAppFinishedValue(value) {
+  // this.appFinished = value
+  //   },
+  //   getAppFinishedValue () {
+  //     return this.appFinished
+  //   },
   startSession() {
     audio.navigationSfx.startApp.play();
     // endRoundScreen.removeContainer();
@@ -76,7 +83,7 @@ const matchingAppSessions = {
       appStarted = true;
     }, 1);
     setTimeout(() => {
-      timerFunction.startTimer(20);
+      timerFunction.startTimer(10);
     }, 1000);
   },
   endSession() {
@@ -150,7 +157,7 @@ const matchingApp = {
       homeBtnFunction.homeBtn,
       pauseFunction.pauseBtn
     );
-    timerFunction.setEndRoundApp(endRound);
+    timerFunction.setEndRoundFunction(endRound);
   },
   startApp(set) {
     sessionCheck();

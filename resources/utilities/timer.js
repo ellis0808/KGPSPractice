@@ -15,7 +15,7 @@ const timerFunction = {
   })(),
   time: null,
   counter: null,
-  counterFinished: false,
+  timerFinished: false,
   countDown() {
     setTimeout(() => {
       this.counter = setInterval(() => {
@@ -28,6 +28,9 @@ const timerFunction = {
             this.timer.textContent = `0:${this.time}`;
           } else {
             this.timer.textContent = "0:00";
+            this.setTimerFinishedValue(true);
+            console.log(this.timerFinished);
+
             toggleTouchFunction.disableTouch();
             clearInterval(this.counter);
           }
@@ -59,8 +62,11 @@ const timerFunction = {
       this.displayTimer();
     }, 500);
   },
-  setEndRoundApp(endRound) {
+  setEndRoundFunction(endRound) {
     this.endRound = endRound();
+  },
+  setTimerFinishedValue(value) {
+    this.timerFinished = value;
   },
 };
 
