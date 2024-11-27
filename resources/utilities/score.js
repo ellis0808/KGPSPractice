@@ -1,6 +1,3 @@
-import { sessionCheck } from "../login/session-check.js";
-import { user } from "./user-object.js";
-
 // sessionCheck();
 const score = {
   currentScore: 0,
