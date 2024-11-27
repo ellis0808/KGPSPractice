@@ -42,5 +42,32 @@ const score = {
   },
 };
 
-const scoreAssessment = {};
-export { score };
+const scoreAssessment = {
+  assessmentMessage: null,
+  finalScore: null,
+  determineApp(set) {},
+  matching() {
+    switch (true) {
+      case score.currentScore < 5:
+        finalScoreAssessment.innerText = "Better Luck\r\nNext Time!";
+        break;
+      case score.currentScore > 31:
+        finalScoreAssessment.innerText = "Outstanding!";
+        break;
+      case score.currentScore > 27:
+        finalScoreAssessment.innerText = "Amazing!";
+        break;
+      case score.currentScore > 23:
+        finalScoreAssessment.innerText = "Excellent!";
+        break;
+      case score.currentScore > 18:
+        finalScoreAssessment.innerText = "Great Job!";
+
+        break;
+      case score.currentScore > 13:
+        finalScoreAssessment.innerText = "Good Job!";
+        break;
+    }
+  },
+};
+export { score, scoreAssessment };

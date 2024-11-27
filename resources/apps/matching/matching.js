@@ -101,7 +101,10 @@ const matchingAppSessions = {
     toggleTimerHide();
   },
   startRound() {},
-  endRound() {},
+  endRound() {
+    score.updateUserScore();
+    endRoundScreen.displayContainer();
+  },
 };
 /* SCORING */
 const correctAnswerPoints = 1;
@@ -139,7 +142,7 @@ const matchingApp = {
       "/KGPSEnglishPractice-test/resources/css/matching.css"
     );
   },
-  setForeignElements(startSession, endApp) {
+  setForeignElements(startSession, endApp, endRound) {
     homeBtnFunction.initialize(endApp);
     startScreen.createAndSetStartScreen(startSession, endApp);
     endRoundScreen.initializeContainer(startSession, endApp);
@@ -147,12 +150,17 @@ const matchingApp = {
       homeBtnFunction.homeBtn,
       pauseFunction.pauseBtn
     );
+    timerFunction.setEndRoundApp(endRound);
   },
   startApp(set) {
     sessionCheck();
     setStyle(set);
     appStructure.createAndSetAppStructureThenHideGrid();
-    this.setForeignElements(matchingAppSessions.startSession, this.endApp);
+    this.setForeignElements(
+      matchingAppSessions.startSession,
+      this.endApp,
+      matchingAppSessions.endRound
+    );
     this.createAndSetStructure();
     elements.getElements(matchingAppElements);
     pauseFunction.unpause();
@@ -179,9 +187,6 @@ const matchingApp = {
     setTimeout(() => {
       console.log(mainContainer.childNodes);
       document.querySelector(".container").remove();
-      // mainContainer.childNodes.forEach((item) => {
-      //   item.remove();
-      // });
       console.log(mainContainer.childNodes);
       appStructure.removeMainAppStructure();
       setTimeout(() => {
@@ -305,20 +310,6 @@ II. SESSIONS & ROUNDS
 *******
 */
 
-// document.addEventListener("keydown", (event) => {
-//   if (appStarted) {
-//     if (event.key === "Escape") {
-//       if (homeBtnIsGoHome) {
-//         goHome();
-//       } else {
-//         returnToApp();
-//       }
-//     }
-//   } else {
-//     return;
-//   }
-// });
-
 function startNewRound() {
   toggleTouchFunction.enableTouch();
   if (scoreDisplay.classList.contains("hide2")) {
@@ -332,11 +323,8 @@ function startNewRound() {
   scoreDisplay.classList.remove("blur");
   setTimeout(() => {
     gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
+    appStructure.setBtnContainer1(timerFunction.timer, scoreDisplay);
 
-    appStructure.btnContainer1.appendChild(timerFunction.timer);
-    appStructure.btnContainer1.appendChild(scoreDisplay);
-    // appStructure.appControlsContainer.appendChild(homeBtn);
-    // appStructure.appControlsContainer.appendChild(pauseFunction.pauseBtn);
     setTimeout(() => {
       activateEventListeners();
     }, 200);

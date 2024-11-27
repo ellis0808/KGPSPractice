@@ -88,7 +88,9 @@ const homeBtnFunction = {
     appStructure.setBtnContainer4(this.goHomeContainer);
   },
   returnToApp() {
-    document.querySelector(".go-home-container").remove();
+    if (document.querySelector(".go-home-container")) {
+      document.querySelector(".go-home-container").remove();
+    }
   },
 };
 

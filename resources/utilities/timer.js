@@ -7,6 +7,7 @@ function toggleTimerHide() {
 }
 
 const timerFunction = {
+  endRound: null,
   timer: (() => {
     const div = document.createElement("div");
     div.classList.add("timer");
@@ -29,8 +30,6 @@ const timerFunction = {
             this.timer.textContent = "0:00";
             toggleTouchFunction.disableTouch();
             clearInterval(this.counter);
-            endRoundScreen.displayContainer();
-            console.log("0");
           }
         }
       }, 1000);
@@ -59,6 +58,9 @@ const timerFunction = {
     setTimeout(() => {
       this.displayTimer();
     }, 500);
+  },
+  setEndRoundApp(endRound) {
+    this.endRound = endRound();
   },
 };
 

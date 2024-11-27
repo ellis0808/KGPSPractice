@@ -1,10 +1,13 @@
 import { appStructure } from "./app-structure-object.js";
+import { score } from "./score.js";
 
 const endRoundScreen = {
   createBtnsAndContainer() {
     this.tryAgainBtn = document.createElement("div");
     this.finishBtn = document.createElement("div");
     this.endMessagesContainer = document.createElement("div");
+    this.assessmentMessage = document.createElement("div");
+    this.scoreMessage = document.createElement("div");
   },
   initializeContainer(link1, link2) {
     this.createBtnsAndContainer();
@@ -20,6 +23,8 @@ const endRoundScreen = {
     this.tryAgainBtn.innerText = "One More Time";
     this.finishBtn.classList.add("finish-btn", "button");
     this.finishBtn.innerText = "Finish";
+    this.assessmentMessage.classList.add("final-score-assessment");
+    this.scoreMessage.classList.add("final-score-alert-score");
   },
   setBtnLinks(link1, link2) {
     this.tryAgainBtn.addEventListener("pointerdown", link1);
@@ -28,11 +33,19 @@ const endRoundScreen = {
   displayContainer() {
     this.endMessagesContainer.appendChild(this.tryAgainBtn);
     this.endMessagesContainer.appendChild(this.finishBtn);
+    this.setScoreMessage();
     appStructure.setBtnContainer5(this.endMessagesContainer);
   },
   removeContainer() {
     delete this.endMessagesContainer;
   },
+  setAssessmentMessage(message) {
+    this.assessmentMessage.innerText = message;
+  },
+  setScoreMessage(message) {
+    this.scoreMessage.innerText = message;
+  },
+
   //   displayContainer() {
   //     score.updateUserScore();
   //     updateUserTotalScore();
