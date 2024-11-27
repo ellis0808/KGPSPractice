@@ -1,5 +1,6 @@
 import { appStructure } from "./app-structure-object.js";
 import { score } from "./score.js";
+import { timerFunction } from "./timer.js";
 
 const endRoundScreen = {
   createBtnsAndContainer() {
@@ -31,10 +32,12 @@ const endRoundScreen = {
     this.finishBtn.addEventListener("pointerdown", link2);
   },
   displayContainer() {
-    this.endMessagesContainer.appendChild(this.tryAgainBtn);
-    this.endMessagesContainer.appendChild(this.finishBtn);
-    this.setScoreMessage();
-    appStructure.setBtnContainer5(this.endMessagesContainer);
+    if (timerFunction.time <= 0) {
+      this.endMessagesContainer.appendChild(this.tryAgainBtn);
+      this.endMessagesContainer.appendChild(this.finishBtn);
+      this.setScoreMessage();
+      appStructure.setBtnContainer5(this.endMessagesContainer);
+    }
   },
   removeContainer() {
     delete this.endMessagesContainer;
