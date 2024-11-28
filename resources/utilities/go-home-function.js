@@ -1,5 +1,6 @@
 import { appStructure } from "./app-structure-object.js";
 import { pauseFunction } from "./pause-functions.js";
+import { matchingApp } from "../apps/matching/matching.js";
 
 const homeBtnFunction = {
   createStructure() {
@@ -77,7 +78,7 @@ const homeBtnFunction = {
     });
   },
   setBtnLink(endAppLink) {
-    this.goHomeBtn.addEventListener("pointerdown", endAppLink);
+    this.goHomeBtn.addEventListener("pointerdown", matchingApp.endApp);
     console.log(endAppLink);
 
     this.cancelBtn.addEventListener("pointerdown", this.returnToApp.bind(this));

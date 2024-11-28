@@ -952,4 +952,5 @@ export {
   numberOfItemsToBeDisplayed,
   elements,
   matchingAppStructure,
+  matchingApp,
 };
