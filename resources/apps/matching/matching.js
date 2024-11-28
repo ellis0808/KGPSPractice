@@ -151,6 +151,7 @@ const matchingApp = {
     );
   },
   setForeignElements(startSession, endApp, endRound) {
+    homeBtnFunction.initialize(endApp);
     startScreen.createAndSetStartScreen(startSession, endApp);
     endRoundScreen.initializeContainer(startSession, endApp);
     appStructure.setAppControlsContainer(
@@ -158,7 +159,6 @@ const matchingApp = {
       pauseFunction.pauseBtn
     );
     timerFunction.setEndRoundFunction(endRound);
-    homeBtnFunction.initialize(endApp);
   },
   startApp(set) {
     sessionCheck();
