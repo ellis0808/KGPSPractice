@@ -42,7 +42,9 @@ const endRoundScreen = {
     }
   },
   removeContainer() {
-    delete this.endMessagesContainer;
+    if (this.endMessagesContainer) {
+      this.endMessagesContainer.remove();
+    }
   },
   setAssessmentMessage(message) {
     this.assessmentMessage.innerText = message;
