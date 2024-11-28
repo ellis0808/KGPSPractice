@@ -83,7 +83,7 @@ const matchingAppSessions = {
       appStarted = true;
     }, 1);
     setTimeout(() => {
-      timerFunction.startTimer(10);
+      timerFunction.startTimer(20);
     }, 1000);
   },
   endSession() {
@@ -174,7 +174,6 @@ const matchingApp = {
     pauseFunction.unpause();
     this.setStyleSheet();
     menuItems.removeMenuPage();
-
     score.resetScore();
     scoreDisplay.innerText = score.currentScore;
     appStructure.appContainer.classList.remove("hide");

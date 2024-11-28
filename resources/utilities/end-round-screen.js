@@ -1,5 +1,5 @@
 import { appStructure } from "./app-structure-object.js";
-import { score } from "./score.js";
+import { score, scoreAssessment } from "./score.js";
 import { timerFunction } from "./timer.js";
 
 const endRoundScreen = {
@@ -33,6 +33,7 @@ const endRoundScreen = {
   },
   displayContainer() {
     if (timerFunction.timerFinished) {
+      scoreAssessment.matching();
       this.endMessagesContainer.appendChild(this.tryAgainBtn);
       this.endMessagesContainer.appendChild(this.finishBtn);
       this.endMessagesContainer.appendChild(this.assessmentMessage);
