@@ -46,6 +46,9 @@ const endRoundScreen = {
     this.assessmentMessage.innerText = message;
   },
   setScoreMessage() {
+    console.log("score message set!");
+    console.log(score.currentScore);
+
     this.scoreMessage.innerText = score.currentScore;
   },
 
