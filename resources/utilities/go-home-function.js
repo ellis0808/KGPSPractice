@@ -84,6 +84,7 @@ const homeBtnFunction = {
   displayContainer() {
     console.log("test");
     console.log(this.goHomeContainer);
+    this.goHomeContainer.appendChild(this.goHomeMessage);
     this.goHomeContainer.appendChild(this.goHomeBtn);
     this.goHomeContainer.appendChild(this.cancelBtn);
     appStructure.setBtnContainer4(this.goHomeContainer);
