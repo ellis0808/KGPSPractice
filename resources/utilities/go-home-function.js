@@ -3,8 +3,8 @@ import { pauseFunction } from "./pause-functions.js";
 
 const homeBtnFunction = {
   createStructure() {
-    (this.homeBtn = document.createElement("button")),
-      (this.goHomeBtn = document.createElement("button"));
+    this.homeBtn = document.createElement("button");
+    this.goHomeBtn = document.createElement("button");
     this.cancelBtn = document.createElement("button");
     this.goHomeContainer = document.createElement("div");
     this.goHomeMessage = document.createElement("div");
@@ -18,7 +18,6 @@ const homeBtnFunction = {
     );
     this.initializeEscapeKey();
     this.setBtnLink(link1);
-    console.log(this.homeBtn);
   },
   addClassesTextAndIcon() {
     this.homeBtn.classList.add("home-btn");
@@ -92,6 +91,7 @@ const homeBtnFunction = {
   returnToApp() {
     if (document.querySelector(".go-home-container")) {
       document.querySelector(".go-home-container").remove();
+      pauseFunction.unpause();
     }
   },
 };
