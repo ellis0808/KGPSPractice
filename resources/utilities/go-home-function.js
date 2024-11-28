@@ -83,8 +83,6 @@ const homeBtnFunction = {
     this.cancelBtn.addEventListener("pointerdown", this.returnToApp.bind(this));
   },
   displayContainer() {
-    console.log("test");
-    console.log(this.goHomeContainer);
     this.goHomeContainer.appendChild(this.goHomeMessage);
     this.goHomeContainer.appendChild(this.goHomeBtn);
     this.goHomeContainer.appendChild(this.cancelBtn);
