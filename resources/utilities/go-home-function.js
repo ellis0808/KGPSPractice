@@ -78,7 +78,9 @@ const homeBtnFunction = {
     });
   },
   setBtnLink(endAppLink) {
-    this.goHomeBtn.addEventListener("pointerdown", endAppLink);
+    this.goHomeBtn.addEventListener("pointerdown", () => {
+      endAppLink;
+    });
     console.log(endAppLink);
 
     this.cancelBtn.addEventListener("pointerdown", this.returnToApp.bind(this));
