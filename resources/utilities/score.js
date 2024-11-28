@@ -1,4 +1,3 @@
-import { user } from "./user-object.js";
 // sessionCheck();
 const score = {
   currentScore: 0,
