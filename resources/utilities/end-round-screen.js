@@ -35,6 +35,8 @@ const endRoundScreen = {
     if (timerFunction.timerFinished) {
       this.endMessagesContainer.appendChild(this.tryAgainBtn);
       this.endMessagesContainer.appendChild(this.finishBtn);
+      this.endMessagesContainer.appendChild(this.assessmentMessage);
+      this.endMessagesContainer.appendChild(this.scoreMessage);
       this.setScoreMessage();
       appStructure.setBtnContainer5(this.endMessagesContainer);
     }
