@@ -1,4 +1,6 @@
 // sessionCheck();
+import { endRoundScreen } from "./end-round-screen.js";
+import { audio } from "./audio.js";
 const score = {
   currentScore: 0,
   userScore: 0,
@@ -80,23 +82,29 @@ const scoreAssessment = {
   matching() {
     switch (true) {
       case score.currentScore < 5:
-        finalScoreAssessment.innerText = "Better Luck\r\nNext Time!";
+        endRoundScreen.assessmentMessage.innerText =
+          "Better Luck\r\nNext Time!";
+        audio.feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
         break;
       case score.currentScore > 31:
-        finalScoreAssessment.innerText = "Outstanding!";
+        endRoundScreen.assessmentMessage.innerText = "Outstanding!";
+        audio.feedbackAudioObject.positiveFeedback.outstanding.sound.play();
         break;
       case score.currentScore > 27:
-        finalScoreAssessment.innerText = "Amazing!";
+        endRoundScreen.assessmentMessage.innerText = "Amazing!";
+        audio.feedbackAudioObject.positiveFeedback.amazing.sound.play();
         break;
       case score.currentScore > 23:
-        finalScoreAssessment.innerText = "Excellent!";
+        endRoundScreen.assessmentMessage.innerText = "Excellent!";
+        audio.feedbackAudioObject.positiveFeedback.excellent.sound.play();
         break;
       case score.currentScore > 18:
-        finalScoreAssessment.innerText = "Great Job!";
-
+        endRoundScreen.assessmentMessage.innerText = "Great Job!";
+        audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
         break;
       case score.currentScore > 13:
-        finalScoreAssessment.innerText = "Good Job!";
+        endRoundScreen.assessmentMessage.innerText = "Good Job!";
+        audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
         break;
     }
   },
