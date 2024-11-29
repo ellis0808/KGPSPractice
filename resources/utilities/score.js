@@ -14,6 +14,7 @@ const score = {
     div.classList.add("score-display");
     div.setAttribute("id", "score-display");
     div.textContent = this.currentScore;
+    return div;
   })(),
   increaseScore: function (amount) {
     this.currentScore += amount;
