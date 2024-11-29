@@ -127,36 +127,47 @@ const score = {
 
 const scoreAssessment = {
   assessmentMessage: null,
+  assessmentAudio: null,
   finalScore: null,
   determineApp(set) {},
   matching() {
+    console.log("test1");
+
     switch (true) {
       case score.currentScore < 5:
-        endRoundScreen.assessmentMessage.innerText =
-          "Better Luck\r\nNext Time!";
-        audio.feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
+        this.assessmentMessage = "Better Luck\r\nNext Time!";
+        this.assessmentAudio =
+          audio.feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
         break;
       case score.currentScore > 31:
-        endRoundScreen.assessmentMessage.innerText = "Outstanding!";
-        audio.feedbackAudioObject.positiveFeedback.outstanding.sound.play();
+        this.assessmentMessage = "Outstanding!";
+        this.assessmentAudio =
+          audio.feedbackAudioObject.positiveFeedback.outstanding.sound.play();
         break;
       case score.currentScore > 27:
-        endRoundScreen.assessmentMessage.innerText = "Amazing!";
-        audio.feedbackAudioObject.positiveFeedback.amazing.sound.play();
+        this.assessmentMessage = "Amazing!";
+        this.assessmentAudio =
+          audio.feedbackAudioObject.positiveFeedback.amazing.sound.play();
         break;
       case score.currentScore > 23:
-        endRoundScreen.assessmentMessage.innerText = "Excellent!";
-        audio.feedbackAudioObject.positiveFeedback.excellent.sound.play();
+        this.assessmentMessage = "Excellent!";
+        this.assessmentAudio =
+          audio.feedbackAudioObject.positiveFeedback.excellent.sound.play();
         break;
       case score.currentScore > 18:
-        endRoundScreen.assessmentMessage.innerText = "Great Job!";
-        audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
+        this.assessmentMessage = "Great Job!";
+        this.assessmentAudio =
+          audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
         break;
       case score.currentScore > 13:
-        endRoundScreen.assessmentMessage.innerText = "Good Job!";
-        audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
+        this.assessmentMessage = "Good Job!";
+        this.assessmentAudio =
+          audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
         break;
     }
+    console.log("test2");
+    endRoundScreen.setAssessmentMessage(this.assessmentMessage);
+    endRoundScreen.setAssessmentAudio(this.assessmentAudio);
   },
 };
 

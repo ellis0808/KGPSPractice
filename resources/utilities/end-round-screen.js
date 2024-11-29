@@ -33,12 +33,11 @@ const endRoundScreen = {
   },
   displayContainer() {
     if (timerFunction.timerFinished) {
-      scoreAssessment.matching();
       this.endMessagesContainer.appendChild(this.tryAgainBtn);
       this.endMessagesContainer.appendChild(this.finishBtn);
       this.endMessagesContainer.appendChild(this.assessmentMessage);
       this.endMessagesContainer.appendChild(this.scoreMessage);
-      this.setScoreMessage();
+      scoreAssessment.matching();
       appStructure.setBtnContainer5(this.endMessagesContainer);
     }
   },
@@ -49,6 +48,9 @@ const endRoundScreen = {
   },
   setAssessmentMessage(message) {
     this.assessmentMessage.innerText = message;
+  },
+  setAssessmentAudio(audio) {
+    audio;
   },
   setScoreMessage() {
     console.log("score message set!");
