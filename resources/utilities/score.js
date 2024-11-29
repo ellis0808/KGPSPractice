@@ -140,7 +140,7 @@ const scoreAssessment = {
         this.assessmentMessage = "Better Luck\r\nNext Time!";
         this.assessmentAudio =
           audio.feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
-      // break;
+        break;
       case score.currentScore > 31:
         this.assessmentMessage = "Outstanding!";
         this.assessmentAudio =
