@@ -33,6 +33,7 @@ const endRoundScreen = {
   },
   displayContainer() {
     if (timerFunction.timerFinished) {
+      this.setScoreMessage();
       this.endMessagesContainer.appendChild(this.tryAgainBtn);
       this.endMessagesContainer.appendChild(this.finishBtn);
       this.endMessagesContainer.appendChild(this.assessmentMessage);
@@ -50,7 +51,7 @@ const endRoundScreen = {
     this.assessmentMessage.innerText = message;
   },
   setAssessmentAudio(audio) {
-    audio();
+    audio;
   },
   setScoreMessage() {
     console.log("score message set!");
