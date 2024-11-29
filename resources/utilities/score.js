@@ -167,7 +167,8 @@ const scoreAssessment = {
           audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
         break;
     }
-    console.log("test2");
+    console.log(this.assessmentAudio);
+    console.log(this.assessmentMessage);
     endRoundScreen.setAssessmentMessage(this.assessmentMessage);
     endRoundScreen.setAssessmentAudio(this.assessmentAudio);
   },
