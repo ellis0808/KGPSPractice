@@ -50,7 +50,7 @@ const endRoundScreen = {
     this.assessmentMessage.innerText = message;
   },
   setAssessmentAudio(audio) {
-    audio;
+    audio();
   },
   setScoreMessage() {
     console.log("score message set!");
