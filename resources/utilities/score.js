@@ -1,12 +1,20 @@
 // sessionCheck();
 import { endRoundScreen } from "./end-round-screen.js";
 import { audio } from "./audio.js";
+import { updateNegativeCount } from "./update-score.js";
+
 const score = {
   currentScore: 0,
   userScore: 0,
   highScore: 0,
   plusPoints: 5,
   minusPoints: 2,
+  display: document.createElement("div"),
+  setScoreDisplayClassesAndContent() {
+    this.display.classList.add("score-display");
+    this.display.setAttribute("id", "score-display");
+    this.display.textContent = this.currentScore;
+  },
   increaseScore: function (amount) {
     this.currentScore += amount;
   },
@@ -19,6 +27,49 @@ const score = {
       this.currentScore -= amount;
       return;
     }
+  },
+  updatePositiveCount(amount) {
+    const points = amount;
+    const increment = 1;
+    let initialValue = this.currentScore;
+    let target = this.currentScore + points;
+    const increaseCount = setInterval(() => {
+      initialValue += increment;
+      if (initialValue > target) {
+        this.display.textContent = this.currentScore + points;
+        clearInterval(increaseCount);
+        return;
+      }
+      this.display.textContent = initialValue;
+    }, 80);
+    setTimeout(() => {
+      this.increaseScore(amount);
+    }, 600);
+  },
+  updateNegativeCount(amount) {
+    if (this.currentScore === 0) {
+      amount = 0;
+      return amount;
+    }
+    const points = amount;
+    const increment = 1;
+    let initialValue = this.currentScore;
+    let target = this.currentScore - points;
+    const decreaseCount = setInterval(() => {
+      initialValue -= increment;
+      if (initialValue < target) {
+        this.display.textContent = this.currentScore - points;
+        clearInterval(decreaseCount);
+        return;
+      }
+      this.display.textContent = initialValue;
+    }, 80);
+    setTimeout(() => {
+      this.decreaseScore(amuont);
+    }, 600);
+  },
+  displayHideToggle() {
+    this.display.classList.toggle("hide2");
   },
   resetScore: function () {
     this.currentScore = 0;
@@ -118,4 +169,5 @@ const scoreAssessment = {
 //   user.access = sessionData.access;
 //   user.id = sessionData.userId;
 // }
+
 export { score, scoreAssessment };

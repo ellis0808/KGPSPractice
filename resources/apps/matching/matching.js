@@ -9,12 +9,6 @@ import { menuItems } from "../general/start-main-app.js";
 import { score } from "../../utilities/score.js";
 import { timerFunction, toggleTimerHide } from "../../utilities/timer.js";
 import {
-  scoreDisplay,
-  toggleScoreDisplayHide,
-  updateNegativeCount,
-  updatePositiveCount,
-} from "../../utilities/update-score.js";
-import {
   dotAndLineCommand,
   startDot,
   endDot,
@@ -104,7 +98,7 @@ const matchingAppSessions = {
     appStarted = false;
     toggleBlur.removeAllBlur();
     clearBoard();
-    toggleScoreDisplayHide();
+    score.displayHideToggle();
     toggleTimerHide();
   },
   startRound() {},
@@ -118,7 +112,7 @@ const matchingAppSessions = {
 const correctAnswerPoints = 1;
 const incorrectAnswerPoints = 1;
 
-scoreDisplay.textContent = `${score.currentScore}`;
+score.display.textContent = `${score.currentScore}`;
 
 let endDotId;
 let startDotId;
@@ -175,10 +169,10 @@ const matchingApp = {
     this.setStyleSheet();
     menuItems.removeMenuPage();
     score.resetScore();
-    scoreDisplay.innerText = score.currentScore;
+    score.display.innerText = score.currentScore;
     appStructure.appContainer.classList.remove("hide");
-    if (!scoreDisplay.classList.contains("hide2")) {
-      toggleScoreDisplayHide();
+    if (!score.display.classList.contains("hide2")) {
+      score.displayHideToggle();
     }
     if (!timerFunction.timer.classList.contains("hide2")) {
       timerFunction.toggleTimerHide();
@@ -205,7 +199,7 @@ const matchingApp = {
         setTimeout(menuItems.restoreMainMenu, 100);
       }, 500);
     }, 500);
-    scoreDisplay.innerText = score.currentScore;
+    score.display.innerText = score.currentScore;
   },
 };
 
@@ -319,18 +313,18 @@ II. SESSIONS & ROUNDS
 
 function startNewRound() {
   toggleTouchFunction.enableTouch();
-  if (scoreDisplay.classList.contains("hide2")) {
-    toggleScoreDisplayHide();
+  if (score.display.classList.contains("hide2")) {
+    score.displayHideToggle();
   }
   if (timerFunction.timer.classList.contains("hide2")) {
     timerFunction.toggleTimerHide();
   }
   appStructure.appControlsContainer.classList.remove("hide");
   toggleBlur.removeWeakBlur();
-  scoreDisplay.classList.remove("blur");
+  score.display.classList.remove("blur");
   setTimeout(() => {
     gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
-    appStructure.setBtnContainer1(timerFunction.timer, scoreDisplay);
+    appStructure.setBtnContainer1(timerFunction.timer, score.display);
 
     setTimeout(() => {
       activateEventListeners();
@@ -460,8 +454,8 @@ function checkAllCorrect() {
   );
   if (allCorrectDots.length === numberOfItemsToBeDisplayed) {
     setTimeout(() => {
-      updatePositiveCount(allCorrectDots.length * correctAnswerPoints);
-      scoreDisplay.classList.add("pulse");
+      score.updatePositiveCount(allCorrectDots.length * correctAnswerPoints);
+      score.display.classList.add("pulse");
       audio.appSfx.correct.play();
       setTimeout(randomFeedback, 500);
     }, 200);
@@ -597,7 +591,7 @@ function onPointerDown(event) {
 
       currentDotId;
       getEventTargetID(event);
-      scoreDisplay.classList.remove("pulse");
+      score.display.classList.remove("pulse");
 
       if (
         !currentDotIdArray.includes(endDot[currentEndDot]) +
@@ -633,7 +627,7 @@ function onPointerDown(event) {
       line.buttonDown();
 
       currentDotId;
-      scoreDisplay.classList.remove("pulse");
+      score.display.classList.remove("pulse");
 
       getEventTargetID(event);
 
