@@ -1,7 +1,6 @@
 // sessionCheck();
 import { endRoundScreen } from "./end-round-screen.js";
 import { audio } from "./audio.js";
-import { updateNegativeCount } from "./update-score.js";
 
 const score = {
   currentScore: 0,
