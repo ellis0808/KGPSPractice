@@ -112,7 +112,7 @@ const matchingAppSessions = {
 const correctAnswerPoints = 1;
 const incorrectAnswerPoints = 1;
 
-score.display.textContent = `${score.currentScore}`;
+// score.display.textContent = `${score.currentScore}`;
 
 let endDotId;
 let startDotId;
