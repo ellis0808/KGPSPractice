@@ -8,12 +8,13 @@ const score = {
   highScore: 0,
   plusPoints: 5,
   minusPoints: 2,
-  display: document.createElement("div"),
-  setScoreDisplayClassesAndContent() {
-    this.display.classList.add("score-display");
-    this.display.setAttribute("id", "score-display");
-    this.display.textContent = this.currentScore;
-  },
+  display: (() => {
+    const div = document.createElement("div");
+
+    div.classList.add("score-display");
+    div.setAttribute("id", "score-display");
+    div.textContent = this.currentScore;
+  })(),
   increaseScore: function (amount) {
     this.currentScore += amount;
   },
