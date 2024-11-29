@@ -8,10 +8,13 @@ class User {
     this.gradeLevel = null;
     this.access = null;
     this.cumulativeScore = 0;
-    this.currentScore = score.currentScore;
+    this.currentScore = null;
     this.currentLoginTime = null;
     this.totalLoginTime = null;
     this.awards = [];
+  }
+  getCurrentScore() {
+    this.currentScore = score.currentScore;
   }
   async getCumulativeScore(id) {
     try {
