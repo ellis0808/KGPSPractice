@@ -1,6 +1,5 @@
 import { appStructure } from "./app-structure-object.js";
 import { pauseFunction } from "./pause-functions.js";
-import { matchingApp } from "../apps/matching/matching.js";
 
 const homeBtnFunction = {
   createStructure() {

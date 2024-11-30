@@ -119,6 +119,7 @@ const matchingAppSessions = {
     appStructure.gridHideRemove();
   },
   startRound() {
+    this.prepareForNewRound();
     setTimeout(() => {
       gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
       appStructure.setBtnContainer1(timerFunction.timer, score.display);
@@ -127,11 +128,11 @@ const matchingAppSessions = {
       }, 300);
       setTimeout(() => {
         appStructure.gridHideRemove();
+        console.log(appStructure.grid.classList.contains);
       }, 100);
       elements.getElements(matchingAppElements);
       console.log(matchingAppElements);
     }, 1000);
-    this.prepareForNewRound();
     toggleBlur.removeAllBlur();
   },
   endRound() {
