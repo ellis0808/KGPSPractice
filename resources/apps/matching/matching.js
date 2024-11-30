@@ -70,6 +70,7 @@ const matchingAppSessions = {
 
     setTimeout(() => {
       matchingAppSessions.startRound;
+      console.log("startSession triggered");
     }, 950);
     matchingApp.activateEventListeners();
     setTimeout(() => {
@@ -119,6 +120,8 @@ const matchingAppSessions = {
     appStructure.gridHideRemove();
   },
   startRound() {
+    console.log("startRound triggered");
+
     this.prepareForNewRound();
     setTimeout(() => {
       gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
