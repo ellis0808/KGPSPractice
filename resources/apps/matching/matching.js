@@ -252,6 +252,7 @@ const matchingApp = {
     toggleBlur.removeAllBlur();
   },
   endApp() {
+    pauseFunction.pause();
     score.updateUserScore();
     matchingAppSessions.endSession();
     endRoundScreen.removeContainer();
@@ -821,43 +822,6 @@ function getOldLines() {
     line.remove();
   });
 }
-
-// Event Listeners
-// function activateEventListeners() {
-//   setTimeout(() => {
-//     const startTargets = document.querySelectorAll(
-//       ".start-target, .end-target"
-//     );
-//     startTargets.forEach((target) => {
-//       target.addEventListener("pointerdown", onPointerDown, false);
-//       target.addEventListener("pointerup", onPointerUp, false);
-//     });
-//   }, 1);
-//   mainContainer.addEventListener("pointerup", onPointerUpFalse, false);
-//   mainContainer.addEventListener("pointermove", onPointerMove, false);
-// }
-// window.addEventListener("resize", updateLinePositions);
-// function createDoubleTapPreventer(timeout_ms) {
-//   let dblTapTimer = 0;
-//   let dblTapPressed = false;
-
-//   return function (e) {
-//     clearTimeout(dblTapTimer);
-//     if (dblTapPressed) {
-//       e.preventDefault();
-//       dblTapPressed = false;
-//     } else {
-//       dblTapPressed = true;
-//       dblTapTimer = setTimeout(() => {
-//         dblTapPressed = false;
-//       }, timeout_ms);
-//     }
-//   };
-// }
-
-// document.body.addEventListener("touchstart", createDoubleTapPreventer(500), {
-//   passive: false,
-// });
 
 export {
   matchingApp,

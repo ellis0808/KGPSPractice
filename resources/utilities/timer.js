@@ -53,6 +53,7 @@ const timerFunction = {
       this.timer.textContent = `0:${this.time}`;
     }
   },
+  resetTimer() {},
   toggleTimerHide() {
     if (timerFunction.timer.classList.contains("hide2")) {
       this.timer.classList.toggle("hide2");
