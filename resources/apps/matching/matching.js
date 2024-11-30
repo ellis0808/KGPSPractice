@@ -47,8 +47,8 @@ const matchingAppStructure = {
     this.endRowContainer = document.createElement("div");
     this.startDotsContainer = document.createElement("div");
     this.endDotsContainer = document.createElement("div");
-    this.startRowContainer.classList.add("capitals");
-    this.endRowContainer.classList.add("lowercase");
+    this.startRowContainer.classList.add("startrow");
+    this.endRowContainer.classList.add("endrow");
     this.startDotsContainer.classList.add("start-dot-div");
     this.endDotsContainer.classList.add("end-dot-div");
   },
@@ -63,9 +63,7 @@ const matchingAppStructure = {
 const matchingAppSessions = {
   startSession() {
     audio.navigationSfx.startApp.play();
-    if (endRoundScreen.endMessagesContainer) {
-      endRoundScreen.removeContainer();
-    }
+    endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
     setTimeout(() => {
       matchingAppSessions.startRound();
@@ -201,10 +199,10 @@ const matchingApp = {
       "/KGPSEnglishPractice-test/resources/css/matching.css"
     );
   },
-  setForeignElements(startSession, startRound, endApp, endRound) {
+  setForeignElements(startSession, endApp, endRound) {
     homeBtnFunction.initialize(endApp);
     startScreen.createAndSetStartScreen(startSession, endApp);
-    endRoundScreen.initializeContainer(startRound, endApp);
+    endRoundScreen.initializeContainer(startSession, endApp);
     appStructure.setAppControlsContainer(
       homeBtnFunction.homeBtn,
       pauseFunction.pauseBtn
@@ -232,7 +230,6 @@ const matchingApp = {
     this.createAndSetStructure();
     this.setForeignElements(
       matchingAppSessions.startSession,
-      matchingAppSessions.startRound,
       this.endApp,
       matchingAppSessions.endRound
     );

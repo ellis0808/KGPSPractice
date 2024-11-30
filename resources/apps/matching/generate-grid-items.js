@@ -96,7 +96,7 @@ const gridGenerator = {
       item.classList.add(divGroup, "matching-app");
       item.innerText = `${item.getAttribute("contentId")}`;
       if (Object.keys(audio.audioObject).length !== 0) {
-        item.addEventListener("click", () => {
+        item.addEventListener("pointerdown", () => {
           audio.audioObject[thing].sound.play();
         });
       }
@@ -113,7 +113,7 @@ const gridGenerator = {
       item.classList.add(divGroup, "matching-app");
       item.innerText = `${item.getAttribute("contentId")}`;
       if (Object.keys(audio.audioObject).length !== 0) {
-        item.addEventListener("click", () => {
+        item.addEventListener("pointerdown", () => {
           audio.audioObject[thing.toLowerCase()].sound.play();
         });
       }
