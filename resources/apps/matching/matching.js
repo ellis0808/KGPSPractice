@@ -134,6 +134,32 @@ const matchingAppElements = [
 ];
 
 const matchingApp = {
+  createDoubleTapPreventer(timeout_ms) {
+    let dblTapTimer = 0;
+    let dblTapPressed = false;
+
+    return function (e) {
+      clearTimeout(dblTapTimer);
+      if (dblTapPressed) {
+        e.preventDefault();
+        dblTapPressed = false;
+      } else {
+        dblTapPressed = true;
+        dblTapTimer = setTimeout(() => {
+          dblTapPressed = false;
+        }, timeout_ms);
+      }
+    };
+  },
+  setDoubleTapPreventer() {
+    document.body.addEventListener(
+      "touchstart",
+      createDoubleTapPreventer(500),
+      {
+        passive: false,
+      }
+    );
+  },
   createAndSetStructure() {
     matchingAppStructure.createGrid();
     matchingAppStructure.setGrid();
@@ -168,6 +194,7 @@ const matchingApp = {
     mainContainer.addEventListener("pointermove", onPointerMove, false);
   },
   startApp(set) {
+    this.setDoubleTapPreventer();
     sessionCheck();
     setStyle(set);
     appStructure.createAndSetAppStructureThenHideGrid();
@@ -780,27 +807,27 @@ function getOldLines() {
 //   mainContainer.addEventListener("pointermove", onPointerMove, false);
 // }
 // window.addEventListener("resize", updateLinePositions);
-function createDoubleTapPreventer(timeout_ms) {
-  let dblTapTimer = 0;
-  let dblTapPressed = false;
+// function createDoubleTapPreventer(timeout_ms) {
+//   let dblTapTimer = 0;
+//   let dblTapPressed = false;
 
-  return function (e) {
-    clearTimeout(dblTapTimer);
-    if (dblTapPressed) {
-      e.preventDefault();
-      dblTapPressed = false;
-    } else {
-      dblTapPressed = true;
-      dblTapTimer = setTimeout(() => {
-        dblTapPressed = false;
-      }, timeout_ms);
-    }
-  };
-}
+//   return function (e) {
+//     clearTimeout(dblTapTimer);
+//     if (dblTapPressed) {
+//       e.preventDefault();
+//       dblTapPressed = false;
+//     } else {
+//       dblTapPressed = true;
+//       dblTapTimer = setTimeout(() => {
+//         dblTapPressed = false;
+//       }, timeout_ms);
+//     }
+//   };
+// }
 
-document.body.addEventListener("touchstart", createDoubleTapPreventer(500), {
-  passive: false,
-});
+// document.body.addEventListener("touchstart", createDoubleTapPreventer(500), {
+//   passive: false,
+// });
 
 export {
   matchingApp,

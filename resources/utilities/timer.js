@@ -30,7 +30,6 @@ const timerFunction = {
             this.timer.textContent = "0:00";
             this.setTimerFinishedValue(true);
             this.endRound();
-            console.log(this.timerFinished);
 
             toggleTouchFunction.disableTouch();
             clearInterval(this.counter);

@@ -133,8 +133,6 @@ const scoreAssessment = {
   finalScore: null,
   determineApp(set) {},
   matching() {
-    console.log("test1");
-
     switch (true) {
       case score.currentScore <= 12:
         this.assessmentMessage = "Better Luck\r\nNext Time!";
@@ -167,8 +165,6 @@ const scoreAssessment = {
           audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
         break;
     }
-    console.log(this.assessmentAudio);
-    console.log(this.assessmentMessage);
     endRoundScreen.setAssessmentMessage(this.assessmentMessage);
     endRoundScreen.setAssessmentAudio(this.assessmentAudio);
   },
