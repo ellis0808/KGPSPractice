@@ -1,9 +1,7 @@
 import { mainContainer } from "./variables.js";
 
 class App {
-  constructor() {
-
-  }
+  constructor() {}
   startSession(time) {
     audio.navigationSfx.startApp.play();
     endRoundScreen.removeContainer();
@@ -76,14 +74,13 @@ class App {
       console.log(matchingAppElements);
     }, 1000);
     toggleBlur.removeAllBlur();
-  },
+  }
   endRound() {
     score.updateUserScore();
     // score.updateStudentTotalScore();
     endRoundScreen.displayContainer();
-  },
+  }
 }
-
 
 const appStructure = {
   createMainAppStructure() {
