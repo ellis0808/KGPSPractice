@@ -62,7 +62,6 @@ const matchingAppStructure = {
 
 const matchingAppSessions = {
   startSession() {
-    appStructure.clearGrid();
     audio.navigationSfx.startApp.play();
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
@@ -73,7 +72,7 @@ const matchingAppSessions = {
     matchingApp.activateEventListeners();
     elements.getElements(matchingAppElements);
     setTimeout(() => {
-      timerFunction.startTimer(25);
+      timerFunction.startTimer(5);
     }, 1000);
   },
   endSession() {
@@ -95,7 +94,6 @@ const matchingAppSessions = {
     timerFunction.toggleTimerHide();
   },
   prepareForNewRound() {
-    this.clearBoard();
     toggleTouchFunction.enableTouch();
     toggleBlur.removeWeakBlur();
     score.displayHideToggle();
