@@ -101,6 +101,7 @@ const matchingAppSessions = {
     score.displayHideToggle();
     timerFunction.toggleTimerHide();
     appStructure.appControlsContainer.classList.remove("hide");
+    appStructure.gridHideRemove();
   },
   clearBoard() {
     setTimeout(() => {
@@ -126,9 +127,9 @@ const matchingAppSessions = {
       setTimeout(() => {
         toggleTouchFunction.enableTouch();
       }, 300);
-      setTimeout(() => {
-        appStructure.gridHideRemove();
-      }, 100);
+      // setTimeout(() => {
+      //   appStructure.gridHideRemove();
+      // }, 100);
     }, 1000);
     toggleBlur.removeAllBlur();
   },
