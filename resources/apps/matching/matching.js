@@ -95,7 +95,6 @@ const matchingAppSessions = {
     timerFunction.toggleTimerHide();
   },
   prepareForNewRound() {
-    this.clearBoard();
     toggleTouchFunction.enableTouch();
     toggleBlur.removeWeakBlur();
     score.displayHideToggle();
