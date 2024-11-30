@@ -2,6 +2,7 @@ import { appStructure } from "./app-structure-object.js";
 import { pauseFunction } from "./pause-functions.js";
 
 const homeBtnFunction = {
+  goHomeContainerIsDisplayed: false,
   createStructure() {
     this.homeBtn = document.createElement("button");
     this.goHomeBtn = document.createElement("button");
@@ -31,11 +32,12 @@ const homeBtnFunction = {
     this.cancelBtn.textContent = "Cancel";
   },
   homeBtnPauseUnpause() {
-    if (!pauseFunction.isPaused) {
+    if (!pauseFunction.isPaused && !this.goHomeContainerIsDisplayed) {
       pauseFunction.pause();
       this.displayContainer();
+    } else if (pauseFunction.isPaused && !this.goHomeContainerIsDisplayed) {
+      this.displayContainer();
     } else if (pauseFunction.isPaused) {
-      pauseFunction.unpause();
       this.returnToApp();
     }
 
@@ -59,7 +61,6 @@ const homeBtnFunction = {
           pauseFunction.pause();
           this.displayContainer();
         } else if (pauseFunction.isPaused) {
-          pauseFunction.unpause();
           this.returnToApp();
         }
 
@@ -81,16 +82,21 @@ const homeBtnFunction = {
     this.cancelBtn.addEventListener("pointerdown", this.returnToApp.bind(this));
   },
   displayContainer() {
+    this.goHomeContainerIsDisplayed = true;
     this.goHomeContainer.appendChild(this.goHomeMessage);
     this.goHomeContainer.appendChild(this.goHomeBtn);
     this.goHomeContainer.appendChild(this.cancelBtn);
     appStructure.setBtnContainer4(this.goHomeContainer);
   },
-  returnToApp() {
+  removeContainer() {
     if (document.querySelector(".go-home-container")) {
       document.querySelector(".go-home-container").remove();
-      pauseFunction.unpause();
+      this.goHomeContainerIsDisplayed = false;
     }
+  },
+  returnToApp() {
+    this.removeContainer();
+    pauseFunction.unpause();
   },
 };
 

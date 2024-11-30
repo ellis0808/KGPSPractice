@@ -58,6 +58,11 @@ const matchingAppStructure = {
     appStructure.grid.appendChild(this.startDotsContainer);
     appStructure.grid.appendChild(this.endDotsContainer);
   },
+  clearGrid() {
+    document.querySelectorAll(".startrow, .endrow").forEach((item) => {
+      item.remove();
+    });
+  },
 };
 
 const matchingAppSessions = {
@@ -107,6 +112,7 @@ const matchingAppSessions = {
     }, 400);
   },
   prepareForNewRound() {
+    this.clearBoard();
     endRoundScreen.removeContainer();
     toggleTouchFunction.enableTouch();
     toggleBlur.removeWeakBlur();
