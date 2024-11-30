@@ -62,7 +62,7 @@ const matchingAppStructure = {
 
 const matchingAppSessions = {
   startSession() {
-    appStructure.removeGrid();
+    appStructure.clearGrid();
     audio.navigationSfx.startApp.play();
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
@@ -95,6 +95,7 @@ const matchingAppSessions = {
     timerFunction.toggleTimerHide();
   },
   prepareForNewRound() {
+    this.clearBoard();
     toggleTouchFunction.enableTouch();
     toggleBlur.removeWeakBlur();
     score.displayHideToggle();

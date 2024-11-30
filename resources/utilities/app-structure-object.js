@@ -69,8 +69,10 @@ const appStructure = {
   gridHideRemove() {
     this.grid.classList.remove("gridHide");
   },
-  removeGrid() {
-    this.grid.remove();
+  clearGrid() {
+    this.grid.childNodes.forEach((item) => {
+      item.remove();
+    });
   },
 };
 
