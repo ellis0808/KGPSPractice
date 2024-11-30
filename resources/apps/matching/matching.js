@@ -67,11 +67,10 @@ const matchingAppSessions = {
       endRoundScreen.removeContainer();
     }
     startScreen.removeStartScreen();
-
+    matchingApp.activateEventListeners();
     setTimeout(() => {
       matchingAppSessions.startRound();
     }, 950);
-    matchingApp.activateEventListeners();
     setTimeout(() => {
       timerFunction.startTimer(20);
     }, 1000);
