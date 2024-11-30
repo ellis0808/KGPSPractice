@@ -70,11 +70,10 @@ const matchingAppSessions = {
 
     setTimeout(() => {
       matchingAppSessions.startRound();
-      console.log("startSession triggered");
     }, 950);
     matchingApp.activateEventListeners();
     setTimeout(() => {
-      timerFunction.startTimer(5);
+      timerFunction.startTimer(20);
     }, 1000);
   },
   endSession() {
@@ -120,8 +119,7 @@ const matchingAppSessions = {
     appStructure.gridHideRemove();
   },
   startRound() {
-    console.log("startRound triggered");
-
+    elements.getElements(matchingAppElements);
     this.prepareForNewRound();
     setTimeout(() => {
       gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
@@ -133,7 +131,6 @@ const matchingAppSessions = {
         appStructure.gridHideRemove();
         console.log(appStructure.grid.classList.contains);
       }, 100);
-      elements.getElements(matchingAppElements);
       console.log(matchingAppElements);
     }, 1000);
     toggleBlur.removeAllBlur();
