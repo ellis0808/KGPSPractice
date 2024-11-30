@@ -154,6 +154,19 @@ const matchingApp = {
     );
     timerFunction.setEndRoundFunction(endRound);
   },
+  activateEventListeners() {
+    setTimeout(() => {
+      const startTargets = document.querySelectorAll(
+        ".start-target, .end-target"
+      );
+      startTargets.forEach((target) => {
+        target.addEventListener("pointerdown", onPointerDown, false);
+        target.addEventListener("pointerup", onPointerUp, false);
+      });
+    }, 1);
+    mainContainer.addEventListener("pointerup", onPointerUpFalse, false);
+    mainContainer.addEventListener("pointermove", onPointerMove, false);
+  },
   startApp(set) {
     sessionCheck();
     setStyle(set);
@@ -186,9 +199,7 @@ const matchingApp = {
     matchingAppSessions.endSession();
     endRoundScreen.removeContainer();
     setTimeout(() => {
-      console.log(mainContainer.childNodes);
       document.querySelector(".container").remove();
-      console.log(mainContainer.childNodes);
       appStructure.removeMainAppStructure();
       setTimeout(() => {
         stylesheet.setAttribute(
@@ -205,66 +216,6 @@ const matchingApp = {
 
 let homeBtnIsGoHome = true;
 let pauseBtnPauses = true;
-
-// const homeBtn = document.createElement("button");
-// homeBtn.classList.add("home-btn");
-// homeBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
-// homeBtn.addEventListener("click", goHome);
-// appStructure.appControlsContainer.appendChild(homeBtn);
-
-// const reallyGoHomeContainer = document.createElement("div");
-// reallyGoHomeContainer.classList.add("go-home-container", "letter-matching-app");
-// const reallyGoHomeMessageContainer = document.createElement("div");
-// reallyGoHomeMessageContainer.classList.add("go-home-message");
-// reallyGoHomeMessageContainer.textContent = "Go back to Menu?";
-// reallyGoHomeContainer.appendChild(reallyGoHomeMessageContainer);
-// const reallyGoHomeBtn = document.createElement("button");
-// reallyGoHomeBtn.classList.add("go-home-btn");
-// reallyGoHomeBtn.textContent = "Yes";
-// reallyGoHomeBtn.addEventListener("click", matchingApp.endApp);
-// const cancelGoHomeBtn = document.createElement("button");
-// cancelGoHomeBtn.classList.add("cancel-go-home-btn");
-// cancelGoHomeBtn.textContent = "Cancel";
-// cancelGoHomeBtn.addEventListener("click", returnToApp);
-
-// function resetNavigationBtns() {
-//   homeBtnIsGoHome = true;
-//   pauseBtnPauses = true;
-//   homeBtn.removeEventListener("pointerdown", returnToApp);
-//   homeBtn.addEventListener("pointerdown", goHome);
-
-//   homeBtnReturnToNormal();
-// }
-// function goHome() {
-//   pauseFunction.pause();
-//   homeBtnEnlarge();
-//   displayGoHomeConfirmation();
-//   if (homeBtnIsGoHome) {
-//     homeBtnIsGoHome = false;
-//     homeBtn.removeEventListener("click", goHome);
-//     homeBtn.addEventListener("click", returnToApp);
-//     returnToApp();
-//   }
-// }
-// function homeBtnEnlarge() {
-//   homeBtn.classList.add("home-btn-enlarge");
-// }
-// function homeBtnReturnToNormal() {
-//   homeBtn.classList.remove("home-btn-enlarge");
-// }
-// function displayGoHomeConfirmation() {
-//   appStructure.btnContainer4.appendChild(reallyGoHomeContainer);
-//   reallyGoHomeContainer.appendChild(reallyGoHomeBtn);
-//   reallyGoHomeContainer.appendChild(cancelGoHomeBtn);
-// }
-// function returnToApp() {
-//   appStructure.btnContainer4.removeChild(reallyGoHomeContainer);
-//   homeBtnReturnToNormal();
-//   pauseFunction.unpause();
-//   homeBtnIsGoHome = true;
-//   homeBtn.removeEventListener("click", returnToApp);
-//   homeBtn.addEventListener("click", goHome);
-// }
 
 function setUser() {
   user.gradeLevel = sessionData.gradeLevel;
@@ -327,7 +278,7 @@ function startNewRound() {
     appStructure.setBtnContainer1(timerFunction.timer, score.display);
 
     setTimeout(() => {
-      activateEventListeners();
+      matchingApp.activateEventListeners();
     }, 200);
     setTimeout(() => {
       toggleTouchFunction.enableTouch();
@@ -815,20 +766,20 @@ function getOldLines() {
 }
 
 // Event Listeners
-function activateEventListeners() {
-  setTimeout(() => {
-    const startTargets = document.querySelectorAll(
-      ".start-target, .end-target"
-    );
-    startTargets.forEach((target) => {
-      target.addEventListener("pointerdown", onPointerDown, false);
-      target.addEventListener("pointerup", onPointerUp, false);
-    });
-  }, 1);
-  mainContainer.addEventListener("pointerup", onPointerUpFalse, false);
-  mainContainer.addEventListener("pointermove", onPointerMove, false);
-  // window.addEventListener("resize", updateLinePositions);
-}
+// function activateEventListeners() {
+//   setTimeout(() => {
+//     const startTargets = document.querySelectorAll(
+//       ".start-target, .end-target"
+//     );
+//     startTargets.forEach((target) => {
+//       target.addEventListener("pointerdown", onPointerDown, false);
+//       target.addEventListener("pointerup", onPointerUp, false);
+//     });
+//   }, 1);
+//   mainContainer.addEventListener("pointerup", onPointerUpFalse, false);
+//   mainContainer.addEventListener("pointermove", onPointerMove, false);
+// }
+// window.addEventListener("resize", updateLinePositions);
 function createDoubleTapPreventer(timeout_ms) {
   let dblTapTimer = 0;
   let dblTapPressed = false;
