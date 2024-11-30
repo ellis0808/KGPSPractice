@@ -252,7 +252,7 @@ const matchingApp = {
     toggleBlur.removeAllBlur();
   },
   endApp() {
-    pauseFunction.pause();
+    timerFunction.clearTimer();
     score.updateUserScore();
     matchingAppSessions.endSession();
     endRoundScreen.removeContainer();
@@ -271,9 +271,6 @@ const matchingApp = {
     score.display.innerText = score.currentScore;
   },
 };
-
-let homeBtnIsGoHome = true;
-let pauseBtnPauses = true;
 
 function setUser() {
   user.gradeLevel = sessionData.gradeLevel;
@@ -319,35 +316,6 @@ async function updateUserTotalScore() {
 II. SESSIONS & ROUNDS
 *******
 */
-
-function startNewRound() {
-  toggleTouchFunction.enableTouch();
-  if (score.display.classList.contains("hide2")) {
-    score.displayHideToggle();
-  }
-  if (timerFunction.timer.classList.contains("hide2")) {
-    timerFunction.toggleTimerHide();
-  }
-  appStructure.appControlsContainer.classList.remove("hide");
-  toggleBlur.removeWeakBlur();
-  score.display.classList.remove("blur");
-  setTimeout(() => {
-    gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
-    appStructure.setBtnContainer1(timerFunction.timer, score.display);
-
-    setTimeout(() => {
-      matchingApp.activateEventListeners();
-    }, 200);
-    setTimeout(() => {
-      toggleTouchFunction.enableTouch();
-    }, 300);
-    setTimeout(() => {
-      appStructure.grid.classList.remove("gridHide");
-    }, 100);
-    elements.getElements(matchingAppElements);
-  }, 1000);
-  toggleBlur.removeAllBlur();
-}
 
 /*
 B. Clearing the Grid & Resetting Arrays
