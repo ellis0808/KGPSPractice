@@ -66,6 +66,9 @@ const appStructure = {
   hideGrid() {
     this.grid.classList.add("gridHide");
   },
+  removeGrid() {
+    this.grid.remove();
+  },
 };
 
 export { appStructure };

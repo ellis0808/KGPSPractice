@@ -2,7 +2,6 @@ import {
   matchingAppStructure,
   numberOfItemsToBeDisplayed,
 } from "./matching.js";
-import { alphabet } from "../card-touch/card-data.js";
 import { audio } from "../../utilities/audio.js";
 import {
   dotAndLineCommand,
@@ -12,19 +11,6 @@ import {
   StartDot,
 } from "./dot-objects-control.js";
 import { pauseFunction } from "../../utilities/pause-functions.js";
-import { body } from "../../utilities/variables.js";
-
-/*
-V. GRID POPULATION
-*/
-
-/*
-A. Generating Letters
-  --> This function chooses letters at random from the alphabet array used for the card touch app
-  --> The number of letters is limited to the 'numberOfItemsToBeDisplayed' variable, which is currently set to 4.
-  --> The four letters are then sent to the lowercase and capital (after being converted to uppercase) letter arrays.
-  --> If one of the letters already exists in the array, it is rejected and a new one is chosen
-*/
 
 const gridItems = {
   loadAndGenerateItems(array) {
@@ -206,25 +192,5 @@ const gridGenerator = {
     setTimeout(pauseFunction.disableTouch, 300);
   },
 };
-
-/*
-  A.1. Shuffling Letter Arrays
-    --> This function shuffles an array input as a parameter.
-    --> This is to keep the letters from appearing right across from another every time.
-  */
-
-/*
-B. Generating Letter Divs for Matching
-  --> A div 'card' is created for each of the letters in the two letter arrays.
-  --> They are given two dataset ids, then attached to their respective group.
-*/
-
-/*
-C. Generating Start Dots, End Dots, and their Enclosures
-  --> One dot is generate for each letter in the two letter arrays.
-  --> If the dot is lowercase, it is an end-dot, and if capital, a start-dot.
-  --> The dots are numbered from 0-7, with start-dots being 0-4, and end-dots 4-9. This is done dynamically.
-  --> The dots are given several classes and ids, and given a zIndex of 30, to ensure they are on top when the lines are drawn.
-*/
 
 export { itemGenerator, gridGenerator, gridItems, itemArrays };

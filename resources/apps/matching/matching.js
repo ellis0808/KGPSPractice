@@ -69,6 +69,7 @@ const matchingAppSessions = {
   //     return this.appFinished
   //   },
   startSession() {
+    appStructure.removeGrid();
     audio.navigationSfx.startApp.play();
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
@@ -82,8 +83,6 @@ const matchingAppSessions = {
   },
   endSession() {
     pauseFunction.unpause();
-    // homeBtnReturnToNormal();
-    // resetNavigationBtns();
     appStructure.appContainer.classList.add("hide");
     appStructure.appControlsContainer.classList.add("hide");
     document.querySelectorAll(".letter-matching-app, .line").forEach((item) => {
@@ -97,24 +96,36 @@ const matchingAppSessions = {
     }
     appStarted = false;
     toggleBlur.removeAllBlur();
-    clearBoard();
+    this.clearBoard();
     score.displayHideToggle();
     toggleTimerHide();
   },
   prepareForNewRound() {
+    this.clearBoard();
     toggleTouchFunction.enableTouch();
     score.displayHideToggle();
     timerFunction.toggleTimerHide();
     toggleBlur.removeWeakBlur();
     appStructure.appControlsContainer.classList.remove("hide");
   },
+  clearBoard() {
+    setTimeout(() => {
+      appStructure.grid.classList.add("gridHide");
+    }, 50);
+    setTimeout(() => {
+      currentDotIdArray.length = 0;
+      itemArrays.startRowArray.length = 0;
+      itemArrays.endRowArray.length = 0;
+      const dotsAndLines = document.querySelectorAll("[contentId],.dot,.line");
+      dotsAndLines.forEach((item) => {
+        item.remove();
+      });
+      clearArrays();
+      dotAndLineCommand.clearArrays();
+    }, 400);
+  },
   startRound() {
-    toggleTouchFunction.enableTouch();
-    score.displayHideToggle();
-    timerFunction.toggleTimerHide();
-    toggleBlur.removeWeakBlur();
-    appStructure.appControlsContainer.classList.remove("hide");
-    // score.display.classList.remove("blur");
+    this.prepareForNewRound();
     setTimeout(() => {
       gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
       appStructure.setBtnContainer1(timerFunction.timer, score.display);
@@ -320,22 +331,6 @@ II. SESSIONS & ROUNDS
 /*
 B. Clearing the Grid & Resetting Arrays
 */
-function clearBoard() {
-  setTimeout(() => {
-    appStructure.grid.classList.add("gridHide");
-  }, 50);
-  setTimeout(() => {
-    currentDotIdArray.length = 0;
-    itemArrays.startRowArray.length = 0;
-    itemArrays.endRowArray.length = 0;
-    const dotsAndLines = document.querySelectorAll("[contentId],.dot,.line");
-    dotsAndLines.forEach((item) => {
-      item.remove();
-    });
-    clearArrays();
-    dotAndLineCommand.clearArrays();
-  }, 400);
-}
 
 function clearArrays() {
   currentDotId = null;
@@ -399,7 +394,7 @@ function randomFeedback() {
 function continueToNextRound() {
   if (!pauseFunction.isPaused) {
     setTimeout(() => {
-      clearBoard();
+      matchingAppSessions.clearBoard();
     }, 1000);
     setTimeout(() => {
       matchingAppSessions.startRound();
