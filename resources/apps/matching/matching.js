@@ -70,7 +70,6 @@ const matchingAppSessions = {
       matchingAppSessions.startRound;
     }, 950);
     matchingApp.activateEventListeners();
-    elements.getElements(matchingAppElements);
     setTimeout(() => {
       timerFunction.startTimer(5);
     }, 1000);
@@ -125,9 +124,10 @@ const matchingAppSessions = {
       setTimeout(() => {
         toggleTouchFunction.enableTouch();
       }, 300);
-      // setTimeout(() => {
-      //   appStructure.gridHideRemove();
-      // }, 100);
+      setTimeout(() => {
+        appStructure.gridHideRemove();
+      }, 100);
+      elements.getElements(matchingAppElements);
     }, 1000);
     toggleBlur.removeAllBlur();
   },
