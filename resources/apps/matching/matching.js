@@ -228,8 +228,8 @@ const matchingApp = {
     this.setDoubleTapPreventer();
     sessionCheck();
     setStyle(set);
-    this.createAndSetStructure();
     appStructure.createAndSetAppStructureThenHideGrid();
+    this.createAndSetStructure();
     this.setForeignElements(
       matchingAppSessions.startSession,
       this.endApp,
