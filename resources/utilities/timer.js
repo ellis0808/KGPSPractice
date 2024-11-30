@@ -54,7 +54,9 @@ const timerFunction = {
     }
   },
   toggleTimerHide() {
-    this.timer.classList.toggle("hide2");
+    if (timerFunction.timer.classList.contains("hide2")) {
+      this.timer.classList.toggle("hide2");
+    }
   },
   startTimer(time) {
     this.setTimer(time);

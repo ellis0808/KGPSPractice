@@ -70,7 +70,9 @@ const score = {
     }, 600);
   },
   displayHideToggle() {
-    this.display.classList.toggle("hide2");
+    if (score.display.classList.contains("hide2")) {
+      this.display.classList.toggle("hide2");
+    }
   },
   resetScore: function () {
     this.currentScore = 0;

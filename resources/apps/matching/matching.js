@@ -72,7 +72,7 @@ const matchingAppSessions = {
     audio.navigationSfx.startApp.play();
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
-    setTimeout(startNewRound, 950);
+    setTimeout(matchingAppSessions.startRound, 950);
     setTimeout(() => {
       appStarted = true;
     }, 1);
@@ -101,7 +101,30 @@ const matchingAppSessions = {
     score.displayHideToggle();
     toggleTimerHide();
   },
-  startRound() {},
+  startRound() {
+    toggleTouchFunction.enableTouch();
+    score.displayHideToggle();
+    timerFunction.toggleTimerHide();
+    toggleBlur.removeWeakBlur();
+    appStructure.appControlsContainer.classList.remove("hide");
+    // score.display.classList.remove("blur");
+    setTimeout(() => {
+      gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
+      appStructure.setBtnContainer1(timerFunction.timer, score.display);
+
+      setTimeout(() => {
+        matchingApp.activateEventListeners();
+      }, 200);
+      setTimeout(() => {
+        toggleTouchFunction.enableTouch();
+      }, 300);
+      setTimeout(() => {
+        appStructure.grid.classList.remove("gridHide");
+      }, 100);
+      elements.getElements(matchingAppElements);
+    }, 1000);
+    toggleBlur.removeAllBlur();
+  },
   endRound() {
     score.updateUserScore();
     // score.updateStudentTotalScore();
@@ -403,7 +426,7 @@ function continueToNextRound() {
       clearBoard();
     }, 1000);
     setTimeout(() => {
-      startNewRound();
+      matchingAppSessions.startRound();
     }, 1500);
   }
 }
