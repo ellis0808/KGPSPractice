@@ -388,7 +388,7 @@ function continueToNextRound() {
       matchingAppSessions.clearBoard();
     }, 1000);
     setTimeout(() => {
-      matchingAppSessions.startSession();
+      matchingAppSessions.startRound();
     }, 1500);
   }
 }
