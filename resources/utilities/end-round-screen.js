@@ -33,14 +33,12 @@ const endRoundScreen = {
   },
   displayContainer() {
     if (timerFunction.timerFinished) {
-      scoreAssessment.matching();
       this.setScoreMessage();
-      this.setAssessmentMessage();
-      this.setAssessmentAudio();
       this.endMessagesContainer.appendChild(this.tryAgainBtn);
       this.endMessagesContainer.appendChild(this.finishBtn);
       this.endMessagesContainer.appendChild(this.assessmentMessage);
       this.endMessagesContainer.appendChild(this.scoreMessage);
+      scoreAssessment.matching();
       appStructure.setBtnContainer5(this.endMessagesContainer);
     }
   },
@@ -49,13 +47,11 @@ const endRoundScreen = {
       this.endMessagesContainer.remove();
     }
   },
-  setAssessmentMessage() {
-    this.assessmentMessage.innerText = scoreAssessment.assessmentMessage;
-    console.log(scoreAssessment.assessmentMessage);
+  setAssessmentMessage(message) {
+    this.assessmentMessage.innerText = message;
   },
-  setAssessmentAudio() {
-    scoreAssessment.assessmentAudio;
-    console.log(scoreAssessment.assessmentAudio);
+  setAssessmentAudio(audio) {
+    audio;
   },
   setScoreMessage() {
     console.log("score message set!");

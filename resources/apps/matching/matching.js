@@ -77,7 +77,7 @@ const matchingAppSessions = {
       appStarted = true;
     }, 1);
     setTimeout(() => {
-      timerFunction.startTimer(20);
+      timerFunction.startTimer(25);
     }, 1000);
   },
   endSession() {

@@ -136,7 +136,7 @@ const scoreAssessment = {
     console.log("test1");
 
     switch (true) {
-      case score.currentScore < 5:
+      case score.currentScore <= 12:
         this.assessmentMessage = "Better Luck\r\nNext Time!";
         this.assessmentAudio =
           audio.feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
