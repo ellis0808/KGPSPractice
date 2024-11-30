@@ -71,7 +71,7 @@ const matchingAppSessions = {
       matchingAppSessions.startRound();
     }, 950);
     setTimeout(() => {
-      timerFunction.startTimer(20);
+      timerFunction.startTimer(5);
     }, 1000);
   },
   endSession() {
@@ -109,6 +109,7 @@ const matchingAppSessions = {
     }, 400);
   },
   prepareForNewRound() {
+    endRoundScreen.removeContainer();
     toggleTouchFunction.enableTouch();
     toggleBlur.removeWeakBlur();
     score.displayHideToggle();
@@ -200,10 +201,10 @@ const matchingApp = {
       "/KGPSEnglishPractice-test/resources/css/matching.css"
     );
   },
-  setForeignElements(startSession, endApp, endRound) {
+  setForeignElements(startSession, startRound, endApp, endRound) {
     homeBtnFunction.initialize(endApp);
     startScreen.createAndSetStartScreen(startSession, endApp);
-    endRoundScreen.initializeContainer(startSession, endApp);
+    endRoundScreen.initializeContainer(startRound, endApp);
     appStructure.setAppControlsContainer(
       homeBtnFunction.homeBtn,
       pauseFunction.pauseBtn
@@ -231,6 +232,7 @@ const matchingApp = {
     this.createAndSetStructure();
     this.setForeignElements(
       matchingAppSessions.startSession,
+      matchingAppSessions.startRound,
       this.endApp,
       matchingAppSessions.endRound
     );
