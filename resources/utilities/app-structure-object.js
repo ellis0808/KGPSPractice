@@ -52,7 +52,7 @@ const appStructure = {
   createAndSetAppStructureThenHideGrid() {
     this.createMainAppStructure();
     this.setMainAppStructure();
-    this.hideGrid();
+    this.gridHideAdd();
   },
   removeMainAppStructure() {
     delete this.appContainer;
@@ -63,8 +63,11 @@ const appStructure = {
     delete this.homeBtnContainer;
     delete this.leftMenuContainer;
   },
-  gridHideToggle() {
-    this.grid.classList.toggle("gridHide");
+  gridHideAdd() {
+    this.grid.classList.add("gridHide");
+  },
+  gridHideRemove() {
+    this.grid.classList.remove("gridHide");
   },
   removeGrid() {
     this.grid.remove();

@@ -102,7 +102,7 @@ const matchingAppSessions = {
   },
   clearBoard() {
     setTimeout(() => {
-      appStructure.gridHideToggle();
+      appStructure.gridHideAdd();
     }, 50);
     setTimeout(() => {
       currentDotIdArray.length = 0;
@@ -117,7 +117,12 @@ const matchingAppSessions = {
     }, 400);
   },
   startRound() {
-    this.prepareForNewRound();
+    this.clearBoard();
+    toggleTouchFunction.enableTouch();
+    toggleBlur.removeWeakBlur();
+    score.displayHideToggle();
+    timerFunction.toggleTimerHide();
+    appStructure.appControlsContainer.classList.remove("hide");
     setTimeout(() => {
       gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
       appStructure.setBtnContainer1(timerFunction.timer, score.display);
@@ -125,7 +130,7 @@ const matchingAppSessions = {
         toggleTouchFunction.enableTouch();
       }, 300);
       setTimeout(() => {
-        appStructure.gridHideToggle();
+        appStructure.gridHideRemove();
       }, 100);
     }, 1000);
     toggleBlur.removeAllBlur();
