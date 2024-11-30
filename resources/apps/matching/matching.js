@@ -69,7 +69,7 @@ const matchingAppSessions = {
     startScreen.removeStartScreen();
 
     setTimeout(() => {
-      matchingAppSessions.startRound;
+      matchingAppSessions.startRound();
       console.log("startSession triggered");
     }, 950);
     matchingApp.activateEventListeners();
