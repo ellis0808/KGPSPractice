@@ -64,10 +64,14 @@ const appStructure = {
     delete this.leftMenuContainer;
   },
   gridHideAdd() {
-    this.grid.classList.add("gridHide");
+    if (!this.grid.classList.contains("gridHide")) {
+      this.grid.classList.add("gridHide");
+    }
   },
   gridHideRemove() {
-    this.grid.classList.remove("gridHide");
+    if (this.grid.classList.contains("gridHide")) {
+      this.grid.classList.remove("gridHide");
+    }
   },
   clearGrid() {
     this.grid.childNodes.forEach((item) => {

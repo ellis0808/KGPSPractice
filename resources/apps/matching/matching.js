@@ -63,7 +63,9 @@ const matchingAppStructure = {
 const matchingAppSessions = {
   startSession() {
     audio.navigationSfx.startApp.play();
-    endRoundScreen.removeContainer();
+    if (endRoundScreen.endMessagesContainer) {
+      endRoundScreen.removeContainer();
+    }
     startScreen.removeStartScreen();
 
     setTimeout(() => {
@@ -92,14 +94,6 @@ const matchingAppSessions = {
     score.displayHideToggle();
     timerFunction.toggleTimerHide();
   },
-  prepareForNewRound() {
-    toggleTouchFunction.enableTouch();
-    toggleBlur.removeWeakBlur();
-    score.displayHideToggle();
-    timerFunction.toggleTimerHide();
-    appStructure.appControlsContainer.classList.remove("hide");
-    appStructure.gridHideRemove();
-  },
   clearBoard() {
     setTimeout(() => {
       appStructure.gridHideAdd();
@@ -116,8 +110,15 @@ const matchingAppSessions = {
       dotAndLineCommand.clearArrays();
     }, 400);
   },
+  prepareForNewRound() {
+    toggleTouchFunction.enableTouch();
+    toggleBlur.removeWeakBlur();
+    score.displayHideToggle();
+    timerFunction.toggleTimerHide();
+    appStructure.appControlsContainer.classList.remove("hide");
+    appStructure.gridHideRemove();
+  },
   startRound() {
-    this.prepareForNewRound();
     setTimeout(() => {
       gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
       appStructure.setBtnContainer1(timerFunction.timer, score.display);
@@ -129,6 +130,7 @@ const matchingAppSessions = {
       }, 100);
       elements.getElements(matchingAppElements);
     }, 1000);
+    this.prepareForNewRound();
     toggleBlur.removeAllBlur();
   },
   endRound() {
