@@ -1,4 +1,90 @@
 import { mainContainer } from "./variables.js";
+
+class App {
+  constructor() {
+
+  }
+  startSession(time) {
+    audio.navigationSfx.startApp.play();
+    endRoundScreen.removeContainer();
+    startScreen.removeStartScreen();
+    setTimeout(() => {
+      matchingAppSessions.startRound();
+    }, 950);
+    setTimeout(() => {
+      timerFunction.startTimer(time);
+    }, 1000);
+  }
+  endSession() {
+    pauseFunction.unpause();
+    appStructure.appContainer.classList.add("hide");
+    appStructure.appControlsContainer.classList.add("hide");
+    document.querySelectorAll(".matching-app, .line").forEach((item) => {
+      item.remove();
+    });
+    if (document.querySelector(".end-messages-container")) {
+      document.querySelector(".end-messages-container").remove();
+    }
+    if (document.querySelector(".go-home-container")) {
+      document.querySelector(".go-home-container").remove();
+    }
+    toggleBlur.removeAllBlur();
+    this.clearBoard();
+    score.displayHideToggle();
+    timerFunction.toggleTimerHide();
+  }
+  clearBoard() {
+    setTimeout(() => {
+      appStructure.gridHideAdd();
+    }, 50);
+    setTimeout(() => {
+      currentDotIdArray.length = 0;
+      itemArrays.startRowArray.length = 0;
+      itemArrays.endRowArray.length = 0;
+      const dotsAndLines = document.querySelectorAll("[contentId],.dot,.line");
+      dotsAndLines.forEach((item) => {
+        item.remove();
+      });
+      clearArrays();
+      dotAndLineCommand.clearArrays();
+    }, 400);
+  }
+  prepareForNewRound() {
+    this.clearBoard();
+    endRoundScreen.removeContainer();
+    toggleTouchFunction.enableTouch();
+    toggleBlur.removeWeakBlur();
+    score.displayHideToggle();
+    timerFunction.toggleTimerHide();
+    appStructure.appControlsContainer.classList.remove("hide");
+    appStructure.gridHideRemove();
+  }
+  startRound() {
+    elements.getElements(matchingAppElements);
+    this.prepareForNewRound();
+    setTimeout(() => {
+      gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
+      matchingApp.activateEventListeners();
+      appStructure.setBtnContainer1(timerFunction.timer, score.display);
+      setTimeout(() => {
+        toggleTouchFunction.enableTouch();
+      }, 300);
+      setTimeout(() => {
+        appStructure.gridHideRemove();
+        console.log(appStructure.grid.classList.contains);
+      }, 100);
+      console.log(matchingAppElements);
+    }, 1000);
+    toggleBlur.removeAllBlur();
+  },
+  endRound() {
+    score.updateUserScore();
+    // score.updateStudentTotalScore();
+    endRoundScreen.displayContainer();
+  },
+}
+
+
 const appStructure = {
   createMainAppStructure() {
     this.appContainer = document.createElement("div");

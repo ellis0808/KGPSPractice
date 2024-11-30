@@ -8,7 +8,7 @@ import {
   numberOfItemsToBeDisplayed,
 } from "./matching.js";
 import { audio } from "../../utilities/audio.js";
-import { appStructure } from "../../utilities/app-structure-object.js";
+import { appStructure } from "../../utilities/app-class.js";
 class DotAndLineCommand {
   constructor() {
     this.startDots = [];

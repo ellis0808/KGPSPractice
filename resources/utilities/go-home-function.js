@@ -1,4 +1,4 @@
-import { appStructure } from "./app-structure-object.js";
+import { appStructure } from "./app-class.js";
 import { pauseFunction } from "./pause-functions.js";
 
 const homeBtnFunction = {

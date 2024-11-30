@@ -34,7 +34,7 @@ import {
   toggleBlur,
   toggleTouchFunction,
 } from "../../utilities/pause-functions.js";
-import { appStructure } from "../../utilities/app-structure-object.js";
+import { appStructure } from "../../utilities/app-class.js";
 import { startScreen } from "../../utilities/start-screen.js";
 import { alphabet } from "../card-touch/card-data.js";
 import { endRoundScreen } from "../../utilities/end-round-screen.js";
@@ -122,22 +122,24 @@ const matchingAppSessions = {
     appStructure.gridHideRemove();
   },
   startRound() {
-    elements.getElements(matchingAppElements);
-    this.prepareForNewRound();
-    setTimeout(() => {
-      gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
-      matchingApp.activateEventListeners();
-      appStructure.setBtnContainer1(timerFunction.timer, score.display);
+    if (!document.querySelector(".end-messages-container")) {
+      elements.getElements(matchingAppElements);
+      this.prepareForNewRound();
       setTimeout(() => {
-        toggleTouchFunction.enableTouch();
-      }, 300);
-      setTimeout(() => {
-        appStructure.gridHideRemove();
-        console.log(appStructure.grid.classList.contains);
-      }, 100);
-      console.log(matchingAppElements);
-    }, 1000);
-    toggleBlur.removeAllBlur();
+        gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
+        matchingApp.activateEventListeners();
+        appStructure.setBtnContainer1(timerFunction.timer, score.display);
+        setTimeout(() => {
+          toggleTouchFunction.enableTouch();
+        }, 300);
+        setTimeout(() => {
+          appStructure.gridHideRemove();
+          console.log(appStructure.grid.classList.contains);
+        }, 100);
+        console.log(matchingAppElements);
+      }, 1000);
+      toggleBlur.removeAllBlur();
+    }
   },
   endRound() {
     score.updateUserScore();

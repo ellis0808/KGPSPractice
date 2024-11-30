@@ -1,6 +1,6 @@
 import { startBtn } from "../apps/card-touch/card-touch.js";
 import { matchingApp } from "../apps/matching/matching.js";
-import { appStructure } from "./app-structure-object.js";
+import { appStructure } from "./app-class.js";
 const startScreen = {
   startBtn: null,
   exitBtn: null,

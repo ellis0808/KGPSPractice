@@ -1,4 +1,4 @@
-import { appStructure } from "./app-structure-object.js";
+import { appStructure } from "./app-class.js";
 import { score, scoreAssessment } from "./score.js";
 import { timerFunction } from "./timer.js";
 
