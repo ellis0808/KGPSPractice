@@ -61,22 +61,15 @@ const matchingAppStructure = {
 };
 
 const matchingAppSessions = {
-  //   appFinished = false;
-  //   setAppFinishedValue(value) {
-  // this.appFinished = value
-  //   },
-  //   getAppFinishedValue () {
-  //     return this.appFinished
-  //   },
   startSession() {
     appStructure.removeGrid();
     audio.navigationSfx.startApp.play();
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
+
     setTimeout(matchingAppSessions.startRound, 950);
-    setTimeout(() => {
-      appStarted = true;
-    }, 1);
+    matchingApp.activateEventListeners();
+    elements.getElements(matchingAppElements);
     setTimeout(() => {
       timerFunction.startTimer(25);
     }, 1000);
@@ -94,23 +87,22 @@ const matchingAppSessions = {
     if (document.querySelector(".go-home-container")) {
       document.querySelector(".go-home-container").remove();
     }
-    appStarted = false;
     toggleBlur.removeAllBlur();
     this.clearBoard();
     score.displayHideToggle();
-    toggleTimerHide();
+    timerFunction.toggleTimerHide();
   },
   prepareForNewRound() {
     this.clearBoard();
     toggleTouchFunction.enableTouch();
+    toggleBlur.removeWeakBlur();
     score.displayHideToggle();
     timerFunction.toggleTimerHide();
-    toggleBlur.removeWeakBlur();
     appStructure.appControlsContainer.classList.remove("hide");
   },
   clearBoard() {
     setTimeout(() => {
-      appStructure.grid.classList.add("gridHide");
+      appStructure.gridHideToggle();
     }, 50);
     setTimeout(() => {
       currentDotIdArray.length = 0;
@@ -129,17 +121,12 @@ const matchingAppSessions = {
     setTimeout(() => {
       gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
       appStructure.setBtnContainer1(timerFunction.timer, score.display);
-
-      setTimeout(() => {
-        matchingApp.activateEventListeners();
-      }, 200);
       setTimeout(() => {
         toggleTouchFunction.enableTouch();
       }, 300);
       setTimeout(() => {
-        appStructure.grid.classList.remove("gridHide");
+        appStructure.gridHideToggle();
       }, 100);
-      elements.getElements(matchingAppElements);
     }, 1000);
     toggleBlur.removeAllBlur();
   },
@@ -157,8 +144,6 @@ const incorrectAnswerPoints = 1;
 
 let endDotId;
 let startDotId;
-
-let appStarted = false;
 
 let numberOfItemsToBeDisplayed = 4;
 

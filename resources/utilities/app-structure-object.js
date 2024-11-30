@@ -63,8 +63,8 @@ const appStructure = {
     delete this.homeBtnContainer;
     delete this.leftMenuContainer;
   },
-  hideGrid() {
-    this.grid.classList.add("gridHide");
+  gridHideToggle() {
+    this.grid.classList.toggle("gridHide");
   },
   removeGrid() {
     this.grid.remove();
