@@ -67,7 +67,9 @@ const matchingAppSessions = {
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
 
-    setTimeout(matchingAppSessions.startRound, 950);
+    setTimeout(() => {
+      matchingAppSessions.startRound;
+    }, 950);
     matchingApp.activateEventListeners();
     elements.getElements(matchingAppElements);
     setTimeout(() => {
@@ -117,12 +119,7 @@ const matchingAppSessions = {
     }, 400);
   },
   startRound() {
-    this.clearBoard();
-    toggleTouchFunction.enableTouch();
-    toggleBlur.removeWeakBlur();
-    score.displayHideToggle();
-    timerFunction.toggleTimerHide();
-    appStructure.appControlsContainer.classList.remove("hide");
+    this.prepareForNewRound();
     setTimeout(() => {
       gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
       appStructure.setBtnContainer1(timerFunction.timer, score.display);
@@ -387,7 +384,7 @@ function continueToNextRound() {
       matchingAppSessions.clearBoard();
     }, 1000);
     setTimeout(() => {
-      matchingAppSessions.startRound();
+      matchingAppSessions.startSession();
     }, 1500);
   }
 }
