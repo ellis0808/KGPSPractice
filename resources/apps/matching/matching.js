@@ -67,7 +67,6 @@ const matchingAppSessions = {
       endRoundScreen.removeContainer();
     }
     startScreen.removeStartScreen();
-    matchingApp.activateEventListeners();
     setTimeout(() => {
       matchingAppSessions.startRound();
     }, 950);
@@ -122,6 +121,7 @@ const matchingAppSessions = {
     this.prepareForNewRound();
     setTimeout(() => {
       gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
+      matchingApp.activateEventListeners();
       appStructure.setBtnContainer1(timerFunction.timer, score.display);
       setTimeout(() => {
         toggleTouchFunction.enableTouch();
