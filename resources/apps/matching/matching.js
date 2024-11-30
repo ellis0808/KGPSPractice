@@ -80,7 +80,7 @@ const matchingAppSessions = {
     pauseFunction.unpause();
     appStructure.appContainer.classList.add("hide");
     appStructure.appControlsContainer.classList.add("hide");
-    document.querySelectorAll(".letter-matching-app, .line").forEach((item) => {
+    document.querySelectorAll(".matching-app, .line").forEach((item) => {
       item.remove();
     });
     if (document.querySelector(".end-messages-container")) {
@@ -129,6 +129,7 @@ const matchingAppSessions = {
         appStructure.gridHideRemove();
       }, 100);
       elements.getElements(matchingAppElements);
+      console.log(matchingAppElements);
     }, 1000);
     this.prepareForNewRound();
     toggleBlur.removeAllBlur();
@@ -234,6 +235,8 @@ const matchingApp = {
     );
     this.createAndSetStructure();
     elements.getElements(matchingAppElements);
+    console.log(matchingAppElements);
+
     pauseFunction.unpause();
     this.setStyleSheet();
     menuItems.removeMenuPage();
