@@ -101,6 +101,13 @@ const matchingAppSessions = {
     score.displayHideToggle();
     toggleTimerHide();
   },
+  prepareForNewRound() {
+    toggleTouchFunction.enableTouch();
+    score.displayHideToggle();
+    timerFunction.toggleTimerHide();
+    toggleBlur.removeWeakBlur();
+    appStructure.appControlsContainer.classList.remove("hide");
+  },
   startRound() {
     toggleTouchFunction.enableTouch();
     score.displayHideToggle();
@@ -177,7 +184,7 @@ const matchingApp = {
   setDoubleTapPreventer() {
     document.body.addEventListener(
       "touchstart",
-      createDoubleTapPreventer(500),
+      matchingApp.createDoubleTapPreventer(500),
       {
         passive: false,
       }
