@@ -1,7 +1,4 @@
-import {
-  matchingAppStructure,
-  numberOfItemsToBeDisplayed,
-} from "./matching.js";
+import { matchingApp, numberOfItemsToBeDisplayed } from "./matching.js";
 import { audio } from "../../utilities/audio.js";
 import {
   dotAndLineCommand,
@@ -100,7 +97,7 @@ const gridGenerator = {
           audio.audioObject[thing].sound.play();
         });
       }
-      matchingAppStructure.endRowContainer.appendChild(item);
+      matchingApp.endRowContainer.appendChild(item);
     });
     return;
   },
@@ -117,7 +114,7 @@ const gridGenerator = {
           audio.audioObject[thing.toLowerCase()].sound.play();
         });
       }
-      matchingAppStructure.startRowContainer.appendChild(item);
+      matchingApp.startRowContainer.appendChild(item);
     });
   },
   createDots(array1, array2) {
@@ -138,7 +135,7 @@ const gridGenerator = {
         "end-target",
         "matching-app"
       );
-      matchingAppStructure.endDotsContainer.appendChild(endDotEnclosure);
+      matchingApp.endDotsContainer.appendChild(endDotEnclosure);
       // Create dot for each Enclosure
       endDot[i] = new EndDot(`endDot${[i]}`);
       endDot[i].id = i + numberOfItemsToBeDisplayed;
@@ -173,7 +170,7 @@ const gridGenerator = {
         "start-target",
         "matching-app"
       );
-      matchingAppStructure.startDotsContainer.appendChild(startDotEnclosure);
+      matchingApp.startDotsContainer.appendChild(startDotEnclosure);
       startDot[i] = new StartDot(`startDot${[i]}`);
       startDot[i].id = i;
       startDot[i].contentId = item;
