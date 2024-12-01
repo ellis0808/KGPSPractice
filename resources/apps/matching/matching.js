@@ -86,7 +86,7 @@ class MatchingApp extends App {
 
 const matchingApp = new MatchingApp();
 
-matchingApp.startApp(set, this.createAndSetStructure, matchingAppElements);
+// matchingApp.startApp(set, this.createAndSetStructure, matchingAppElements);
 /* SCORING */
 const correctAnswerPoints = 1;
 const incorrectAnswerPoints = 1;

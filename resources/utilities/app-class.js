@@ -10,6 +10,8 @@ import { score } from "./score.js";
 import { endRoundScreen } from "./end-round-screen.js";
 import { homeBtnFunction } from "./go-home-function.js";
 import { audio } from "./audio.js";
+import { setStyle } from "../apps/matching/matching-set-style-and-activity-id.js";
+import { sessionCheck } from "../login/session-check.js";
 
 class App {
   constructor() {}
