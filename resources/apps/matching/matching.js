@@ -5,9 +5,8 @@ import {
   stylesheet,
   body,
 } from "../../utilities/variables.js";
-import { menuItems } from "../general/start-main-app.js";
 import { score } from "../../utilities/score.js";
-import { timerFunction, toggleTimerHide } from "../../utilities/timer.js";
+
 import {
   dotAndLineCommand,
   startDot,
@@ -34,10 +33,7 @@ import {
   toggleBlur,
   toggleTouchFunction,
 } from "../../utilities/pause-functions.js";
-import { appStructure } from "../../utilities/app-class.js";
-import { startScreen } from "../../utilities/start-screen.js";
-import { alphabet } from "../card-touch/card-data.js";
-import { endRoundScreen } from "../../utilities/end-round-screen.js";
+
 console.log("matching");
 import { App } from "../../utilities/app-class.js";
 
