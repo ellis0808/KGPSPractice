@@ -237,7 +237,7 @@ class App {
   setDoubleTapPreventer() {
     document.body.addEventListener(
       "touchstart",
-      matchingApp.createDoubleTapPreventer(500),
+      this.createDoubleTapPreventer(500),
       {
         passive: false,
       }
