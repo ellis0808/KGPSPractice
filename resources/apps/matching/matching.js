@@ -38,10 +38,34 @@ import { appStructure } from "../../utilities/app-class.js";
 import { startScreen } from "../../utilities/start-screen.js";
 import { alphabet } from "../card-touch/card-data.js";
 import { endRoundScreen } from "../../utilities/end-round-screen.js";
-import { homeBtnFunction } from "../../utilities/go-home-function.js";
 console.log("matching");
+import { App } from "../../utilities/app-class.js";
 
-const matchingAppStructure = {
+class MatchingApp extends App {
+  constructor() {}
+  activateEventListeners() {
+    setTimeout(() => {
+      const startTargets = document.querySelectorAll(
+        ".start-target, .end-target"
+      );
+      startTargets.forEach((target) => {
+        target.addEventListener("pointerdown", onPointerDown, false);
+        target.addEventListener("pointerup", onPointerUp, false);
+      });
+    }, 1);
+    mainContainer.addEventListener("pointerup", onPointerUpFalse, false);
+    mainContainer.addEventListener("pointermove", onPointerMove, false);
+  }
+  createAndSetStructure() {
+    this.createGrid();
+    this.setGrid();
+  }
+  setStyleSheet() {
+    stylesheet.setAttribute(
+      "href",
+      "/KGPSEnglishPractice-test/resources/css/matching.css"
+    );
+  }
   createGrid() {
     this.startRowContainer = document.createElement("div");
     this.endRowContainer = document.createElement("div");
@@ -51,102 +75,23 @@ const matchingAppStructure = {
     this.endRowContainer.classList.add("endrow");
     this.startDotsContainer.classList.add("start-dot-div");
     this.endDotsContainer.classList.add("end-dot-div");
-  },
+  }
   setGrid() {
     appStructure.grid.appendChild(this.startRowContainer);
     appStructure.grid.appendChild(this.endRowContainer);
     appStructure.grid.appendChild(this.startDotsContainer);
     appStructure.grid.appendChild(this.endDotsContainer);
-  },
+  }
   clearGrid() {
     document.querySelectorAll(".startrow, .endrow").forEach((item) => {
       item.remove();
     });
-  },
-};
+  }
+}
 
-const matchingAppSessions = {
-  startSession() {
-    audio.navigationSfx.startApp.play();
-    endRoundScreen.removeContainer();
-    startScreen.removeStartScreen();
-    setTimeout(() => {
-      matchingAppSessions.startRound();
-    }, 950);
-    setTimeout(() => {
-      timerFunction.startTimer(60);
-    }, 1000);
-  },
-  endSession() {
-    pauseFunction.unpause();
-    appStructure.appContainer.classList.add("hide");
-    appStructure.appControlsContainer.classList.add("hide");
-    document.querySelectorAll(".matching-app, .line").forEach((item) => {
-      item.remove();
-    });
-    if (document.querySelector(".end-messages-container")) {
-      document.querySelector(".end-messages-container").remove();
-    }
-    if (document.querySelector(".go-home-container")) {
-      document.querySelector(".go-home-container").remove();
-    }
-    toggleBlur.removeAllBlur();
-    this.clearBoard();
-    score.displayHideToggle();
-    timerFunction.toggleTimerHide();
-  },
-  clearBoard() {
-    setTimeout(() => {
-      appStructure.gridHideAdd();
-    }, 50);
-    setTimeout(() => {
-      currentDotIdArray.length = 0;
-      itemArrays.startRowArray.length = 0;
-      itemArrays.endRowArray.length = 0;
-      const dotsAndLines = document.querySelectorAll("[contentId],.dot,.line");
-      dotsAndLines.forEach((item) => {
-        item.remove();
-      });
-      clearArrays();
-      dotAndLineCommand.clearArrays();
-    }, 400);
-  },
-  prepareForNewRound() {
-    this.clearBoard();
-    endRoundScreen.removeContainer();
-    toggleTouchFunction.enableTouch();
-    toggleBlur.removeWeakBlur();
-    score.displayHideToggle();
-    timerFunction.toggleTimerHide();
-    appStructure.appControlsContainer.classList.remove("hide");
-    appStructure.gridHideRemove();
-  },
-  startRound() {
-    if (!document.querySelector(".end-messages-container")) {
-      elements.getElements(matchingAppElements);
-      this.prepareForNewRound();
-      setTimeout(() => {
-        gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
-        matchingApp.activateEventListeners();
-        appStructure.setBtnContainer1(timerFunction.timer, score.display);
-        setTimeout(() => {
-          toggleTouchFunction.enableTouch();
-        }, 300);
-        setTimeout(() => {
-          appStructure.gridHideRemove();
-          console.log(appStructure.grid.classList.contains);
-        }, 100);
-        console.log(matchingAppElements);
-      }, 1000);
-      toggleBlur.removeAllBlur();
-    }
-  },
-  endRound() {
-    score.updateUserScore();
-    // score.updateStudentTotalScore();
-    endRoundScreen.displayContainer();
-  },
-};
+const matchingApp = new MatchingApp();
+
+matchingApp.startApp(set, this.createAndSetStructure, matchingAppElements);
 /* SCORING */
 const correctAnswerPoints = 1;
 const incorrectAnswerPoints = 1;
@@ -169,117 +114,6 @@ I. MAIN APP
 const matchingAppElements = [
   ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid",
 ];
-
-const matchingApp = {
-  createDoubleTapPreventer(timeout_ms) {
-    let dblTapTimer = 0;
-    let dblTapPressed = false;
-
-    return function (e) {
-      clearTimeout(dblTapTimer);
-      if (dblTapPressed) {
-        e.preventDefault();
-        dblTapPressed = false;
-      } else {
-        dblTapPressed = true;
-        dblTapTimer = setTimeout(() => {
-          dblTapPressed = false;
-        }, timeout_ms);
-      }
-    };
-  },
-  setDoubleTapPreventer() {
-    document.body.addEventListener(
-      "touchstart",
-      matchingApp.createDoubleTapPreventer(500),
-      {
-        passive: false,
-      }
-    );
-  },
-  createAndSetStructure() {
-    matchingAppStructure.createGrid();
-    matchingAppStructure.setGrid();
-  },
-  setStyleSheet() {
-    stylesheet.setAttribute(
-      "href",
-      "/KGPSEnglishPractice-test/resources/css/matching.css"
-    );
-  },
-  setForeignElements(startSession, endApp, endRound) {
-    homeBtnFunction.initialize(endApp);
-    startScreen.createAndSetStartScreen(startSession, endApp);
-    endRoundScreen.initializeContainer(startSession, endApp);
-    appStructure.setAppControlsContainer(
-      homeBtnFunction.homeBtn,
-      pauseFunction.pauseBtn
-    );
-    timerFunction.setEndRoundFunction(endRound);
-  },
-  activateEventListeners() {
-    setTimeout(() => {
-      const startTargets = document.querySelectorAll(
-        ".start-target, .end-target"
-      );
-      startTargets.forEach((target) => {
-        target.addEventListener("pointerdown", onPointerDown, false);
-        target.addEventListener("pointerup", onPointerUp, false);
-      });
-    }, 1);
-    mainContainer.addEventListener("pointerup", onPointerUpFalse, false);
-    mainContainer.addEventListener("pointermove", onPointerMove, false);
-  },
-  startApp(set) {
-    this.setDoubleTapPreventer();
-    sessionCheck();
-    setStyle(set);
-    appStructure.createAndSetAppStructureThenHideGrid();
-    this.createAndSetStructure();
-    this.setForeignElements(
-      matchingAppSessions.startSession,
-      this.endApp,
-      matchingAppSessions.endRound
-    );
-    elements.getElements(matchingAppElements);
-    console.log(matchingAppElements);
-
-    pauseFunction.unpause();
-    this.setStyleSheet();
-    menuItems.removeMenuPage();
-    score.resetScore();
-    score.display.innerText = score.currentScore;
-    appStructure.appContainer.classList.remove("hide");
-    if (!score.display.classList.contains("hide2")) {
-      score.displayHideToggle();
-    }
-    if (!timerFunction.timer.classList.contains("hide2")) {
-      timerFunction.toggleTimerHide();
-    }
-
-    setTimeout(setUser, 2000);
-    toggleBlur.removeAllBlur();
-  },
-  endApp() {
-    timerFunction.clearTimer();
-    score.updateUserScore();
-    matchingAppSessions.endSession();
-    endRoundScreen.removeContainer();
-    setTimeout(() => {
-      document.querySelector(".container").remove();
-      appStructure.removeMainAppStructure();
-      setTimeout(() => {
-        stylesheet.setAttribute(
-          "href",
-          "/KGPSEnglishPractice-test/resources/css/styles.css"
-        );
-        menuItems.displayMainPage();
-        setTimeout(menuItems.restoreMainMenu, 100);
-      }, 500);
-    }, 500);
-    score.display.innerText = score.currentScore;
-  },
-};
 
 function setUser() {
   user.gradeLevel = sessionData.gradeLevel;
@@ -793,5 +627,4 @@ export {
   lines,
   numberOfItemsToBeDisplayed,
   elements,
-  matchingAppStructure,
 };

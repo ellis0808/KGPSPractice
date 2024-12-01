@@ -74,7 +74,7 @@ const score = {
       this.display.classList.toggle("hide2");
     }
   },
-  resetScore: function () {
+  resetCurrentScore() {
     this.currentScore = 0;
   },
   updateUserScore: async function (id) {

@@ -1,25 +1,96 @@
 import { mainContainer } from "./variables.js";
+import { timerFunction } from "./timer.js";
+import {
+  pauseFunction,
+  elements,
+  toggleBlur,
+  toggleTouchFunction,
+} from "./pause-functions.js";
+import { score } from "./score.js";
+import { endRoundScreen } from "./end-round-screen.js";
+import { homeBtnFunction } from "./go-home-function.js";
+import { audio } from "./audio.js";
 
 class App {
   constructor() {}
-  startSession(time) {
+  startApp(set, appSpecificStructure, elements) {
+    this.setDoubleTapPreventer();
+    sessionCheck();
+    setStyle(set);
+    this.createAndSetAppStructureThenHideGrid();
+    this.createAndSetStructure();
+    this.setForeignElements(
+      matchingAppSessions.startSession,
+      this.endApp,
+      matchingAppSessions.endRound
+    );
+    createAndSetAppSpecificStructure(appSpecificStructure);
+    elements.getElements(elements);
+    console.log(elements);
+
+    pauseFunction.unpause();
+    this.setStyleSheet();
+    menuItems.removeMenuPage();
+    score.resetScore();
+    score.display.innerText = score.currentScore;
+    this.appContainer.classList.remove("hide");
+    if (!score.display.classList.contains("hide2")) {
+      score.displayHideToggle();
+    }
+    if (!timerFunction.timer.classList.contains("hide2")) {
+      timerFunction.toggleTimerHide();
+    }
+
+    setTimeout(setUser, 2000);
+    toggleBlur.removeAllBlur();
+  }
+  endApp() {
+    timerFunction.clearTimer();
+    score.updateUserScore();
+    matchingAppSessions.endSession();
+    endRoundScreen.removeContainer();
+    setTimeout(() => {
+      document.querySelector(".container").remove();
+      this.removeMainAppStructure();
+      setTimeout(() => {
+        stylesheet.setAttribute(
+          "href",
+          "/KGPSEnglishPractice-test/resources/css/styles.css"
+        );
+        menuItems.displayMainPage();
+        setTimeout(menuItems.restoreMainMenu, 100);
+      }, 500);
+    }, 500);
+    score.display.innerText = score.currentScore;
+  }
+  setForeignElements(startSession, endApp, endRound) {
+    homeBtnFunction.initialize(endApp);
+    startScreen.createAndSetStartScreen(startSession, endApp);
+    endRoundScreen.initializeContainer(startSession, endApp);
+    this.setAppControlsContainer(
+      homeBtnFunction.homeBtn,
+      pauseFunction.pauseBtn
+    );
+    timerFunction.setEndRoundFunction(endRound);
+  }
+  startSession(startRoundMethod, time) {
     audio.navigationSfx.startApp.play();
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
     setTimeout(() => {
-      matchingAppSessions.startRound();
+      startRoundMethod;
     }, 950);
     setTimeout(() => {
       timerFunction.startTimer(time);
     }, 1000);
   }
-  endSession() {
+  endSession(clearBoardMethod) {
     pauseFunction.unpause();
-    appStructure.appContainer.classList.add("hide");
-    appStructure.appControlsContainer.classList.add("hide");
+    this.appContainer.classList.add("hide");
+    this.appControlsContainer.classList.add("hide");
     document.querySelectorAll(".matching-app, .line").forEach((item) => {
       item.remove();
-    });
+    }); // needs to be abstracted out
     if (document.querySelector(".end-messages-container")) {
       document.querySelector(".end-messages-container").remove();
     }
@@ -27,51 +98,39 @@ class App {
       document.querySelector(".go-home-container").remove();
     }
     toggleBlur.removeAllBlur();
-    this.clearBoard();
+    this.clearBoard(clearBoardMethod);
     score.displayHideToggle();
     timerFunction.toggleTimerHide();
   }
-  clearBoard() {
-    setTimeout(() => {
-      appStructure.gridHideAdd();
-    }, 50);
-    setTimeout(() => {
-      currentDotIdArray.length = 0;
-      itemArrays.startRowArray.length = 0;
-      itemArrays.endRowArray.length = 0;
-      const dotsAndLines = document.querySelectorAll("[contentId],.dot,.line");
-      dotsAndLines.forEach((item) => {
-        item.remove();
-      });
-      clearArrays();
-      dotAndLineCommand.clearArrays();
-    }, 400);
+  clearBoard(clearBoardMethod) {
+    clearBoardMethod;
+    score.resetCurrentScore();
   }
   prepareForNewRound() {
-    this.clearBoard();
+    this.clearBoard(clearBoardMethod);
     endRoundScreen.removeContainer();
     toggleTouchFunction.enableTouch();
     toggleBlur.removeWeakBlur();
     score.displayHideToggle();
     timerFunction.toggleTimerHide();
-    appStructure.appControlsContainer.classList.remove("hide");
-    appStructure.gridHideRemove();
+    this.appControlsContainer.classList.remove("hide");
+    this.gridHideRemove();
   }
-  startRound() {
-    elements.getElements(matchingAppElements);
+  startRound(appElements, itemGeneratorMethod, eventListenerActivationMethod) {
+    elements.getElements(appElements);
     this.prepareForNewRound();
     setTimeout(() => {
-      gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
-      matchingApp.activateEventListeners();
-      appStructure.setBtnContainer1(timerFunction.timer, score.display);
+      gridItems.loadAndGenerateItems(itemGeneratorMethod); // to be changed to dynamic value based on set!
+      this.initializeEventListeners(eventListenerActivationMethod);
+      this.setBtnContainer1(timerFunction.timer, score.display);
       setTimeout(() => {
         toggleTouchFunction.enableTouch();
       }, 300);
       setTimeout(() => {
-        appStructure.gridHideRemove();
-        console.log(appStructure.grid.classList.contains);
+        this.gridHideRemove();
+        console.log(this.grid.classList.contains);
       }, 100);
-      console.log(matchingAppElements);
+      console.log(appElements);
     }, 1000);
     toggleBlur.removeAllBlur();
   }
@@ -80,9 +139,9 @@ class App {
     // score.updateStudentTotalScore();
     endRoundScreen.displayContainer();
   }
-}
-
-const appStructure = {
+  initializeEventListeners(eventListenerActivationMethod) {
+    eventListenerActivationMethod;
+  }
   createMainAppStructure() {
     this.appContainer = document.createElement("div");
     this.grid = document.createElement("div");
@@ -100,7 +159,7 @@ const appStructure = {
     this.btnContainer5.classList.add("btn-container5");
     this.appControlsContainer.classList.add("home-btn-container", "hide");
     this.leftMenuContainer.classList.add("left-menu-container");
-  },
+  }
   setMainAppStructure() {
     mainContainer.appendChild(this.appContainer);
     this.appContainer.appendChild(this.leftMenuContainer);
@@ -109,34 +168,34 @@ const appStructure = {
     this.appContainer.appendChild(this.btnContainer4);
     this.appContainer.appendChild(this.grid);
     this.appContainer.appendChild(this.appControlsContainer);
-  },
+  }
   setBtnContainer1(item1, item2) {
     this.btnContainer1.appendChild(item1);
     this.btnContainer1.appendChild(item2);
-  },
+  }
   setBtnContainer2(item1, item2) {
     this.btnContainer2.appendChild(item1);
     this.btnContainer2.appendChild(item2);
-  },
+  }
   setBtnContainer3(item) {
     this.btnContainer3.appendChild(item);
-  },
+  }
   setBtnContainer4(item) {
     this.btnContainer4.appendChild(item);
-  },
+  }
   setBtnContainer5(item) {
     this.btnContainer5.appendChild(item);
     this.appContainer.appendChild(this.btnContainer5);
-  },
+  }
   setAppControlsContainer(item1, item2) {
     this.appControlsContainer.appendChild(item1);
     this.appControlsContainer.appendChild(item2);
-  },
+  }
   createAndSetAppStructureThenHideGrid() {
     this.createMainAppStructure();
     this.setMainAppStructure();
     this.gridHideAdd();
-  },
+  }
   removeMainAppStructure() {
     delete this.appContainer;
     delete this.grid;
@@ -145,22 +204,43 @@ const appStructure = {
     delete this.btnContainer4;
     delete this.homeBtnContainer;
     delete this.leftMenuContainer;
-  },
+  }
   gridHideAdd() {
     if (!this.grid.classList.contains("gridHide")) {
       this.grid.classList.add("gridHide");
     }
-  },
+  }
   gridHideRemove() {
     if (this.grid.classList.contains("gridHide")) {
       this.grid.classList.remove("gridHide");
     }
-  },
-  clearGrid() {
-    this.grid.childNodes.forEach((item) => {
-      item.remove();
-    });
-  },
-};
+  }
+  createDoubleTapPreventer(timeout_ms) {
+    let dblTapTimer = 0;
+    let dblTapPressed = false;
 
-export { appStructure };
+    return function (e) {
+      clearTimeout(dblTapTimer);
+      if (dblTapPressed) {
+        e.preventDefault();
+        dblTapPressed = false;
+      } else {
+        dblTapPressed = true;
+        dblTapTimer = setTimeout(() => {
+          dblTapPressed = false;
+        }, timeout_ms);
+      }
+    };
+  }
+  setDoubleTapPreventer() {
+    document.body.addEventListener(
+      "touchstart",
+      matchingApp.createDoubleTapPreventer(500),
+      {
+        passive: false,
+      }
+    );
+  }
+}
+
+export { App };
