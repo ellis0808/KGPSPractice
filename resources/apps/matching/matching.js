@@ -77,10 +77,10 @@ class MatchingApp extends App {
     this.endDotsContainer.classList.add("end-dot-div");
   }
   setGrid() {
-    appStructure.grid.appendChild(this.startRowContainer);
-    appStructure.grid.appendChild(this.endRowContainer);
-    appStructure.grid.appendChild(this.startDotsContainer);
-    appStructure.grid.appendChild(this.endDotsContainer);
+    this.grid.appendChild(this.startRowContainer);
+    this.grid.appendChild(this.endRowContainer);
+    this.grid.appendChild(this.startDotsContainer);
+    this.grid.appendChild(this.endDotsContainer);
   }
   clearGrid() {
     document.querySelectorAll(".startrow, .endrow").forEach((item) => {

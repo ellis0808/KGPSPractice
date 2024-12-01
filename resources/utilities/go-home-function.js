@@ -1,4 +1,4 @@
-import { appStructure } from "./app-class.js";
+import { App } from "./app-class.js";
 import { pauseFunction } from "./pause-functions.js";
 
 const homeBtnFunction = {
@@ -86,7 +86,7 @@ const homeBtnFunction = {
     this.goHomeContainer.appendChild(this.goHomeMessage);
     this.goHomeContainer.appendChild(this.goHomeBtn);
     this.goHomeContainer.appendChild(this.cancelBtn);
-    appStructure.setBtnContainer4(this.goHomeContainer);
+    App.setBtnContainer4(this.goHomeContainer);
   },
   removeContainer() {
     if (document.querySelector(".go-home-container")) {
