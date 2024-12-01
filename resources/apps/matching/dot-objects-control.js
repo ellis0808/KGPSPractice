@@ -1,5 +1,6 @@
 import { body } from "../../utilities/variables.js";
 import {
+  matchingApp,
   checkAllCorrect,
   currentDotId,
   endDotId,
@@ -8,7 +9,7 @@ import {
   numberOfItemsToBeDisplayed,
 } from "./matching.js";
 import { audio } from "../../utilities/audio.js";
-import { appStructure } from "../../utilities/app-class.js";
+
 class DotAndLineCommand {
   constructor() {
     this.startDots = [];
@@ -323,7 +324,7 @@ class Connector {
     newLine.style.width = `${this.distance}px`;
     newLine.style.transformOrigin = `-0%`;
     newLine.style.transform = `rotate(${this.slope}deg)`;
-    appStructure.grid.appendChild(newLine);
+    matchingApp.grid.appendChild(newLine);
     this.element = newLine;
     newLine.setAttribute("startDotId", startDotId);
     newLine.setAttribute("endDotId", endDotId);
