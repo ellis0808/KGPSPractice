@@ -33,9 +33,9 @@ import {
   toggleBlur,
   toggleTouchFunction,
 } from "../../utilities/pause-functions.js";
+import { App } from "../../utilities/app-class.js";
 
 console.log("matching");
-import { App } from "../../utilities/app-class.js";
 
 class MatchingApp extends App {
   activateEventListeners() {

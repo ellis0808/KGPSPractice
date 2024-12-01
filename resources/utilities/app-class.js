@@ -13,6 +13,7 @@ import { endRoundScreen } from "./end-round-screen.js";
 import { audio } from "./audio.js";
 import { setStyle } from "../apps/matching/matching-set-style-and-activity-id.js";
 import { sessionCheck } from "../login/session-check.js";
+import { alphabet } from "../apps/card-touch/card-data.js";
 
 class App {
   constructor() {}
@@ -115,11 +116,11 @@ class App {
     this.appControlsContainer.classList.remove("hide");
     this.gridHideRemove();
   }
-  startRound(appElements, itemGeneratorMethod, eventListenerActivationMethod) {
+  startRound(appElements, eventListenerActivationMethod) {
     elements.getElements(appElements);
     this.prepareForNewRound();
     setTimeout(() => {
-      gridItems.loadAndGenerateItems(itemGeneratorMethod); // to be changed to dynamic value based on set!
+      gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
       this.initializeEventListeners(eventListenerActivationMethod);
       this.setBtnContainer1(timerFunction.timer, score.display);
       setTimeout(() => {
