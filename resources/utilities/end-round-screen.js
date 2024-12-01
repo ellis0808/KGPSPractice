@@ -1,4 +1,4 @@
-import { appStructure } from "./app-class.js";
+import { App } from "./app-class.js";
 import { score, scoreAssessment } from "./score.js";
 import { timerFunction } from "./timer.js";
 
@@ -39,7 +39,7 @@ const endRoundScreen = {
       this.endMessagesContainer.appendChild(this.assessmentMessage);
       this.endMessagesContainer.appendChild(this.scoreMessage);
       scoreAssessment.matching();
-      appStructure.setBtnContainer5(this.endMessagesContainer);
+      App.setBtnContainer5(this.endMessagesContainer);
     }
   },
   removeContainer() {
