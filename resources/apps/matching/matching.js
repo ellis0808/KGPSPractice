@@ -38,7 +38,6 @@ console.log("matching");
 import { App } from "../../utilities/app-class.js";
 
 class MatchingApp extends App {
-  constructor() {}
   activateEventListeners() {
     setTimeout(() => {
       const startTargets = document.querySelectorAll(
