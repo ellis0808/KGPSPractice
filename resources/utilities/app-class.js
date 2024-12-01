@@ -21,11 +21,7 @@ class App {
     setStyle(set);
     this.createAndSetAppStructureThenHideGrid();
     this.createAndSetStructure();
-    this.setForeignElements(
-      matchingAppSessions.startSession,
-      this.endApp,
-      matchingAppSessions.endRound
-    );
+    this.setForeignElements(this.startSession, this.endApp, this.endRound);
     createAndSetAppSpecificStructure(appSpecificStructure);
     elements.getElements(elements);
     console.log(elements);
@@ -49,7 +45,7 @@ class App {
   endApp() {
     timerFunction.clearTimer();
     score.updateUserScore();
-    matchingAppSessions.endSession();
+    this.endSession();
     endRoundScreen.removeContainer();
     setTimeout(() => {
       document.querySelector(".container").remove();
