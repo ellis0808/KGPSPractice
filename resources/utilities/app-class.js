@@ -14,6 +14,7 @@ import { audio } from "./audio.js";
 import { setStyle } from "../apps/matching/matching-set-style-and-activity-id.js";
 import { sessionCheck } from "../login/session-check.js";
 import { alphabet } from "../apps/card-touch/card-data.js";
+console.log("app class");
 
 class App {
   constructor() {}
