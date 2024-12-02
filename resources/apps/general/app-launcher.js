@@ -1,5 +1,5 @@
 import { cardTouchApp } from "../card-touch/card-touch.js";
-import { matchingApp } from "../../utilities/app-class.js";
+import { matchingApp } from "../matching/matching.js";
 import { fluencyApp } from "../fluency/fluency.js";
 import { writingApp } from "../writing/writing.js";
 // import { spellingTouchApp } from "../spelling/spelling-touch-app/spelling-touch-index.js";
