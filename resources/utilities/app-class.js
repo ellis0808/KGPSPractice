@@ -23,7 +23,6 @@ class App {
     sessionCheck();
     setStyle(set);
     this.createAndSetAppStructureThenHideGrid();
-    this.createAndSetStructure();
     this.setForeignElements(this.startSession, this.endApp, this.endRound);
     createAndSetAppSpecificStructure(appSpecificStructure);
     elements.getElements(appElements);
