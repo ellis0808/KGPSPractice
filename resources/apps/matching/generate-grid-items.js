@@ -1,4 +1,5 @@
-import { matchingApp, numberOfItemsToBeDisplayed } from "./matching.js";
+import { matchingApp } from "../../utilities/app-class.js";
+import { numberOfItemsToBeDisplayed } from "./matching.js";
 import { audio } from "../../utilities/audio.js";
 import {
   dotAndLineCommand,
