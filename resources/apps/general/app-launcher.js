@@ -5,6 +5,8 @@ import { writingApp } from "../writing/writing.js";
 // import { spellingTouchApp } from "../spelling/spelling-touch-app/spelling-touch-index.js";
 import { audio } from "../../utilities/audio.js";
 
+console.log("test");
+
 const appLauncher = {
   startCardTouchApp(set) {
     audio.navigationSfx.selectMenu.play();

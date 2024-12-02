@@ -9,6 +9,8 @@ import {
 } from "./dot-objects-control.js";
 import { pauseFunction } from "../../utilities/pause-functions.js";
 
+console.log("test");
+
 const gridItems = {
   loadAndGenerateItems(array) {
     itemArrays.loadItemSetArray(array);
