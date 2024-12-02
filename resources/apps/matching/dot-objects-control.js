@@ -1,6 +1,6 @@
 import { body } from "../../utilities/variables.js";
+import { matchingApp } from "../../utilities/app-class.js";
 import {
-  matchingApp,
   checkAllCorrect,
   currentDotId,
   endDotId,
