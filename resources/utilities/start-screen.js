@@ -1,5 +1,3 @@
-import { startBtn } from "../apps/card-touch/card-touch.js";
-import { matchingApp } from "../apps/matching/matching.js";
 import { App } from "./app-class.js";
 const startScreen = {
   startBtn: null,

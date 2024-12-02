@@ -1,5 +1,5 @@
 import { body } from "../../utilities/variables.js";
-import { matchingApp } from "../../utilities/app-class.js";
+import { matchingApp } from "./matching.js";
 import {
   checkAllCorrect,
   currentDotId,

@@ -293,11 +293,11 @@ class MatchingApp extends App {
     });
   }
 }
-const matchingApp = new MatchingApp();
+// const matchingApp = new MatchingApp();
 
 // class Test {
 //   constructor() {
 //     console.log("This is only a test");
 //   }
 // }
-export { App, matchingApp };
+export { App };

@@ -33,10 +33,10 @@ import {
   toggleBlur,
   toggleTouchFunction,
 } from "../../utilities/pause-functions.js";
-import { matchingApp } from "../../utilities/app-class.js";
+import { App } from "../../utilities/app-class.js";
 
 console.log("matching");
-
+const matchingApp = new App();
 // matchingApp.startApp(set, this.createAndSetStructure, matchingAppElements);
 /* SCORING */
 const correctAnswerPoints = 1;
