@@ -565,7 +565,7 @@ function getOldLines() {
 }
 
 export {
-  // matchingApp,
+  matchingApp,
   checkAllCorrect,
   currentDotId,
   endDotId,
