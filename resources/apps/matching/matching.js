@@ -38,6 +38,9 @@ import { app, App } from "../../utilities/app-class.js";
 console.log("matching");
 
 class MatchingApp extends App {
+  constructor() {
+    super();
+  }
   activateEventListeners() {
     setTimeout(() => {
       const startTargets = document.querySelectorAll(
@@ -84,7 +87,7 @@ class MatchingApp extends App {
   }
 }
 
-const matchingApp = new MatchingApp();
+// const matchingApp = new MatchingApp();
 
 // matchingApp.startApp(set, this.createAndSetStructure, matchingAppElements);
 /* SCORING */
