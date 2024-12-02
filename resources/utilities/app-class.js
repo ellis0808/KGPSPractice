@@ -244,4 +244,4 @@ class App {
   }
 }
 const app = new App();
-export { app };
+export { app, App };
