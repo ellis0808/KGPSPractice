@@ -1,6 +1,6 @@
 import { body } from "../../utilities/variables.js";
 import {
-  matchingApp,
+  // matchingApp,
   checkAllCorrect,
   currentDotId,
   endDotId,
@@ -324,7 +324,7 @@ class Connector {
     newLine.style.width = `${this.distance}px`;
     newLine.style.transformOrigin = `-0%`;
     newLine.style.transform = `rotate(${this.slope}deg)`;
-    matchingApp.grid.appendChild(newLine);
+    // matchingApp.grid.appendChild(newLine);
     this.element = newLine;
     newLine.setAttribute("startDotId", startDotId);
     newLine.setAttribute("endDotId", endDotId);
