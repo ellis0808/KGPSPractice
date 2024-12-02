@@ -300,4 +300,4 @@ const matchingApp = new MatchingApp();
 //     console.log("This is only a test");
 //   }
 // }
-export { matchingApp };
+export { App, matchingApp };
