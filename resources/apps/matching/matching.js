@@ -1,4 +1,3 @@
-import { App } from "../../utilities/app-class.js";
 import {
   primaryMenuContainer,
   mainContainer,
@@ -34,6 +33,7 @@ import {
   toggleBlur,
   toggleTouchFunction,
 } from "../../utilities/pause-functions.js";
+import { App } from "../../utilities/app-class.js";
 
 console.log("matching");
 
