@@ -1,4 +1,4 @@
-import { matchingAudio } from "./matching-audio";
+import { matchingAudio } from "./matching-audio.js";
 
 let style;
 let activityId;

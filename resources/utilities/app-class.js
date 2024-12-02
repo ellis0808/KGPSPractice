@@ -18,7 +18,7 @@ console.log("app class");
 
 class App {
   constructor() {}
-  startApp(set, appSpecificStructure, elements) {
+  startApp(set, appSpecificStructure, appElements) {
     this.setDoubleTapPreventer();
     sessionCheck();
     setStyle(set);
@@ -26,7 +26,7 @@ class App {
     this.createAndSetStructure();
     this.setForeignElements(this.startSession, this.endApp, this.endRound);
     createAndSetAppSpecificStructure(appSpecificStructure);
-    elements.getElements(elements);
+    elements.getElements(appElements);
     console.log(elements);
 
     pauseFunction.unpause();
@@ -245,9 +245,9 @@ class App {
 }
 const app = new App();
 
-class Test {
-  constructor() {
-    console.log("This is only a test");
-  }
-}
-export { app, App, Test };
+// class Test {
+//   constructor() {
+//     console.log("This is only a test");
+//   }
+// }
+export { App };
