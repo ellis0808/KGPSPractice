@@ -244,4 +244,10 @@ class App {
   }
 }
 const app = new App();
-export { app, App };
+
+class Test {
+  constructor() {
+    console.log("This is only a test");
+  }
+}
+export { app, App, Test };

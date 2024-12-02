@@ -33,59 +33,64 @@ import {
   toggleBlur,
   toggleTouchFunction,
 } from "../../utilities/pause-functions.js";
-import { app, App } from "../../utilities/app-class.js";
+import { app, App, Test } from "../../utilities/app-class.js";
 
 console.log("matching");
-
-class MatchingApp extends App {
+class Testing extends Test {
   constructor() {
     super();
-  }
-  activateEventListeners() {
-    setTimeout(() => {
-      const startTargets = document.querySelectorAll(
-        ".start-target, .end-target"
-      );
-      startTargets.forEach((target) => {
-        target.addEventListener("pointerdown", onPointerDown, false);
-        target.addEventListener("pointerup", onPointerUp, false);
-      });
-    }, 1);
-    mainContainer.addEventListener("pointerup", onPointerUpFalse, false);
-    mainContainer.addEventListener("pointermove", onPointerMove, false);
-  }
-  createAndSetStructure() {
-    this.createGrid();
-    this.setGrid();
-  }
-  setStyleSheet() {
-    stylesheet.setAttribute(
-      "href",
-      "/KGPSEnglishPractice-test/resources/css/matching.css"
-    );
-  }
-  createGrid() {
-    this.startRowContainer = document.createElement("div");
-    this.endRowContainer = document.createElement("div");
-    this.startDotsContainer = document.createElement("div");
-    this.endDotsContainer = document.createElement("div");
-    this.startRowContainer.classList.add("startrow");
-    this.endRowContainer.classList.add("endrow");
-    this.startDotsContainer.classList.add("start-dot-div");
-    this.endDotsContainer.classList.add("end-dot-div");
-  }
-  setGrid() {
-    this.grid.appendChild(this.startRowContainer);
-    this.grid.appendChild(this.endRowContainer);
-    this.grid.appendChild(this.startDotsContainer);
-    this.grid.appendChild(this.endDotsContainer);
-  }
-  clearGrid() {
-    document.querySelectorAll(".startrow, .endrow").forEach((item) => {
-      item.remove();
-    });
+    console.log("Test is a success!");
   }
 }
+// class MatchingApp extends App {
+//   constructor() {
+//     super();
+//   }
+//   activateEventListeners() {
+//     setTimeout(() => {
+//       const startTargets = document.querySelectorAll(
+//         ".start-target, .end-target"
+//       );
+//       startTargets.forEach((target) => {
+//         target.addEventListener("pointerdown", onPointerDown, false);
+//         target.addEventListener("pointerup", onPointerUp, false);
+//       });
+//     }, 1);
+//     mainContainer.addEventListener("pointerup", onPointerUpFalse, false);
+//     mainContainer.addEventListener("pointermove", onPointerMove, false);
+//   }
+//   createAndSetStructure() {
+//     this.createGrid();
+//     this.setGrid();
+//   }
+//   setStyleSheet() {
+//     stylesheet.setAttribute(
+//       "href",
+//       "/KGPSEnglishPractice-test/resources/css/matching.css"
+//     );
+//   }
+//   createGrid() {
+//     this.startRowContainer = document.createElement("div");
+//     this.endRowContainer = document.createElement("div");
+//     this.startDotsContainer = document.createElement("div");
+//     this.endDotsContainer = document.createElement("div");
+//     this.startRowContainer.classList.add("startrow");
+//     this.endRowContainer.classList.add("endrow");
+//     this.startDotsContainer.classList.add("start-dot-div");
+//     this.endDotsContainer.classList.add("end-dot-div");
+//   }
+//   setGrid() {
+//     this.grid.appendChild(this.startRowContainer);
+//     this.grid.appendChild(this.endRowContainer);
+//     this.grid.appendChild(this.startDotsContainer);
+//     this.grid.appendChild(this.endDotsContainer);
+//   }
+//   clearGrid() {
+//     document.querySelectorAll(".startrow, .endrow").forEach((item) => {
+//       item.remove();
+//     });
+//   }
+// }
 
 // const matchingApp = new MatchingApp();
 
