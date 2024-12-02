@@ -94,6 +94,8 @@ class Testing extends Test {
 
 // const matchingApp = new MatchingApp();
 
+const matchingApp = new App();
+
 // matchingApp.startApp(set, this.createAndSetStructure, matchingAppElements);
 /* SCORING */
 const correctAnswerPoints = 1;
@@ -622,7 +624,7 @@ function getOldLines() {
 }
 
 export {
-  matchingApp,
+  // matchingApp,
   checkAllCorrect,
   currentDotId,
   endDotId,
