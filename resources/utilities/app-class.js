@@ -263,6 +263,12 @@ class App {
 class MatchingApp extends App {
   constructor() {
     super();
+    this.matchingAppElements = [
+      ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid",
+    ];
+  }
+  start(set) {
+    this.startApp(set, this.createAndSetStructure, this.matchingAppElements);
   }
   activateEventListeners() {
     setTimeout(() => {

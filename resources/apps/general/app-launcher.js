@@ -14,7 +14,7 @@ const appLauncher = {
   },
   startMatchingApp(set) {
     audio.navigationSfx.selectMenu.play();
-    matchingApp.startApp(set);
+    matchingApp.start(set);
   },
   startFluencyApp(set) {
     audio.navigationSfx.selectMenu.play();
