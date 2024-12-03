@@ -37,6 +37,9 @@ import { App } from "../../utilities/app-class.js";
 
 console.log("matching");
 const matchingApp = new App();
+
+// matchingApp.startApp();
+
 // matchingApp.startApp(set, this.createAndSetStructure, matchingAppElements);
 /* SCORING */
 const correctAnswerPoints = 1;

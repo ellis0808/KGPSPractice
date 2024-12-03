@@ -17,7 +17,24 @@ import { alphabet } from "../apps/card-touch/card-data.js";
 console.log("app class");
 
 class App {
-  constructor() {}
+  constructor() {
+    this.appContainer = document.createElement("div");
+    this.grid = document.createElement("div");
+    this.btnContainer1 = document.createElement("div");
+    this.btnContainer2 = document.createElement("div");
+    this.btnContainer4 = document.createElement("div");
+    this.btnContainer5 = document.createElement("div");
+    this.leftMenuContainer = document.createElement("div");
+    this.appControlsContainer = document.createElement("div");
+    this.appContainer.classList.add("container");
+    this.grid.classList.add("grid");
+    this.btnContainer1.classList.add("btn-container1");
+    this.btnContainer2.classList.add("btn-container2");
+    this.btnContainer4.classList.add("btn-container4");
+    this.btnContainer5.classList.add("btn-container5");
+    this.appControlsContainer.classList.add("home-btn-container", "hide");
+    this.leftMenuContainer.classList.add("left-menu-container");
+  }
   startApp(set, appSpecificStructure, appElements) {
     this.setDoubleTapPreventer();
     sessionCheck();
@@ -169,7 +186,7 @@ class App {
     this.appContainer.appendChild(this.grid);
     this.appContainer.appendChild(this.appControlsContainer);
   }
-  setBtnContainer1(item1, item2) {
+  static setBtnContainer1(item1, item2) {
     this.btnContainer1.appendChild(item1);
     this.btnContainer1.appendChild(item2);
   }
@@ -177,22 +194,21 @@ class App {
     this.btnContainer2.appendChild(item1);
     this.btnContainer2.appendChild(item2);
   }
-  setBtnContainer3(item) {
+  static setBtnContainer3(item) {
     this.btnContainer3.appendChild(item);
   }
-  setBtnContainer4(item) {
+  static setBtnContainer4(item) {
     this.btnContainer4.appendChild(item);
   }
   setBtnContainer5(item) {
     this.btnContainer5.appendChild(item);
     this.appContainer.appendChild(this.btnContainer5);
   }
-  setAppControlsContainer(item1, item2) {
+  static setAppControlsContainer(item1, item2) {
     this.appControlsContainer.appendChild(item1);
     this.appControlsContainer.appendChild(item2);
   }
   createAndSetAppStructureThenHideGrid() {
-    this.createMainAppStructure();
     this.setMainAppStructure();
     this.gridHideAdd();
   }
