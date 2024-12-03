@@ -266,9 +266,13 @@ class App {
 class MatchingApp extends App {
   constructor() {
     super();
+    this.start = this.start.bind(this);
     this.matchingAppElements = [
       ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid",
     ];
+  }
+  old() {
+    console.log("old test");
   }
   start(set) {
     this.startApp(set, this.createAndSetStructure, this.matchingAppElements);

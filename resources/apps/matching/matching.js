@@ -37,7 +37,7 @@ import { App } from "../../utilities/app-class.js";
 
 console.log("matching");
 const matchingApp = new App();
-
+matchingApp.cre;
 // matchingApp.startApp();
 
 // matchingApp.startApp(set, this.createAndSetStructure, matchingAppElements);
