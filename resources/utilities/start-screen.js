@@ -1,4 +1,4 @@
-import { App } from "./app-class.js";
+import { app } from "./app-class.js";
 const startScreen = {
   startBtn: null,
   exitBtn: null,
@@ -13,7 +13,7 @@ const startScreen = {
     this.exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
   },
   setStartScreen() {
-    App.setBtnContainer2(App.btn, this.startBtn, this.exitBtn);
+    app.setBtnContainer2(app.btn, this.startBtn, this.exitBtn);
     this.exitBtn.classList.remove("hide");
   },
   setStartEndAppBtnFunctions(startApp, endApp) {
