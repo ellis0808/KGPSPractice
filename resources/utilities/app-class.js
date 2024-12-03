@@ -266,7 +266,6 @@ class App {
 class MatchingApp extends App {
   constructor() {
     super();
-    this.start = this.start.bind(this);
     this.matchingAppElements = [
       ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid",
     ];
@@ -330,4 +329,4 @@ class MatchingApp extends App {
 //   }
 // }
 const app = new App();
-export { app, App };
+export { app, App, MatchingApp };
