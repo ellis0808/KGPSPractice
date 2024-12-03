@@ -173,7 +173,7 @@ class App {
     this.btnContainer1.appendChild(item1);
     this.btnContainer1.appendChild(item2);
   }
-  setBtnContainer2(item1, item2) {
+  static setBtnContainer2(item1, item2) {
     this.btnContainer2.appendChild(item1);
     this.btnContainer2.appendChild(item2);
   }
