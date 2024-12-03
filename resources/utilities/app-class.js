@@ -190,9 +190,9 @@ class App {
     this.btnContainer1.appendChild(item1);
     this.btnContainer1.appendChild(item2);
   }
-  static setBtnContainer2(item1, item2) {
-    this.btnContainer2.appendChild(item1);
-    this.btnContainer2.appendChild(item2);
+  static setBtnContainer2(btnContainer2, item1, item2) {
+    btnContainer2.appendChild(item1);
+    btnContainer2.appendChild(item2);
   }
   static setBtnContainer3(item) {
     this.btnContainer3.appendChild(item);

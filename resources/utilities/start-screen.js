@@ -13,7 +13,7 @@ const startScreen = {
     this.exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
   },
   setStartScreen() {
-    App.setBtnContainer2(this.startBtn, this.exitBtn);
+    App.setBtnContainer2(App.setBtnContainer2, this.startBtn, this.exitBtn);
     this.exitBtn.classList.remove("hide");
   },
   setStartEndAppBtnFunctions(startApp, endApp) {
