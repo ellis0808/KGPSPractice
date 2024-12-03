@@ -41,7 +41,7 @@ class App {
     setStyle(set);
     this.createAndSetAppStructureThenHideGrid();
     this.setForeignElements(this.startSession, this.endApp, this.endRound);
-    createAndSetAppSpecificStructure(appSpecificStructure);
+    this.createAndSetAppSpecificStructure(appSpecificStructure);
     elements.getElements(appElements);
     console.log(elements);
 
@@ -207,6 +207,9 @@ class App {
   setAppControlsContainer(item1, item2) {
     this.appControlsContainer.appendChild(item1);
     this.appControlsContainer.appendChild(item2);
+  }
+  createAndSetAppSpecificStructure(appSpecificStructure) {
+    appSpecificStructure;
   }
   createAndSetAppStructureThenHideGrid() {
     // this.createMainAppStructure();
