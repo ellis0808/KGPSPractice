@@ -17,11 +17,11 @@ import { alphabet } from "../apps/card-touch/card-data.js";
 console.log("app class");
 
 class App {
+  static btnContainer2 = document.createElement("div");
   constructor() {
     this.appContainer = document.createElement("div");
     this.grid = document.createElement("div");
     this.btnContainer1 = document.createElement("div");
-    this.btnContainer2 = document.createElement("div");
     this.btnContainer4 = document.createElement("div");
     this.btnContainer5 = document.createElement("div");
     this.leftMenuContainer = document.createElement("div");
