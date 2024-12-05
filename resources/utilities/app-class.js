@@ -319,12 +319,12 @@ class MatchingApp extends App {
     this.startApp(set, this.createAndSetStructure, this.matchingAppElements);
     this.activateEventListeners();
   }
-  createAndSetStructure() {
+  createAndSetStructure = () => {
     console.log("createAndSetStructure running");
 
     this.createGrid();
     this.setGrid();
-  }
+  };
   setStyleSheet() {
     stylesheet.setAttribute(
       "href",
