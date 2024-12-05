@@ -13,12 +13,6 @@ import {
   activityId,
   setStyle,
 } from "./matching-set-style-and-activity-id.js";
-import {
-  itemGenerator,
-  gridGenerator,
-  gridItems,
-  itemArrays,
-} from "./generate-grid-items.js";
 import { audio } from "../../utilities/audio.js";
 import {
   elements,

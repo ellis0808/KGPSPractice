@@ -11,8 +11,6 @@ import { startScreen } from "./start-screen.js";
 import { homeBtnFunction } from "./go-home-function.js";
 import { endRoundScreen } from "./end-round-screen.js";
 import { audio } from "./audio.js";
-import { setStyle } from "../apps/matching/matching-set-style-and-activity-id.js";
-import { sessionCheck } from "../login/session-check.js";
 import { alphabet } from "../apps/card-touch/card-data.js";
 import { menuItems } from "../apps/general/start-main-app.js";
 console.log("app class");
@@ -38,8 +36,6 @@ class App {
   }
   startApp(set, appSpecificStructure, appElements) {
     this.setDoubleTapPreventer();
-    sessionCheck();
-    setStyle(set);
     this.createAndSetAppStructureThenHideGrid();
     this.setForeignElements(this.startSession, this.endApp, this.endRound);
     this.createAndSetAppSpecificStructure(appSpecificStructure);
