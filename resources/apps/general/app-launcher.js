@@ -2,7 +2,7 @@ import { cardTouchApp } from "../card-touch/card-touch.js";
 import { fluencyApp } from "../fluency/fluency.js";
 import { writingApp } from "../writing/writing.js";
 import { audio } from "../../utilities/audio.js";
-import { MatchingApp } from "../../utilities/app-class.js";
+import { matchingApp } from "../../utilities/app-class.js";
 
 console.log("test");
 const appLauncher = {
