@@ -17,6 +17,8 @@ console.log("app class");
 
 class App {
   constructor() {
+    this.positiveFeedbackAudioObjects = [];
+    this.negativeFeedbackAudioObjects = [];
     this.appContainer = document.createElement("div");
     this.grid = document.createElement("div");
     this.btnContainer1 = document.createElement("div");
@@ -447,12 +449,12 @@ class MatchingApp extends App {
 
         endDot[this.currentEndDot].makeActive();
 
-        getEndDotID(event);
+        this.getEndDotID(event);
 
         line.buttonDown();
 
         this.currentDotId;
-        getEventTargetID(event);
+        this.getEventTargetID(event);
         score.display.classList.remove("pulse");
 
         if (
@@ -486,14 +488,14 @@ class MatchingApp extends App {
 
         startDot[this.currentStartDot].makeActive();
 
-        getStartDotID(event);
+        this.getStartDotID(event);
 
         line.buttonDown();
 
         this.currentDotId;
         score.display.classList.remove("pulse");
 
-        getEventTargetID(event);
+        this.getEventTargetID(event);
 
         if (!this.currentDotIdArray.includes(startDot[this.currentStartDot])) {
           line.getContentId(startDot[this.currentStartDot]);
@@ -559,14 +561,14 @@ class MatchingApp extends App {
     event.stopPropagation();
     if (this.currentEndDot) {
       this.currentStartDot = null;
-      getStartDotID(event);
+      this.getStartDotID(event);
       try {
         line.element.setAttribute("startdotid", this.startDotId);
       } catch (error) {
         return;
       }
       if (event.target.classList.contains("end-target")) {
-        onPointerUpFalse();
+        this.onPointerUpFalse();
       }
       if (event.target.classList.contains("start-target")) {
         if (event.target.hasPointerCapture(event.pointerId)) {
@@ -613,7 +615,7 @@ class MatchingApp extends App {
               item.remove();
             });
         } else if (!line.isPressed) {
-          removeUnconnectedLines();
+          this.removeUnconnectedLines();
           this.lines.pop();
           return;
         }
@@ -625,9 +627,9 @@ class MatchingApp extends App {
       this.currentStartDot = null;
     } else if (this.currentStartDot) {
       this.currentEndDot = null;
-      getEndDotID(event);
+      this.getEndDotID(event);
       if (event.target.classList.contains("start-target")) {
-        onPointerUpFalse();
+        this.onPointerUpFalse();
       }
       if (event.target.classList.contains("end-target")) {
         if (event.target.hasPointerCapture(event.pointerId)) {
@@ -662,7 +664,7 @@ class MatchingApp extends App {
           event.target.classList.contains("end-target") &&
           !this.currentDotIdArray.includes(this.currentDotId)
         ) {
-          getEndDotID(event);
+          this.getEndDotID(event);
           const oldlines = document.querySelectorAll(".unconnected");
           oldlines[0].classList.remove("unconnected");
           oldlines[0].classList.add("final");
@@ -672,7 +674,7 @@ class MatchingApp extends App {
               item.remove();
             });
         } else if (!line.isPressed) {
-          removeUnconnectedLines();
+          this.removeUnconnectedLines();
           this.lines.pop();
           return;
         }
@@ -691,7 +693,7 @@ class MatchingApp extends App {
         this.currentEndDot = null;
         line.buttonUp();
         if (!line.isPressed) {
-          removeUnconnectedLines();
+          this.removeUnconnectedLines();
           this.lines.pop();
           this.currentEndDot = null;
           return;
@@ -703,7 +705,7 @@ class MatchingApp extends App {
         this.currentStartDot = null;
         line.buttonUp();
         if (!line.isPressed) {
-          removeUnconnectedLines();
+          this.removeUnconnectedLines();
           this.lines.pop();
           this.currentStartDot = null;
           return;
