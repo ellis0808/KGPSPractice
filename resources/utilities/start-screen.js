@@ -25,7 +25,7 @@ const startScreen = {
     this.setStartScreen();
   },
   displayStartScreen() {
-    score.resetScore();
+    score.resetCurrentScore();
   },
   removeStartScreen() {
     this.startBtn.classList.add("no-touch");

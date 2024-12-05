@@ -56,7 +56,7 @@ function cardTouchApp(set) {
 
   setTimeout(displayStartBtn, 200);
 
-  score.resetScore();
+  score.resetCurrentScore();
   scoreDisplay.innerText = score.currentScore;
   appContainer.classList.remove("hide");
   if (!scoreDisplay.classList.contains("hide2")) {
@@ -236,7 +236,7 @@ function displayStartBtn() {
   }
   exitBtn.classList.remove("hide");
   startBtn.addEventListener("click", startSession);
-  score.resetScore();
+  score.resetCurrentScore();
 }
 
 // Start Round
@@ -288,7 +288,7 @@ function startNewSession() {
   }
   isSessionFinished = false;
   appContainer.appendChild(grid);
-  score.resetScore();
+  score.resetCurrentScore();
   scoreDisplay.innerText = score.currentScore;
   removeBlur();
   homeBtnContainer.classList.remove("no-touch");

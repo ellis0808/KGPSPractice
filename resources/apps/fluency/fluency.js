@@ -214,7 +214,7 @@ function fluencyApp(set) {
 
   setTimeout(displayStartBtn, 200);
 
-  score.resetScore();
+  score.resetCurrentScore();
   scoreDisplay.innerText = score.currentScore;
   appContainer.classList.remove("hide");
 
@@ -393,7 +393,7 @@ function displayStartBtn() {
   }
   exitBtn.classList.remove("hide");
   startBtn.addEventListener("click", startSession);
-  score.resetScore();
+  score.resetCurrentScore();
 }
 
 document.addEventListener("keydown", (event) => {
@@ -454,7 +454,7 @@ function startNewSession() {
   resetRoundNumberAndRoundDisplay();
   setTimeout(() => {
     document.querySelector(".end-messages-container").remove();
-    score.resetScore();
+    score.resetCurrentScore();
     scoreDisplay.innerText = score.currentScore;
     grid.classList.remove("blur");
     roundDisplay.classList.remove("blur");

@@ -20,7 +20,7 @@ import {
   toggleBlur,
   toggleTouchFunction,
 } from "../../utilities/pause-functions.js";
-import { MatchingApp } from "../../utilities/app-class.js";
+import { matchingApp } from "../../utilities/app-class.js";
 
 console.log("matching");
 // const matchingApp = new MatchingApp();

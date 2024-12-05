@@ -45,7 +45,7 @@ class App {
     pauseFunction.unpause();
     this.setStyleSheet();
     menuItems.removeMenuPage();
-    score.resetScore();
+    score.resetCurrentScore();
     score.display.innerText = score.currentScore;
     this.appContainer.classList.remove("hide");
     if (!score.display.classList.contains("hide2")) {
