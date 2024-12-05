@@ -246,7 +246,7 @@ class App {
     this.appControlsContainer.appendChild(item2);
   }
   createAndSetAppSpecificStructure(appSpecificStructure) {
-    appSpecificStructure;
+    appSpecificStructure();
   }
   createAndSetAppStructureThenHideGrid() {
     // this.createMainAppStructure();
@@ -389,26 +389,26 @@ class MatchingApp extends App {
   randomFeedback() {
     Object.keys(audio.feedbackAudioObject.positiveFeedback).forEach(
       (object) => {
-        if (!positiveFeedbackAudioObjects.includes(object)) {
+        if (!this.positiveFeedbackAudioObjects.includes(object)) {
           if (object === "greatJob" || object === "goodJob") {
-            positiveFeedbackAudioObjects.push(object);
+            this.positiveFeedbackAudioObjects.push(object);
           }
         }
       }
     );
     Object.keys(audio.feedbackAudioObject.positiveFeedback).forEach(
       (object) => {
-        if (!negativeFeedbackAudioObjects.includes(object)) {
-          negativeFeedbackAudioObjects.push(object);
+        if (!this.negativeFeedbackAudioObjects.includes(object)) {
+          this.negativeFeedbackAudioObjects.push(object);
         }
       }
     );
 
     let randomFeedbackNumber = Math.floor(
-      Math.random() * positiveFeedbackAudioObjects.length
+      Math.random() * this.positiveFeedbackAudioObjects.length
     );
     audio.feedbackAudioObject.positiveFeedback[
-      positiveFeedbackAudioObjects[randomFeedbackNumber]
+      this.positiveFeedbackAudioObjects[randomFeedbackNumber]
     ].sound.play();
   }
   activateEventListeners() {
