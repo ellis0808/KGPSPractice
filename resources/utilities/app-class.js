@@ -41,85 +41,36 @@ class App {
     user.access = sessionData.access;
     user.id = sessionData.userId;
   }
-  onPointerDown(event) {
-    event.preventDefault();
-    event.stopPropagation();
+  // updateUserTotalScore() {
+  //   //  For student users; teachers will differ on user type, etc
+  //   const newScore = {
+  //     activity_id: activityId,
+  //     user_id: user.id,
+  //     user_type: user.access,
+  //     correct_answer_count: 0,
+  //     incorrect_answer_count: 0,
+  //     time_to_correct_answer_duration_in_seconds: 0,
+  //     answer_attempts: 0,
+  //     activity_score: score.currentScore,
+  //   };
+  //   try {
+  //     const response = await fetch(
+  //       "/KGPSEnglishPractice-test/api/add_user_activity_record.php",
+  //       {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify(newScore),
+  //       }
+  //     );
+  //     const data = await response.json();
 
-    this.currentStartDot = null;
-    this.currentEndDot = null;
-    if (this.currentStartDot === null && this.currentEndDot === null) {
-      if (event.target.classList.contains("end-target")) {
-        if (event.target.hasPointerCapture(event.pointerId)) {
-          event.target.releasePointerCapture(event.pointerId);
-        }
-
-        this.currentEndDot = Number(
-          event.target.id - this.numberOfItemsToBeDisplayed
-        );
-
-        if (endDot[this.currentEndDot].connected) {
-          document
-            .querySelector(`[enddotid="${endDot[this.currentEndDot].id}"]`)
-            .remove();
-          endDot[this.currentEndDot].disconnect();
-        }
-
-        endDot[this.currentEndDot].makeActive();
-
-        getEndDotID(event);
-
-        line.buttonDown();
-
-        this.currentDotId;
-        getEventTargetID(event);
-        score.display.classList.remove("pulse");
-
-        if (
-          !this.currentDotIdArray.includes(endDot[this.currentEndDot]) +
-          this.numberOfItemsToBeDisplayed
-        ) {
-          line.start = {};
-          line.getStartPosition(event);
-          line.end = {};
-          line.getEndPosition(event);
-          draw();
-        }
-        return this.currentEndDot;
-      } else if (event.target.classList.contains("start-target")) {
-        if (event.target.hasPointerCapture(event.pointerId)) {
-          event.target.releasePointerCapture(event.pointerId);
-        }
-        this.currentStartDot = null;
-        this.currentEndDot = null;
-
-        this.currentStartDot = event.target.id;
-
-        if (startDot[this.currentStartDot].connected) {
-          document
-            .querySelector(
-              `[startdotid="${startDot[this.currentStartDot].id}"]`
-            )
-            .remove();
-          startDot[this.currentStartDot].disconnect();
-        }
-        startDot[this.currentStartDot].makeActive();
-        getStartDotID(event);
-        line.buttonDown();
-        this.currentDotId;
-        score.display.classList.remove("pulse");
-        getEventTargetID(event);
-        if (!this.currentDotIdArray.includes(startDot[this.currentStartDot])) {
-          line.getContentId(startDot[this.currentStartDot]);
-          line.start = {};
-          line.getStartPosition(event);
-          line.end = {};
-          line.getEndPosition(event);
-          draw();
-        }
-        return this.currentStartDot;
-      }
-    }
-  }
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not okay");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error adding record:", error);
+  //   }
+  // }
   startApp(set, appSpecificStructure, appElements) {
     this.setDoubleTapPreventer();
     this.createAndSetAppStructureThenHideGrid();
@@ -464,12 +415,12 @@ class MatchingApp extends App {
         ".start-target, .end-target"
       );
       startTargets.forEach((target) => {
-        target.addEventListener("pointerdown", onPointerDown, false);
-        target.addEventListener("pointerup", onPointerUp, false);
+        target.addEventListener("pointerdown", this.onPointerDown, false);
+        target.addEventListener("pointerup", this.onPointerUp, false);
       });
     }, 1);
-    mainContainer.addEventListener("pointerup", onPointerUpFalse, false);
-    mainContainer.addEventListener("pointermove", onPointerMove, false);
+    mainContainer.addEventListener("pointerup", this.onPointerUpFalse, false);
+    mainContainer.addEventListener("pointermove", this.onPointerMove, false);
   }
   onPointerDown(event) {
     event.preventDefault();
