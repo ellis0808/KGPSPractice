@@ -64,6 +64,7 @@ class App {
 
     // setTimeout(this.setUser, 2000);
     toggleBlur.removeAllBlur();
+    console.log("start app finished");
   }
   endApp() {
     timerFunction.clearTimer();
@@ -277,8 +278,9 @@ class MatchingApp extends App {
   old() {
     console.log("old test");
   }
-  start(set) {
+  run(set) {
     this.startApp(set, this.createAndSetStructure, this.matchingAppElements);
+    this.activateEventListeners();
   }
   activateEventListeners() {
     setTimeout(() => {
@@ -294,6 +296,8 @@ class MatchingApp extends App {
     mainContainer.addEventListener("pointermove", onPointerMove, false);
   }
   createAndSetStructure() {
+    console.log("createAndSetStructure running");
+
     this.createGrid();
     this.setGrid();
   }
@@ -325,13 +329,7 @@ class MatchingApp extends App {
     });
   }
 }
-// const matchingApp = new MatchingApp();
 
-// class Test {
-//   constructor() {
-//     console.log("This is only a test");
-//   }
-// }
 const app = new App();
 const matchingApp = new MatchingApp();
 

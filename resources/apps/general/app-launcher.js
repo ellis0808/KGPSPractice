@@ -12,7 +12,7 @@ const appLauncher = {
   },
   startMatchingApp(set) {
     audio.navigationSfx.selectMenu.play();
-    matchingApp.start(set);
+    matchingApp.run(set);
   },
   startFluencyApp(set) {
     audio.navigationSfx.selectMenu.play();
