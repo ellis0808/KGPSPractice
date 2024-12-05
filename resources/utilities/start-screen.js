@@ -6,7 +6,6 @@ const startScreen = {
     this.startBtn = document.createElement("button");
     this.exitBtn = document.createElement("div");
     this.startBtn.setAttribute("id", "start-btn");
-    this.startBtn.classList.add("letter-matching-app");
     this.startBtn.textContent = "Start";
     this.exitBtn.setAttribute("id", "exit-btn");
     this.exitBtn.classList.add("hide");

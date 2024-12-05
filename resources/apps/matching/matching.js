@@ -23,7 +23,7 @@ import {
 import { MatchingApp } from "../../utilities/app-class.js";
 
 console.log("matching");
-const matchingApp = new MatchingApp();
+// const matchingApp = new MatchingApp();
 // matchingApp.startApp();
 
 // matchingApp.startApp(set, this.createAndSetStructure, matchingAppElements);
