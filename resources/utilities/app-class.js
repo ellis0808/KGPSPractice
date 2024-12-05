@@ -129,7 +129,10 @@ class App {
     );
     timerFunction.setEndRoundFunction(endRound);
   }
-  gridGeneration(appSpecificGrid) {}
+  gridGeneration(appSpecificGrid) {
+    appSpecificGrid();
+    console.log("app specific grid loaded");
+  }
   startSession(startRoundMethod, time) {
     audio.navigationSfx.startApp.play();
     endRoundScreen.removeContainer();
@@ -327,10 +330,9 @@ class MatchingApp extends App {
     this.activateEventListeners();
   }
   createAndSetStructure = () => {
-    console.log("createAndSetStructure running");
-
     this.createGrid();
     this.setGrid();
+    console.log("createAndSetStructure set");
   };
   setStyleSheet() {
     stylesheet.setAttribute(
