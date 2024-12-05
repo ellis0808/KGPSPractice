@@ -13,6 +13,7 @@ import { endRoundScreen } from "./end-round-screen.js";
 import { audio } from "./audio.js";
 import { alphabet } from "../apps/card-touch/card-data.js";
 import { menuItems } from "../apps/general/start-main-app.js";
+import { gridItems } from "../apps/matching/generate-grid-items.js";
 console.log("app class");
 
 class App {
@@ -73,11 +74,12 @@ class App {
   //     console.error("Error adding record:", error);
   //   }
   // }
-  startApp(set, appSpecificStructure, appElements) {
+  startApp(set, appSpecificStructure, appSpecificGrid, appElements) {
     this.setDoubleTapPreventer();
     this.createAndSetAppStructureThenHideGrid();
     this.setForeignElements(this.startSession, this.endApp, this.endRound);
     this.createAndSetAppSpecificStructure(appSpecificStructure);
+    this.gridGeneration(appSpecificGrid);
     elements.getElements(appElements);
     console.log(elements);
 
@@ -127,6 +129,7 @@ class App {
     );
     timerFunction.setEndRoundFunction(endRound);
   }
+  gridGeneration(appSpecificGrid) {}
   startSession(startRoundMethod, time) {
     audio.navigationSfx.startApp.play();
     endRoundScreen.removeContainer();
@@ -182,7 +185,6 @@ class App {
       }, 300);
       setTimeout(() => {
         this.gridHideRemove();
-        console.log(this.grid.classList.contains);
       }, 100);
       console.log(appElements);
     }, 1000);
@@ -316,7 +318,12 @@ class MatchingApp extends App {
     this.lines = [];
   }
   run(set) {
-    this.startApp(set, this.createAndSetStructure, this.matchingAppElements);
+    this.startApp(
+      set,
+      this.createAndSetStructure,
+      gridItems.loadAndGenerateItems,
+      this.matchingAppElements
+    );
     this.activateEventListeners();
   }
   createAndSetStructure = () => {
