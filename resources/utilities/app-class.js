@@ -326,4 +326,6 @@ class MatchingApp extends App {
 //   }
 // }
 const app = new App();
-export { app, App, MatchingApp };
+const matchingApp = new MatchingApp();
+
+export { app, matchingApp, App, MatchingApp };

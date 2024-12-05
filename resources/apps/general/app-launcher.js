@@ -5,7 +5,6 @@ import { audio } from "../../utilities/audio.js";
 import { MatchingApp } from "../../utilities/app-class.js";
 
 console.log("test");
-const matchingApp = new MatchingApp();
 const appLauncher = {
   startCardTouchApp(set) {
     audio.navigationSfx.selectMenu.play();
