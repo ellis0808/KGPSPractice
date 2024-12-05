@@ -34,6 +34,13 @@ class App {
     this.appControlsContainer.classList.add("home-btn-container", "hide");
     this.leftMenuContainer.classList.add("left-menu-container");
   }
+  setUser() {
+    user.gradeLevel = sessionData.gradeLevel;
+    user.firstName = sessionData.firstName;
+    user.lastName = sessionData.lastName;
+    user.access = sessionData.access;
+    user.id = sessionData.userId;
+  }
   startApp(set, appSpecificStructure, appElements) {
     this.setDoubleTapPreventer();
     this.createAndSetAppStructureThenHideGrid();
