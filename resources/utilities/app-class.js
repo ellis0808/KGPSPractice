@@ -62,7 +62,7 @@ class App {
       timerFunction.toggleTimerHide();
     }
 
-    setTimeout(this.setUser, 2000);
+    // setTimeout(this.setUser, 2000);
     toggleBlur.removeAllBlur();
   }
   endApp() {
