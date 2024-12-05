@@ -1,10 +1,3 @@
-import {
-  primaryMenuContainer,
-  mainContainer,
-  navBar,
-  stylesheet,
-  body,
-} from "../../utilities/variables.js";
 import { score } from "../../utilities/score.js";
 
 import {
@@ -45,7 +38,7 @@ const correctAnswerPoints = 1;
 const incorrectAnswerPoints = 1;
 
 // score.display.textContent = `${score.currentScore}`;
-
+const body = document.body;
 let endDotId;
 let startDotId;
 
