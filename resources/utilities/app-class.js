@@ -74,12 +74,11 @@ class App {
   //     console.error("Error adding record:", error);
   //   }
   // }
-  startApp(set, appSpecificStructure, appSpecificGrid, appElements) {
+  startApp(set, appSpecificStructure, appElements, time) {
     this.setDoubleTapPreventer();
     this.createAndSetAppStructureThenHideGrid();
     this.setForeignElements(this.startSession, this.endApp, this.endRound);
     this.createAndSetAppSpecificStructure(appSpecificStructure);
-    this.gridGeneration(appSpecificGrid);
     elements.getElements(appElements);
     console.log(elements);
 
@@ -95,7 +94,7 @@ class App {
     if (!timerFunction.timer.classList.contains("hide2")) {
       timerFunction.toggleTimerHide();
     }
-
+    this.startSession(time);
     // setTimeout(this.setUser, 2000);
     toggleBlur.removeAllBlur();
     console.log("start app finished");
@@ -128,10 +127,6 @@ class App {
       pauseFunction.pauseBtn
     );
     timerFunction.setEndRoundFunction(endRound);
-  }
-  gridGeneration(appSpecificGrid) {
-    appSpecificGrid();
-    console.log("app specific grid loaded");
   }
   startSession(startRoundMethod, time) {
     audio.navigationSfx.startApp.play();
@@ -320,12 +315,12 @@ class MatchingApp extends App {
     this.currentEndDot = null;
     this.lines = [];
   }
-  run(set) {
+  run(set, time) {
     this.startApp(
       set,
       this.createAndSetStructure,
-      gridItems.loadAndGenerateItems,
-      this.matchingAppElements
+      this.matchingAppElements,
+      time
     );
     this.activateEventListeners();
   }
