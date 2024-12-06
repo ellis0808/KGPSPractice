@@ -81,7 +81,6 @@ class App {
     this.createAndSetAppSpecificStructure(appSpecificStructure);
     elements.getElements(appElements);
     console.log(elements);
-    startScreen.createAndSetStartScreen(this.startApp, this.endApp);
     pauseFunction.unpause();
     this.setStyleSheet();
     menuItems.removeMenuPage();
@@ -322,6 +321,9 @@ class MatchingApp extends App {
       time
     );
     this.activateEventListeners();
+    document.querySelectorAll("hide", "gridHide").forEach((item) => {
+      item.remove();
+    });
   }
   createAndSetStructure = () => {
     this.createGrid();
