@@ -1,10 +1,9 @@
 import { app } from "./app-class.js";
 const startScreen = {
-  startBtn: null,
-  exitBtn: null,
+  startBtn: document.createElement("button"),
+  exitBtn: document.createElement("div"),
+
   createStartScreen() {
-    this.startBtn = document.createElement("button");
-    this.exitBtn = document.createElement("div");
     this.startBtn.setAttribute("id", "start-btn");
     this.startBtn.textContent = "Start";
     this.exitBtn.setAttribute("id", "exit-btn");
