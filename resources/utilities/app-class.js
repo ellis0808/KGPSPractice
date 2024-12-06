@@ -321,7 +321,7 @@ class MatchingApp extends App {
       time
     );
     this.activateEventListeners();
-    document.querySelectorAll(".hide", ".gridHide").forEach((item) => {
+    document.querySelectorAll(".hide, .gridHide").forEach((item) => {
       item.remove();
     });
   }
