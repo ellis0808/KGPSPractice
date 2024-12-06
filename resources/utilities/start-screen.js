@@ -26,6 +26,7 @@ const startScreen = {
     this.setStartEndAppBtnFunctions(startApp, EndApp);
     this.setStartScreen();
     console.log(document.getElementById("start-btn"));
+    console.log(this.startBtn);
     console.log("finished creating and setting start screen");
   },
   displayStartScreen() {
