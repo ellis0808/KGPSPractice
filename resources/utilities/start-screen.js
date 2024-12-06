@@ -23,6 +23,7 @@ const startScreen = {
     this.createStartScreen();
     this.setStartEndAppBtnFunctions(startApp, EndApp);
     this.setStartScreen();
+    console.log("finished creating and setting start screen");
   },
   displayStartScreen() {
     score.resetCurrentScore();
