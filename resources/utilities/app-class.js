@@ -322,7 +322,8 @@ class MatchingApp extends App {
     );
     this.activateEventListeners();
     document.querySelectorAll(".hide, .gridHide").forEach((item) => {
-      item.remove();
+      item.classList.remove("hide");
+      item.classList.remove("gridHide");
     });
   }
   createAndSetStructure = () => {
