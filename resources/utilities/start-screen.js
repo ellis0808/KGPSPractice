@@ -15,6 +15,7 @@ const startScreen = {
     console.log(app.btnContainer2);
 
     app.setBtnContainer2(this.startBtn, this.exitBtn);
+    app.btnContainer2.innerText = "this is a test!";
     this.exitBtn.classList.remove("hide");
   },
   setStartEndAppBtnFunctions(startApp, endApp) {
