@@ -81,7 +81,7 @@ class App {
     this.createAndSetAppSpecificStructure(appSpecificStructure);
     elements.getElements(appElements);
     console.log(elements);
-
+    startScreen.createAndSetStartScreen(this.startApp, this.endApp);
     pauseFunction.unpause();
     this.setStyleSheet();
     menuItems.removeMenuPage();
@@ -94,10 +94,10 @@ class App {
     if (!timerFunction.timer.classList.contains("hide2")) {
       timerFunction.toggleTimerHide();
     }
-    this.startSession(time);
+
     // setTimeout(this.setUser, 2000);
     toggleBlur.removeAllBlur();
-    console.log("start app finished");
+    console.log("start app method finished");
   }
   endApp() {
     timerFunction.clearTimer();
