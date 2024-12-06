@@ -73,6 +73,9 @@ const score = {
     if (score.display.classList.contains("hide2")) {
       this.display.classList.toggle("hide2");
     }
+    if (score.display.classList.contains("hide")) {
+      this.display.classList.toggle("hide");
+    }
   },
   resetCurrentScore() {
     this.currentScore = 0;

@@ -88,9 +88,8 @@ class App {
     score.resetCurrentScore();
     score.display.innerText = score.currentScore;
     this.appContainer.classList.remove("hide");
-    if (!score.display.classList.contains("hide2")) {
-      score.displayHideToggle();
-    }
+    score.displayHideToggle();
+
     if (!timerFunction.timer.classList.contains("hide2")) {
       timerFunction.toggleTimerHide();
     }
