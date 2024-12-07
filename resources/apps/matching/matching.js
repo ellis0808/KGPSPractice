@@ -129,7 +129,7 @@ class MatchingApp {
       }, 200);
       setTimeout(() => {
         toggleTouchFunction.disableTouch();
-        continueToNextRound();
+        app.startRound();
       }, 500);
     }
   }

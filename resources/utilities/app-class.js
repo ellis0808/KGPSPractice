@@ -41,8 +41,6 @@ class App {
     this.time = null;
     this.appElements = null;
     this.clearBoardMethod = null;
-    this.sessionStart = null;
-    this.roundStart = null;
     this.appEventListeners = null;
     this.appStructure = null;
     this.gridPopulator = null;
