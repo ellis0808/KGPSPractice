@@ -116,15 +116,15 @@ class App {
     }, 500);
     score.display.innerText = score.currentScore;
   }
-  setForeignElements(startSession, endApp, endRound) {
-    homeBtnFunction.initialize(endApp);
-    startScreen.createAndSetStartScreen(startSession, endApp);
-    endRoundScreen.initializeContainer(startSession, endApp);
+  setForeignElements(startSessionMethod, endAppMethod, endRoundMethod) {
+    homeBtnFunction.initialize(endAppMethod);
+    startScreen.createAndSetStartScreen(startSessionMethod, endAppMethod);
+    endRoundScreen.initializeContainer(startSessionMethod, endAppMethod);
     this.setAppControlsContainer(
       homeBtnFunction.homeBtn,
       pauseFunction.pauseBtn
     );
-    timerFunction.setEndRoundFunction(endRound);
+    timerFunction.setEndRoundFunction(endRoundMethod);
   }
   startSession(startRoundMethod, time) {
     audio.navigationSfx.startApp.play();
