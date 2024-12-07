@@ -44,10 +44,10 @@ class MatchingApp {
     app.startApp(set, this.createAndSetStructure, this.matchingAppElements);
     this.populateGrid();
     this.activateEventListeners();
-    document.querySelectorAll(".hide, .gridHide").forEach((item) => {
-      item.classList.remove("hide");
-      item.classList.remove("gridHide");
-    });
+    // document.querySelectorAll(".hide, .gridHide").forEach((item) => {
+    //   item.classList.remove("hide");
+    //   item.classList.remove("gridHide");
+    // });
     console.log("check");
   }
   setTime(time) {
