@@ -86,7 +86,7 @@ const homeBtnFunction = {
     this.goHomeContainer.appendChild(this.goHomeMessage);
     this.goHomeContainer.appendChild(this.goHomeBtn);
     this.goHomeContainer.appendChild(this.cancelBtn);
-    App.setBtnContainer4(this.goHomeContainer);
+    app.setBtnContainer4(this.goHomeContainer);
   },
   removeContainer() {
     if (document.querySelector(".go-home-container")) {
