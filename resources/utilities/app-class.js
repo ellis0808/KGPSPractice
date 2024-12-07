@@ -163,7 +163,7 @@ class App {
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
     setTimeout(() => {
-      this.startRound(this.appElements);
+      this.startRound();
     }, 950);
     setTimeout(() => {
       timerFunction.startTimer(this.time);
@@ -207,7 +207,7 @@ class App {
     elements.getElements(this.appElements);
     this.prepareForNewRound();
     setTimeout(() => {
-      gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
+      this.gridPopulator();
       this.initializeEventListeners();
       this.setBtnContainer1();
       setTimeout(() => {
@@ -216,7 +216,7 @@ class App {
       setTimeout(() => {
         this.gridHideRemove();
       }, 100);
-      console.log(appElements);
+      console.log(this.appElements);
     }, 1000);
     toggleBlur.removeAllBlur();
   }
