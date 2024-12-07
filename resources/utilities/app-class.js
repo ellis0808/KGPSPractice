@@ -38,7 +38,7 @@ class App {
     this.btnContainer5.classList.add("btn-container5");
     this.appControlsContainer.classList.add("home-btn-container", "hide");
     this.leftMenuContainer.classList.add("left-menu-container");
-    this.time = 60;
+    this.time = null;
   }
   setUser() {
     user.gradeLevel = sessionData.gradeLevel;

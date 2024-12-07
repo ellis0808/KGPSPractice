@@ -34,15 +34,20 @@ class MatchingApp {
     this.currentEndDot = null;
     this.lines = [];
     this.styleSheet = "/KGPSEnglishPractice-test/resources/css/matching.css";
+    this.time = null;
   }
   run(set) {
     this.setStyleSheet();
+    this.setTime(60);
     app.startApp(set, this.createAndSetStructure, this.matchingAppElements);
     this.activateEventListeners();
     document.querySelectorAll(".hide, .gridHide").forEach((item) => {
       item.classList.remove("hide");
       item.classList.remove("gridHide");
     });
+  }
+  setTime(time) {
+    app.time = time;
   }
   createAndSetStructure = () => {
     this.createGrid();
