@@ -1,4 +1,4 @@
-import { matchingApp } from "../../utilities/app-class.js";
+import { matchingApp } from "./matching.js";
 import { audio } from "../../utilities/audio.js";
 console.log("test");
 
