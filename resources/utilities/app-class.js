@@ -75,15 +75,10 @@ class App {
   //     console.error("Error adding record:", error);
   //   }
   // }
-  startApp(set, appSpecificStructure, appElements, time) {
+  startApp(set, appSpecificStructure, appElements) {
     this.setDoubleTapPreventer();
     this.createAndSetAppStructureThenHideGrid();
-    this.setForeignElements(
-      this.startSession,
-      this.endApp,
-      this.endRound,
-      time
-    );
+    this.setForeignElements(this.startSession, this.endApp, this.endRound);
     this.createAndSetAppSpecificStructure(appSpecificStructure);
     elements.getElements(appElements);
     console.log(elements);
