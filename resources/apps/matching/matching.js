@@ -98,14 +98,3 @@ II. SESSIONS & ROUNDS
 /*
 B. Clearing the Grid & Resetting Arrays
 */
-
-export {
-  matchingApp,
-  checkAllCorrect,
-  currentDotId,
-  endDotId,
-  startDotId,
-  lines,
-  numberOfItemsToBeDisplayed,
-  elements,
-};
