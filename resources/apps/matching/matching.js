@@ -36,8 +36,8 @@ class MatchingApp {
     this.styleSheet = "/KGPSEnglishPractice-test/resources/css/matching.css";
   }
   run(set) {
-    app.startApp(set, this.createAndSetStructure, this.matchingAppElements);
     this.setStyleSheet();
+    app.startApp(set, this.createAndSetStructure, this.matchingAppElements);
     this.activateEventListeners();
     document.querySelectorAll(".hide, .gridHide").forEach((item) => {
       item.classList.remove("hide");
