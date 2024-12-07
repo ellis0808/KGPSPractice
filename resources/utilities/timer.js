@@ -1,5 +1,4 @@
 import { pauseFunction, toggleTouchFunction } from "./pause-functions.js";
-import { endRoundScreen } from "./end-round-screen.js";
 const timer = document.createElement("div");
 
 function toggleTimerHide() {

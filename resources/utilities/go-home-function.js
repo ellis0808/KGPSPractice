@@ -1,4 +1,4 @@
-import { App } from "./app-class.js";
+import { app } from "./app-class.js";
 import { pauseFunction } from "./pause-functions.js";
 
 const homeBtnFunction = {

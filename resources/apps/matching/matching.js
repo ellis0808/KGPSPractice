@@ -14,12 +14,7 @@ import {
   setStyle,
 } from "./matching-set-style-and-activity-id.js";
 import { audio } from "../../utilities/audio.js";
-import {
-  elements,
-  pauseFunction,
-  toggleBlur,
-  toggleTouchFunction,
-} from "../../utilities/pause-functions.js";
+import { toggleTouchFunction } from "../../utilities/pause-functions.js";
 import { app } from "../../utilities/app-class.js";
 
 console.log("matching");
@@ -77,23 +72,6 @@ class MatchingApp {
     document.querySelectorAll(".startrow, .endrow").forEach((item) => {
       item.remove();
     });
-  }
-  checkAllCorrect() {
-    const allCorrectDots = document.querySelectorAll(
-      ".start-dot.pulse.white-ring"
-    );
-    if (allCorrectDots.length === this.numberOfItemsToBeDisplayed) {
-      setTimeout(() => {
-        score.updatePositiveCount(allCorrectDots.length * correctAnswerPoints);
-        score.display.classList.add("pulse");
-        audio.appSfx.correct.play();
-        setTimeout(randomFeedback, 500);
-      }, 200);
-      setTimeout(() => {
-        toggleTouchFunction.disableTouch();
-        continueToNextRound();
-      }, 500);
-    }
   }
   checkAllCorrect() {
     const allCorrectDots = document.querySelectorAll(
