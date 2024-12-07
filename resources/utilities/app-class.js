@@ -44,6 +44,7 @@ class App {
     this.appEventListeners = null;
     this.appStructure = null;
     this.gridPopulator = null;
+    this.startSession = this.startSession.bind(this);
     this.startRound = this.startRound.bind(this);
   }
   setAppVariables(
