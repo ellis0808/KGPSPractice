@@ -36,6 +36,7 @@ class App {
     this.btnContainer5.classList.add("btn-container5");
     this.appControlsContainer.classList.add("home-btn-container", "hide");
     this.leftMenuContainer.classList.add("left-menu-container");
+    this.time = 60;
   }
   setUser() {
     user.gradeLevel = sessionData.gradeLevel;
@@ -77,7 +78,12 @@ class App {
   startApp(set, appSpecificStructure, appElements, time) {
     this.setDoubleTapPreventer();
     this.createAndSetAppStructureThenHideGrid();
-    this.setForeignElements(this.startSession, this.endApp, this.endRound);
+    this.setForeignElements(
+      this.startSession,
+      this.endApp,
+      this.endRound,
+      time
+    );
     this.createAndSetAppSpecificStructure(appSpecificStructure);
     elements.getElements(appElements);
     console.log(elements);
@@ -126,7 +132,7 @@ class App {
     );
     timerFunction.setEndRoundFunction(endRoundMethod);
   }
-  startSession(startRoundMethod, time) {
+  startSession(startRoundMethod) {
     audio.navigationSfx.startApp.play();
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
@@ -134,7 +140,7 @@ class App {
       startRoundMethod;
     }, 950);
     setTimeout(() => {
-      timerFunction.startTimer(time);
+      timerFunction.startTimer(this.time);
     }, 1000);
   }
   endSession(clearBoardMethod) {
@@ -313,7 +319,7 @@ class MatchingApp extends App {
     this.currentEndDot = null;
     this.lines = [];
   }
-  run(set, time) {
+  run(set) {
     this.startApp(
       set,
       this.createAndSetStructure,
