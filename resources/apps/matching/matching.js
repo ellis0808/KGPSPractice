@@ -16,6 +16,8 @@ import {
 import { audio } from "../../utilities/audio.js";
 import { toggleTouchFunction } from "../../utilities/pause-functions.js";
 import { app } from "../../utilities/app-class.js";
+import { gridItems } from "./generate-grid-items.js";
+import { alphabet } from "../card-touch/card-data.js";
 
 console.log("matching");
 
@@ -40,6 +42,7 @@ class MatchingApp {
     this.setStyleSheet();
     this.setTime(60);
     app.startApp(set, this.createAndSetStructure, this.matchingAppElements);
+    this.populateGrid();
     this.activateEventListeners();
     document.querySelectorAll(".hide, .gridHide").forEach((item) => {
       item.classList.remove("hide");
@@ -75,6 +78,9 @@ class MatchingApp {
     app.grid.appendChild(this.endRowContainer);
     app.grid.appendChild(this.startDotsContainer);
     app.grid.appendChild(this.endDotsContainer);
+  }
+  populateGrid() {
+    gridItems.loadAndGenerateItems(alphabet);
   }
   clearGrid() {
     document.querySelectorAll(".startrow, .endrow").forEach((item) => {
