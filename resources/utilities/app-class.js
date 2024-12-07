@@ -169,7 +169,7 @@ class App {
       timerFunction.startTimer(this.time);
     }, 1000);
   }
-  endSession(clearBoardMethod) {
+  endSession() {
     pauseFunction.unpause();
     this.appContainer.classList.add("hide");
     this.appControlsContainer.classList.add("hide");
@@ -183,18 +183,18 @@ class App {
       document.querySelector(".go-home-container").remove();
     }
     toggleBlur.removeAllBlur();
-    if (clearBoardMethod) {
-      this.clearBoard(clearBoardMethod);
+    if (this.clearBoardMethod) {
+      this.clearBoard();
     }
     score.displayHideToggle();
     timerFunction.toggleTimerHide();
   }
-  clearBoard(clearBoardMethod) {
-    clearBoardMethod;
+  clearBoard() {
+    this.clearBoardMethod();
     score.resetCurrentScore();
   }
   prepareForNewRound() {
-    this.clearBoard(clearBoardMethod);
+    this.clearBoard();
     endRoundScreen.removeContainer();
     toggleTouchFunction.enableTouch();
     toggleBlur.removeWeakBlur();
@@ -203,12 +203,12 @@ class App {
     this.appControlsContainer.classList.remove("hide");
     this.gridHideRemove();
   }
-  startRound(appElements, eventListenerActivationMethod) {
-    elements.getElements(appElements);
+  startRound() {
+    elements.getElements(this.appElements);
     this.prepareForNewRound();
     setTimeout(() => {
       gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
-      this.initializeEventListeners(eventListenerActivationMethod);
+      this.initializeEventListeners();
       this.setBtnContainer1();
       setTimeout(() => {
         toggleTouchFunction.enableTouch();
@@ -225,8 +225,8 @@ class App {
     // score.updateStudentTotalScore();
     endRoundScreen.displayContainer();
   }
-  initializeEventListeners(eventListenerActivationMethod) {
-    eventListenerActivationMethod;
+  initializeEventListeners() {
+    this.appEventListeners();
   }
   createMainAppStructure() {
     this.appContainer = document.createElement("div");
