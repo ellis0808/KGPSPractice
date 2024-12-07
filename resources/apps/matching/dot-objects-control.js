@@ -1,13 +1,4 @@
-import { body } from "../../utilities/variables.js";
-import { matchingApp } from "./matching.js";
-import {
-  checkAllCorrect,
-  currentDotId,
-  endDotId,
-  startDotId,
-  lines,
-  numberOfItemsToBeDisplayed,
-} from "./matching.js";
+import { matchingApp } from "../../utilities/app-class.js";
 import { audio } from "../../utilities/audio.js";
 console.log("test");
 
@@ -170,7 +161,7 @@ class StartDot {
       audio.audioObject[this.contentId.toLowerCase()].sound.play();
     }, 200);
 
-    checkAllCorrect();
+    matchingApp.checkAllCorrect();
   }
   markAsIncorrect() {
     audio.appSfx.cancel.play();
@@ -327,8 +318,8 @@ class Connector {
     newLine.style.transform = `rotate(${this.slope}deg)`;
     matchingApp.grid.appendChild(newLine);
     this.element = newLine;
-    newLine.setAttribute("startDotId", startDotId);
-    newLine.setAttribute("endDotId", endDotId);
+    newLine.setAttribute("startDotId", matchingApp.startDotId);
+    newLine.setAttribute("endDotId", matchingApp.endDotId);
   }
   removeLine() {
     if (this.element) {
@@ -421,7 +412,7 @@ class Connector {
       });
     this.element.classList.remove("unconnected");
     this.element.classList.add("final");
-    lines.push(this);
+    matchingApp.lines.push(this);
   }
 }
 
