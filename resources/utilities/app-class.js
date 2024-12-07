@@ -127,7 +127,9 @@ class App {
     timerFunction.setEndRoundFunction(endRoundMethod);
   }
   setAppStyleSheet(styleSheet) {
+    console.log(this.appStyleSheet);
     this.appStyleSheet = styleSheet;
+    console.log(this.appStyleSheet);
   }
   applyAppStyleSheet() {
     stylesheet.setAttribute("href", this.appStyleSheet);

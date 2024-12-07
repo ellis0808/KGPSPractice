@@ -50,6 +50,7 @@ class MatchingApp {
   };
   setStyleSheet() {
     app.setAppStyleSheet(this.styleSheet);
+    console.log(this.styleSheet);
   }
   createGrid() {
     this.startRowContainer = document.createElement("div");
