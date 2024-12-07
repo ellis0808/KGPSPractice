@@ -21,6 +21,7 @@ console.log("matching");
 
 class MatchingApp {
   constructor() {
+    this.mainContainer = document.body.querySelector(".main-container");
     this.matchingAppElements = [
       ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid",
     ];
@@ -123,8 +124,16 @@ class MatchingApp {
         target.addEventListener("pointerup", this.onPointerUp, false);
       });
     }, 1);
-    mainContainer.addEventListener("pointerup", this.onPointerUpFalse, false);
-    mainContainer.addEventListener("pointermove", this.onPointerMove, false);
+    this.mainContainer.addEventListener(
+      "pointerup",
+      this.onPointerUpFalse,
+      false
+    );
+    this.mainContainer.addEventListener(
+      "pointermove",
+      this.onPointerMove,
+      false
+    );
   }
   onPointerDown(event) {
     event.preventDefault();

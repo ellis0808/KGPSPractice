@@ -16,7 +16,6 @@ const startScreen = {
     app.setBtnContainer2(this.startBtn, this.exitBtn);
     // document.querySelector(".btn-container2").appendChild(this.startBtn);
     // document.querySelector(".btn-container2").appendChild(this.exitBtn);
-    app.btnContainer2.innerText = "this is a test!";
     this.exitBtn.classList.remove("hide");
   },
   setStartEndAppBtnFunctions(startApp, endApp) {
