@@ -39,10 +39,10 @@ const endRoundScreen = {
       this.endMessagesContainer.appendChild(this.assessmentMessage);
       this.endMessagesContainer.appendChild(this.scoreMessage);
       scoreAssessment.matching();
-      // App.setBtnContainer5(this.endMessagesContainer);
-      document
-        .querySelector(".btn-container5")
-        .appendChild(this.endMessagesContainer);
+      App.setBtnContainer5(this.endMessagesContainer);
+      // document
+      //   .querySelector(".btn-container5")
+      //   .appendChild(this.endMessagesContainer);
     }
   },
   removeContainer() {
