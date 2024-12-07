@@ -32,6 +32,7 @@ class MatchingApp {
     this.currentStartDot = null;
     this.currentEndDot = null;
     this.lines = [];
+    this.styleSheet = "/KGPSEnglishPractice-test/resources/css/matching.css";
   }
   run(set) {
     app.startApp(set, this.createAndSetStructure, this.matchingAppElements);
@@ -47,10 +48,7 @@ class MatchingApp {
     console.log("createAndSetStructure set");
   };
   setStyleSheet() {
-    stylesheet.setAttribute(
-      "href",
-      "/KGPSEnglishPractice-test/resources/css/matching.css"
-    );
+    app.setAppStyleSheet(this.styleSheet);
   }
   createGrid() {
     this.startRowContainer = document.createElement("div");

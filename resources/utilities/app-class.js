@@ -18,6 +18,8 @@ console.log("app class");
 
 class App {
   constructor() {
+    homeStyleSheet = "/KGPSEnglishPractice-test/resources/css/styles.css";
+    appStyleSheet = null;
     this.positiveFeedbackAudioObjects = [];
     this.negativeFeedbackAudioObjects = [];
     this.appContainer = document.createElement("div");
@@ -83,7 +85,7 @@ class App {
     elements.getElements(appElements);
     console.log(elements);
     pauseFunction.unpause();
-    this.setStyleSheet();
+    this.applyAppStyleSheet();
     menuItems.removeMenuPage();
     score.resetCurrentScore();
     score.display.innerText = score.currentScore;
@@ -107,10 +109,7 @@ class App {
       document.querySelector(".container").remove();
       this.removeMainAppStructure();
       setTimeout(() => {
-        stylesheet.setAttribute(
-          "href",
-          "/KGPSEnglishPractice-test/resources/css/styles.css"
-        );
+        stylesheet.setAttribute("href", this.homeStyleSheet);
         menuItems.displayMainPage();
         setTimeout(menuItems.restoreMainMenu, 100);
       }, 500);
@@ -126,6 +125,12 @@ class App {
       pauseFunction.pauseBtn
     );
     timerFunction.setEndRoundFunction(endRoundMethod);
+  }
+  setAppStyleSheet(styleSheet) {
+    this.appStyleSheet = styleSheet;
+  }
+  applyAppStyleSheet() {
+    stylesheet.setAttribute("href", this.appStyleSheet);
   }
   startSession(startRoundMethod) {
     audio.navigationSfx.startApp.play();
