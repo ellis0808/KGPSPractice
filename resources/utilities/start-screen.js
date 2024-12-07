@@ -14,8 +14,7 @@ const startScreen = {
     console.log(app.btnContainer2);
 
     app.setBtnContainer2(this.startBtn, this.exitBtn);
-    // document.querySelector(".btn-container2").appendChild(this.startBtn);
-    // document.querySelector(".btn-container2").appendChild(this.exitBtn);
+
     this.exitBtn.classList.remove("hide");
   },
   setStartEndAppBtnFunctions(startApp, endApp) {
