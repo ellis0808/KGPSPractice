@@ -157,7 +157,9 @@ class App {
       document.querySelector(".go-home-container").remove();
     }
     toggleBlur.removeAllBlur();
-    this.clearBoard(clearBoardMethod);
+    if (clearBoardMethod) {
+      this.clearBoard(clearBoardMethod);
+    }
     score.displayHideToggle();
     timerFunction.toggleTimerHide();
   }
