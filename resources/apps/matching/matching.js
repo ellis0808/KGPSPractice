@@ -45,9 +45,11 @@ class MatchingApp {
       item.classList.remove("hide");
       item.classList.remove("gridHide");
     });
+    console.log("check");
   }
   setTime(time) {
     app.time = time;
+    console.log(app.time);
   }
   createAndSetStructure = () => {
     this.createGrid();

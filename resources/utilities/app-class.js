@@ -98,6 +98,8 @@ class App {
 
     // setTimeout(this.setUser, 2000);
     toggleBlur.removeAllBlur();
+    console.log(this.time);
+
     console.log("start app method finished");
   }
   endApp() {
