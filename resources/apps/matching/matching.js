@@ -1,5 +1,5 @@
 import { score } from "../../utilities/score.js";
-
+import { mainContainer } from "../../utilities/variables.js";
 import {
   dotAndLineCommand,
   startDot,
@@ -23,7 +23,7 @@ console.log("matching");
 
 class MatchingApp {
   constructor() {
-    this.mainContainer = document.body.querySelector(".main-container");
+    this.mainContainer = mainContainer;
     this.matchingAppElements = [
       ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid",
     ];
@@ -53,8 +53,8 @@ class MatchingApp {
     console.log("check");
   }
   setTime(time) {
-    app.time = time;
-    console.log(app.time);
+    this.time = time;
+    console.log(this.time);
   }
   setUpApp() {
     app.setAppVariables(
@@ -102,10 +102,10 @@ class MatchingApp {
   }
   clearBoard() {
     setTimeout(() => {
-      appStructure.gridHideAdd();
+      app.gridHideAdd();
     }, 50);
     setTimeout(() => {
-      currentDotIdArray.length = 0;
+      this.currentDotIdArray.length = 0;
       itemArrays.startRowArray.length = 0;
       itemArrays.endRowArray.length = 0;
       const dotsAndLines = document.querySelectorAll("[contentId],.dot,.line");
