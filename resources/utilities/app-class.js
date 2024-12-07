@@ -18,8 +18,8 @@ console.log("app class");
 
 class App {
   constructor() {
-    homeStyleSheet = "/KGPSEnglishPractice-test/resources/css/styles.css";
-    appStyleSheet = null;
+    this.homeStyleSheet = "/KGPSEnglishPractice-test/resources/css/styles.css";
+    this.appStyleSheet = null;
     this.positiveFeedbackAudioObjects = [];
     this.negativeFeedbackAudioObjects = [];
     this.appContainer = document.createElement("div");
