@@ -320,12 +320,7 @@ class MatchingApp extends App {
     this.lines = [];
   }
   run(set) {
-    this.startApp(
-      set,
-      this.createAndSetStructure,
-      this.matchingAppElements,
-      time
-    );
+    this.startApp(set, this.createAndSetStructure, this.matchingAppElements);
     this.activateEventListeners();
     document.querySelectorAll(".hide, .gridHide").forEach((item) => {
       item.classList.remove("hide");
