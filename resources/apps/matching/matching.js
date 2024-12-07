@@ -26,7 +26,6 @@ console.log("matching");
 
 class MatchingApp {
   constructor() {
-    super();
     this.matchingAppElements = [
       ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid",
     ];
@@ -481,6 +480,8 @@ class MatchingApp {
   }
 }
 
+const matchingApp = new MatchingApp();
+
 /*
 *******
 I. MAIN APP
@@ -529,12 +530,4 @@ async function updateUserTotalScore() {
   }
 }
 
-/*
-*******
-II. SESSIONS & ROUNDS
-*******
-*/
-
-/*
-B. Clearing the Grid & Resetting Arrays
-*/
+export { matchingApp };
