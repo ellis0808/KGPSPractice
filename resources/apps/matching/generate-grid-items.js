@@ -1,5 +1,4 @@
-import { matchingApp } from "./matching.js";
-import { numberOfItemsToBeDisplayed } from "./matching.js";
+import { matchingApp } from "../../utilities/app-class.js";
 import { audio } from "../../utilities/audio.js";
 import {
   dotAndLineCommand,
@@ -51,7 +50,7 @@ const itemGenerator = {
   generate() {
     for (
       let i = 0;
-      itemArrays.startRowArray.length < numberOfItemsToBeDisplayed;
+      itemArrays.startRowArray.length < matchingApp.numberOfItemsToBeDisplayed;
       ++i
     ) {
       let item = `${
@@ -127,7 +126,7 @@ const gridGenerator = {
   createEndDots(array) {
     let i = 1;
     let dotNumber;
-    dotNumber = numberOfItemsToBeDisplayed + 1;
+    dotNumber = matchingApp.numberOfItemsToBeDisplayed + 1;
     array.forEach((item) => {
       // Create dot Enclosures for a wider hit-map
       const endDotEnclosure = document.createElement("div");
@@ -141,7 +140,7 @@ const gridGenerator = {
       matchingApp.endDotsContainer.appendChild(endDotEnclosure);
       // Create dot for each Enclosure
       endDot[i] = new EndDot(`endDot${[i]}`);
-      endDot[i].id = i + numberOfItemsToBeDisplayed;
+      endDot[i].id = i + matchingApp.numberOfItemsToBeDisplayed;
       endDot[i].contentId = item.toUpperCase();
       endDot[i].element.setAttribute("id", dotNumber);
       endDot[i].element.classList.add(
