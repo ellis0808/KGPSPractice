@@ -39,6 +39,28 @@ class App {
     this.appControlsContainer.classList.add("home-btn-container", "hide");
     this.leftMenuContainer.classList.add("left-menu-container");
     this.time = null;
+    this.appElements = null;
+    this.clearBoardMethod = null;
+    this.sessionStart = null;
+    this.roundStart = null;
+    this.appEventListeners = null;
+    this.appStructure = null;
+    this.gridPopulator = null;
+  }
+  setAppVariables(
+    time,
+    appElm,
+    boardClear,
+    eventListeners,
+    appStructure,
+    gridPopulator
+  ) {
+    this.time = time;
+    this.appElements = appElm;
+    this.clearBoardMethod = boardClear;
+    this.appEventListeners = eventListeners;
+    this.appStructure = appStructure;
+    this.gridPopulator = gridPopulator;
   }
   setUser() {
     user.gradeLevel = sessionData.gradeLevel;
@@ -77,12 +99,12 @@ class App {
   //     console.error("Error adding record:", error);
   //   }
   // }
-  startApp(set, appSpecificStructure, appElements) {
+  startApp() {
     this.setDoubleTapPreventer();
     this.createAndSetAppStructureThenHideGrid();
     this.setForeignElements(this.startSession, this.endApp, this.endRound);
-    this.createAndSetAppSpecificStructure(appSpecificStructure);
-    elements.getElements(appElements);
+    this.createAndSetAppSpecificStructure();
+    elements.getElements(this.appElements);
     console.log(elements);
     pauseFunction.unpause();
     this.applyAppStyleSheet();
@@ -118,15 +140,15 @@ class App {
     }, 500);
     score.display.innerText = score.currentScore;
   }
-  setForeignElements(startSessionMethod, endAppMethod, endRoundMethod) {
-    homeBtnFunction.initialize(endAppMethod);
-    startScreen.createAndSetStartScreen(startSessionMethod, endAppMethod);
-    endRoundScreen.initializeContainer(startSessionMethod, endAppMethod);
+  setForeignElements() {
+    homeBtnFunction.initialize();
+    startScreen.createAndSetStartScreen();
+    endRoundScreen.initializeContainer();
     this.setAppControlsContainer(
       homeBtnFunction.homeBtn,
       pauseFunction.pauseBtn
     );
-    timerFunction.setEndRoundFunction(endRoundMethod);
+    timerFunction.setEndRoundFunction(this.endRound);
   }
   setAppStyleSheet(styleSheet) {
     console.log(this.appStyleSheet);
@@ -136,12 +158,12 @@ class App {
   applyAppStyleSheet() {
     stylesheet.setAttribute("href", this.appStyleSheet);
   }
-  startSession(startRoundMethod) {
+  startSession() {
     audio.navigationSfx.startApp.play();
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
     setTimeout(() => {
-      startRoundMethod;
+      this.startRound(this.appElements);
     }, 950);
     setTimeout(() => {
       timerFunction.startTimer(this.time);
@@ -187,7 +209,7 @@ class App {
     setTimeout(() => {
       gridItems.loadAndGenerateItems(alphabet); // to be changed to dynamic value based on set!
       this.initializeEventListeners(eventListenerActivationMethod);
-      this.setBtnContainer1(timerFunction.timer, score.display);
+      this.setBtnContainer1();
       setTimeout(() => {
         toggleTouchFunction.enableTouch();
       }, 300);
@@ -234,9 +256,9 @@ class App {
     this.appContainer.appendChild(this.grid);
     this.appContainer.appendChild(this.appControlsContainer);
   }
-  setBtnContainer1(item1, item2) {
-    this.btnContainer1.appendChild(item1);
-    this.btnContainer1.appendChild(item2);
+  setBtnContainer1() {
+    this.btnContainer1.appendChild(timerFunction.timer);
+    this.btnContainer1.appendChild(score.display);
   }
   setBtnContainer2(item1, item2) {
     this.btnContainer2.appendChild(item1);
@@ -251,12 +273,12 @@ class App {
   setBtnContainer5(item) {
     this.btnContainer5.appendChild(item);
   }
-  setAppControlsContainer(item1, item2) {
-    this.appControlsContainer.appendChild(item1);
-    this.appControlsContainer.appendChild(item2);
+  setAppControlsContainer() {
+    this.appControlsContainer.appendChild(homeBtnFunction.homeBtn);
+    this.appControlsContainer.appendChild(pauseFunction.pauseBtn);
   }
-  createAndSetAppSpecificStructure(appSpecificStructure) {
-    appSpecificStructure();
+  createAndSetAppSpecificStructure() {
+    this.appStructure();
   }
   createAndSetAppStructureThenHideGrid() {
     // this.createMainAppStructure();

@@ -10,7 +10,7 @@ const homeBtnFunction = {
     this.goHomeContainer = document.createElement("div");
     this.goHomeMessage = document.createElement("div");
   },
-  initialize(link1) {
+  initialize() {
     this.createStructure();
     this.addClassesTextAndIcon();
     this.homeBtn.addEventListener(
@@ -18,7 +18,7 @@ const homeBtnFunction = {
       this.homeBtnPauseUnpause.bind(this)
     );
     this.initializeEscapeKey();
-    this.setBtnLink(link1);
+    this.setBtnLinks();
   },
   addClassesTextAndIcon() {
     this.homeBtn.classList.add("home-btn");
@@ -77,8 +77,8 @@ const homeBtnFunction = {
       }
     });
   },
-  setBtnLink(endAppLink) {
-    this.goHomeBtn.addEventListener("pointerdown", endAppLink);
+  setBtnLinks() {
+    this.goHomeBtn.addEventListener("pointerdown", app.endApp);
     this.cancelBtn.addEventListener("pointerdown", this.returnToApp.bind(this));
   },
   displayContainer() {

@@ -10,10 +10,10 @@ const endRoundScreen = {
     this.assessmentMessage = document.createElement("div");
     this.scoreMessage = document.createElement("div");
   },
-  initializeContainer(link1, link2) {
+  initializeContainer() {
     this.createBtnsAndContainer();
     this.addClassesAndText();
-    this.setBtnLinks(link1, link2);
+    this.setBtnLinks();
   },
   addClassesAndText() {
     this.endMessagesContainer.classList.add(
@@ -27,9 +27,9 @@ const endRoundScreen = {
     this.assessmentMessage.classList.add("final-score-assessment");
     this.scoreMessage.classList.add("final-score-alert-score");
   },
-  setBtnLinks(link1, link2) {
-    this.tryAgainBtn.addEventListener("pointerdown", link1);
-    this.finishBtn.addEventListener("pointerdown", link2);
+  setBtnLinks() {
+    this.tryAgainBtn.addEventListener("pointerdown", app.startSession);
+    this.finishBtn.addEventListener("pointerdown", app.endApp);
   },
   displayContainer() {
     if (timerFunction.timerFinished) {

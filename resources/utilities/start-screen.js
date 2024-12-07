@@ -17,13 +17,13 @@ const startScreen = {
 
     this.exitBtn.classList.remove("hide");
   },
-  setStartEndAppBtnFunctions(startApp, endApp) {
-    this.startBtn.addEventListener("pointerdown", startApp);
-    this.exitBtn.addEventListener("pointerdown", endApp);
+  setStartEndAppBtnFunctions() {
+    this.startBtn.addEventListener("pointerdown", app.startSession);
+    this.exitBtn.addEventListener("pointerdown", app.endApp);
   },
-  createAndSetStartScreen(startApp, EndApp) {
+  createAndSetStartScreen() {
     this.createStartScreen();
-    this.setStartEndAppBtnFunctions(startApp, EndApp);
+    this.setStartEndAppBtnFunctions();
     this.setStartScreen();
     console.log(document.getElementById("start-btn"));
     console.log(this.startBtn);

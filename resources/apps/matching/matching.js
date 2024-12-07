@@ -41,7 +41,9 @@ class MatchingApp {
   run(set) {
     this.setStyleSheet();
     this.setTime(60);
-    app.startApp(set, this.createAndSetStructure, this.matchingAppElements);
+    this.setUpApp();
+    app.setForeignElements();
+    app.startApp();
     this.populateGrid();
     this.activateEventListeners();
     // document.querySelectorAll(".hide, .gridHide").forEach((item) => {
@@ -53,6 +55,16 @@ class MatchingApp {
   setTime(time) {
     app.time = time;
     console.log(app.time);
+  }
+  setUpApp() {
+    app.setAppVariables(
+      this.time,
+      this.matchingAppElements,
+      this.clearBoard,
+      this.activateEventListeners,
+      this.createAndSetStructure,
+      this.populateGrid
+    );
   }
   createAndSetStructure = () => {
     this.createGrid();
@@ -81,11 +93,28 @@ class MatchingApp {
   }
   populateGrid() {
     gridItems.loadAndGenerateItems(alphabet);
+    console.log("grid populated");
   }
   clearGrid() {
     document.querySelectorAll(".startrow, .endrow").forEach((item) => {
       item.remove();
     });
+  }
+  clearBoard() {
+    setTimeout(() => {
+      appStructure.gridHideAdd();
+    }, 50);
+    setTimeout(() => {
+      currentDotIdArray.length = 0;
+      itemArrays.startRowArray.length = 0;
+      itemArrays.endRowArray.length = 0;
+      const dotsAndLines = document.querySelectorAll("[contentId],.dot,.line");
+      dotsAndLines.forEach((item) => {
+        item.remove();
+      });
+      clearArrays();
+      dotAndLineCommand.clearArrays();
+    }, 400);
   }
   checkAllCorrect() {
     const allCorrectDots = document.querySelectorAll(
