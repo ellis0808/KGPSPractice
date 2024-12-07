@@ -37,6 +37,7 @@ class MatchingApp {
   }
   run(set) {
     app.startApp(set, this.createAndSetStructure, this.matchingAppElements);
+    this.setStyleSheet();
     this.activateEventListeners();
     document.querySelectorAll(".hide, .gridHide").forEach((item) => {
       item.classList.remove("hide");
