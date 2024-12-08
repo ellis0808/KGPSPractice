@@ -45,7 +45,7 @@ class MatchingApp {
     app.setForeignElements();
     app.startApp();
     this.populateGrid();
-    this.activateEventListeners();
+
     // document.querySelectorAll(".hide, .gridHide").forEach((item) => {
     //   item.classList.remove("hide");
     //   item.classList.remove("gridHide");
@@ -504,8 +504,8 @@ class MatchingApp {
     });
   }
   clearArrays() {
-    this.this.currentDotId = null;
-    this.this.currentDotIdArray.length = 0;
+    this.currentDotId = null;
+    this.currentDotIdArray.length = 0;
   }
 }
 
