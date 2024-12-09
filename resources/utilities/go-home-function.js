@@ -38,6 +38,7 @@ const homeBtnFunction = {
     } else if (pauseFunction.isPaused && !this.goHomeContainerIsDisplayed) {
       this.displayContainer();
     } else if (pauseFunction.isPaused) {
+      pauseFunction.unpause();
       this.returnToApp();
     }
 

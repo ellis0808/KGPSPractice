@@ -159,7 +159,7 @@ class StartDot {
     audio.appSfx.poppop.play();
 
     setTimeout(() => {
-      audio.audioObject[StartDot.contentId.toLowerCase()].sound.play();
+      audio.audioObject[contentId.toLowerCase()].sound.play();
     }, 200);
 
     matchingApp.checkAllCorrect();
