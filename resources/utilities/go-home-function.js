@@ -92,6 +92,7 @@ const homeBtnFunction = {
   removeContainer() {
     if (document.querySelector(".go-home-container")) {
       document.querySelector(".go-home-container").remove();
+      app.btnContainer4.classList.add("hide");
       this.goHomeContainerIsDisplayed = false;
     }
   },

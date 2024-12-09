@@ -155,12 +155,12 @@ class StartDot {
     // Force Reflow
     void this.element.offsetWidth;
   }
-  markAsCorrect() {
+  markAsCorrect(event) {
     this.addCorrectPulse();
     audio.appSfx.poppop.play();
 
     // setTimeout(() => {
-    audio.audioObject[this.contentId.toLowerCase()].sound.play();
+    audio.audioObject[event.parentTarget.contentId.toLowerCase()].sound.play();
     // }, 200);
 
     matchingApp.checkAllCorrect();
@@ -361,8 +361,8 @@ class Connector {
       this.removeOldLines();
     }
     if (startDot.contentId === endDot.contentId) {
-      startDot.markAsCorrect();
-      endDot.markAsCorrect();
+      startDot.markAsCorrect(event);
+      endDot.markAsCorrect(event);
       this.match = true;
     } else {
       startDot.markAsIncorrect();
@@ -385,8 +385,8 @@ class Connector {
       this.removeOldLines();
     }
     if (startDot.contentId === endDot.contentId) {
-      startDot.markAsCorrect();
-      endDot.markAsCorrect();
+      startDot.markAsCorrect(event);
+      endDot.markAsCorrect(event);
       this.match = true;
     } else {
       startDot.markAsIncorrect();
