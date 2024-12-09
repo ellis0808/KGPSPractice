@@ -239,7 +239,7 @@ class MatchingApp {
           this.line.getStartPosition(event);
           this.line.end = {};
           this.line.getEndPosition(event);
-          draw();
+          this.draw();
         }
         return this.currentEndDot;
       } else if (event.target.classList.contains("start-target")) {
@@ -277,7 +277,7 @@ class MatchingApp {
           this.line.getStartPosition(event);
           this.line.end = {};
           this.line.getEndPosition(event);
-          draw();
+          this.draw();
         }
 
         return this.currentStartDot;
@@ -304,7 +304,7 @@ class MatchingApp {
             x: event.clientX - bodyRect.left,
             y: event.clientY - bodyRect.top,
           };
-          draw();
+          this.draw();
           this.lines.pop();
           this.lines.push(document.querySelector(".unconnected"));
         }
@@ -324,7 +324,7 @@ class MatchingApp {
             x: event.clientX - bodyRect.left,
             y: event.clientY - bodyRect.top,
           };
-          draw();
+          this.draw();
           this.lines.pop();
           this.lines.push(document.querySelector(".unconnected"));
         }
@@ -374,7 +374,7 @@ class MatchingApp {
         );
         newStartDot.connect(endDot[this.currentEndDot], this.line);
 
-        draw();
+        this.draw();
         this.line.buttonUp();
         if (
           !this.line.isPressed &&
@@ -434,7 +434,7 @@ class MatchingApp {
         );
         newEndDot.connect(startDot[this.currentStartDot], this.line);
         this.lines.pop();
-        draw();
+        this.draw();
         this.line.buttonUp();
         if (
           !this.line.isPressed &&
