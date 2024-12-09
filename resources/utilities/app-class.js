@@ -105,7 +105,7 @@ class App {
   startApp() {
     this.setDoubleTapPreventer();
     this.createAndSetAppStructureThenHideGrid();
-    this.setForeignElements(this.startSession, this.endApp, this.endRound);
+    this.setForeignElements();
     this.createAndSetAppSpecificStructure();
     elements.getElements(this.appElements);
     console.log(elements);

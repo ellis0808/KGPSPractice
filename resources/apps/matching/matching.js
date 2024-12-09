@@ -23,7 +23,7 @@ console.log("matching");
 
 class MatchingApp {
   constructor() {
-    this.mainContainer = mainContainer;
+    // this.mainContainer = mainContainer;
     this.matchingAppElements = [
       ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid",
     ];
@@ -32,6 +32,7 @@ class MatchingApp {
     this.numberOfItemsToBeDisplayed = 4;
     this.currentDotId = null;
     this.currentDotIdArray = [];
+    this.currentDotIdArray = this.currentDotIdArray.bind(this);
     this.currentStartDot = null;
     this.currentEndDot = null;
     this.lines = [];
@@ -44,7 +45,7 @@ class MatchingApp {
     this.setUpApp();
     app.setForeignElements();
     app.startApp();
-    this.populateGrid();
+    // this.populateGrid();
 
     // document.querySelectorAll(".hide, .gridHide").forEach((item) => {
     //   item.classList.remove("hide");
@@ -168,16 +169,8 @@ class MatchingApp {
         target.addEventListener("pointerup", this.onPointerUp, false);
       });
     }, 1);
-    this.mainContainer.addEventListener(
-      "pointerup",
-      this.onPointerUpFalse,
-      false
-    );
-    this.mainContainer.addEventListener(
-      "pointermove",
-      this.onPointerMove,
-      false
-    );
+    mainContainer.addEventListener("pointerup", this.onPointerUpFalse, false);
+    mainContainer.addEventListener("pointermove", this.onPointerMove, false);
   }
   onPointerDown(event) {
     event.preventDefault();
