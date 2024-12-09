@@ -36,6 +36,10 @@ class MatchingApp {
     this.lines = [];
     this.styleSheet = "/KGPSEnglishPractice-test/resources/css/matching.css";
     this.time = null;
+    this.onPointerDown = this.onPointerDown.bind(this);
+    this.onPointerMove = this.onPointerMove.bind(this);
+    this.onPointerUp = this.onPointerUp.bind(this);
+    this.onPointerUpFalse = this.onPointerUpFalse.bind(this);
   }
   run(set) {
     this.setStyleSheet();
@@ -281,7 +285,6 @@ class MatchingApp {
   onPointerMove(event) {
     event.preventDefault();
     event.stopPropagation();
-    console.log("pointer move success!");
 
     if (this.currentEndDot) {
       if (event.target.hasPointerCapture(event.pointerId)) {
@@ -459,8 +462,6 @@ class MatchingApp {
     return;
   }
   onPointerUpFalse() {
-    console.log("pointer up false success!");
-
     if (this.currentEndDot) {
       if (line.isPressed) {
         endDot[this.currentEndDot].makeInactive();
