@@ -272,6 +272,10 @@ class App {
     this.btnContainer3.appendChild(item);
   }
   setBtnContainer4(item) {
+    if (!this.btnContainer4) {
+      this.btnContainer4 = document.createElement("div");
+      this.btnContainer4.classList.add("btn-container4");
+    }
     this.btnContainer4.appendChild(item);
     this.appContainer.appendChild(this.btnContainer4);
   }

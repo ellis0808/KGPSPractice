@@ -158,9 +158,11 @@ class StartDot {
   markAsCorrect(event) {
     this.addCorrectPulse();
     audio.appSfx.poppop.play();
+    const itemContentId = event.currentTarget.getAttribute("contentid");
+    console.log(itemContentId);
 
     // setTimeout(() => {
-    audio.audioObject[event.currentTarget.contentId.toLowerCase()].sound.play();
+    audio.audioObject[itemContentId.toLowerCase()].sound.play();
     // }, 200);
 
     matchingApp.checkAllCorrect();
