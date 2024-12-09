@@ -44,6 +44,7 @@ class MatchingApp {
     this.onPointerUpFalse = this.onPointerUpFalse.bind(this);
   }
   run(set) {
+    setStyle(set);
     this.setStyleSheet();
     this.setTime(60);
     this.setUpApp();
