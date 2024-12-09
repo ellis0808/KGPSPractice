@@ -388,6 +388,7 @@ body:not(:has(*)) {
   place-content: center;
   place-items: center;
   justify-items: center;
+  z-index: 40;
 }
 @media (orientation: portrait) and (min-width: 600px) {
   .start-dot-div,
