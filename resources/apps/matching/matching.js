@@ -162,10 +162,10 @@ class MatchingApp {
     ].sound.play();
   }
   activateEventListeners() {
-    const startTargets = document.querySelectorAll(
-      ".start-target, .end-target"
-    );
-    startTargets.forEach((target) => {
+    const targets = document.querySelectorAll(".start-target, .end-target");
+    console.log(targets);
+
+    targets.forEach((target) => {
       target.addEventListener("pointerdown", this.onPointerDown, false);
       target.addEventListener("pointerup", this.onPointerUp, false);
     });
@@ -175,6 +175,7 @@ class MatchingApp {
   onPointerDown(event) {
     event.preventDefault();
     event.stopPropagation();
+    console.log("pointerdown success!");
 
     this.currentStartDot = null;
     this.currentEndDot = null;
@@ -261,6 +262,8 @@ class MatchingApp {
   onPointerMove(event) {
     event.preventDefault();
     event.stopPropagation();
+    console.log("pointer move success!");
+
     if (this.currentEndDot) {
       if (event.target.hasPointerCapture(event.pointerId)) {
         event.target.releasePointerCapture(event.pointerId);
@@ -307,6 +310,8 @@ class MatchingApp {
   onPointerUp(event) {
     event.preventDefault();
     event.stopPropagation();
+    console.log("pointer up success");
+
     if (this.currentEndDot) {
       this.currentStartDot = null;
       this.getStartDotID(event);
@@ -435,6 +440,8 @@ class MatchingApp {
     return;
   }
   onPointerUpFalse() {
+    console.log("pointer up false success!");
+
     if (this.currentEndDot) {
       if (line.isPressed) {
         endDot[this.currentEndDot].makeInactive();
