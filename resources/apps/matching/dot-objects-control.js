@@ -1,5 +1,6 @@
 import { matchingApp } from "./matching.js";
 import { audio } from "../../utilities/audio.js";
+import { app } from "../../utilities/app-class.js";
 console.log("dot-objects-control");
 
 class DotAndLineCommand {
@@ -316,7 +317,7 @@ class Connector {
     newLine.style.width = `${this.distance}px`;
     newLine.style.transformOrigin = `-0%`;
     newLine.style.transform = `rotate(${this.slope}deg)`;
-    matchingApp.grid.appendChild(newLine);
+    app.grid.appendChild(newLine);
     this.element = newLine;
     newLine.setAttribute("startDotId", matchingApp.startDotId);
     newLine.setAttribute("endDotId", matchingApp.endDotId);
