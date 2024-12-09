@@ -195,8 +195,14 @@ const gridGenerator = {
         "start-target",
         "matching-app"
       );
-      startDot[i].addEventListener("pointerdown", matchingApp.onPointerDown);
-      startDot[i].addEventListener("pointerup", matchingApp.onPointerUp);
+      startDot[i].element.addEventListener(
+        "pointerdown",
+        matchingApp.onPointerDown
+      );
+      startDot[i].element.addEventListener(
+        "pointerup",
+        matchingApp.onPointerUp
+      );
       startDotEnclosure.appendChild(startDot[i].element);
       dotAndLineCommand.registerStartDot(startDot[i]);
       ++dotNumber;
