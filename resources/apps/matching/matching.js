@@ -501,7 +501,7 @@ class MatchingApp {
     return (this.endDotId = event.target.id);
   }
   draw(event) {
-    clearLines();
+    this.clearLines();
     this.lines.forEach((x) => {
       dotAndLineCommand.registerConnector(this.line);
       this.line.drawLine(event);
