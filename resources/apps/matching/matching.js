@@ -1,5 +1,5 @@
 import { score } from "../../utilities/score.js";
-import { mainContainer } from "../../utilities/variables.js";
+import { mainContainer, body } from "../../utilities/variables.js";
 import {
   dotAndLineCommand,
   startDot,
