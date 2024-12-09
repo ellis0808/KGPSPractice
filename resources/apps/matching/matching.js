@@ -134,7 +134,7 @@ class MatchingApp {
         );
         score.display.classList.add("pulse");
         audio.appSfx.correct.play();
-        setTimeout(randomFeedback, 500);
+        setTimeout(() => this.randomFeedback, 500);
       }, 200);
       setTimeout(() => {
         toggleTouchFunction.disableTouch();
