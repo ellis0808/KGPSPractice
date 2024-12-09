@@ -26,6 +26,7 @@ class MatchingApp {
     this.matchingAppElements = [
       ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid",
     ];
+    this.correctAnswerPoints = 1;
     this.endDotId = null;
     this.startDotId = null;
     this.numberOfItemsToBeDisplayed = 4;
@@ -128,7 +129,9 @@ class MatchingApp {
     );
     if (allCorrectDots.length === this.numberOfItemsToBeDisplayed) {
       setTimeout(() => {
-        score.updatePositiveCount(allCorrectDots.length * correctAnswerPoints);
+        score.updatePositiveCount(
+          allCorrectDots.length * this.correctAnswerPoints
+        );
         score.display.classList.add("pulse");
         audio.appSfx.correct.play();
         setTimeout(randomFeedback, 500);

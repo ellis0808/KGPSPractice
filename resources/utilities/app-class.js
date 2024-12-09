@@ -280,6 +280,10 @@ class App {
     this.appContainer.appendChild(this.btnContainer4);
   }
   setBtnContainer5(item) {
+    if (!this.btnContainer5) {
+      this.btnContainer5 = document.createElement("div");
+      this.btnContainer5.classList.add("btn-container5");
+    }
     this.btnContainer5.appendChild(item);
     this.appContainer.appendChild(this.btnContainer5);
   }
