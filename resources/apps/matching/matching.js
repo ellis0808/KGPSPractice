@@ -168,6 +168,7 @@ class MatchingApp {
     targets.forEach((target) => {
       target.addEventListener("pointerdown", this.onPointerDown, false);
       target.addEventListener("pointerup", this.onPointerUp, false);
+      console.log(target.classList);
     });
     mainContainer.addEventListener("pointerup", this.onPointerUpFalse, false);
     mainContainer.addEventListener("pointermove", this.onPointerMove, false);

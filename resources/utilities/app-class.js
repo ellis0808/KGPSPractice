@@ -227,6 +227,7 @@ class App {
     endRoundScreen.displayContainer();
   }
   initializeEventListeners() {
+    console.log("first?");
     this.appEventListeners();
   }
   createMainAppStructure() {
