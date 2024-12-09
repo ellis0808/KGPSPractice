@@ -111,7 +111,7 @@ class MatchingApp {
       dotsAndLines.forEach((item) => {
         item.remove();
       });
-      this.clearArrays();
+      matchingApp.clearArrays();
       dotAndLineCommand.clearArrays();
     }, 400);
   }
