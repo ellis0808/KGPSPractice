@@ -163,15 +163,37 @@ class MatchingApp {
   }
   activateEventListeners() {
     const targets = document.querySelectorAll(".start-target, .end-target");
-    console.log(targets);
 
     targets.forEach((target) => {
-      target.addEventListener("pointerdown", this.onPointerDown, false);
-      target.addEventListener("pointerup", this.onPointerUp, false);
-      console.log(target.classList);
+      target.addEventListener(
+        "pointerdown",
+        () => {
+          this.onPointerDown;
+        },
+        false
+      );
+      target.addEventListener(
+        "pointerup",
+        () => {
+          this.onPointerUp;
+        },
+        false
+      );
     });
-    mainContainer.addEventListener("pointerup", this.onPointerUpFalse, false);
-    mainContainer.addEventListener("pointermove", this.onPointerMove, false);
+    mainContainer.addEventListener(
+      "pointerup",
+      () => {
+        this.onPointerUpFalse;
+      },
+      false
+    );
+    mainContainer.addEventListener(
+      "pointermove",
+      () => {
+        this.onPointerMove;
+      },
+      false
+    );
   }
   onPointerDown(event) {
     event.preventDefault();
