@@ -192,8 +192,8 @@ class MatchingApp {
     );
   }
   onPointerDown(event) {
-    // event.preventDefault();
-    // event.stopPropagation();
+    event.preventDefault();
+    event.stopPropagation();
     console.log("pointerdown success!");
 
     this.currentStartDot = null;
