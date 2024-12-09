@@ -253,7 +253,6 @@ class App {
     this.appContainer.appendChild(this.leftMenuContainer);
     this.appContainer.appendChild(this.btnContainer1);
     this.appContainer.appendChild(this.btnContainer2);
-    this.appContainer.appendChild(this.btnContainer4);
     this.appContainer.appendChild(this.grid);
     this.appContainer.appendChild(this.appControlsContainer);
   }
@@ -270,6 +269,7 @@ class App {
   }
   setBtnContainer4(item) {
     this.btnContainer4.appendChild(item);
+    this.appContainer.appendChild(this.btnContainer4);
   }
   setBtnContainer5(item) {
     this.btnContainer5.appendChild(item);
