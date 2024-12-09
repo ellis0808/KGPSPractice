@@ -163,6 +163,7 @@ class App {
     audio.navigationSfx.startApp.play();
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
+    this.btnContainer2.remove();
     setTimeout(() => {
       this.startRound();
     }, 950);

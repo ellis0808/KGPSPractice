@@ -248,6 +248,7 @@ class MenuItems {
     );
     this.alphabetMatchingAppMenuItem.innerText = "Aーa";
     this.alphabetMatchingAppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
       matchingApp.run("alphabet");
       this.removeMenu();
     });
