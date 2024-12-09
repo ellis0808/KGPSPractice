@@ -34,6 +34,7 @@ class MatchingApp {
     this.currentStartDot = null;
     this.currentEndDot = null;
     this.lines = [];
+    this.line = new Connector();
     this.styleSheet = "/KGPSEnglishPractice-test/resources/css/matching.css";
     this.time = null;
     this.getStartDotID = this.getStartDotID.bind(this);
@@ -224,7 +225,7 @@ class MatchingApp {
 
         this.getEndDotID(event);
 
-        line.buttonDown();
+        this.line.buttonDown();
 
         this.currentDotId;
         this.getEventTargetID(event);
@@ -234,10 +235,10 @@ class MatchingApp {
           !this.currentDotIdArray.includes(endDot[this.currentEndDot]) +
           this.numberOfItemsToBeDisplayed
         ) {
-          line.start = {};
-          line.getStartPosition(event);
-          line.end = {};
-          line.getEndPosition(event);
+          this.line.start = {};
+          this.line.getStartPosition(event);
+          this.line.end = {};
+          this.line.getEndPosition(event);
           draw();
         }
         return this.currentEndDot;
@@ -263,7 +264,7 @@ class MatchingApp {
 
         this.getStartDotID(event);
 
-        line.buttonDown();
+        this.line.buttonDown();
 
         this.currentDotId;
         score.display.classList.remove("pulse");
@@ -271,11 +272,11 @@ class MatchingApp {
         this.getEventTargetID(event);
 
         if (!this.currentDotIdArray.includes(startDot[this.currentStartDot])) {
-          line.getContentId(startDot[this.currentStartDot]);
-          line.start = {};
-          line.getStartPosition(event);
-          line.end = {};
-          line.getEndPosition(event);
+          this.line.getContentId(startDot[this.currentStartDot]);
+          this.line.start = {};
+          this.line.getStartPosition(event);
+          this.line.end = {};
+          this.line.getEndPosition(event);
           draw();
         }
 
@@ -294,12 +295,12 @@ class MatchingApp {
 
       const bodyRect = body.getBoundingClientRect();
       if (
-        line.isPressed &&
+        this.line.isPressed &&
         this.currentEndDot !== null &&
         !this.currentDotIdArray.includes(this.currentDotId)
       ) {
-        if (line.start) {
-          line.end = {
+        if (this.line.start) {
+          this.line.end = {
             x: event.clientX - bodyRect.left,
             y: event.clientY - bodyRect.top,
           };
@@ -314,12 +315,12 @@ class MatchingApp {
       }
       const bodyRect = body.getBoundingClientRect();
       if (
-        line.isPressed &&
+        this.line.isPressed &&
         this.currentStartDot !== null &&
         !this.currentDotIdArray.includes(this.currentDotId)
       ) {
-        if (line.start) {
-          line.end = {
+        if (this.line.start) {
+          this.line.end = {
             x: event.clientX - bodyRect.left,
             y: event.clientY - bodyRect.top,
           };
@@ -339,7 +340,7 @@ class MatchingApp {
       this.currentStartDot = null;
       this.getStartDotID(event);
       try {
-        line.element.setAttribute("startdotid", this.startDotId);
+        this.line.element.setAttribute("startdotid", this.startDotId);
       } catch (error) {
         return;
       }
@@ -366,17 +367,17 @@ class MatchingApp {
             });
         }
 
-        line.connectFromEndToStart(
+        this.line.connectFromEndToStart(
           newStartDot,
           endDot[this.currentEndDot],
           event
         );
-        newStartDot.connect(endDot[this.currentEndDot], line);
+        newStartDot.connect(endDot[this.currentEndDot], this.line);
 
         draw();
-        line.buttonUp();
+        this.line.buttonUp();
         if (
-          !line.isPressed &&
+          !this.line.isPressed &&
           event.target.classList.contains("start-target") &&
           !this.currentDotIdArray.includes(this.currentDotId)
         ) {
@@ -390,7 +391,7 @@ class MatchingApp {
             .forEach((item) => {
               item.remove();
             });
-        } else if (!line.isPressed) {
+        } else if (!this.line.isPressed) {
           this.removeUnconnectedLines();
           this.lines.pop();
           return;
@@ -426,17 +427,17 @@ class MatchingApp {
             });
         }
 
-        line.connectFromStartToEnd(
+        this.line.connectFromStartToEnd(
           startDot[this.currentStartDot],
           newEndDot,
           event
         );
-        newEndDot.connect(startDot[this.currentStartDot], line);
+        newEndDot.connect(startDot[this.currentStartDot], this.line);
         this.lines.pop();
         draw();
-        line.buttonUp();
+        this.line.buttonUp();
         if (
-          !line.isPressed &&
+          !this.line.isPressed &&
           event.target.classList.contains("end-target") &&
           !this.currentDotIdArray.includes(this.currentDotId)
         ) {
@@ -449,7 +450,7 @@ class MatchingApp {
             .forEach((item) => {
               item.remove();
             });
-        } else if (!line.isPressed) {
+        } else if (!this.line.isPressed) {
           this.removeUnconnectedLines();
           this.lines.pop();
           return;
@@ -464,11 +465,11 @@ class MatchingApp {
   }
   onPointerUpFalse() {
     if (this.currentEndDot) {
-      if (line.isPressed) {
+      if (this.line.isPressed) {
         endDot[this.currentEndDot].makeInactive();
         this.currentEndDot = null;
-        line.buttonUp();
-        if (!line.isPressed) {
+        this.line.buttonUp();
+        if (!this.line.isPressed) {
           this.removeUnconnectedLines();
           this.lines.pop();
           this.currentEndDot = null;
@@ -476,11 +477,11 @@ class MatchingApp {
         }
       }
     } else if (this.currentStartDot) {
-      if (line.isPressed) {
+      if (this.line.isPressed) {
         startDot[this.currentStartDot].makeInactive();
         this.currentStartDot = null;
-        line.buttonUp();
-        if (!line.isPressed) {
+        this.line.buttonUp();
+        if (!this.line.isPressed) {
           this.removeUnconnectedLines();
           this.lines.pop();
           this.currentStartDot = null;
@@ -502,8 +503,8 @@ class MatchingApp {
   draw(event) {
     clearLines();
     this.lines.forEach((x) => {
-      dotAndLineCommand.registerConnector(line);
-      line.drawLine(event);
+      dotAndLineCommand.registerConnector(this.line);
+      this.line.drawLine(event);
     });
   }
   clearLines() {
