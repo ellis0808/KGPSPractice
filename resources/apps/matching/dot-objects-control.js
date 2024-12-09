@@ -159,9 +159,9 @@ class StartDot {
     this.addCorrectPulse();
     audio.appSfx.poppop.play();
 
-    setTimeout(() => {
-      audio.audioObject[this.contentId.toLowerCase()].sound.play();
-    }, 200);
+    // setTimeout(() => {
+    audio.audioObject[this.contentId.toLowerCase()].sound.play();
+    // }, 200);
 
     matchingApp.checkAllCorrect();
   }
