@@ -94,6 +94,7 @@ class StartDot {
     this.locked = false;
     this.element = document.createElement("div");
     this.mediator = null;
+    this.markAsCorrect = this.markAsCorrect.bind(this);
   }
   setMediator(mediator) {
     this.mediator = mediator;
@@ -159,7 +160,7 @@ class StartDot {
     audio.appSfx.poppop.play();
 
     setTimeout(() => {
-      audio.audioObject[contentId.toLowerCase()].sound.play();
+      audio.audioObject[this.contentId.toLowerCase()].sound.play();
     }, 200);
 
     matchingApp.checkAllCorrect();
