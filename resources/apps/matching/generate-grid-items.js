@@ -137,6 +137,11 @@ const gridGenerator = {
         "end-target",
         "matching-app"
       );
+      endDotEnclosure.addEventListener(
+        "pointerdown",
+        matchingApp.onPointerDown
+      );
+      endDotEnclosure.addEventListener("pointerup", matchingApp.onPointerUp);
       matchingApp.endDotsContainer.appendChild(endDotEnclosure);
       // Create dot for each Enclosure
       endDot[i] = new EndDot(`endDot${[i]}`);
@@ -150,6 +155,8 @@ const gridGenerator = {
         "matching-app"
       );
       endDot[i].element.style.zIndex = "30";
+      endDot.addEventListener("pointerdown", matchingApp.onPointerDown);
+      endDot.addEventListener("pointerup", matchingApp.onPointerUp);
       endDotEnclosure.appendChild(endDot[i].element);
       dotAndLineCommand.registerEndDot(endDot[i]);
       ++dotNumber;
@@ -172,6 +179,11 @@ const gridGenerator = {
         "start-target",
         "matching-app"
       );
+      startDotEnclosure.addEventListener(
+        "pointerdown",
+        matchingApp.onPointerDown
+      );
+      startDotEnclosure.addEventListener("pointerup", matchingApp.onPointerUp);
       matchingApp.startDotsContainer.appendChild(startDotEnclosure);
       startDot[i] = new StartDot(`startDot${[i]}`);
       startDot[i].id = i;
@@ -183,6 +195,8 @@ const gridGenerator = {
         "start-target",
         "matching-app"
       );
+      startDot.addEventListener("pointerdown", matchingApp.onPointerDown);
+      startDot.addEventListener("pointerup", matchingApp.onPointerUp);
       startDotEnclosure.appendChild(startDot[i].element);
       dotAndLineCommand.registerStartDot(startDot[i]);
       ++dotNumber;
