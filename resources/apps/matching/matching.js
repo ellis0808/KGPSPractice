@@ -16,14 +16,13 @@ import {
 import { audio } from "../../utilities/audio.js";
 import { toggleTouchFunction } from "../../utilities/pause-functions.js";
 import { app } from "../../utilities/app-class.js";
-import { gridItems } from "./generate-grid-items.js";
+import { gridItems, itemArrays } from "./generate-grid-items.js";
 import { alphabet } from "../card-touch/card-data.js";
 
 console.log("matching");
 
 class MatchingApp {
   constructor() {
-    // this.mainContainer = mainContainer;
     this.matchingAppElements = [
       ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid",
     ];
