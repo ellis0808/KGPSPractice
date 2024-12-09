@@ -164,6 +164,7 @@ class App {
   }
   startSession() {
     audio.navigationSfx.startApp.play();
+    this.initializeEventListeners();
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
     this.btnContainer2.remove();
@@ -213,7 +214,6 @@ class App {
     this.prepareForNewRound();
     setTimeout(() => {
       this.gridPopulator();
-      this.initializeEventListeners();
       this.setBtnContainer1();
       setTimeout(() => {
         toggleTouchFunction.enableTouch();
