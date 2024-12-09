@@ -11,10 +11,7 @@ const startScreen = {
     this.exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
   },
   setStartScreen() {
-    console.log(app.btnContainer2);
-
     app.setBtnContainer2(this.startBtn, this.exitBtn);
-
     this.exitBtn.classList.remove("hide");
   },
   setStartEndAppBtnFunctions() {
@@ -25,9 +22,6 @@ const startScreen = {
     this.createStartScreen();
     this.setStartEndAppBtnFunctions();
     this.setStartScreen();
-    console.log(document.getElementById("start-btn"));
-    console.log(this.startBtn);
-    console.log("finished creating and setting start screen");
   },
   displayStartScreen() {
     score.resetCurrentScore();

@@ -15,6 +15,7 @@ import {
 } from "/KGPSEnglishPractice-test/resources/login/session-check.js";
 import { user } from "../../utilities/user-object.js";
 import { audio } from "../../utilities/audio.js";
+import { matchingApp } from "../matching/matching.js";
 
 /*
 **********
@@ -247,7 +248,7 @@ class MenuItems {
     );
     this.alphabetMatchingAppMenuItem.innerText = "Aーa";
     this.alphabetMatchingAppMenuItem.addEventListener("click", () => {
-      appLauncher.startMatchingApp("alphabet");
+      matchingApp.run("alphabet");
       this.removeMenu();
     });
 

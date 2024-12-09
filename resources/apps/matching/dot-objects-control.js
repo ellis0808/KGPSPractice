@@ -1,6 +1,6 @@
 import { matchingApp } from "./matching.js";
 import { audio } from "../../utilities/audio.js";
-console.log("test");
+console.log("dot-objects-control");
 
 class DotAndLineCommand {
   constructor() {
