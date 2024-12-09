@@ -32,7 +32,6 @@ class MatchingApp {
     this.numberOfItemsToBeDisplayed = 4;
     this.currentDotId = null;
     this.currentDotIdArray = [];
-    this.currentDotIdArray = this.currentDotIdArray.bind(this);
     this.currentStartDot = null;
     this.currentEndDot = null;
     this.lines = [];
