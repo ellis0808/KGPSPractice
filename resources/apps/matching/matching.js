@@ -164,14 +164,14 @@ class MatchingApp {
       target.addEventListener(
         "pointerdown",
         () => {
-          this.onPointerDown;
+          this.onPointerDown();
         },
         false
       );
       target.addEventListener(
         "pointerup",
         () => {
-          this.onPointerUp;
+          this.onPointerUp();
         },
         false
       );
@@ -179,14 +179,14 @@ class MatchingApp {
     mainContainer.addEventListener(
       "pointerup",
       () => {
-        this.onPointerUpFalse;
+        this.onPointerUpFalse();
       },
       false
     );
     mainContainer.addEventListener(
       "pointermove",
       () => {
-        this.onPointerMove;
+        this.onPointerMove();
       },
       false
     );
