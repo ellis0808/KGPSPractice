@@ -36,10 +36,10 @@ class MatchingApp {
     this.lines = [];
     this.styleSheet = "/KGPSEnglishPractice-test/resources/css/matching.css";
     this.time = null;
-    this.onPointerDown = this.onPointerDown.bind(this);
-    this.onPointerMove = this.onPointerMove.bind(this);
-    this.onPointerUp = this.onPointerUp.bind(this);
-    this.onPointerUpFalse = this.onPointerUpFalse.bind(this);
+    // this.onPointerDown = this.onPointerDown.bind(this);
+    // this.onPointerMove = this.onPointerMove.bind(this);
+    // this.onPointerUp = this.onPointerUp.bind(this);
+    // this.onPointerUpFalse = this.onPointerUpFalse.bind(this);
   }
   run(set) {
     this.setStyleSheet();
@@ -162,15 +162,13 @@ class MatchingApp {
     ].sound.play();
   }
   activateEventListeners() {
-    setTimeout(() => {
-      const startTargets = document.querySelectorAll(
-        ".start-target, .end-target"
-      );
-      startTargets.forEach((target) => {
-        target.addEventListener("pointerdown", this.onPointerDown, false);
-        target.addEventListener("pointerup", this.onPointerUp, false);
-      });
-    }, 1);
+    const startTargets = document.querySelectorAll(
+      ".start-target, .end-target"
+    );
+    startTargets.forEach((target) => {
+      target.addEventListener("pointerdown", this.onPointerDown, false);
+      target.addEventListener("pointerup", this.onPointerUp, false);
+    });
     mainContainer.addEventListener("pointerup", this.onPointerUpFalse, false);
     mainContainer.addEventListener("pointermove", this.onPointerMove, false);
   }
