@@ -155,8 +155,8 @@ const gridGenerator = {
         "matching-app"
       );
       endDot[i].element.style.zIndex = "30";
-      endDot.addEventListener("pointerdown", matchingApp.onPointerDown);
-      endDot.addEventListener("pointerup", matchingApp.onPointerUp);
+      endDot[i].addEventListener("pointerdown", matchingApp.onPointerDown);
+      endDot[i].addEventListener("pointerup", matchingApp.onPointerUp);
       endDotEnclosure.appendChild(endDot[i].element);
       dotAndLineCommand.registerEndDot(endDot[i]);
       ++dotNumber;
@@ -195,8 +195,8 @@ const gridGenerator = {
         "start-target",
         "matching-app"
       );
-      startDot.addEventListener("pointerdown", matchingApp.onPointerDown);
-      startDot.addEventListener("pointerup", matchingApp.onPointerUp);
+      startDot[i].addEventListener("pointerdown", matchingApp.onPointerDown);
+      startDot[i].addEventListener("pointerup", matchingApp.onPointerUp);
       startDotEnclosure.appendChild(startDot[i].element);
       dotAndLineCommand.registerStartDot(startDot[i]);
       ++dotNumber;
