@@ -26,6 +26,7 @@ class MatchingApp {
     this.matchingAppElements = [
       ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid",
     ];
+
     this.correctAnswerPoints = 1;
     this.endDotId = null;
     this.startDotId = null;
@@ -145,26 +146,26 @@ class MatchingApp {
   randomFeedback() {
     Object.keys(audio.feedbackAudioObject.positiveFeedback).forEach(
       (object) => {
-        if (!this.positiveFeedbackAudioObjects.includes(object)) {
+        if (!app.positiveFeedbackAudioObjects.includes(object)) {
           if (object === "greatJob" || object === "goodJob") {
-            this.positiveFeedbackAudioObjects.push(object);
+            app.positiveFeedbackAudioObjects.push(object);
           }
         }
       }
     );
     Object.keys(audio.feedbackAudioObject.positiveFeedback).forEach(
       (object) => {
-        if (!this.negativeFeedbackAudioObjects.includes(object)) {
-          this.negativeFeedbackAudioObjects.push(object);
+        if (!app.negativeFeedbackAudioObjects.includes(object)) {
+          app.negativeFeedbackAudioObjects.push(object);
         }
       }
     );
 
     let randomFeedbackNumber = Math.floor(
-      Math.random() * this.positiveFeedbackAudioObjects.length
+      Math.random() * app.positiveFeedbackAudioObjects.length
     );
     audio.feedbackAudioObject.positiveFeedback[
-      this.positiveFeedbackAudioObjects[randomFeedbackNumber]
+      app.positiveFeedbackAudioObjects[randomFeedbackNumber]
     ].sound.play();
   }
   activateEventListeners() {
