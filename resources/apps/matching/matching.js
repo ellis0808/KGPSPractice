@@ -36,10 +36,6 @@ class MatchingApp {
     this.lines = [];
     this.styleSheet = "/KGPSEnglishPractice-test/resources/css/matching.css";
     this.time = null;
-    this.onPointerDown = this.onPointerDown.bind(this);
-    this.onPointerMove = this.onPointerMove.bind(this);
-    this.onPointerUp = this.onPointerUp.bind(this);
-    this.onPointerUpFalse = this.onPointerUpFalse.bind(this);
   }
   run(set) {
     this.setStyleSheet();
@@ -168,14 +164,14 @@ class MatchingApp {
       target.addEventListener(
         "pointerdown",
         () => {
-          this.onPointerDown();
+          matchingApp.onPointerDown();
         },
         false
       );
       target.addEventListener(
         "pointerup",
         () => {
-          this.onPointerUp();
+          matchingApp.onPointerUp();
         },
         false
       );
@@ -183,14 +179,14 @@ class MatchingApp {
     mainContainer.addEventListener(
       "pointerup",
       () => {
-        this.onPointerUpFalse();
+        matchingApp.onPointerUpFalse();
       },
       false
     );
     mainContainer.addEventListener(
       "pointermove",
       () => {
-        this.onPointerMove();
+        matchingApp.onPointerMove();
       },
       false
     );
