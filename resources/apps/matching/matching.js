@@ -163,30 +163,30 @@ class MatchingApp {
     targets.forEach((target) => {
       target.addEventListener(
         "pointerdown",
-        () => {
-          matchingApp.onPointerDown();
+        (event) => {
+          matchingApp.onPointerDown(event);
         },
         false
       );
       target.addEventListener(
         "pointerup",
-        () => {
-          matchingApp.onPointerUp();
+        (event) => {
+          matchingApp.onPointerUp(event);
         },
         false
       );
     });
     mainContainer.addEventListener(
       "pointerup",
-      () => {
-        matchingApp.onPointerUpFalse();
+      (event) => {
+        matchingApp.onPointerUpFalse(event);
       },
       false
     );
     mainContainer.addEventListener(
       "pointermove",
-      () => {
-        matchingApp.onPointerMove();
+      (event) => {
+        matchingApp.onPointerMove(event);
       },
       false
     );
