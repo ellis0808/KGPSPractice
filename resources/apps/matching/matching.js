@@ -37,10 +37,10 @@ class MatchingApp {
     this.styleSheet = "/KGPSEnglishPractice-test/resources/css/matching.css";
     this.time = null;
     this.getStartDotID = this.getStartDotID.bind(this);
-    // this.onPointerDown = this.onPointerDown.bind(this);
-    // this.onPointerMove = this.onPointerMove.bind(this);
-    // this.onPointerUp = this.onPointerUp.bind(this);
-    // this.onPointerUpFalse = this.onPointerUpFalse.bind(this);
+    this.onPointerDown = this.onPointerDown.bind(this);
+    this.onPointerMove = this.onPointerMove.bind(this);
+    this.onPointerUp = this.onPointerUp.bind(this);
+    this.onPointerUpFalse = this.onPointerUpFalse.bind(this);
   }
   run(set) {
     this.setStyleSheet();
@@ -491,16 +491,13 @@ class MatchingApp {
     }
   }
   getEventTargetID(event) {
-    this.currentDotId = event.target.id;
-    return this.currentDotId;
+    return (this.currentDotId = event.target.id);
   }
   getStartDotID(event) {
-    this.startDotId = event.target.id;
-    return this.startDotId;
+    return (this.startDotId = event.target.id);
   }
   getEndDotID(event) {
-    this.endDotId = event.target.id;
-    return this.endDotId;
+    return (this.endDotId = event.target.id);
   }
   draw(event) {
     clearLines();
