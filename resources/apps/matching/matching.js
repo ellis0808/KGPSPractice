@@ -105,7 +105,7 @@ class MatchingApp {
       app.gridHideAdd();
     }, 50);
     setTimeout(() => {
-      this.currentDotIdArray.length = 0;
+      matchingApp.currentDotIdArray.length = 0;
       itemArrays.startRowArray.length = 0;
       itemArrays.endRowArray.length = 0;
       const dotsAndLines = document.querySelectorAll("[contentId],.dot,.line");
