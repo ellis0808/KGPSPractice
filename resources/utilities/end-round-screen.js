@@ -47,7 +47,7 @@ const endRoundScreen = {
   },
   removeContainer() {
     if (this.endMessagesContainer) {
-      this.endMessagesContainer.remove();
+      app.toggleBtnContainer5();
     }
   },
   setAssessmentMessage(message) {

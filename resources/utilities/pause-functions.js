@@ -85,7 +85,9 @@ class PauseFunction {
   }
   unpause() {
     this.isPaused = false;
-
+    if (homeBtnFunction.goHomeContainerIsDisplayed) {
+      homeBtnFunction.removeContainer();
+    }
     this.pauseBtn.removeEventListener("pointerdown", this.unpause);
     setTimeout(() => {
       this.pauseBtn.addEventListener("pointerdown", this.pause);

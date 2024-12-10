@@ -164,6 +164,7 @@ class App {
   }
   startSession() {
     audio.navigationSfx.startApp.play();
+    this.prepareForNewRound();
     score.resetCurrentScore();
     this.initializeEventListeners();
     endRoundScreen.removeContainer();
@@ -286,6 +287,20 @@ class App {
     }
     this.btnContainer5.appendChild(item);
     this.appContainer.appendChild(this.btnContainer5);
+  }
+  toggleBtnContainer4() {
+    if (!this.btnContainer4.classList.contains("hide")) {
+      this.btnContainer4.classList.add("hide");
+    } else {
+      this.btnContainer4.classList.remove("hide");
+    }
+  }
+  toggleBtnContainer5() {
+    if (!this.btnContainer5.classList.contains("hide")) {
+      this.btnContainer5.classList.add("hide");
+    } else {
+      this.btnContainer5.classList.remove("hide");
+    }
   }
   setAppControlsContainer() {
     this.appControlsContainer.appendChild(homeBtnFunction.homeBtn);
