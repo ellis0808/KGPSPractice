@@ -1,5 +1,4 @@
 import { pauseFunction, toggleTouchFunction } from "./pause-functions.js";
-import { app } from "./app-class.js";
 const timer = document.createElement("div");
 
 function toggleTimerHide() {
@@ -7,7 +6,7 @@ function toggleTimerHide() {
 }
 
 const timerFunction = {
-  endRound: app.endRound(),
+  endRound: null,
   timer: (() => {
     const div = document.createElement("div");
     div.classList.add("timer");
