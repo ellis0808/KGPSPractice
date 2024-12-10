@@ -164,6 +164,7 @@ class App {
   }
   startSession() {
     audio.navigationSfx.startApp.play();
+    score.resetCurrentScore();
     this.initializeEventListeners();
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
@@ -197,7 +198,6 @@ class App {
   }
   clearBoard() {
     this.clearBoardMethod();
-    score.resetCurrentScore();
   }
   prepareForNewRound() {
     this.clearBoard();
