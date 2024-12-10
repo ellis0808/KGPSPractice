@@ -6,7 +6,7 @@ function toggleTimerHide() {
 }
 
 const timerFunction = {
-  endRound: null,
+  endRound: app.endRound(),
   timer: (() => {
     const div = document.createElement("div");
     div.classList.add("timer");

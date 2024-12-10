@@ -38,11 +38,8 @@ const endRoundScreen = {
       this.endMessagesContainer.appendChild(this.finishBtn);
       this.endMessagesContainer.appendChild(this.assessmentMessage);
       this.endMessagesContainer.appendChild(this.scoreMessage);
-      scoreAssessment.matching();
+      scoreAssessment.matching(); // needs to be changed to be dynamic based on the activity id and set!
       app.setBtnContainer5(this.endMessagesContainer);
-      // document
-      //   .querySelector(".btn-container5")
-      //   .appendChild(this.endMessagesContainer);
     }
   },
   removeContainer() {

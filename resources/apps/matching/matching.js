@@ -140,7 +140,7 @@ class MatchingApp {
       setTimeout(() => {
         toggleTouchFunction.disableTouch();
         app.startRound();
-      }, 1000);
+      }, 800);
     }
   }
   randomFeedback() {

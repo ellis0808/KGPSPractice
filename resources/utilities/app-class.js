@@ -154,7 +154,7 @@ class App {
       homeBtnFunction.homeBtn,
       pauseFunction.pauseBtn
     );
-    timerFunction.setEndRoundFunction(this.endRound);
+    // timerFunction.setEndRoundFunction(this.endRound);
   }
   setAppStyleSheet(styleSheet) {
     this.appStyleSheet = styleSheet;
