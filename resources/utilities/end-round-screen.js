@@ -40,11 +40,12 @@ const endRoundScreen = {
       this.endMessagesContainer.appendChild(this.scoreMessage);
       scoreAssessment.matching(); // needs to be changed to be dynamic based on the activity id and set!
       app.setBtnContainer5(this.endMessagesContainer);
+      app.showBtnContainer5();
     }
   },
   removeContainer() {
     if (this.endMessagesContainer) {
-      app.toggleBtnContainer5();
+      app.hideBtnContainer5();
     }
   },
   setAssessmentMessage(message) {

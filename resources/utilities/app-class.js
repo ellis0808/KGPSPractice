@@ -295,10 +295,13 @@ class App {
       this.btnContainer4.classList.remove("hide");
     }
   }
-  toggleBtnContainer5() {
+  hideBtnContainer5() {
     if (!this.btnContainer5.classList.contains("hide")) {
       this.btnContainer5.classList.add("hide");
-    } else {
+    }
+  }
+  showBtnContainer5() {
+    if (this.btnContainer5.classList.contains("hide")) {
       this.btnContainer5.classList.remove("hide");
     }
   }
