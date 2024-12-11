@@ -67,7 +67,7 @@ const homeBtnFunction = {
           pauseFunction.unpause();
           this.returnToApp();
         }
-
+        this.initializeEscapeKey = this.initializeEscapeKey.bind(this);
         this.homeBtn.removeEventListener(
           "pointerdown",
           this.homeBtnPauseUnpause.bind(this)
