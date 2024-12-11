@@ -112,7 +112,6 @@ class App {
     elements.getElements(this.appElements);
     console.log(elements);
     pauseFunction.unpause();
-    this.applyAppStyleSheet();
     menuItems.removeMenuPage();
     score.resetCurrentScore();
     score.display.innerText = score.currentScore;
