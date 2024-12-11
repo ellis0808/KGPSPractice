@@ -55,7 +55,9 @@ class HomeBtnFunction {
       this.homeBtnPauseUnpause();
     });
     setTimeout(() => {
-      this.homeBtn.addEventListener("pointerdown", this.homeBtnPauseUnpause());
+      this.homeBtn.addEventListener("pointerdown", () => {
+        this.homeBtnPauseUnpause();
+      });
     }, 200);
   }
   initializeEscapeKey() {
