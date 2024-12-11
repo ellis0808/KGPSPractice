@@ -79,7 +79,7 @@ const score = {
   },
   resetCurrentScore() {
     this.currentScore = 0;
-    this.display.textContent = this.currentScore();
+    this.display.textContent = this.currentScore;
     console.log("reset method fired");
     console.log("current score: ", this.currentScore);
   },
