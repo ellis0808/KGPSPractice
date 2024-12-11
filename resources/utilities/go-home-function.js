@@ -5,11 +5,11 @@ class HomeBtnFunction {
   constructor() {
     this.goHomeContainerIsDisplayed = false;
     this.escapeKeyInitialized = false;
-    this.homeBtn = null;
-    this.goHomeBtn = null;
-    this.cancelBtn = null;
-    this.goHomeContainer = null;
-    this.goHomeMessage = null;
+    this.homeBtn = document.createElement("button");
+    this.goHomeBtn = document.createElement("button");
+    this.cancelBtn = document.createElement("button");
+    this.goHomeContainer = document.createElement("div");
+    this.goHomeMessage = document.createElement("div");
     this.homeBtnPauseUnpause.bind(this);
   }
 
@@ -21,7 +21,7 @@ class HomeBtnFunction {
     this.goHomeMessage = document.createElement("div");
   }
   initialize() {
-    this.createStructure();
+    // this.createStructure();
     this.addClassesTextAndIcon();
     this.homeBtn.addEventListener("pointerdown", () => {
       this.homeBtnPauseUnpause();
@@ -44,11 +44,14 @@ class HomeBtnFunction {
     if (!pauseFunction.isPaused && !this.goHomeContainerIsDisplayed) {
       pauseFunction.pause();
       this.displayContainer();
+      return;
     } else if (pauseFunction.isPaused && !this.goHomeContainerIsDisplayed) {
       this.displayContainer();
+      return;
     } else if (pauseFunction.isPaused) {
       pauseFunction.unpause();
       this.returnToApp();
+      return;
     }
 
     this.homeBtn.removeEventListener("pointerdown", () => {
