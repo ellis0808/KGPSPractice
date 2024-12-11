@@ -78,7 +78,7 @@ class HomeBtnFunction {
     if (app.btnContainer4.classList.contains("hide")) {
       app.showBtnContainer4();
     }
-    if ((app.btnContainer4.childNodes.length = 0)) {
+    if (app.btnContainer4.childNodes.length === 0) {
       this.goHomeContainerIsDisplayed = true;
       this.goHomeContainer.appendChild(this.goHomeMessage);
       this.goHomeContainer.appendChild(this.goHomeBtn);
