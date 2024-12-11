@@ -66,7 +66,7 @@ class HomeBtnFunction {
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         console.log("escape!");
-        this.homeBtnPauseUnpause();
+        homeBtnFunction.homeBtnPauseUnpause();
       }
     });
   }
@@ -84,7 +84,7 @@ class HomeBtnFunction {
   }
   removeContainer() {
     if (document.querySelector(".go-home-container")) {
-      document.querySelector(".go-home-container").remove();
+      document.querySelector(".go-home-container").classList.add("hide");
       app.hideBtnContainer4();
       this.goHomeContainerIsDisplayed = false;
     }
