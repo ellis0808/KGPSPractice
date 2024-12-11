@@ -10,7 +10,7 @@ class HomeBtnFunction {
     this.cancelBtn = document.createElement("button");
     this.goHomeContainer = document.createElement("div");
     this.goHomeMessage = document.createElement("div");
-    this.homeBtnPauseUnpause.bind(this);
+    this.homeBtnPauseUnpause = this.homeBtnPauseUnpause.bind(this);
   }
 
   createStructure() {
@@ -46,7 +46,7 @@ class HomeBtnFunction {
         pauseFunction.pause();
       }
       this.displayContainer();
-    } else if (pauseFunction.isPaused) {
+    } else if (this.goHomeContainerIsDisplayed && pauseFunction.isPaused) {
       pauseFunction.unpause();
       this.returnToApp();
     }
