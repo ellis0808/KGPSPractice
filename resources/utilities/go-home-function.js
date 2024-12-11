@@ -95,11 +95,12 @@ const homeBtnFunction = {
     this.goHomeContainer.appendChild(this.goHomeBtn);
     this.goHomeContainer.appendChild(this.cancelBtn);
     app.setBtnContainer4(this.goHomeContainer);
+    app.showBtnContainer4();
   },
   removeContainer() {
     if (document.querySelector(".go-home-container")) {
       document.querySelector(".go-home-container").remove();
-      app.toggleBtnContainer4();
+      app.hideBtnContainer4();
       this.goHomeContainerIsDisplayed = false;
     }
   },

@@ -294,10 +294,13 @@ class App {
     this.btnContainer5.appendChild(item);
     this.appContainer.appendChild(this.btnContainer5);
   }
-  toggleBtnContainer4() {
+  hideBtnContainer4() {
     if (!this.btnContainer4.classList.contains("hide")) {
       this.btnContainer4.classList.add("hide");
-    } else {
+    }
+  }
+  showBtnContainer4() {
+    if (this.btnContainer4.classList.contains("hide")) {
       this.btnContainer4.classList.remove("hide");
     }
   }
