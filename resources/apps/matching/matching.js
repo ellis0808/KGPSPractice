@@ -58,7 +58,6 @@ class MatchingApp {
   }
   setTime(time) {
     this.time = time;
-    console.log(this.time);
   }
   setUpApp() {
     app.setAppVariables(
@@ -96,7 +95,6 @@ class MatchingApp {
   }
   populateGrid() {
     gridItems.loadAndGenerateItems(alphabet);
-    console.log("grid populated");
   }
   clearGrid() {
     document.querySelectorAll(".startrow, .endrow").forEach((item) => {
@@ -200,7 +198,6 @@ class MatchingApp {
   onPointerDown(event) {
     event.preventDefault();
     event.stopPropagation();
-    console.log("pointerdown success!");
 
     this.currentStartDot = null;
     this.currentEndDot = null;
@@ -334,7 +331,6 @@ class MatchingApp {
   onPointerUp(event) {
     event.preventDefault();
     event.stopPropagation();
-    console.log("pointer up success");
 
     if (this.currentEndDot) {
       this.currentStartDot = null;

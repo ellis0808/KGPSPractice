@@ -80,8 +80,6 @@ const score = {
   resetCurrentScore() {
     this.currentScore = 0;
     this.display.textContent = this.currentScore;
-    console.log("reset method fired");
-    console.log("current score: ", this.currentScore);
   },
   updateUserScore: async function (id) {
     try {

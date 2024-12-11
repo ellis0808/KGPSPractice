@@ -57,13 +57,13 @@ const homeBtnFunction = {
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         console.log("escape!");
-        // this.homeBtnPauseUnpause();
-        if (!pauseFunction.isPaused) {
-          pauseFunction.pause();
-          this.displayContainer();
-        } else if (pauseFunction.isPaused) {
-          this.returnToApp();
-        }
+        homeBtnFunction.homeBtnPauseUnpause();
+        // if (!pauseFunction.isPaused) {
+        //   pauseFunction.pause();
+        //   this.displayContainer();
+        // } else if (pauseFunction.isPaused) {
+        //   this.returnToApp();
+        // }
 
         this.homeBtn.removeEventListener(
           "pointerdown",
