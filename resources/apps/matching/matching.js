@@ -46,12 +46,14 @@ class MatchingApp {
     this.onPointerUpFalse = this.onPointerUpFalse.bind(this);
   }
   run(set) {
+    app.applyAppStyleSheet(this.styleSheet);
     setStyle(set);
-    this.setStyleSheet();
-    this.setTime(60);
-    this.setUpApp();
-    app.setForeignElements();
-    app.startApp();
+    setTimeout(() => {
+      this.setTime(60);
+      this.setUpApp();
+      app.setForeignElements();
+      app.startApp();
+    }, 200);
     // this.populateGrid();
 
     // document.querySelectorAll(".hide, .gridHide").forEach((item) => {
@@ -80,7 +82,6 @@ class MatchingApp {
     console.log("createAndSetStructure set");
   };
   setStyleSheet() {
-    app.setAppStyleSheet(this.styleSheet);
     console.log(this.styleSheet);
   }
   createGrid() {

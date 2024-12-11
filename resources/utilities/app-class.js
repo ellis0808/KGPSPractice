@@ -19,7 +19,6 @@ console.log("app class");
 class App {
   constructor() {
     this.homeStyleSheet = "/KGPSEnglishPractice-test/resources/css/styles.css";
-    this.appStyleSheet = null;
     this.positiveFeedbackAudioObjects = [];
     this.negativeFeedbackAudioObjects = [];
     this.appContainer = document.createElement("div");
@@ -156,11 +155,8 @@ class App {
     );
     timerFunction.setEndRoundFunction(this.endRound);
   }
-  setAppStyleSheet(styleSheet) {
-    this.appStyleSheet = styleSheet;
-  }
-  applyAppStyleSheet() {
-    stylesheet.setAttribute("href", this.appStyleSheet);
+  applyAppStyleSheet(newSheet) {
+    stylesheet.setAttribute("href", newSheet);
   }
   startSession() {
     audio.navigationSfx.startApp.play();
