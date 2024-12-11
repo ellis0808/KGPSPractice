@@ -3,6 +3,7 @@ import { pauseFunction } from "./pause-functions.js";
 
 const homeBtnFunction = {
   goHomeContainerIsDisplayed: false,
+  escapeKeyInitialized: false,
   createStructure() {
     this.homeBtn = document.createElement("button");
     this.goHomeBtn = document.createElement("button");
@@ -54,6 +55,10 @@ const homeBtnFunction = {
     }, 200);
   },
   initializeEscapeKey() {
+    if (this.escapeKeyInitialized) {
+      return;
+    }
+    this.escapeKeyInitialized = true;
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         console.log("escape!");
