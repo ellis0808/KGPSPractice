@@ -284,6 +284,7 @@ class App {
       this.btnContainer4.classList.add("btn-container4");
     }
     this.btnContainer4.appendChild(item);
+    this.showBtnContainer4();
     this.appContainer.appendChild(this.btnContainer4);
   }
   setBtnContainer5(item) {
