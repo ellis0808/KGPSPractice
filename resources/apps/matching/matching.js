@@ -46,7 +46,7 @@ class MatchingApp {
     this.onPointerUpFalse = this.onPointerUpFalse.bind(this);
   }
   run(set) {
-    app.applyAppStyleSheet(this.styleSheet);
+    this.setStyleSheet();
     setStyle(set);
     setTimeout(() => {
       this.setTime(60);
@@ -54,13 +54,6 @@ class MatchingApp {
       app.setForeignElements();
       app.startApp();
     }, 200);
-    // this.populateGrid();
-
-    // document.querySelectorAll(".hide, .gridHide").forEach((item) => {
-    //   item.classList.remove("hide");
-    //   item.classList.remove("gridHide");
-    // });
-    console.log("check");
   }
   setTime(time) {
     this.time = time;
@@ -79,10 +72,10 @@ class MatchingApp {
   createAndSetStructure = () => {
     this.createGrid();
     this.setGrid();
-    console.log("createAndSetStructure set");
   };
   setStyleSheet() {
-    console.log(this.styleSheet);
+    app.applyAppStyleSheet(this.styleSheet);
+    menuItems.removeMenuPage();
   }
   createGrid() {
     this.startRowContainer = document.createElement("div");
