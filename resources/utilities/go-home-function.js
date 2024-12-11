@@ -23,9 +23,7 @@ class HomeBtnFunction {
   initialize() {
     // this.createStructure();
     this.addClassesTextAndIcon();
-    this.homeBtn.addEventListener("pointerdown", () => {
-      this.homeBtnPauseUnpause();
-    });
+    this.homeBtn.addEventListener("pointerdown", this.homeBtnPauseUnpause);
     this.initializeEscapeKey();
     this.setBtnLinks();
   }
@@ -44,9 +42,13 @@ class HomeBtnFunction {
     if (!this.goHomeContainerIsDisplayed) {
       if (!pauseFunction.isPaused) {
         pauseFunction.pause();
+        console.log("condition 2");
       }
       this.displayContainer();
+      console.log("condition 1");
     } else if (this.goHomeContainerIsDisplayed && pauseFunction.isPaused) {
+      console.log("condition 3");
+
       pauseFunction.unpause();
       this.returnToApp();
     }
