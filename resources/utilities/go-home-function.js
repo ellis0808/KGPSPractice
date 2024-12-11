@@ -62,27 +62,26 @@ const homeBtnFunction = {
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         console.log("escape!");
-        // this.homeBtnPauseUnpause();
-        if (!pauseFunction.isPaused && !this.goHomeContainerIsDisplayed) {
-          pauseFunction.pause();
-          this.displayContainer();
-        } else if (pauseFunction.isPaused && !this.goHomeContainerIsDisplayed) {
-          this.displayContainer();
-        } else if (pauseFunction.isPaused) {
-          pauseFunction.unpause();
-          this.returnToApp();
-        }
-        this.initializeEscapeKey = this.initializeEscapeKey.bind(this);
-        this.homeBtn.removeEventListener(
-          "pointerdown",
-          this.homeBtnPauseUnpause.bind(this)
-        );
-        setTimeout(() => {
-          this.homeBtn.addEventListener(
-            "pointerdown",
-            this.homeBtnPauseUnpause.bind(this)
-          );
-        }, 200);
+        this.homeBtnPauseUnpause();
+        // if (!pauseFunction.isPaused && !this.goHomeContainerIsDisplayed) {
+        //   pauseFunction.pause();
+        //   this.displayContainer();
+        // } else if (pauseFunction.isPaused && !this.goHomeContainerIsDisplayed) {
+        //   this.displayContainer();
+        // } else if (pauseFunction.isPaused) {
+        //   pauseFunction.unpause();
+        //   this.returnToApp();
+        // }
+        //     this.homeBtn.removeEventListener(
+        //   "pointerdown",
+        //   this.homeBtnPauseUnpause.bind(this)
+        // );
+        // setTimeout(() => {
+        //   this.homeBtn.addEventListener(
+        //     "pointerdown",
+        //     this.homeBtnPauseUnpause.bind(this)
+        //   );
+        // }, 200);
       }
     });
   },
