@@ -41,17 +41,16 @@ class HomeBtnFunction {
     this.cancelBtn.textContent = "Cancel";
   }
   homeBtnPauseUnpause() {
-    if (!pauseFunction.isPaused && !this.goHomeContainerIsDisplayed) {
-      pauseFunction.pause();
+    if (!this.goHomeContainerIsDisplayed) {
+      if (!pauseFunction.isPaused) {
+        pauseFunction.pause();
+      }
       this.displayContainer();
-      return;
     } else if (pauseFunction.isPaused && !this.goHomeContainerIsDisplayed) {
       this.displayContainer();
-      return;
     } else if (pauseFunction.isPaused) {
       pauseFunction.unpause();
       this.returnToApp();
-      return;
     }
 
     this.homeBtn.removeEventListener("pointerdown", () => {
