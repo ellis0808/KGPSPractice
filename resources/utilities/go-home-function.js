@@ -66,7 +66,7 @@ class HomeBtnFunction {
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         console.log("escape!");
-        homeBtnFunction.homeBtnPauseUnpause();
+        // homeBtnFunction.homeBtnPauseUnpause();
       }
     });
   }
@@ -75,16 +75,19 @@ class HomeBtnFunction {
     this.cancelBtn.addEventListener("pointerdown", this.returnToApp.bind(this));
   }
   displayContainer() {
-    app.showBtnContainer4();
-    this.goHomeContainerIsDisplayed = true;
-    this.goHomeContainer.appendChild(this.goHomeMessage);
-    this.goHomeContainer.appendChild(this.goHomeBtn);
-    this.goHomeContainer.appendChild(this.cancelBtn);
-    app.setBtnContainer4(this.goHomeContainer);
+    if (app.btnContainer4.classList.contains("hide")) {
+      app.showBtnContainer4();
+    }
+    if ((app.btnContainer4.childNodes.length = 0)) {
+      this.goHomeContainerIsDisplayed = true;
+      this.goHomeContainer.appendChild(this.goHomeMessage);
+      this.goHomeContainer.appendChild(this.goHomeBtn);
+      this.goHomeContainer.appendChild(this.cancelBtn);
+      app.setBtnContainer4(this.goHomeContainer);
+    }
   }
   removeContainer() {
     if (document.querySelector(".go-home-container")) {
-      document.querySelector(".go-home-container").classList.add("hide");
       app.hideBtnContainer4();
       this.goHomeContainerIsDisplayed = false;
     }
