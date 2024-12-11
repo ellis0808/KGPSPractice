@@ -256,14 +256,26 @@ class App {
     this.appContainer.appendChild(this.appControlsContainer);
   }
   setBtnContainer1() {
+    if (!this.btnContainer1) {
+      this.btnContainer1 = document.createElement("div");
+      this.btnContainer1.classList.add("btn-container1");
+    }
     this.btnContainer1.appendChild(timerFunction.timer);
     this.btnContainer1.appendChild(score.display);
   }
   setBtnContainer2(item1, item2) {
+    if (!this.btnContainer2) {
+      this.btnContainer2 = document.createElement("div");
+      this.btnContainer2.classList.add("btn-container2");
+    }
     this.btnContainer2.appendChild(item1);
     this.btnContainer2.appendChild(item2);
   }
   setBtnContainer3(item) {
+    if (!this.btnContainer3) {
+      this.btnContainer3 = document.createElement("div");
+      this.btnContainer3.classList.add("btn-container3");
+    }
     this.btnContainer3.appendChild(item);
   }
   setBtnContainer4(item) {

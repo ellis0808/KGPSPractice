@@ -50,7 +50,7 @@ class MatchingApp {
     this.setStyleSheet();
     setStyle(set);
     setTimeout(() => {
-      this.setTime(60);
+      this.setTime(12);
       this.setUpApp();
       app.setForeignElements();
       app.startApp();

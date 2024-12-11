@@ -79,6 +79,8 @@ const score = {
   },
   resetCurrentScore() {
     this.currentScore = 0;
+    console.log("reset method fired");
+    console.log("current score: ", this.currentScore);
   },
   updateUserScore: async function (id) {
     try {
