@@ -77,6 +77,7 @@ class HomeBtnFunction {
     this.cancelBtn.addEventListener("pointerdown", this.returnToApp.bind(this));
   }
   displayContainer() {
+    app.showBtnContainer4();
     this.goHomeContainerIsDisplayed = true;
     this.goHomeContainer.appendChild(this.goHomeMessage);
     this.goHomeContainer.appendChild(this.goHomeBtn);
