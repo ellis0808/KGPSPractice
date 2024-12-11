@@ -13,7 +13,7 @@ const score = {
 
     div.classList.add("score-display");
     div.setAttribute("id", "score-display");
-    div.textContent = this.currentScore;
+    // div.textContent = this.currentScore;
     return div;
   })(),
   increaseScore: function (amount) {
@@ -79,6 +79,7 @@ const score = {
   },
   resetCurrentScore() {
     this.currentScore = 0;
+    this.display.textContent = this.currentScore();
     console.log("reset method fired");
     console.log("current score: ", this.currentScore);
   },
