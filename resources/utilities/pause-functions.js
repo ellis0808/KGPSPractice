@@ -86,9 +86,7 @@ class PauseFunction {
     this.isPaused = false;
     console.log(homeBtnFunction.goHomeContainerIsDisplayed);
 
-    if (homeBtnFunction.goHomeContainerIsDisplayed) {
-      homeBtnFunction.removeContainer();
-    }
+    homeBtnFunction.removeContainer();
 
     this.unpauseToPauseToggle();
 
