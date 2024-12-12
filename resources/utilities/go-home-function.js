@@ -49,8 +49,6 @@ class HomeBtnFunction {
       console.log("condition 1");
     } else if (this.goHomeContainerIsDisplayed && pauseFunction.isPaused) {
       console.log("condition 3");
-
-      pauseFunction.unpause();
       this.returnToApp();
     }
     this.homeBtnDelayNextPress();
