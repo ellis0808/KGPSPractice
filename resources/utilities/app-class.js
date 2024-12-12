@@ -161,8 +161,8 @@ class App {
     this.initializeEventListeners();
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
-    this.btnContainer2.remove();
     setTimeout(() => {
+      this.btnContainer2.remove();
       this.startRound();
     }, 950);
     setTimeout(() => {
