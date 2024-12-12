@@ -44,6 +44,8 @@ class HomeBtnFunction {
       if (!pauseFunction.isPaused) {
         pauseFunction.pause();
         console.log("condition 2");
+      } else if (pauseFunction.isPaused) {
+        this.displayContainer();
       }
       this.displayContainer();
       console.log("condition 1");
