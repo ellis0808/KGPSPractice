@@ -1,4 +1,5 @@
 import { homeBtnFunction } from "./go-home-function";
+import { app } from "./app-class.js";
 
 const elements = {
   structureElements: null,
@@ -11,18 +12,24 @@ const elements = {
 };
 const toggleTouchFunction = {
   disableTouch() {
-    if (elements.structureElements || elements.interactiveElements) {
-      elements.structureElements.forEach((item) => {
-        item.classList.add("no-touch");
-      });
+    if (app.grid.classList.contains("no-touch")) {
+      app.grid.classList.remove("no-touch");
     }
+    // if (elements.structureElements || elements.interactiveElements) {
+    //   elements.structureElements.forEach((item) => {
+    //     item.classList.add("no-touch");
+    //   });
+    // }
   },
   enableTouch() {
-    if (elements.structureElements) {
-      elements.structureElements.forEach((item) => {
-        item.classList.remove("no-touch");
-      });
+    if (!app.grid.classList.contains("no-touch")) {
+      app.grid.classList.add("no-touch");
     }
+    // if (elements.structureElements) {
+    //   elements.structureElements.forEach((item) => {
+    //     item.classList.remove("no-touch");
+    //   });
+    // }
   },
 };
 const toggleBlur = {
