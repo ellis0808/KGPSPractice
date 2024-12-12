@@ -66,7 +66,7 @@ class HomeBtnFunction {
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         console.log("escape!");
-        // homeBtnFunction.homeBtnPauseUnpause();
+        homeBtnFunction.homeBtnPauseUnpause();
       }
     });
   }

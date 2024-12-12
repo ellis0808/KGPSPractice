@@ -86,6 +86,8 @@ class PauseFunction {
   }
   unpause() {
     this.isPaused = false;
+    console.log(homeBtnFunction.goHomeContainerIsDisplayed);
+
     if (homeBtnFunction.goHomeContainerIsDisplayed) {
       homeBtnFunction.removeContainer();
     }
@@ -96,6 +98,10 @@ class PauseFunction {
 
     toggleTouchFunction.enableTouch();
     toggleBlur.removeStrongBlur();
+
+    if (document.querySelector(".go-home-container")) {
+      homeBtnFunction.removeContainer();
+    }
   }
   getIsPausedStatus() {
     return this.isPaused;
