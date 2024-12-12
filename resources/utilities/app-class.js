@@ -338,7 +338,7 @@ class App {
     this.btnContainer1.remove();
     this.btnContainer2.remove();
     this.btnContainer4.remove();
-    this.homeBtnContainer.remove();
+    homeBtnFunction.homeBtnContainer.remove();
     this.leftMenuContainer.remove();
   }
   gridHideAdd() {
