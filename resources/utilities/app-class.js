@@ -48,6 +48,7 @@ class App {
     this.endSession = this.endSession.bind(this);
     this.startRound = this.startRound.bind(this);
     this.endRound = this.endRound.bind(this);
+    this.hideBtnContainer2 = this.hideBtnContainer2.bind(this);
   }
   setAppVariables(
     time,
