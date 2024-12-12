@@ -13,7 +13,7 @@ const elements = {
 const toggleTouchFunction = {
   disableTouch() {
     if (app.grid.classList.contains("no-touch")) {
-      app.grid.classList.remove("no-touch");
+      app.grid.classList.add("no-touch");
     }
     // if (elements.structureElements || elements.interactiveElements) {
     //   elements.structureElements.forEach((item) => {
@@ -23,7 +23,7 @@ const toggleTouchFunction = {
   },
   enableTouch() {
     if (!app.grid.classList.contains("no-touch")) {
-      app.grid.classList.add("no-touch");
+      app.grid.classList.remove("no-touch");
     }
     // if (elements.structureElements) {
     //   elements.structureElements.forEach((item) => {
