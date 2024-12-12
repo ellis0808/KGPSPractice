@@ -161,7 +161,7 @@ class App {
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
     setTimeout(() => {
-      this.hideBtnContainer2();
+      this.btnContainer2.remove();
       this.startRound();
     }, 950);
     setTimeout(() => {
