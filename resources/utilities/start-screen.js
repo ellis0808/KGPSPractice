@@ -13,6 +13,7 @@ const startScreen = {
   setStartScreen() {
     app.setBtnContainer2(this.startBtn, this.exitBtn);
     this.exitBtn.classList.remove("hide");
+    app.showBtnContainer2();
   },
   setStartEndAppBtnFunctions() {
     this.startBtn.addEventListener("pointerdown", app.startSession);

@@ -162,7 +162,7 @@ class App {
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
     setTimeout(() => {
-      this.btnContainer2.remove();
+      this.hideBtnContainer2();
       this.startRound();
     }, 950);
     setTimeout(() => {
@@ -288,6 +288,16 @@ class App {
     }
     this.btnContainer5.appendChild(item);
     this.appContainer.appendChild(this.btnContainer5);
+  }
+  hideBtnContainer2() {
+    if (!this.btnContainer2.classList.contains("hide")) {
+      this.btnContainer2.classList.add("hide");
+    }
+  }
+  showBtnContainer2() {
+    if (this.btnContainer2.classList.contains("hide")) {
+      this.btnContainer2.classList.add("hide");
+    }
   }
   hideBtnContainer4() {
     if (!this.btnContainer4.classList.contains("hide")) {
