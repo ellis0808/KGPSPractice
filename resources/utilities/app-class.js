@@ -11,9 +11,7 @@ import { startScreen } from "./start-screen.js";
 import { homeBtnFunction } from "./go-home-function.js";
 import { endRoundScreen } from "./end-round-screen.js";
 import { audio } from "./audio.js";
-import { alphabet } from "../apps/card-touch/card-data.js";
 import { menuItems } from "../apps/general/start-main-app.js";
-import { gridItems } from "../apps/matching/generate-grid-items.js";
 console.log("app class");
 
 class App {
@@ -338,7 +336,7 @@ class App {
     this.btnContainer1.remove();
     this.btnContainer2.remove();
     this.btnContainer4.remove();
-    homeBtnFunction.homeBtnContainer.remove();
+    this.appControlsContainer.remove();
     this.leftMenuContainer.remove();
   }
   gridHideAdd() {
