@@ -48,24 +48,18 @@ const toggleBlur = {
     }
   },
   addStrongBlur() {
-    if (elements.structureElements || elements.interactiveElements) {
-      elements.structureElements.forEach((item) => {
-        item.classList.add("strong-blur");
-      });
+    if (!app.grid.classList.contains("strong-blur")) {
+      app.grid.classList.add("strong-blur");
     }
   },
   removeStrongBlur() {
-    if (elements.structureElements) {
-      elements.structureElements.forEach((item) => {
-        item.classList.remove("strong-blur");
-      });
+    if (app.grid.classList.contains("strong-blur")) {
+      app.grid.classList.remove("strong-blur");
     }
   },
   removeAllBlur() {
-    if (elements.structureElements) {
-      elements.structureElements.forEach((item) => {
-        item.classList.remove("blur", "strong-blur");
-      });
+    if (app.grid.classList.contains("blur", "strong-blur")) {
+      app.grid.classList.remove("blur", "strong-blur");
     }
   },
 };
