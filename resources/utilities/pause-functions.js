@@ -93,13 +93,9 @@ class PauseFunction {
     setTimeout(() => {
       this.pauseBtn.addEventListener("pointerdown", this.pause);
     }, 200);
-    if (elements.structureElements) {
-      toggleTouchFunction.enableTouch();
-      toggleBlur.removeStrongBlur();
-    }
-    if (document.querySelector(".go-home-container")) {
-      homeBtnFunction.returnToApp();
-    }
+
+    toggleTouchFunction.enableTouch();
+    toggleBlur.removeStrongBlur();
   }
   getIsPausedStatus() {
     return this.isPaused;
