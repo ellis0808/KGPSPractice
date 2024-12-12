@@ -76,10 +76,7 @@ class PauseFunction {
   pause() {
     this.isPaused = true;
 
-    this.pauseBtn.removeEventListener("pointerdown", this.pause);
-    setTimeout(() => {
-      this.pauseBtn.addEventListener("pointerdown", this.unpause);
-    }, 200);
+    this.pauseToUnPauseToggle();
 
     toggleTouchFunction.disableTouch();
     toggleBlur.addStrongBlur();
@@ -91,17 +88,27 @@ class PauseFunction {
     if (homeBtnFunction.goHomeContainerIsDisplayed) {
       homeBtnFunction.removeContainer();
     }
-    this.pauseBtn.removeEventListener("pointerdown", this.unpause);
-    setTimeout(() => {
-      this.pauseBtn.addEventListener("pointerdown", this.pause);
-    }, 200);
+
+    this.unpauseToPauseToggle();
 
     toggleTouchFunction.enableTouch();
     toggleBlur.removeStrongBlur();
 
-    if (document.querySelector(".go-home-container")) {
-      homeBtnFunction.removeContainer();
-    }
+    // if (document.querySelector(".go-home-container")) {
+    //   homeBtnFunction.removeContainer();
+    // }
+  }
+  pauseToUnPauseToggle() {
+    this.pauseBtn.removeEventListener("pointerdown", this.pause);
+    setTimeout(() => {
+      this.pauseBtn.addEventListener("pointerdown", this.unpause);
+    }, 200);
+  }
+  unpauseToPauseToggle() {
+    this.pauseBtn.removeEventListener("pointerdown", this.unpause);
+    setTimeout(() => {
+      this.pauseBtn.addEventListener("pointerdown", this.pause);
+    }, 200);
   }
   getIsPausedStatus() {
     return this.isPaused;
