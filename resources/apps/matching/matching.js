@@ -25,7 +25,7 @@ console.log("matching");
 class MatchingApp {
   constructor() {
     this.matchingAppElements = [
-      ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid",
+      ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid,.line",
     ];
 
     this.correctAnswerPoints = 1;
@@ -92,6 +92,11 @@ class MatchingApp {
     app.grid.appendChild(this.endRowContainer);
     app.grid.appendChild(this.startDotsContainer);
     app.grid.appendChild(this.endDotsContainer);
+  }
+  removeGrid() {
+    app.grid.childNodes().forEach((item) => {
+      item.remove();
+    });
   }
   populateGrid() {
     gridItems.loadAndGenerateItems(alphabet);

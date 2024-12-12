@@ -131,6 +131,7 @@ class App {
     endRoundScreen.removeContainer();
     setTimeout(() => {
       document.querySelector(".container").remove();
+      this.gridRemove();
       this.removeMainAppStructure();
       setTimeout(() => {
         stylesheet.setAttribute("href", this.homeStyleSheet);
@@ -175,12 +176,8 @@ class App {
     document.querySelectorAll(".matching-app, .line").forEach((item) => {
       item.remove();
     }); // needs to be abstracted out
-    if (document.querySelector(".end-messages-container")) {
-      document.querySelector(".end-messages-container").remove();
-    }
-    if (document.querySelector(".go-home-container")) {
-      document.querySelector(".go-home-container").remove();
-    }
+    endRoundScreen.removeContainer();
+    homeBtnFunction.removeContainer();
     toggleBlur.removeAllBlur();
     if (this.clearBoardMethod) {
       this.clearBoard();
@@ -325,13 +322,13 @@ class App {
     this.gridHideAdd();
   }
   removeMainAppStructure() {
-    delete this.appContainer;
-    delete this.grid;
-    delete this.btnContainer1;
-    delete this.btnContainer2;
-    delete this.btnContainer4;
-    delete this.homeBtnContainer;
-    delete this.leftMenuContainer;
+    this.appContainer.remove();
+    this.grid.remove();
+    this.btnContainer1.remove();
+    this.btnContainer2.remove();
+    this.btnContainer4.remove();
+    this.homeBtnContainer.remove();
+    this.leftMenuContainer.remove();
   }
   gridHideAdd() {
     if (!this.grid.classList.contains("gridHide")) {
@@ -342,6 +339,9 @@ class App {
     if (this.grid.classList.contains("gridHide")) {
       this.grid.classList.remove("gridHide");
     }
+  }
+  gridRemove() {
+    this.grid.remove();
   }
   createDoubleTapPreventer(timeout_ms) {
     let dblTapTimer = 0;
