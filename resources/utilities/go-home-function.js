@@ -75,15 +75,15 @@ class HomeBtnFunction {
     this.cancelBtn.addEventListener("pointerdown", this.returnToApp.bind(this));
   }
   displayContainer() {
-    if (!app.btnContainer4) {
-      if (app.btnContainer4.childNodes.length === 0) {
-        this.goHomeContainerIsDisplayed = true;
-        this.goHomeContainer.appendChild(this.goHomeMessage);
-        this.goHomeContainer.appendChild(this.goHomeBtn);
-        this.goHomeContainer.appendChild(this.cancelBtn);
-        app.setBtnContainer4(this.goHomeContainer);
-      }
+    // if (!app.btnContainer4) {
+    if (app.btnContainer4.childNodes.length === 0) {
+      this.goHomeContainerIsDisplayed = true;
+      this.goHomeContainer.appendChild(this.goHomeMessage);
+      this.goHomeContainer.appendChild(this.goHomeBtn);
+      this.goHomeContainer.appendChild(this.cancelBtn);
+      app.setBtnContainer4(this.goHomeContainer);
     }
+    // }
     if (app.btnContainer4.classList.contains("hide")) {
       app.showBtnContainer4();
     }
