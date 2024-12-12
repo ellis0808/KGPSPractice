@@ -91,10 +91,8 @@ class HomeBtnFunction {
     }
   }
   removeContainer() {
-    if (this.goHomeContainer) {
-      app.hideBtnContainer4();
-      this.goHomeContainerIsDisplayed = false;
-    }
+    app.hideBtnContainer4();
+    this.goHomeContainerIsDisplayed = false;
   }
   returnToApp() {
     this.removeContainer();
