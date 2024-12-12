@@ -131,7 +131,7 @@ class App {
     setTimeout(() => {
       document.querySelector(".container").remove();
       this.gridRemove();
-      this.removeMainAppStructure();
+      // this.removeMainAppStructure();
       setTimeout(() => {
         stylesheet.setAttribute("href", this.homeStyleSheet);
         menuItems.displayMainPage();
