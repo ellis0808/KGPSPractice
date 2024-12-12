@@ -29,7 +29,7 @@ const startScreen = {
   removeStartScreen() {
     this.startBtn.classList.add("no-touch");
     this.startBtn.classList.add("spinfade");
-    this.exitBtn.classList.remove("intro");
+    this.startBtn.classList.remove("intro");
     this.exitBtn.classList.add("no-touch");
     this.exitBtn.classList.add("hide2");
     this.exitBtn.classList.remove("intro");
