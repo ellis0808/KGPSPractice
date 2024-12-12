@@ -53,7 +53,7 @@ class HomeBtnFunction {
       pauseFunction.unpause();
       this.returnToApp();
     }
-    this.homeBtnToggle();
+    this.homeBtnDelayNextPress();
   }
   homeBtnDelayNextPress() {
     this.homeBtn.removeEventListener("pointerdown", this.homeBtnPauseUnpause);
