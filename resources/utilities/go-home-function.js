@@ -93,7 +93,7 @@ class HomeBtnFunction {
     this.goHomeContainerIsDisplayed = false;
   }
   returnToApp() {
-    this.removeContainer();
+    // this.removeContainer();
     pauseFunction.unpause();
   }
 }
