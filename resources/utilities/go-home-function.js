@@ -39,6 +39,7 @@ class HomeBtnFunction {
     this.cancelBtn.textContent = "Cancel";
   }
   homeBtnPauseUnpause() {
+    console.log(this.goHomeContainerIsDisplayed);
     if (!this.goHomeContainerIsDisplayed) {
       if (!pauseFunction.isPaused) {
         pauseFunction.pause();
