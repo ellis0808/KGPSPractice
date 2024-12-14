@@ -82,7 +82,7 @@ class App {
   async updateUserTotalScore() {
     //  For student users; teachers will differ on user type, etc
     const newScore = {
-      activity_id: activityId,
+      activity_id: this.activityId,
       user_id: user.id,
       user_type: user.access,
       correct_answer_count: 0,
