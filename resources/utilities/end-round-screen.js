@@ -24,8 +24,8 @@ const endRoundScreen = {
     this.tryAgainBtn.innerText = "One More Time";
     this.finishBtn.classList.add("finish-btn", "button");
     this.finishBtn.innerText = "Finish";
-    this.assessmentMessage.classList.add("final-scoreFunction-assessment");
-    this.scoreMessage.classList.add("final-scoreFunction-alert-scoreFunction");
+    this.assessmentMessage.classList.add("final-score-assessment");
+    this.scoreMessage.classList.add("final-score-alert-score");
   },
   setBtnLinks() {
     this.tryAgainBtn.addEventListener("pointerdown", app.startSession);
