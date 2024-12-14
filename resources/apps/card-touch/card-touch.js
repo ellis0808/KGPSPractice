@@ -13,13 +13,13 @@ import {
   sightWords3,
 } from "./card-data.js";
 import { wobble, spinfade, newRoundCardFlip, particles } from "./fx.js";
-import { scoreFunction } from "../../utilities/scoreFunction.js";
+import { scoreFunction } from "../../utilities/score.js";
 import {
   scoreDisplay,
   toggleScoreDisplayHide,
   updateNegativeCount,
   updatePositiveCount,
-} from "../../utilities/update-scoreFunction.js";
+} from "../../utilities/update-score.js";
 import { timer, toggleTimerHide } from "../../utilities/timer.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";

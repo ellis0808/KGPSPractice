@@ -1,4 +1,4 @@
-import { scoreFunction } from "../../utilities/scoreFunction.js";
+import { scoreFunction } from "../../utilities/score.js";
 import { mainContainer, body } from "../../utilities/variables.js";
 import {
   dotAndLineCommand,

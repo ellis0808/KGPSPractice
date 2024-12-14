@@ -1,5 +1,5 @@
 import { app } from "./app-class.js";
-import { scoreFunction, scoreAssessment } from "./scoreFunction.js";
+import { scoreFunction, scoreAssessment } from "./score.js";
 import { timerFunction } from "./timer.js";
 
 const endRoundScreen = {

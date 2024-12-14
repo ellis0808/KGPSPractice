@@ -1,12 +1,12 @@
 /* Imports */
 import { mainContainer, stylesheet } from "../../utilities/variables.js";
-import { scoreFunction } from "../../utilities/scoreFunction.js";
+import { scoreFunction } from "../../utilities/score.js";
 import {
   scoreDisplay,
   toggleScoreDisplayHide,
   updateNegativeCount,
   updatePositiveCount,
-} from "../../utilities/update-scoreFunction.js";
+} from "../../utilities/update-score.js";
 import { menuItems } from "../general/start-main-app.js";
 import { fluencyAudio } from "./fluency-audio.js";
 import {

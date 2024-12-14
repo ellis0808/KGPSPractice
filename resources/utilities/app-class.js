@@ -6,7 +6,7 @@ import {
   toggleBlur,
   toggleTouchFunction,
 } from "./pause-functions.js";
-import { scoreFunction } from "./scoreFunction.js";
+import { scoreFunction } from "./score.js";
 import { startScreen } from "./start-screen.js";
 import { homeBtnFunction } from "./go-home-function.js";
 import { endRoundScreen } from "./end-round-screen.js";

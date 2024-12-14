@@ -1,4 +1,4 @@
-import { scoreFunction } from "./scoreFunction.js";
+import { scoreFunction } from "./score.js";
 
 class User {
   constructor() {
