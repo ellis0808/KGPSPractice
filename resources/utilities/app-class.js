@@ -161,6 +161,7 @@ class App {
     setTimeout(() => {
       timerFunction.startTimer(this.time);
     }, 1000);
+    console.log(user);
   }
   endSession() {
     pauseFunction.unpause();

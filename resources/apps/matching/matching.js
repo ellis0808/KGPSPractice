@@ -20,8 +20,6 @@ import { gridItems, itemArrays } from "./generate-grid-items.js";
 import { alphabet } from "../card-touch/card-data.js";
 import { menuItems } from "../general/start-main-app.js";
 
-console.log("matching");
-
 class MatchingApp {
   constructor() {
     this.correctAnswerPoints = 1;

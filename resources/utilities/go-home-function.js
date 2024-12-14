@@ -39,18 +39,14 @@ class HomeBtnFunction {
     this.cancelBtn.textContent = "Cancel";
   }
   homeBtnPauseUnpause() {
-    console.log(this.goHomeContainerIsDisplayed);
     if (!this.goHomeContainerIsDisplayed) {
       if (!pauseFunction.isPaused) {
         pauseFunction.pause();
-        console.log("condition 2");
       } else if (pauseFunction.isPaused) {
         this.displayContainer();
       }
       this.displayContainer();
-      console.log("condition 1");
     } else if (this.goHomeContainerIsDisplayed && pauseFunction.isPaused) {
-      console.log("condition 3");
       this.returnToApp();
     }
     this.homeBtnDelayNextPress();
@@ -68,7 +64,6 @@ class HomeBtnFunction {
     this.escapeKeyInitialized = true;
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
-        console.log("escape!");
         homeBtnFunction.homeBtnPauseUnpause();
       }
     });
