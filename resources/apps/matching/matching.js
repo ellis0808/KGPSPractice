@@ -1,4 +1,4 @@
-import { score } from "../../utilities/score.js";
+import { scoreFunction } from "../../utilities/scoreFunction.js";
 import { mainContainer, body } from "../../utilities/variables.js";
 import {
   dotAndLineCommand,
@@ -128,10 +128,10 @@ class MatchingApp {
     );
     if (allCorrectDots.length === this.numberOfItemsToBeDisplayed) {
       setTimeout(() => {
-        score.updatePositiveCount(
+        scoreFunction.updatePositiveCount(
           allCorrectDots.length * this.correctAnswerPoints
         );
-        score.display.classList.add("pulse");
+        scoreFunction.display.classList.add("pulse");
         audio.appSfx.correct.play();
         setTimeout(() => this.randomFeedback(), 500);
       }, 200);
@@ -231,7 +231,7 @@ class MatchingApp {
 
         this.currentDotId;
         this.getEventTargetID(event);
-        score.display.classList.remove("pulse");
+        scoreFunction.display.classList.remove("pulse");
 
         if (
           !this.currentDotIdArray.includes(endDot[this.currentEndDot]) +
@@ -269,7 +269,7 @@ class MatchingApp {
         this.line.buttonDown();
 
         this.currentDotId;
-        score.display.classList.remove("pulse");
+        scoreFunction.display.classList.remove("pulse");
 
         this.getEventTargetID(event);
 
@@ -558,7 +558,7 @@ async function updateUserTotalScore() {
     incorrect_answer_count: 0,
     time_to_correct_answer_duration_in_seconds: 0,
     answer_attempts: 0,
-    activity_score: score.currentScore,
+    activity_score: scoreFunction.currentScore,
   };
   try {
     const response = await fetch(

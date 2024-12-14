@@ -2,7 +2,7 @@
 import { endRoundScreen } from "./end-round-screen.js";
 import { audio } from "./audio.js";
 
-const score = {
+const scoreFunction = {
   currentScore: 0,
   userScore: 0,
   highScore: 0,
@@ -11,8 +11,8 @@ const score = {
   display: (() => {
     const div = document.createElement("div");
 
-    div.classList.add("score-display");
-    div.setAttribute("id", "score-display");
+    div.classList.add("scoreFunction-display");
+    div.setAttribute("id", "scoreFunction-display");
     // div.textContent = this.currentScore;
     return div;
   })(),
@@ -70,10 +70,10 @@ const score = {
     }, 600);
   },
   displayHideToggle() {
-    if (score.display.classList.contains("hide2")) {
+    if (scoreFunction.display.classList.contains("hide2")) {
       this.display.classList.toggle("hide2");
     }
-    if (score.display.classList.contains("hide")) {
+    if (scoreFunction.display.classList.contains("hide")) {
       this.display.classList.toggle("hide");
     }
   },
@@ -111,7 +111,7 @@ const score = {
   //     incorrect_answer_count: 0,
   //     time_to_correct_answer_duration_in_seconds: 0,
   //     answer_attempts: 0,
-  //     activity_score: score.currentScore,
+  //     activity_score: scoreFunction.currentScore,
   //   };
   //   try {
   //     const response = await fetch(
@@ -140,32 +140,32 @@ const scoreAssessment = {
   determineApp(set) {},
   matching() {
     switch (true) {
-      case score.currentScore <= 12:
+      case scoreFunction.currentScore <= 12:
         this.assessmentMessage = "Better Luck\r\nNext Time!";
         this.assessmentAudio =
           audio.feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
         break;
-      case score.currentScore > 31:
+      case scoreFunction.currentScore > 31:
         this.assessmentMessage = "Outstanding!";
         this.assessmentAudio =
           audio.feedbackAudioObject.positiveFeedback.outstanding.sound.play();
         break;
-      case score.currentScore > 27:
+      case scoreFunction.currentScore > 27:
         this.assessmentMessage = "Amazing!";
         this.assessmentAudio =
           audio.feedbackAudioObject.positiveFeedback.amazing.sound.play();
         break;
-      case score.currentScore > 23:
+      case scoreFunction.currentScore > 23:
         this.assessmentMessage = "Excellent!";
         this.assessmentAudio =
           audio.feedbackAudioObject.positiveFeedback.excellent.sound.play();
         break;
-      case score.currentScore > 18:
+      case scoreFunction.currentScore > 18:
         this.assessmentMessage = "Great Job!";
         this.assessmentAudio =
           audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
         break;
-      case score.currentScore > 13:
+      case scoreFunction.currentScore > 13:
         this.assessmentMessage = "Good Job!";
         this.assessmentAudio =
           audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
@@ -185,4 +185,4 @@ const scoreAssessment = {
 //   user.id = sessionData.userId;
 // }
 
-export { score, scoreAssessment };
+export { scoreFunction, scoreAssessment };

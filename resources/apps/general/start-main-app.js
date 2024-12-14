@@ -734,10 +734,6 @@ class MenuItems {
         item.classList.add("hidden");
         item.remove();
       });
-    // navBar.remove();
-    // navBar.classList.add("hidden");
-    // topContainer.remove();
-    // primaryMenuContainer.remove();
   }
   restoreMainMenu() {
     body.appendChild(navBar);

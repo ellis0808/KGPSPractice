@@ -1,4 +1,4 @@
-import { score } from "./score.js";
+import { scoreFunction } from "./scoreFunction.js";
 
 class User {
   constructor() {
@@ -14,7 +14,7 @@ class User {
     this.awards = [];
   }
   getCurrentScore() {
-    this.currentScore = score.currentScore;
+    this.currentScore = scoreFunction.currentScore;
   }
   async getCumulativeScore(id) {
     try {

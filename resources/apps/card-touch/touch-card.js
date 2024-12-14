@@ -1,7 +1,7 @@
 import { correctCard, currentCardID } from "./card-touch.js";
 import { correctCardID } from "./audio.js";
 import { wobble } from "./fx.js";
-import { score } from "../../utilities/score-object.js";
+import { scoreFunction } from "../../utilities/scoreFunction-object.js";
 
 function touchCard(e) {
   currentCardID = this.getAttribute("data-id");
@@ -10,7 +10,7 @@ function touchCard(e) {
     updateCount(e);
   } else {
     wobble(e);
-    score.decreaseScore();
+    scoreFunction.decreaseScore();
   }
 }
 

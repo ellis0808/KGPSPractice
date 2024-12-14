@@ -31,7 +31,7 @@ const timerFunction = {
             this.endRound();
 
             toggleTouchFunction.disableTouch();
-            clearInterval(this.counter);
+            this.clearTimer();
           }
         }
       }, 1000);

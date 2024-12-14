@@ -13,13 +13,13 @@ import {
   sightWords3,
 } from "./card-data.js";
 import { wobble, spinfade, newRoundCardFlip, particles } from "./fx.js";
-import { score } from "../../utilities/score.js";
+import { scoreFunction } from "../../utilities/scoreFunction.js";
 import {
   scoreDisplay,
   toggleScoreDisplayHide,
   updateNegativeCount,
   updatePositiveCount,
-} from "../../utilities/update-score.js";
+} from "../../utilities/update-scoreFunction.js";
 import { timer, toggleTimerHide } from "../../utilities/timer.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
@@ -56,8 +56,8 @@ function cardTouchApp(set) {
 
   setTimeout(displayStartBtn, 200);
 
-  score.resetCurrentScore();
-  scoreDisplay.innerText = score.currentScore;
+  scoreFunction.resetCurrentScore();
+  scoreDisplay.innerText = scoreFunction.currentScore;
   appContainer.classList.remove("hide");
   if (!scoreDisplay.classList.contains("hide2")) {
     toggleScoreDisplayHide();
@@ -137,7 +137,7 @@ repeatBtn.addEventListener("click", cardTouchAudio.repeat);
 repeatBtn.textContent = "Repeat";
 toggleRepeatBtnHide();
 // toggleScoreDisplayHide();
-scoreDisplay.textContent = `${score.currentScore}`;
+scoreDisplay.textContent = `${scoreFunction.currentScore}`;
 
 const tryAgainBtn = document.createElement("div");
 tryAgainBtn.classList.add("try-again-btn");
@@ -236,7 +236,7 @@ function displayStartBtn() {
   }
   exitBtn.classList.remove("hide");
   startBtn.addEventListener("click", startSession);
-  score.resetCurrentScore();
+  scoreFunction.resetCurrentScore();
 }
 
 // Start Round
@@ -288,8 +288,8 @@ function startNewSession() {
   }
   isSessionFinished = false;
   appContainer.appendChild(grid);
-  score.resetCurrentScore();
-  scoreDisplay.innerText = score.currentScore;
+  scoreFunction.resetCurrentScore();
+  scoreDisplay.innerText = scoreFunction.currentScore;
   removeBlur();
   homeBtnContainer.classList.remove("no-touch");
   createBoard();
@@ -376,58 +376,58 @@ function displayEndMessagesContainer() {
   appContainer.appendChild(btnContainer5);
   btnContainer5.appendChild(endMessagesContainer);
   const finalScoreAssessment = document.createElement("div");
-  finalScoreAssessment.classList.add("final-score-assessment");
+  finalScoreAssessment.classList.add("final-scoreFunction-assessment");
   const finalScoreAlertScore = document.createElement("div");
-  finalScoreAlertScore.classList.add("final-score-alert-score");
+  finalScoreAlertScore.classList.add("final-scoreFunction-alert-scoreFunction");
   const endMessagesContainerInnerBorder = document.createElement("div");
   endMessagesContainerInnerBorder.classList.add("border");
 
   switch (true) {
-    case score.currentScore < 5:
+    case scoreFunction.currentScore < 5:
       finalScoreAssessment.innerText = "Better Luck\r\nNext Time!";
       break;
-    case score.currentScore > 31:
+    case scoreFunction.currentScore > 31:
       finalScoreAssessment.innerText = "Outstanding!";
       break;
-    case score.currentScore > 27:
+    case scoreFunction.currentScore > 27:
       finalScoreAssessment.innerText = "Amazing!";
       break;
-    case score.currentScore > 23:
+    case scoreFunction.currentScore > 23:
       finalScoreAssessment.innerText = "Excellent!";
       break;
-    case score.currentScore > 18:
+    case scoreFunction.currentScore > 18:
       finalScoreAssessment.innerText = "Great Job!";
 
       break;
-    case score.currentScore > 13:
+    case scoreFunction.currentScore > 13:
       finalScoreAssessment.innerText = "Good Job!";
       break;
   }
-  finalScoreAlertScore.innerText = `${score.currentScore}`;
+  finalScoreAlertScore.innerText = `${scoreFunction.currentScore}`;
   endMessagesContainer.appendChild(finalScoreAssessment);
   endMessagesContainer.appendChild(finalScoreAlertScore);
   endMessagesContainer.appendChild(endMessagesContainerInnerBorder);
   endMessagesContainer.appendChild(tryAgainBtn);
   endMessagesContainer.appendChild(finishBtn);
-  score.updateUserScore();
+  scoreFunction.updateUserScore();
   setTimeout(() => {
     switch (true) {
-      case score.currentScore < 5:
+      case scoreFunction.currentScore < 5:
         audio.feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
         break;
-      case score.currentScore > 31:
+      case scoreFunction.currentScore > 31:
         audio.feedbackAudioObject.positiveFeedback.outstanding.sound.play();
         break;
-      case score.currentScore > 27:
+      case scoreFunction.currentScore > 27:
         audio.feedbackAudioObject.positiveFeedback.amazing.sound.play();
         break;
-      case score.currentScore > 23:
+      case scoreFunction.currentScore > 23:
         audio.feedbackAudioObject.positiveFeedback.excellent.sound.play();
         break;
-      case score.currentScore > 18:
+      case scoreFunction.currentScore > 18:
         audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
         break;
-      case score.currentScore > 13:
+      case scoreFunction.currentScore > 13:
         audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
         break;
     }
@@ -547,7 +547,7 @@ function touchCard(e) {
     updatePositiveCount(correctAnswerPoints);
     let delay = 300;
     setTimeout(() => {
-      switch (score.currentScore) {
+      switch (scoreFunction.currentScore) {
         case 6:
           audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
           break;
@@ -613,7 +613,7 @@ async function updateUserTotalScore() {
     incorrect_answer_count: 0,
     time_to_correct_answer_duration_in_seconds: 0,
     answer_attempts: 0,
-    activity_score: score.currentScore,
+    activity_score: scoreFunction.currentScore,
   };
   try {
     const response = await fetch(
@@ -669,7 +669,7 @@ function endApp() {
       setTimeout(menuItems.restoreMainMenu, 100);
     }, 500);
   }, 500);
-  scoreDisplay.innerText = score.currentScore;
+  scoreDisplay.innerText = scoreFunction.currentScore;
   resetTimer();
 }
 // pauses app

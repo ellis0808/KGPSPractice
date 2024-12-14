@@ -1,12 +1,12 @@
 /* Imports */
 import { mainContainer, stylesheet } from "../../utilities/variables.js";
-import { score } from "../../utilities/score.js";
+import { scoreFunction } from "../../utilities/scoreFunction.js";
 import {
   scoreDisplay,
   toggleScoreDisplayHide,
   updateNegativeCount,
   updatePositiveCount,
-} from "../../utilities/update-score.js";
+} from "../../utilities/update-scoreFunction.js";
 import { menuItems } from "../general/start-main-app.js";
 import { fluencyAudio } from "./fluency-audio.js";
 import {
@@ -107,7 +107,7 @@ cancelGoHomeBtn.addEventListener("click", returnToApp);
 /* Common UI Elements */
 
 // toggleScoreDisplayHide();
-// scoreDisplay.textContent = `${score.currentScore}`;
+// scoreDisplay.textContent = `${scoreFunction.currentScore}`;
 const roundDisplay = document.createElement("div");
 roundDisplay.classList.add("round-display");
 roundDisplay.textContent = `Round 1`;
@@ -214,8 +214,8 @@ function fluencyApp(set) {
 
   setTimeout(displayStartBtn, 200);
 
-  score.resetCurrentScore();
-  scoreDisplay.innerText = score.currentScore;
+  scoreFunction.resetCurrentScore();
+  scoreDisplay.innerText = scoreFunction.currentScore;
   appContainer.classList.remove("hide");
 
   if (!scoreDisplay.classList.contains("hide2")) {
@@ -242,7 +242,7 @@ async function updateUserTotalScore() {
     incorrect_answer_count: 0,
     time_to_correct_answer_duration_in_seconds: 0,
     answer_attempts: 0,
-    activity_score: score.currentScore,
+    activity_score: scoreFunction.currentScore,
   };
   try {
     const response = await fetch(
@@ -278,7 +278,7 @@ function endApp() {
     menuItems.displayMainPage();
     setTimeout(menuItems.restoreMainMenu, 100);
   }, 500);
-  scoreDisplay.innerText = score.currentScore;
+  scoreDisplay.innerText = scoreFunction.currentScore;
 }
 // pauses app
 function removeBlur() {
@@ -393,7 +393,7 @@ function displayStartBtn() {
   }
   exitBtn.classList.remove("hide");
   startBtn.addEventListener("click", startSession);
-  score.resetCurrentScore();
+  scoreFunction.resetCurrentScore();
 }
 
 document.addEventListener("keydown", (event) => {
@@ -448,14 +448,14 @@ function startSession() {
   }, 1);
 }
 function startNewSession() {
-  score.currentScore = 0;
+  scoreFunction.currentScore = 0;
   tryAgainBtn.classList.add("no-touch");
   finishBtn.classList.add("no-touch");
   resetRoundNumberAndRoundDisplay();
   setTimeout(() => {
     document.querySelector(".end-messages-container").remove();
-    score.resetCurrentScore();
-    scoreDisplay.innerText = score.currentScore;
+    scoreFunction.resetCurrentScore();
+    scoreDisplay.innerText = scoreFunction.currentScore;
     grid.classList.remove("blur");
     roundDisplay.classList.remove("blur");
     scoreDisplay.classList.remove("blur");
@@ -564,7 +564,7 @@ function gameOver() {
 }
 
 function displayEndMessagesContainer() {
-  score.updateUserScore();
+  scoreFunction.updateUserScore();
   updateUserTotalScore();
   const btnContainer5 = document.createElement("div");
   btnContainer5.classList.add("btn-container5");
@@ -576,54 +576,54 @@ function displayEndMessagesContainer() {
   appContainer.appendChild(btnContainer5);
   btnContainer5.appendChild(endMessagesContainer);
   const finalScoreAssessment = document.createElement("div");
-  finalScoreAssessment.classList.add("final-score-assessment");
+  finalScoreAssessment.classList.add("final-scoreFunction-assessment");
   const finalScoreAlertScore = document.createElement("div");
-  finalScoreAlertScore.classList.add("final-score-alert-score");
+  finalScoreAlertScore.classList.add("final-scoreFunction-alert-scoreFunction");
 
   switch (true) {
-    case score.currentScore < 10:
+    case scoreFunction.currentScore < 10:
       finalScoreAssessment.innerText = "Better Luck\r\nNext Time!";
       break;
-    case score.currentScore >= 150:
+    case scoreFunction.currentScore >= 150:
       finalScoreAssessment.innerText = "Outstanding!";
       break;
-    case score.currentScore >= 90:
+    case scoreFunction.currentScore >= 90:
       finalScoreAssessment.innerText = "Amazing!";
       break;
-    case score.currentScore >= 50:
+    case scoreFunction.currentScore >= 50:
       finalScoreAssessment.innerText = "Excellent!";
       break;
-    case score.currentScore >= 30:
+    case scoreFunction.currentScore >= 30:
       finalScoreAssessment.innerText = "Great Job!";
       break;
-    case score.currentScore >= 10:
+    case scoreFunction.currentScore >= 10:
       finalScoreAssessment.innerText = "Good Job!";
       break;
   }
-  finalScoreAlertScore.innerText = `${score.currentScore}`;
+  finalScoreAlertScore.innerText = `${scoreFunction.currentScore}`;
   endMessagesContainer.appendChild(finalScoreAssessment);
   endMessagesContainer.appendChild(finalScoreAlertScore);
   endMessagesContainer.appendChild(tryAgainBtn);
   endMessagesContainer.appendChild(finishBtn);
-  score.updateUserScore();
+  scoreFunction.updateUserScore();
   setTimeout(() => {
     switch (true) {
-      case score.currentScore < 10:
+      case scoreFunction.currentScore < 10:
         audio.feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
         break;
-      case score.currentScore >= 150:
+      case scoreFunction.currentScore >= 150:
         audio.feedbackAudioObject.positiveFeedback.outstanding.sound.play();
         break;
-      case score.currentScore >= 90:
+      case scoreFunction.currentScore >= 90:
         audio.feedbackAudioObject.positiveFeedback.amazing.sound.play();
         break;
-      case score.currentScore >= 50:
+      case scoreFunction.currentScore >= 50:
         audio.feedbackAudioObject.positiveFeedback.excellent.sound.play();
         break;
-      case score.currentScore >= 30:
+      case scoreFunction.currentScore >= 30:
         audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
         break;
-      case score.currentScore >= 10:
+      case scoreFunction.currentScore >= 10:
         audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
         break;
     }

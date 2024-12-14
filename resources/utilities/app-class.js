@@ -6,7 +6,7 @@ import {
   toggleBlur,
   toggleTouchFunction,
 } from "./pause-functions.js";
-import { score } from "./score.js";
+import { scoreFunction } from "./scoreFunction.js";
 import { startScreen } from "./start-screen.js";
 import { homeBtnFunction } from "./go-home-function.js";
 import { endRoundScreen } from "./end-round-screen.js";
@@ -80,7 +80,7 @@ class App {
   //     incorrect_answer_count: 0,
   //     time_to_correct_answer_duration_in_seconds: 0,
   //     answer_attempts: 0,
-  //     activity_score: score.currentScore,
+  //     activity_score: scoreFunction.currentScore,
   //   };
   //   try {
   //     const response = await fetch(
@@ -108,10 +108,9 @@ class App {
     elements.getElements(this.appElements);
     console.log(elements);
     pauseFunction.unpause();
-    score.resetCurrentScore();
-    score.display.innerText = score.currentScore;
+    scoreFunction.display.innerText = scoreFunction.currentScore;
     this.appContainer.classList.remove("hide");
-    score.displayHideToggle();
+    scoreFunction.displayHideToggle();
 
     if (!timerFunction.timer.classList.contains("hide2")) {
       timerFunction.toggleTimerHide();
@@ -125,7 +124,7 @@ class App {
   }
   endApp() {
     timerFunction.clearTimer();
-    score.updateUserScore();
+    scoreFunction.updateUserScore();
     this.endSession();
     endRoundScreen.removeContainer();
     setTimeout(() => {
@@ -138,7 +137,7 @@ class App {
         setTimeout(menuItems.restoreMainMenu, 100);
       }, 500);
     }, 500);
-    score.display.innerText = score.currentScore;
+    scoreFunction.display.innerText = scoreFunction.currentScore;
   }
   setForeignElements() {
     homeBtnFunction.initialize();
@@ -156,7 +155,6 @@ class App {
   startSession() {
     audio.navigationSfx.startApp.play();
     this.prepareForNewRound();
-    score.resetCurrentScore();
     this.initializeEventListeners();
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
@@ -177,11 +175,13 @@ class App {
     }); // needs to be abstracted out
     endRoundScreen.removeContainer();
     homeBtnFunction.removeContainer();
+    scoreFunction.resetCurrentScore();
+    timerFunction.clearTimer();
     toggleBlur.removeAllBlur();
     if (this.clearBoardMethod) {
       this.clearBoard();
     }
-    score.displayHideToggle();
+    scoreFunction.displayHideToggle();
     timerFunction.toggleTimerHide();
   }
   clearBoard() {
@@ -192,7 +192,7 @@ class App {
     endRoundScreen.removeContainer();
     toggleTouchFunction.enableTouch();
     toggleBlur.removeWeakBlur();
-    score.displayHideToggle();
+    scoreFunction.displayHideToggle();
     timerFunction.toggleTimerHide();
     this.appControlsContainer.classList.remove("hide");
     this.gridHideRemove();
@@ -214,8 +214,8 @@ class App {
     toggleBlur.removeAllBlur();
   }
   endRound() {
-    score.updateUserScore();
-    // score.updateStudentTotalScore();
+    scoreFunction.updateUserScore();
+    // scoreFunction.updateStudentTotalScore();
     endRoundScreen.displayContainer();
   }
   initializeEventListeners() {
@@ -254,7 +254,7 @@ class App {
       this.btnContainer1.classList.add("btn-container1");
     }
     this.btnContainer1.appendChild(timerFunction.timer);
-    this.btnContainer1.appendChild(score.display);
+    this.btnContainer1.appendChild(scoreFunction.display);
   }
   setBtnContainer2(item1, item2) {
     if (!this.btnContainer2) {

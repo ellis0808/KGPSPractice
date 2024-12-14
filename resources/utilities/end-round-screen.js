@@ -1,5 +1,5 @@
 import { app } from "./app-class.js";
-import { score, scoreAssessment } from "./score.js";
+import { scoreFunction, scoreAssessment } from "./scoreFunction.js";
 import { timerFunction } from "./timer.js";
 
 const endRoundScreen = {
@@ -24,8 +24,8 @@ const endRoundScreen = {
     this.tryAgainBtn.innerText = "One More Time";
     this.finishBtn.classList.add("finish-btn", "button");
     this.finishBtn.innerText = "Finish";
-    this.assessmentMessage.classList.add("final-score-assessment");
-    this.scoreMessage.classList.add("final-score-alert-score");
+    this.assessmentMessage.classList.add("final-scoreFunction-assessment");
+    this.scoreMessage.classList.add("final-scoreFunction-alert-scoreFunction");
   },
   setBtnLinks() {
     this.tryAgainBtn.addEventListener("pointerdown", app.startSession);
@@ -55,7 +55,7 @@ const endRoundScreen = {
     audio;
   },
   setScoreMessage() {
-    this.scoreMessage.innerText = score.currentScore;
+    this.scoreMessage.innerText = scoreFunction.currentScore;
   },
 };
 
