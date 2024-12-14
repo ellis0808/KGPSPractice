@@ -93,6 +93,8 @@ class App {
       answer_attempts: 0,
       activity_score: scoreFunction.currentScore,
     };
+    console.log(newStats);
+
     try {
       const response = await fetch(
         "/KGPSEnglishPractice-test/api/add_user_activity_record.php",
@@ -103,6 +105,7 @@ class App {
         }
       );
       const data = await response.json();
+      console.log(data);
 
       if (!response.ok) {
         throw new Error("Network response was not okay");
