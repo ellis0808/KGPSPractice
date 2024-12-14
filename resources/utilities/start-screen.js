@@ -40,6 +40,7 @@ const startScreen = {
     if (this.startBtn.classList.contains("spinfade")) {
       this.startBtn.classList.remove("hide");
       this.startBtn.classList.remove("spinfade");
+      this.startBtn.classList.remove("no-touch");
       this.startBtn.classList.add("intro");
       this.exitBtn.classList.remove("no-touch");
       this.exitBtn.classList.remove("hide2");
