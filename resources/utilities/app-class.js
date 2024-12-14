@@ -60,6 +60,13 @@ class App {
     this.appStructure = appStructure;
     this.gridPopulator = gridPopulator;
   }
+  resetAppVariables() {
+    this.time = null;
+    this.clearBoardMethod = null;
+    this.appEventListeners = null;
+    this.appStructure = null;
+    this.gridPopulator = null;
+  }
   setUser() {
     user.gradeLevel = sessionData.gradeLevel;
     user.firstName = sessionData.firstName;
@@ -113,9 +120,6 @@ class App {
 
     // setTimeout(this.setUser, 2000);
     toggleBlur.removeAllBlur();
-    console.log(this.time);
-
-    console.log("start app method finished");
   }
   endApp() {
     timerFunction.clearTimer();
@@ -123,6 +127,7 @@ class App {
     this.endSession();
     endRoundScreen.removeContainer();
     setTimeout(() => {
+      this.resetAppVariables();
       document.querySelector(".container").remove();
       this.gridRemove();
       // this.removeMainAppStructure();
@@ -136,7 +141,7 @@ class App {
   }
   setForeignElements() {
     homeBtnFunction.initialize();
-    startScreen.createAndSetStartScreen();
+    startScreen.initializeContainer();
     endRoundScreen.initializeContainer();
     this.setAppControlsContainer(
       homeBtnFunction.homeBtn,
@@ -214,24 +219,6 @@ class App {
   initializeEventListeners() {
     console.log("first?");
     this.appEventListeners();
-  }
-  createMainAppStructure() {
-    this.appContainer = document.createElement("div");
-    this.grid = document.createElement("div");
-    this.btnContainer1 = document.createElement("div");
-    this.btnContainer2 = document.createElement("div");
-    this.btnContainer4 = document.createElement("div");
-    this.btnContainer5 = document.createElement("div");
-    this.leftMenuContainer = document.createElement("div");
-    this.appControlsContainer = document.createElement("div");
-    this.appContainer.classList.add("container");
-    this.grid.classList.add("grid");
-    this.btnContainer1.classList.add("btn-container1");
-    this.btnContainer2.classList.add("btn-container2");
-    this.btnContainer4.classList.add("btn-container4");
-    this.btnContainer5.classList.add("btn-container5");
-    this.appControlsContainer.classList.add("home-btn-container", "hide");
-    this.leftMenuContainer.classList.add("left-menu-container");
   }
   setMainAppStructure() {
     mainContainer.appendChild(this.appContainer);

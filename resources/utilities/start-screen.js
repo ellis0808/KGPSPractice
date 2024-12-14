@@ -19,10 +19,11 @@ const startScreen = {
     this.startBtn.addEventListener("pointerdown", app.startSession);
     this.exitBtn.addEventListener("pointerdown", app.endApp);
   },
-  createAndSetStartScreen() {
+  initializeContainer() {
     this.createStartScreen();
     this.setStartEndAppBtnFunctions();
     this.setStartScreen();
+    this.displayStartScreen();
   },
   displayStartScreen() {
     scoreFunction.resetCurrentScore();
@@ -34,6 +35,16 @@ const startScreen = {
     this.exitBtn.classList.add("no-touch");
     this.exitBtn.classList.add("hide2");
     this.exitBtn.classList.remove("intro");
+  },
+  displayStartScreen() {
+    if (this.startBtn.classList.contains("spinfade")) {
+      this.startBtn.classList.remove("hide");
+      this.startBtn.classList.remove("spinfade");
+      this.startBtn.classList.add("intro");
+      this.exitBtn.classList.remove("no-touch");
+      this.exitBtn.classList.remove("hide2");
+      this.exitBtn.classList.add("intro");
+    }
   },
 };
 
