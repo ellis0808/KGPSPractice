@@ -731,8 +731,10 @@ class MenuItems {
     document
       .querySelectorAll(".primary-menu,  .secondary-menu")
       .forEach((item) => {
-        item.classList.add("hidden");
-        item.remove();
+        item.classList.add("hide");
+        setTimeout(() => {
+          item.remove();
+        }, 200);
       });
     // navBar.remove();
     // navBar.classList.add("hidden");
