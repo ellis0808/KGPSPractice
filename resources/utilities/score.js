@@ -69,12 +69,14 @@ const scoreFunction = {
       this.decreaseScore(amuont);
     }, 600);
   },
-  displayHideToggle() {
-    if (scoreFunction.display.classList.contains("hide2")) {
-      this.display.classList.toggle("hide2");
+  show() {
+    if (!this.scoreFunction.classList.contains("hide")) {
+      this.scoreFunction.classList.add("hide");
     }
-    if (scoreFunction.display.classList.contains("hide")) {
-      this.display.classList.toggle("hide");
+  },
+  hide() {
+    if (this.scoreFunction.classList.contains("hide")) {
+      this.scoreFunction.classList.remove("hide");
     }
   },
   resetCurrentScore() {

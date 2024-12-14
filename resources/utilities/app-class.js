@@ -180,8 +180,8 @@ class App {
     if (this.clearBoardMethod) {
       this.clearBoard();
     }
-    scoreFunction.displayHideToggle();
-    timerFunction.toggleTimerHide();
+    scoreFunction.hide();
+    timerFunction.hide();
   }
   clearBoard() {
     this.clearBoardMethod();
@@ -191,8 +191,8 @@ class App {
     endRoundScreen.removeContainer();
     toggleTouchFunction.enableTouch();
     toggleBlur.removeWeakBlur();
-    scoreFunction.displayHideToggle();
-    timerFunction.toggleTimerHide();
+    scoreFunction.show();
+    timerFunction.show();
     this.appControlsContainer.classList.remove("hide");
     this.gridHideRemove();
   }
