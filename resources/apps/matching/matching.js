@@ -23,7 +23,7 @@ import { menuItems } from "../general/start-main-app.js";
 
 class MatchingApp {
   constructor() {
-    this.activityId = activityId;
+    this.activityId = null;
     this.correctAnswerPoints = 1;
     this.endDotId = null;
     this.startDotId = null;
@@ -45,7 +45,7 @@ class MatchingApp {
   run(set, time) {
     this.setStyleSheet();
     setStyle(set);
-    setActivityId(1);
+    this.setActivityId();
     setTimeout(() => {
       this.setTime(time);
       this.setUpApp();
@@ -74,6 +74,10 @@ class MatchingApp {
   setStyleSheet() {
     app.applyAppStyleSheet(this.styleSheet);
     menuItems.removeMenuPage();
+  }
+  setActivityId() {
+    setActivityId(1);
+    this.activityId = activityId;
   }
   createGrid() {
     this.startRowContainer = document.createElement("div");
