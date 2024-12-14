@@ -1,5 +1,5 @@
 import { mainContainer } from "./variables.js";
-import { timerFunction } from "./timer.js";
+import { timer, timerFunction } from "./timer.js";
 import {
   pauseFunction,
   elements,
@@ -112,11 +112,8 @@ class App {
     pauseFunction.unpause();
     scoreFunction.display.innerText = scoreFunction.currentScore;
     this.appContainer.classList.remove("hide");
-    scoreFunction.displayHideToggle();
-
-    if (!timerFunction.timer.classList.contains("hide2")) {
-      timerFunction.toggleTimerHide();
-    }
+    scoreFunction.hide();
+    timerFunction.hide();
 
     // setTimeout(this.setUser, 2000);
     toggleBlur.removeAllBlur();

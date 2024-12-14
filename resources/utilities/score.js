@@ -70,13 +70,13 @@ const scoreFunction = {
     }, 600);
   },
   show() {
-    if (!this.scoreFunction.classList.contains("hide")) {
-      this.scoreFunction.classList.add("hide");
+    if (!this.display.classList.contains("hide")) {
+      this.display.classList.add("hide");
     }
   },
   hide() {
-    if (this.scoreFunction.classList.contains("hide")) {
-      this.scoreFunction.classList.remove("hide");
+    if (this.display.classList.contains("hide")) {
+      this.display.classList.remove("hide");
     }
   },
   resetCurrentScore() {
