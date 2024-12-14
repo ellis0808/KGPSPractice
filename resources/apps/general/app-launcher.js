@@ -3,7 +3,6 @@ import { fluencyApp } from "../fluency/fluency.js";
 import { writingApp } from "../writing/writing.js";
 import { audio } from "../../utilities/audio.js";
 
-console.log("test");
 const appLauncher = {
   startCardTouchApp(set) {
     audio.navigationSfx.selectMenu.play();

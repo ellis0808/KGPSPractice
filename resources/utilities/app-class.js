@@ -12,7 +12,7 @@ import { homeBtnFunction } from "./go-home-function.js";
 import { endRoundScreen } from "./end-round-screen.js";
 import { audio } from "./audio.js";
 import { menuItems } from "../apps/general/start-main-app.js";
-console.log("app class");
+import { user } from "./user-object.js";
 
 class App {
   constructor() {
