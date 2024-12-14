@@ -81,7 +81,9 @@ class App {
   }
   async updateUserTotalScore() {
     //  For student users; teachers will differ on user type, etc
-    const newScore = {
+    console.log(scoreFunction.currentScore);
+
+    const newStats = {
       activity_id: this.activityId,
       user_id: user.id,
       user_type: user.access,
@@ -97,7 +99,7 @@ class App {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newScore),
+          body: JSON.stringify(newStats),
         }
       );
       const data = await response.json();
@@ -213,8 +215,10 @@ class App {
     toggleBlur.removeAllBlur();
   }
   endRound() {
+    this.updateUserTotalScore();
+    console.log(user.cumulativeScore);
     scoreFunction.updateUserScore();
-    // scoreFunction.updateStudentTotalScore();
+    console.log(user.cumulativeScore);
     endRoundScreen.displayContainer();
   }
   initializeEventListeners() {

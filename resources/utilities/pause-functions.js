@@ -75,8 +75,6 @@ class PauseFunction {
   }
   pause() {
     this.isPaused = true;
-    console.log(homeBtnFunction.goHomeContainerIsDisplayed);
-
     this.pauseToUnPauseToggle();
 
     toggleTouchFunction.disableTouch();
@@ -84,8 +82,6 @@ class PauseFunction {
   }
   unpause() {
     this.isPaused = false;
-    console.log(homeBtnFunction.goHomeContainerIsDisplayed);
-
     homeBtnFunction.removeContainer();
 
     this.unpauseToPauseToggle();
