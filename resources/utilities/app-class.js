@@ -121,7 +121,7 @@ class App {
     this.appContainer.classList.remove("hide");
     scoreFunction.hide();
     timerFunction.hide();
-
+    sessionCheck();
     setTimeout(this.setUser, 2000);
     toggleBlur.removeAllBlur();
   }
