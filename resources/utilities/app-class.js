@@ -13,6 +13,7 @@ import { endRoundScreen } from "./end-round-screen.js";
 import { audio } from "./audio.js";
 import { menuItems } from "../apps/general/start-main-app.js";
 import { user } from "./user-object.js";
+import { sessionCheck, sessionData } from "../login/session-check.js";
 
 class App {
   constructor() {
