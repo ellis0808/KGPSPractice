@@ -50,6 +50,7 @@ class MatchingApp {
       app.setForeignElements();
       app.startApp();
     }, 200);
+    console.log(this.activityId);
   }
   setTime(time) {
     this.time = time;
