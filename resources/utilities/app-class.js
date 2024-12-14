@@ -41,6 +41,8 @@ class App {
     this.appEventListeners = null;
     this.appStructure = null;
     this.gridPopulator = null;
+    this.activityId = null;
+
     this.endApp = this.endApp.bind(this);
     this.startSession = this.startSession.bind(this);
     this.endSession = this.endSession.bind(this);
@@ -53,13 +55,15 @@ class App {
     boardClear,
     eventListeners,
     appStructure,
-    gridPopulator
+    gridPopulator,
+    activityId
   ) {
     this.time = time;
     this.clearBoardMethod = boardClear;
     this.appEventListeners = eventListeners;
     this.appStructure = appStructure;
     this.gridPopulator = gridPopulator;
+    this.activityId = activityId;
   }
   resetAppVariables() {
     this.time = null;
@@ -121,6 +125,7 @@ class App {
   }
   endApp() {
     scoreFunction.updateUserScore();
+    this.updateUserTotalScore();
     this.endSession();
     endRoundScreen.removeContainer();
     setTimeout(() => {

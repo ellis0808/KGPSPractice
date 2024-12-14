@@ -22,6 +22,7 @@ import { menuItems } from "../general/start-main-app.js";
 
 class MatchingApp {
   constructor() {
+    this.activityId = activityId;
     this.correctAnswerPoints = 1;
     this.endDotId = null;
     this.startDotId = null;
@@ -59,7 +60,8 @@ class MatchingApp {
       this.clearBoard,
       this.activateEventListeners,
       this.createAndSetStructure,
-      this.populateGrid
+      this.populateGrid,
+      this.activityId
     );
   }
   createAndSetStructure = () => {
