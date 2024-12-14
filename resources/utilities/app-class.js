@@ -36,7 +36,6 @@ class App {
     this.appControlsContainer.classList.add("home-btn-container", "hide");
     this.leftMenuContainer.classList.add("left-menu-container");
     this.time = null;
-    this.appElements = null;
     this.clearBoardMethod = null;
     this.appEventListeners = null;
     this.appStructure = null;
@@ -50,14 +49,12 @@ class App {
   }
   setAppVariables(
     time,
-    appElm,
     boardClear,
     eventListeners,
     appStructure,
     gridPopulator
   ) {
     this.time = time;
-    this.appElements = appElm;
     this.clearBoardMethod = boardClear;
     this.appEventListeners = eventListeners;
     this.appStructure = appStructure;
@@ -105,8 +102,6 @@ class App {
     this.createAndSetAppStructureThenHideGrid();
     this.setForeignElements();
     this.createAndSetAppSpecificStructure();
-    elements.getElements(this.appElements);
-    console.log(elements);
     pauseFunction.unpause();
     scoreFunction.display.innerText = scoreFunction.currentScore;
     this.appContainer.classList.remove("hide");
@@ -198,7 +193,6 @@ class App {
     this.gridHideRemove();
   }
   startRound() {
-    elements.getElements(this.appElements);
     this.prepareForNewRound();
     setTimeout(() => {
       this.gridPopulator();
@@ -209,7 +203,6 @@ class App {
       setTimeout(() => {
         this.gridHideRemove();
       }, 100);
-      console.log(this.appElements);
     }, 1000);
     toggleBlur.removeAllBlur();
   }

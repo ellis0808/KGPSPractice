@@ -24,10 +24,6 @@ console.log("matching");
 
 class MatchingApp {
   constructor() {
-    this.matchingAppElements = [
-      ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid,.line",
-    ];
-
     this.correctAnswerPoints = 1;
     this.endDotId = null;
     this.startDotId = null;
@@ -46,11 +42,11 @@ class MatchingApp {
     this.onPointerUp = this.onPointerUp.bind(this);
     this.onPointerUpFalse = this.onPointerUpFalse.bind(this);
   }
-  run(set) {
+  run(set, time) {
     this.setStyleSheet();
     setStyle(set);
     setTimeout(() => {
-      this.setTime(60);
+      this.setTime(time);
       this.setUpApp();
       app.setForeignElements();
       app.startApp();
@@ -62,7 +58,6 @@ class MatchingApp {
   setUpApp() {
     app.setAppVariables(
       this.time,
-      this.matchingAppElements,
       this.clearBoard,
       this.activateEventListeners,
       this.createAndSetStructure,

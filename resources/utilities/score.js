@@ -11,8 +11,8 @@ const scoreFunction = {
   display: (() => {
     const div = document.createElement("div");
 
-    div.classList.add("scoreFunction-display");
-    div.setAttribute("id", "scoreFunction-display");
+    div.classList.add("score-display");
+    div.setAttribute("id", "score-display");
     // div.textContent = this.currentScore;
     return div;
   })(),
