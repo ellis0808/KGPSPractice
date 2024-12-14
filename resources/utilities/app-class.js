@@ -122,7 +122,6 @@ class App {
     toggleBlur.removeAllBlur();
   }
   endApp() {
-    timerFunction.clearTimer();
     scoreFunction.updateUserScore();
     this.endSession();
     endRoundScreen.removeContainer();
