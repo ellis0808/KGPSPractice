@@ -125,7 +125,6 @@ class App {
   }
   endApp() {
     scoreFunction.updateUserScore();
-    this.updateUserTotalScore();
     this.endSession();
     endRoundScreen.removeContainer();
     setTimeout(() => {
@@ -219,7 +218,6 @@ class App {
     endRoundScreen.displayContainer();
   }
   initializeEventListeners() {
-    console.log("first?");
     this.appEventListeners();
   }
   setMainAppStructure() {

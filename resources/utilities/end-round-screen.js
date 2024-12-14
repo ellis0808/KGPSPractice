@@ -33,6 +33,7 @@ const endRoundScreen = {
   },
   displayContainer() {
     if (timerFunction.timerFinished) {
+      app.updateUserTotalScore();
       this.setScoreMessage();
       this.endMessagesContainer.appendChild(this.tryAgainBtn);
       this.endMessagesContainer.appendChild(this.finishBtn);
