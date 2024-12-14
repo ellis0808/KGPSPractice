@@ -12,6 +12,7 @@ import {
   style,
   activityId,
   setStyle,
+  setActivityId,
 } from "./matching-set-style-and-activity-id.js";
 import { audio } from "../../utilities/audio.js";
 import { toggleTouchFunction } from "../../utilities/pause-functions.js";
@@ -44,6 +45,7 @@ class MatchingApp {
   run(set, time) {
     this.setStyleSheet();
     setStyle(set);
+    setActivityId(1);
     setTimeout(() => {
       this.setTime(time);
       this.setUpApp();
