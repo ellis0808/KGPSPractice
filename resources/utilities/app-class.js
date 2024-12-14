@@ -150,7 +150,6 @@ class App {
   }
   startSession() {
     audio.navigationSfx.startApp.play();
-    this.prepareForNewRound();
     this.initializeEventListeners();
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
