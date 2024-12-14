@@ -55,12 +55,12 @@ const timerFunction = {
   clearTimer() {
     clearInterval(this.counter);
   },
-  show() {
+  hide() {
     if (!this.timer.classList.contains("hide")) {
       this.timer.classList.add("hide");
     }
   },
-  hide() {
+  show() {
     if (this.timer.classList.contains("hide")) {
       this.timer.classList.remove("hide");
     }
