@@ -734,7 +734,7 @@ class MenuItems {
         item.classList.add("hide");
         setTimeout(() => {
           item.remove();
-        }, 200);
+        }, 1000);
       });
     // navBar.remove();
     // navBar.classList.add("hidden");
