@@ -14,6 +14,7 @@ class WritingApp {
     this.time = null;
     this.correctAnswerPoints = 1;
     this.maxNumberOfWordsToWrite = 10;
+    this.createGrid = this.createGrid.bind(this);
   }
   run(set, time) {
     this.setStyleSheet();
