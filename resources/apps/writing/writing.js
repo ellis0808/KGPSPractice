@@ -14,7 +14,7 @@ class WritingApp {
     this.time = null;
     this.correctAnswerPoints = 1;
     this.maxNumberOfWordsToWrite = 10;
-    this.createGrid = this.createGrid.bind(this);
+    // this.createGrid = this.createGrid.bind(this);
   }
   run(set, time) {
     this.setStyleSheet();
@@ -41,12 +41,12 @@ class WritingApp {
       this.activityId
     );
   }
-  createAndSetStructure() {
+  createAndSetStructure = () => {
     this.createGrid();
     this.createAppControls();
     this.createGridElements();
     this.setGridandElements();
-  }
+  };
   setStyleSheet() {
     app.applyAppStyleSheet(this.stylesheet);
   }
