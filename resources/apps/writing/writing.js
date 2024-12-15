@@ -90,7 +90,7 @@ class WritingApp {
         this.canvasController.undo(event);
       }
     });
-    checkBtn.addEventListener("pointerdown", (event) => {
+    this.checkBtn.addEventListener("pointerdown", (event) => {
       if (this.canvasController.trace.length !== 0) {
         this.canvasController.recognize(event);
       } else {
