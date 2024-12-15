@@ -157,6 +157,7 @@ class App {
   }
   applyAppStyleSheet(newSheet) {
     stylesheet.setAttribute("href", newSheet);
+    menuItems.removeMenuPage();
   }
   startSession() {
     audio.navigationSfx.startApp.play();

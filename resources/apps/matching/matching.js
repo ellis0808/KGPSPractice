@@ -6,8 +6,6 @@ import {
   endDot,
   Connector,
 } from "./dot-objects-control.js";
-import { sessionCheck, sessionData } from "../../login/session-check.js";
-import { user } from "../../utilities/user-object.js";
 import {
   style,
   activityId,
@@ -19,7 +17,6 @@ import { toggleTouchFunction } from "../../utilities/pause-functions.js";
 import { app } from "../../utilities/app-class.js";
 import { gridItems, itemArrays } from "./generate-grid-items.js";
 import { alphabet } from "../card-touch/card-data.js";
-import { menuItems } from "../general/start-main-app.js";
 
 class MatchingApp {
   constructor() {
@@ -73,7 +70,6 @@ class MatchingApp {
   };
   setStyleSheet() {
     app.applyAppStyleSheet(this.styleSheet);
-    menuItems.removeMenuPage();
   }
   setActivityId() {
     setActivityId(1);
@@ -532,53 +528,5 @@ class MatchingApp {
 }
 
 const matchingApp = new MatchingApp();
-
-/*
-*******
-I. MAIN APP
-*******
-*/
-const matchingAppElements = [
-  ".dot,.dot-enclosure,.capitals,.lowercase,.btn-container1,.grid",
-];
-
-function setUser() {
-  user.gradeLevel = sessionData.gradeLevel;
-  user.firstName = sessionData.firstName;
-  user.lastName = sessionData.lastName;
-  user.access = sessionData.access;
-  user.id = sessionData.userId;
-}
-
-async function updateUserTotalScore() {
-  //  For student users; teachers will differ on user type, etc
-  const newScore = {
-    activity_id: activityId,
-    user_id: user.id,
-    user_type: user.access,
-    correct_answer_count: 0,
-    incorrect_answer_count: 0,
-    time_to_correct_answer_duration_in_seconds: 0,
-    answer_attempts: 0,
-    activity_score: scoreFunction.currentScore,
-  };
-  try {
-    const response = await fetch(
-      "/KGPSEnglishPractice-test/api/add_user_activity_record.php",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newScore),
-      }
-    );
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error("Network response was not okay");
-    }
-  } catch (error) {
-    console.error("Error adding record:", error);
-  }
-}
 
 export { matchingApp };

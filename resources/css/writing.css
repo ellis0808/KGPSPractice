@@ -61,8 +61,8 @@ body:not(:has(*)) {
   background: transparent;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.15fr 0.15fr 1fr 0.3fr;
-  grid-template-areas: "top-row" "second-row" "canvas-row" "bottom-row";
+  grid-template-rows: 0.15fr 1fr 0.3fr;
+  grid-template-areas: "message-row" "canvas-row" "controls-row";
   place-content: center;
   place-items: center;
   z-index: 0;
@@ -84,8 +84,8 @@ body:not(:has(*)) {
   place-content: center;
   place-items: center;
 }
-.second-row {
-  grid-area: second-row;
+.message-row {
+  grid-area: message-row;
   width: 100%;
   height: 100%;
   display: grid;
@@ -126,18 +126,9 @@ body:not(:has(*)) {
   color: black;
   font-size: 2rem;
 }
-.top-row {
-  grid-area: top-row;
-  width: 100%;
-  border: 1px red solid;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr;
-  grid-template-areas: "clear-btn  undo-btn  check-btn";
-  place-content: space-around;
-}
-.bottom-row {
-  grid-area: bottom-row;
+
+.controls-row {
+  grid-area: controls-row;
   width: 100%;
   border: 1px red solid;
   display: grid;

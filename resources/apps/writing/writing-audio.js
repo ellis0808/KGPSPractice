@@ -1,5 +1,5 @@
 import { audio } from "../../utilities/audio.js";
-import { randomItemArray } from "./writing.js";
+import { writingApp } from "./writing.js";
 
 class WritingAudio {
   constructor() {
@@ -8,12 +8,14 @@ class WritingAudio {
     this.repeat = this.repeat.bind(this);
   }
   updateRandomNumber = () => {
-    this.randomNumber = Math.floor(Math.random() * randomItemArray.length);
+    this.randomNumber = Math.floor(
+      Math.random() * writingApp.randomItemArray.length
+    );
     return this.randomNumber;
   };
   speak = () => {
     this.updateRandomNumber();
-    this.randomWord = randomItemArray[this.randomNumber];
+    this.randomWord = writingApp.randomItemArray[this.randomNumber];
     setTimeout(() => {
       console.log(this.randomWord);
       audio.audioObject[this.randomWord].sound.play();
