@@ -11,7 +11,7 @@ class WritingApp {
   constructor() {
     this.activityId = null;
     this.stylesheet = "/KGPSEnglishPractice-test/resources/css/writing.css";
-    this.time = nuill;
+    this.time = null;
     this.correctAnswerPoints = 1;
     this.maxNumberOfWordsToWrite = 10;
   }
