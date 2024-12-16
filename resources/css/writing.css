@@ -80,6 +80,7 @@ body:not(:has(*)) {
 }
 .btn-container1 {
   grid-area: btn-container1;
+  width: 90%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-areas: "timer  score-display  repeat-btn";
@@ -156,8 +157,13 @@ body:not(:has(*)) {
   padding: 20px;
   display: grid;
   grid-template-columns: 0.25fr 1fr 0.25fr;
-  grid-template-rows: 0.5fr 1fr 0.5fr;
-  grid-template-areas: "..... message-row ....." "..... canvas-row ....." "..... controls-row .....";
+  grid-template-rows: 0.5fr 0.05fr 1fr 0.05fr 0.5fr;
+  grid-template-areas:
+    "..... message-row ....."
+    "..... ..... ....."
+    "..... canvas-row ....."
+    "..... ..... ....."
+    "..... controls-row .....";
   overflow: hidden;
   --stagger-delaay: 0.1s;
   transition: 0.3s;

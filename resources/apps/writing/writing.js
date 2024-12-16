@@ -75,6 +75,7 @@ class WritingApp {
     this.checkBtn.classList.add("check-btn", "btn");
     this.checkBtn.innerText = "Check";
     this.undoBtn.classList.add("undo-btn", "btn");
+    this.undoBtn.innerText = "Undo";
     this.clearBtn.classList.add("clear-btn", "btn");
     this.clearBtn.innerText = "Clear";
     this.clearBtn.addEventListener("pointerdown", () => {
