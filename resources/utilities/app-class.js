@@ -226,7 +226,9 @@ class App {
     endRoundScreen.displayContainer();
   }
   initializeEventListeners() {
-    this.appEventListeners();
+    if (this.appEventListeners) {
+      this.appEventListeners();
+    }
   }
   setMainAppStructure() {
     mainContainer.appendChild(this.appContainer);

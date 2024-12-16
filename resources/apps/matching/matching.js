@@ -46,7 +46,6 @@ class MatchingApp {
     setTimeout(() => {
       this.setTime(time);
       this.setUpApp();
-      app.setForeignElements();
       app.startApp();
     }, 200);
     console.log(this.activityId);

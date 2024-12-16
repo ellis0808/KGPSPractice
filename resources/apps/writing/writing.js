@@ -23,7 +23,6 @@ class WritingApp {
     setTimeout(() => {
       this.setTime(time);
       this.setUpApp();
-      app.setForeignElements();
       app.startApp();
       this.setCanvasFunctionality();
     }, 200);
@@ -34,8 +33,8 @@ class WritingApp {
   setUpApp() {
     app.setAppVariables(
       this.time,
-      this.clearBoard,
-      this.activateEventListeners,
+      this.clearCanvas,
+      null,
       this.createAndSetStructure,
       this.generateItems,
       this.activityId
@@ -163,7 +162,7 @@ class WritingApp {
     }
   }
   getNewWord() {
-    resetCanvas();
+    this.clearCanvas();
     setTimeout(writingAudio.speak, 300);
   }
   addBorderIncorrect() {
