@@ -43,8 +43,8 @@ class WritingApp {
   }
   createAndSetStructure = () => {
     this.createGrid();
+    this.createCanvas();
     this.createAppControls();
-    this.createGridElements();
     this.setGridandElements();
   };
   setStyleSheet() {
@@ -99,7 +99,7 @@ class WritingApp {
       }
     });
   }
-  createGridElements() {
+  createCanvas() {
     this.canvas = document.createElement("canvas");
     this.canvas.setAttribute("id", "canvas");
     this.canvas.classList.add("canvas");
@@ -123,8 +123,8 @@ class WritingApp {
     app.btnContainer1.appendChild(this.repeatBtn);
   }
   setGridandElements() {
-    this.setGrid();
     this.setGridElements();
+    this.setGrid();
   }
   setCanvasFunctionality() {
     this.canvasController = new handwriting.Canvas(
