@@ -12,10 +12,9 @@ class WritingApp {
     this.activityId = null;
     this.stylesheet = "/KGPSEnglishPractice-test/resources/css/writing.css";
     this.time = null;
+    this.randomItemArray = [];
     this.correctAnswerPoints = 1;
     this.maxNumberOfWordsToWrite = 10;
-    this.removeCorrectIncorrectBorder =
-      this.removeCorrectIncorrectBorder.bind(this);
   }
   run(set, time) {
     this.setStyleSheet();
@@ -156,7 +155,6 @@ class WritingApp {
     console.log(this.items);
   }
   getRandomItem() {
-    this.randomItemArray = [];
     let randomItem;
     let i;
     for (i = 0; i < this.maxNumberOfWordsToWrite; ++i) {

@@ -62,7 +62,7 @@ body:not(:has(*)) {
   background: transparent;
   display: grid;
   grid-template-columns: 0.25 2fr 2fr 0.25fr;
-  grid-template-rows: 0.1fr 0.1fr 0.3fr 1fr 0.2fr 0.2fr 0.2fr;
+  grid-template-rows: 0.1fr 0.1fr 0.1fr 1.25fr 0.2fr 0.2fr 0.2fr;
   grid-template-areas:
     "..... ..... ..... ....."
     "..... btn-container1 btn-container1 ....."
