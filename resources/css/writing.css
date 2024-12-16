@@ -60,15 +60,55 @@ body:not(:has(*)) {
   max-height: 1000px;
   background: transparent;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 0.15fr 1fr 0.3fr;
-  grid-template-areas: "message-row" "canvas-row" "controls-row";
+  grid-template-columns: 0.25 2fr 2fr 0.25fr;
+  grid-template-rows: 0.1fr 0.1fr 0.3fr 1fr 0.2fr 0.2fr 0.2fr;
+  grid-template-areas:
+    "..... ..... ..... ....."
+    "btn-container1"
+    "..... ..... ..... ....."
+    "..... writing-grid writing-grid....."
+    "..... ..... ..... ....."
+    "..... home-btn-container home-btn-container ....."
+    "..... ..... ..... .....";
   place-content: center;
   place-items: center;
   z-index: 0;
   margin: auto;
   overflow: hidden;
   touch-action: none;
+}
+.btn-container1 {
+  grid-area: btn-container1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: "timer  score-display";
+}
+@media (orientation: portrait) and (min-width: 600px) {
+  .btn-container1 {
+    grid-area: btn-container1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "timer  score-display";
+  }
+}
+@media (orientation: landscape) and (min-width: 600px) {
+  .btn-container1 {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: "timer" "score-display";
+    padding-top: 4rem;
+    align-self: start;
+    justify-items: center;
+  }
+}
+@media (width > 1200px) {
+  .btn-container1 {
+    grid-area: btn-container1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "timer  score-display";
+  }
 }
 .btn-container2 {
   width: 100%;
@@ -83,6 +123,47 @@ body:not(:has(*)) {
   position: absolute;
   place-content: center;
   place-items: center;
+}
+.btn-container4 {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "..... ..... ....."
+    "..... go-home-container ....."
+    "..... ..... .....";
+  position: absolute;
+  place-content: center;
+  place-items: center;
+}
+.btn-container5 {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "..... ..... ....."
+    "..... end-messages-container ....."
+    "..... ..... .....";
+  position: absolute;
+  place-content: center;
+  place-items: center;
+}
+.grid {
+  grid-area: writing-grid;
+  max-width: 400px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1.5fr 75px 1fr 75px 1.5fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "message-row" "canvas-row" "controls-row";
+  overflow: hidden;
+  --stagger-delaay: 0.1s;
+  transition: 0.3s;
+  z-index: 0;
 }
 .message-row {
   grid-area: message-row;
