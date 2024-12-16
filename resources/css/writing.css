@@ -305,7 +305,7 @@ body:not(:has(*)) {
   place-items: center;
   transition: 0.25s ease-in-out;
 }
-@media only screen and (orientation: portrait) and (device-width: 768px) {
+/* @media only screen and (orientation: portrait) and (device-width: 768px) {
   .home-btn-container {
     grid-area: home-btn-container;
     display: grid;
@@ -333,7 +333,7 @@ body:not(:has(*)) {
     display: flex;
     flex-direction: column;
   }
-}
+} */
 .home-btn {
   grid-area: home-btn;
   width: 35px;
