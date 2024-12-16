@@ -26,7 +26,7 @@
 }
 
 body {
-  background: rgb(255, 218, 218);
+  background: #222;
   margin: 0;
   padding: 0;
   /* display: grid; */
@@ -217,7 +217,6 @@ body:not(:has(*)) {
   grid-area: controls-row;
   height: 100px;
   width: 100%;
-  border: 1px red solid;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
