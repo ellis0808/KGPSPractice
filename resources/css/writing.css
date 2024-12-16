@@ -84,7 +84,7 @@ body:not(:has(*)) {
   grid-template-columns: repeat(3, 1fr);
   grid-template-areas: "timer  score-display  repeat-btn";
 }
-@media (orientation: portrait) and (min-width: 600px) {
+/* @media (orientation: portrait) and (min-width: 600px) {
   .btn-container1 {
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "timer  score-display repeat-btn";
@@ -106,7 +106,7 @@ body:not(:has(*)) {
     grid-template-rows: 1fr;
     grid-template-areas: "timer  score-display repeat-btn";
   }
-}
+} */
 .btn-container2 {
   width: 100%;
   height: 100%;
@@ -166,7 +166,7 @@ body:not(:has(*)) {
 .message-row {
   grid-area: message-row;
   width: 100%;
-  height: 100%;
+  height: 100px;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -176,7 +176,7 @@ body:not(:has(*)) {
 }
 .canvas-row {
   grid-area: canvas-row;
-  height: 100%;
+  height: 500px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
@@ -209,7 +209,7 @@ body:not(:has(*)) {
 
 .controls-row {
   grid-area: controls-row;
-  height: 100%;
+  height: 100px;
   width: 100%;
   border: 1px red solid;
   display: grid;
