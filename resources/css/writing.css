@@ -176,6 +176,7 @@ body:not(:has(*)) {
 }
 .canvas-row {
   grid-area: canvas-row;
+  height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
@@ -208,6 +209,7 @@ body:not(:has(*)) {
 
 .controls-row {
   grid-area: controls-row;
+  height: 100%;
   width: 100%;
   border: 1px red solid;
   display: grid;
