@@ -250,6 +250,7 @@ class App {
     if (!this.btnContainer2) {
       this.btnContainer2 = document.createElement("div");
       this.btnContainer2.classList.add("btn-container2");
+      this.appContainer.appendChild(this.btnContainer2);
     }
     this.btnContainer2.appendChild(item1);
     this.btnContainer2.appendChild(item2);
