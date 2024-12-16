@@ -171,14 +171,14 @@ class WritingApp {
   addBorderCorrect() {
     this.canvas.classList.add("border-correct");
   }
-  removeCorrectIncorrectBorder() {
+  removeCorrectIncorrectBorder = () => {
     if (this.canvas.classList.contains("border-error")) {
       this.canvas.classList.remove("border-error");
     }
     if (this.canvas.classList.contains("border-correct")) {
       this.canvas.classList.remove("border-correct");
     }
-  }
+  };
   clearCanvas() {
     this.removeCorrectIncorrectBorder();
     this.canvasController.erase();
