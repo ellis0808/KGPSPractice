@@ -34,7 +34,7 @@ class WritingApp {
   setUpApp() {
     app.setAppVariables(
       this.time,
-      this.clearCanvas,
+      this.clearBoard,
       null,
       this.createAndSetStructure,
       this.generateItems,
@@ -181,6 +181,7 @@ class WritingApp {
       this.canvas.classList.remove("border-correct");
     }
   };
+  clearBoard() {}
   clearCanvas() {
     console.log(typeof this.removeCorrectIncorrectBorder);
 
