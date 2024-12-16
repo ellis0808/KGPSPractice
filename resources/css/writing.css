@@ -166,7 +166,7 @@ body:not(:has(*)) {
 .message-row {
   grid-area: message-row;
   width: 100%;
-  height: 100%;
+  height: 100px;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -176,7 +176,7 @@ body:not(:has(*)) {
 }
 .canvas-row {
   grid-area: canvas-row;
-  height: 100%;
+  height: 500px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
@@ -199,7 +199,7 @@ body:not(:has(*)) {
 .question-display {
   grid-area: question-display;
   width: 100%;
-  height: 100%;
+  height: 100px;
   display: grid;
   place-content: center;
   place-items: center;
@@ -209,7 +209,7 @@ body:not(:has(*)) {
 
 .controls-row {
   grid-area: controls-row;
-  height: 100%;
+  height: 100px;
   width: 100%;
   border: 1px red solid;
   display: grid;
