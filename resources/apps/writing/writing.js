@@ -150,10 +150,10 @@ class WritingApp {
     this.items = [];
     this.items.length = 0;
     Object.keys(audio.audioObject).forEach((item) => {
-      this.items.push(item);
+      this.randomItemArray.push(item);
     });
-    console.log(this.items);
-    this.getRandomItem();
+    console.log(this.randomItemArray);
+    writingAudio.speak();
   }
   getRandomItem() {
     let randomItem;
