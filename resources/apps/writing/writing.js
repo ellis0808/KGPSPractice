@@ -184,10 +184,6 @@ class WritingApp {
   };
   clearBoard() {}
   clearCanvas() {
-    console.log(typeof this.removeCorrectIncorrectBorder);
-
-    console.log(this.canvas, this.removeCorrectIncorrectBorder);
-
     this.removeCorrectIncorrectBorder();
     this.canvasController.erase();
   }
