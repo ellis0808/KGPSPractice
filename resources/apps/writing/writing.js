@@ -161,6 +161,7 @@ class WritingApp {
       randomItem = this.items[Math.floor(Math.random() * this.items.length)];
 
       this.randomItemArray.push(randomItem);
+      console.log(this.randomItemArray);
     }
   }
   getNewWord() {
