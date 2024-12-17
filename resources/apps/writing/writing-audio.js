@@ -8,11 +8,13 @@ class WritingAudio {
     this.repeat = this.repeat.bind(this);
   }
   updateRandomNumber = () => {
-    this.randomNumber = Math.floor(Math.random() * writingApp.items.length);
+    this.randomNumber = Math.floor(
+      Math.random() * writingApp.randomItemArray.length
+    );
   };
   speak = () => {
     this.updateRandomNumber();
-    this.randomWord = writingApp.items[this.randomNumber];
+    this.randomWord = writingApp.randomItemArray[this.randomNumber];
     setTimeout(() => {
       console.log(this.randomWord);
       audio.audioObject[this.randomWord].sound.play();

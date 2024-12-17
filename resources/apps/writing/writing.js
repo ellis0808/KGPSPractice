@@ -153,6 +153,7 @@ class WritingApp {
       this.items.push(item);
     });
     console.log(this.items);
+    this.getRandomItem();
   }
   getRandomItem() {
     let randomItem;
@@ -162,6 +163,7 @@ class WritingApp {
 
       this.randomItemArray.push(randomItem);
       console.log(this.randomItemArray);
+      writingAudio.speak();
     }
   }
   getNewWord() {
