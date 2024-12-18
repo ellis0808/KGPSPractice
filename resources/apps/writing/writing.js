@@ -18,8 +18,7 @@ class WritingApp {
   }
   run(set, time) {
     this.setStyleSheet();
-    setStyle(set);
-    this.setActivityId();
+    this.setStyle(set);
     console.log(this.activityId);
 
     setTimeout(() => {
