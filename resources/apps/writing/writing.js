@@ -218,14 +218,12 @@ class WritingApp {
     return this.canvasController;
   }
   generateItems() {
-    console.log(this.randomItemArray);
-
     this.items = [];
     this.items.length = 0;
     Object.keys(audio.audioObject).forEach((item) => {
-      this.randomItemArray.push(item);
+      this.items.push(item);
     });
-    console.log(this.randomItemArray);
+    console.log(this.items);
     writingAudio.speak();
   }
   getRandomItem() {
