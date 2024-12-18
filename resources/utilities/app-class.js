@@ -14,6 +14,7 @@ import { audio } from "./audio.js";
 import { menuItems } from "../apps/general/start-main-app.js";
 import { user } from "./user-object.js";
 import { sessionCheck, sessionData } from "../login/session-check.js";
+import { writingApp } from "../apps/writing/writing.js";
 
 class App {
   constructor() {
@@ -205,9 +206,14 @@ class App {
     this.gridHideRemove();
   }
   startRound() {
+    console.log("round started");
+
     this.prepareForNewRound();
     setTimeout(() => {
       this.gridPopulator();
+      console.log(this.gridPopulator);
+      console.log(writingApp.items, writingApp.randomItemArray);
+
       this.setBtnContainer1();
       setTimeout(() => {
         toggleTouchFunction.enableTouch();

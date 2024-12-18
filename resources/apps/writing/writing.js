@@ -208,6 +208,8 @@ class WritingApp {
   generateItems() {
     this.items = [];
     this.items.length = 0;
+    console.log(audio.audioObject);
+
     Object.keys(audio.audioObject).forEach((item) => {
       this.items.push(item);
     });

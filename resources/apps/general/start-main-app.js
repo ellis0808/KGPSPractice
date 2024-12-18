@@ -267,6 +267,7 @@ class MenuItems {
     );
     this.sightWords1AppMenuItem.innerText = "Group 1";
     this.sightWords1AppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
       appLauncher.startCardTouchApp("sightwords1");
       this.removeMenu();
     });
@@ -284,6 +285,7 @@ class MenuItems {
     );
     this.sightWords2AppMenuItem.innerText = "Group 2";
     this.sightWords2AppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
       appLauncher.startCardTouchApp("sightwords2");
       this.removeMenu();
     });
@@ -301,6 +303,7 @@ class MenuItems {
     );
     this.sightWords3AppMenuItem.innerText = "Group 3";
     this.sightWords3AppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
       appLauncher.startCardTouchApp("sightwords3");
       this.removeMenu();
     });
@@ -321,6 +324,7 @@ class MenuItems {
     );
     this.sightWords1WritingAppMenuItem.innerText = "Group 1";
     this.sightWords1WritingAppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
       writingApp.run("sightwords1", 60);
       this.removeMenu();
     });
@@ -340,6 +344,7 @@ class MenuItems {
     );
     this.sightWords2WritingAppMenuItem.innerText = "Group 2";
     this.sightWords2WritingAppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
       writingApp.run("sightwords2", 60);
       this.removeMenu();
     });
@@ -359,6 +364,7 @@ class MenuItems {
     );
     this.sightWords3WritingAppMenuItem.innerText = "Group 3";
     this.sightWords3WritingAppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
       writingApp.run("sightwords3", 60);
       this.removeMenu();
     });
@@ -376,6 +382,7 @@ class MenuItems {
     );
     this.numberFluency1to20AppMenuItem.innerText = "1-20";
     this.numberFluency1to20AppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
       appLauncher.startFluencyApp(1);
       this.removeMenu();
     });
@@ -393,6 +400,7 @@ class MenuItems {
     );
     this.numberFluency21to40AppMenuItem.innerText = "21-40";
     this.numberFluency21to40AppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
       appLauncher.startFluencyApp(2);
       this.removeMenu();
     });
@@ -410,6 +418,7 @@ class MenuItems {
     );
     this.numberFluency41to60AppMenuItem.innerText = "41-60";
     this.numberFluency41to60AppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
       appLauncher.startFluencyApp(3);
       this.removeMenu();
     });
@@ -427,6 +436,7 @@ class MenuItems {
     );
     this.numberFluency61to80AppMenuItem.innerText = "61-80";
     this.numberFluency61to80AppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
       appLauncher.startFluencyApp(4);
       this.removeMenu();
     });
@@ -444,6 +454,7 @@ class MenuItems {
     );
     this.numberFluency81to100AppMenuItem.innerText = "81-100";
     this.numberFluency81to100AppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
       appLauncher.startFluencyApp(5);
       this.removeMenu();
     });
@@ -460,6 +471,7 @@ class MenuItems {
     );
     this.numberWriting1to10AppMenuItem.innerText = "1-10";
     this.numberWriting1to10AppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
       writingApp.run("numbers1-10", 60);
       this.removeMenu();
     });
@@ -476,6 +488,7 @@ class MenuItems {
     );
     this.numberWriting11to20AppMenuItem.innerText = "11-20";
     this.numberWriting11to20AppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
       writingApp.run("numbers11-20", 60);
       this.removeMenu();
     });
@@ -492,6 +505,7 @@ class MenuItems {
     );
     this.numberWriting21to40AppMenuItem.innerText = "21-40";
     this.numberWriting21to40AppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
       writingApp.run("numbers21-40", 60);
       this.removeMenu();
     });
@@ -508,6 +522,7 @@ class MenuItems {
     );
     this.numberWriting1to50AppMenuItem.innerText = "1-50";
     this.numberWriting1to50AppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
       writingApp.run("numbers1-50", 60);
       this.removeMenu();
     });
