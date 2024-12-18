@@ -51,9 +51,94 @@ class WritingApp {
   setStyleSheet() {
     app.applyAppStyleSheet(this.stylesheet);
   }
-  setActivityId() {
-    setActivityId();
-    this.activityId = activityId;
+  setStyle(set) {
+    switch (set) {
+      // Numbers
+      case "numbers1-10":
+        this.style = 1;
+        writingAudio.startAudioFetch(style);
+        setActivityId(this.style);
+      case "numbers11-20":
+        this.style = 2;
+        writingAudio.startAudioFetch(style);
+        setActivityId(this.style);
+      case "numbers21-40":
+        this.style = 3;
+        writingAudio.startAudioFetch(style);
+        setActivityId(this.style);
+      case "numbers41-60":
+        this.style = 4;
+        writingAudio.startAudioFetch(style);
+        setActivityId(this.style);
+      case "numbers61-80":
+        this.style = 5;
+        writingAudio.startAudioFetch(style);
+        setActivityId(this.style);
+      case "numbers81-100":
+        this.style = 6;
+        writingAudio.startAudioFetch(style);
+        setActivityId(this.style);
+      case "numbers1-50":
+        this.style = 7;
+        writingAudio.startAudioFetch(style);
+        setActivityId(this.style);
+      case "numbers1-100":
+        this.style = 8;
+        writingAudio.startAudioFetch(style);
+        setActivityId(this.style);
+      // Math
+      case "sightwords1":
+        this.style = 9;
+        writingAudio.startAudioFetch(style);
+        setActivityId(this.style);
+      case "sightwords2":
+        this.style = 10;
+        writingAudio.startAudioFetch(style);
+        setActivityId(this.style);
+      case "sightwords3":
+        this.style = 11;
+        writingAudio.startAudioFetch(style);
+        setActivityId(this.style);
+      case "numbers1-100":
+        this.style = 5;
+        writingAudio.startAudioFetch(style);
+        setActivityId(this.style);
+      // Letter Sounds
+      case "numbers1-100":
+        this.style = 5;
+        writingAudio.startAudioFetch(style);
+        setActivityId(this.style);
+    }
+  }
+  setActivityId(style) {
+    if (style === 0) {
+      this.activityId = 1;
+      return activityId;
+    } else if (style === 1) {
+      this.activityId = 2;
+      return activityId;
+    } else if (style === 2) {
+      this.activityId = 4;
+      return activityId;
+    } else if (style === 3) {
+      this.activityId = 5;
+      return activityId;
+    } else if (style === 4) {
+      this.activityId = 6;
+      return activityId;
+    } else if (style === 5) {
+      this.activityId = 16;
+      return activityId;
+    } else if (style === 6) {
+      this.activityId = 8;
+      return activityId;
+    } else if (style === 7) {
+      this.activityId = 9;
+      return activityId;
+    } else if (style === 9) {
+      this.activityId = 4;
+      return activityId;
+    }
   }
   createGrid() {
     this.messageRow = document.createElement("div");
