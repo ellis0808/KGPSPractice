@@ -86,6 +86,8 @@ class WritingApp {
         this.style = 9;
         writingAudio.startAudioFetch(this.style);
         this.setActivityId(this.style);
+        console.log("this is correct!");
+
       case "sightwords2":
         this.style = 10;
         writingAudio.startAudioFetch(this.style);
