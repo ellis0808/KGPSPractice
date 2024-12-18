@@ -207,7 +207,7 @@ class WritingApp {
     return this.canvasController;
   }
   generateItems() {
-    console.log(this.items);
+    console.log(this.items, this.randomItemArray);
 
     this.items.length = 0;
     console.log(audio.audioObject);
