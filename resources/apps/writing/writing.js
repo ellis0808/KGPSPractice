@@ -207,7 +207,6 @@ class WritingApp {
     return this.canvasController;
   }
   generateItems() {
-    this.items = [];
     this.items.length = 0;
     console.log(audio.audioObject);
 
@@ -215,9 +214,9 @@ class WritingApp {
       this.items.push(item);
     });
     console.log(this.items);
-    writingAudio.speak();
+    this.getRandomItems();
   }
-  getRandomItem() {
+  getRandomItems() {
     let randomItem;
     let i;
     for (i = 0; i < this.maxNumberOfWordsToWrite; ++i) {
