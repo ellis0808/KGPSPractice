@@ -9,6 +9,7 @@ class WritingApp {
     this.stylesheet = "/KGPSEnglishPractice-test/resources/css/writing.css";
     this.time = null;
     this.randomItemArray = [];
+    this.items = [];
     this.correctAnswerPoints = 1;
     this.maxNumberOfWordsToWrite = 10;
   }
