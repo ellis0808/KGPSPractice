@@ -3,24 +3,26 @@ import { writingApp } from "./writing.js";
 
 class WritingAudio {
   constructor() {
-    this.randomNumber = null;
+    this.arrayItemNumber = 0;
     this.randomWord = null;
     this.repeat = this.repeat.bind(this);
   }
-  updateRandomNumber = () => {
-    this.randomNumber = Math.floor(
-      Math.random() * writingApp.randomItemArray.length
-    );
+  increaseArrayItemNumber = () => {
+    ++this.arrayItemNumber;
   };
+  resetArrayItemNumber() {
+    this.arrayItemNumber = 0;
+  }
   speak = () => {
-    this.updateRandomNumber();
-    console.log(writingApp.randomItemArray);
+    // this.updateRandomNumber();
+    // console.log(writingApp.randomItemArray);
 
-    this.randomWord = writingApp.randomItemArray[this.randomNumber];
+    this.randomWord = writingApp.randomItemArray[this.arrayItemNumber];
     setTimeout(() => {
       console.log(this.randomWord);
       audio.audioObject[this.randomWord].sound.play();
     }, 1000);
+    this.increaseArrayItemNumber();
   };
   repeat = () => {
     setTimeout(() => {
