@@ -47,6 +47,8 @@ class WritingApp {
     app.applyAppStyleSheet(this.stylesheet);
   }
   setStyle(set) {
+    console.log("set style, how many times?");
+
     switch (set) {
       // Numbers
       case "numbers1-10":
