@@ -1,6 +1,7 @@
 import { writingAudio } from "./writing-audio.js";
 import { audio } from "../../utilities/audio.js";
 import { app } from "../../utilities/app-class.js";
+import { scoreFunction } from "../../utilities/score.js";
 
 class WritingApp {
   constructor() {
@@ -270,11 +271,12 @@ class WritingApp {
       this.addBorderCorrect();
       audio.appSfx.correct.play();
       this.increaseNumberCorrect();
+      scoreFunction.increaseScore();
       this.displayNumberCorrect();
       setTimeout(this.getNewWord, 1500);
     } else {
       audio.appSfx.incorrect.play();
-      this.addBorderIncorrect();
+      this.addBorderIncorrect(this.correctAnswerPoints);
       setTimeout(() => {
         this.clearCanvas();
         setTimeout(writingAudio.repeat, 700);
