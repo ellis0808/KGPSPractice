@@ -160,7 +160,7 @@ body:not(:has(*)) {
   grid-template-rows: 0.5fr 0.1fr 1fr 0.1fr 0.5fr;
   grid-template-areas:
     "..... message-row ....."
-    "..... ..... ....."
+    "..... number-correct-row ....."
     "..... canvas-row ....."
     "..... ..... ....."
     "..... controls-row .....";
@@ -171,6 +171,17 @@ body:not(:has(*)) {
 }
 .message-row {
   grid-area: message-row;
+  width: 100%;
+  height: 100px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "question-display";
+  place-content: center;
+  place-items: center;
+}
+.number-correct-row {
+  grid-area: number-correct-row;
   width: 100%;
   height: 100px;
   display: grid;

@@ -10,7 +10,8 @@ class WritingApp {
     this.time = null;
     this.randomItemArray = [];
     this.items = [];
-    this.correctAnswerPoints = 1;
+    this.numberCorrect = 0;
+    this.correctAnswerPoints = 2;
     this.maxNumberOfWordsToWrite = 10;
   }
   run(set, time) {
@@ -118,10 +119,11 @@ class WritingApp {
   }
   createGrid() {
     this.messageRow = document.createElement("div");
-    this.canvasRow = document.createElement("div");
+    this.numberCorrectRow = document.createElement("div");
     this.canvasRow = document.createElement("div");
     this.controlsRow = document.createElement("div");
     this.messageRow.classList.add("message-row");
+    this.numberCorrectRow.classList.add("number-correct-row");
     this.canvasRow.classList.add("canvas-row");
     this.controlsRow.classList.add("controls-row");
   }
@@ -171,8 +173,12 @@ class WritingApp {
     this.questionDisplay = document.createElement("div");
     this.questionDisplay.classList.add("question-display");
   }
+  displayNumberCorrect() {
+    this.numberCorrectRow.innerText = `${this.numberCorrect}/${this.maxNumberOfWordsToWrite}`;
+  }
   setGrid() {
     app.grid.appendChild(this.messageRow);
+    app.grid.appendChild(this.numberCorrectRow);
     app.grid.appendChild(this.canvasRow);
     app.grid.appendChild(this.controlsRow);
   }
@@ -260,6 +266,7 @@ class WritingApp {
     if (input[0] === writingAudio.randomWord) {
       this.addBorderCorrect();
       audio.appSfx.correct.play();
+      this.displayNumberCorrect();
       setTimeout(this.getNewWord, 1500);
     } else {
       audio.appSfx.incorrect.play();
