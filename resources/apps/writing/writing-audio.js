@@ -39,36 +39,42 @@ class WritingAudio {
         category = "numbers";
         grouping = 1;
         audio.getAudio(category, grouping, grouping2);
+        break;
       case 2:
         category = "numbers";
         grouping = 2;
         audio.getAudio(category, grouping, grouping2);
+        break;
       case 3:
         category = "numbers";
         grouping = 3;
         grouping = 4;
         audio.getAudio(category, grouping, grouping2);
+        break;
       case 7:
         category = "numbers";
         grouping = 1;
         grouping2 = 5;
         audio.getAudio(category, grouping, grouping2);
+        break;
       case 9:
         category = "sight-words";
         grouping = 1;
         audio.getAudio(category, grouping, grouping2);
         console.log(style, grouping);
-
+        break;
       case 10:
         category = "sight-words";
         grouping = 1;
         grouping2 = 2;
         audio.getAudio(category, grouping, grouping2);
+        break;
       case 11:
         category = "sight-words";
         grouping = 1;
         grouping2 = 3;
         audio.getAudio(category, grouping, grouping2);
+        break;
     }
   }
 }
