@@ -54,45 +54,48 @@ class WritingApp {
       case "numbers1-10":
         this.style = 1;
         writingAudio.startAudioFetch(this.style);
+        break;
       case "numbers11-20":
         this.style = 2;
         writingAudio.startAudioFetch(this.style);
+        break;
       case "numbers21-40":
         this.style = 3;
         writingAudio.startAudioFetch(this.style);
+        break;
       case "numbers41-60":
         this.style = 4;
         writingAudio.startAudioFetch(this.style);
+        break;
       case "numbers61-80":
         this.style = 5;
         writingAudio.startAudioFetch(this.style);
+        break;
       case "numbers81-100":
         this.style = 6;
         writingAudio.startAudioFetch(this.style);
+        break;
       case "numbers1-50":
         this.style = 7;
         writingAudio.startAudioFetch(this.style);
+        break;
       case "numbers1-100":
         this.style = 8;
         writingAudio.startAudioFetch(this.style);
-      // Math
+        // Math
+        break;
       case "sightwords1":
         this.style = 9;
         writingAudio.startAudioFetch(this.style);
         console.log("this is correct!", this.style);
 
+        break;
       case "sightwords2":
         this.style = 10;
         writingAudio.startAudioFetch(this.style);
+        break;
       case "sightwords3":
         this.style = 11;
-        writingAudio.startAudioFetch(this.style);
-      case "numbers1-100":
-        this.style = 5;
-        writingAudio.startAudioFetch(this.style);
-      // Letter Sounds
-      case "numbers1-100":
-        this.style = 5;
         writingAudio.startAudioFetch(this.style);
     }
   }
