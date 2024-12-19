@@ -176,6 +176,9 @@ class WritingApp {
   displayNumberCorrect() {
     this.numberCorrectRow.innerText = `${this.numberCorrect}/${this.maxNumberOfWordsToWrite}`;
   }
+  increaseNumberCorrect() {
+    ++this.numberCorrect;
+  }
   setGrid() {
     app.grid.appendChild(this.messageRow);
     app.grid.appendChild(this.numberCorrectRow);
@@ -266,6 +269,7 @@ class WritingApp {
     if (input[0] === writingAudio.randomWord) {
       this.addBorderCorrect();
       audio.appSfx.correct.play();
+      this.increaseNumberCorrect();
       this.displayNumberCorrect();
       setTimeout(this.getNewWord, 1500);
     } else {

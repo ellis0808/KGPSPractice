@@ -185,6 +185,8 @@ body:not(:has(*)) {
   width: 100%;
   height: 100px;
   display: grid;
+  font-size: 3rem;
+  color: var(--clr-wht);
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   grid-template-areas: "question-display";
