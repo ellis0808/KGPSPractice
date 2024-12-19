@@ -47,8 +47,6 @@ class WritingApp {
     app.applyAppStyleSheet(this.stylesheet);
   }
   setStyle(set) {
-    console.log("set style, how many times?");
-
     switch (set) {
       // Numbers
       case "numbers1-10":
@@ -82,13 +80,11 @@ class WritingApp {
       case "numbers1-100":
         this.style = 8;
         writingAudio.startAudioFetch(this.style);
-        // Math
         break;
       case "sightwords1":
         this.style = 9;
         writingAudio.startAudioFetch(this.style);
         console.log("this is correct!", this.style);
-
         break;
       case "sightwords2":
         this.style = 10;
@@ -97,6 +93,7 @@ class WritingApp {
       case "sightwords3":
         this.style = 11;
         writingAudio.startAudioFetch(this.style);
+        break;
     }
   }
   setActivityId(style) {
