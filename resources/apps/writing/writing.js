@@ -219,7 +219,7 @@ class WritingApp {
       writingApp.items.push(item);
     });
     console.log(writingApp.items);
-    this.getRandomItems();
+    writingApp.getRandomItems();
   }
   getRandomItems() {
     let randomItem;
