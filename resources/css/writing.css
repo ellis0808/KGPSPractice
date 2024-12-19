@@ -61,7 +61,7 @@ body:not(:has(*)) {
   max-height: 2000px;
   background: transparent;
   display: grid;
-  grid-template-columns: 0.25 2fr 2fr 0.25fr;
+  grid-template-columns: 0.25fr 2fr 2fr 0.25fr;
   grid-template-rows: 0.1fr 0.1fr 0.1fr 1.25fr 0.2fr 0.2fr 0.2fr;
   grid-template-areas:
     "..... ..... ..... ....."
@@ -80,7 +80,7 @@ body:not(:has(*)) {
 }
 .btn-container1 {
   grid-area: btn-container1;
-  width: 90%;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-areas: "timer  score-display  repeat-btn";

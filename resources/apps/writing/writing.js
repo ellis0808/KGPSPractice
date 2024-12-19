@@ -29,7 +29,7 @@ class WritingApp {
   }
   setUpApp() {
     app.setAppVariables(
-      this.time,
+      null,
       this.clearBoard,
       null,
       this.createAndSetStructure,

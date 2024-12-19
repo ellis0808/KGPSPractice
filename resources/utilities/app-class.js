@@ -170,7 +170,9 @@ class App {
       this.startRound();
     }, 950);
     setTimeout(() => {
-      timerFunction.startTimer(this.time);
+      this.time !== null
+        ? timerFunction.startTimer(this.time)
+        : timerFunction.timer.remove();
     }, 1000);
     console.log(user);
   }

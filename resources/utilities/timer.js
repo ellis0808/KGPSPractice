@@ -37,7 +37,10 @@ const timerFunction = {
       }, 1000);
     }, 1200);
   },
-  displayTimer() {
+  displayCountDownTimer() {
+    this.countDown();
+  },
+  displayCountUpTimer() {
     this.countDown();
   },
   updateTimerDisplay() {
