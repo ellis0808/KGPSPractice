@@ -61,7 +61,6 @@ class WritingAudio {
         category = "sight-words";
         grouping = 1;
         audio.getAudio(category, grouping, grouping2);
-        console.log(style, grouping);
         break;
       case 10:
         category = "sight-words";

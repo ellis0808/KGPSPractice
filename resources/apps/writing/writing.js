@@ -84,7 +84,6 @@ class WritingApp {
       case "sightwords1":
         this.style = 9;
         writingAudio.startAudioFetch(this.style);
-        console.log("this is correct!", this.style);
         break;
       case "sightwords2":
         this.style = 10;
@@ -209,6 +208,8 @@ class WritingApp {
     return this.canvasController;
   }
   generateItems() {
+    console.log(this);
+
     console.log(this.items, this.randomItemArray);
 
     this.items.length = 0;

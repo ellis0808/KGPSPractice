@@ -93,8 +93,6 @@ class Audio {
   }
   async getAudio(category, grouping, grouping2) {
     try {
-      console.log("how many times?");
-
       let response;
       if (grouping2 !== null) {
         response = await fetch(
@@ -104,13 +102,11 @@ class Audio {
         response = await fetch(
           `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
         );
-        console.log("grouping 2?", grouping2);
       }
       if (!response.ok) {
         throw new Error("Network response was not okay");
       }
       const audioData = await response.json();
-      console.log(audioData);
 
       this.loadAudio(audioData);
     } catch (error) {
