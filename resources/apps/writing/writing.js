@@ -234,7 +234,7 @@ class WritingApp {
     }
   }
   getNewWord() {
-    this.clearCanvas();
+    writingApp.clearCanvas();
     setTimeout(writingAudio.speak, 300);
   }
   addBorderIncorrect() {
