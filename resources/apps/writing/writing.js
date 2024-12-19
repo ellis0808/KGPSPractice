@@ -229,9 +229,9 @@ class WritingApp {
         writingApp.items[Math.floor(Math.random() * writingApp.items.length)];
 
       this.randomItemArray.push(randomItem);
-      console.log(writingApp.randomItemArray);
-      writingAudio.speak();
     }
+    console.log(writingApp.randomItemArray);
+    writingAudio.speak();
   }
   getNewWord() {
     writingApp.clearCanvas();
