@@ -157,11 +157,11 @@ body:not(:has(*)) {
   padding: 20px;
   display: grid;
   grid-template-columns: 0.25fr 1fr 0.25fr;
-  grid-template-rows: 0.5fr 0.1fr 1fr 0.1fr 0.5fr;
+  grid-template-rows: 0.5fr 0.5fr 1fr 0.1fr 0.5fr;
   grid-template-areas:
     "..... message-row ....."
     "..... number-correct-row ....."
-    "..... canvas-row ....."
+    "canvas-row canvas-row canvas-row"
     "..... ..... ....."
     "..... controls-row .....";
   overflow: hidden;
@@ -172,7 +172,7 @@ body:not(:has(*)) {
 .message-row {
   grid-area: message-row;
   width: 100%;
-  height: 100px;
+  height: 70px;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -185,7 +185,7 @@ body:not(:has(*)) {
   width: 100%;
   height: 100px;
   display: grid;
-  font-size: 3rem;
+  font-size: 4rem;
   color: var(--clr-wht);
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
