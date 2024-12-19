@@ -250,7 +250,7 @@ body:not(:has(*)) {
 }
 
 .skip-btn {
-  grid-area: clear-btn;
+  grid-area: skip-btn;
   background-color: var(--clr-ylw);
 }
 @media (hover: hover) and (pointer: fine) {
