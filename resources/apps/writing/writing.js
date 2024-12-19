@@ -212,23 +212,24 @@ class WritingApp {
 
     console.log(writingApp.items, writingApp.randomItemArray);
 
-    this.items.length = 0;
+    writingApp.items.length = 0;
     console.log(audio.audioObject);
 
     Object.keys(audio.audioObject).forEach((item) => {
-      this.items.push(item);
+      writingApp.items.push(item);
     });
-    console.log(this.items);
+    console.log(writingApp.items);
     this.getRandomItems();
   }
   getRandomItems() {
     let randomItem;
     let i;
     for (i = 0; i < this.maxNumberOfWordsToWrite; ++i) {
-      randomItem = this.items[Math.floor(Math.random() * this.items.length)];
+      randomItem =
+        writingApp.items[Math.floor(Math.random() * writingApp.items.length)];
 
       this.randomItemArray.push(randomItem);
-      console.log(this.randomItemArray);
+      console.log(writingApp.randomItemArray);
       writingAudio.speak();
     }
   }
