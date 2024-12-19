@@ -210,7 +210,7 @@ class WritingApp {
   generateItems() {
     console.log(this);
 
-    console.log(this.items, this.randomItemArray);
+    console.log(writingApp.items, writingApp.randomItemArray);
 
     this.items.length = 0;
     console.log(audio.audioObject);
