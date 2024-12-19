@@ -93,6 +93,8 @@ class Audio {
   }
   async getAudio(category, grouping, grouping2) {
     try {
+      console.log("how many times?");
+
       let response;
       if (grouping2 !== null) {
         response = await fetch(
