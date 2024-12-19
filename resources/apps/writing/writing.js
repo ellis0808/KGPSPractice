@@ -12,7 +12,11 @@ class WritingApp {
     this.randomItemArray = [];
     this.items = [];
     this.numberCorrect = 0;
-    this.correctAnswerPoints = 2;
+    this.correctAnswerPoints =
+      this.numberCorrect === this.maxNumberOfWordsToWrite
+        ? this.numberCorrect * 2 +
+          Math.floor(this.maxNumberOfWordsToWrite * 0.25)
+        : this.numberCorrect * 2;
     this.maxNumberOfWordsToWrite = 10;
   }
   run(set, time) {
@@ -85,6 +89,7 @@ class WritingApp {
         break;
       case "sightwords1":
         this.style = 9;
+        this.maxNumberOfWordsToWrite = 5;
         writingAudio.startAudioFetch(this.style);
         break;
       case "sightwords2":
@@ -133,6 +138,7 @@ class WritingApp {
     this.checkBtn = document.createElement("div");
     this.undoBtn = document.createElement("div");
     this.clearBtn = document.createElement("div");
+    this.skipBtn = document.createElement("div");
 
     this.repeatBtn.classList.add("repeat-btn", "btn");
     this.repeatBtn.innerText = "repeat";
@@ -145,6 +151,12 @@ class WritingApp {
     this.clearBtn.innerText = "Clear";
     this.clearBtn.addEventListener("pointerdown", () => {
       this.canvasController.erase();
+    });
+    this.skipBtn.classList.add("skip-btn", "btn");
+    this.skipBtn.innerText = "Skip";
+    this.skipBtn.addEventListener("pointerdown", () => {
+      writingAudio.increaseArrayItemNumber();
+      this.getNewWord();
     });
     this.undoBtn.addEventListener("pointerdown", (event) => {
       if (this.canvasController.trace.length === 0) {
@@ -192,6 +204,7 @@ class WritingApp {
     this.controlsRow.appendChild(this.checkBtn);
     this.controlsRow.appendChild(this.undoBtn);
     this.controlsRow.appendChild(this.clearBtn);
+    this.controlsRow.appendChild(this.skipBtn);
     app.btnContainer1.appendChild(this.repeatBtn);
   }
   setGridandElements() {
@@ -271,7 +284,6 @@ class WritingApp {
       this.addBorderCorrect();
       audio.appSfx.correct.play();
       this.increaseNumberCorrect();
-      scoreFunction.increaseScore();
       this.displayNumberCorrect();
       setTimeout(this.getNewWord, 1500);
     } else {
@@ -281,6 +293,11 @@ class WritingApp {
         this.clearCanvas();
         setTimeout(writingAudio.repeat, 700);
       }, 2000);
+    }
+  }
+  checkAllCorrect() {
+    if (this.numberCorrect === this.maxNumberOfWordsToWrite) {
+      audio.feedbackAudioObject.positiveFeedback.greatJob.play();
     }
   }
 }

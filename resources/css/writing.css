@@ -153,7 +153,7 @@ body:not(:has(*)) {
 .grid {
   grid-area: writing-grid;
   max-width: 1000px;
-  max-height: 700px;
+  max-height: 1000px;
   padding: 20px;
   display: grid;
   grid-template-columns: 0.25fr 1fr 0.25fr;
@@ -231,9 +231,9 @@ body:not(:has(*)) {
   height: 100px;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr;
-  grid-template-areas: "clear-btn  undo-btn  check-btn";
+  grid-template-areas: "skip-btn clear-btn  undo-btn  check-btn";
   place-content: center;
   place-items: center;
   z-index: 10;
@@ -242,14 +242,32 @@ body:not(:has(*)) {
   width: 75px;
   height: 75px;
   border: 1px black solid;
+  color: var(--clr-wht);
   font-size: var(--txt-md);
   border-radius: 15px;
   display: grid;
   place-content: center;
 }
 
+.skip-btn {
+  grid-area: clear-btn;
+  background-color: var(--clr-ylw);
+}
+@media (hover: hover) and (pointer: fine) {
+  .skip-btn:hover {
+    scale: 1.05;
+    transition: 0.25s;
+  }
+}
+.skip-btn:active {
+  scale: 1;
+  transform: translateY(5px);
+  z-index: -10;
+  transition: 0.1s;
+}
 .clear-btn {
   grid-area: clear-btn;
+  background-color: gray;
 }
 @media (hover: hover) and (pointer: fine) {
   .clear-btn:hover {
@@ -265,6 +283,7 @@ body:not(:has(*)) {
 }
 .undo-btn {
   grid-area: undo-btn;
+  background-color: var(--clr-ylw);
 }
 @media (hover: hover) and (pointer: fine) {
   .undo-btn:hover {
