@@ -310,7 +310,7 @@ class WritingApp {
       console.log(this.correctAnswerPoints);
       scoreFunction.updatePositiveCount(this.correctAnswerPoints);
       audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
-      timerFunction.endRound();
+      timerFunction.goalMet = true;
     } else {
       setTimeout(this.getNewWord, 1500);
     }

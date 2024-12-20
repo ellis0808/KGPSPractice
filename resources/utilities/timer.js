@@ -15,6 +15,7 @@ const timerFunction = {
   time: null,
   counter: null,
   timerFinished: false,
+  goalMet: false,
   countDown() {
     setTimeout(() => {
       this.counter = setInterval(() => {
@@ -41,15 +42,20 @@ const timerFunction = {
     setTimeout(() => {
       this.counter = setInterval(() => {
         if (!pauseFunction.isPaused) {
-          ++this.time;
-          // this.updateTimerDisplay();
+          if (!this.goalMet) {
+            ++this.time;
+            // this.updateTimerDisplay();
 
-          const m = Math.floor(this.time / 60);
-          const s = this.time % 60;
-          if (s < 10) {
-            this.timer.textContent = `${m}:0${s}`;
+            const m = Math.floor(this.time / 60);
+            const s = this.time % 60;
+            if (s < 10) {
+              this.timer.textContent = `${m}:0${s}`;
+            } else {
+              this.timer.textContent = `${m}:${s}`;
+            }
           } else {
-            this.timer.textContent = `${m}:${s}`;
+            this.clearTimer();
+            this.endRound();
           }
         }
       }, 1000);
