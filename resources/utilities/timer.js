@@ -44,11 +44,13 @@ const timerFunction = {
           ++this.time;
           this.updateTimerDisplay();
 
-          // } else if (this.time >= 10) {
-          //   this.timer.textContent = `0:${this.time}`;
-          //   if (this.time > 59) {
-          //   }
-          // }
+          const m = Math.floor(this.time / 60);
+          const s = this.time % 60;
+          if (s === 0) {
+            this.timer.textContent = `${m}:0${s}`;
+          } else {
+            this.timer.textContent = `${m}:${s}`;
+          }
         }
       }, 1000);
     }, 1200);
