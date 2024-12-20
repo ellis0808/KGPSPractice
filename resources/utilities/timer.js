@@ -46,7 +46,7 @@ const timerFunction = {
 
           const m = Math.floor(this.time / 60);
           const s = this.time % 60;
-          if (s > 10) {
+          if (s < 10) {
             this.timer.textContent = `${m}:0${s}`;
           } else {
             this.timer.textContent = `${m}:${s}`;
