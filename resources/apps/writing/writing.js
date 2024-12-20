@@ -288,7 +288,6 @@ class WritingApp {
       this.displayNumberCorrect();
       console.log(this.numberCorrect);
       this.checkAllCorrect();
-      setTimeout(this.getNewWord, 1500);
     } else {
       audio.appSfx.incorrect.play();
       this.addBorderIncorrect();
@@ -303,6 +302,8 @@ class WritingApp {
       scoreFunction.updatePositiveCount(this.correctAnswerPoints);
       audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
       app.endRound();
+    } else {
+      setTimeout(this.getNewWord, 1500);
     }
   }
 }
