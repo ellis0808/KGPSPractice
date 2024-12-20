@@ -17,7 +17,7 @@ class WritingApp {
         ? this.numberCorrect * 2 +
           Math.floor(this.maxNumberOfWordsToWrite * 0.25)
         : this.numberCorrect * 2;
-    this.maxNumberOfWordsToWrite = 10;
+    this.maxNumberOfWordsToWrite = null;
   }
   run(set, time) {
     this.setStyleSheet();
@@ -287,11 +287,11 @@ class WritingApp {
       this.increaseNumberCorrect();
       this.displayNumberCorrect();
       console.log(this.numberCorrect);
-
+      this.checkAllCorrect();
       setTimeout(this.getNewWord, 1500);
     } else {
       audio.appSfx.incorrect.play();
-      this.addBorderIncorrect(this.correctAnswerPoints);
+      this.addBorderIncorrect();
       setTimeout(() => {
         this.clearCanvas();
         setTimeout(writingAudio.repeat, 700);
@@ -300,7 +300,9 @@ class WritingApp {
   }
   checkAllCorrect() {
     if (this.numberCorrect === this.maxNumberOfWordsToWrite) {
+      scoreFunction.updatePositiveCount(this.correctAnswerPoints);
       audio.feedbackAudioObject.positiveFeedback.greatJob.play();
+      app.endRound();
     }
   }
 }
