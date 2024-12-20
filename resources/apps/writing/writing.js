@@ -2,6 +2,7 @@ import { writingAudio } from "./writing-audio.js";
 import { audio } from "../../utilities/audio.js";
 import { app } from "../../utilities/app-class.js";
 import { scoreFunction } from "../../utilities/score.js";
+import { timerFunction } from "../../utilities/timer.js";
 
 class WritingApp {
   constructor() {
@@ -309,7 +310,7 @@ class WritingApp {
       console.log(this.correctAnswerPoints);
       scoreFunction.updatePositiveCount(this.correctAnswerPoints);
       audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
-      app.endRound();
+      timerFunction.endRound();
     } else {
       setTimeout(this.getNewWord, 1500);
     }
