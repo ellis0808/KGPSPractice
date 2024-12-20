@@ -299,6 +299,7 @@ class WritingApp {
   }
   checkAllCorrect() {
     if (this.numberCorrect === this.maxNumberOfWordsToWrite) {
+      console.log(this.correctAnswerPoints);
       scoreFunction.updatePositiveCount(this.correctAnswerPoints);
       audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
       app.endRound();
