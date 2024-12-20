@@ -306,11 +306,11 @@ class WritingApp {
   }
   checkAllCorrect() {
     if (this.numberCorrect === this.maxNumberOfWordsToWrite) {
+      timerFunction.goalMet = true;
       this.setCorrecAnswerPoints();
       console.log(this.correctAnswerPoints);
       scoreFunction.updatePositiveCount(this.correctAnswerPoints);
       audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
-      timerFunction.goalMet = true;
     } else {
       setTimeout(this.getNewWord, 1500);
     }
