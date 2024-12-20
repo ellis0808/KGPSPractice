@@ -42,7 +42,7 @@ const timerFunction = {
       this.counter = setInterval(() => {
         if (!pauseFunction.isPaused) {
           ++this.time;
-          this.updateTimerDisplay();
+          // this.updateTimerDisplay();
 
           const m = Math.floor(this.time / 60);
           const s = this.time % 60;
@@ -75,13 +75,7 @@ const timerFunction = {
     if (this.time === 60) {
       this.timer.textContent = "1:00";
     } else {
-      const m = Math.floor(this.time / 60);
-      const s = this.time % 60;
-      if (s === 0) {
-        this.timer.textContent = `${m}:0${s}`;
-      } else {
-        this.timer.textContent = `${m}:${s}`;
-      }
+      this.timer.textContent = "0:00";
     }
   },
   clearTimer() {

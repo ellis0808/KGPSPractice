@@ -12,11 +12,8 @@ class WritingApp {
     this.randomItemArray = [];
     this.items = [];
     this.numberCorrect = 0;
-    this.correctAnswerPoints =
-      this.numberCorrect === this.maxNumberOfWordsToWrite
-        ? this.numberCorrect * 2 +
-          Math.floor(this.maxNumberOfWordsToWrite * 0.25)
-        : this.numberCorrect * 2;
+    this.numberIncorrect = 0;
+    this.correctAnswerPoints = null;
     this.maxNumberOfWordsToWrite = null;
   }
   run(set, time) {
@@ -192,6 +189,15 @@ class WritingApp {
   increaseNumberCorrect() {
     ++this.numberCorrect;
   }
+  setCorrecAnswerPoints() {
+    if (this.numberIncorrect === 0) {
+      this.correctAnswerPoints =
+        this.numberCorrect * 2 +
+        Math.floor(this.maxNumberOfWordsToWrite * 0.25);
+    } else {
+      this.correctAnswerPoints = this.numberCorrect * 2;
+    }
+  }
   setGrid() {
     app.grid.appendChild(this.messageRow);
     app.grid.appendChild(this.numberCorrectRow);
@@ -299,6 +305,7 @@ class WritingApp {
   }
   checkAllCorrect() {
     if (this.numberCorrect === this.maxNumberOfWordsToWrite) {
+      this.setCorrecAnswerPoints();
       console.log(this.correctAnswerPoints);
       scoreFunction.updatePositiveCount(this.correctAnswerPoints);
       audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
