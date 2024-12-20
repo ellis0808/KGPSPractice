@@ -325,7 +325,7 @@ class MenuItems {
     this.sightWords1WritingAppMenuItem.innerText = "Group 1";
     this.sightWords1WritingAppMenuItem.addEventListener("click", () => {
       audio.navigationSfx.selectMenu.play();
-      writingApp.run("sightwords1", 60);
+      writingApp.run("sightwords1", 0);
       this.removeMenu();
     });
     // 4. Sight Words 2 Writing App Menu Item
@@ -345,7 +345,7 @@ class MenuItems {
     this.sightWords2WritingAppMenuItem.innerText = "Group 2";
     this.sightWords2WritingAppMenuItem.addEventListener("click", () => {
       audio.navigationSfx.selectMenu.play();
-      writingApp.run("sightwords2", 60);
+      writingApp.run("sightwords2", 0);
       this.removeMenu();
     });
     // 4. Sight Words 3 Writing App Menu Item
@@ -365,7 +365,7 @@ class MenuItems {
     this.sightWords3WritingAppMenuItem.innerText = "Group 3";
     this.sightWords3WritingAppMenuItem.addEventListener("click", () => {
       audio.navigationSfx.selectMenu.play();
-      writingApp.run("sightwords3", 60);
+      writingApp.run("sightwords3", 0);
       this.removeMenu();
     });
 
@@ -472,7 +472,7 @@ class MenuItems {
     this.numberWriting1to10AppMenuItem.innerText = "1-10";
     this.numberWriting1to10AppMenuItem.addEventListener("click", () => {
       audio.navigationSfx.selectMenu.play();
-      writingApp.run("numbers1-10", 60);
+      writingApp.run("numbers1-10", 0);
       this.removeMenu();
     });
     // 7. Number Writing 11-20 App Menu Item
@@ -489,7 +489,7 @@ class MenuItems {
     this.numberWriting11to20AppMenuItem.innerText = "11-20";
     this.numberWriting11to20AppMenuItem.addEventListener("click", () => {
       audio.navigationSfx.selectMenu.play();
-      writingApp.run("numbers11-20", 60);
+      writingApp.run("numbers11-20", 0);
       this.removeMenu();
     });
     // 8. Number Writing 21-40 App Menu Item
@@ -506,7 +506,7 @@ class MenuItems {
     this.numberWriting21to40AppMenuItem.innerText = "21-40";
     this.numberWriting21to40AppMenuItem.addEventListener("click", () => {
       audio.navigationSfx.selectMenu.play();
-      writingApp.run("numbers21-40", 60);
+      writingApp.run("numbers21-40", 0);
       this.removeMenu();
     });
     // 9. Number Writing 1-50 App Menu Item
@@ -523,7 +523,7 @@ class MenuItems {
     this.numberWriting1to50AppMenuItem.innerText = "1-50";
     this.numberWriting1to50AppMenuItem.addEventListener("click", () => {
       audio.navigationSfx.selectMenu.play();
-      writingApp.run("numbers1-50", 60);
+      writingApp.run("numbers1-50", 0);
       this.removeMenu();
     });
 

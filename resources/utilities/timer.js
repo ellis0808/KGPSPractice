@@ -37,11 +37,26 @@ const timerFunction = {
       }, 1000);
     }, 1200);
   },
+  countUp() {
+    setTimeout(() => {
+      this.counter = setInterval(() => {
+        if (!pauseFunction.isPaused) {
+          ++this.time;
+          this.updateTimerDisplay();
+          if (this.time < 10 && this.time >= 0) {
+            this.timer.textContent = `0:0${this.time}`;
+          } else if (this.time >= 0) {
+            this.timer.textContent = `0:${this.time}`;
+          }
+        }
+      }, 1000);
+    }, 1200);
+  },
   displayCountDownTimer() {
     this.countDown();
   },
   displayCountUpTimer() {
-    this.countDown();
+    this.countUp();
   },
   updateTimerDisplay() {
     this.timer.textContent =
@@ -70,9 +85,15 @@ const timerFunction = {
   },
   startTimer(time) {
     this.setTimer(time);
-    setTimeout(() => {
-      this.displayTimer();
-    }, 500);
+    if (time === 0) {
+      setTimeout(() => {
+        this.displayCountUpTimer();
+      }, 500);
+    } else {
+      setTimeout(() => {
+        this.displayCountDownTimer();
+      }, 500);
+    }
   },
   setEndRoundFunction(endRound) {
     this.endRound = endRound;

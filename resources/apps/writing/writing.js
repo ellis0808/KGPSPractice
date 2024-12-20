@@ -35,7 +35,7 @@ class WritingApp {
   }
   setUpApp() {
     app.setAppVariables(
-      null,
+      this.time,
       this.clearBoard,
       null,
       this.createAndSetStructure,
@@ -254,7 +254,8 @@ class WritingApp {
       this.randomItemArray.push(randomItem);
     }
     console.log(writingApp.randomItemArray);
-    writingAudio.speak();
+    this.getNewWord();
+    this.displayNumberCorrect();
   }
   getNewWord() {
     writingApp.clearCanvas();
@@ -285,6 +286,8 @@ class WritingApp {
       audio.appSfx.correct.play();
       this.increaseNumberCorrect();
       this.displayNumberCorrect();
+      console.log(this.numberCorrect);
+
       setTimeout(this.getNewWord, 1500);
     } else {
       audio.appSfx.incorrect.play();
