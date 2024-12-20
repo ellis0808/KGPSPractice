@@ -301,7 +301,7 @@ class WritingApp {
   checkAllCorrect() {
     if (this.numberCorrect === this.maxNumberOfWordsToWrite) {
       scoreFunction.updatePositiveCount(this.correctAnswerPoints);
-      audio.feedbackAudioObject.positiveFeedback.greatJob.play();
+      audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
       app.endRound();
     }
   }
