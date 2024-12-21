@@ -1,12 +1,6 @@
 /* Imports */
 import { mainContainer, stylesheet } from "../../utilities/variables.js";
 import { scoreFunction } from "../../utilities/score.js";
-import {
-  scoreDisplay,
-  toggleScoreDisplayHide,
-  updateNegativeCount,
-  updatePositiveCount,
-} from "../../utilities/update-score.js";
 import { menuItems } from "../general/start-main-app.js";
 import { fluencyAudio } from "./fluency-audio.js";
 import {
@@ -215,11 +209,11 @@ function fluencyApp(set) {
   setTimeout(displayStartBtn, 200);
 
   scoreFunction.resetCurrentScore();
-  scoreDisplay.innerText = scoreFunction.currentScore;
+  scoreFunction.display.innerText = scoreFunction.currentScore;
   appContainer.classList.remove("hide");
 
-  if (!scoreDisplay.classList.contains("hide2")) {
-    toggleScoreDisplayHide();
+  if (!scoreFunction.display.classList.contains("hide2")) {
+    scoreFunction.hide();
   }
 
   setTimeout(setUser, 2000);
@@ -278,7 +272,7 @@ function endApp() {
     menuItems.displayMainPage();
     setTimeout(menuItems.restoreMainMenu, 100);
   }, 500);
-  scoreDisplay.innerText = scoreFunction.currentScore;
+  scoreFunction.display.innerText = scoreFunction.currentScore;
 }
 // pauses app
 function removeBlur() {
@@ -455,10 +449,10 @@ function startNewSession() {
   setTimeout(() => {
     document.querySelector(".end-messages-container").remove();
     scoreFunction.resetCurrentScore();
-    scoreDisplay.innerText = scoreFunction.currentScore;
+    scoreFunction.display.innerText = scoreFunction.currentScore;
     grid.classList.remove("blur");
     roundDisplay.classList.remove("blur");
-    scoreDisplay.classList.remove("blur");
+    scoreFunction.display.classList.remove("blur");
   }, 50);
   resetPenalties();
   resetInterval();
@@ -519,12 +513,12 @@ function newRound() {
 }
 
 function startNewRound() {
-  if (scoreDisplay.classList.contains("hide2")) {
-    toggleScoreDisplayHide();
+  if (scoreFunction.display.classList.contains("hide2")) {
+    scoreFunction.show();
   }
   removeBlur();
   appContainer.appendChild(btnContainer1);
-  btnContainer1.appendChild(scoreDisplay);
+  btnContainer1.appendChild(scoreFunction.display);
   btnContainer1.appendChild(roundDisplay);
   appContainer.appendChild(btnContainer3);
   btnContainer3.appendChild(answerDisplay);
@@ -549,7 +543,7 @@ function sessionOver() {
   displayEndMessagesContainer();
   grid.classList.add("blur");
   roundDisplay.classList.add("blur");
-  scoreDisplay.classList.add("blur");
+  scoreFunction.display.classList.add("blur");
 }
 function gameOver() {
   if (heartsArray.length === 0) {
@@ -680,7 +674,7 @@ function userTouch(event) {
 function checkAnswer(currentAnswer, event) {
   if (currentAnswer === currentItem) {
     audio.appSfx.correct.play();
-    updatePositiveCount(correctAnswerPoints);
+    scoreFunction.updatePositiveCount(correctAnswerPoints);
     ++numberOfRightAnswers;
     disableTouch(boxes);
   } else {
