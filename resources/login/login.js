@@ -3,7 +3,6 @@
 //   passwordImageObject,
 // } from "./password-image-object.js";
 import { images } from "../utilities/images.js";
-import { userObjects } from "../teacher-interface/user-management.js";
 
 const passwordImageNamesArray = [
   "rabbit-silhouette-1",
@@ -25,6 +24,11 @@ const passwordImageNamesArray = [
   "watermelon-silhouette-2",
   "spoon-silhouette-1",
 ];
+
+const userObjects = {
+  studentObjects: {},
+  teacherObjects: {},
+};
 
 const studentNameContainer = document.querySelector(".student-name-container");
 const teacherNameContainer = document.querySelector(".teacher-name-container");

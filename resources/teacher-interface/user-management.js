@@ -67,47 +67,43 @@ const userManagementStructure = {
     this.createTeacherForm = document.querySelector(".create-teacher-form");
   },
   setModalControls() {
-    setTimeout(() => {
-      this.openCreateUserModalBtn.addEventListener("pointerdown", () => {
-        this.createUserDiv.showModal();
-      });
-      this.closeCreateUserModalBtn.addEventListener("pointerdown", () => {
-        this.createUserDiv.close();
-        document.getElementById("createStudent").reset();
-        document.getElementById("createTeacher").reset();
-      });
-      this.closeSingleUserDataModalBtn.addEventListener("pointerdown", () => {
-        this.userDataDiv.close();
-        // document.getElementById("single-user-data-div").reset();
-      });
-      this.closeUpdateUserModalBtn.addEventListener("pointerdown", () => {
-        this.updateUserDiv.close();
-        document.getElementById("updateUser").reset();
-      });
-    }, 100);
+    this.openCreateUserModalBtn.addEventListener("pointerdown", () => {
+      this.createUserDiv.showModal();
+    });
+    this.closeCreateUserModalBtn.addEventListener("pointerdown", () => {
+      this.createUserDiv.close();
+      document.getElementById("createStudent").reset();
+      document.getElementById("createTeacher").reset();
+    });
+    this.closeSingleUserDataModalBtn.addEventListener("pointerdown", () => {
+      this.userDataDiv.close();
+      // document.getElementById("single-user-data-div").reset();
+    });
+    this.closeUpdateUserModalBtn.addEventListener("pointerdown", () => {
+      this.updateUserDiv.close();
+      document.getElementById("updateUser").reset();
+    });
   },
   setEventListeners() {
-    setTimeout(() => {
-      this.createStudentDisplayBtn.addEventListener("pointerdown", () => {
-        form = "student";
-        this.createUserFormHeading.innerHTML = `<h2>Create New Student</h2>`;
-        this.createStudentForm.classList.remove("hidden");
-        this.createTeacherForm.classList.add("hidden");
-        this.createStudentDisplayBtn.classList.add("hidden");
-        this.createTeacherDisplayBtn.classList.remove("hidden");
-        return form;
-      });
-      this.createTeacherDisplayBtn.addEventListener("pointerdown", () => {
-        form = "teacher";
+    this.createStudentDisplayBtn.addEventListener("pointerdown", () => {
+      form = "student";
+      this.createUserFormHeading.innerHTML = `<h2>Create New Student</h2>`;
+      this.createStudentForm.classList.remove("hidden");
+      this.createTeacherForm.classList.add("hidden");
+      this.createStudentDisplayBtn.classList.add("hidden");
+      this.createTeacherDisplayBtn.classList.remove("hidden");
+      return form;
+    });
+    this.createTeacherDisplayBtn.addEventListener("pointerdown", () => {
+      form = "teacher";
 
-        this.createUserFormHeading.innerHTML = `<h2>Create New Teacher</h2>`;
-        this.createStudentForm.classList.add("hidden");
-        this.createTeacherForm.classList.remove("hidden");
-        this.createStudentDisplayBtn.classList.remove("hidden");
-        this.createTeacherDisplayBtn.classList.add("hidden");
-        return form;
-      });
-    }, 100);
+      this.createUserFormHeading.innerHTML = `<h2>Create New Teacher</h2>`;
+      this.createStudentForm.classList.add("hidden");
+      this.createTeacherForm.classList.remove("hidden");
+      this.createStudentDisplayBtn.classList.remove("hidden");
+      this.createTeacherDisplayBtn.classList.add("hidden");
+      return form;
+    });
   },
 };
 
