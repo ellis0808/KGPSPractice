@@ -84,28 +84,30 @@ const userManagementStructure = {
         this.updateUserDiv.close();
         document.getElementById("updateUser").reset();
       });
-    }, 200);
+    }, 100);
   },
   setEventListeners() {
-    this.createStudentDisplayBtn.addEventListener("pointerdown", () => {
-      form = "student";
-      this.createUserFormHeading.innerHTML = `<h2>Create New Student</h2>`;
-      this.createStudentForm.classList.remove("hidden");
-      this.createTeacherForm.classList.add("hidden");
-      this.createStudentDisplayBtn.classList.add("hidden");
-      this.createTeacherDisplayBtn.classList.remove("hidden");
-      return form;
-    });
-    this.createTeacherDisplayBtn.addEventListener("pointerdown", () => {
-      form = "teacher";
+    setTimeout(() => {
+      this.createStudentDisplayBtn.addEventListener("pointerdown", () => {
+        form = "student";
+        this.createUserFormHeading.innerHTML = `<h2>Create New Student</h2>`;
+        this.createStudentForm.classList.remove("hidden");
+        this.createTeacherForm.classList.add("hidden");
+        this.createStudentDisplayBtn.classList.add("hidden");
+        this.createTeacherDisplayBtn.classList.remove("hidden");
+        return form;
+      });
+      this.createTeacherDisplayBtn.addEventListener("pointerdown", () => {
+        form = "teacher";
 
-      this.createUserFormHeading.innerHTML = `<h2>Create New Teacher</h2>`;
-      this.createStudentForm.classList.add("hidden");
-      this.createTeacherForm.classList.remove("hidden");
-      this.createStudentDisplayBtn.classList.remove("hidden");
-      this.createTeacherDisplayBtn.classList.add("hidden");
-      return form;
-    });
+        this.createUserFormHeading.innerHTML = `<h2>Create New Teacher</h2>`;
+        this.createStudentForm.classList.add("hidden");
+        this.createTeacherForm.classList.remove("hidden");
+        this.createStudentDisplayBtn.classList.remove("hidden");
+        this.createTeacherDisplayBtn.classList.add("hidden");
+        return form;
+      });
+    }, 100);
   },
 };
 
