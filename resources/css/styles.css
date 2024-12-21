@@ -283,7 +283,7 @@ body:not(:has(*)) {
   grid-template-rows: 4fr;
   /* place-content: center; */
   /* place-items: center; */
-  overflow: hidden;
+  /* overflow: hidden; */
   transition: 0.5s;
 }
 .secondary-menu-row {
@@ -295,7 +295,7 @@ body:not(:has(*)) {
   grid-auto-flow: column;
   grid-template-rows: 1fr;
   grid-auto-columns: 250px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .parents-info {
   grid-area: parents-info;
