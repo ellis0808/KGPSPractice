@@ -686,7 +686,7 @@ class MenuItems {
 
   hidePrimaryMenu() {
     audio.navigationSfx.selectMenu.play();
-    this.hideParentsInfoBtn();
+    // this.hideParentsInfoBtn();
     greetingDisplay.innerText = "";
     pointsDisplay.innerText = "";
     primaryMenuContainer.classList.add("hidden");
@@ -695,7 +695,7 @@ class MenuItems {
     this.sightWordsMenu.classList.add("hidden");
   }
   unhidePrimaryMenu() {
-    this.displayParentsInfoBtn();
+    // this.displayParentsInfoBtn();
     topContainer.innerText = "";
     primaryMenuContainer.classList.remove("hidden");
     this.abcMenu.classList.remove("hidden");
@@ -754,7 +754,7 @@ class MenuItems {
   restoreMainMenu() {
     body.appendChild(navBar);
     topContainer.innerText = "";
-    body.appendChild(parentsInfo);
+    // body.appendChild(parentsInfo);
     mainContainer.appendChild(topContainer);
     mainContainer.appendChild(primaryMenuContainer);
     navBar.classList.remove("hidden");
@@ -771,7 +771,7 @@ class MenuItems {
     this.hideSecondaryMenu();
     this.unhidePrimaryMenu();
     this.resetSecondaryMenuPosition();
-    this.displayParentsInfoBtn();
+    // this.displayParentsInfoBtn();
     topContainer.innerText = "";
     displayGreeting();
   }
