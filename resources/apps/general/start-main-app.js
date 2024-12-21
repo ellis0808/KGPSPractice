@@ -5,7 +5,7 @@ import {
   primaryMenuContainer,
   stylesheet,
   topContainer,
-  parentsInfo,
+  // parentsInfo,
 } from "/KGPSEnglishPractice-test/resources/utilities/variables.js";
 import { appLauncher } from "./app-launcher.js";
 import { logout } from "/KGPSEnglishPractice-test/resources/utilities/logout.js";
