@@ -8,7 +8,6 @@ async function logout() {
     } else {
       window.location.href =
         "/KGPSEnglishPractice-test/resources/login/login.html";
-      console.log(data);
     }
   } catch (error) {
     console.error("Error loging out: ", error);

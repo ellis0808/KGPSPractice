@@ -238,8 +238,7 @@ body:not(:has(*)) {
     grid-template-rows: repeat(2, 1fr);
     grid-template-areas:
       "menu1  menu2"
-      "menu3  menu4"
-      "menu5  menu6";
+      "menu3  menu4";
     column-gap: 8rem;
     row-gap: 4rem;
     margin-top: 50px;
@@ -466,6 +465,7 @@ body:not(:has(*)) {
   justify-self: end;
   align-self: center;
   transition: 0.3s;
+  z-index: 20;
 }
 .returnToMainMenuBtn:hover {
   transform: translateY(-3px) scale(1.07);
