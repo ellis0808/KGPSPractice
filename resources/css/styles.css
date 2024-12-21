@@ -450,7 +450,7 @@ body:not(:has(*)) {
 .move-menu-right-btn:hover {
   scale: 1.01;
 }
-.returnToMainMenuBtn {
+.return-to-main-menu-btn {
   grid-area: returnToMainMenuBtn;
   height: 50px;
   width: 175px;
@@ -467,7 +467,7 @@ body:not(:has(*)) {
   transition: 0.3s;
   z-index: 20;
 }
-.returnToMainMenuBtn:hover {
+.return-to-main-menu-btn:hover {
   transform: translateY(-3px) scale(1.07);
 }
 .secondary-menu-div:hover {

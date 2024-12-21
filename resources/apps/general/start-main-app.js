@@ -530,6 +530,15 @@ class MenuItems {
     // "this" Bindings
     this.restoreMainMenu = this.restoreMainMenu.bind(this);
     this.returnToMainMenu = this.returnToMainMenu.bind(this);
+
+    // return to main menu btn
+    this.returnToMainMenuBtn = document.createElement("div");
+    this.returnToMainMenuBtn.innerText = `<- Back`;
+    this.returnToMainMenuBtn.classList.add("return-to-main-menu-btn");
+    this.returnToMainMenuBtn.addEventListener(
+      "pointerdown",
+      menuItems.returnToMainMenu
+    );
   }
 
   /******
@@ -576,7 +585,7 @@ class MenuItems {
     this.returnToMainMenuToggle();
     this.displayMovementArrows();
     mainContainer.appendChild(this.secondaryMenuContainer);
-    this.secondaryMenuContainer.appendChild(returnToMainMenuBtn);
+    this.secondaryMenuContainer.appendChild(this.returnToMainMenuBtn);
     this.secondaryMenuContainer.appendChild(this.moveMenuLeftBtn);
     this.secondaryMenuContainer.appendChild(this.moveMenuRightBtn);
     this.secondaryMenuContainer.appendChild(this.headersColumn);
@@ -777,9 +786,9 @@ class MenuItems {
   }
   returnToMainMenuToggle() {
     if (!this.isPrimaryMenu) {
-      returnToMainMenuBtn.classList.remove("hidden");
+      this.returnToMainMenuBtn.classList.remove("hidden");
     } else if (this.isPrimaryMenu) {
-      returnToMainMenuBtn.classList.add("hidden");
+      this.returnToMainMenuBtn.classList.add("hidden");
     }
   }
   resetSecondaryMenuPosition() {
@@ -844,11 +853,11 @@ function displayGreeting() {
 
 /*  Return to Main Page  */
 
-const returnToMainMenuBtn = document.createElement("button");
-returnToMainMenuBtn.innerText = `<- Back`;
-returnToMainMenuBtn.classList.add("returnToMainMenuBtn");
-returnToMainMenuBtn.setAttribute("id", "returnToMainMenuBtn");
-returnToMainMenuBtn.addEventListener("click", menuItems.returnToMainMenu);
+// const returnToMainMenuBtn = document.createElement("div");
+// returnToMainMenuBtn.innerText = `<- Back`;
+// returnToMainMenuBtn.classList.add("return-to-main-menu-btn");
+// returnToMainMenuBtn.setAttribute("id", "return-to-main-menu-btn");
+// returnToMainMenuBtn.addEventListener("pointerdown", menuItems.returnToMainMenu);
 
 if (navBar) {
   body.appendChild(navBar);
