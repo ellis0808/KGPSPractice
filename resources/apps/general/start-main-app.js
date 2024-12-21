@@ -537,7 +537,7 @@ class MenuItems {
     this.returnToMainMenuBtn.classList.add("return-to-main-menu-btn");
     this.returnToMainMenuBtn.addEventListener(
       "pointerdown",
-      menuItems.returnToMainMenu
+      this.returnToMainMenu
     );
   }
 
