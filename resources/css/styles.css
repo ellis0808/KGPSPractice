@@ -255,7 +255,7 @@ body:not(:has(*)) {
   grid-template-columns: 225px 0.05fr 1fr 1fr 1fr 0.05fr;
   grid-template-rows: 70px repeat(4, 1fr);
   grid-template-areas:
-    ".....  ..... .....  .....  returnToMainMenuBtn returnToMainMenuBtn"
+    ".....  .....  .....  .....  return-to-main-menu-btn  return-to-main-menu-btn"
     "menu-headers  ..... menu-apps-container  menu-apps-container menu-apps-container ....."
     "menu-headers  move-menu-left-btn   menu-apps-container  menu-apps-container menu-apps-container move-menu-right-btn"
     "menu-headers  move-menu-left-btn   menu-apps-container  menu-apps-container menu-apps-container move-menu-right-btn"
@@ -276,7 +276,7 @@ body:not(:has(*)) {
 }
 .menu-apps-container {
   grid-area: menu-apps-container;
-  width: 3000px;
+  max-width: 3000px;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
@@ -451,7 +451,7 @@ body:not(:has(*)) {
   scale: 1.01;
 }
 .return-to-main-menu-btn {
-  grid-area: returnToMainMenuBtn;
+  grid-area: return-to-main-menu-btn;
   height: 50px;
   width: 175px;
   margin-left: auto;
