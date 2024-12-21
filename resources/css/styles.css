@@ -276,7 +276,7 @@ body:not(:has(*)) {
 }
 .menu-apps-container {
   grid-area: menu-apps-container;
-  width: 100%;
+  width: max-content;
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
