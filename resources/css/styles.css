@@ -283,7 +283,7 @@ body:not(:has(*)) {
   grid-template-rows: 4fr;
   /* place-content: center; */
   /* place-items: center; */
-  /* overflow: hidden; */
+  overflow: hidden;
   transition: 0.5s;
 }
 .secondary-menu-row {
