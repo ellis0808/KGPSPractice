@@ -108,12 +108,10 @@ const userManagementStructure = {
 };
 
 // Logout
-if (window.location.href === "./user-management.html") {
-  const logoutBtn = document.querySelector(".logout-btn");
-  console.log(logoutBtn);
+const logoutBtn = document.querySelector(".logout-btn");
+console.log(logoutBtn);
 
-  logoutBtn.addEventListener("pointerdown", logout);
-}
+logoutBtn.addEventListener("pointerdown", logout);
 const getUserInfo = {
   async getAllUsers() {
     try {
