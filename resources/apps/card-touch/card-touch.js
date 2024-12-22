@@ -323,7 +323,6 @@ function startNewRound() {
 
 function roundOver() {
   endRoundScreen.displayContainer();
-  displayEndMessagesContainer();
 }
 
 // Clear away all cards
