@@ -61,7 +61,7 @@ function cardTouchApp(set) {
     scoreFunction.hide();
   }
   if (!timerFunction.timer.classList.contains("hide2")) {
-    timerFunction.hide();
+    timerFunction.show();
   }
   setTimeout(setUser, 2000);
 }
