@@ -27,6 +27,7 @@ import {
   setStyle,
 } from "./card-touch-set-style-and-activity-id.js";
 import { audio } from "../../utilities/audio.js";
+import { endRoundScreen } from "../../utilities/end-round-screen.js";
 
 /* SCORING */
 const correctAnswerPoints = 2;
@@ -55,6 +56,10 @@ function cardTouchApp(set) {
   setTimeout(displayStartBtn, 200);
 
   timerFunction.setEndRoundFunction(roundOver);
+  endRoundScreen.createBtnsAndContainer();
+  endRoundScreen.addClassesAndText();
+  this.tryAgainBtn.addEventListener("pointerdown", startNewSession);
+  this.finishBtn.addEventListener("pointerdown", endApp);
   scoreFunction.resetCurrentScore();
   scoreFunction.display.innerText = scoreFunction.currentScore;
   appContainer.classList.remove("hide");
@@ -317,13 +322,8 @@ function startNewRound() {
 }
 
 function roundOver() {
+  endRoundScreen.displayContainer();
   displayEndMessagesContainer();
-  setTimeout(disableTouch, 500);
-  setTimeout(disableTouch, 1000);
-  grid.classList.add("blur");
-  btnContainer1.classList.add("blur");
-  homeBtnContainer.classList.add("blur");
-  homeBtnContainer.classList.add("no-touch");
 }
 
 // Clear away all cards
