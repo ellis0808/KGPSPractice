@@ -160,50 +160,50 @@ if (style === 3) {
 } else {
   roundTime = 60;
 }
-const setRoundTime = (style) => {
-  if (style === 3) {
-    roundTime = 30;
-    timer.innerText = "0:30";
-  } else {
-    roundTime = 60;
-    timer.innerText = "1:00";
-  }
-};
-function startTimer() {
-  time = roundTime;
-  setTimeout(displayTimer, 500);
-}
-function displayTimer() {
-  countDown = setInterval(() => {
-    if (!isPaused) {
-      --time;
-      if (time < 10) {
-        timer.textContent = `0:0${time}`;
-      } else {
-        timer.textContent = `0:${time}`;
-      }
-      if (time < 0) {
-        isSessionFinished = true;
-        timer.textContent = "0:00";
-        clearInterval(countDown);
-        disableTouch();
-        timer.classList.add("wobble");
-        timer.classList.remove("wobble");
-        timer.classList.add("wobble");
-        timer.classList.remove("wobble");
-        timer.classList.add("wobble");
-        roundOver();
-      }
-    }
-  }, 1000);
-  return countDown;
-}
-function resetTimer() {
-  timer.innerText = "1:00";
-  timer.classList.remove("wobble");
-  time = roundTime;
-  clearInterval(countDown);
-}
+// const setRoundTime = (style) => {
+//   if (style === 3) {
+//     roundTime = 30;
+//     timer.innerText = "0:30";
+//   } else {
+//     roundTime = 60;
+//     timer.innerText = "1:00";
+//   }
+// };
+// function startTimer() {
+//   time = roundTime;
+//   setTimeout(displayTimer, 500);
+// }
+// function displayTimer() {
+//   countDown = setInterval(() => {
+//     if (!isPaused) {
+//       --time;
+//       if (time < 10) {
+//         timer.textContent = `0:0${time}`;
+//       } else {
+//         timer.textContent = `0:${time}`;
+//       }
+//       if (time < 0) {
+//         isSessionFinished = true;
+//         timer.textContent = "0:00";
+//         clearInterval(countDown);
+//         disableTouch();
+//         timer.classList.add("wobble");
+//         timer.classList.remove("wobble");
+//         timer.classList.add("wobble");
+//         timer.classList.remove("wobble");
+//         timer.classList.add("wobble");
+//         roundOver();
+//       }
+//     }
+//   }, 1000);
+//   return countDown;
+// }
+// function resetTimer() {
+//   timer.innerText = "1:00";
+//   timer.classList.remove("wobble");
+//   time = roundTime;
+//   clearInterval(countDown);
+// }
 function disableTouch() {
   const allCards = document.querySelectorAll(".card");
   allCards.forEach((card) => {
