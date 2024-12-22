@@ -202,7 +202,7 @@ function fluencyApp(set) {
 
   stylesheet.setAttribute(
     "href",
-    "/KGPSEnglishPractice-test/resources/css/number-fluency.css"
+    "/KGPSEnglishPractice-test/resources/css/fluency.css"
   );
   menuItems.removeMenuPage();
 

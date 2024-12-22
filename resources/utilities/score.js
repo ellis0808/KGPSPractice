@@ -73,10 +73,16 @@ const scoreFunction = {
     if (!this.display.classList.contains("hide")) {
       this.display.classList.add("hide");
     }
+    if (!this.display.classList.contains("hide2")) {
+      this.display.classList.add("hide2");
+    }
   },
   show() {
     if (this.display.classList.contains("hide")) {
       this.display.classList.remove("hide");
+    }
+    if (this.display.classList.contains("hide2")) {
+      this.display.classList.remove("hide2");
     }
   },
   resetCurrentScore() {
