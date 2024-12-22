@@ -58,8 +58,8 @@ function cardTouchApp(set) {
   timerFunction.setEndRoundFunction(roundOver);
   endRoundScreen.createBtnsAndContainer();
   endRoundScreen.addClassesAndText();
-  this.tryAgainBtn.addEventListener("pointerdown", startNewSession);
-  this.finishBtn.addEventListener("pointerdown", endApp);
+  endRoundScreen.tryAgainBtn.addEventListener("pointerdown", startNewSession);
+  endRoundScreen.finishBtn.addEventListener("pointerdown", endApp);
   scoreFunction.resetCurrentScore();
   scoreFunction.display.innerText = scoreFunction.currentScore;
   appContainer.classList.remove("hide");
