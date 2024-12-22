@@ -36,7 +36,7 @@ function cardTouchApp(set) {
   sessionCheck();
   setStyle(set);
   setGridStyle(style);
-  setRoundTime(style);
+  // setRoundTime(style);
   setTimeout(() => {
     timerFunction.clearTimer();
     mainContainer.appendChild(appContainer);
