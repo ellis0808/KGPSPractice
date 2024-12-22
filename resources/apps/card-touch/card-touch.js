@@ -14,7 +14,11 @@ import {
 } from "./card-data.js";
 import { wobble, spinfade, newRoundCardFlip, particles } from "./fx.js";
 import { scoreFunction } from "../../utilities/score.js";
-import { timer, toggleTimerHide } from "../../utilities/timer.js";
+import {
+  timer,
+  timerFunction,
+  toggleTimerHide,
+} from "../../utilities/timer.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
 import {
@@ -34,7 +38,7 @@ function cardTouchApp(set) {
   setGridStyle(style);
   setRoundTime(style);
   setTimeout(() => {
-    resetTimer();
+    timerFunction.clearTimer();
     mainContainer.appendChild(appContainer);
     appContainer.appendChild(btnContainer1);
     appContainer.appendChild(btnContainer2);
@@ -56,8 +60,8 @@ function cardTouchApp(set) {
   if (!scoreFunction.display.classList.contains("hide2")) {
     scoreFunction.hide();
   }
-  if (!timer.classList.contains("hide2")) {
-    toggleTimerHide();
+  if (!timerFunction.timer.classList.contains("hide2")) {
+    timerFunction.hide();
   }
   setTimeout(setUser, 2000);
 }
@@ -151,6 +155,11 @@ let countDown;
 // TIMER
 let time;
 let roundTime;
+if (style === 3) {
+  roundTime = 30;
+} else {
+  roundTime = 60;
+}
 const setRoundTime = (style) => {
   if (style === 3) {
     roundTime = 30;
@@ -247,7 +256,7 @@ function startSession() {
   setTimeout(() => {
     appStarted = true;
   }, 1);
-  setTimeout(resetTimer, 750);
+  setTimeout(timerFunction.clearTimer, 750);
   setTimeout(startNewSession, 1000);
 }
 
@@ -277,8 +286,8 @@ function startNewSession() {
   if (scoreFunction.display.classList.contains("hide2")) {
     scoreFunction.show();
   }
-  if (timer.classList.contains("hide2")) {
-    toggleTimerHide();
+  if (timerFunction.timer.classList.contains("hide2")) {
+    timerFunction.show();
   }
   isSessionFinished = false;
   appContainer.appendChild(grid);
@@ -289,11 +298,11 @@ function startNewSession() {
   createBoard();
   setTimeout(() => {
     enableTouch();
-    startTimer();
+    timerFunction.startTimer(roundTime);
     tryAgainBtn.classList.remove("no-touch");
     finishBtn.classList.remove("no-touch");
   }, 500);
-  btnContainer1.appendChild(timer);
+  btnContainer1.appendChild(timerFunction.timer);
   btnContainer1.appendChild(scoreFunction.display);
   homeBtnContainer.appendChild(homeBtn);
   homeBtnContainer.appendChild(pauseBtn);
@@ -664,7 +673,7 @@ function endApp() {
     }, 500);
   }, 500);
   scoreFunction.display.innerText = scoreFunction.currentScore;
-  resetTimer();
+  timerFunction.clearTimer();
 }
 // pauses app
 function pause() {
