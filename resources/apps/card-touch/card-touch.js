@@ -14,12 +14,6 @@ import {
 } from "./card-data.js";
 import { wobble, spinfade, newRoundCardFlip, particles } from "./fx.js";
 import { scoreFunction } from "../../utilities/score.js";
-import {
-  scoreDisplay,
-  toggleScoreDisplayHide,
-  updateNegativeCount,
-  updatePositiveCount,
-} from "../../utilities/update-score.js";
 import { timer, toggleTimerHide } from "../../utilities/timer.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
@@ -57,10 +51,10 @@ function cardTouchApp(set) {
   setTimeout(displayStartBtn, 200);
 
   scoreFunction.resetCurrentScore();
-  scoreDisplay.innerText = scoreFunction.currentScore;
+  scoreFunction.display.innerText = scoreFunction.currentScore;
   appContainer.classList.remove("hide");
-  if (!scoreDisplay.classList.contains("hide2")) {
-    toggleScoreDisplayHide();
+  if (!scoreFunction.display.classList.contains("hide2")) {
+    scoreFunction.hide();
   }
   if (!timer.classList.contains("hide2")) {
     toggleTimerHide();
@@ -137,7 +131,7 @@ repeatBtn.addEventListener("click", cardTouchAudio.repeat);
 repeatBtn.textContent = "Repeat";
 toggleRepeatBtnHide();
 // toggleScoreDisplayHide();
-scoreDisplay.textContent = `${scoreFunction.currentScore}`;
+scoreFunction.display.textContent = `${scoreFunction.currentScore}`;
 
 const tryAgainBtn = document.createElement("div");
 tryAgainBtn.classList.add("try-again-btn");
@@ -280,8 +274,8 @@ function removeBlur() {
   }
 }
 function startNewSession() {
-  if (scoreDisplay.classList.contains("hide2")) {
-    toggleScoreDisplayHide();
+  if (scoreFunction.display.classList.contains("hide2")) {
+    scoreFunction.show();
   }
   if (timer.classList.contains("hide2")) {
     toggleTimerHide();
@@ -289,7 +283,7 @@ function startNewSession() {
   isSessionFinished = false;
   appContainer.appendChild(grid);
   scoreFunction.resetCurrentScore();
-  scoreDisplay.innerText = scoreFunction.currentScore;
+  scoreFunction.display.innerText = scoreFunction.currentScore;
   removeBlur();
   homeBtnContainer.classList.remove("no-touch");
   createBoard();
@@ -300,7 +294,7 @@ function startNewSession() {
     finishBtn.classList.remove("no-touch");
   }, 500);
   btnContainer1.appendChild(timer);
-  btnContainer1.appendChild(scoreDisplay);
+  btnContainer1.appendChild(scoreFunction.display);
   homeBtnContainer.appendChild(homeBtn);
   homeBtnContainer.appendChild(pauseBtn);
   btnContainer1.classList.remove("hide");
@@ -376,9 +370,9 @@ function displayEndMessagesContainer() {
   appContainer.appendChild(btnContainer5);
   btnContainer5.appendChild(endMessagesContainer);
   const finalScoreAssessment = document.createElement("div");
-  finalScoreAssessment.classList.add("final-scoreFunction-assessment");
+  finalScoreAssessment.classList.add("final-score-assessment");
   const finalScoreAlertScore = document.createElement("div");
-  finalScoreAlertScore.classList.add("final-scoreFunction-alert-scoreFunction");
+  finalScoreAlertScore.classList.add("final-score-alert-score");
   const endMessagesContainerInnerBorder = document.createElement("div");
   endMessagesContainerInnerBorder.classList.add("border");
 
@@ -525,7 +519,7 @@ function createBoard() {
         });
       }
       btnContainer3.appendChild(repeatBtn);
-      btnContainer1.appendChild(scoreDisplay);
+      btnContainer1.appendChild(scoreFunction.display);
       if (!isSessionFinished) {
         if (!isPaused) {
           cardTouchAudio.speak();
@@ -544,7 +538,7 @@ function touchCard(e) {
   currentCardID = this.getAttribute("contentId");
   if (currentCardID === cardText[cardTouchAudio.correctCardID]) {
     correctCard(e);
-    updatePositiveCount(correctAnswerPoints);
+    scoreFunction.updatePositiveCount(correctAnswerPoints);
     let delay = 300;
     setTimeout(() => {
       switch (scoreFunction.currentScore) {
@@ -572,7 +566,7 @@ function touchCard(e) {
     disableTouch();
   } else {
     wobble(e);
-    updateNegativeCount(incorrectAnswerPoints);
+    scoreFunction.updateNegativeCount(incorrectAnswerPoints);
   }
 }
 
@@ -669,7 +663,7 @@ function endApp() {
       setTimeout(menuItems.restoreMainMenu, 100);
     }, 500);
   }, 500);
-  scoreDisplay.innerText = scoreFunction.currentScore;
+  scoreFunction.display.innerText = scoreFunction.currentScore;
   resetTimer();
 }
 // pauses app
