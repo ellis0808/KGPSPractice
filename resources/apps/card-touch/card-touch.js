@@ -54,6 +54,7 @@ function cardTouchApp(set) {
 
   setTimeout(displayStartBtn, 200);
 
+  timerFunction.setEndRoundFunction(roundOver);
   scoreFunction.resetCurrentScore();
   scoreFunction.display.innerText = scoreFunction.currentScore;
   appContainer.classList.remove("hide");
@@ -61,7 +62,7 @@ function cardTouchApp(set) {
     scoreFunction.hide();
   }
   if (!timerFunction.timer.classList.contains("hide2")) {
-    timerFunction.show();
+    timerFunction.hide();
   }
   setTimeout(setUser, 2000);
 }
@@ -575,7 +576,7 @@ function touchCard(e) {
     disableTouch();
   } else {
     wobble(e);
-    scoreFunction.updateNegativeCount(incorrectAnswerPoints);
+    // scoreFunction.updateNegativeCount(incorrectAnswerPoints);
   }
 }
 
