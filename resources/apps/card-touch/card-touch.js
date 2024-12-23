@@ -153,6 +153,7 @@ finishBtn.classList.add("finish-btn");
 finishBtn.addEventListener("click", endApp);
 finishBtn.innerText = "Finish";
 
+let btnContainer5;
 let isPaused = false;
 let appStarted = false;
 let isSessionFinished = false;
@@ -323,10 +324,13 @@ function startNewRound() {
 }
 
 function roundOver() {
-  let btnContainer5 = document.createElement("div");
-  btnContainer5.classList.add("btn-container5");
-  console.log(endRoundScreen.endMessagesContainer);
-
+  if (!btnContainer5) {
+    btnContainer5 = document.createElement("div");
+    btnContainer5.classList.add("btn-container5");
+  }
+  if (btnContainer5.classList.contains("hide")) {
+    btnContainer5.classList.remove("hide");
+  }
   endRoundScreen.displayContainer();
   btnContainer5.appendChild(endRoundScreen.endMessagesContainer);
   appContainer.appendChild(btnContainer5);
@@ -451,6 +455,11 @@ function toggleRepeatBtnHide() {
 // BOARD GENERATION
 function createBoard() {
   cardText = [];
+  if (btnContainer5) {
+    if (!btnContainer5.classList.contains("hide")) {
+      btnContainer5.classList.add("hide");
+    }
+  }
   if (!startBtn.classList.contains("hide")) {
     startBtn.classList.toggle("hide");
   }
