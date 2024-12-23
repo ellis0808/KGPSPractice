@@ -330,6 +330,7 @@ function roundOver() {
     "card-touch-app"
   );
   appContainer.appendChild(btnContainer5);
+  btnContainer5.appendChild(endRoundScreen.endMessagesContainer);
   endRoundScreen.displayContainer();
 }
 
