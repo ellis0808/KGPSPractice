@@ -297,6 +297,9 @@ function startNewSession() {
   if (timerFunction.timer.classList.contains("hide2")) {
     timerFunction.show();
   }
+  if (grid.childNodes) {
+    clearBoardFast();
+  }
   isSessionFinished = false;
   appContainer.appendChild(grid);
   scoreFunction.resetCurrentScore();
