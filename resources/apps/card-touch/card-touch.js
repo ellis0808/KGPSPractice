@@ -59,7 +59,7 @@ function cardTouchApp(set) {
   timerFunction.setEndRoundFunction(roundOver);
   endRoundScreen.createBtnsAndContainer();
   endRoundScreen.addClassesAndText();
-  endRoundScreen.tryAgainBtn.addEventListener("pointerdown", startNewSession);
+  endRoundScreen.tryAgainBtn.addEventListener("pointerdown", startSession);
   endRoundScreen.finishBtn.addEventListener("pointerdown", endApp);
   scoreFunction.resetCurrentScore();
   scoreFunction.display.innerText = scoreFunction.currentScore;
@@ -296,9 +296,6 @@ function startNewSession() {
   }
   if (timerFunction.timer.classList.contains("hide2")) {
     timerFunction.show();
-  }
-  if (grid.childNodes) {
-    clearBoardFast();
   }
   isSessionFinished = false;
   appContainer.appendChild(grid);
