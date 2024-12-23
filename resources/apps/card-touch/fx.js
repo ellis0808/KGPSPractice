@@ -5,7 +5,7 @@ function wobble(e) {
   e.currentTarget.classList.remove("wobble");
   void e.currentTarget.offsetWidth;
   e.currentTarget.classList.add("wobble");
-  audio.appSfx.correct.play();
+  audio.appSfx.incorrect.play();
 }
 
 function spinfade(e) {

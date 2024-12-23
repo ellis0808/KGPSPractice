@@ -322,6 +322,14 @@ function startNewRound() {
 }
 
 function roundOver() {
+  const btnContainer5 = document.createElement("div");
+  btnContainer5.classList.add("btn-container5");
+  const endMessagesContainer = document.createElement("div");
+  endMessagesContainer.classList.add(
+    "end-messages-container",
+    "card-touch-app"
+  );
+  appContainer.appendChild(btnContainer5);
   endRoundScreen.displayContainer();
 }
 
@@ -575,7 +583,6 @@ function touchCard(e) {
     disableTouch();
   } else {
     wobble(e);
-    // scoreFunction.updateNegativeCount(incorrectAnswerPoints);
   }
 }
 
