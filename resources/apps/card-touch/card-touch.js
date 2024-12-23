@@ -263,7 +263,7 @@ function startSession() {
     appStarted = true;
   }, 1);
   setTimeout(timerFunction.clearTimer, 750);
-  setTimeout(startNewSession, 1400);
+  setTimeout(startNewSession, 2000);
 }
 
 function removeEndMessagesContainer() {
@@ -329,8 +329,10 @@ function roundOver() {
     "end-messages-container",
     "card-touch-app"
   );
-  appContainer.appendChild(btnContainer5);
+  console.log(endRoundScreen.endMessagesContainer);
+
   btnContainer5.appendChild(endRoundScreen.endMessagesContainer);
+  appContainer.appendChild(btnContainer5);
   endRoundScreen.displayContainer();
 }
 
