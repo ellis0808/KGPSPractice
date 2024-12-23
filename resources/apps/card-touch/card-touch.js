@@ -28,6 +28,7 @@ import {
 } from "./card-touch-set-style-and-activity-id.js";
 import { audio } from "../../utilities/audio.js";
 import { endRoundScreen } from "../../utilities/end-round-screen.js";
+import { app } from "../../utilities/app-class.js";
 
 /* SCORING */
 const correctAnswerPoints = 2;
@@ -322,13 +323,8 @@ function startNewRound() {
 }
 
 function roundOver() {
-  const btnContainer5 = document.createElement("div");
-  btnContainer5.classList.add("btn-container5");
-  const endMessagesContainer = document.createElement("div");
-  endMessagesContainer.classList.add(
-    "end-messages-container",
-    "card-touch-app"
-  );
+  let btnContainer5 = document.createElement("div");
+  btnContainer5.classList.add("btn-contaainer5");
   console.log(endRoundScreen.endMessagesContainer);
 
   btnContainer5.appendChild(endRoundScreen.endMessagesContainer);
