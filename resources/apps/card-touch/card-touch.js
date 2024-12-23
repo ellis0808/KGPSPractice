@@ -263,7 +263,7 @@ function startSession() {
     appStarted = true;
   }, 1);
   setTimeout(timerFunction.clearTimer, 750);
-  setTimeout(startNewSession, 1000);
+  setTimeout(startNewSession, 1400);
 }
 
 function removeEndMessagesContainer() {
