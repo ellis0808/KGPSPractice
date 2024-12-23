@@ -164,7 +164,7 @@ let roundTime;
 if (style === 3) {
   roundTime = 30;
 } else {
-  roundTime = 60;
+  roundTime = 10;
 }
 // const setRoundTime = (style) => {
 //   if (style === 3) {
