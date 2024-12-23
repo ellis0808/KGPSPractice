@@ -324,12 +324,12 @@ function startNewRound() {
 
 function roundOver() {
   let btnContainer5 = document.createElement("div");
-  btnContainer5.classList.add("btn-contaainer5");
+  btnContainer5.classList.add("btn-container5");
   console.log(endRoundScreen.endMessagesContainer);
 
+  endRoundScreen.displayContainer();
   btnContainer5.appendChild(endRoundScreen.endMessagesContainer);
   appContainer.appendChild(btnContainer5);
-  endRoundScreen.displayContainer();
 }
 
 // Clear away all cards
