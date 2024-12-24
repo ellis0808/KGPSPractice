@@ -67,9 +67,9 @@ body:not(:has(*)) {
     "..... ..... ..... ....."
     "..... btn-container1 btn-container1 ....."
     "..... ..... ..... ....."
-    "..... writing-grid writing-grid....."
+    "home-btn-container writing-grid writing-grid....."
     "..... ..... ..... ....."
-    "..... home-btn-container home-btn-container ....."
+    ".....  .....  .....  ....."
     "..... ..... ..... .....";
   place-content: center;
   place-items: center;
