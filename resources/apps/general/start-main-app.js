@@ -726,9 +726,7 @@ class MenuItems {
   }
   unhideSecondaryMenu() {
     document
-      .querySelectorAll(
-        ".secondary-menu, .secondary-menu-container, .secondary-menu-item"
-      )
+      .querySelectorAll(".secondary-menu, .secondary-menu-container")
       .forEach((item) => {
         if (item.classList.contains("hidden")) {
           item.classList.remove("hidden");
@@ -744,8 +742,7 @@ class MenuItems {
       });
     }
     if (this.isSecondaryMenu) {
-      console.log("test");
-
+      // remove Secondary Menu
       document.querySelectorAll(".secondary-menu-item").forEach((item) => {
         item.classList.add("hide");
         item.remove();
