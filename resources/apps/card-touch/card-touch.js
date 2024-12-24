@@ -65,12 +65,7 @@ function cardTouchApp(set) {
   scoreFunction.resetCurrentScore();
   scoreFunction.display.innerText = scoreFunction.currentScore;
   appContainer.classList.remove("hide");
-  if (!scoreFunction.display.classList.contains("hide2")) {
-    scoreFunction.hide();
-  }
-  if (!timerFunction.timer.classList.contains("hide2")) {
-    timerFunction.show();
-  }
+
   setTimeout(setUser, 2000);
 }
 function setUser() {
@@ -292,12 +287,13 @@ function removeBlur() {
   }
 }
 function startNewSession() {
-  if (scoreFunction.display.classList.contains("hide2")) {
-    scoreFunction.show();
+  if (!scoreFunction.display.classList.contains("hide")) {
+    scoreFunction.hide();
   }
-  if (timerFunction.timer.classList.contains("hide2")) {
+  if (!timerFunction.timer.classList.contains("hide")) {
     timerFunction.show();
   }
+
   isSessionFinished = false;
   appContainer.appendChild(grid);
   scoreFunction.resetCurrentScore();
@@ -690,6 +686,7 @@ function endApp() {
   }, 500);
   scoreFunction.display.innerText = scoreFunction.currentScore;
   timerFunction.clearTimer();
+  timerFunction.hide();
 }
 // pauses app
 function pause() {
