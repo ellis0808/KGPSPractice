@@ -329,12 +329,13 @@ body:not(:has(*)) {
 
 .home-btn-container {
   grid-area: home-btn-container;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
+  /* grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
-  grid-template-areas: "home-btn pause-btn";
-  place-content: center;
-  place-items: center;
+  grid-template-areas: "home-btn pause-btn"; */
+  place-content: right;
+  place-items: right;
   transition: 0.25s ease-in-out;
 }
 /* @media only screen and (orientation: portrait) and (device-width: 768px) {

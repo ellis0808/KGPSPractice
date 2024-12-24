@@ -681,7 +681,7 @@ function endApp() {
         "/KGPSEnglishPractice-test/resources/css/styles.css"
       );
       menuItems.displayMainPage();
-      setTimeout(menuItems.restoreMainMenu, 100);
+      // setTimeout(menuItems.restoreMainMenu, 100);
     }, 500);
   }, 500);
   scoreFunction.display.innerText = scoreFunction.currentScore;
