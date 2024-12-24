@@ -770,10 +770,13 @@ class MenuItems {
     topContainer.classList.remove("hidden");
     getCumulativeUserScore();
     setTimeout(displayGreeting, 500);
-    primaryMenuContainer.classList.remove("hidden");
-    this.abcMenu.classList.remove("hidden");
-    this.numbersMenu.classList.remove("hidden");
-    this.sightWordsMenu.classList.remove("hidden");
+    this.hideSecondaryMenu();
+    this.unhidePrimaryMenu();
+    this.resetSecondaryMenuPosition();
+    // primaryMenuContainer.classList.remove("hidden");
+    // this.abcMenu.classList.remove("hidden");
+    // this.numbersMenu.classList.remove("hidden");
+    // this.sightWordsMenu.classList.remove("hidden");
   }
   returnToMainMenu() {
     audio.navigationSfx.backToPreviousMenu.play();

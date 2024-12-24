@@ -251,7 +251,7 @@ body:not(:has(*)) {
 
 .skip-btn {
   grid-area: skip-btn;
-  background-color: var(--clr-ylw);
+  background-color: var(--clr-red);
 }
 @media (hover: hover) and (pointer: fine) {
   .skip-btn:hover {
@@ -283,7 +283,7 @@ body:not(:has(*)) {
 }
 .undo-btn {
   grid-area: undo-btn;
-  background-color: var(--clr-ylw);
+  background-color: var(--clr-blu);
 }
 @media (hover: hover) and (pointer: fine) {
   .undo-btn:hover {
@@ -302,7 +302,7 @@ body:not(:has(*)) {
   width: 180px;
   height: 120px;
   color: var(--clr-wht);
-  background-color: var(--clr-red);
+  background-color: var(--clr-acc1);
   transition: var(--transition);
 }
 @media (hover: hover) and (pointer: fine) {
