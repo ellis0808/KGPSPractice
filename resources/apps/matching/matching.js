@@ -499,11 +499,13 @@ class MatchingApp {
     return (this.endDotId = event.target.id);
   }
   draw(event) {
-    this.clearLines();
-    this.lines.forEach((x) => {
-      dotAndLineCommand.registerConnector(this.line);
-      this.line.drawLine(event);
-    });
+    if (document.querySelector(".unconnected").length > 0) {
+      this.clearLines();
+      this.lines.forEach((x) => {
+        dotAndLineCommand.registerConnector(this.line);
+        this.line.drawLine(event);
+      });
+    }
   }
   clearLines() {
     if (document.querySelector(".unconnected")) {
