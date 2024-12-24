@@ -238,7 +238,7 @@ class MatchingApp {
           this.line.getStartPosition(event);
           this.line.end = {};
           this.line.getEndPosition(event);
-          this.draw();
+          this.draw(event);
         }
         return this.currentEndDot;
       } else if (event.target.classList.contains("start-target")) {
@@ -276,7 +276,7 @@ class MatchingApp {
           this.line.getStartPosition(event);
           this.line.end = {};
           this.line.getEndPosition(event);
-          this.draw();
+          this.draw(event);
         }
 
         return this.currentStartDot;
@@ -303,7 +303,7 @@ class MatchingApp {
             x: event.clientX - bodyRect.left,
             y: event.clientY - bodyRect.top,
           };
-          this.draw();
+          this.draw(event);
           this.lines.pop();
           this.lines.push(document.querySelector(".unconnected"));
         }
@@ -323,7 +323,7 @@ class MatchingApp {
             x: event.clientX - bodyRect.left,
             y: event.clientY - bodyRect.top,
           };
-          this.draw();
+          this.draw(event);
           this.lines.pop();
           this.lines.push(document.querySelector(".unconnected"));
         }
@@ -372,7 +372,7 @@ class MatchingApp {
         );
         newStartDot.connect(endDot[this.currentEndDot], this.line);
 
-        this.draw();
+        this.draw(event);
         this.line.buttonUp();
         if (
           !this.line.isPressed &&
@@ -432,7 +432,7 @@ class MatchingApp {
         );
         newEndDot.connect(startDot[this.currentStartDot], this.line);
         this.lines.pop();
-        this.draw();
+        this.draw(event);
         this.line.buttonUp();
         if (
           !this.line.isPressed &&
@@ -499,13 +499,15 @@ class MatchingApp {
     return (this.endDotId = event.target.id);
   }
   draw(event) {
-    if (document.querySelector(".unconnected").length > 0) {
-      this.clearLines();
-      this.lines.forEach((x) => {
-        dotAndLineCommand.registerConnector(this.line);
-        this.line.drawLine(event);
-      });
-    }
+    console.log(this.lines);
+
+    // if (document.querySelector(".unconnected").length > 0) {
+    this.clearLines();
+    this.lines.forEach((x) => {
+      dotAndLineCommand.registerConnector(this.line);
+      this.line.drawLine(event);
+    });
+    // }
   }
   clearLines() {
     if (document.querySelector(".unconnected")) {
