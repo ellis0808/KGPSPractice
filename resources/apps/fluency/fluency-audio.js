@@ -14,26 +14,31 @@ class FluencyAudio {
       case 1:
         category = "numbers";
         grouping = 1;
+        grouping2 = 2;
         audio.getAudio(category, grouping, grouping2);
         break;
       case 2:
         category = "numbers";
-        grouping = 2;
+        grouping = 3;
+        grouping2 = 4;
         audio.getAudio(category, grouping, grouping2);
         break;
       case 3:
         category = "numbers";
-        grouping = 3;
+        grouping = 5;
+        grouping2 = 6;
         audio.getAudio(category, grouping, grouping2);
         break;
       case 4:
         category = "numbers";
-        grouping = 4;
+        grouping = 7;
+        grouping2 = 8;
         audio.getAudio(category, grouping, grouping2);
         break;
       case 5:
         category = "numbers";
-        grouping = 5;
+        grouping = 9;
+        grouping2 = 10;
         audio.getAudio(category, grouping, grouping2);
         break;
     }
