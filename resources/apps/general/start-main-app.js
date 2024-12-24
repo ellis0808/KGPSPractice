@@ -726,7 +726,9 @@ class MenuItems {
   }
   unhideSecondaryMenu() {
     document
-      .querySelectorAll(".secondary-menu, .secondary-menu-container")
+      .querySelectorAll(
+        ".secondary-menu, .secondary-menu-container, .secondary-menu-item"
+      )
       .forEach((item) => {
         if (item.classList.contains("hidden")) {
           item.classList.remove("hidden");
