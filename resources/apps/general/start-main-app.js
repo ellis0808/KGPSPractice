@@ -733,6 +733,16 @@ class MenuItems {
         }
       });
   }
+  removeSecondaryMenu() {
+    document.querySelectorAll(".secondary-menu-item").forEach((item) => {
+      item.classList.add("hide");
+      item.remove();
+    });
+    document.querySelectorAll(".secondary-menu").forEach((item) => {
+      item.classList.add("hide");
+      item.remove();
+    });
+  }
   removeMenu() {
     // remove Primary menu
     if (this.isPrimaryMenu) {
@@ -742,15 +752,8 @@ class MenuItems {
       });
     }
     if (this.isSecondaryMenu) {
-      // remove Secondary Menu
-      document.querySelectorAll(".secondary-menu-item").forEach((item) => {
-        item.classList.add("hide");
-        item.remove();
-      });
-      document.querySelectorAll(".secondary-menu").forEach((item) => {
-        item.classList.add("hide");
-        item.remove();
-      });
+      this.hideSecondaryMenu();
+      this.removeSecondaryMenu();
     }
   }
   // removes the ENTIRE menu page when starting an app
