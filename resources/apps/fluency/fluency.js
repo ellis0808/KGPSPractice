@@ -570,9 +570,9 @@ function displayEndMessagesContainer() {
   appContainer.appendChild(btnContainer5);
   btnContainer5.appendChild(endMessagesContainer);
   const finalScoreAssessment = document.createElement("div");
-  finalScoreAssessment.classList.add("final-scoreFunction-assessment");
+  finalScoreAssessment.classList.add("final-score-assessment");
   const finalScoreAlertScore = document.createElement("div");
-  finalScoreAlertScore.classList.add("final-scoreFunction-alert-scoreFunction");
+  finalScoreAlertScore.classList.add("final-score-alert-score");
 
   switch (true) {
     case scoreFunction.currentScore < 10:
