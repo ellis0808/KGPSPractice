@@ -546,6 +546,8 @@ class MenuItems {
   ******/
   displayMainPage() {
     this.hideSecondaryMenu();
+    this.unhidePrimaryMenu();
+    this.resetSecondaryMenuPosition();
     menuItems.isPrimaryMenu = true;
     menuItems.isSecondaryMenu = false;
     menuItems.returnToMainMenuToggle();
