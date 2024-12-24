@@ -744,7 +744,8 @@ class MenuItems {
       });
     }
     if (this.isSecondaryMenu) {
-      // remove Secondary Menu
+      console.log("test");
+
       document.querySelectorAll(".secondary-menu-item").forEach((item) => {
         item.classList.add("hide");
         item.remove();
