@@ -29,6 +29,7 @@ import {
 import { audio } from "../../utilities/audio.js";
 import { endRoundScreen } from "../../utilities/end-round-screen.js";
 import { app } from "../../utilities/app-class.js";
+import { pauseFunction } from "../../utilities/pause-functions.js";
 
 /* SCORING */
 const correctAnswerPoints = 2;
@@ -693,6 +694,7 @@ function endApp() {
 // pauses app
 function pause() {
   isPaused = true;
+  pauseFunction.isPaused = true;
   disableTouch();
   pauseBtn.removeEventListener("click", pause);
   setTimeout(() => {
@@ -708,6 +710,7 @@ function unpause() {
   removeBlur();
   setTimeout(() => {
     isPaused = false;
+    pauseFunction.isPaused = false;
     if (grid.hasChildNodes()) {
       setTimeout(cardTouchAudio.repeat, 200);
     }
@@ -724,6 +727,7 @@ function unpause2() {
   removeBlur();
   setTimeout(() => {
     isPaused = false;
+    pauseFunction.isPaused = false;
   }, 500);
   pauseBtn.addEventListener("click", pause);
 }
