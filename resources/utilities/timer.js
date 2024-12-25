@@ -54,10 +54,10 @@ const timerFunction = {
               this.timer.textContent = `${m}:${s}`;
             }
           } else {
-            // if (this.goalMet) {
-            this.endRound();
-            this.clearTimer();
-            // }
+            if (this.goalMet) {
+              this.endRound();
+              this.clearTimer();
+            }
           }
         }
       }, 1000);
