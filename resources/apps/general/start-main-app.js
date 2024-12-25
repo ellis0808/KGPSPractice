@@ -835,7 +835,13 @@ function setUser() {
     user.lastName = sessionData.lastName;
     user.access = sessionData.access;
     user.id = sessionData.userId;
-  } catch (error) {}
+  } catch (error) {
+    console.error(
+      "There was a problem getting the user information from the server: ",
+      error,
+      ". However, it is not mandatory information but mostly for display purposes."
+    );
+  }
 }
 
 const greetingDisplay = document.createElement("div");
@@ -857,17 +863,11 @@ function displayGreeting() {
     topContainer.appendChild(greetingDisplay);
     topContainer.appendChild(pointsDisplay);
     greetingDisplay.textContent = greeting;
-    pointsDisplay.textContent = userScore;
+    if (userScore) {
+      pointsDisplay.textContent = userScore;
+    }
   }, 300);
 }
-
-/*  Return to Main Page  */
-
-// const returnToMainMenuBtn = document.createElement("div");
-// returnToMainMenuBtn.innerText = `<- Back`;
-// returnToMainMenuBtn.classList.add("return-to-main-menu-btn");
-// returnToMainMenuBtn.setAttribute("id", "return-to-main-menu-btn");
-// returnToMainMenuBtn.addEventListener("pointerdown", menuItems.returnToMainMenu);
 
 if (navBar) {
   body.appendChild(navBar);
