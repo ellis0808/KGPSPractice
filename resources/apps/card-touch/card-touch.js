@@ -244,6 +244,7 @@ function removeBlur() {
   }
 }
 function startNewSession() {
+  timerFunction.setTimer(roundTime);
   scoreFunction.show();
   timerFunction.show();
 

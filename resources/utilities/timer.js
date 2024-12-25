@@ -80,6 +80,8 @@ const timerFunction = {
     this.time = time;
     if (this.time === 60) {
       this.timer.textContent = "1:00";
+    } else if (this.time > 0 && this.time < 60) {
+      this.timer.textContent = `0:${this.timer}`;
     } else {
       this.timer.textContent = "0:00";
     }
