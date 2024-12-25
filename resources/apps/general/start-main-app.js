@@ -824,7 +824,9 @@ class MenuItems {
   }
   getUserInfo() {
     try {
-      if (sessionData.userId) {
+      console.log(Object.keys(sessionData));
+
+      if (Object.keys(sessionData).length > 0) {
         user.gradeLevel = sessionData.gradeLevel;
         user.firstName = sessionData.firstName;
         user.lastName = sessionData.lastName;
