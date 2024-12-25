@@ -76,7 +76,7 @@ function setUser() {
   user.id = sessionData.userId;
 }
 
-export const appContainer = document.createElement("div");
+const appContainer = document.createElement("div");
 appContainer.classList.add("container", "card-touch-app");
 
 /* Main App Container */
@@ -115,7 +115,7 @@ grid.setAttribute("id", "grid");
 
 const btnContainer2 = document.createElement("div");
 btnContainer2.classList.add("btn-container2");
-export const startBtn = document.createElement("button");
+const startBtn = document.createElement("button");
 startBtn.setAttribute("id", "start-btn");
 startBtn.classList.add("card-touch-app");
 startBtn.addEventListener("click", startSession);
@@ -685,6 +685,7 @@ function endApp() {
     }, 500);
   }, 500);
   scoreFunction.display.innerText = scoreFunction.currentScore;
+  scoreFunction.hide();
   timerFunction.clearTimer();
   timerFunction.hide();
 }
