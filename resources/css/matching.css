@@ -133,7 +133,7 @@ body:not(:has(*)) {
     grid-template-rows: 0.2fr 0.2fr 1fr 0.2fr;
     grid-template-areas:
       "..... ..... ..... ....."
-      "home-btn-container matching-grid matching-grid ....."
+      "home-btn-container  matching-grid matching-grid ....."
       "btn-container1  matching-grid matching-grid ....."
       "..... ..... ..... .....";
   }
@@ -297,7 +297,7 @@ body:not(:has(*)) {
     padding: 10px;
     grid-template-columns: 1fr;
     grid-template-rows: 1.5fr 0.5fr 1fr 0.5fr 1.5fr;
-    grid-template-areas: "startrow" "start-dot-div" "....." "end-dot-div" "lowercase";
+    grid-template-areas: "startrow" "start-dot-div" "....." "end-dot-div" "endrow";
   }
 }
 @media (min-width: 1200px) {
