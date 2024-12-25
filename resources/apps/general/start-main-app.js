@@ -552,7 +552,7 @@ class MenuItems {
         "/KGPSEnglishPractice-test/resources/css/styles.css"
       );
       menuItems.displayMainMenuItems();
-      setUser();
+      this.setUser();
       getCumulativeUserScore();
       setTimeout(this.displayGreeting, 500);
       menuItems.displayMainPage();
