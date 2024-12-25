@@ -55,34 +55,42 @@ class WritingApp {
       // Numbers
       case "numbers1-10":
         this.style = 1;
+        this.maxNumberOfWordsToWrite = 5;
         writingAudio.startAudioFetch(this.style);
         break;
       case "numbers11-20":
         this.style = 2;
+        this.maxNumberOfWordsToWrite = 5;
         writingAudio.startAudioFetch(this.style);
         break;
       case "numbers21-40":
         this.style = 3;
+        this.maxNumberOfWordsToWrite = 8;
         writingAudio.startAudioFetch(this.style);
         break;
       case "numbers41-60":
         this.style = 4;
+        this.maxNumberOfWordsToWrite = 8;
         writingAudio.startAudioFetch(this.style);
         break;
       case "numbers61-80":
         this.style = 5;
+        this.maxNumberOfWordsToWrite = 8;
         writingAudio.startAudioFetch(this.style);
         break;
       case "numbers81-100":
         this.style = 6;
+        this.maxNumberOfWordsToWrite = 8;
         writingAudio.startAudioFetch(this.style);
         break;
       case "numbers1-50":
         this.style = 7;
+        this.maxNumberOfWordsToWrite = 10;
         writingAudio.startAudioFetch(this.style);
         break;
       case "numbers1-100":
         this.style = 8;
+        this.maxNumberOfWordsToWrite = 15;
         writingAudio.startAudioFetch(this.style);
         break;
       case "sightwords1":
@@ -92,10 +100,12 @@ class WritingApp {
         break;
       case "sightwords2":
         this.style = 10;
+        this.maxNumberOfWordsToWrite = 8;
         writingAudio.startAudioFetch(this.style);
         break;
       case "sightwords3":
         this.style = 11;
+        this.maxNumberOfWordsToWrite = 10;
         writingAudio.startAudioFetch(this.style);
         break;
     }
