@@ -16,6 +16,7 @@ class WritingApp {
     this.numberIncorrect = 0;
     this.correctAnswerPoints = null;
     this.maxNumberOfWordsToWrite = null;
+    this.currentProblemNumber = 0;
   }
   run(set, time) {
     this.setStyleSheet();
@@ -163,8 +164,7 @@ class WritingApp {
     this.skipBtn.classList.add("skip-btn", "btn");
     this.skipBtn.innerText = "Skip";
     this.skipBtn.addEventListener("pointerdown", () => {
-      writingAudio.increaseArrayItemNumber();
-      this.getNewWord();
+      this.skip();
     });
     this.undoBtn.addEventListener("pointerdown", (event) => {
       if (this.canvasController.trace.length === 0) {
@@ -199,6 +199,9 @@ class WritingApp {
   }
   increaseNumberCorrect() {
     ++this.numberCorrect;
+  }
+  increaseCurrentProblemNumber() {
+    ++this.currentProblemNumber;
   }
   setCorrecAnswerPoints() {
     if (this.numberIncorrect === 0) {
@@ -278,6 +281,11 @@ class WritingApp {
     writingApp.clearCanvas();
     setTimeout(writingAudio.speak, 300);
   }
+  skip() {
+    writingAudio.increaseArrayItemNumber();
+    this.getNewWord();
+    this.increaseCurrentProblemNumber();
+  }
   addBorderIncorrect() {
     this.canvas.classList.add("border-error");
   }
@@ -303,8 +311,12 @@ class WritingApp {
       audio.appSfx.correct.play();
       this.increaseNumberCorrect();
       this.displayNumberCorrect();
-      console.log(this.numberCorrect);
-      this.checkAllCorrect();
+      this.increaseCurrentProblemNumber();
+      if (this.currentProblemNumber === this.maxNumberOfWordsToWrite) {
+        this.endRound();
+      } else {
+        setTimeout(this.getNewWord, 1500);
+      }
     } else {
       audio.appSfx.incorrect.play();
       this.addBorderIncorrect();
@@ -314,16 +326,13 @@ class WritingApp {
       }, 2000);
     }
   }
-  checkAllCorrect() {
-    if (this.numberCorrect === this.maxNumberOfWordsToWrite) {
-      timerFunction.goalMet = true;
-      this.setCorrecAnswerPoints();
-      console.log(this.correctAnswerPoints);
-      scoreFunction.updatePositiveCount(this.correctAnswerPoints);
-      audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
-    } else {
-      setTimeout(this.getNewWord, 1500);
-    }
+  endRound() {
+    timerFunction.goalMet = true;
+    this.setCorrecAnswerPoints();
+    console.log(this.correctAnswerPoints);
+    scoreFunction.updatePositiveCount(this.correctAnswerPoints);
+    audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
+    app.endRound();
   }
 }
 
