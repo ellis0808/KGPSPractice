@@ -544,6 +544,20 @@ class MenuItems {
   /******
     Display Main Menu
   ******/
+  startMainApp() {
+    sessionCheck();
+    setTimeout(() => {
+      stylesheet.setAttribute(
+        "href",
+        "/KGPSEnglishPractice-test/resources/css/styles.css"
+      );
+      menuItems.displayMainMenuItems();
+      setUser();
+      getCumulativeUserScore();
+      setTimeout(this.displayGreeting, 500);
+      menuItems.displayMainPage();
+    }, 1000);
+  }
   displayMainPage() {
     this.hideSecondaryMenu();
     this.unhidePrimaryMenu();
@@ -551,7 +565,9 @@ class MenuItems {
     menuItems.isPrimaryMenu = true;
     menuItems.isSecondaryMenu = false;
     menuItems.returnToMainMenuToggle();
-    const navBarDisplay = `${user.firstName} ${user.lastName.slice(0, 1)}.`;
+    if (user.id !== null) {
+      const navBarDisplay = `${user.firstName} ${user.lastName.slice(0, 1)}.`;
+    }
     navLogo.innerHTML = `<a href="/KGPSEnglishPractice-test/index.html">KGPS Extra English Practice</a>`;
     navUserName.innerText = navBarDisplay;
     this.enableLogout();
@@ -774,7 +790,7 @@ class MenuItems {
     navBar.classList.remove("hidden");
     topContainer.classList.remove("hidden");
     getCumulativeUserScore();
-    setTimeout(displayGreeting, 500);
+    setTimeout(this.displayGreeting, 500);
     this.hideSecondaryMenu();
     this.unhidePrimaryMenu();
     this.resetSecondaryMenuPosition();
@@ -790,7 +806,7 @@ class MenuItems {
     this.resetSecondaryMenuPosition();
     // this.displayParentsInfoBtn();
     topContainer.innerText = "";
-    displayGreeting();
+    this.displayGreeting();
   }
   returnToMainMenuToggle() {
     if (!this.isPrimaryMenu) {
@@ -801,6 +817,36 @@ class MenuItems {
   }
   resetSecondaryMenuPosition() {
     this.sectionColumn.style.translate = "0px";
+  }
+  setUser() {
+    try {
+      user.gradeLevel = sessionData.gradeLevel;
+      user.firstName = sessionData.firstName;
+      user.lastName = sessionData.lastName;
+      user.access = sessionData.access;
+      user.id = sessionData.userId;
+    } catch (error) {
+      console.error(
+        "There was a problem getting the user information from the server: ",
+        error,
+        "However, it is not mandatory information but mostly for display purposes."
+      );
+    }
+  }
+  displayGreeting() {
+    menuItems.isPrimaryMenu = true;
+    setTimeout(() => {
+      let greeting;
+      let userScore;
+      if (user.id !== null) {
+        greeting = `Hi, ${user.firstName}!`;
+        userScore = `You have ${user.cumulativeScore} pts`;
+        greetingDisplay.textContent = greeting;
+        pointsDisplay.textContent = userScore;
+      }
+      topContainer.appendChild(greetingDisplay);
+      topContainer.appendChild(pointsDisplay);
+    }, 300);
   }
 }
 
@@ -813,37 +859,6 @@ const navUserMenu = document.querySelector(".nav-user-menu");
 
 /* Top Page Menu Items Display Functions */
 
-function startMainApp() {
-  sessionCheck();
-  setTimeout(() => {
-    stylesheet.setAttribute(
-      "href",
-      "/KGPSEnglishPractice-test/resources/css/styles.css"
-    );
-    menuItems.displayMainMenuItems();
-    setUser();
-    getCumulativeUserScore();
-    setTimeout(displayGreeting, 500);
-    menuItems.displayMainPage();
-  }, 1000);
-}
-
-function setUser() {
-  try {
-    user.gradeLevel = sessionData.gradeLevel;
-    user.firstName = sessionData.firstName;
-    user.lastName = sessionData.lastName;
-    user.access = sessionData.access;
-    user.id = sessionData.userId;
-  } catch (error) {
-    console.error(
-      "There was a problem getting the user information from the server: ",
-      error,
-      ". However, it is not mandatory information but mostly for display purposes."
-    );
-  }
-}
-
 const greetingDisplay = document.createElement("div");
 greetingDisplay.classList.add("greeting-display");
 const pointsDisplay = document.createElement("div");
@@ -855,24 +870,8 @@ async function getCumulativeUserScore() {
   return cumulativeUserScore;
 }
 
-function displayGreeting() {
-  menuItems.isPrimaryMenu = true;
-  setTimeout(() => {
-    let greeting;
-    let userScore;
-    if (sessionData) {
-      greeting = `Hi, ${user.firstName}!`;
-      userScore = `You have ${user.cumulativeScore} pts`;
-      greetingDisplay.textContent = greeting;
-      pointsDisplay.textContent = userScore;
-    }
-    topContainer.appendChild(greetingDisplay);
-    topContainer.appendChild(pointsDisplay);
-  }, 300);
-}
-
 if (navBar) {
   body.appendChild(navBar);
 }
 
-export { menuItems, displayGreeting, getCumulativeUserScore, startMainApp };
+export { menuItems, getCumulativeUserScore, startMainApp };
