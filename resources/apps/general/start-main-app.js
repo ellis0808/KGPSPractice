@@ -566,9 +566,12 @@ class MenuItems {
     menuItems.isSecondaryMenu = false;
     menuItems.returnToMainMenuToggle();
     let navBarDisplay;
-    if (user.id !== null) {
+    if (user.id !== null || user.id !== undefined) {
       navBarDisplay = `${user.firstName} ${user.lastName.slice(0, 1)}.`;
+    } else {
+      navBarDisplay = "Logout";
     }
+
     navLogo.innerHTML = `<a href="/KGPSEnglishPractice-test/index.html">KGPS Extra English Practice</a>`;
     navUserName.innerText = navBarDisplay;
     this.enableLogout();
