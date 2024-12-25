@@ -829,11 +829,13 @@ function startMainApp() {
 }
 
 function setUser() {
-  user.gradeLevel = sessionData.gradeLevel;
-  user.firstName = sessionData.firstName;
-  user.lastName = sessionData.lastName;
-  user.access = sessionData.access;
-  user.id = sessionData.userId;
+  try {
+    user.gradeLevel = sessionData.gradeLevel;
+    user.firstName = sessionData.firstName;
+    user.lastName = sessionData.lastName;
+    user.access = sessionData.access;
+    user.id = sessionData.userId;
+  } catch (error) {}
 }
 
 const greetingDisplay = document.createElement("div");
