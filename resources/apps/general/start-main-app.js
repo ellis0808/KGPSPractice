@@ -858,14 +858,16 @@ async function getCumulativeUserScore() {
 function displayGreeting() {
   menuItems.isPrimaryMenu = true;
   setTimeout(() => {
-    const greeting = `Hi, ${user.firstName}!`;
-    const userScore = `You have ${user.cumulativeScore} pts`;
-    topContainer.appendChild(greetingDisplay);
-    topContainer.appendChild(pointsDisplay);
-    greetingDisplay.textContent = greeting;
-    if (userScore) {
+    let greeting;
+    let userScore;
+    if (sessionData) {
+      greeting = `Hi, ${user.firstName}!`;
+      userScore = `You have ${user.cumulativeScore} pts`;
+      greetingDisplay.textContent = greeting;
       pointsDisplay.textContent = userScore;
     }
+    topContainer.appendChild(greetingDisplay);
+    topContainer.appendChild(pointsDisplay);
   }, 300);
 }
 
