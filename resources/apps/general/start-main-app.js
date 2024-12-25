@@ -824,7 +824,6 @@ class MenuItems {
   }
   getUserInfo() {
     try {
-      console.log(Object.keys(sessionData));
       console.log(sessionData);
 
       if (
