@@ -566,10 +566,14 @@ class MenuItems {
     menuItems.isSecondaryMenu = false;
     menuItems.returnToMainMenuToggle();
     let navBarDisplay;
-    if (user.id !== null || user.id !== undefined) {
-      navBarDisplay = `${user.firstName} ${user.lastName.slice(0, 1)}.`;
-    } else {
-      navBarDisplay = "Logout";
+    try {
+      if (user.id !== null || user.id !== undefined) {
+        navBarDisplay = `${user.firstName} ${user.lastName.slice(0, 1)}.`;
+      } else {
+        navBarDisplay = "Logout";
+      }
+    } catch (error) {
+      console.error("Could not get user name", error);
     }
 
     navLogo.innerHTML = `<a href="/KGPSEnglishPractice-test/index.html">KGPS Extra English Practice</a>`;
