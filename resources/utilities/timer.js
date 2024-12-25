@@ -15,6 +15,7 @@ const timerFunction = {
   time: null,
   counter: null,
   timerFinished: false,
+  countUpFinished: false,
   goalMet: false,
   countDown() {
     setTimeout(() => {
@@ -54,8 +55,10 @@ const timerFunction = {
               this.timer.textContent = `${m}:${s}`;
             }
           } else {
-            this.clearTimer();
-            this.endRound();
+            if (this.goalMet) {
+              this.endRound();
+              this.clearTimer();
+            }
           }
         }
       }, 1000);
@@ -88,6 +91,9 @@ const timerFunction = {
   },
   clearTimer() {
     clearInterval(this.counter);
+  },
+  goalMet() {
+    this.goalMet = true;
   },
   hide() {
     if (!this.timer.classList.contains("hide")) {
