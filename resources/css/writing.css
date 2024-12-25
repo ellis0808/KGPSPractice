@@ -239,7 +239,7 @@ body:not(:has(*)) {
   z-index: 10;
 }
 .btn {
-  width: 75px;
+  width: 100px;
   height: 75px;
   border: 1px black solid;
   color: var(--clr-wht);
