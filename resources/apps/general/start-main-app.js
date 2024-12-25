@@ -821,7 +821,7 @@ class MenuItems {
   }
   getUserInfo() {
     try {
-      if (user.id !== null) {
+      if (sessionData.userId) {
         user.gradeLevel = sessionData.gradeLevel;
         user.firstName = sessionData.firstName;
         user.lastName = sessionData.lastName;
