@@ -565,8 +565,9 @@ class MenuItems {
     menuItems.isPrimaryMenu = true;
     menuItems.isSecondaryMenu = false;
     menuItems.returnToMainMenuToggle();
+    let navBarDisplay;
     if (user.id !== null) {
-      const navBarDisplay = `${user.firstName} ${user.lastName.slice(0, 1)}.`;
+      navBarDisplay = `${user.firstName} ${user.lastName.slice(0, 1)}.`;
     }
     navLogo.innerHTML = `<a href="/KGPSEnglishPractice-test/index.html">KGPS Extra English Practice</a>`;
     navUserName.innerText = navBarDisplay;
