@@ -91,7 +91,7 @@ const timerFunction = {
   clearTimer() {
     clearInterval(this.counter);
   },
-  goalMet() {
+  goalCompleted() {
     this.goalMet = true;
   },
   hide() {
