@@ -821,11 +821,13 @@ class MenuItems {
   }
   getUserInfo() {
     try {
-      user.gradeLevel = sessionData.gradeLevel;
-      user.firstName = sessionData.firstName;
-      user.lastName = sessionData.lastName;
-      user.access = sessionData.access;
-      user.id = sessionData.userId;
+      if (user.id !== null) {
+        user.gradeLevel = sessionData.gradeLevel;
+        user.firstName = sessionData.firstName;
+        user.lastName = sessionData.lastName;
+        user.access = sessionData.access;
+        user.id = sessionData.userId;
+      }
     } catch (error) {
       console.error(
         "There was a problem getting the user information from the server: ",
