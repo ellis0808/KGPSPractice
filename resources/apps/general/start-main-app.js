@@ -819,7 +819,7 @@ class MenuItems {
   resetSecondaryMenuPosition() {
     this.sectionColumn.style.translate = "0px";
   }
-  setUser() {
+  getUserInfo() {
     try {
       user.gradeLevel = sessionData.gradeLevel;
       user.firstName = sessionData.firstName;
@@ -832,6 +832,29 @@ class MenuItems {
         error,
         "However, it is not mandatory information but mostly for display purposes."
       );
+      throw error;
+    }
+  }
+  setUser() {
+    const maxRetries = 3;
+    for (let attempt = 1; attempt <= maxRetries; ++attempt) {
+      try {
+        this.getUserInfo();
+        return;
+      } catch (error) {
+        console.error(
+          `Error getting user info failed on attempt #${attempt}`,
+          error
+        );
+        if (attempt < maxRetries) {
+          console.log("Beginning next attempt.");
+          new Promise((resolve) => setTimeout(resolve, 1000));
+        } else {
+          console.error(
+            `Attempted to get user info ${maxRetries}, but all attempts failed.`
+          );
+        }
+      }
     }
   }
   displayGreeting() {
