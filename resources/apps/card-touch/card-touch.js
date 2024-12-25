@@ -255,9 +255,9 @@ function startNewSession() {
   removeBlur();
   homeBtnContainer.classList.remove("no-touch");
   createBoard();
+  timerFunction.startTimer(roundTime);
   setTimeout(() => {
     enableTouch();
-    timerFunction.startTimer(roundTime);
     tryAgainBtn.classList.remove("no-touch");
     finishBtn.classList.remove("no-touch");
   }, 500);
