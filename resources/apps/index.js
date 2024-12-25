@@ -1,5 +1,5 @@
-import { startMainApp } from "./general/start-main-app.js";
+import { menuItems } from "./general/start-main-app.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  startMainApp();
+  menuItems.startMainApp();
 });

@@ -874,4 +874,4 @@ if (navBar) {
   body.appendChild(navBar);
 }
 
-export { menuItems, getCumulativeUserScore, startMainApp };
+export { menuItems, getCumulativeUserScore };

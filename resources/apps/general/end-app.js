@@ -6,10 +6,8 @@ import {
   user,
 } from "../../utilities/variables.js";
 import { clearBoard } from "../alphabet/alphabet-card-touch/clear-board.js";
-import {
-  // displayNumbersMenu,
-  startMainApp,
-} from "./start-main-app.js";
+import // displayNumbersMenu,
+"./start-main-app.js";
 
 // function displayEndCurrentAppConfirmationBtn() {
 //   const endCurrentAppConfirmationBtn = document.createElement("button");
