@@ -288,7 +288,7 @@ function removeBlur() {
 }
 function startNewSession() {
   if (!scoreFunction.display.classList.contains("hide")) {
-    scoreFunction.hide();
+    scoreFunction.show();
   }
   if (!timerFunction.timer.classList.contains("hide")) {
     timerFunction.show();
