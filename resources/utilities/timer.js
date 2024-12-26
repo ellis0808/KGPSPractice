@@ -55,9 +55,10 @@ const timerFunction = {
             }
           } else {
             if (this.goalMet) {
-              console.log(this.goalMet);
+              this.setTimerFinishedValue(true);
 
               this.endRound();
+              toggleTouchFunction.disableTouch();
               this.clearTimer();
             }
           }
