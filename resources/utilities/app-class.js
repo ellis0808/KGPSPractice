@@ -82,7 +82,6 @@ class App {
   }
   async updateUserTotalScore() {
     //  For student users; teachers will differ on user type, etc
-    console.log(scoreFunction.currentScore);
 
     const newStats = {
       activity_id: this.activityId,
@@ -94,7 +93,6 @@ class App {
       answer_attempts: 0,
       activity_score: scoreFunction.currentScore,
     };
-    console.log(newStats);
 
     try {
       const response = await fetch(
@@ -106,7 +104,6 @@ class App {
         }
       );
       const data = await response.json();
-      console.log(data);
 
       if (!response.ok) {
         throw new Error("Network response was not okay");

@@ -16,7 +16,7 @@ class WritingApp {
     this.numberIncorrect = 0;
     this.correctAnswerPoints = null;
     this.maxNumberOfWordsToWrite = null;
-    this.currentProblemNumber = 0;
+    this.currentProblemNumber = 1;
   }
   run(set, time) {
     this.setStyleSheet();
