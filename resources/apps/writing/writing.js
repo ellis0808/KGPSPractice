@@ -346,7 +346,7 @@ class WritingApp {
     console.log(this.currentProblemNumber);
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
     audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
-    app.endRound();
+    // app.endRound();
   }
 }
 

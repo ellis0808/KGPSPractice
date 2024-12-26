@@ -55,6 +55,8 @@ const timerFunction = {
             }
           } else {
             if (this.goalMet) {
+              console.log(this.goalMet);
+
               this.endRound();
               this.clearTimer();
             }
