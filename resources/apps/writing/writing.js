@@ -27,6 +27,7 @@ class WritingApp {
       this.setUpApp();
       app.startApp();
       this.setCanvasFunctionality();
+      timerFunction.setEndRoundFunction(this.endRound);
     }, 200);
   }
   setTime(time) {
@@ -196,6 +197,18 @@ class WritingApp {
   }
   displayNumberCorrect() {
     this.numberCorrectRow.innerText = `${this.numberCorrect}/${this.maxNumberOfWordsToWrite}`;
+  }
+  hideNumberCorrect() {
+    this.numberCorrect.classList.add("hide");
+  }
+  showNumberCorrect() {
+    this.numberCorrect.classList.remove("hide");
+  }
+  removeNumberCorrect() {
+    this.numberCorrect.remove;
+  }
+  resetNumberCorrect() {
+    this.numberCorrect = 0;
   }
   increaseNumberCorrect() {
     ++this.numberCorrect;
