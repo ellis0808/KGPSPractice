@@ -27,7 +27,6 @@ class WritingApp {
       this.setUpApp();
       app.startApp();
       this.setCanvasFunctionality();
-      timerFunction.setEndRoundFunction(this.endRound);
     }, 200);
   }
   setTime(time) {
@@ -325,6 +324,8 @@ class WritingApp {
       this.increaseNumberCorrect();
       this.displayNumberCorrect();
       this.increaseCurrentProblemNumber();
+      console.log(this.currentProblemNumber);
+
       if (this.currentProblemNumber === this.maxNumberOfWordsToWrite) {
         this.endRound();
       } else {
