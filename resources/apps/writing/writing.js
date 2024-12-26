@@ -343,7 +343,7 @@ class WritingApp {
   endRound() {
     timerFunction.goalCompleted();
     this.setCorrecAnswerPoints();
-    console.log(this.correctAnswerPoints);
+    console.log(this.currentProblemNumber);
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
     audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
     app.endRound();
