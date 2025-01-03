@@ -407,8 +407,8 @@ window.addEventListener("load", () => {
   setTimeout(() => {
     images.getImages("login", 1, null);
     getUsersForLogin();
-  }, 200);
-  setTimeout(loadStudentLoginImageGrid, 500);
+  }, 500);
+  setTimeout(loadStudentLoginImageGrid, 700);
 });
 closeStudentLoginModalBtn.addEventListener("click", (event) => {
   // event.preventDefault();
