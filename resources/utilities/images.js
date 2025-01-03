@@ -1,3 +1,4 @@
+import { BASE_PATH } from "./get_base_path.js";
 class Images {
   constructor() {
     this.imageObject = {};

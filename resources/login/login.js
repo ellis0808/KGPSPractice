@@ -405,8 +405,6 @@ async function loginUser() {
   }
 }
 window.addEventListener("load", () => {
-  console.log(BASE_PATH);
-
   images.getImages("login", 1, null);
   getUsersForLogin();
   setTimeout(loadStudentLoginImageGrid, 500);

@@ -544,7 +544,7 @@ class MenuItems {
   startMainApp() {
     sessionCheck();
     setTimeout(() => {
-      stylesheet.setAttribute("href", "${BASE_PATH}resources/css/styles.css");
+      stylesheet.setAttribute("href", `${BASE_PATH}resources/css/styles.css`);
       menuItems.displayMainMenuItems();
       this.setUser();
       getCumulativeUserScore();
