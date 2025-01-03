@@ -404,7 +404,7 @@ async function loginUser() {
   }
 }
 window.addEventListener("load", () => {
-  images.getImages("login", 1, null);
+  images.getImages("login", 100, null);
   getUsersForLogin();
   setTimeout(loadStudentLoginImageGrid, 500);
 });
