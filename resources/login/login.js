@@ -68,7 +68,6 @@ studentSelectedPasswordImage2.classList.add("chosen-image");
 const studentPasswordEntryArray = [null, null];
 
 let selectedUser = null;
-console.log(BASE_PATH);
 
 // Gets students and teachers from database
 async function getUsersForLogin() {
@@ -406,6 +405,8 @@ async function loginUser() {
   }
 }
 window.addEventListener("load", () => {
+  console.log(BASE_PATH);
+
   images.getImages("login", 1, null);
   getUsersForLogin();
   setTimeout(loadStudentLoginImageGrid, 500);
