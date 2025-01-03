@@ -73,10 +73,10 @@ async function getUsersForLogin() {
     if (!response.ok) {
       throw new Error("Network response was not okay");
     }
-    console.log(data);
-    console.log(response);
 
     const data = await response.json();
+    console.log(data);
+    console.log(response);
     const students = data.students;
     const teachers = data.teachers;
     students.map((student) => {
