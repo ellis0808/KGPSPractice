@@ -30,7 +30,7 @@ import { audio } from "../../utilities/audio.js";
 import { endRoundScreen } from "../../utilities/end-round-screen.js";
 import { app } from "../../utilities/app-class.js";
 import { pauseFunction } from "../../utilities/pause-functions.js";
-import { BASE_PATH } from "../../utilities/get_base_path.js";
+import { BASE_PATH } from "../../utilities/get-base-path.js";
 
 /* SCORING */
 const correctAnswerPoints = 2;

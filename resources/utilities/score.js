@@ -1,7 +1,7 @@
 // sessionCheck();
 import { endRoundScreen } from "./end-round-screen.js";
 import { audio } from "./audio.js";
-import { BASE_PATH } from "./get_base_path.js";
+import { BASE_PATH } from "./get-base-path.js";
 const scoreFunction = {
   currentScore: 0,
   userScore: 0,

@@ -1,4 +1,4 @@
-import { BASE_PATH } from "../utilities/get_base_path.js";
+import { BASE_PATH } from "../utilities/get-base-path.js";
 let sessionData;
 async function sessionCheck() {
   try {

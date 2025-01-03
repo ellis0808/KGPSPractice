@@ -15,7 +15,7 @@ import { menuItems } from "../apps/general/start-main-app.js";
 import { user } from "./user-object.js";
 import { sessionCheck, sessionData } from "../login/session-check.js";
 import { writingApp } from "../apps/writing/writing.js";
-import { BASE_PATH } from "./get_base_path.js";
+import { BASE_PATH } from "./get-base-path.js";
 
 class App {
   constructor() {

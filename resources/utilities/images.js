@@ -1,4 +1,4 @@
-import { BASE_PATH } from "./get_base_path.js";
+import { BASE_PATH } from "./get-base-path.js";
 class Images {
   constructor() {
     this.imageObject = {};
@@ -7,16 +7,16 @@ class Images {
     try {
       let response;
       if (!unit && !grouping && !grouping2) {
-        response = await fetch(`${BASE_PATH()}api/load_images.php`);
+        response = await fetch(`${BASE_PATH}api/load_images.php`);
       } else if (unit && !grouping && !grouping2) {
-        response = await fetch(`${BASE_PATH()}api/load_images.php?id1=${unit}`);
+        response = await fetch(`${BASE_PATH}api/load_images.php?id1=${unit}`);
       } else if (grouping2 !== null) {
         response = await fetch(
-          `${BASE_PATH()}api/load_images.php?id1=${unit}&id2=${grouping}&id3=${grouping2}`
+          `${BASE_PATH}api/load_images.php?id1=${unit}&id2=${grouping}&id3=${grouping2}`
         );
       } else if (unit && grouping && grouping2 === null) {
         response = await fetch(
-          `${BASE_PATH()}api/load_images.php?id1=${unit}&id2=${grouping}`
+          `${BASE_PATH}api/load_images.php?id1=${unit}&id2=${grouping}`
         );
       }
       if (!response.ok) {

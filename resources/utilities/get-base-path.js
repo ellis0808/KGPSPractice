@@ -1,4 +1,4 @@
-const BASE_PATH = () => {
+const BASE_PATH = (() => {
   const href = window.location.href;
   console.log("href: ", href);
 
@@ -9,5 +9,5 @@ const BASE_PATH = () => {
   } else {
     return "/KGPSEnglishPractice/";
   }
-};
+})();
 export { BASE_PATH };

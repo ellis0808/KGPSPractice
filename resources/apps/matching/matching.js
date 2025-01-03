@@ -17,7 +17,7 @@ import { toggleTouchFunction } from "../../utilities/pause-functions.js";
 import { app } from "../../utilities/app-class.js";
 import { gridItems, itemArrays } from "./generate-grid-items.js";
 import { alphabet } from "../card-touch/card-data.js";
-import { BASE_PATH } from "../../utilities/get_base_path.js";
+import { BASE_PATH } from "../../utilities/get-base-path.js";
 
 class MatchingApp {
   constructor() {

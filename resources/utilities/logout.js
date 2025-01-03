@@ -1,4 +1,4 @@
-import { BASE_PATH } from "./get_base_path.js";
+import { BASE_PATH } from "./get-base-path.js";
 async function logout() {
   try {
     const response = await fetch(`${BASE_PATH}api/logout.php`);

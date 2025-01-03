@@ -15,7 +15,7 @@ import {
   activityId,
   setStyle,
 } from "./fluency-set-style-and-activity-id.js";
-import { BASE_PATH } from "../../utilities/get_base_path.js";
+import { BASE_PATH } from "../../utilities/get-base-path.js";
 
 let interval = 2500;
 let run;

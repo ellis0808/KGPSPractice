@@ -3,7 +3,7 @@ import { audio } from "../../utilities/audio.js";
 import { app } from "../../utilities/app-class.js";
 import { scoreFunction } from "../../utilities/score.js";
 import { timerFunction } from "../../utilities/timer.js";
-import { BASE_PATH } from "../../utilities/get_base_path.js";
+import { BASE_PATH } from "../../utilities/get-base-path.js";
 
 class WritingApp {
   constructor() {

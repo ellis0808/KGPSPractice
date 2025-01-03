@@ -1,5 +1,5 @@
 import { scoreFunction } from "./score.js";
-import { BASE_PATH } from "./get_base_path.js";
+import { BASE_PATH } from "./get-base-path.js";
 class User {
   constructor() {
     this.id = null;

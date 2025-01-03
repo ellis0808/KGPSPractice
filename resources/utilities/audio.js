@@ -1,4 +1,4 @@
-import { BASE_PATH } from "./get_base_path.js";
+import { BASE_PATH } from "./get-base-path.js";
 class Audio {
   constructor() {
     this.audioObject = {};

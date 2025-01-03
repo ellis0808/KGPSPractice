@@ -14,7 +14,7 @@ import { user } from "../../utilities/user-object.js";
 import { audio } from "../../utilities/audio.js";
 import { matchingApp } from "../matching/matching.js";
 import { writingApp } from "../writing/writing.js";
-import { BASE_PATH } from "../../utilities/get_base_path.js";
+import { BASE_PATH } from "../../utilities/get-base-path.js";
 /*
 **********
 Enable Audio
