@@ -68,6 +68,7 @@ studentSelectedPasswordImage2.classList.add("chosen-image");
 const studentPasswordEntryArray = [null, null];
 
 let selectedUser = null;
+console.log(BASE_PATH);
 
 // Gets students and teachers from database
 async function getUsersForLogin() {
