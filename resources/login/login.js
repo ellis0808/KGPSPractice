@@ -1,7 +1,3 @@
-// import {
-//   passwordImageArray,
-//   passwordImageObject,
-// } from "./password-image-object.js";
 import { images } from "../utilities/images.js";
 import { BASE_PATH } from "../utilities/get-base-path.js";
 

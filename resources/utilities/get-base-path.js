@@ -3,11 +3,11 @@ const BASE_PATH = (() => {
   console.log("href: ", href);
 
   if (href.includes("dev")) {
-    return "/KGPSEnglishPractice-dev/";
+    return "KGPSEnglishPractice-dev/";
   } else if (href.includes("preview")) {
-    return "/KGPSEnglishPractice-preview/";
+    return "KGPSEnglishPractice-preview/";
   } else {
-    return "/KGPSEnglishPractice/";
+    return "KGPSEnglishPractice/";
   }
 })();
 export { BASE_PATH };
