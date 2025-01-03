@@ -1,5 +1,5 @@
 import { scoreFunction } from "./score.js";
-
+import { BASE_PATH } from "./get_base_path.js";
 class User {
   constructor() {
     this.id = null;
@@ -19,7 +19,7 @@ class User {
   async getCumulativeScore(id) {
     try {
       const response = await fetch(
-        `/KGPSEnglishPractice-test/api/read_and_calculate_total_score.php?id=${id}`
+        `${BASE_PATH}api/read_and_calculate_total_score.php?id=${id}`
       );
 
       if (!response.ok) {

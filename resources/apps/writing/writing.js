@@ -3,12 +3,13 @@ import { audio } from "../../utilities/audio.js";
 import { app } from "../../utilities/app-class.js";
 import { scoreFunction } from "../../utilities/score.js";
 import { timerFunction } from "../../utilities/timer.js";
+import { BASE_PATH } from "../../utilities/get_base_path.js";
 
 class WritingApp {
   constructor() {
     this.activityId = null;
     this.style = null;
-    this.stylesheet = "/KGPSEnglishPractice-test/resources/css/writing.css";
+    this.stylesheet = `${BASE_PATH}resources/css/writing.css`;
     this.time = null;
     this.randomItemArray = [];
     this.items = [];
@@ -345,8 +346,7 @@ class WritingApp {
     this.setCorrecAnswerPoints();
     console.log(this.currentProblemNumber);
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
-    audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
-    // app.endRound();
+    // audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
   }
 }
 

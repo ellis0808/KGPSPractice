@@ -3,6 +3,7 @@
 //   passwordImageObject,
 // } from "./password-image-object.js";
 import { images } from "../utilities/images.js";
+import { BASE_PATH } from "../utilities/get_base_path.js";
 
 const passwordImageNamesArray = [
   "rabbit-silhouette-1",
@@ -71,9 +72,7 @@ let selectedUser = null;
 // Gets students and teachers from database
 async function getUsersForLogin() {
   try {
-    const response = await fetch(
-      "/KGPSEnglishPractice-test/api/read_users.php"
-    );
+    const response = await fetch(`${BASE_PATH}api/read_users.php`);
 
     if (!response.ok) {
       throw new Error("Network response was not okay");
@@ -386,7 +385,7 @@ async function loginUser() {
     } else if (selectedUser.access === "teacher") {
       selectedUser.password = document.getElementById("teacherpassword").value;
     }
-    response = await fetch("/KGPSEnglishPractice-test/api/login.php", {
+    response = await fetch(`${BASE_PATH}api/login.php`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ selectedUser }),
@@ -423,8 +422,8 @@ closeTeacherLoginModalBtn.addEventListener("click", (event) => {
 
 function routing(userData) {
   if (userData.access === "teacher") {
-    window.location.href = "../teacher-interface/user-management.html";
+    window.location.href = `${BASE_PATH}teacher-interface/user-management.html`;
   } else if (userData.access === "student") {
-    window.location.href = "/KGPSEnglishPractice-test/index.html";
+    window.location.href = `${BASE_PATH}index.html`;
   }
 }

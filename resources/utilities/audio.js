@@ -1,3 +1,4 @@
+import { BASE_PATH } from "./get_base_path.js";
 class Audio {
   constructor() {
     this.audioObject = {};
@@ -96,11 +97,11 @@ class Audio {
       let response;
       if (grouping2 !== null) {
         response = await fetch(
-          `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}&id3=${grouping2}`
+          `${BASE_PATH}api/load_audio.php?id1=${category}&id2=${grouping}&id3=${grouping2}`
         );
       } else if (grouping2 === null) {
         response = await fetch(
-          `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
+          `${BASE_PATH}api/load_audio.php?id1=${category}&id2=${grouping}`
         );
       }
       if (!response.ok) {

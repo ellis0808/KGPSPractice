@@ -6,18 +6,15 @@ import {
   stylesheet,
   topContainer,
   // parentsInfo,
-} from "/KGPSEnglishPractice-test/resources/utilities/variables.js";
+} from "../../utilities/variables.js";
 import { appLauncher } from "./app-launcher.js";
-import { logout } from "/KGPSEnglishPractice-test/resources/utilities/logout.js";
-import {
-  sessionCheck,
-  sessionData,
-} from "/KGPSEnglishPractice-test/resources/login/session-check.js";
+import { logout } from "../../utilities/logout.js";
+import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
 import { audio } from "../../utilities/audio.js";
 import { matchingApp } from "../matching/matching.js";
 import { writingApp } from "../writing/writing.js";
-
+import { BASE_PATH } from "../../utilities/get_base_path.js";
 /*
 **********
 Enable Audio
@@ -547,10 +544,7 @@ class MenuItems {
   startMainApp() {
     sessionCheck();
     setTimeout(() => {
-      stylesheet.setAttribute(
-        "href",
-        "/KGPSEnglishPractice-test/resources/css/styles.css"
-      );
+      stylesheet.setAttribute("href", "${BASE_PATH}resources/css/styles.css");
       menuItems.displayMainMenuItems();
       this.setUser();
       getCumulativeUserScore();
@@ -576,7 +570,7 @@ class MenuItems {
       console.error("Could not get user name", error);
     }
 
-    navLogo.innerHTML = `<a href="/KGPSEnglishPractice-test/index.html">KGPS Extra English Practice</a>`;
+    navLogo.innerHTML = `<a href="${BASE_PATH}index.html">KGPS Extra English Practice</a>`;
     navUserName.innerText = navBarDisplay;
     this.enableLogout();
   }

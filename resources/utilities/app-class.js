@@ -15,10 +15,11 @@ import { menuItems } from "../apps/general/start-main-app.js";
 import { user } from "./user-object.js";
 import { sessionCheck, sessionData } from "../login/session-check.js";
 import { writingApp } from "../apps/writing/writing.js";
+import { BASE_PATH } from "./get_base_path.js";
 
 class App {
   constructor() {
-    this.homeStyleSheet = "/KGPSEnglishPractice-test/resources/css/styles.css";
+    this.homeStyleSheet = `${BASE_PATH}resources/css/styles.css`;
     this.positiveFeedbackAudioObjects = [];
     this.negativeFeedbackAudioObjects = [];
     this.appContainer = document.createElement("div");
@@ -96,7 +97,7 @@ class App {
 
     try {
       const response = await fetch(
-        "/KGPSEnglishPractice-test/api/add_user_activity_record.php",
+        `${BASE_PATH}api/add_user_activity_record.php`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

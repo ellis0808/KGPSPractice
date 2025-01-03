@@ -17,6 +17,7 @@ import { toggleTouchFunction } from "../../utilities/pause-functions.js";
 import { app } from "../../utilities/app-class.js";
 import { gridItems, itemArrays } from "./generate-grid-items.js";
 import { alphabet } from "../card-touch/card-data.js";
+import { BASE_PATH } from "../../utilities/get_base_path.js";
 
 class MatchingApp {
   constructor() {
@@ -31,7 +32,7 @@ class MatchingApp {
     this.currentEndDot = null;
     this.lines = [];
     this.line = new Connector();
-    this.styleSheet = "/KGPSEnglishPractice-test/resources/css/matching.css";
+    this.styleSheet = `${BASE_PATH}resources/css/matching.css`;
     this.time = null;
     this.getStartDotID = this.getStartDotID.bind(this);
     this.onPointerDown = this.onPointerDown.bind(this);

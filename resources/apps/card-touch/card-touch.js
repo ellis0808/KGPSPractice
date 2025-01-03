@@ -30,6 +30,7 @@ import { audio } from "../../utilities/audio.js";
 import { endRoundScreen } from "../../utilities/end-round-screen.js";
 import { app } from "../../utilities/app-class.js";
 import { pauseFunction } from "../../utilities/pause-functions.js";
+import { BASE_PATH } from "../../utilities/get_base_path.js";
 
 /* SCORING */
 const correctAnswerPoints = 2;
@@ -49,10 +50,7 @@ function cardTouchApp(set) {
     appContainer.appendChild(btnContainer4);
   }, 0);
 
-  stylesheet.setAttribute(
-    "href",
-    "/KGPSEnglishPractice-test/resources/css/card-touch.css"
-  );
+  stylesheet.setAttribute("href", `${BASE_PATH}resources/css/card-touch.css`);
   menuItems.removeMenuPage();
 
   setTimeout(displayStartBtn, 200);
@@ -586,7 +584,7 @@ async function updateUserTotalScore() {
   };
   try {
     const response = await fetch(
-      "/KGPSEnglishPractice-test/api/add_user_activity_record.php",
+      `${BASE_PATH}api/add_user_activity_record.php`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -630,10 +628,7 @@ function endApp() {
       item.remove();
     });
     setTimeout(() => {
-      stylesheet.setAttribute(
-        "href",
-        "/KGPSEnglishPractice-test/resources/css/styles.css"
-      );
+      stylesheet.setAttribute("href", `${BASE_PATH}resources/css/styles.css`);
       menuItems.displayMainPage();
       setTimeout(menuItems.restoreMainMenu, 100);
     }, 500);

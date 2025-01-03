@@ -15,6 +15,7 @@ import {
   activityId,
   setStyle,
 } from "./fluency-set-style-and-activity-id.js";
+import { BASE_PATH } from "../../utilities/get_base_path.js";
 
 let interval = 2500;
 let run;
@@ -200,10 +201,7 @@ function fluencyApp(set) {
     grid.classList.add("gridHide");
   }, 0);
 
-  stylesheet.setAttribute(
-    "href",
-    "/KGPSEnglishPractice-test/resources/css/fluency.css"
-  );
+  stylesheet.setAttribute("href", `${BASE_PATH}resources/css/fluency.css`);
   menuItems.removeMenuPage();
 
   setTimeout(displayStartBtn, 200);
@@ -240,7 +238,7 @@ async function updateUserTotalScore() {
   };
   try {
     const response = await fetch(
-      "/KGPSEnglishPractice-test/api/add_user_activity_record.php",
+      `${BASE_PATH}api/add_user_activity_record.php`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -265,10 +263,7 @@ function endApp() {
       appContainer.removeChild(btnContainer1);
       appContainer.removeChild(btnContainer3);
     }
-    stylesheet.setAttribute(
-      "href",
-      "/KGPSEnglishPractice-test/resources/css/styles.css"
-    );
+    stylesheet.setAttribute("href", `${BASE_PATH}/resources/css/styles.css`);
     menuItems.displayMainPage();
     setTimeout(menuItems.restoreMainMenu, 100);
   }, 500);

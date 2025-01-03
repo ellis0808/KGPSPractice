@@ -1,7 +1,7 @@
 // sessionCheck();
 import { endRoundScreen } from "./end-round-screen.js";
 import { audio } from "./audio.js";
-
+import { BASE_PATH } from "./get_base_path.js";
 const scoreFunction = {
   currentScore: 0,
   userScore: 0,
@@ -92,7 +92,7 @@ const scoreFunction = {
   updateUserScore: async function (id) {
     try {
       const response = await fetch(
-        `/KGPSEnglishPractice-test/api/read_and_calculate_total_score.php?id=${id}`
+        `${BASE_PATH}api/read_and_calculate_total_score.php?id=${id}`
       );
 
       if (!response.ok) {

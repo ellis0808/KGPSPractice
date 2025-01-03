@@ -1,5 +1,6 @@
 import { sessionCheck } from "../login/session-check.js";
 import { logout } from "../utilities/logout.js";
+import { BASE_PATH } from "../utilities/get_base_path.js";
 
 setTimeout(() => {
   sessionCheck();
@@ -113,9 +114,7 @@ document.querySelector(".logout-btn").addEventListener("pointerdown", logout);
 const getUserInfo = {
   async getAllUsers() {
     try {
-      const response = await fetch(
-        "/KGPSEnglishPractice-test/api/read_users.php"
-      );
+      const response = await fetch(`${BASE_PATH}api/read_users.php`);
 
       if (!response.ok) {
         throw new Error("Network response was not okay");
@@ -338,20 +337,17 @@ const createTeacher = {
           document.querySelector('input[name="gradelevel"]:checked').value
         );
         try {
-          const response = await fetch(
-            "/KGPSEnglishPractice-test/api/create_user.php",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                last_name: lastname,
-                first_name: firstname,
-                password: password,
-                grade_level: gradelevel,
-                access: form,
-              }),
-            }
-          );
+          const response = await fetch(`${BASE_PATH}api/create_user.php`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              last_name: lastname,
+              first_name: firstname,
+              password: password,
+              grade_level: gradelevel,
+              access: form,
+            }),
+          });
         } catch (error) {
           console.error("Error creating new user:", error);
         }
@@ -381,20 +377,17 @@ const createTeacher = {
         const password = document.getElementById("teacher-password").value;
         const access = "teacher";
         try {
-          const response = await fetch(
-            "/KGPSEnglishPractice-test/api/create_user.php",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                title: title,
-                last_name: lastname,
-                admin: admin,
-                password: password,
-                access: form,
-              }),
-            }
-          );
+          const response = await fetch(`${BASE_PATH}api/create_user.php`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              title: title,
+              last_name: lastname,
+              admin: admin,
+              password: password,
+              access: form,
+            }),
+          });
 
           const data = await response.json();
 
@@ -419,14 +412,11 @@ const createTeacher = {
 const deleteUser = {
   async deleteUser(id, type) {
     try {
-      const response = await fetch(
-        "/KGPSEnglishPractice-test/api/delete_user.php",
-        {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id: id, type: type }),
-        }
-      );
+      const response = await fetch(`${BASE_PATH}api/delete_user.php`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: id, type: type }),
+      });
 
       const data = await response.json();
 
@@ -489,14 +479,11 @@ const updateUser = {
       newData.access = access;
     }
     try {
-      const response = await fetch(
-        "/KGPSEnglishPractice-test/api/update_user.php",
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newData),
-        }
-      );
+      const response = await fetch(`${BASE_PATH}api/update_user.php`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newData),
+      });
       const data = await response.json();
 
       if (!response.ok) {

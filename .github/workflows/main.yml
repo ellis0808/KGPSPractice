@@ -8,10 +8,24 @@ jobs:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
+      - name: 🌐 Set deployment directory
+        id: set-dir
+        run: |
+          if [[ "${{ github.ref_name }}" == "main" ]]; then
+            echo "server-dir=/home/orchidpony8/www/KGPSEnglishPractice/" >> $GITHUB_ENV
+          elif [[ "${{ github.ref_name }}" == "dev" ]]; then
+            echo "server-dir=/home/orchidpony8/www/KGPSEnglishPractice-dev/" >> $GITHUB_ENV
+          elif [[ "${{ github.ref_name }}" == "preview" ]]; then
+            echo "server-dir=/home/orchidpony8/www/KGPSEnglishPractice-preview/" >> $GITHUB_ENV
+          else
+            echo "Branch not recognized; exiting..."
+            exit 1
+          fi
+
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: orchidpony8.sakura.ne.jp
           username: orchidpony8
-          server-dir: /home/orchidpony8/www/KGPSEnglishPractice-test/
+          server-dir: ${{ env.server-dir }}
           password: ${{ secrets.FTP_PASSWORD }}
