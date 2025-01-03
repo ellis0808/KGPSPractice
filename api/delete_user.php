@@ -5,7 +5,6 @@ if (session_status() == PHP_SESSION_NONE) {
 };
 
 require './db_connect.php';
-// require './headers.php';
 
 
 // Get the input data from the request

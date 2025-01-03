@@ -2,7 +2,7 @@ import { BASE_PATH } from "../utilities/get-base-path.js";
 let sessionData;
 async function sessionCheck() {
   try {
-    const response = await fetch(`${BASE_PATH}api/session-check.php`, {
+    const response = await fetch(`${BASE_PATH}api/session_check.php`, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: "include", // sends cookies!

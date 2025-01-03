@@ -7,16 +7,18 @@ class Images {
     try {
       let response;
       if (!unit && !grouping && !grouping2) {
-        response = await fetch(`${BASE_PATH}api/load_images.php`);
+        response = await fetch(`/KGPSEnglishPractice-dev/api/load_images.php`);
       } else if (unit && !grouping && !grouping2) {
-        response = await fetch(`${BASE_PATH}api/load_images.php?id1=${unit}`);
+        response = await fetch(
+          `/KGPSEnglishPractice-dev/api/load_images.php?id1=${unit}`
+        );
       } else if (grouping2 !== null) {
         response = await fetch(
-          `${BASE_PATH}api/load_images.php?id1=${unit}&id2=${grouping}&id3=${grouping2}`
+          `/KGPSEnglishPractice-dev/api/load_images.php?id1=${unit}&id2=${grouping}&id3=${grouping2}`
         );
       } else if (unit && grouping && grouping2 === null) {
         response = await fetch(
-          `${BASE_PATH}api/load_images.php?id1=${unit}&id2=${grouping}`
+          `/KGPSEnglishPractice-dev/api/load_images.php?id1=${unit}&id2=${grouping}`
         );
       }
       if (!response.ok) {

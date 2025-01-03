@@ -5,8 +5,6 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 require './db_connect.php';
-// require './headers.php';
-
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
