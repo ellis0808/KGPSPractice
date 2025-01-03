@@ -1,4 +1,4 @@
-const BASE_PATH = (() => {
+const BASE_PATH = () => {
   const host = window.location.hostname;
 
   if (host.includes("dev")) {
@@ -8,5 +8,5 @@ const BASE_PATH = (() => {
   } else {
     return "/KGPSEnglishPractice/";
   }
-})();
+};
 export { BASE_PATH };

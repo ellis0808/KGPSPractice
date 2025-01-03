@@ -50,7 +50,7 @@ function cardTouchApp(set) {
     appContainer.appendChild(btnContainer4);
   }, 0);
 
-  stylesheet.setAttribute("href", `${BASE_PATH}resources/css/card-touch.css`);
+  stylesheet.setAttribute("href", `${BASE_PATH()}resources/css/card-touch.css`);
   menuItems.removeMenuPage();
 
   setTimeout(displayStartBtn, 200);
