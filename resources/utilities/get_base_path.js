@@ -1,10 +1,10 @@
 const BASE_PATH = () => {
-  const host = window.location.hostname;
-  console.log("hostname: ", host);
+  const href = window.location.href;
+  console.log("href: ", href);
 
-  if (host.includes("dev")) {
+  if (href.includes("dev")) {
     return "/KGPSEnglishPractice-dev/";
-  } else if (host.includes("preview")) {
+  } else if (href.includes("preview")) {
     return "/KGPSEnglishPractice-preview/";
   } else {
     return "/KGPSEnglishPractice/";
