@@ -1,5 +1,6 @@
 const BASE_PATH = () => {
   const host = window.location.hostname;
+  console.log("hostname: ", host);
 
   if (host.includes("dev")) {
     return "/KGPSEnglishPractice-dev/";
