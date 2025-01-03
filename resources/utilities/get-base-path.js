@@ -3,11 +3,11 @@ const BASE_PATH = (() => {
   console.log("href: ", href);
 
   if (href.includes("dev")) {
-    return "./KGPSEnglishPractice-dev/";
+    return "https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice-dev/";
   } else if (href.includes("preview")) {
-    return "./KGPSEnglishPractice-preview/";
+    return "https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice-preview/";
   } else {
-    return "./KGPSEnglishPractice/";
+    return "https://orchidpony8.sakura.ne.jp/KGPSEnglishPractice/";
   }
 })();
 export { BASE_PATH };
