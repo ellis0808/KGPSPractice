@@ -600,6 +600,8 @@ class MenuItems {
   removeSectionColumnMenuItems() {
     this.sectionColumn.childNodes.forEach((menu) => {
       menu.childNodes.forEach((item) => {
+        console.log(item);
+
         item.remove();
       });
     });
