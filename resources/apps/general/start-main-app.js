@@ -644,6 +644,9 @@ class MenuItems {
             if (item.classList.contains("hidden")) {
               item.classList.remove("hidden");
             }
+            if (item.classList.contains("hide")) {
+              item.classList.remove("hide");
+            }
           });
         break;
       case "numbers":
