@@ -631,8 +631,8 @@ function endApp() {
       stylesheet.setAttribute("href", `${BASE_PATH}resources/css/styles.css`);
       setTimeout(() => {
         menuItems.displayMainPage();
-        menuItems.restoreMainMenu(), 100;
-      });
+        menuItems.restoreMainMenu();
+      }, 100);
     }, 500);
   }, 500);
   scoreFunction.display.innerText = scoreFunction.currentScore;
