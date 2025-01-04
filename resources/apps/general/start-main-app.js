@@ -556,8 +556,7 @@ class MenuItems {
     this.hideSecondaryMenu();
     this.showPrimaryMenu();
     this.resetSecondaryMenuPosition();
-    menuItems.isPrimaryMenu = true;
-    menuItems.isSecondaryMenu = false;
+    this.setPrimaryMenuTrue();
     menuItems.returnToMainMenuToggle();
     let navBarDisplay;
     try {
