@@ -457,6 +457,7 @@ body:not(:has(*)) {
   height: 50px;
   width: 175px;
   margin-left: auto;
+  padding-right: 50px;
   color: var(--clr-wht);
   background: var(--clr-acc1);
   display: grid;
