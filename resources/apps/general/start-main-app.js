@@ -748,6 +748,8 @@ class MenuItems {
         ".secondary-menu, .secondary-menu-container, .secondary-menu-item"
       )
       .forEach((item) => {
+        console.log(item);
+
         // if (item.classList.contains("hidden")) {
         item.classList.remove("hidden");
         // }
