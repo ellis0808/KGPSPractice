@@ -601,8 +601,8 @@ class MenuItems {
     this.sectionColumn.childNodes.forEach((menu) => {
       menu.childNodes.forEach((item) => {
         console.log(item);
-
         item.remove();
+        console.log(item);
       });
     });
   }
@@ -784,7 +784,7 @@ class MenuItems {
     }
     if (this.isSecondaryMenu) {
       this.hideSecondaryMenu();
-      // this.removeSecondaryMenu();
+      this.removeSecondaryMenu();
     }
   }
   // removes the ENTIRE menu page when starting an app
