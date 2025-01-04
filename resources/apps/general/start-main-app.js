@@ -744,18 +744,15 @@ class MenuItems {
   }
   showSecondaryMenu() {
     document
-      .querySelectorAll(
-        ".secondary-menu, .secondary-menu-container, .secondary-menu-item"
-      )
+      .querySelectorAll(".secondary-menu, .secondary-menu-container")
       .forEach((item) => {
-        console.log(item);
-
-        // if (item.classList.contains("hidden")) {
-        item.classList.remove("hidden");
-        // }
-        // if (item.classList.contains("hide")) {
-        item.classList.remove("hide");
-        // }
+        if (
+          item.classList.contains("hidden") ||
+          item.classList.contains("hide")
+        ) {
+          item.classList.remove("hidden");
+          item.classList.remove("hide");
+        }
       });
   }
   removeSecondaryMenu() {
