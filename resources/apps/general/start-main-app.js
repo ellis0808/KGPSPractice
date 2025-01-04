@@ -601,7 +601,7 @@ class MenuItems {
     this.sectionColumn.childNodes.forEach((menu) => {
       menu.childNodes.forEach((item) => {
         console.log(item);
-        item.remove();
+        item.classList.add("hide");
         console.log(item);
       });
     });
