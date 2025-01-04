@@ -13,7 +13,7 @@ jobs:
         run: |
           if [[ "${{ github.ref_name }}" == "main" ]]; then
             echo "server-dir=/home/orchidpony8/www/KGPSEnglishPractice/" >> $GITHUB_ENV
-          elif [[ "${{ github.ref_name }}" == "testBranch" ]]; then
+          elif [[ "${{ github.ref_name }}" == "dev" ]]; then
             echo "server-dir=/home/orchidpony8/www/KGPSEnglishPractice-dev/" >> $GITHUB_ENV
           elif [[ "${{ github.ref_name }}" == "preview" ]]; then
             echo "server-dir=/home/orchidpony8/www/KGPSEnglishPractice-preview/" >> $GITHUB_ENV

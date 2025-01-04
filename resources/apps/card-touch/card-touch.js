@@ -629,8 +629,10 @@ function endApp() {
     });
     setTimeout(() => {
       stylesheet.setAttribute("href", `${BASE_PATH}resources/css/styles.css`);
-      menuItems.displayMainPage();
-      setTimeout(menuItems.restoreMainMenu, 100);
+      setTimeout(() => {
+        menuItems.displayMainPage();
+        menuItems.restoreMainMenu, 100;
+      });
     }, 500);
   }, 500);
   scoreFunction.display.innerText = scoreFunction.currentScore;
