@@ -768,7 +768,7 @@ class MenuItems {
     if (this.isPrimaryMenu) {
       document.querySelectorAll(".primary-menu-item").forEach((item) => {
         item.classList.add("hide");
-        item.remove();
+        // item.remove();
       });
     }
     if (this.isSecondaryMenu) {
