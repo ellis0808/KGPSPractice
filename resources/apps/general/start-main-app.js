@@ -771,7 +771,7 @@ class MenuItems {
     }
     if (this.isSecondaryMenu) {
       this.hideSecondaryMenu();
-      this.removeSecondaryMenu();
+      // this.removeSecondaryMenu();
     }
   }
   // removes the ENTIRE menu page when starting an app
