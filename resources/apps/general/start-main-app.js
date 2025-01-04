@@ -789,8 +789,8 @@ class MenuItems {
     // body.appendChild(parentsInfo);
     mainContainer.appendChild(topContainer);
     mainContainer.appendChild(primaryMenuContainer);
-    menuItems.isPrimaryMenu = true;
-    menuItems.isSecondaryMenu = false;
+    // menuItems.isPrimaryMenu = true;
+    // menuItems.isSecondaryMenu = false;
     menuItems.returnToMainMenuToggle();
     navBar.classList.remove("hidden");
     topContainer.classList.remove("hidden");
