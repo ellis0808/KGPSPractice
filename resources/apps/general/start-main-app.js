@@ -597,11 +597,17 @@ class MenuItems {
   /******
     Display Seconday Menu
   ******/
-
+  removeSectionColumnMenuItems() {
+    this.sectionColumn.childNodes.forEach((menu) => {
+      menu.childNodes.forEach((item) => {
+        item.remove();
+      });
+    });
+  }
   displaySecondaryMenu(section) {
+    this.removeSectionColumnMenuItems();
     this.hidePrimaryMenu();
-    this.isPrimaryMenu = false;
-    this.isSecondaryMenu = true;
+    this.setSecondaryMenuTrue();
     this.returnToMainMenuToggle();
     this.displayMovementArrows();
     mainContainer.appendChild(this.secondaryMenuContainer);
@@ -712,12 +718,17 @@ class MenuItems {
   /******
     Removing and Restoring Menu
   ******/
-
+  resetGreetingAndPointsDisplay() {
+    greetingDisplay.innerText = "";
+    pointsDisplay.innerText = "";
+  }
+  resetTopContainer() {
+    topContainer.innerText = "";
+  }
   hidePrimaryMenu() {
     audio.navigationSfx.selectMenu.play();
     // this.hideParentsInfoBtn();
-    greetingDisplay.innerText = "";
-    pointsDisplay.innerText = "";
+    this.resetGreetingAndPointsDisplay();
     primaryMenuContainer.classList.add("hidden");
     this.abcMenu.classList.add("hidden");
     this.numbersMenu.classList.add("hidden");
@@ -725,7 +736,7 @@ class MenuItems {
   }
   showPrimaryMenu() {
     // this.displayParentsInfoBtn();
-    topContainer.innerText = "";
+    this.resetTopContainer();
     primaryMenuContainer.classList.remove("hidden");
     this.abcMenu.classList.remove("hidden");
     this.numbersMenu.classList.remove("hidden");
@@ -744,9 +755,7 @@ class MenuItems {
   }
   showSecondaryMenu() {
     document
-      .querySelectorAll(
-        ".secondary-menu, .secondary-menu-container, .secondary-menu-item"
-      )
+      .querySelectorAll(".secondary-menu, .secondary-menu-container")
       .forEach((item) => {
         if (item.classList.contains("hidden")) {
           item.classList.remove("hidden");
@@ -768,7 +777,7 @@ class MenuItems {
     if (this.isPrimaryMenu) {
       document.querySelectorAll(".primary-menu-item").forEach((item) => {
         item.classList.add("hide");
-        // item.remove();
+        item.remove();
       });
     }
     if (this.isSecondaryMenu) {
@@ -785,9 +794,17 @@ class MenuItems {
         item.remove();
       });
   }
+  setPrimaryMenuTrue() {
+    menuItems.isPrimaryMenu = true;
+    menuItems.isSecondaryMenu = false;
+  }
+  setSecondaryMenuTrue() {
+    menuItems.isPrimaryMenu = false;
+    menuItems.isSecondaryMenu = true;
+  }
   restoreMainMenu() {
     body.appendChild(navBar);
-    topContainer.innerText = "";
+    this.resetTopContainer();
     // body.appendChild(parentsInfo);
     mainContainer.appendChild(topContainer);
     mainContainer.appendChild(primaryMenuContainer);
@@ -805,7 +822,7 @@ class MenuItems {
     this.showPrimaryMenu();
     this.resetSecondaryMenuPosition();
     // this.displayParentsInfoBtn();
-    topContainer.innerText = "";
+    this.resetTopContainer();
     this.displayGreeting();
   }
   returnToMainMenuToggle() {
@@ -865,7 +882,7 @@ class MenuItems {
     }
   }
   displayGreeting() {
-    menuItems.isPrimaryMenu = true;
+    this.setPrimaryMenuTrue();
     setTimeout(() => {
       let greeting;
       let userScore;
