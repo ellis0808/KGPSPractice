@@ -795,12 +795,12 @@ class MenuItems {
       });
   }
   setPrimaryMenuTrue() {
-    menuItems.isPrimaryMenu = true;
-    menuItems.isSecondaryMenu = false;
+    this.isPrimaryMenu = true;
+    this.isSecondaryMenu = false;
   }
   setSecondaryMenuTrue() {
-    menuItems.isPrimaryMenu = false;
-    menuItems.isSecondaryMenu = true;
+    this.isPrimaryMenu = false;
+    this.isSecondaryMenu = true;
   }
   restoreMainMenu() {
     body.appendChild(navBar);
