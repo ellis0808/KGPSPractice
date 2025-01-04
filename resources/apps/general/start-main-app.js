@@ -748,11 +748,10 @@ class MenuItems {
         ".secondary-menu, .secondary-menu-container, .secondary-menu-item"
       )
       .forEach((item) => {
-        if (
-          item.classList.contains("hidden") ||
-          item.classList.contains("hide")
-        ) {
+        if (item.classList.contains("hidden")) {
           item.classList.remove("hidden");
+        }
+        if (item.classList.contains("hide")) {
           item.classList.remove("hide");
         }
       });
