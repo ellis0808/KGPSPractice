@@ -363,7 +363,7 @@ body:not(:has(*)) {
 }
 @media (min-width: 975px) {
   .div {
-    width: minmax(330px, 500px);
+    width: 500px;
     height: 200px;
     background: var(--clr-acc1);
     color: var(--clr-wht);
