@@ -667,6 +667,9 @@ class MenuItems {
           if (item.classList.contains("hidden")) {
             item.classList.remove("hidden");
           }
+          if (item.classList.contains("hide")) {
+            item.classList.remove("hide");
+          }
         });
         break;
       case "sight-words":
@@ -687,6 +690,9 @@ class MenuItems {
             if (item.classList.contains("hidden")) {
               item.classList.remove("hidden");
             }
+            if (item.classList.contains("hide")) {
+              item.classList.remove("hide");
+            }
           });
         break;
       case "letter-sounds":
@@ -700,6 +706,9 @@ class MenuItems {
             // this.touchMenu.appendChild(item);
             if (item.classList.contains("hidden")) {
               item.classList.remove("hidden");
+            }
+            if (item.classList.contains("hide")) {
+              item.classList.remove("hide");
             }
           });
         break;
@@ -887,7 +896,7 @@ class MenuItems {
     }
   }
   displayGreeting() {
-    this.setPrimaryMenuTrue();
+    // this.setPrimaryMenuTrue();
     setTimeout(() => {
       let greeting;
       let userScore;
