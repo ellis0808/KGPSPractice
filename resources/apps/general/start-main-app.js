@@ -817,13 +817,8 @@ class MenuItems {
   }
   restoreMainMenu() {
     body.appendChild(navBar);
-    this.resetTopContainer();
-    // body.appendChild(parentsInfo);
     mainContainer.appendChild(topContainer);
     mainContainer.appendChild(primaryMenuContainer);
-    // menuItems.isPrimaryMenu = true;
-    // menuItems.isSecondaryMenu = false;
-    // menuItems.returnToMainMenuToggle();
     navBar.classList.remove("hidden");
     topContainer.classList.remove("hidden");
     getCumulativeUserScore();
@@ -834,7 +829,6 @@ class MenuItems {
     this.hideSecondaryMenu();
     this.showPrimaryMenu();
     this.resetSecondaryMenuPosition();
-    // this.displayParentsInfoBtn();
     this.resetTopContainer();
     this.displayGreeting();
   }
