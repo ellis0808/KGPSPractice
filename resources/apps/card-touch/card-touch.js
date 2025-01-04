@@ -630,7 +630,7 @@ function endApp() {
     setTimeout(() => {
       stylesheet.setAttribute("href", `${BASE_PATH}resources/css/styles.css`);
       setTimeout(() => {
-        menuItems.displayMainPage();
+        // menuItems.displayMainPage();
         menuItems.restoreMainMenu();
       }, 100);
     }, 500);

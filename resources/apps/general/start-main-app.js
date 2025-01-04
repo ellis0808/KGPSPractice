@@ -789,10 +789,13 @@ class MenuItems {
     // body.appendChild(parentsInfo);
     mainContainer.appendChild(topContainer);
     mainContainer.appendChild(primaryMenuContainer);
+    menuItems.isPrimaryMenu = true;
+    menuItems.isSecondaryMenu = false;
+    menuItems.returnToMainMenuToggle();
     navBar.classList.remove("hidden");
     topContainer.classList.remove("hidden");
     getCumulativeUserScore();
-    setTimeout(this.displayGreeting, 500);
+    setTimeout(this.returnToMainMenu, 500);
   }
   returnToMainMenu() {
     audio.navigationSfx.backToPreviousMenu.play();
