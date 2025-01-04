@@ -115,7 +115,7 @@ body:not(:has(*)) {
 }
 
 .main-container {
-  width: 100vw;
+  width: 100%;
   grid-area: main-container;
   display: grid;
   grid-template-columns: 1fr;
