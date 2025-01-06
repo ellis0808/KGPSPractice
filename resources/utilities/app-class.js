@@ -343,6 +343,9 @@ class App {
     }
   }
   gridRemove() {
+    this.grid.childNodes.forEach((item) => {
+      item.remove();
+    });
     this.grid.remove();
   }
   createDoubleTapPreventer(timeout_ms) {
