@@ -13,6 +13,8 @@ class WritingApp {
     this.time = null;
     this.randomItemArray = [];
     this.items = [];
+    this.timeElapsedTotal = null;
+    this.bestTime = null;
     this.numberCorrect = 0;
     this.numberIncorrect = 0;
     this.correctAnswerPoints = null;
@@ -374,10 +376,12 @@ class WritingApp {
     this.increaseCurrentProblemNumber();
   }
   endRound() {
+    this.timeElapsedTotal = timerFunction.time;
+    console.log(this.timeElapsedTotal);
+
     timerFunction.goalCompleted();
     this.setCorrectAnswerPoints();
     console.log(this.correctAnswerPoints);
-
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
     console.log(scoreFunction.currentScore);
   }
