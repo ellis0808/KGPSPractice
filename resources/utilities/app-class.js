@@ -136,7 +136,7 @@ class App {
     setTimeout(() => {
       this.resetAppVariables();
       this.gridRemove();
-      this.resetAppContainterContents();
+      this.removeMainAppStructure();
       document.querySelector(".container").remove();
       setTimeout(() => {
         stylesheet.setAttribute("href", this.homeStyleSheet);
@@ -328,17 +328,21 @@ class App {
     this.gridHideAdd();
   }
   removeMainAppStructure() {
-    document.querySelector(".container").childNodes.forEach((container) => {
-      console.log(container);
-      container.childNodes.forEach((item) => {
-        item.parentNode.removeChild(item);
-      });
-    });
+    // document.querySelector(".container").childNodes.forEach((container) => {
+    //   console.log(container);
+    //   container.childNodes.forEach((item) => {
+    //     item.parentNode.removeChild(item);
+    //   });
+    // });
     // this.btnContainer1.remove();
     // this.btnContainer2.remove();
     // this.btnContainer4.remove();
     // this.appControlsContainer.remove();
     // this.leftMenuContainer.remove();
+    document.querySelector(".message-row").remove();
+    document.querySelector(".number-correct-row").remove();
+    document.querySelector(".canvas-row").remove();
+    document.querySelector(".controls-row").remove();
   }
   resetAppContainterContents() {
     document.querySelector(".container").childNodes.forEach((container) => {
