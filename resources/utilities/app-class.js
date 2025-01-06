@@ -178,10 +178,11 @@ class App {
     pauseFunction.unpause();
     this.appContainer.classList.add("hide");
     this.appControlsContainer.classList.add("hide");
+    console.log(this.endSessionItems);
     document.querySelectorAll(this.endSessionItems).forEach((item) => {
       console.log(item);
       item.remove();
-    }); // needs to be abstracted out
+    });
     endRoundScreen.removeContainer();
     homeBtnFunction.removeContainer();
     scoreFunction.resetCurrentScore();
