@@ -10,7 +10,7 @@ class WritingApp {
     this.activityId = null;
     this.style = null;
     this.stylesheet = `${BASE_PATH}resources/css/writing.css`;
-    this.currentApp = ["writingApp"];
+    this.currentApp = ["writingApp."];
     this.time = null;
     this.randomItemArray = [];
     this.items = [];
@@ -22,7 +22,7 @@ class WritingApp {
     this.correctAnswerPoints = null;
     this.maxNumberOfWordsToWrite = null;
     this.currentProblemNumber = 1;
-    this.writingAppClass = ["writing-app."];
+    this.writingAppClass = ["writing-app"];
     this.endSessionItems = [
       ".message-row",
       ".number-correct-row",
