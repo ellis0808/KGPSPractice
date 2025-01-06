@@ -65,7 +65,7 @@ class MenuItems {
       "div-start-menu2",
       "primary-menu-div"
     );
-    this.numbersMenu.innerText = "1,2,3";
+    this.numbersMenu.innerText = "1, 2, 3 ...";
     this.numbersMenu.addEventListener("click", () => {
       this.section = "numbers";
       menuItems.displaySecondaryMenu(this.section);

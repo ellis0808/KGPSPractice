@@ -380,7 +380,7 @@ body:not(:has(*)) {
 .primary-menu-div {
   font-size: 3.5rem;
 }
-@media (min-width: 975px) {
+@media (min-width: 1700px) {
   .div {
     width: 500px;
     height: 200px;
