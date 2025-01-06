@@ -135,7 +135,7 @@ class App {
     endRoundScreen.removeContainer();
     setTimeout(() => {
       this.resetAppVariables();
-      this.removeMainAppStructure();
+      // this.removeMainAppStructure();
       this.gridRemove();
       document.querySelector(".container").remove();
       setTimeout(() => {
@@ -179,7 +179,7 @@ class App {
     this.appContainer.classList.add("hide");
     this.appControlsContainer.classList.add("hide");
     console.log(this.endSessionItems);
-    document.querySelectorAll(`${this.endSessionItems}`).forEach((item) => {
+    document.querySelectorAll(this.endSessionItems[0]).forEach((item) => {
       console.log(item);
       item.remove();
     });
@@ -327,7 +327,7 @@ class App {
     this.setMainAppStructure();
     this.gridHideAdd();
   }
-  removeMainAppStructure() {
+  elementRemover(elements) {
     // document.querySelector(".container").childNodes.forEach((container) => {
     //   console.log(container);
     //   container.childNodes.forEach((item) => {
