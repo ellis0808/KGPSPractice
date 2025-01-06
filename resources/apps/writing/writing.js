@@ -213,6 +213,10 @@ class WritingApp {
   resetNumberIncorrect() {
     this.numberIncorrect = 0;
   }
+  resetArrays() {
+    this.randomItemArray = [];
+    this.items = [];
+  }
   increaseNumberCorrect() {
     ++this.numberCorrect;
   }
@@ -327,6 +331,7 @@ class WritingApp {
     writingApp.resetNumberCorrect();
     writingApp.resetNumberIncorrect();
     writingApp.resetCurrentProblemNumber();
+    writingApp.resetArrays();
     writingApp.clearCanvas();
   }
   clearCanvas() {
