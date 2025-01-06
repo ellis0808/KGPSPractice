@@ -179,7 +179,7 @@ class App {
     this.appContainer.classList.add("hide");
     this.appControlsContainer.classList.add("hide");
     console.log(this.endSessionItems);
-    document.querySelectorAll(this.endSessionItems).forEach((item) => {
+    document.querySelectorAll(`${this.endSessionItems}`).forEach((item) => {
       console.log(item);
       item.remove();
     });

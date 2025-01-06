@@ -19,7 +19,7 @@ class WritingApp {
     this.maxNumberOfWordsToWrite = null;
     this.currentProblemNumber = 1;
     this.writingAppClass = '"writing-app"';
-    this.endSessionItems = '".writing-app"';
+    this.endSessionItems = ".writing-app";
   }
   run(set, time) {
     this.setStyleSheet();
