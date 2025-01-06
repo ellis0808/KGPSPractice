@@ -135,8 +135,8 @@ class App {
     endRoundScreen.removeContainer();
     setTimeout(() => {
       this.resetAppVariables();
-      this.gridRemove();
       this.removeMainAppStructure();
+      this.gridRemove();
       document.querySelector(".container").remove();
       setTimeout(() => {
         stylesheet.setAttribute("href", this.homeStyleSheet);
