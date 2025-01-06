@@ -102,6 +102,14 @@ body:not(:has(*)) {
 .nav-logo {
   grid-area: nav-logo;
   justify-self: start;
+  font-size: 1.5rem;
+}
+@media (width > 515px) {
+  .nav-logo {
+    grid-area: nav-logo;
+    justify-self: start;
+    font-size: 2rem;
+  }
 }
 .nav-user-space {
   height: 60px;
@@ -110,7 +118,7 @@ body:not(:has(*)) {
   position: relative;
 }
 .nav-user-name {
-  font-size: 1rem;
+  font-size: 1.5rem;
   transition: 0.3s;
 }
 @media (width > 515px) {
