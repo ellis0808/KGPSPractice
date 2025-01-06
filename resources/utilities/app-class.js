@@ -201,15 +201,15 @@ class App {
     toggleBlur.removeAllBlur();
   }
   updateSessionInfoForDatabase() {
-    this.totalElapsedTime = `${this.currentApp}`.totalElapsedTime;
-    this.correctAnswerCount = `${this.currentApp}`.numberCorrect;
-    this.incorrectAnswerCount = `${this.currentApp}`.numberIncorrect;
-    this.answerAttempts = `${this.currentApp}`.answerAttempts;
+    this.totalElapsedTime = this.currentApp.totalElapsedTime;
+    this.correctAnswerCount = this.currentApp.numberCorrect;
+    this.incorrectAnswerCount = this.currentApp.numberIncorrect;
+    this.answerAttempts = this.currentApp.answerAttempts;
     console.log(
-      `${this.currentApp}`.totalElapsedTime,
-      `${this.currentApp}`.numberCorrect,
-      `${this.currentApp}`.numberIncorrect,
-      `${this.currentApp}`.answerAttempts
+      this.currentApp.totalElapsedTime,
+      this.currentApp.numberCorrect,
+      this.currentApp.numberIncorrect,
+      this.currentApp.answerAttempts
     );
   }
   endRound() {
