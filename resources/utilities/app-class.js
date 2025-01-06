@@ -179,6 +179,7 @@ class App {
     this.appContainer.classList.add("hide");
     this.appControlsContainer.classList.add("hide");
     document.querySelectorAll(this.endSessionItems).forEach((item) => {
+      console.log(item);
       item.remove();
     }); // needs to be abstracted out
     endRoundScreen.removeContainer();
