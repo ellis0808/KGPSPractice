@@ -328,7 +328,9 @@ class App {
   removeMainAppStructure() {
     document.querySelector(".container").childNodes.forEach((container) => {
       console.log(container);
-      container.classList.add("hidden");
+      container.childNodes.forEach((item) => {
+        item.parentNode.removeChild(item);
+      });
     });
     // this.btnContainer1.remove();
     // this.btnContainer2.remove();
