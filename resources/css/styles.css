@@ -237,12 +237,11 @@ body:not(:has(*)) {
 @media (width > 600px) {
   .primary-menu-container {
     /* grid-template-columns: repeat(2, minmax(min(250px, 100%), 1fr)); */
+    grid-template: none;
+    /* grid-template-areas: "menu1  menu2  menu3  menu4"; */
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(6, 1fr);
     /* grid-template-rows: auto; */
-    /* grid-template-areas:
-      "menu1  menu2"
-      "menu3  menu4"; */
     column-gap: 8rem;
     row-gap: 4rem;
     margin-top: 50px;
