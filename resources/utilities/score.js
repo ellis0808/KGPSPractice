@@ -31,6 +31,8 @@ const scoreFunction = {
   },
   updatePositiveCount(amount) {
     const points = amount;
+    console.log(amount);
+
     const increment = 1;
     let initialValue = this.currentScore;
     let target = this.currentScore + points;

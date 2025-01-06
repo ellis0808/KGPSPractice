@@ -353,6 +353,8 @@ class WritingApp {
   endRound() {
     timerFunction.goalCompleted();
     this.setCorrectAnswerPoints();
+    console.log(this.correctAnswerPoints);
+
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
     console.log(scoreFunction.currentScore);
 
