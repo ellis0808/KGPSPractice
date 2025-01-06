@@ -282,6 +282,9 @@ class WritingApp {
 
     Object.keys(audio.audioObject).forEach((item) => {
       writingApp.items.push(item);
+      if (writingApp.items.length > writingApp.maxNumberOfWordsToWrite) {
+        writingApp.items.splice(0, 1);
+      }
     });
     console.log(writingApp.items);
     writingApp.getRandomItems();
@@ -294,6 +297,9 @@ class WritingApp {
         writingApp.items[Math.floor(Math.random() * writingApp.items.length)];
 
       this.randomItemArray.push(randomItem);
+      if (this.randomItemArray.length > this.maxNumberOfWordsToWrite) {
+        this.randomItemArray.splice(0, 1);
+      }
     }
     console.log(writingApp.randomItemArray);
     this.getNewWord();
