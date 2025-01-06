@@ -327,9 +327,13 @@ class App {
   }
   removeMainAppStructure() {
     this.appContainer.childNodes.forEach((container) => {
+      console.log(container);
       container.childNodes.forEach((child) => {
+        console.log(child);
         child.remove();
+        console.log(child);
       });
+      console.log(container);
       container.remove();
     });
     // this.btnContainer1.remove();
