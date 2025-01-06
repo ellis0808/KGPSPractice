@@ -91,11 +91,10 @@ class MenuItems {
       "div-start-menu3",
       "primary-menu-div"
     );
-    this.letterSoundsMenu.addEventListener(
-      "click",
-      () => (menuItems.this.this.section = "letter-sounds")
-    );
-    menuItems.displaySecondaryMenu(this.section);
+    this.letterSoundsMenu.addEventListener("click", () => {
+      this.section = "letter-sounds";
+      menuItems.displaySecondaryMenu(this.section);
+    });
     this.letterSoundsMenu.innerText = "Letter Sounds";
 
     // Seondary Menu
