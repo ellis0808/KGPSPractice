@@ -135,7 +135,7 @@ class App {
     endRoundScreen.removeContainer();
     setTimeout(() => {
       this.resetAppVariables();
-      // this.removeMainAppStructure();
+      this.elementRemover(this.endSessionItems);
       this.gridRemove();
       document.querySelector(".container").remove();
       setTimeout(() => {
@@ -178,11 +178,11 @@ class App {
     pauseFunction.unpause();
     this.appContainer.classList.add("hide");
     this.appControlsContainer.classList.add("hide");
-    console.log(this.endSessionItems);
-    document.querySelectorAll(`${this.endSessionItems[0]}`).forEach((item) => {
-      console.log(item);
-      item.remove();
-    });
+    // console.log(this.endSessionItems);
+    // document.querySelectorAll(`${this.endSessionItems[0]}`).forEach((item) => {
+    //   console.log(item);
+    //   item.remove();
+    // });
     endRoundScreen.removeContainer();
     homeBtnFunction.removeContainer();
     scoreFunction.resetCurrentScore();
@@ -339,10 +339,14 @@ class App {
     // this.btnContainer4.remove();
     // this.appControlsContainer.remove();
     // this.leftMenuContainer.remove();
-    document.querySelector(".message-row").remove();
-    document.querySelector(".number-correct-row").remove();
-    document.querySelector(".canvas-row").remove();
-    document.querySelector(".controls-row").remove();
+    // document.querySelector(".message-row").remove();
+    // document.querySelector(".number-correct-row").remove();
+    // document.querySelector(".canvas-row").remove();
+    // document.querySelector(".controls-row").remove();
+    elements.forEach((item) => {
+      console.log(item);
+      document.querySelector(`${item}`).remove();
+    });
   }
   resetAppContainterContents() {
     document.querySelector(".container").childNodes.forEach((container) => {

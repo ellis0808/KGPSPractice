@@ -19,8 +19,13 @@ class WritingApp {
     this.maxNumberOfWordsToWrite = null;
     this.currentProblemNumber = 1;
     this.writingAppClass = ["writing-app"];
-    this.endSessionItems = ["writing-app"];
-    // ['.message-row','.number-correct-row','.canvas-row','.controls-row','.repeat-btn'];
+    this.endSessionItems = [
+      ".message-row",
+      ".number-correct-row",
+      ".canvas-row",
+      ".controls-row",
+      ".repeat-btn",
+    ];
   }
   run(set, time) {
     this.setStyleSheet();
