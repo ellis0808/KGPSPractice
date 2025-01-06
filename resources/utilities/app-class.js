@@ -206,10 +206,10 @@ class App {
     this.incorrectAnswerCount = `${this.currentApp}`.numberIncorrect;
     this.answerAttempts = `${this.currentApp}`.answerAttempts;
     console.log(
-      this.totalElapsedTime,
-      this.correctAnswerCount,
-      this.incorrectAnswerCount,
-      this.answerAttempts
+      `${this.currentApp}`.totalElapsedTime,
+      `${this.currentApp}`.numberCorrect,
+      `${this.currentApp}`.numberIncorrect,
+      `${this.currentApp}`.answerAttempts
     );
   }
   endRound() {
