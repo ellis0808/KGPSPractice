@@ -346,6 +346,8 @@ class App {
   }
   gridRemove() {
     this.grid.childNodes.forEach((item) => {
+      console.log(item);
+
       item.remove();
     });
     this.grid.remove();
