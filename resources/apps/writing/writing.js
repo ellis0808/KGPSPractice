@@ -319,7 +319,9 @@ class WritingApp {
       this.canvas.classList.remove("border-correct");
     }
   };
-  clearBoard() {}
+  clearBoard() {
+    timerFunction.goalIncomplete();
+  }
   clearCanvas() {
     this.removeCorrectIncorrectBorder();
     this.canvasController.erase();
@@ -360,7 +362,6 @@ class WritingApp {
 
     this.resetNumberCorrect();
     this.resetNumberIncorrect();
-    timerFunction.goalIncomplete();
   }
 }
 
