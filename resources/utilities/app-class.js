@@ -209,8 +209,6 @@ class App {
     this.prepareForNewRound();
     setTimeout(() => {
       this.gridPopulator();
-      console.log(this.gridPopulator);
-      console.log(writingApp.items, writingApp.randomItemArray);
 
       this.setBtnContainer1();
       setTimeout(() => {

@@ -214,8 +214,8 @@ class WritingApp {
     this.numberIncorrect = 0;
   }
   resetArrays() {
-    this.randomItemArray = [];
-    this.items = [];
+    this.randomItemArray.length = 0;
+    this.items.length = 0;
   }
   increaseNumberCorrect() {
     ++this.numberCorrect;
@@ -277,10 +277,6 @@ class WritingApp {
     return this.canvasController;
   }
   generateItems() {
-    console.log(this);
-
-    console.log(writingApp.items, writingApp.randomItemArray);
-
     writingApp.items.length = 0;
     console.log(audio.audioObject);
 
