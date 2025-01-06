@@ -18,6 +18,8 @@ class WritingApp {
     this.correctAnswerPoints = null;
     this.maxNumberOfWordsToWrite = null;
     this.currentProblemNumber = 1;
+    this.writingAppClass = '"writing-app"';
+    this.endSessionItems = ".writing-app";
   }
   run(set, time) {
     this.setStyleSheet();
@@ -40,7 +42,8 @@ class WritingApp {
       null,
       this.createAndSetStructure,
       this.generateItems,
-      this.activityId
+      this.activityId,
+      this.endSessionItems
     );
   }
   createAndSetStructure = () => {
@@ -138,10 +141,13 @@ class WritingApp {
     this.numberCorrectRow = document.createElement("div");
     this.canvasRow = document.createElement("div");
     this.controlsRow = document.createElement("div");
-    this.messageRow.classList.add("message-row");
-    this.numberCorrectRow.classList.add("number-correct-row");
-    this.canvasRow.classList.add("canvas-row");
-    this.controlsRow.classList.add("controls-row");
+    this.messageRow.classList.add("message-row", this.writingAppClass);
+    this.numberCorrectRow.classList.add(
+      "number-correct-row",
+      this.writingAppClass
+    );
+    this.canvasRow.classList.add("canvas-row", this.writingAppClass);
+    this.controlsRow.classList.add("controls-row", this.writingAppClass);
   }
   createAppControls() {
     this.repeatBtn = document.createElement("div");
@@ -150,7 +156,7 @@ class WritingApp {
     this.clearBtn = document.createElement("div");
     this.skipBtn = document.createElement("div");
 
-    this.repeatBtn.classList.add("repeat-btn", "btn");
+    this.repeatBtn.classList.add("repeat-btn", "btn", this.writingAppClass);
     this.repeatBtn.innerText = "repeat";
     this.repeatBtn.addEventListener("pointerdown", writingAudio.repeat);
     this.checkBtn.classList.add("check-btn", "btn");
@@ -188,7 +194,7 @@ class WritingApp {
   createCanvas() {
     this.canvas = document.createElement("canvas");
     this.canvas.setAttribute("id", "canvas");
-    this.canvas.classList.add("canvas");
+    this.canvas.classList.add("canvas", this.writingAppClass);
     this.canvas.width = 800;
     this.canvas.height = 475;
 
