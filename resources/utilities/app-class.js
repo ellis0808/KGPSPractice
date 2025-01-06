@@ -328,33 +328,18 @@ class App {
     this.gridHideAdd();
   }
   elementRemover(elements) {
-    // document.querySelector(".container").childNodes.forEach((container) => {
-    //   console.log(container);
-    //   container.childNodes.forEach((item) => {
-    //     item.parentNode.removeChild(item);
-    //   });
-    // });
-    // this.btnContainer1.remove();
-    // this.btnContainer2.remove();
-    // this.btnContainer4.remove();
-    // this.appControlsContainer.remove();
-    // this.leftMenuContainer.remove();
-    // document.querySelector(".message-row").remove();
-    // document.querySelector(".number-correct-row").remove();
-    // document.querySelector(".canvas-row").remove();
-    // document.querySelector(".controls-row").remove();
     elements.forEach((item) => {
-      console.log(item);
-      console.log(document.querySelector(`${item}`));
-      document.querySelector(`${item}`).remove();
+      if (document.querySelector(`${item}`)) {
+        document.querySelector(`${item}`).remove();
+      }
     });
   }
-  resetAppContainterContents() {
-    document.querySelector(".container").childNodes.forEach((container) => {
-      console.log(container);
-      container.textContent = "";
-    });
-  }
+  // resetAppContainterContents() {
+  //   document.querySelector(".container").childNodes.forEach((container) => {
+  //     console.log(container);
+  //     container.textContent = "";
+  //   });
+  // }
   gridHideAdd() {
     if (!this.grid.classList.contains("gridHide")) {
       this.grid.classList.add("gridHide");
