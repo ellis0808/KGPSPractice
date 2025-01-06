@@ -328,7 +328,8 @@ class App {
   removeMainAppStructure() {
     document.querySelector(".container").childNodes.forEach((container) => {
       console.log(container);
-      container.childNodes.forEach((child) => {
+      let children = Array.from(container.childNodes);
+      children.forEach((child) => {
         console.log(child);
         child.remove();
         console.log(child);
