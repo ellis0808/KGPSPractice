@@ -225,12 +225,11 @@ body:not(:has(*)) {
   margin: auto;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  /* grid-template-areas:
+  grid-template-areas:
     "menu1"
     "menu2"
     "menu3"
-    "menu4"; */
+    "menu4";
   row-gap: 2rem;
   place-content: center;
   place-items: center;
@@ -239,9 +238,10 @@ body:not(:has(*)) {
   .primary-menu-container {
     grid-template-columns: repeat(2, minmax(min(250px, 100%), 1fr));
     grid-template-rows: repeat(2, 1fr);
-    grid-template-areas:
+    grid-template-rows: auto;
+    /* grid-template-areas:
       "menu1  menu2"
-      "menu3  menu4";
+      "menu3  menu4"; */
     column-gap: 8rem;
     row-gap: 4rem;
     margin-top: 50px;
