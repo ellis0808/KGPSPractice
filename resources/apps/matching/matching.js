@@ -34,6 +34,7 @@ class MatchingApp {
     this.line = new Connector();
     this.styleSheet = `${BASE_PATH}resources/css/matching.css`;
     this.time = null;
+    this.endSessionItems = ".matching-app, .line";
     this.getStartDotID = this.getStartDotID.bind(this);
     this.onPointerDown = this.onPointerDown.bind(this);
     this.onPointerMove = this.onPointerMove.bind(this);
@@ -60,7 +61,8 @@ class MatchingApp {
       this.activateEventListeners,
       this.createAndSetStructure,
       this.populateGrid,
-      this.activityId
+      this.activityId,
+      this.endSessionItems
     );
   }
   createAndSetStructure = () => {

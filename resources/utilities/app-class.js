@@ -44,7 +44,7 @@ class App {
     this.appStructure = null;
     this.gridPopulator = null;
     this.activityId = null;
-
+    this.endSessionItems = null;
     this.endApp = this.endApp.bind(this);
     this.startSession = this.startSession.bind(this);
     this.endSession = this.endSession.bind(this);
@@ -58,7 +58,8 @@ class App {
     eventListeners,
     appStructure,
     gridPopulator,
-    activityId
+    activityId,
+    endSessionItems
   ) {
     this.time = time;
     this.clearBoardMethod = boardClear;
@@ -66,6 +67,7 @@ class App {
     this.appStructure = appStructure;
     this.gridPopulator = gridPopulator;
     this.activityId = activityId;
+    this.endSessionItems = endSessionItems;
   }
   resetAppVariables() {
     this.time = null;
@@ -133,8 +135,8 @@ class App {
     endRoundScreen.removeContainer();
     setTimeout(() => {
       this.resetAppVariables();
-      document.querySelector(".container").remove();
       this.gridRemove();
+      document.querySelector(".container").remove();
       // this.removeMainAppStructure();
       setTimeout(() => {
         stylesheet.setAttribute("href", this.homeStyleSheet);
@@ -176,7 +178,7 @@ class App {
     pauseFunction.unpause();
     this.appContainer.classList.add("hide");
     this.appControlsContainer.classList.add("hide");
-    document.querySelectorAll(".matching-app, .line").forEach((item) => {
+    document.querySelectorAll(this.endSessionItems).forEach((item) => {
       item.remove();
     }); // needs to be abstracted out
     endRoundScreen.removeContainer();

@@ -170,7 +170,7 @@ class WritingApp {
     this.undoBtn.addEventListener("pointerdown", (event) => {
       if (this.canvasController.trace.length === 0) {
         return;
-      } else if (canvasController.trace.length === 1) {
+      } else if (this.trace.length === 1) {
         this.canvasController.erase();
         this.canvasController.trace.length = 0;
       } else {
