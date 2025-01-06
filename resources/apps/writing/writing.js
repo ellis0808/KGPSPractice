@@ -324,10 +324,10 @@ class WritingApp {
   };
   clearBoard() {
     timerFunction.goalIncomplete();
-    this.resetNumberCorrect();
-    this.resetNumberIncorrect();
-    this.resetCurrentProblemNumber();
-    this.clearCanvas();
+    writingApp.resetNumberCorrect();
+    writingApp.resetNumberIncorrect();
+    writingApp.resetCurrentProblemNumber();
+    writingApp.clearCanvas();
   }
   clearCanvas() {
     this.removeCorrectIncorrectBorder();
