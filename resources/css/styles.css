@@ -84,8 +84,20 @@ body:not(:has(*)) {
   display: grid;
   justify-self: start;
   align-self: center;
-  font-size: 2rem;
+  font-size: 1rem;
   transition: 0.3s;
+}
+@media (width >515px) {
+  .nav-logo,
+  .nav-user-space {
+    grid-area: nav-logo;
+    color: var(--clr-acc1);
+    display: grid;
+    justify-self: start;
+    align-self: center;
+    font-size: 2rem;
+    transition: 0.3s;
+  }
 }
 .nav-logo {
   grid-area: nav-logo;
@@ -98,8 +110,14 @@ body:not(:has(*)) {
   position: relative;
 }
 .nav-user-name {
-  font-size: 2rem;
+  font-size: 1rem;
   transition: 0.3s;
+}
+@media (width > 515px) {
+  .nav-user-name {
+    font-size: 2rem;
+    transition: 0.3s;
+  }
 }
 .nav-user-name:hover {
   color: var(--clr-acc1-hvr);
@@ -120,13 +138,23 @@ body:not(:has(*)) {
   grid-area: main-container;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 175px, 1fr;
+  grid-template-rows: 100px, 1fr;
   grid-template-areas: "top-container" "menu-container";
+}
+@media (width > 515px) {
+  .main-container {
+    width: 100%;
+    grid-area: main-container;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 175px, 1fr;
+    grid-template-areas: "top-container" "menu-container";
+  }
 }
 .top-container {
   grid-area: top-container;
   width: 100%;
-  height: 130px;
+  height: 100px;
   margin: auto;
   margin-top: 35px;
   margin-bottom: 35px;
@@ -137,13 +165,30 @@ body:not(:has(*)) {
     "points-display";
   place-content: center;
   place-items: center;
-  font-size: 4rem;
+  font-size: 2rem;
   transition: 0.3s;
   animation: cardEntrance 1.15s ease-in-out backwards;
 }
+@media (width > 515px) {
+  .top-container {
+    height: 130px;
+    margin: auto;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    display: grid;
+    grid-template-rows: 1fr 0.5fr;
+    grid-template-areas:
+      "greeting-display"
+      "points-display";
+    place-content: center;
+    place-items: center;
+    font-size: 4rem;
+    transition: 0.3s;
+    animation: cardEntrance 1.15s ease-in-out backwards;
+  }
+}
 @media (width > 820px) {
   .top-container {
-    grid-area: top-container;
     width: 100%;
     height: 175px;
     margin: auto;
@@ -164,7 +209,7 @@ body:not(:has(*)) {
   width: 100%;
   height: 100%;
   margin: auto;
-  font-size: 3rem;
+  font-size: 2rem;
   display: flex;
   place-content: center;
   place-items: center;
@@ -172,19 +217,14 @@ body:not(:has(*)) {
   transition: 0.3s;
   animation: fadeIn 0.25s ease-in backwards;
 }
+@media (width > 515px) {
+  .greeting-display {
+    font-size: 3rem;
+  }
+}
 @media (width > 820px) {
   .greeting-display {
-    grid-area: greeting-display;
-    width: 100%;
-    height: 100%;
-    margin: auto;
     font-size: 5rem;
-    display: flex;
-    place-content: center;
-    place-items: center;
-    text-align: center;
-    transition: 0.3s;
-    animation: fadeIn 0.25s ease-in backwards;
   }
 }
 .points-display {
@@ -192,7 +232,7 @@ body:not(:has(*)) {
   width: 100%;
   height: 100%;
   margin: auto;
-  font-size: 3rem;
+  font-size: 2rem;
   display: flex;
   place-content: center;
   place-items: center;
@@ -200,19 +240,14 @@ body:not(:has(*)) {
   transition: 0.3s;
   animation: fadeIn 0.25s ease-in backwards;
 }
+@media (width > 515px) {
+  .points-display {
+    font-size: 3rem;
+  }
+}
 @media (width > 820px) {
   .points-display {
-    grid-area: points-display;
-    width: 100%;
-    height: 100%;
-    margin: auto;
     font-size: 4rem;
-    display: flex;
-    place-content: center;
-    place-items: center;
-    text-align: center;
-    transition: 0.3s;
-    animation: fadeIn 0.25s ease-in backwards;
   }
 }
 .test {
@@ -236,7 +271,6 @@ body:not(:has(*)) {
 }
 @media (width > 820px) {
   .primary-menu-container {
-    /* grid-template-columns: repeat(2, minmax(min(250px, 100%), 1fr)); */
     grid-template-areas:
       "menu1  menu2"
       "menu3  menu4"
@@ -246,23 +280,15 @@ body:not(:has(*)) {
     column-gap: 8rem;
     row-gap: 4rem;
     margin-top: 50px;
-    place-content: center;
-    place-items: center;
   }
 }
 @media (width > 1300px) {
   .primary-menu-container {
-    /* grid-template-columns: repeat(2, minmax(min(250px, 100%), 1fr)); */
     grid-template-areas:
       "menu1  menu2  menu3"
       "menu4  menu5  menu6"
       "menu7  menu8  menu9";
     grid-template-columns: repeat(3, 1fr);
-    column-gap: 8rem;
-    row-gap: 4rem;
-    margin-top: 50px;
-    place-content: center;
-    place-items: center;
   }
 }
 
