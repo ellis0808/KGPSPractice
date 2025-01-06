@@ -239,8 +239,8 @@ body:not(:has(*)) {
     /* grid-template-columns: repeat(2, minmax(min(250px, 100%), 1fr)); */
     grid-template: none;
     grid-template-areas: "menu1  menu2  menu3  menu4";
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(auto-fill, 1fr);
+    grid-template-rows: repeat(auto-fill, 1fr);
     /* grid-template-rows: auto; */
     column-gap: 8rem;
     row-gap: 4rem;
