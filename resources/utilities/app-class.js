@@ -326,7 +326,7 @@ class App {
     this.gridHideAdd();
   }
   removeMainAppStructure() {
-    document.querySelector(".container").childNodes.forEach((container) => {
+    document.querySelector(".container").children.forEach((container) => {
       console.log(container);
       let children = Array.from(container.childNodes);
       children.forEach((child) => {
