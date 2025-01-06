@@ -234,7 +234,7 @@ body:not(:has(*)) {
   place-content: center;
   place-items: center;
 }
-@media (width > 600px) {
+@media (width > 820px) {
   .primary-menu-container {
     /* grid-template-columns: repeat(2, minmax(min(250px, 100%), 1fr)); */
     grid-template-areas:
