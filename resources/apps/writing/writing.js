@@ -227,7 +227,7 @@ class WritingApp {
       this.correctAnswerPoints =
         this.numberCorrect * 2 +
         Math.floor(this.maxNumberOfWordsToWrite * 0.25);
-    } else {
+    } else if (this.numberIncorrect > 0) {
       this.correctAnswerPoints = this.numberCorrect * 2;
     }
   }
@@ -353,8 +353,9 @@ class WritingApp {
   endRound() {
     timerFunction.goalCompleted();
     this.setCorrectAnswerPoints();
-    console.log(this.currentProblemNumber);
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
+    console.log(scoreFunction.currentScore);
+
     this.resetNumberCorrect();
     this.resetNumberIncorrect();
   }
