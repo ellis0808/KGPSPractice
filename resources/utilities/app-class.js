@@ -128,7 +128,7 @@ class App {
     toggleBlur.removeAllBlur();
   }
   endApp() {
-    // scoreFunction.updateUserScore();
+    scoreFunction.updateUserScore();
     this.endSession();
     endRoundScreen.removeContainer();
     setTimeout(() => {

@@ -333,7 +333,7 @@ class WritingApp {
       console.log(this.currentProblemNumber);
 
       setTimeout(() => {
-        if (this.currentProblemNumber === this.maxNumberOfWordsToWrite) {
+        if (this.currentProblemNumber > this.maxNumberOfWordsToWrite) {
           this.endRound();
         } else {
           this.getNewWord();
