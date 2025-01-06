@@ -10,6 +10,7 @@ class WritingApp {
     this.activityId = null;
     this.style = null;
     this.stylesheet = `${BASE_PATH}resources/css/writing.css`;
+    this.currentApp = ["writingApp"];
     this.time = null;
     this.randomItemArray = [];
     this.items = [];
@@ -46,7 +47,7 @@ class WritingApp {
   }
   setUpApp() {
     app.setAppVariables(
-      "writingApp",
+      this.currentApp[0],
       this.time,
       this.clearBoard,
       null,
