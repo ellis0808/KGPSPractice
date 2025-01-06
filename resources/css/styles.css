@@ -239,7 +239,7 @@ body:not(:has(*)) {
     grid-template-columns: repeat(2, minmax(min(250px, 100%), 1fr));
     grid-template-columns: auto;
     grid-template-rows: repeat(2, 1fr);
-    grid-template-rows: auto;
+    /* grid-template-rows: auto; */
     /* grid-template-areas:
       "menu1  menu2"
       "menu3  menu4"; */
