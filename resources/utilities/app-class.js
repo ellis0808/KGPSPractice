@@ -345,6 +345,7 @@ class App {
     // document.querySelector(".controls-row").remove();
     elements.forEach((item) => {
       console.log(item);
+      console.log(document.querySelector(`${item}`));
       document.querySelector(`${item}`).remove();
     });
   }
