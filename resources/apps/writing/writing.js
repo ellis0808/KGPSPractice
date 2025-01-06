@@ -222,6 +222,9 @@ class WritingApp {
   increaseCurrentProblemNumber() {
     ++this.currentProblemNumber;
   }
+  resetCurrentProblemNumber() {
+    this.currentProblemNumber = 1;
+  }
   setCorrectAnswerPoints() {
     if (this.numberIncorrect === 0) {
       this.correctAnswerPoints =
@@ -321,6 +324,10 @@ class WritingApp {
   };
   clearBoard() {
     timerFunction.goalIncomplete();
+    this.resetNumberCorrect();
+    this.resetNumberIncorrect();
+    this.resetCurrentProblemNumber();
+    this.clearCanvas();
   }
   clearCanvas() {
     this.removeCorrectIncorrectBorder();
@@ -359,9 +366,6 @@ class WritingApp {
 
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
     console.log(scoreFunction.currentScore);
-
-    this.resetNumberCorrect();
-    this.resetNumberIncorrect();
   }
 }
 
