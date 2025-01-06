@@ -13,10 +13,11 @@ class WritingApp {
     this.time = null;
     this.randomItemArray = [];
     this.items = [];
-    this.timeElapsedTotal = null;
+    this.totalElapsedTime = null;
     this.bestTime = null;
     this.numberCorrect = 0;
     this.numberIncorrect = 0;
+    this.answerAttempts = 0;
     this.correctAnswerPoints = null;
     this.maxNumberOfWordsToWrite = null;
     this.currentProblemNumber = 1;
@@ -45,6 +46,7 @@ class WritingApp {
   }
   setUpApp() {
     app.setAppVariables(
+      "writingApp",
       this.time,
       this.clearBoard,
       null,
@@ -376,8 +378,8 @@ class WritingApp {
     this.increaseCurrentProblemNumber();
   }
   endRound() {
-    this.timeElapsedTotal = timerFunction.time;
-    console.log(this.timeElapsedTotal);
+    this.totalElapsedTime = timerFunction.time;
+    console.log(this.totalElapsedTime);
 
     timerFunction.goalCompleted();
     this.setCorrectAnswerPoints();

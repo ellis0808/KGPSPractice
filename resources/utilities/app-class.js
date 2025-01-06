@@ -38,6 +38,7 @@ class App {
     this.btnContainer5.classList.add("btn-container5");
     this.appControlsContainer.classList.add("home-btn-container", "hide");
     this.leftMenuContainer.classList.add("left-menu-container");
+    this.currentApp = null;
     this.time = null;
     this.clearBoardMethod = null;
     this.appEventListeners = null;
@@ -51,8 +52,13 @@ class App {
     this.startRound = this.startRound.bind(this);
     this.endRound = this.endRound.bind(this);
     this.hideBtnContainer2 = this.hideBtnContainer2.bind(this);
+    this.correctAnswerCount = null;
+    this.incorrectAnswerCount = null;
+    this.totalElapsedTime = null;
+    this.answerAttempts = null;
   }
   setAppVariables(
+    currentApp,
     time,
     boardClear,
     eventListeners,
@@ -61,6 +67,7 @@ class App {
     activityId,
     endSessionItems
   ) {
+    this.currentApp = currentApp;
     this.time = time;
     this.clearBoardMethod = boardClear;
     this.appEventListeners = eventListeners;
@@ -70,6 +77,7 @@ class App {
     this.endSessionItems = endSessionItems;
   }
   resetAppVariables() {
+    this.currentApp = null;
     this.time = null;
     this.clearBoardMethod = null;
     this.appEventListeners = null;
@@ -82,38 +90,6 @@ class App {
     user.lastName = sessionData.lastName;
     user.access = sessionData.access;
     user.id = sessionData.userId;
-  }
-  async updateUserTotalScore() {
-    //  For student users; teachers will differ on user type, etc
-
-    const newStats = {
-      activity_id: this.activityId,
-      user_id: user.id,
-      user_type: user.access,
-      correct_answer_count: 0,
-      incorrect_answer_count: 0,
-      time_to_correct_answer_duration_in_seconds: 0,
-      answer_attempts: 0,
-      activity_score: scoreFunction.currentScore,
-    };
-
-    try {
-      const response = await fetch(
-        `${BASE_PATH}api/add_user_activity_record.php`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newStats),
-        }
-      );
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error("Network response was not okay");
-      }
-    } catch (error) {
-      console.error("Error adding record:", error);
-    }
   }
   startApp() {
     this.setDoubleTapPreventer();
@@ -224,8 +200,29 @@ class App {
     }, 1000);
     toggleBlur.removeAllBlur();
   }
+  updateSessionInfoForDatabase() {
+    this.totalElapsedTime = `${this.currentApp}`.totalElapsedTime;
+    this.correctAnswerCount = `${this.currentApp}`.numberCorrect;
+    this.incorrectAnswerCount = `${this.currentApp}`.numberIncorrect;
+    this.answerAttempts = `${this.currentApp}`.answerAttempts;
+    console.log(
+      this.totalElapsedTime,
+      this.correctAnswerCount,
+      this.incorrectAnswerCount,
+      this.answerAttempts
+    );
+  }
   endRound() {
-    this.updateUserTotalScore();
+    this.updateSessionInfoForDatabase();
+    scoreFunction.updateUserTotalScore(
+      this.activityId,
+      user.id,
+      user.access,
+      this.correctAnswerCount,
+      this.incorrectAnswerCount,
+      this.totalElapsedTime,
+      this.answerAttempts
+    );
     console.log(user.cumulativeScore);
     scoreFunction.updateUserScore();
     console.log(user.cumulativeScore);
