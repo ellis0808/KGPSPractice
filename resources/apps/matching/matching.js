@@ -21,6 +21,7 @@ import { BASE_PATH } from "../../utilities/get-base-path.js";
 
 class MatchingApp {
   constructor() {
+    this.currentApp = ["matchingApp."];
     this.activityId = null;
     this.correctAnswerPoints = 1;
     this.endDotId = null;
@@ -34,6 +35,9 @@ class MatchingApp {
     this.line = new Connector();
     this.styleSheet = `${BASE_PATH}resources/css/matching.css`;
     this.time = null;
+    this.numberCorrect = 0;
+    this.numberIncorrect = 0;
+    this.answerAttempts = 0;
     this.endSessionItems = [
       ".startrow",
       ".line",
@@ -68,6 +72,7 @@ class MatchingApp {
   }
   setUpApp() {
     app.setAppVariables(
+      this.currentApp,
       this.time,
       this.clearBoard,
       this.activateEventListeners,
