@@ -85,15 +85,18 @@ class MenuItems {
     this.sightWordsMenu.innerText = "Sight Words";
 
     // Letter Sounds
-    // this.letterSoundsMenu.setAttribute("id", "div5");
-    // this.letterSoundsMenu.classList.add(
-    //   "div",
-    //   "div-start-menu5",
-    //   "primary-menu-div"
-    // );
-    // this.letterSoundsMenu.addEventListener("click", () => menuItems.this.this.section = "letter-sounds";
-    // menuItems.displaySecondaryMenu(this.section);
-    // this.letterSoundsMenu.innerText = "Letter Sounds";
+    this.letterSoundsMenu.setAttribute("id", "div3");
+    this.letterSoundsMenu.classList.add(
+      "div",
+      "div-start-menu3",
+      "primary-menu-div"
+    );
+    this.letterSoundsMenu.addEventListener(
+      "click",
+      () => (menuItems.this.this.section = "letter-sounds")
+    );
+    menuItems.displaySecondaryMenu(this.section);
+    this.letterSoundsMenu.innerText = "Letter Sounds";
 
     // Seondary Menu
 
@@ -590,7 +593,7 @@ class MenuItems {
     primaryMenuContainer.appendChild(this.abcMenu);
     primaryMenuContainer.appendChild(this.numbersMenu);
     primaryMenuContainer.appendChild(this.sightWordsMenu);
-    // primaryMenuContainer.appendChild(this.letterSoundsMenu);
+    primaryMenuContainer.appendChild(this.letterSoundsMenu);
   }
 
   /******

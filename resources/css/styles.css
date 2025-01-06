@@ -242,9 +242,7 @@ body:not(:has(*)) {
       "menu3  menu4"
       "menu5  menu6"
       "menu7  menu8";
-    grid-template-columns: repeat(auto-fill, 1fr);
-    grid-template-rows: repeat(auto-fill, 1fr);
-    /* grid-template-rows: auto; */
+    grid-template-columns: repeat(2, 1fr);
     column-gap: 8rem;
     row-gap: 4rem;
     margin-top: 50px;
@@ -259,9 +257,7 @@ body:not(:has(*)) {
       "menu1  menu2  menu3"
       "menu4  menu5  menu6"
       "menu7  menu8  menu9";
-    grid-template-columns: repeat(auto-fill, 1fr);
-    grid-template-rows: repeat(auto-fill, 1fr);
-    /* grid-template-rows: auto; */
+    grid-template-columns: repeat(3, 1fr);
     column-gap: 8rem;
     row-gap: 4rem;
     margin-top: 50px;
