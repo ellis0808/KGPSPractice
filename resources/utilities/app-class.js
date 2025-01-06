@@ -119,7 +119,7 @@ class App {
     this.setForeignElements();
     this.createAndSetAppSpecificStructure();
     pauseFunction.unpause();
-    scoreFunction.display.innerText = scoreFunction.currentScore;
+    scoreFunction.display.innerText = 0;
     this.appContainer.classList.remove("hide");
     scoreFunction.hide();
     timerFunction.hide();
@@ -128,7 +128,7 @@ class App {
     toggleBlur.removeAllBlur();
   }
   endApp() {
-    scoreFunction.updateUserScore();
+    // scoreFunction.updateUserScore();
     this.endSession();
     endRoundScreen.removeContainer();
     setTimeout(() => {
@@ -142,7 +142,7 @@ class App {
         setTimeout(menuItems.restoreMainMenu, 100);
       }, 500);
     }, 500);
-    scoreFunction.display.innerText = scoreFunction.currentScore;
+    scoreFunction.display.innerText = 0;
   }
   setForeignElements() {
     homeBtnFunction.initialize();

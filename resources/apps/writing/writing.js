@@ -210,13 +210,19 @@ class WritingApp {
   resetNumberCorrect() {
     this.numberCorrect = 0;
   }
+  resetNumberIncorrect() {
+    this.numberIncorrect = 0;
+  }
   increaseNumberCorrect() {
     ++this.numberCorrect;
+  }
+  increaseNumberIncorrect() {
+    ++this.numberIncorrect;
   }
   increaseCurrentProblemNumber() {
     ++this.currentProblemNumber;
   }
-  setCorrecAnswerPoints() {
+  setCorrectAnswerPoints() {
     if (this.numberIncorrect === 0) {
       this.correctAnswerPoints =
         this.numberCorrect * 2 +
@@ -324,28 +330,33 @@ class WritingApp {
       audio.appSfx.correct.play();
       this.increaseNumberCorrect();
       this.displayNumberCorrect();
-      this.increaseCurrentProblemNumber();
       console.log(this.currentProblemNumber);
 
-      if (this.currentProblemNumber === this.maxNumberOfWordsToWrite) {
-        this.endRound();
-      } else {
-        setTimeout(this.getNewWord, 1500);
-      }
+      setTimeout(() => {
+        if (this.currentProblemNumber === this.maxNumberOfWordsToWrite) {
+          this.endRound();
+        } else {
+          this.getNewWord();
+        }
+      }, 1500);
     } else {
       audio.appSfx.incorrect.play();
       this.addBorderIncorrect();
+      this.increaseNumberIncorrect();
       setTimeout(() => {
         this.clearCanvas();
         setTimeout(writingAudio.repeat, 700);
       }, 2000);
     }
+    this.increaseCurrentProblemNumber();
   }
   endRound() {
     timerFunction.goalCompleted();
-    this.setCorrecAnswerPoints();
+    this.setCorrectAnswerPoints();
     console.log(this.currentProblemNumber);
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
+    this.resetNumberCorrect();
+    this.resetNumberIncorrect();
   }
 }
 
