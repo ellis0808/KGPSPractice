@@ -15,7 +15,14 @@
 a {
   color: inherit;
   text-decoration: inherit;
-  font-size: 2rem;
+  font-size: 1.5rem;
+}
+@media (width > 515px) {
+  a {
+    color: inherit;
+    text-decoration: inherit;
+    font-size: 2rem;
+  }
 }
 :root {
   --clr-acc1: #006747;
