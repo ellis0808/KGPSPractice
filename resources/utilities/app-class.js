@@ -136,8 +136,8 @@ class App {
     setTimeout(() => {
       this.resetAppVariables();
       this.gridRemove();
-      this.removeMainAppStructure();
-      // document.querySelector(".container").remove();
+      this.resetAppContainterContents();
+      document.querySelector(".container").remove();
       setTimeout(() => {
         stylesheet.setAttribute("href", this.homeStyleSheet);
         menuItems.displayMainPage();
@@ -337,6 +337,12 @@ class App {
     // this.btnContainer4.remove();
     // this.appControlsContainer.remove();
     // this.leftMenuContainer.remove();
+  }
+  resetAppContainterContents() {
+    document.querySelector(".container").childNodes.forEach((container) => {
+      console.log(container);
+      container.textContent = "";
+    });
   }
   gridHideAdd() {
     if (!this.grid.classList.contains("gridHide")) {
