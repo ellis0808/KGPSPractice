@@ -360,6 +360,7 @@ class WritingApp {
 
     this.resetNumberCorrect();
     this.resetNumberIncorrect();
+    timerFunction.goalIncomplete();
   }
 }
 
