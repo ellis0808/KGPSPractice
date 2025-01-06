@@ -22,7 +22,7 @@ class WritingApp {
     this.correctAnswerPoints = null;
     this.maxNumberOfWordsToWrite = null;
     this.currentProblemNumber = 1;
-    this.writingAppClass = ["writing-app"];
+    this.writingAppClass = ["writing-app."];
     this.endSessionItems = [
       ".message-row",
       ".number-correct-row",
