@@ -19,8 +19,6 @@ a {
 }
 @media (width > 515px) {
   a {
-    color: inherit;
-    text-decoration: inherit;
     font-size: 2rem;
   }
 }
@@ -50,13 +48,6 @@ body {
 }
 @media (width > 820px) {
   body {
-    background: white;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    place-content: center;
-    /* place-items: center; */
-    /* grid-template-columns: 2rem minmax(250px, 500px) minmax(250px, 500px) 2rem; */
     grid-template-columns: 2rem repeat(2, 1fr) 2rem;
     grid-template-rows: 0.025fr 0.1fr 1fr 0.075fr;
     grid-template-areas:
@@ -171,7 +162,7 @@ body:not(:has(*)) {
   width: 100%;
   height: 100px;
   margin: auto;
-  margin-top: 35px;
+  margin-top: 10px;
   margin-bottom: 35px;
   display: grid;
   grid-template-rows: 1fr 0.5fr;
@@ -343,9 +334,6 @@ body:not(:has(*)) {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 4fr;
-  /* place-content: center; */
-  /* place-items: center; */
-  /* overflow: hidden; */
   transition: 0.5s;
 }
 .secondary-menu-row {
@@ -357,7 +345,6 @@ body:not(:has(*)) {
   grid-auto-flow: column;
   grid-template-rows: 1fr;
   grid-auto-columns: 250px;
-  /* overflow: hidden; */
 }
 .parents-info {
   grid-area: parents-info;
@@ -375,20 +362,8 @@ body:not(:has(*)) {
 }
 @media (width > 820px) {
   .parents-info {
-    grid-area: parents-info;
     height: 50px;
     width: 175px;
-    margin-top: 6rem;
-    margin-left: auto;
-    color: var(--clr-wht);
-    background: var(--clr-acc1);
-    display: flex;
-    border-radius: 5px;
-    font-size: 1.5rem;
-    place-content: center;
-    place-items: center;
-    transition: 0.3s;
-    /* box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.1); */
   }
 }
 
@@ -425,17 +400,8 @@ body:not(:has(*)) {
   .div {
     width: 500px;
     height: 200px;
-    background: var(--clr-acc1);
-    color: var(--clr-wht);
-    display: flex;
-    border-radius: 20px;
-    place-content: center;
-    place-items: center;
     line-break: strict;
     font-size: 4rem;
-    text-align: center;
-    transition: 0.3s;
-    box-shadow: 0px 24px 35px 7px rgba(0, 0, 0, 0.3);
     --stagger-delay: 0.1s;
     --card-entrance: 0.5s;
   }
@@ -569,6 +535,21 @@ body:not(:has(*)) {
   animation: cardEntrance var(--card-entrance) ease-out;
   animation-fill-mode: backwards;
   animation-delay: calc(6 * var(--stagger-delay));
+}
+.div-start-menu7 {
+  animation: cardEntrance var(--card-entrance) ease-out;
+  animation-fill-mode: backwards;
+  animation-delay: calc(7 * var(--stagger-delay));
+}
+.div-start-menu8 {
+  animation: cardEntrance var(--card-entrance) ease-out;
+  animation-fill-mode: backwards;
+  animation-delay: calc(8 * var(--stagger-delay));
+}
+.div-start-menu9 {
+  animation: cardEntrance var(--card-entrance) ease-out;
+  animation-fill-mode: backwards;
+  animation-delay: calc(9 * var(--stagger-delay));
 }
 .div:hover {
   box-shadow: rgba(2, 8, 20, 0.5) 0px 0.35em 1.175em,
