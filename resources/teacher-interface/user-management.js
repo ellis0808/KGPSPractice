@@ -144,8 +144,8 @@ const getUserInfo = {
             access: teacher.access,
           });
         });
-        this.createTableHeaders();
-        this.appendUserDataHeaders();
+        displayUsers.createTableHeaders();
+        displayUsers.appendUserDataHeaders();
         displayUsers.displayAllUsers();
       } else {
         console.log("No students found");
