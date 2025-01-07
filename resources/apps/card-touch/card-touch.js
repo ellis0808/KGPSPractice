@@ -470,7 +470,7 @@ function createBoard() {
               Math.floor(Math.random() * letterSoundsASMFWords.length)
             ]
           }`;
-          if (Array.isArray(randomItem)) {
+          if (randomItem.length > 1) {
             console.log("test");
             letterSoundWord =
               randomItem[Math.floor(Math.random() * randomItem.length)];
