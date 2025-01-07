@@ -144,6 +144,7 @@ const getUserInfo = {
             access: teacher.access,
           });
         });
+        displayUsers.refreshTable();
         displayUsers.createTableHeaders();
         displayUsers.appendUserDataHeaders();
         displayUsers.displayAllUsers();
@@ -200,7 +201,6 @@ const displayUsers = {
     });
   },
   displayAllUsers() {
-    displayUsers.removeAllUsers();
     const students = userObjects.studentObjects;
     const teachers = userObjects.teacherObjects;
     const studentIds = Object.keys(students);
