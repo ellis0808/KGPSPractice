@@ -187,16 +187,11 @@ const displayUsers = {
     });
   },
   displayAllUsers() {
+    this.removeAllUsers();
     const students = userObjects.studentObjects;
     const teachers = userObjects.teacherObjects;
     const studentIds = Object.keys(students);
     const teacherIds = Object.keys(teachers);
-
-    userManagementStructure.userList.childNodes.forEach((item) => {
-      console.log(item);
-
-      item.remove();
-    });
 
     this.createTableHeaders();
     this.appendUserDataHeaders();
