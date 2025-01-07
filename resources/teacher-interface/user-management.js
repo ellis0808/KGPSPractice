@@ -361,7 +361,7 @@ const createUser = {
     }
     document.getElementById("createStudent").reset();
     setTimeout(() => {
-      createUserDiv.close();
+      userManagementStructure.createUserDiv.close();
     }, 1000);
   },
   async createTeacher(event) {
@@ -404,7 +404,7 @@ const createUser = {
     }
     document.getElementById("createTeacher").reset();
     setTimeout(() => {
-      createUserDiv.close();
+      userManagementStructure.createUserDiv.close();
     }, 1000);
   },
 };
