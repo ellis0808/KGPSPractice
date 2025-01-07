@@ -11,8 +11,6 @@ import {
   sightWords1,
   sightWords2,
   sightWords3,
-  letterSoundsASMFLetters,
-  letterSoundsITRPLetters,
   letterSoundsASMFWords,
   letterSoundsASMFLetters,
   letterSoundsITRPLetters,
