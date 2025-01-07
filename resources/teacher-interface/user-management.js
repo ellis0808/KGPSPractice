@@ -325,10 +325,11 @@ const createTeacher = {
   createTeacherSubmitBtn: document.getElementById("createTeacher"),
   createStudent() {
     this.createStudentSubmitBtn.addEventListener(
-      "submit",
+      "pointerdown",
       async function (event) {
         //  prevents default form submission
         event.preventDefault();
+        console.log("test");
 
         const firstname = document.getElementById("firstname").value;
         const lastname = document.getElementById("studentlastname").value;
@@ -345,7 +346,7 @@ const createTeacher = {
               first_name: firstname,
               password: password,
               grade_level: gradelevel,
-              access: form,
+              access: "student",
             }),
           });
         } catch (error) {
@@ -361,10 +362,11 @@ const createTeacher = {
   createTeacher() {
     // Create Teacher
     this.createTeacherSubmitBtn.addEventListener(
-      "submit",
+      "pointerdown",
       async function (event) {
         //  prevents default form submission
         event.preventDefault();
+        console.log("test");
 
         const title = document
           .querySelector('input[name="title"]:checked')
@@ -385,7 +387,7 @@ const createTeacher = {
               last_name: lastname,
               admin: admin,
               password: password,
-              access: form,
+              access: "teacher",
             }),
           });
 
