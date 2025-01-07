@@ -706,7 +706,7 @@ class MenuItems {
   }
 
   /******
-    Display Seconday Menu
+    Display Seconday  Menu 
   ******/
   removeSectionColumnMenuItems() {
     this.sectionColumn.childNodes.forEach((menu) => {
