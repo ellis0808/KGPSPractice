@@ -471,6 +471,7 @@ function createBoard() {
             ]
           }`;
           if (Array.isArray(randomItem)) {
+            console.log("test");
             letterSoundWord =
               randomItem[Math.floor(Math.random() * randomItem.length)];
           } else {
