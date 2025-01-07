@@ -86,6 +86,8 @@ const userManagementStructure = {
     });
   },
   setEventListeners() {
+    createUser.activateCreateUserEventListeners();
+    updateUser.activateUpdateUserEventListeners();
     this.createStudentDisplayBtn.addEventListener("pointerdown", () => {
       form = "student";
       this.createUserFormHeading.innerHTML = `<h2>Create New Student</h2>`;
@@ -324,14 +326,12 @@ const createUser = {
   createStudentSubmitBtn: document.getElementById("createStudent"),
   createTeacherSubmitBtn: document.getElementById("createTeacher"),
   activateCreateUserEventListeners() {
-    this.createStudentSubmitBtn.addEventListener(
-      "pointerdown",
-      createUser.createStudent
-    );
-    this.createTeacherSubmitBtn.addEventListener(
-      "pointerdown",
-      createUser.createTeacher
-    );
+    this.createStudentSubmitBtn.addEventListener("pointerdown", (event) => {
+      createUser.createStudent(event);
+    });
+    this.createTeacherSubmitBtn.addEventListener("pointerdown", (event) => {
+      createUser.createTeacher(event);
+    });
   },
   async createStudent(event) {
     //  prevents default form submission
@@ -435,19 +435,21 @@ const deleteUser = {
 // Update User
 const updateUser = {
   updateUserSubmitBtn: document.getElementById("updateUser"),
-  submitUpdateUserInfo() {
-    this.updateUserSubmitBtn.addEventListener("submit", async function (event) {
-      //  prevents default form submission
-      event.preventDefault();
-      const id = document
-        .querySelector(".single-user-data1")
-        .getAttribute("userId");
-      updateUser.updateUser(id);
+  activateUpdateUserEventListeners() {
+    this.updateUserSubmitBtn.addEventListener("submit", (event) => {
+      this.submitUpdateUserInfo(event);
     });
+  },
+  async submitUpdateUserInfo(event) {
+    //  prevents default form submission
+    event.preventDefault();
+    const id = document
+      .querySelector(".single-user-data1")
+      .getAttribute("userId");
+    updateUser.updateUser(id);
   },
   async updateUser() {
     const firstname = document.getElementById("updatefirstname").value;
-
     const lastname = document.getElementById("updatelastname").value;
     const password = document.getElementById("updatepassword").value;
 
