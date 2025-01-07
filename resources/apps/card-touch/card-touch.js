@@ -465,13 +465,11 @@ function createBoard() {
       grid.classList.add("sight-word-grid");
       for (let i = 0; targetItemArray.length < 6; ++i) {
         if (style === 7) {
-          const randomGroup = `${
+          letterSoundWord = `${
             letterSoundsASMFWords[
               Math.floor(Math.random() * letterSoundsASMFWords.length)
             ]
           }`;
-          letterSoundWord =
-            randomGroup[Math.floor(Math.random() * randomGroup.length)];
         }
         console.log(letterSoundWord);
 
