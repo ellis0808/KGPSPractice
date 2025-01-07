@@ -282,6 +282,7 @@ class MenuItems {
     // this.letterSoundsAMSFAppMenuItem.setAttribute(
     //   "app-content",
     //   "letter-sounds"
+
     // );
     // this.letterSoundsAMSFAppMenuItem.classList.add(
     //   "secondary-menu-div",
