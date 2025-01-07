@@ -112,11 +112,15 @@ const sightWordsNumbers = [
   "eleven",
   "twelve",
 ];
+const letterSoundsASMF = ["a", "m", "s", "f"];
+const letterSoundsITRP = ["i", "t", "r", "p"];
 export {
   alphabet,
   sightWords1,
   sightWords2,
   sightWords3,
+  letterSoundsASMF,
+  letterSoundsITRP,
   sightWordsNumbers,
   sightWordsAll,
 };
