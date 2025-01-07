@@ -453,14 +453,12 @@ function createBoard() {
         }
       }
     } else if (style >= 6 && style <= 15) {
-      grid.classList.add("sight-word-grid-4x4");
-      for (let i = 0; targetItemArray.length < 9; ++i) {
-        let letterSound = `${
-          letterSoundsASMF[Math.floor(Math.random() * letterSoundsASMF.length)]
-        }`;
-        if (!targetItemArray.includes(letterSound)) {
-          targetItemArray.push(letterSound);
-        }
+      let letterSound;
+      if (style === 6) {
+        grid.classList.add("sight-word-grid-4x4");
+        letterSoundsASMF.forEach((item) => {
+          targetItemArray.push(item);
+        });
       }
     }
   }
@@ -479,7 +477,7 @@ function createBoard() {
             newCardText = card.getAttribute("contentId");
           }
           card.textContent = newCardText;
-          card.classList.add("card");
+          card.classList.add("card", "letter");
           grid.append(card);
           card.addEventListener("click", touchCard);
           if (style === 1) {
