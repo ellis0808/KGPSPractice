@@ -455,12 +455,14 @@ function createBoard() {
     } else if (style >= 6 && style <= 15) {
       grid.classList.add("sight-word-grid-4x4");
       for (let i = 0; targetItemArray.length < 9; ++i) {
-        let letterSound = `${letterSoundsASMF[Math.floor(Math.random() * letterSoundsASMF.length)]}`;
+        let letterSound = `${
+          letterSoundsASMF[Math.floor(Math.random() * letterSoundsASMF.length)]
+        }`;
         if (!targetItemArray.includes(letterSound)) {
           targetItemArray.push(letterSound);
         }
       }
-    
+    }
   }
   if (!isSessionFinished) {
     if (!isPaused) {
