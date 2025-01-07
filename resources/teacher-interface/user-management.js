@@ -146,7 +146,6 @@ const getUserInfo = {
         });
         this.createTableHeaders();
         this.appendUserDataHeaders();
-        displayUsers.removeAllUsers();
         displayUsers.displayAllUsers();
       } else {
         console.log("No students found");
@@ -201,6 +200,7 @@ const displayUsers = {
     });
   },
   displayAllUsers() {
+    displayUsers.removeAllUsers();
     const students = userObjects.studentObjects;
     const teachers = userObjects.teacherObjects;
     const studentIds = Object.keys(students);
@@ -370,11 +370,15 @@ const createUser = {
           access: "student",
         }),
       });
+      if (!response.ok) {
+        throw new Error("Network response was not okay");
+      } else {
+        getUserInfo.getAllUsers();
+      }
     } catch (error) {
       console.error("Error creating new user:", error);
     }
     document.getElementById("createStudent").reset();
-    getUserInfo.getAllUsers();
     setTimeout(() => {
       userManagementStructure.createUserDiv.close();
     }, 1000);
@@ -418,7 +422,6 @@ const createUser = {
       console.error("Error creating new user:", error);
     }
     document.getElementById("createTeacher").reset();
-    getUserInfo.getAllUsers();
     setTimeout(() => {
       userManagementStructure.createUserDiv.close();
     }, 1000);
