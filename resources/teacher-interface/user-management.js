@@ -181,6 +181,11 @@ const displayUsers = {
     this.userDataHeader.appendChild(this.accessHeader);
     userManagementStructure.userList.appendChild(this.userDataHeader);
   },
+  removeAllUsers() {
+    document.querySelectorAll(".user-slot").forEach((item) => {
+      item.remove();
+    });
+  },
   displayAllUsers() {
     const students = userObjects.studentObjects;
     const teachers = userObjects.teacherObjects;
