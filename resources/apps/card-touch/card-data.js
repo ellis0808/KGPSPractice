@@ -116,20 +116,20 @@ const letterSoundsASMFLetters = ["a", "m", "s", "f"];
 const letterSoundsITRPLetters = ["i", "t", "r", "p"];
 
 const letterSoundsASMFWords = [
-  ["am"],
-  ["ma"],
-  ["sa"],
-  ["as"],
+  "am",
+  "ma",
+  "sa",
+  "as",
   ["af", "aff"],
-  ["fa"],
-  ["sam"],
+  "fa",
+  "sam",
   ["mas", "mass"],
-  ["fam"],
+  "fam",
   ["maf", "maff"],
   ["fas", "fass"],
-  ["saf"],
-  ["amf"],
-  ["ams"],
+  "saf",
+  "amf",
+  "ams",
 ];
 export {
   alphabet,

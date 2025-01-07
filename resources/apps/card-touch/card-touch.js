@@ -464,10 +464,20 @@ function createBoard() {
       let letterSoundWord;
       grid.classList.add("sight-word-grid");
       for (let i = 0; targetItemArray.length < 6; ++i) {
-        letterSoundWord =
-          letterSoundsASMFWords[
-            Math.floor(Math.random() * letterSoundsASMFWords.length)
-          ];
+        if (style === 7) {
+          const randomItem = `${
+            letterSoundsASMFWords[
+              Math.floor(Math.random() * letterSoundsASMFWords.length)
+            ]
+          }`;
+          if (Array.isArray(randomItem)) {
+            console.log("test");
+            letterSoundWord =
+              randomItem[Math.floor(Math.random() * randomItem.length)];
+          } else {
+            letterSoundWord = randomItem;
+          }
+        }
         console.log(letterSoundWord);
 
         if (!targetItemArray.includes(letterSoundWord)) {
