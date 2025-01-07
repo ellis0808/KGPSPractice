@@ -503,16 +503,18 @@ function createBoard() {
           ++i;
         });
       } else if (style === 6) {
-        const card = document.createElement("div");
-        card.setAttribute("contentID", targetItemArray[i]);
-        card.setAttribute("data-id", i);
-        newCardText = card.getAttribute("contentID");
-        card.textContent = newCardText;
-        card.classList.add("card", "letter-sound");
-        grid.append(card);
-        card.addEventListener("click", touchCard);
-        cardText.push(newCardText);
-        ++i;
+        targetItemArray.forEach(() => {
+          const card = document.createElement("div");
+          card.setAttribute("contentID", targetItemArray[i]);
+          card.setAttribute("data-id", i);
+          newCardText = card.getAttribute("contentID");
+          card.textContent = newCardText;
+          card.classList.add("card", "sight-word");
+          grid.append(card);
+          card.addEventListener("click", touchCard);
+          cardText.push(newCardText);
+          ++i;
+        });
       }
       btnContainer3.appendChild(repeatBtn);
       btnContainer1.appendChild(scoreFunction.display);
