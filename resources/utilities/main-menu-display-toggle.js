@@ -50,7 +50,7 @@ function removeMenuPage() {
   spellingMenu.classList.add("hidden");
   div4.classList.add("hidden");
 
-  document.getElementById("parents-info").remove();
+  // document.getElementById("parents-info").remove();
   document.getElementById("top-container").remove();
   document.getElementById("menu-container").remove();
 }
