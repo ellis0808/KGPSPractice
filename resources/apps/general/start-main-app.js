@@ -692,16 +692,11 @@ class MenuItems {
           }
         });
         break;
-      case "sight-words":
-        greetingDisplay.innerText = "Sight Words";
-        this.touchMenu.appendChild(this.sightWords1AppMenuItem);
-        this.touchMenu.appendChild(this.sightWords2AppMenuItem);
-        this.touchMenu.appendChild(this.sightWords3AppMenuItem);
-        this.writingMenu.appendChild(this.sightWords1WritingAppMenuItem);
-        this.writingMenu.appendChild(this.sightWords2WritingAppMenuItem);
-        this.writingMenu.appendChild(this.sightWords3WritingAppMenuItem);
+      case "letter-sounds":
+        greetingDisplay.innerText = "Letter Sounds";
+        this.touchMenu.appendChild(this.letterSoundsAMSFAppMenuItem);
         document
-          .querySelectorAll("[app-content='sight-words']")
+          .querySelectorAll("[app-content='letter-sounds']")
           .forEach((item) => {
             // if (this.touchMenu
 
@@ -715,10 +710,16 @@ class MenuItems {
             }
           });
         break;
-      case "letter-sounds":
-        greetingDisplay.innerText = "Letter Sounds";
+      case "sight-words":
+        greetingDisplay.innerText = "Sight Words";
+        this.touchMenu.appendChild(this.sightWords1AppMenuItem);
+        this.touchMenu.appendChild(this.sightWords2AppMenuItem);
+        this.touchMenu.appendChild(this.sightWords3AppMenuItem);
+        this.writingMenu.appendChild(this.sightWords1WritingAppMenuItem);
+        this.writingMenu.appendChild(this.sightWords2WritingAppMenuItem);
+        this.writingMenu.appendChild(this.sightWords3WritingAppMenuItem);
         document
-          .querySelectorAll("[app-content='letter-sounds']")
+          .querySelectorAll("[app-content='sight-words']")
           .forEach((item) => {
             // if (this.touchMenu
 
