@@ -464,13 +464,11 @@ function createBoard() {
       let letterSoundWord;
       grid.classList.add("sight-word-grid");
       for (let i = 0; targetItemArray.length < 6; ++i) {
-        if (style === 7) {
-          letterSoundWord = `${
-            letterSoundsASMFWords[
-              Math.floor(Math.random() * letterSoundsASMFWords.length)
-            ]
-          }`;
-        }
+        letterSoundWord = `${
+          letterSoundsASMFWords[
+            Math.floor(Math.random() * letterSoundsASMFWords.length)
+          ]
+        }`;
         console.log(letterSoundWord);
 
         if (!targetItemArray.includes(letterSoundWord)) {
