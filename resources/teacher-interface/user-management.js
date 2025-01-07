@@ -326,10 +326,10 @@ const createUser = {
   createStudentSubmitBtn: document.getElementById("createStudent"),
   createTeacherSubmitBtn: document.getElementById("createTeacher"),
   activateCreateUserEventListeners() {
-    this.createStudentSubmitBtn.addEventListener("pointerdown", (event) => {
+    this.createStudentSubmitBtn.addEventListener("submit", (event) => {
       createUser.createStudent(event);
     });
-    this.createTeacherSubmitBtn.addEventListener("pointerdown", (event) => {
+    this.createTeacherSubmitBtn.addEventListener("submit", (event) => {
       createUser.createTeacher(event);
     });
   },
