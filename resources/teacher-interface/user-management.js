@@ -324,8 +324,14 @@ const createUser = {
   createStudentSubmitBtn: document.getElementById("createStudent"),
   createTeacherSubmitBtn: document.getElementById("createTeacher"),
   activateCreateUserEventListeners() {
-    this.createStudentSubmitBtn.addEventListener("submit", this.createStudent);
-    this.createTeacherSubmitBtn.addEventListener("submit", this.createTeacher);
+    this.createStudentSubmitBtn.addEventListener(
+      "pointerdown",
+      createUser.createStudent
+    );
+    this.createTeacherSubmitBtn.addEventListener(
+      "pointerdown",
+      createUser.createTeacher
+    );
   },
   async createStudent(event) {
     //  prevents default form submission
