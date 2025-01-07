@@ -124,6 +124,16 @@ class WritingApp {
         this.maxNumberOfWordsToWrite = 10;
         writingAudio.startAudioFetch(this.style);
         break;
+      case "letter-sounds-asmf-letters":
+        this.style = 20;
+        this.maxNumberOfWordsToWrite = 5;
+        writingAudio.startAudioFetch(this.style);
+        break;
+      case "letter-sounds-asmf-words":
+        this.style = 21;
+        this.maxNumberOfWordsToWrite = 5;
+        writingAudio.startAudioFetch(this.style);
+        break;
     }
   }
   setActivityId(style) {
