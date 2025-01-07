@@ -69,8 +69,13 @@ function setStyle(set) {
       setActivityId(style);
       return style;
     // Letter Sounds
-    case "numbers1-100":
-      style = 5;
+    case "letter-sounds-asmf-letters":
+      style = 20;
+      writingAudio.startAudioFetch(style);
+      setActivityId(style);
+      return style;
+    case "letter-sounds-asmf-words":
+      style = 21;
       writingAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
@@ -105,6 +110,12 @@ function setActivityId(style) {
     return activityId;
   } else if (style === 9) {
     activityId = 4;
+    return activityId;
+  } else if (style === 20) {
+    activityId = 20;
+    return activityId;
+  } else if (style === 21) {
+    activityId = 20;
     return activityId;
   }
 }

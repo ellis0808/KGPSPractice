@@ -75,6 +75,16 @@ class WritingAudio {
         grouping2 = 3;
         audio.getAudio(category, grouping, grouping2);
         break;
+      case 20:
+        category = "letter-sounds-letters";
+        grouping = 1;
+        audio.getAudio(category, grouping, grouping2);
+        break;
+      case 21:
+        category = "letter-sounds-words";
+        grouping = 1;
+        audio.getAudio(category, grouping, grouping2);
+        break;
     }
   }
 }
