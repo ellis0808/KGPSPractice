@@ -454,20 +454,22 @@ function createBoard() {
         }
       }
     } else if (style === 6 || style === 8) {
-      let letterSoundWord;
       if (style === 6) {
         grid.classList.add("sight-word-grid-4x4");
         letterSoundsASMFLetters.forEach((item) => {
           targetItemArray.push(item);
         });
       } else if (style === 7 || style === 9) {
+        let letterSoundWord;
         grid.classList.add("sight-word-grid");
         for (let i = 0; targetItemArray.length < 6; ++i) {
-          letterSoundWord = `${
-            letterSoundsASMFWords[
-              Math.floor(Math.random() * letterSoundsASMFWords.length)
-            ]
-          }`;
+          if (style === 7) {
+            letterSoundWord = `${
+              letterSoundsASMFWords[
+                Math.floor(Math.random() * letterSoundsASMFWords.length)
+              ]
+            }`;
+          }
           if (!targetItemArray.includes(letterSoundWord)) {
             targetItemArray.push(letterSoundWord);
           }
