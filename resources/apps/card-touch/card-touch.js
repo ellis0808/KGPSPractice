@@ -460,7 +460,6 @@ function createBoard() {
       if (style === 6) {
         grid.classList.add("sight-word-grid-4x4");
         letterSoundsASMFLetters.forEach((item) => {
-        letterSoundsASMFLetters.forEach((item) => {
           targetItemArray.push(item);
         });
       }
@@ -775,5 +774,5 @@ function returnToApp() {
   pauseBtn.removeEventListener("click", returnToApp);
   pauseBtn.addEventListener("click", pause);
 }
-}
+
 export { cardTouchApp, startCardTouchApp, cardText, isPaused };
