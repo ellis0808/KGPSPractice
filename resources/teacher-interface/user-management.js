@@ -144,6 +144,9 @@ const getUserInfo = {
             access: teacher.access,
           });
         });
+        this.createTableHeaders();
+        this.appendUserDataHeaders();
+        displayUsers.removeAllUsers();
         displayUsers.displayAllUsers();
       } else {
         console.log("No students found");
@@ -181,21 +184,27 @@ const displayUsers = {
     this.userDataHeader.appendChild(this.accessHeader);
     userManagementStructure.userList.appendChild(this.userDataHeader);
   },
+  refreshTable() {
+    this.removeAllUsers();
+    this.removeTableHeader();
+  },
   removeAllUsers() {
     document.querySelectorAll(".user-slot").forEach((item) => {
       console.log(item);
       item.remove();
     });
   },
+  removeTableHeader() {
+    document.querySelectorAll(".user-data-header").forEach((item) => {
+      console.log(item);
+      item.remove();
+    });
+  },
   displayAllUsers() {
-    this.removeAllUsers();
     const students = userObjects.studentObjects;
     const teachers = userObjects.teacherObjects;
     const studentIds = Object.keys(students);
     const teacherIds = Object.keys(teachers);
-
-    this.createTableHeaders();
-    this.appendUserDataHeaders();
 
     let i = 0;
     let q = 0;
@@ -365,6 +374,7 @@ const createUser = {
       console.error("Error creating new user:", error);
     }
     document.getElementById("createStudent").reset();
+    getUserInfo.getAllUsers();
     setTimeout(() => {
       userManagementStructure.createUserDiv.close();
     }, 1000);
@@ -408,6 +418,7 @@ const createUser = {
       console.error("Error creating new user:", error);
     }
     document.getElementById("createTeacher").reset();
+    getUserInfo.getAllUsers();
     setTimeout(() => {
       userManagementStructure.createUserDiv.close();
     }, 1000);
