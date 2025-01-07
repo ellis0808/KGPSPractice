@@ -449,6 +449,7 @@ const deleteUser = {
     } catch (error) {
       console.error("Error deleting user:", error);
     }
+    getUserInfo.getAllUsers();
   },
 };
 
