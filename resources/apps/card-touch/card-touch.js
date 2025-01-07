@@ -159,7 +159,7 @@ let countDown;
 // TIMER
 let time;
 let roundTime;
-if (style === 3) {
+if (style === 3 || style === 6) {
   roundTime = 30;
 } else {
   roundTime = 60;
