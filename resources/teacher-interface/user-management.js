@@ -192,6 +192,7 @@ const displayUsers = {
     document.querySelectorAll(".user-slot").forEach((item) => {
       console.log(item);
       item.remove();
+      console.log(item);
     });
   },
   removeTableHeader() {
