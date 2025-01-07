@@ -38,36 +38,46 @@ class App {
     this.btnContainer5.classList.add("btn-container5");
     this.appControlsContainer.classList.add("home-btn-container", "hide");
     this.leftMenuContainer.classList.add("left-menu-container");
+    this.currentApp = null;
     this.time = null;
     this.clearBoardMethod = null;
     this.appEventListeners = null;
     this.appStructure = null;
     this.gridPopulator = null;
     this.activityId = null;
-
+    this.endSessionItems = null;
     this.endApp = this.endApp.bind(this);
     this.startSession = this.startSession.bind(this);
     this.endSession = this.endSession.bind(this);
     this.startRound = this.startRound.bind(this);
     this.endRound = this.endRound.bind(this);
     this.hideBtnContainer2 = this.hideBtnContainer2.bind(this);
+    this.correctAnswerCount = null;
+    this.incorrectAnswerCount = null;
+    this.totalElapsedTime = null;
+    this.answerAttempts = null;
   }
   setAppVariables(
+    currentApp,
     time,
     boardClear,
     eventListeners,
     appStructure,
     gridPopulator,
-    activityId
+    activityId,
+    endSessionItems
   ) {
+    this.currentApp = currentApp;
     this.time = time;
     this.clearBoardMethod = boardClear;
     this.appEventListeners = eventListeners;
     this.appStructure = appStructure;
     this.gridPopulator = gridPopulator;
     this.activityId = activityId;
+    this.endSessionItems = endSessionItems;
   }
   resetAppVariables() {
+    this.currentApp = null;
     this.time = null;
     this.clearBoardMethod = null;
     this.appEventListeners = null;
@@ -81,45 +91,13 @@ class App {
     user.access = sessionData.access;
     user.id = sessionData.userId;
   }
-  async updateUserTotalScore() {
-    //  For student users; teachers will differ on user type, etc
-
-    const newStats = {
-      activity_id: this.activityId,
-      user_id: user.id,
-      user_type: user.access,
-      correct_answer_count: 0,
-      incorrect_answer_count: 0,
-      time_to_correct_answer_duration_in_seconds: 0,
-      answer_attempts: 0,
-      activity_score: scoreFunction.currentScore,
-    };
-
-    try {
-      const response = await fetch(
-        `${BASE_PATH}api/add_user_activity_record.php`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newStats),
-        }
-      );
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error("Network response was not okay");
-      }
-    } catch (error) {
-      console.error("Error adding record:", error);
-    }
-  }
   startApp() {
     this.setDoubleTapPreventer();
     this.createAndSetAppStructureThenHideGrid();
     this.setForeignElements();
     this.createAndSetAppSpecificStructure();
     pauseFunction.unpause();
-    scoreFunction.display.innerText = scoreFunction.currentScore;
+    scoreFunction.display.innerText = 0;
     this.appContainer.classList.remove("hide");
     scoreFunction.hide();
     timerFunction.hide();
@@ -133,16 +111,16 @@ class App {
     endRoundScreen.removeContainer();
     setTimeout(() => {
       this.resetAppVariables();
-      document.querySelector(".container").remove();
+      this.elementRemover(this.endSessionItems);
       this.gridRemove();
-      // this.removeMainAppStructure();
+      document.querySelector(".container").remove();
       setTimeout(() => {
         stylesheet.setAttribute("href", this.homeStyleSheet);
         menuItems.displayMainPage();
         setTimeout(menuItems.restoreMainMenu, 100);
       }, 500);
     }, 500);
-    scoreFunction.display.innerText = scoreFunction.currentScore;
+    scoreFunction.display.innerText = 0;
   }
   setForeignElements() {
     homeBtnFunction.initialize();
@@ -163,6 +141,8 @@ class App {
     this.initializeEventListeners();
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
+    scoreFunction.resetCurrentScore();
+
     setTimeout(() => {
       this.btnContainer2.remove();
       this.startRound();
@@ -176,9 +156,6 @@ class App {
     pauseFunction.unpause();
     this.appContainer.classList.add("hide");
     this.appControlsContainer.classList.add("hide");
-    document.querySelectorAll(".matching-app, .line").forEach((item) => {
-      item.remove();
-    }); // needs to be abstracted out
     endRoundScreen.removeContainer();
     homeBtnFunction.removeContainer();
     scoreFunction.resetCurrentScore();
@@ -209,8 +186,6 @@ class App {
     this.prepareForNewRound();
     setTimeout(() => {
       this.gridPopulator();
-      console.log(this.gridPopulator);
-      console.log(writingApp.items, writingApp.randomItemArray);
 
       this.setBtnContainer1();
       setTimeout(() => {
@@ -222,8 +197,23 @@ class App {
     }, 1000);
     toggleBlur.removeAllBlur();
   }
+  updateSessionInfoForDatabase() {
+    this.totalElapsedTime = this.currentApp + "totalElapsedTime";
+    this.correctAnswerCount = this.currentApp + "numberCorrect";
+    this.incorrectAnswerCount = this.currentApp + "numberIncorrect";
+    this.answerAttempts = this.currentApp + "answerAttempts";
+  }
   endRound() {
-    this.updateUserTotalScore();
+    this.updateSessionInfoForDatabase();
+    scoreFunction.updateUserTotalScore(
+      this.activityId,
+      user.id,
+      user.access,
+      this.correctAnswerCount,
+      this.incorrectAnswerCount,
+      this.totalElapsedTime,
+      this.answerAttempts
+    );
     console.log(user.cumulativeScore);
     scoreFunction.updateUserScore();
     console.log(user.cumulativeScore);
@@ -325,15 +315,19 @@ class App {
     this.setMainAppStructure();
     this.gridHideAdd();
   }
-  removeMainAppStructure() {
-    this.appContainer.remove();
-    this.grid.remove();
-    this.btnContainer1.remove();
-    this.btnContainer2.remove();
-    this.btnContainer4.remove();
-    this.appControlsContainer.remove();
-    this.leftMenuContainer.remove();
+  elementRemover(elements) {
+    elements.forEach((item) => {
+      if (document.querySelector(`${item}`)) {
+        document.querySelector(`${item}`).remove();
+      }
+    });
   }
+  // resetAppContainterContents() {
+  //   document.querySelector(".container").childNodes.forEach((container) => {
+  //     console.log(container);
+  //     container.textContent = "";
+  //   });
+  // }
   gridHideAdd() {
     if (!this.grid.classList.contains("gridHide")) {
       this.grid.classList.add("gridHide");
@@ -345,6 +339,9 @@ class App {
     }
   }
   gridRemove() {
+    this.grid.childNodes.forEach((item) => {
+      item.remove();
+    });
     this.grid.remove();
   }
   createDoubleTapPreventer(timeout_ms) {

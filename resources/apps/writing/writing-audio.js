@@ -16,11 +16,9 @@ class WritingAudio {
   }
   speak = () => {
     // this.updateRandomNumber();
-    // console.log(writingApp.randomItemArray);
 
     this.randomWord = writingApp.randomItemArray[this.arrayItemNumber];
     setTimeout(() => {
-      console.log(this.randomWord);
       audio.audioObject[this.randomWord].sound.play();
     }, 1000);
     this.increaseArrayItemNumber();

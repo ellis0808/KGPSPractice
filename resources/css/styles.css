@@ -15,7 +15,12 @@
 a {
   color: inherit;
   text-decoration: inherit;
-  font-size: 2rem;
+  font-size: 1.5rem;
+}
+@media (width > 515px) {
+  a {
+    font-size: 2rem;
+  }
 }
 :root {
   --clr-acc1: #006747;
@@ -41,15 +46,9 @@ body {
     "..... main-container   main-container ....."
     "..... ..... ..... .....";
 }
-@media (width > 600px) {
+@media (width > 820px) {
   body {
-    background: white;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    place-content: center;
-    /* place-items: center; */
-    grid-template-columns: 2rem minmax(250px, 500px) minmax(250px, 500px) 2rem;
+    grid-template-columns: 2rem repeat(2, 1fr) 2rem;
     grid-template-rows: 0.025fr 0.1fr 1fr 0.075fr;
     grid-template-areas:
       "navbar  navbar  navbar  navbar"
@@ -83,12 +82,32 @@ body:not(:has(*)) {
   display: grid;
   justify-self: start;
   align-self: center;
-  font-size: 2rem;
+  font-size: 1rem;
   transition: 0.3s;
+}
+@media (width >515px) {
+  .nav-logo,
+  .nav-user-space {
+    grid-area: nav-logo;
+    color: var(--clr-acc1);
+    display: grid;
+    justify-self: start;
+    align-self: center;
+    font-size: 2rem;
+    transition: 0.3s;
+  }
 }
 .nav-logo {
   grid-area: nav-logo;
   justify-self: start;
+  font-size: 1.5rem;
+}
+@media (width > 515px) {
+  .nav-logo {
+    grid-area: nav-logo;
+    justify-self: start;
+    font-size: 2rem;
+  }
 }
 .nav-user-space {
   height: 60px;
@@ -97,8 +116,14 @@ body:not(:has(*)) {
   position: relative;
 }
 .nav-user-name {
-  font-size: 2rem;
+  font-size: 1.5rem;
   transition: 0.3s;
+}
+@media (width > 515px) {
+  .nav-user-name {
+    font-size: 2rem;
+    transition: 0.3s;
+  }
 }
 .nav-user-name:hover {
   color: var(--clr-acc1-hvr);
@@ -115,18 +140,29 @@ body:not(:has(*)) {
 }
 
 .main-container {
+  width: 100%;
   grid-area: main-container;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 175px, 1fr;
+  grid-template-rows: 100px, 1fr;
   grid-template-areas: "top-container" "menu-container";
+}
+@media (width > 515px) {
+  .main-container {
+    width: 100%;
+    grid-area: main-container;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 175px, 1fr;
+    grid-template-areas: "top-container" "menu-container";
+  }
 }
 .top-container {
   grid-area: top-container;
   width: 100%;
-  height: 130px;
+  height: 100px;
   margin: auto;
-  margin-top: 35px;
+  margin-top: 10px;
   margin-bottom: 35px;
   display: grid;
   grid-template-rows: 1fr 0.5fr;
@@ -135,13 +171,30 @@ body:not(:has(*)) {
     "points-display";
   place-content: center;
   place-items: center;
-  font-size: 4rem;
+  font-size: 2rem;
   transition: 0.3s;
   animation: cardEntrance 1.15s ease-in-out backwards;
 }
-@media (width > 600px) {
+@media (width > 515px) {
   .top-container {
-    grid-area: top-container;
+    height: 130px;
+    margin: auto;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    display: grid;
+    grid-template-rows: 1fr 0.5fr;
+    grid-template-areas:
+      "greeting-display"
+      "points-display";
+    place-content: center;
+    place-items: center;
+    font-size: 4rem;
+    transition: 0.3s;
+    animation: cardEntrance 1.15s ease-in-out backwards;
+  }
+}
+@media (width > 820px) {
+  .top-container {
     width: 100%;
     height: 175px;
     margin: auto;
@@ -170,19 +223,14 @@ body:not(:has(*)) {
   transition: 0.3s;
   animation: fadeIn 0.25s ease-in backwards;
 }
-@media (width > 600px) {
+@media (width > 515px) {
   .greeting-display {
-    grid-area: greeting-display;
-    width: 100%;
-    height: 100%;
-    margin: auto;
+    font-size: 3rem;
+  }
+}
+@media (width > 820px) {
+  .greeting-display {
     font-size: 5rem;
-    display: flex;
-    place-content: center;
-    place-items: center;
-    text-align: center;
-    transition: 0.3s;
-    animation: fadeIn 0.25s ease-in backwards;
   }
 }
 .points-display {
@@ -190,7 +238,7 @@ body:not(:has(*)) {
   width: 100%;
   height: 100%;
   margin: auto;
-  font-size: 3rem;
+  font-size: 2.25rem;
   display: flex;
   place-content: center;
   place-items: center;
@@ -198,19 +246,14 @@ body:not(:has(*)) {
   transition: 0.3s;
   animation: fadeIn 0.25s ease-in backwards;
 }
-@media (width > 600px) {
+@media (width > 515px) {
   .points-display {
-    grid-area: points-display;
-    width: 100%;
-    height: 100%;
-    margin: auto;
+    font-size: 3rem;
+  }
+}
+@media (width > 820px) {
+  .points-display {
     font-size: 4rem;
-    display: flex;
-    place-content: center;
-    place-items: center;
-    text-align: center;
-    transition: 0.3s;
-    animation: fadeIn 0.25s ease-in backwards;
   }
 }
 .test {
@@ -232,16 +275,26 @@ body:not(:has(*)) {
   place-content: center;
   place-items: center;
 }
-@media (width > 600px) {
+@media (width > 820px) {
   .primary-menu-container {
-    grid-template-columns: repeat(2, minmax(min(250px, 100%), 1fr));
-    grid-template-rows: repeat(2, 1fr);
     grid-template-areas:
       "menu1  menu2"
-      "menu3  menu4";
+      "menu3  menu4"
+      "menu5  menu6"
+      "menu7  menu8";
+    grid-template-columns: repeat(2, 1fr);
     column-gap: 8rem;
     row-gap: 4rem;
     margin-top: 50px;
+  }
+}
+@media (width > 1300px) {
+  .primary-menu-container {
+    grid-template-areas:
+      "menu1  menu2  menu3"
+      "menu4  menu5  menu6"
+      "menu7  menu8  menu9";
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -281,9 +334,6 @@ body:not(:has(*)) {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 4fr;
-  /* place-content: center; */
-  /* place-items: center; */
-  /* overflow: hidden; */
   transition: 0.5s;
 }
 .secondary-menu-row {
@@ -295,7 +345,6 @@ body:not(:has(*)) {
   grid-auto-flow: column;
   grid-template-rows: 1fr;
   grid-auto-columns: 250px;
-  /* overflow: hidden; */
 }
 .parents-info {
   grid-area: parents-info;
@@ -311,22 +360,10 @@ body:not(:has(*)) {
   place-items: center;
   transition: 0.3s;
 }
-@media (width > 600px) {
+@media (width > 820px) {
   .parents-info {
-    grid-area: parents-info;
     height: 50px;
     width: 175px;
-    margin-top: 6rem;
-    margin-left: auto;
-    color: var(--clr-wht);
-    background: var(--clr-acc1);
-    display: flex;
-    border-radius: 5px;
-    font-size: 1.5rem;
-    place-content: center;
-    place-items: center;
-    transition: 0.3s;
-    /* box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.1); */
   }
 }
 
@@ -340,7 +377,7 @@ body:not(:has(*)) {
 }
 
 .div {
-  width: 330px;
+  width: 300px;
   height: 175px;
   background: var(--clr-acc1);
   color: var(--clr-wht);
@@ -359,21 +396,12 @@ body:not(:has(*)) {
 .primary-menu-div {
   font-size: 3.5rem;
 }
-@media (min-width: 975px) {
+@media (min-width: 1700px) {
   .div {
-    width: 100%;
+    width: 500px;
     height: 200px;
-    background: var(--clr-acc1);
-    color: var(--clr-wht);
-    display: flex;
-    border-radius: 20px;
-    place-content: center;
-    place-items: center;
     line-break: strict;
     font-size: 4rem;
-    text-align: center;
-    transition: 0.3s;
-    box-shadow: 0px 24px 35px 7px rgba(0, 0, 0, 0.3);
     --stagger-delay: 0.1s;
     --card-entrance: 0.5s;
   }
@@ -455,6 +483,7 @@ body:not(:has(*)) {
   height: 50px;
   width: 175px;
   margin-left: auto;
+  margin-right: 30px;
   color: var(--clr-wht);
   background: var(--clr-acc1);
   display: grid;
@@ -506,6 +535,21 @@ body:not(:has(*)) {
   animation: cardEntrance var(--card-entrance) ease-out;
   animation-fill-mode: backwards;
   animation-delay: calc(6 * var(--stagger-delay));
+}
+.div-start-menu7 {
+  animation: cardEntrance var(--card-entrance) ease-out;
+  animation-fill-mode: backwards;
+  animation-delay: calc(7 * var(--stagger-delay));
+}
+.div-start-menu8 {
+  animation: cardEntrance var(--card-entrance) ease-out;
+  animation-fill-mode: backwards;
+  animation-delay: calc(8 * var(--stagger-delay));
+}
+.div-start-menu9 {
+  animation: cardEntrance var(--card-entrance) ease-out;
+  animation-fill-mode: backwards;
+  animation-delay: calc(9 * var(--stagger-delay));
 }
 .div:hover {
   box-shadow: rgba(2, 8, 20, 0.5) 0px 0.35em 1.175em,

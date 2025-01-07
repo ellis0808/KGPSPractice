@@ -11,6 +11,8 @@ import {
   sightWords1,
   sightWords2,
   sightWords3,
+  letterSoundsASMF,
+  letterSoundsITRP,
 } from "./card-data.js";
 import { wobble, spinfade, newRoundCardFlip, particles } from "./fx.js";
 import { scoreFunction } from "../../utilities/score.js";
@@ -50,7 +52,7 @@ function cardTouchApp(set) {
     appContainer.appendChild(btnContainer4);
   }, 0);
 
-  stylesheet.setAttribute("href", `${BASE_PATH()}resources/css/card-touch.css`);
+  stylesheet.setAttribute("href", `${BASE_PATH}resources/css/card-touch.css`);
   menuItems.removeMenuPage();
 
   setTimeout(displayStartBtn, 200);
@@ -157,7 +159,7 @@ let countDown;
 // TIMER
 let time;
 let roundTime;
-if (style === 3) {
+if (style === 3 || style === 6) {
   roundTime = 30;
 } else {
   roundTime = 60;
@@ -416,14 +418,13 @@ function createBoard() {
     grid.classList.toggle("hide");
   }
 
-  let lettersArray = [];
-  let sightWordArray = [];
+  let targetItemArray = [];
   function cardGenerator() {
     if (style === 1 || style === 2) {
-      for (let i = 0; lettersArray.length < 9; ++i) {
+      for (let i = 0; targetItemArray.length < 9; ++i) {
         let letter = `${alphabet[Math.floor(Math.random() * alphabet.length)]}`;
-        if (!lettersArray.includes(letter)) {
-          lettersArray.push(letter);
+        if (!targetItemArray.includes(letter)) {
+          targetItemArray.push(letter);
         }
       }
     } else if (style === 3 || style === 4 || style === 5) {
@@ -432,11 +433,11 @@ function createBoard() {
       if (style === 3) {
         grid.classList.add("sight-word-grid-4x4");
         sightWords1.forEach((item) => {
-          sightWordArray.push(item);
+          targetItemArray.push(item);
         });
       } else if (style === 4 || style === 5) {
         grid.classList.remove("sight-word-grid-4x4");
-        for (let i = 0; sightWordArray.length < 6; ++i) {
+        for (let i = 0; targetItemArray.length < 6; ++i) {
           if (style === 4) {
             sightWord = `${
               sightWords2[Math.floor(Math.random() * sightWords2.length)]
@@ -446,10 +447,20 @@ function createBoard() {
               sightWords3[Math.floor(Math.random() * sightWords3.length)]
             }`;
           }
-          if (!sightWordArray.includes(sightWord)) {
-            sightWordArray.push(sightWord);
+          if (!targetItemArray.includes(sightWord)) {
+            targetItemArray.push(sightWord);
           }
         }
+      }
+    } else if (style === 6) {
+      let letterSound;
+      if (style === 6) {
+        grid.classList.add("sight-word-grid-4x4");
+        letterSoundsASMF.forEach((item) => {
+          targetItemArray.push(item);
+        });
+        console.log(targetItemArray);
+        console.log(audio.audioObject);
       }
     }
   }
@@ -458,9 +469,9 @@ function createBoard() {
       cardGenerator();
       let i = 0;
       if (style === 1 || style === 2) {
-        lettersArray.forEach(() => {
+        targetItemArray.forEach(() => {
           const card = document.createElement("div");
-          card.setAttribute("contentId", lettersArray[i]);
+          card.setAttribute("contentId", targetItemArray[i]);
           card.setAttribute("data-id", i);
           if (style === 1) {
             newCardText = card.getAttribute("contentId").toUpperCase();
@@ -468,7 +479,7 @@ function createBoard() {
             newCardText = card.getAttribute("contentId");
           }
           card.textContent = newCardText;
-          card.classList.add("card");
+          card.classList.add("card", "letter");
           grid.append(card);
           card.addEventListener("click", touchCard);
           if (style === 1) {
@@ -479,9 +490,22 @@ function createBoard() {
           ++i;
         });
       } else if (style === 3 || style === 4 || style === 5) {
-        sightWordArray.forEach(() => {
+        targetItemArray.forEach(() => {
           const card = document.createElement("div");
-          card.setAttribute("contentID", sightWordArray[i]);
+          card.setAttribute("contentID", targetItemArray[i]);
+          card.setAttribute("data-id", i);
+          newCardText = card.getAttribute("contentID");
+          card.textContent = newCardText;
+          card.classList.add("card", "sight-word");
+          grid.append(card);
+          card.addEventListener("click", touchCard);
+          cardText.push(newCardText);
+          ++i;
+        });
+      } else if (style === 6) {
+        targetItemArray.forEach(() => {
+          const card = document.createElement("div");
+          card.setAttribute("contentID", targetItemArray[i]);
           card.setAttribute("data-id", i);
           newCardText = card.getAttribute("contentID");
           card.textContent = newCardText;
@@ -629,8 +653,10 @@ function endApp() {
     });
     setTimeout(() => {
       stylesheet.setAttribute("href", `${BASE_PATH}resources/css/styles.css`);
-      menuItems.displayMainPage();
-      setTimeout(menuItems.restoreMainMenu, 100);
+      setTimeout(() => {
+        // menuItems.displayMainPage();
+        menuItems.restoreMainMenu();
+      }, 100);
     }, 500);
   }, 500);
   scoreFunction.display.innerText = scoreFunction.currentScore;

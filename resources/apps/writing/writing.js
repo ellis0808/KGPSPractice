@@ -10,14 +10,26 @@ class WritingApp {
     this.activityId = null;
     this.style = null;
     this.stylesheet = `${BASE_PATH}resources/css/writing.css`;
+    this.currentApp = ["writingApp."];
     this.time = null;
     this.randomItemArray = [];
     this.items = [];
+    this.totalElapsedTime = null;
+    this.bestTime = null;
     this.numberCorrect = 0;
     this.numberIncorrect = 0;
+    this.answerAttempts = 0;
     this.correctAnswerPoints = null;
     this.maxNumberOfWordsToWrite = null;
     this.currentProblemNumber = 1;
+    this.writingAppClass = ["writing-app"];
+    this.endSessionItems = [
+      ".message-row",
+      ".number-correct-row",
+      ".canvas-row",
+      ".controls-row",
+      ".repeat-btn",
+    ];
   }
   run(set, time) {
     this.setStyleSheet();
@@ -35,12 +47,14 @@ class WritingApp {
   }
   setUpApp() {
     app.setAppVariables(
+      this.currentApp[0],
       this.time,
       this.clearBoard,
       null,
       this.createAndSetStructure,
       this.generateItems,
-      this.activityId
+      this.activityId,
+      this.endSessionItems
     );
   }
   createAndSetStructure = () => {
@@ -138,10 +152,13 @@ class WritingApp {
     this.numberCorrectRow = document.createElement("div");
     this.canvasRow = document.createElement("div");
     this.controlsRow = document.createElement("div");
-    this.messageRow.classList.add("message-row");
-    this.numberCorrectRow.classList.add("number-correct-row");
-    this.canvasRow.classList.add("canvas-row");
-    this.controlsRow.classList.add("controls-row");
+    this.messageRow.classList.add("message-row", this.writingAppClass);
+    this.numberCorrectRow.classList.add(
+      "number-correct-row",
+      this.writingAppClass
+    );
+    this.canvasRow.classList.add("canvas-row", this.writingAppClass);
+    this.controlsRow.classList.add("controls-row", this.writingAppClass);
   }
   createAppControls() {
     this.repeatBtn = document.createElement("div");
@@ -150,7 +167,7 @@ class WritingApp {
     this.clearBtn = document.createElement("div");
     this.skipBtn = document.createElement("div");
 
-    this.repeatBtn.classList.add("repeat-btn", "btn");
+    this.repeatBtn.classList.add("repeat-btn", "btn", this.writingAppClass);
     this.repeatBtn.innerText = "repeat";
     this.repeatBtn.addEventListener("pointerdown", writingAudio.repeat);
     this.checkBtn.classList.add("check-btn", "btn");
@@ -170,7 +187,7 @@ class WritingApp {
     this.undoBtn.addEventListener("pointerdown", (event) => {
       if (this.canvasController.trace.length === 0) {
         return;
-      } else if (canvasController.trace.length === 1) {
+      } else if (this.canvasController.trace.length === 1) {
         this.canvasController.erase();
         this.canvasController.trace.length = 0;
       } else {
@@ -188,7 +205,7 @@ class WritingApp {
   createCanvas() {
     this.canvas = document.createElement("canvas");
     this.canvas.setAttribute("id", "canvas");
-    this.canvas.classList.add("canvas");
+    this.canvas.classList.add("canvas", this.writingAppClass);
     this.canvas.width = 800;
     this.canvas.height = 475;
 
@@ -210,18 +227,32 @@ class WritingApp {
   resetNumberCorrect() {
     this.numberCorrect = 0;
   }
+  resetNumberIncorrect() {
+    this.numberIncorrect = 0;
+  }
+  resetArrays() {
+    this.randomItemArray.length = 0;
+    this.items.length = 0;
+    writingAudio.resetArrayItemNumber();
+  }
   increaseNumberCorrect() {
     ++this.numberCorrect;
+  }
+  increaseNumberIncorrect() {
+    ++this.numberIncorrect;
   }
   increaseCurrentProblemNumber() {
     ++this.currentProblemNumber;
   }
-  setCorrecAnswerPoints() {
+  resetCurrentProblemNumber() {
+    this.currentProblemNumber = 1;
+  }
+  setCorrectAnswerPoints() {
     if (this.numberIncorrect === 0) {
       this.correctAnswerPoints =
         this.numberCorrect * 2 +
         Math.floor(this.maxNumberOfWordsToWrite * 0.25);
-    } else {
+    } else if (this.numberIncorrect > 0) {
       this.correctAnswerPoints = this.numberCorrect * 2;
     }
   }
@@ -264,10 +295,6 @@ class WritingApp {
     return this.canvasController;
   }
   generateItems() {
-    console.log(this);
-
-    console.log(writingApp.items, writingApp.randomItemArray);
-
     writingApp.items.length = 0;
     console.log(audio.audioObject);
 
@@ -313,7 +340,14 @@ class WritingApp {
       this.canvas.classList.remove("border-correct");
     }
   };
-  clearBoard() {}
+  clearBoard() {
+    timerFunction.goalIncomplete();
+    writingApp.resetNumberCorrect();
+    writingApp.resetNumberIncorrect();
+    writingApp.resetCurrentProblemNumber();
+    writingApp.resetArrays();
+    writingApp.clearCanvas();
+  }
   clearCanvas() {
     this.removeCorrectIncorrectBorder();
     this.canvasController.erase();
@@ -324,29 +358,35 @@ class WritingApp {
       audio.appSfx.correct.play();
       this.increaseNumberCorrect();
       this.displayNumberCorrect();
-      this.increaseCurrentProblemNumber();
       console.log(this.currentProblemNumber);
 
-      if (this.currentProblemNumber === this.maxNumberOfWordsToWrite) {
-        this.endRound();
-      } else {
-        setTimeout(this.getNewWord, 1500);
-      }
+      setTimeout(() => {
+        if (this.currentProblemNumber > this.maxNumberOfWordsToWrite) {
+          this.endRound();
+        } else {
+          this.getNewWord();
+        }
+      }, 1500);
     } else {
       audio.appSfx.incorrect.play();
       this.addBorderIncorrect();
+      this.increaseNumberIncorrect();
       setTimeout(() => {
         this.clearCanvas();
         setTimeout(writingAudio.repeat, 700);
       }, 2000);
     }
+    this.increaseCurrentProblemNumber();
   }
   endRound() {
+    this.totalElapsedTime = timerFunction.time;
+    console.log(this.totalElapsedTime);
+
     timerFunction.goalCompleted();
-    this.setCorrecAnswerPoints();
-    console.log(this.currentProblemNumber);
+    this.setCorrectAnswerPoints();
+    console.log(this.correctAnswerPoints);
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
-    // audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
+    console.log(scoreFunction.currentScore);
   }
 }
 

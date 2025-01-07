@@ -56,7 +56,6 @@ const timerFunction = {
           } else {
             if (this.goalMet) {
               this.setTimerFinishedValue(true);
-
               this.endRound();
               toggleTouchFunction.disableTouch();
               this.clearTimer();
@@ -86,7 +85,7 @@ const timerFunction = {
     if (this.time === 60) {
       this.timer.textContent = "1:00";
     } else if (this.time > 0 && this.time < 60) {
-      this.timer.textContent = `0:${this.timer}`;
+      this.timer.textContent = `0:${this.time}`;
     } else {
       this.timer.textContent = "0:00";
     }
@@ -96,6 +95,9 @@ const timerFunction = {
   },
   goalCompleted() {
     this.goalMet = true;
+  },
+  goalIncomplete() {
+    this.goalMet = false;
   },
   hide() {
     if (!this.timer.classList.contains("hide")) {

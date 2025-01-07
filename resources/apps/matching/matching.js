@@ -21,6 +21,7 @@ import { BASE_PATH } from "../../utilities/get-base-path.js";
 
 class MatchingApp {
   constructor() {
+    this.currentApp = ["matchingApp."];
     this.activityId = null;
     this.correctAnswerPoints = 1;
     this.endDotId = null;
@@ -34,6 +35,22 @@ class MatchingApp {
     this.line = new Connector();
     this.styleSheet = `${BASE_PATH}resources/css/matching.css`;
     this.time = null;
+    this.numberCorrect = 0;
+    this.numberIncorrect = 0;
+    this.answerAttempts = 0;
+    this.endSessionItems = [
+      ".startrow",
+      ".line",
+      ".endrow",
+      ".start-dot-div",
+      ".end-dot-div",
+      ".start-dot",
+      ".end-dot",
+      ".start-target",
+      ".end-target",
+      ".unconnected",
+      ".final",
+    ];
     this.getStartDotID = this.getStartDotID.bind(this);
     this.onPointerDown = this.onPointerDown.bind(this);
     this.onPointerMove = this.onPointerMove.bind(this);
@@ -55,12 +72,14 @@ class MatchingApp {
   }
   setUpApp() {
     app.setAppVariables(
+      this.currentApp,
       this.time,
       this.clearBoard,
       this.activateEventListeners,
       this.createAndSetStructure,
       this.populateGrid,
-      this.activityId
+      this.activityId,
+      this.endSessionItems
     );
   }
   createAndSetStructure = () => {

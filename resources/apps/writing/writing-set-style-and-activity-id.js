@@ -80,31 +80,31 @@ function setStyle(set) {
 // This function sets the activity id. The activity id is used in recording the scoreFunction obtained in a given activity. (Separate scores are kept for each activity; the number the user sees scoreFunction is the total of all activity scores combined.)
 function setActivityId(style) {
   if (style === 0) {
-    writingaactivityId = 1;
+    activityId = 1;
     return activityId;
   } else if (style === 1) {
-    writingaactivityId = 2;
+    activityId = 2;
     return activityId;
   } else if (style === 2) {
-    writingaactivityId = 4;
+    activityId = 4;
     return activityId;
   } else if (style === 3) {
-    writingaactivityId = 5;
+    activityId = 5;
     return activityId;
   } else if (style === 4) {
-    writingaactivityId = 6;
+    activityId = 6;
     return activityId;
   } else if (style === 5) {
-    writingaactivityId = 16;
+    activityId = 16;
     return activityId;
   } else if (style === 6) {
-    writingaactivityId = 8;
+    activityId = 8;
     return activityId;
   } else if (style === 7) {
-    writingaactivityId = 9;
+    activityId = 9;
     return activityId;
   } else if (style === 9) {
-    writingaactivityId = 4;
+    activityId = 4;
     return activityId;
   }
 }

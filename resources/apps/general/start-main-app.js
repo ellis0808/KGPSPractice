@@ -65,7 +65,7 @@ class MenuItems {
       "div-start-menu2",
       "primary-menu-div"
     );
-    this.numbersMenu.innerText = "1,2,3";
+    this.numbersMenu.innerText = "1, 2, 3...";
     this.numbersMenu.addEventListener("click", () => {
       this.section = "numbers";
       menuItems.displaySecondaryMenu(this.section);
@@ -85,15 +85,17 @@ class MenuItems {
     this.sightWordsMenu.innerText = "Sight Words";
 
     // Letter Sounds
-    // this.letterSoundsMenu.setAttribute("id", "div5");
-    // this.letterSoundsMenu.classList.add(
-    //   "div",
-    //   "div-start-menu5",
-    //   "primary-menu-div"
-    // );
-    // this.letterSoundsMenu.addEventListener("click", () => menuItems.this.this.section = "letter-sounds";
-    // menuItems.displaySecondaryMenu(this.section);
-    // this.letterSoundsMenu.innerText = "Letter Sounds";
+    this.letterSoundsMenu.setAttribute("id", "div3");
+    this.letterSoundsMenu.classList.add(
+      "div",
+      "div-start-menu3",
+      "primary-menu-div"
+    );
+    this.letterSoundsMenu.addEventListener("click", () => {
+      this.section = "letter-sounds";
+      menuItems.displaySecondaryMenu(this.section);
+    });
+    this.letterSoundsMenu.innerText = "Letter Sounds";
 
     // Seondary Menu
 
@@ -250,6 +252,47 @@ class MenuItems {
       matchingApp.run("alphabet", 60);
       this.removeMenu();
     });
+
+    // 1. Letter Sounds 1 Touch App Menu Item
+    this.letterSoundsAMSFAppMenuItem.setAttribute(
+      "id",
+      "letter-sounds-amsf-app-menu-item"
+    );
+    this.letterSoundsAMSFAppMenuItem.setAttribute("app-type", "touch");
+    this.letterSoundsAMSFAppMenuItem.setAttribute(
+      "app-content",
+      "letter-sounds"
+    );
+    this.letterSoundsAMSFAppMenuItem.classList.add(
+      "secondary-menu-div",
+      "secondary-menu-item"
+    );
+    this.letterSoundsAMSFAppMenuItem.innerText = "a s m f";
+    this.letterSoundsAMSFAppMenuItem.addEventListener("click", () => {
+      audio.navigationSfx.selectMenu.play();
+      appLauncher.startCardTouchApp("letter-sounds-asmf");
+      this.removeMenu();
+    });
+    // 1. Letter Sounds 1 Writing App Menu Item
+    // this.letterSoundsAMSFAppMenuItem.setAttribute(
+    //   "id",
+    //   "letter-sounds-amsf-app-menu-item"
+    // );
+    // this.letterSoundsAMSFAppMenuItem.setAttribute("app-type", "touch");
+    // this.letterSoundsAMSFAppMenuItem.setAttribute(
+    //   "app-content",
+    //   "letter-sounds"
+    // );
+    // this.letterSoundsAMSFAppMenuItem.classList.add(
+    //   "secondary-menu-div",
+    //   "secondary-menu-item"
+    // );
+    // this.letterSoundsAMSFAppMenuItem.innerText = "a s m f";
+    // this.letterSoundsAMSFAppMenuItem.addEventListener("click", () => {
+    //   audio.navigationSfx.selectMenu.play();
+    //   writingApp.run("letter-sounds-asmf", 0);
+    //   this.removeMenu();
+    // });
 
     // 1. Sight Words 1 Touch App Menu Item
     this.sightWords1AppMenuItem.setAttribute(
@@ -550,14 +593,13 @@ class MenuItems {
       getCumulativeUserScore();
       setTimeout(this.displayGreeting, 500);
       menuItems.displayMainPage();
-    }, 1000);
+    }, 1500);
   }
   displayMainPage() {
     this.hideSecondaryMenu();
-    this.unhidePrimaryMenu();
+    this.showPrimaryMenu();
     this.resetSecondaryMenuPosition();
-    menuItems.isPrimaryMenu = true;
-    menuItems.isSecondaryMenu = false;
+    this.setPrimaryMenuTrue();
     menuItems.returnToMainMenuToggle();
     let navBarDisplay;
     try {
@@ -591,17 +633,23 @@ class MenuItems {
     primaryMenuContainer.appendChild(this.abcMenu);
     primaryMenuContainer.appendChild(this.numbersMenu);
     primaryMenuContainer.appendChild(this.sightWordsMenu);
-    // primaryMenuContainer.appendChild(this.letterSoundsMenu);
+    primaryMenuContainer.appendChild(this.letterSoundsMenu);
   }
 
   /******
     Display Seconday Menu
   ******/
-
+  removeSectionColumnMenuItems() {
+    this.sectionColumn.childNodes.forEach((menu) => {
+      menu.childNodes.forEach((item) => {
+        item.classList.add("hide");
+      });
+    });
+  }
   displaySecondaryMenu(section) {
+    this.removeSectionColumnMenuItems();
     this.hidePrimaryMenu();
-    this.isPrimaryMenu = false;
-    this.isSecondaryMenu = true;
+    this.setSecondaryMenuTrue();
     this.returnToMainMenuToggle();
     this.displayMovementArrows();
     mainContainer.appendChild(this.secondaryMenuContainer);
@@ -618,7 +666,7 @@ class MenuItems {
     this.sectionColumn.appendChild(this.matchingMenu);
     this.sectionColumn.appendChild(this.fluencyMenu);
     this.sectionColumn.appendChild(this.writingMenu);
-    this.unhideSecondaryMenu();
+    this.showSecondaryMenu();
 
     switch (section) {
       case "alphabet":
@@ -635,6 +683,9 @@ class MenuItems {
             // this.touchMenu.appendChild(item);
             if (item.classList.contains("hidden")) {
               item.classList.remove("hidden");
+            }
+            if (item.classList.contains("hide")) {
+              item.classList.remove("hide");
             }
           });
         break;
@@ -656,7 +707,28 @@ class MenuItems {
           if (item.classList.contains("hidden")) {
             item.classList.remove("hidden");
           }
+          if (item.classList.contains("hide")) {
+            item.classList.remove("hide");
+          }
         });
+        break;
+      case "letter-sounds":
+        greetingDisplay.innerText = "Letter Sounds";
+        this.touchMenu.appendChild(this.letterSoundsAMSFAppMenuItem);
+        document
+          .querySelectorAll("[app-content='letter-sounds']")
+          .forEach((item) => {
+            // if (this.touchMenu
+
+            // )
+            // this.touchMenu.appendChild(item);
+            if (item.classList.contains("hidden")) {
+              item.classList.remove("hidden");
+            }
+            if (item.classList.contains("hide")) {
+              item.classList.remove("hide");
+            }
+          });
         break;
       case "sight-words":
         greetingDisplay.innerText = "Sight Words";
@@ -676,19 +748,8 @@ class MenuItems {
             if (item.classList.contains("hidden")) {
               item.classList.remove("hidden");
             }
-          });
-        break;
-      case "letter-sounds":
-        greetingDisplay.innerText = "Letter Sounds";
-        document
-          .querySelectorAll("[app-content='letter-sounds']")
-          .forEach((item) => {
-            // if (this.touchMenu
-
-            // )
-            // this.touchMenu.appendChild(item);
-            if (item.classList.contains("hidden")) {
-              item.classList.remove("hidden");
+            if (item.classList.contains("hide")) {
+              item.classList.remove("hide");
             }
           });
         break;
@@ -712,20 +773,25 @@ class MenuItems {
   /******
     Removing and Restoring Menu
   ******/
-
+  resetGreetingAndPointsDisplay() {
+    greetingDisplay.innerText = "";
+    pointsDisplay.innerText = "";
+  }
+  resetTopContainer() {
+    topContainer.innerText = "";
+  }
   hidePrimaryMenu() {
     audio.navigationSfx.selectMenu.play();
     // this.hideParentsInfoBtn();
-    greetingDisplay.innerText = "";
-    pointsDisplay.innerText = "";
+    this.resetGreetingAndPointsDisplay();
     primaryMenuContainer.classList.add("hidden");
     this.abcMenu.classList.add("hidden");
     this.numbersMenu.classList.add("hidden");
     this.sightWordsMenu.classList.add("hidden");
   }
-  unhidePrimaryMenu() {
+  showPrimaryMenu() {
     // this.displayParentsInfoBtn();
-    topContainer.innerText = "";
+    this.resetTopContainer();
     primaryMenuContainer.classList.remove("hidden");
     this.abcMenu.classList.remove("hidden");
     this.numbersMenu.classList.remove("hidden");
@@ -742,7 +808,7 @@ class MenuItems {
         }
       });
   }
-  unhideSecondaryMenu() {
+  showSecondaryMenu() {
     document
       .querySelectorAll(".secondary-menu, .secondary-menu-container")
       .forEach((item) => {
@@ -783,31 +849,29 @@ class MenuItems {
         item.remove();
       });
   }
+  setPrimaryMenuTrue() {
+    this.isPrimaryMenu = true;
+    this.isSecondaryMenu = false;
+  }
+  setSecondaryMenuTrue() {
+    this.isPrimaryMenu = false;
+    this.isSecondaryMenu = true;
+  }
   restoreMainMenu() {
     body.appendChild(navBar);
-    topContainer.innerText = "";
-    // body.appendChild(parentsInfo);
     mainContainer.appendChild(topContainer);
     mainContainer.appendChild(primaryMenuContainer);
     navBar.classList.remove("hidden");
     topContainer.classList.remove("hidden");
     getCumulativeUserScore();
-    setTimeout(this.displayGreeting, 500);
-    this.hideSecondaryMenu();
-    this.unhidePrimaryMenu();
-    this.resetSecondaryMenuPosition();
-    // primaryMenuContainer.classList.remove("hidden");
-    // this.abcMenu.classList.remove("hidden");
-    // this.numbersMenu.classList.remove("hidden");
-    // this.sightWordsMenu.classList.remove("hidden");
+    setTimeout(this.returnToMainMenu, 500);
   }
   returnToMainMenu() {
     audio.navigationSfx.backToPreviousMenu.play();
     this.hideSecondaryMenu();
-    this.unhidePrimaryMenu();
+    this.showPrimaryMenu();
     this.resetSecondaryMenuPosition();
-    // this.displayParentsInfoBtn();
-    topContainer.innerText = "";
+    this.resetTopContainer();
     this.displayGreeting();
   }
   returnToMainMenuToggle() {
@@ -867,7 +931,7 @@ class MenuItems {
     }
   }
   displayGreeting() {
-    menuItems.isPrimaryMenu = true;
+    // this.setPrimaryMenuTrue();
     setTimeout(() => {
       let greeting;
       let userScore;

@@ -422,7 +422,7 @@ closeTeacherLoginModalBtn.addEventListener("click", (event) => {
 
 function routing(userData) {
   if (userData.access === "teacher") {
-    window.location.href = `${BASE_PATH}teacher-interface/user-management.html`;
+    window.location.href = `${BASE_PATH}resources/teacher-interface/user-management.html`;
   } else if (userData.access === "student") {
     window.location.href = `${BASE_PATH}index.html`;
   }
