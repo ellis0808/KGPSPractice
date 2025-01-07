@@ -183,7 +183,8 @@ class MenuItems {
     this.sightWords1WritingAppMenuItem = document.createElement("div");
     this.sightWords2WritingAppMenuItem = document.createElement("div");
     this.sightWords3WritingAppMenuItem = document.createElement("div");
-    this.letterSoundsAMSFAppMenuItem = document.createElement("div");
+    this.letterSoundsAMSFLettersAppMenuItem = document.createElement("div");
+    this.letterSoundsAMSFWordsAppMenuItem = document.createElement("div");
     this.numberFluency1to20AppMenuItem = document.createElement("div");
     this.numberFluency21to40AppMenuItem = document.createElement("div");
     this.numberFluency41to60AppMenuItem = document.createElement("div");
@@ -254,41 +255,41 @@ class MenuItems {
     });
 
     // 1. Letter Sounds AMSF Letters Touch App Menu Item
-    this.letterSoundsAMSFAppMenuItem.setAttribute(
+    this.letterSoundsAMSFLettersAppMenuItem.setAttribute(
       "id",
       "letter-sounds-amsf-app-menu-item"
     );
-    this.letterSoundsAMSFAppMenuItem.setAttribute("app-type", "touch");
-    this.letterSoundsAMSFAppMenuItem.setAttribute(
+    this.letterSoundsAMSFLettersAppMenuItem.setAttribute("app-type", "touch");
+    this.letterSoundsAMSFLettersAppMenuItem.setAttribute(
       "app-content",
-      "letter-sounds"
+      "letter-sounds-letters"
     );
-    this.letterSoundsAMSFAppMenuItem.classList.add(
+    this.letterSoundsAMSFLettersAppMenuItem.classList.add(
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.letterSoundsAMSFAppMenuItem.innerText = "a s m f";
-    this.letterSoundsAMSFAppMenuItem.addEventListener("click", () => {
+    this.letterSoundsAMSFLettersAppMenuItem.innerText = "a s m f";
+    this.letterSoundsAMSFLettersAppMenuItem.addEventListener("click", () => {
       audio.navigationSfx.selectMenu.play();
       appLauncher.startCardTouchApp("letter-sounds-asmf-letters");
       this.removeMenu();
     });
     // 2. Letter Sounds AMSF Words Touch App Menu Item
-    this.letterSoundsAMSFAppMenuItem.setAttribute(
+    this.letterSoundsAMSFWordsAppMenuItem.setAttribute(
       "id",
       "letter-sounds-amsf-app-menu-item"
     );
-    this.letterSoundsAMSFAppMenuItem.setAttribute("app-type", "touch");
-    this.letterSoundsAMSFAppMenuItem.setAttribute(
+    this.letterSoundsAMSFWordsAppMenuItem.setAttribute("app-type", "touch");
+    this.letterSoundsAMSFWordsAppMenuItem.setAttribute(
       "app-content",
-      "letter-sounds"
+      "letter-sounds-words"
     );
-    this.letterSoundsAMSFAppMenuItem.classList.add(
+    this.letterSoundsAMSFWordsAppMenuItem.classList.add(
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.letterSoundsAMSFAppMenuItem.innerText = "am, ma, af...";
-    this.letterSoundsAMSFAppMenuItem.addEventListener("click", () => {
+    this.letterSoundsAMSFWordsAppMenuItem.innerText = "am, ma, af...";
+    this.letterSoundsAMSFWordsAppMenuItem.addEventListener("click", () => {
       audio.navigationSfx.selectMenu.play();
       appLauncher.startCardTouchApp("letter-sounds-asmf-words");
       this.removeMenu();
@@ -735,7 +736,8 @@ class MenuItems {
         break;
       case "letter-sounds":
         greetingDisplay.innerText = "Letter Sounds";
-        this.touchMenu.appendChild(this.letterSoundsAMSFAppMenuItem);
+        this.touchMenu.appendChild(this.letterSoundsAMSFLettersAppMenuItem);
+        this.touchMenu.appendChild(this.letterSoundsAMSFWordsAppMenuItem);
         document
           .querySelectorAll("[app-content='letter-sounds']")
           .forEach((item) => {
