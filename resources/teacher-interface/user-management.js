@@ -187,7 +187,9 @@ const displayUsers = {
     const studentIds = Object.keys(students);
     const teacherIds = Object.keys(teachers);
 
-    userManagementStructure.userList.textContent = "";
+    userManagementStructure.userList.childNodes.forEach((item) => {
+      item.remove();
+    });
 
     this.createTableHeaders();
     this.appendUserDataHeaders();
