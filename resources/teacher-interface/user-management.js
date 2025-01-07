@@ -188,6 +188,8 @@ const displayUsers = {
     const teacherIds = Object.keys(teachers);
 
     userManagementStructure.userList.childNodes.forEach((item) => {
+      console.log(item);
+
       item.remove();
     });
 
