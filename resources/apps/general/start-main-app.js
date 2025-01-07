@@ -296,25 +296,25 @@ class MenuItems {
     });
 
     // 1. Letter Sounds 1 Writing App Menu Item
-    this.letterSoundsAMSFAppMenuItem.setAttribute(
-      "id",
-      "letter-sounds-amsf-app-menu-item"
-    );
-    this.letterSoundsAMSFAppMenuItem.setAttribute("app-type", "touch");
-    this.letterSoundsAMSFAppMenuItem.setAttribute(
-      "app-content",
-      "letter-sounds"
-    );
-    this.letterSoundsAMSFAppMenuItem.classList.add(
-      "secondary-menu-div",
-      "secondary-menu-item"
-    );
-    this.letterSoundsAMSFAppMenuItem.innerText = "a s m f";
-    this.letterSoundsAMSFAppMenuItem.addEventListener("click", () => {
-      audio.navigationSfx.selectMenu.play();
-      writingApp.run("letter-sounds-asmf", 0);
-      this.removeMenu();
-    });
+    // this.letterSoundsAMSFAppMenuItem.setAttribute(
+    //   "id",
+    //   "letter-sounds-amsf-app-menu-item"
+    // );
+    // this.letterSoundsAMSFAppMenuItem.setAttribute("app-type", "touch");
+    // this.letterSoundsAMSFAppMenuItem.setAttribute(
+    //   "app-content",
+    //   "letter-sounds"
+    // );
+    // this.letterSoundsAMSFAppMenuItem.classList.add(
+    //   "secondary-menu-div",
+    //   "secondary-menu-item"
+    // );
+    // this.letterSoundsAMSFAppMenuItem.innerText = "a s m f";
+    // this.letterSoundsAMSFAppMenuItem.addEventListener("click", () => {
+    //   audio.navigationSfx.selectMenu.play();
+    //   writingApp.run("letter-sounds-asmf", 0);
+    //   this.removeMenu();
+    // });
 
     // 1. Sight Words 1 Touch App Menu Item
     this.sightWords1AppMenuItem.setAttribute(
