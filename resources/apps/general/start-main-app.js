@@ -548,10 +548,10 @@ class MenuItems {
     setTimeout(() => {
       stylesheet.setAttribute("href", `${BASE_PATH}resources/css/styles.css`);
       menuItems.displayMainMenuItems();
-      menuItems.displayMainPage();
       this.setUser();
       getCumulativeUserScore();
       setTimeout(this.displayGreeting, 500);
+      menuItems.displayMainPage();
     }, 1500);
   }
   displayMainPage() {
