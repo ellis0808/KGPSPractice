@@ -319,7 +319,7 @@ const displayUsers = {
   },
 };
 
-// Create Student
+// Create Users
 const createTeacher = {
   createStudentSubmitBtn: document.getElementById("createStudent"),
   createTeacherSubmitBtn: document.getElementById("createTeacher"),
@@ -390,6 +390,7 @@ const createTeacher = {
           });
 
           const data = await response.json();
+          console.log(data);
 
           if (!response.ok) {
             throw new Error("Network response was not okay");
@@ -485,7 +486,7 @@ const updateUser = {
         body: JSON.stringify(newData),
       });
       const data = await response.json();
-
+      console.log(data);
       if (!response.ok) {
         throw new Error("Network response was not okay");
       } else {
