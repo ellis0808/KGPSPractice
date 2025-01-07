@@ -452,13 +452,15 @@ function createBoard() {
           }
         }
       }
-    } else if (style >= 6 && style <= 15) {
+    } else if (style === 6) {
       let letterSound;
       if (style === 6) {
         grid.classList.add("sight-word-grid-4x4");
         letterSoundsASMF.forEach((item) => {
           targetItemArray.push(item);
         });
+        console.log(targetItemArray);
+        console.log(audio.audioObject);
       }
     }
   }
@@ -500,7 +502,7 @@ function createBoard() {
           cardText.push(newCardText);
           ++i;
         });
-      } else if (style >= 6 && style <= 15) {
+      } else if (style === 6) {
         const card = document.createElement("div");
         card.setAttribute("contentID", targetItemArray[i]);
         card.setAttribute("data-id", i);
