@@ -459,20 +459,22 @@ function createBoard() {
         letterSoundsASMFLetters.forEach((item) => {
           targetItemArray.push(item);
         });
-      } else if (style === 7 || style === 9) {
-        let letterSoundWord;
-        grid.classList.add("sight-word-grid");
-        for (let i = 0; targetItemArray.length < 6; ++i) {
-          if (style === 7) {
-            letterSoundWord = `${
-              letterSoundsASMFWords[
-                Math.floor(Math.random() * letterSoundsASMFWords.length)
-              ]
-            }`;
-          }
-          if (!targetItemArray.includes(letterSoundWord)) {
-            targetItemArray.push(letterSoundWord);
-          }
+      }
+    } else if (style === 7 || style === 9) {
+      let letterSoundWord;
+      grid.classList.add("sight-word-grid");
+      for (let i = 0; targetItemArray.length < 6; ++i) {
+        if (style === 7) {
+          letterSoundWord = `${
+            letterSoundsASMFWords[
+              Math.floor(Math.random() * letterSoundsASMFWords.length)
+            ]
+          }`;
+        }
+        console.log(letterSoundWord);
+
+        if (!targetItemArray.includes(letterSoundWord)) {
+          targetItemArray.push(letterSoundWord);
         }
       }
       console.log(targetItemArray);
@@ -518,19 +520,6 @@ function createBoard() {
           ++i;
         });
       } else if (style >= 6 && style <= 15) {
-        targetItemArray.forEach(() => {
-          const card = document.createElement("div");
-          card.setAttribute("contentID", targetItemArray[i]);
-          card.setAttribute("data-id", i);
-          newCardText = card.getAttribute("contentID");
-          card.textContent = newCardText;
-          card.classList.add("card", "sight-word");
-          grid.append(card);
-          card.addEventListener("click", touchCard);
-          cardText.push(newCardText);
-          ++i;
-        });
-      } else if (style === 7) {
         targetItemArray.forEach(() => {
           const card = document.createElement("div");
           card.setAttribute("contentID", targetItemArray[i]);
