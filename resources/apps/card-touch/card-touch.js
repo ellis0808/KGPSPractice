@@ -471,7 +471,7 @@ function createBoard() {
             ]
           }`;
           letterSoundWord =
-            randomGroup[Math.floor(Math.random() * randomItem.length)];
+            randomGroup[Math.floor(Math.random() * randomGroup.length)];
         }
         console.log(letterSoundWord);
 
