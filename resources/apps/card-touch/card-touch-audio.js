@@ -58,7 +58,7 @@ class CardTouchAudio {
       audio.getAudio(category, grouping, grouping2);
     }
     if (style === 6) {
-      category = "phonics";
+      category = "letter-sounds";
       grouping = 1;
       audio.getAudio(category, grouping, grouping2);
     }
