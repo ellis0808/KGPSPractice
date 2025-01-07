@@ -320,94 +320,86 @@ const displayUsers = {
 };
 
 // Create Users
-const createTeacher = {
+const createUser = {
   createStudentSubmitBtn: document.getElementById("createStudent"),
   createTeacherSubmitBtn: document.getElementById("createTeacher"),
-  createStudent() {
-    this.createStudentSubmitBtn.addEventListener(
-      "pointerdown",
-      async function (event) {
-        //  prevents default form submission
-        event.preventDefault();
-        console.log("test");
-
-        const firstname = document.getElementById("firstname").value;
-        const lastname = document.getElementById("studentlastname").value;
-        const password = document.getElementById("student-password").value;
-        const gradelevel = parseInt(
-          document.querySelector('input[name="gradelevel"]:checked').value
-        );
-        try {
-          const response = await fetch(`${BASE_PATH}api/create_user.php`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              last_name: lastname,
-              first_name: firstname,
-              password: password,
-              grade_level: gradelevel,
-              access: "student",
-            }),
-          });
-        } catch (error) {
-          console.error("Error creating new user:", error);
-        }
-        document.getElementById("createStudent").reset();
-        setTimeout(() => {
-          createUserDiv.close();
-        }, 1000);
-      }
-    );
+  activateCreateUserEventListeners() {
+    this.createStudentSubmitBtn.addEventListener("submit", this.createStudent);
+    this.createTeacherSubmitBtn.addEventListener("submit", this.createTeacher);
   },
-  createTeacher() {
-    // Create Teacher
-    this.createTeacherSubmitBtn.addEventListener(
-      "pointerdown",
-      async function (event) {
-        //  prevents default form submission
-        event.preventDefault();
-        console.log("test");
+  async createStudent(event) {
+    //  prevents default form submission
+    event.preventDefault();
+    console.log("test");
 
-        const title = document
-          .querySelector('input[name="title"]:checked')
-          .value.toLowerCase();
-        const lastname = document.getElementById("teacherlastname").value;
-        const admin = document.getElementById("admin").checked
-          ? "true"
-          : "false";
-
-        const password = document.getElementById("teacher-password").value;
-        const access = "teacher";
-        try {
-          const response = await fetch(`${BASE_PATH}api/create_user.php`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              title: title,
-              last_name: lastname,
-              admin: admin,
-              password: password,
-              access: "teacher",
-            }),
-          });
-
-          const data = await response.json();
-          console.log(data);
-
-          if (!response.ok) {
-            throw new Error("Network response was not okay");
-          } else {
-            getUserInfo.getAllUsers();
-          }
-        } catch (error) {
-          console.error("Error creating new user:", error);
-        }
-        document.getElementById("createTeacher").reset();
-        setTimeout(() => {
-          createUserDiv.close();
-        }, 1000);
-      }
+    const firstname = document.getElementById("firstname").value;
+    const lastname = document.getElementById("studentlastname").value;
+    const password = document.getElementById("student-password").value;
+    const gradelevel = parseInt(
+      document.querySelector('input[name="gradelevel"]:checked').value
     );
+    try {
+      const response = await fetch(`${BASE_PATH}api/create_user.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          last_name: lastname,
+          first_name: firstname,
+          password: password,
+          grade_level: gradelevel,
+          access: "student",
+        }),
+      });
+    } catch (error) {
+      console.error("Error creating new user:", error);
+    }
+    document.getElementById("createStudent").reset();
+    setTimeout(() => {
+      createUserDiv.close();
+    }, 1000);
+  },
+  async createTeacher(event) {
+    // Create Teacher
+    //  prevents default form submission
+    event.preventDefault();
+    console.log("test");
+
+    const title = document
+      .querySelector('input[name="title"]:checked')
+      .value.toLowerCase();
+    const lastname = document.getElementById("teacherlastname").value;
+    const admin = document.getElementById("admin").checked ? "true" : "false";
+
+    const password = document.getElementById("teacher-password").value;
+    const access = "teacher";
+    try {
+      const response = await fetch(`${BASE_PATH}api/create_user.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: title,
+          last_name: lastname,
+          admin: admin,
+          password: password,
+          access: access,
+        }),
+      });
+
+      const data = await response.json();
+      console.log(data);
+
+      if (!response.ok) {
+        throw new Error("Network response was not okay");
+      } else {
+        getUserInfo.getAllUsers();
+      }
+    } catch (error) {
+      console.error("Error creating new user:", error);
+    }
+    document.getElementById("createTeacher").reset();
+    setTimeout(() => {
+      createUserDiv.close();
+    }, 1000);
   },
 };
 
