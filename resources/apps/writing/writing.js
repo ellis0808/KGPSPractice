@@ -310,12 +310,10 @@ class WritingApp {
   }
   generateItems() {
     writingApp.items.length = 0;
-    console.log(audio.audioObject);
 
     Object.keys(audio.audioObject).forEach((item) => {
       writingApp.items.push(item);
     });
-    console.log(writingApp.items);
     writingApp.getRandomItems();
   }
   getRandomItems() {
@@ -327,7 +325,6 @@ class WritingApp {
 
       this.randomItemArray.push(randomItem);
     }
-    console.log(writingApp.randomItemArray);
     this.getNewWord();
     this.displayNumberCorrect();
   }

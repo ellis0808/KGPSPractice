@@ -271,7 +271,7 @@ class MenuItems {
     );
     this.letterSoundsTouchAMSFLettersAppMenuItem.setAttribute(
       "app-content",
-      "letter-sounds-letters"
+      "letter-sounds"
     );
     this.letterSoundsTouchAMSFLettersAppMenuItem.classList.add(
       "secondary-menu-div",
@@ -297,7 +297,7 @@ class MenuItems {
     );
     this.letterSoundsTouchAMSFWordsAppMenuItem.setAttribute(
       "app-content",
-      "letter-sounds-words"
+      "letter-sounds"
     );
     this.letterSoundsTouchAMSFWordsAppMenuItem.classList.add(
       "secondary-menu-div",
@@ -964,8 +964,6 @@ class MenuItems {
   }
   getUserInfo() {
     try {
-      console.log(sessionData);
-
       if (
         sessionData &&
         Object.keys(sessionData).length > 0 &&

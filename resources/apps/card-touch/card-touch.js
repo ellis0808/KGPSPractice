@@ -471,21 +471,17 @@ function createBoard() {
             ];
 
           if (Array.isArray(randomItem)) {
-            console.log("test");
             letterSoundWord =
               randomItem[Math.floor(Math.random() * randomItem.length)];
           } else {
             letterSoundWord = randomItem;
           }
         }
-        console.log(letterSoundWord);
 
         if (!targetItemArray.includes(letterSoundWord)) {
           targetItemArray.push(letterSoundWord);
         }
       }
-      console.log(targetItemArray);
-      console.log(audio.audioObject);
     }
   }
   if (!isSessionFinished) {
