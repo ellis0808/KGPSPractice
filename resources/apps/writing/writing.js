@@ -155,6 +155,10 @@ class WritingApp {
       this.activityId = 9;
     } else if (style === 9) {
       this.activityId = 4;
+    } else if (style === 20) {
+      this.activityId = 20;
+    } else if (style === 21) {
+      this.activityId = 21;
     }
   }
   createGrid() {

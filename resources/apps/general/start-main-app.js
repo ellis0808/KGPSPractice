@@ -353,7 +353,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.letterSoundsWritingAMSFWordsAppMenuItem.innerText = "a s m f";
+    this.letterSoundsWritingAMSFWordsAppMenuItem.innerText = "am, aff...";
     this.letterSoundsWritingAMSFWordsAppMenuItem.addEventListener(
       "click",
       () => {
