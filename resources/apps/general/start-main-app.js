@@ -288,7 +288,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.letterSoundsAMSFWordsAppMenuItem.innerText = "am, maff...";
+    this.letterSoundsAMSFWordsAppMenuItem.innerText = "am, aff...";
     this.letterSoundsAMSFWordsAppMenuItem.addEventListener("click", () => {
       audio.navigationSfx.selectMenu.play();
       appLauncher.startCardTouchApp("letter-sounds-asmf-words");

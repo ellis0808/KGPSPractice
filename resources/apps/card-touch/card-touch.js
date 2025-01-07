@@ -517,7 +517,7 @@ function createBoard() {
           cardText.push(newCardText);
           ++i;
         });
-      } else if (style >= 6 || style <= 15) {
+      } else if (style >= 6 && style <= 15) {
         targetItemArray.forEach(() => {
           const card = document.createElement("div");
           card.setAttribute("contentID", targetItemArray[i]);
@@ -530,6 +530,19 @@ function createBoard() {
           cardText.push(newCardText);
           ++i;
         });
+        // } else if (style === 7) {
+        //   targetItemArray.forEach(() => {
+        //     const card = document.createElement("div");
+        //     card.setAttribute("contentID", targetItemArray[i]);
+        //     card.setAttribute("data-id", i);
+        //     newCardText = card.getAttribute("contentID");
+        //     card.textContent = newCardText;
+        //     card.classList.add("card", "sight-word");
+        //     grid.append(card);
+        //     card.addEventListener("click", touchCard);
+        //     cardText.push(newCardText);
+        //     ++i;
+        //   });
       }
       btnContainer3.appendChild(repeatBtn);
       btnContainer1.appendChild(scoreFunction.display);
