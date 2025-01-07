@@ -7,7 +7,7 @@ import {
   stylesheet,
   topContainer,
   user,
-  parentsInfo,
+  // parentsInfo,
 } from "../../utilities/variables.js";
 import {
   startCardTouchApp,
@@ -147,7 +147,7 @@ returnToMainMenuBtn.addEventListener("click", returnToMainMenu);
 function returnToMainMenu() {
   mainMenuSfx.back.play();
   topContainer.innerText = "";
-  displayParentsInfoBtn();
+  // displayParentsInfoBtn();
   displayGreeting();
   abcMenu.classList.remove("hidden");
   numbersMenu.classList.remove("hidden");
@@ -271,7 +271,7 @@ spellingWritingAppMenuItem.innerText = "Writing";
 function displayAbcMenu() {
   mainMenuSfx.select2.play();
   isMainMenu = false;
-  hideParentsInfoBtn();
+  // hideParentsInfoBtn();
   topContainer.innerText = "Alphabet";
   abcMenu.classList.add("hidden");
   numbersMenu.classList.add("hidden");
@@ -290,7 +290,7 @@ function displayAbcMenu() {
 function displaySightWordsMenu() {
   mainMenuSfx.select2.play();
   isMainMenu = false;
-  hideParentsInfoBtn();
+  // hideParentsInfoBtn();
   topContainer.innerText = "Sight Words";
   abcMenu.classList.add("hidden");
   numbersMenu.classList.add("hidden");
@@ -310,7 +310,7 @@ function displaySightWordsMenu() {
 // Displays the Spelling Menu
 function displaySpellingMenu() {
   mainMenuSfx.select2.play();
-  hideParentsInfoBtn();
+  // hideParentsInfoBtn();
   isMainMenu = false;
   topContainer.innerText = "Spelling";
   abcMenu.classList.add("hidden");
@@ -394,7 +394,7 @@ numberFluency81to100AppMenuItem.addEventListener("click", () => {
 function displayNumbersMenu() {
   mainMenuSfx.select2.play();
   isMainMenu = false;
-  hideParentsInfoBtn();
+  // hideParentsInfoBtn();
   topContainer.innerText = "Numbers";
   abcMenu.classList.add("hidden");
   numbersMenu.classList.add("hidden");
@@ -426,7 +426,7 @@ function returnToMainMenuToggle() {
 export {
   displayGreeting,
   displayMainPage,
-  hideParentsInfoBtn,
+  // hideParentsInfoBtn,
   startMainApp,
   setTopMenuVariables,
   abcMenu,
