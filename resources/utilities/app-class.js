@@ -154,11 +154,6 @@ class App {
     pauseFunction.unpause();
     this.appContainer.classList.add("hide");
     this.appControlsContainer.classList.add("hide");
-    // console.log(this.endSessionItems);
-    // document.querySelectorAll(`${this.endSessionItems[0]}`).forEach((item) => {
-    //   console.log(item);
-    //   item.remove();
-    // });
     endRoundScreen.removeContainer();
     homeBtnFunction.removeContainer();
     scoreFunction.resetCurrentScore();
@@ -172,6 +167,7 @@ class App {
   }
   clearBoard() {
     this.clearBoardMethod();
+    scoreFunction.resetCurrentScore();
   }
   prepareForNewRound() {
     this.clearBoard();
@@ -201,12 +197,6 @@ class App {
     toggleBlur.removeAllBlur();
   }
   updateSessionInfoForDatabase() {
-    console.log(
-      this.currentApp + "totalElapsedTime",
-      this.currentApp + "numberCorrect",
-      this.currentApp + "numberIncorrect",
-      this.currentApp + "answerAttempts"
-    );
     this.totalElapsedTime = this.currentApp + "totalElapsedTime";
     this.correctAnswerCount = this.currentApp + "numberCorrect";
     this.incorrectAnswerCount = this.currentApp + "numberIncorrect";
