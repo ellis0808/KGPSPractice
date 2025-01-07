@@ -24,7 +24,7 @@ import {
   mainContainer,
   menuContainer,
   navBar,
-  parentsInfo,
+  // parentsInfo,
   topContainer,
 } from "./variables.js";
 
@@ -58,7 +58,7 @@ function removeMenuPage() {
 function restoreMainMenu() {
   // body.appendChild(navBar);
   topContainer.innerText = "";
-  body.appendChild(parentsInfo);
+  // body.appendChild(parentsInfo);
   mainContainer.appendChild(topContainer);
   mainContainer.appendChild(menuContainer);
   // navBar.classList.remove("hidden");
