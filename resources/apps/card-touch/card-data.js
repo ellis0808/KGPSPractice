@@ -112,15 +112,37 @@ const sightWordsNumbers = [
   "eleven",
   "twelve",
 ];
-const letterSoundsASMF = ["a", "m", "s", "f"];
-const letterSoundsITRP = ["i", "t", "r", "p"];
+const letterSoundsASMFLetters = ["a", "m", "s", "f"];
+const letterSoundsITRPLetters = ["i", "t", "r", "p"];
+
+const letterSoundsASMFWords = [
+  "am",
+  "ma",
+  "sa",
+  "as",
+  "af",
+  "aff",
+  "fa",
+  "sam",
+  "mas",
+  "mass",
+  "fam",
+  "maf",
+  "maff",
+  "fas",
+  "fass",
+  "saf",
+  "amf",
+  "ams",
+];
 export {
   alphabet,
   sightWords1,
   sightWords2,
   sightWords3,
-  letterSoundsASMF,
-  letterSoundsITRP,
+  letterSoundsASMFLetters,
+  letterSoundsASMFWords,
+  letterSoundsITRPLetters,
   sightWordsNumbers,
   sightWordsAll,
 };

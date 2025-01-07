@@ -114,6 +114,44 @@ class Audio {
       console.log("There was an error ", error);
     }
   }
+  async getAudioMix(
+    category,
+    grouping1,
+    grouping2,
+    grouping3,
+    grouping4,
+    grouping5
+  ) {
+    try {
+      let response;
+      if (grouping5 !== null) {
+        response = await fetch(
+          `${BASE_PATH}api/load_audio_mix.php?id1=${category}&id2=${grouping1}&id3=${grouping2}&id4=${grouping3}&id5=${grouping4}&id6=${grouping5}`
+        );
+      } else if (grouping5 === null) {
+        response = await fetch(
+          `${BASE_PATH}api/load_audio_mix.php?id1=${category}&id2=${grouping1}&id3=${grouping2}&id4=${grouping3}&id5=${grouping4}`
+        );
+      } else if (grouping4 === null) {
+        response = await fetch(
+          `${BASE_PATH}api/load_audio_mix.php?id1=${category}&id2=${grouping1}&id3=${grouping2}&id4=${grouping3}`
+        );
+      } else if (grouping3 === null) {
+        response = await fetch(
+          `${BASE_PATH}api/load_audio_mix.php?id1=${category}&id2=${grouping1}&id3=${grouping2}`
+        );
+      }
+
+      if (!response.ok) {
+        throw new Error("Network response was not okay");
+      }
+      const audioData = await response.json();
+
+      this.loadAudio(audioData);
+    } catch (error) {
+      console.log("There was an error ", error);
+    }
+  }
   loadAudio(audioData) {
     this.audioObject = {};
     audioData.map((item) => {

@@ -11,8 +11,9 @@ import {
   sightWords1,
   sightWords2,
   sightWords3,
-  letterSoundsASMF,
-  letterSoundsITRP,
+  letterSoundsASMFLetters,
+  letterSoundsITRPLetters,
+  letterSoundsASMFWords,
 } from "./card-data.js";
 import { wobble, spinfade, newRoundCardFlip, particles } from "./fx.js";
 import { scoreFunction } from "../../utilities/score.js";
@@ -452,16 +453,28 @@ function createBoard() {
           }
         }
       }
-    } else if (style === 6) {
-      let letterSound;
+    } else if (style === 6 || style === 8) {
+      let letterSoundWord;
       if (style === 6) {
         grid.classList.add("sight-word-grid-4x4");
-        letterSoundsASMF.forEach((item) => {
+        letterSoundsASMFLetters.forEach((item) => {
           targetItemArray.push(item);
         });
-        console.log(targetItemArray);
-        console.log(audio.audioObject);
+      } else if (style === 7 || style === 9) {
+        grid.classList.add("sight-word-grid");
+        for (let i = 0; targetItemArray.length < 6; ++i) {
+          letterSoundWord = `${
+            letterSoundsASMFWords[
+              Math.floor(Math.random() * letterSoundsASMFWords.length)
+            ]
+          }`;
+          if (!targetItemArray.includes(letterSoundWord)) {
+            targetItemArray.push(letterSoundWord);
+          }
+        }
       }
+      console.log(targetItemArray);
+      console.log(audio.audioObject);
     }
   }
   if (!isSessionFinished) {
@@ -502,7 +515,7 @@ function createBoard() {
           cardText.push(newCardText);
           ++i;
         });
-      } else if (style === 6) {
+      } else if (style >= 6 || style <= 15) {
         targetItemArray.forEach(() => {
           const card = document.createElement("div");
           card.setAttribute("contentID", targetItemArray[i]);

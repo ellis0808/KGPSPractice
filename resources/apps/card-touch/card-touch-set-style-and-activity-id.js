@@ -30,8 +30,13 @@ function setStyle(set) {
       cardTouchAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
-    case "letter-sounds-asmf":
+    case "letter-sounds-asmf-letters":
       style = 6;
+      cardTouchAudio.startAudioFetch(style);
+      setActivityId(style);
+      return style;
+    case "letter-sounds-asmf-words":
+      style = 7;
       cardTouchAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
@@ -54,7 +59,7 @@ function setActivityId(style) {
     case 6:
       return (activityId = 16);
     case 7:
-      return (activityId = 8);
+      return (activityId = 17);
     case 8:
       return (activityId = 9);
   }
