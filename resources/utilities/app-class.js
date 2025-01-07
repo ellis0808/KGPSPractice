@@ -141,6 +141,8 @@ class App {
     this.initializeEventListeners();
     endRoundScreen.removeContainer();
     startScreen.removeStartScreen();
+    scoreFunction.resetCurrentScore();
+
     setTimeout(() => {
       this.btnContainer2.remove();
       this.startRound();
@@ -167,7 +169,6 @@ class App {
   }
   clearBoard() {
     this.clearBoardMethod();
-    scoreFunction.resetCurrentScore();
   }
   prepareForNewRound() {
     this.clearBoard();
