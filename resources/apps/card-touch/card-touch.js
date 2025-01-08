@@ -276,16 +276,16 @@ function startNewRound() {
 }
 
 function roundOver() {
-  if (!btnContainer5) {
-    btnContainer5 = document.createElement("div");
-    btnContainer5.classList.add("btn-container5");
-  }
-  if (btnContainer5.classList.contains("hide")) {
-    btnContainer5.classList.remove("hide");
-  }
+  // if (!btnContainer5) {
+  //   btnContainer5 = document.createElement("div");
+  //   btnContainer5.classList.add("btn-container5");
+  // }
+  // if (btnContainer5.classList.contains("hide")) {
+  //   btnContainer5.classList.remove("hide");
+  // }
   endRoundScreen.displayContainer();
-  btnContainer5.appendChild(endRoundScreen.endMessagesContainer);
-  appContainer.appendChild(btnContainer5);
+  // btnContainer5.appendChild(endRoundScreen.endMessagesContainer);
+  // appContainer.appendChild(btnContainer5);
 }
 
 // Clear away all cards
