@@ -898,21 +898,11 @@ class MenuItems {
       });
   }
   removeSecondaryMenu() {
-    // document.querySelectorAll(".secondary-menu-item").forEach((item) => {
-    //   item.classList.add("hide");
-    //   item.remove();
-    // });
-    console.log("secondary menu being removed...");
-    console.log(
-      document.querySelectorAll(".secondary-menu, .secondary-menu-item")
-    );
-
     document
       .querySelectorAll(
         ".secondary-menu, .secondary-menu-container, .secondary-menu-item, .secondary-menu-div"
       )
       .forEach((item) => {
-        console.log(item);
         item.classList.add("hidden");
         item.remove();
       });
@@ -945,7 +935,6 @@ class MenuItems {
   setSecondaryMenuTrue() {
     this.isPrimaryMenu = false;
     this.isSecondaryMenu = true;
-    console.log("secondary menu: ", this.isSecondaryMenu);
   }
   restoreMainMenu() {
     body.appendChild(navBar);
