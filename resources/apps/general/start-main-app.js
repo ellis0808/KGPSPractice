@@ -900,6 +900,13 @@ class MenuItems {
     //   item.classList.add("hide");
     //   item.remove();
     // });
+    console.log("secondary menu being removed...");
+    console.log(
+      document.querySelectorAll(
+        ".secondary-menu, .secondary-menu-container, .secondary-menu-item, .secondary-menu-div"
+      )
+    );
+
     document
       .querySelectorAll(
         ".secondary-menu, .secondary-menu-container, .secondary-menu-item, .secondary-menu-div"
