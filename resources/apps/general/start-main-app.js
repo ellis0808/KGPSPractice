@@ -281,9 +281,9 @@ class MenuItems {
     this.letterSoundsTouchAMSFLettersAppMenuItem.addEventListener(
       "click",
       () => {
+        this.removeMenu();
         audio.navigationSfx.selectMenu.play();
         appLauncher.startCardTouchApp("letter-sounds-asmf-letters");
-        this.removeMenu();
       }
     );
     // 2. Letter Sounds AMSF Words Touch App Menu Item
