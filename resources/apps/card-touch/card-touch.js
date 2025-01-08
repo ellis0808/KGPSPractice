@@ -44,6 +44,7 @@ function cardTouchApp(set) {
   setStyle(set);
   setGridStyle(style);
   // setRoundTime(style);
+  endRoundScreen.removeContainer();
   setTimeout(() => {
     timerFunction.clearTimer();
     mainContainer.appendChild(appContainer);
@@ -57,7 +58,6 @@ function cardTouchApp(set) {
   menuItems.removeMenuPage();
 
   setTimeout(displayStartBtn, 200);
-  endRoundScreen.removeContainer();
   timerFunction.setEndRoundFunction(roundOver);
   endRoundScreen.createBtnsAndContainer();
   endRoundScreen.addClassesAndText();
