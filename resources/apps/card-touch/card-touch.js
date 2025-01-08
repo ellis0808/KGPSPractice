@@ -207,7 +207,7 @@ function displayStartBtn() {
 // Start Round
 function startSession() {
   audio.navigationSfx.startApp.play();
-  removeEndMessagesContainer();
+  endRoundScreen.removeContainer();
   startBtn.classList.add("no-touch");
   startBtn.classList.add("spinfade");
   startBtn.classList.remove("intro");
@@ -653,6 +653,7 @@ function endSession() {
   document.querySelectorAll(".box, .card-touch-app").forEach((item) => {
     item.remove();
   });
+  endRoundScreen.removeContainer();
   if (document.querySelector(".end-messages-container")) {
     document.querySelector(".end-messages-container").remove();
   }
@@ -679,7 +680,6 @@ function endApp() {
       }, 100);
     }, 500);
   }, 500);
-  endRoundScreen.removeContainer();
   scoreFunction.display.innerText = scoreFunction.currentScore;
   scoreFunction.hide();
   timerFunction.clearTimer();
