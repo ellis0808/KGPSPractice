@@ -902,7 +902,7 @@ class MenuItems {
     // });
     document
       .querySelectorAll(
-        ".secondary-menu, .secondary-menu-container, .secondary-menu-item"
+        ".secondary-menu, .secondary-menu-container, .secondary-menu-item, .secondary-menu-div"
       )
       .forEach((item) => {
         console.log(item);
@@ -918,7 +918,7 @@ class MenuItems {
         item.remove();
       });
     } else if (this.isSecondaryMenu) {
-      this.hideSecondaryMenu();
+      // this.hideSecondaryMenu();
       this.removeSecondaryMenu();
     }
   }
@@ -938,6 +938,7 @@ class MenuItems {
   setSecondaryMenuTrue() {
     this.isPrimaryMenu = false;
     this.isSecondaryMenu = true;
+    console.log("secondary menu: ", this.isSecondaryMenu);
   }
   restoreMainMenu() {
     body.appendChild(navBar);
