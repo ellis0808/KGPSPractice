@@ -57,7 +57,7 @@ function cardTouchApp(set) {
   menuItems.removeMenuPage();
 
   setTimeout(displayStartBtn, 200);
-
+  endRoundScreen.removeContainer();
   timerFunction.setEndRoundFunction(roundOver);
   endRoundScreen.createBtnsAndContainer();
   endRoundScreen.addClassesAndText();
@@ -684,6 +684,7 @@ function endApp() {
   scoreFunction.hide();
   timerFunction.clearTimer();
   timerFunction.hide();
+  endRoundScreen.removeContainer();
 }
 // pauses app
 function pause() {

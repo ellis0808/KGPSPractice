@@ -16,10 +16,7 @@ const endRoundScreen = {
     this.setBtnLinks();
   },
   addClassesAndText() {
-    this.endMessagesContainer.classList.add(
-      "end-messages-container",
-      "matching-app"
-    );
+    this.endMessagesContainer.classList.add("end-messages-container");
     this.tryAgainBtn.classList.add("try-again-btn", "button");
     this.tryAgainBtn.innerText = "One More Time";
     this.finishBtn.classList.add("finish-btn", "button");
