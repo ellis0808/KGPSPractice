@@ -679,6 +679,7 @@ function endApp() {
       }, 100);
     }, 500);
   }, 500);
+  endRoundScreen.removeContainer();
   scoreFunction.display.innerText = scoreFunction.currentScore;
   scoreFunction.hide();
   timerFunction.clearTimer();
