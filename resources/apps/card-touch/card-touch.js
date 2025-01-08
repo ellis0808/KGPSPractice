@@ -44,7 +44,7 @@ function cardTouchApp(set) {
   setStyle(set);
   setGridStyle(style);
   // setRoundTime(style);
-  endRoundScreen.removeContainer();
+  // removeEndMessagesContainer()
   setTimeout(() => {
     timerFunction.clearTimer();
     mainContainer.appendChild(appContainer);
@@ -59,10 +59,8 @@ function cardTouchApp(set) {
 
   setTimeout(displayStartBtn, 200);
   timerFunction.setEndRoundFunction(roundOver);
-  endRoundScreen.createBtnsAndContainer();
-  endRoundScreen.addClassesAndText();
-  endRoundScreen.tryAgainBtn.addEventListener("pointerdown", startSession);
-  endRoundScreen.finishBtn.addEventListener("pointerdown", endApp);
+  tryAgainBtn.addEventListener("pointerdown", startSession);
+  finishBtn.addEventListener("pointerdown", endApp);
   scoreFunction.resetCurrentScore();
   scoreFunction.display.innerText = scoreFunction.currentScore;
   appContainer.classList.remove("hide");
@@ -207,7 +205,7 @@ function displayStartBtn() {
 // Start Round
 function startSession() {
   audio.navigationSfx.startApp.play();
-  endRoundScreen.removeContainer();
+  removeEndMessagesContainer();
   startBtn.classList.add("no-touch");
   startBtn.classList.add("spinfade");
   startBtn.classList.remove("intro");
@@ -276,16 +274,17 @@ function startNewRound() {
 }
 
 function roundOver() {
-  // if (!btnContainer5) {
-  //   btnContainer5 = document.createElement("div");
-  //   btnContainer5.classList.add("btn-container5");
-  // }
-  // if (btnContainer5.classList.contains("hide")) {
-  //   btnContainer5.classList.remove("hide");
-  // }
-  endRoundScreen.displayContainer();
+  if (!btnContainer5) {
+    btnContainer5 = document.createElement("div");
+    btnContainer5.classList.add("btn-container5");
+  }
+  if (btnContainer5.classList.contains("hide")) {
+    btnContainer5.classList.remove("hide");
+  }
+  // endRoundScreen.displayContainer();
   // btnContainer5.appendChild(endRoundScreen.endMessagesContainer);
   // appContainer.appendChild(btnContainer5);
+  displayEndMessagesContainer();
 }
 
 // Clear away all cards
@@ -653,7 +652,7 @@ function endSession() {
   document.querySelectorAll(".box, .card-touch-app").forEach((item) => {
     item.remove();
   });
-  endRoundScreen.removeContainer();
+  removeEndMessagesContainer();
   if (document.querySelector(".end-messages-container")) {
     document.querySelector(".end-messages-container").remove();
   }
@@ -684,7 +683,7 @@ function endApp() {
   scoreFunction.hide();
   timerFunction.clearTimer();
   timerFunction.hide();
-  endRoundScreen.removeContainer();
+  removeEndMessagesContainer();
 }
 // pauses app
 function pause() {
