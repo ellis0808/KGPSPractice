@@ -896,14 +896,19 @@ class MenuItems {
       });
   }
   removeSecondaryMenu() {
-    document.querySelectorAll(".secondary-menu-item").forEach((item) => {
-      item.classList.add("hide");
-      item.remove();
-    });
-    document.querySelectorAll(".secondary-menu").forEach((item) => {
-      item.classList.add("hide");
-      item.remove();
-    });
+    // document.querySelectorAll(".secondary-menu-item").forEach((item) => {
+    //   item.classList.add("hide");
+    //   item.remove();
+    // });
+    document
+      .querySelectorAll(
+        ".secondary-menu, .secondary-menu-container, .secondary-menu-item"
+      )
+      .forEach((item) => {
+        console.log(item);
+        item.classList.add("hide");
+        item.remove();
+      });
   }
   removeMenu() {
     // remove Primary menu
@@ -912,8 +917,7 @@ class MenuItems {
         item.classList.add("hide");
         item.remove();
       });
-    }
-    if (this.isSecondaryMenu) {
+    } else if (this.isSecondaryMenu) {
       this.hideSecondaryMenu();
       this.removeSecondaryMenu();
     }
