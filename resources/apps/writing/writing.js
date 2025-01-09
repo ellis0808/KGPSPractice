@@ -401,6 +401,7 @@ class WritingApp {
     console.log(this.totalElapsedTime);
 
     timerFunction.goalCompleted();
+    this.correctAnswerPoints = this.numberCorrect;
     // this.setCorrectAnswerPoints();
     console.log(this.correctAnswerPoints);
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
