@@ -270,7 +270,7 @@ class WritingApp {
         this.numberCorrect * 2 +
         Math.floor(this.maxNumberOfWordsToWrite * 0.25);
     } else if (this.numberIncorrect > 0) {
-      // this.correctAnswerPoints = this.numberCorrect * 2;
+      this.correctAnswerPoints = this.numberCorrect * 2;
     }
     console.log("correct answer points: ", this.correctAnswerPoints);
     console.log("max number of words: ", this.maxNumberOfWordsToWrite);
@@ -401,7 +401,7 @@ class WritingApp {
     console.log(this.totalElapsedTime);
 
     timerFunction.goalCompleted();
-    this.setCorrectAnswerPoints();
+    // this.setCorrectAnswerPoints();
     console.log(this.correctAnswerPoints);
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
     console.log(scoreFunction.currentScore);
