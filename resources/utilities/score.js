@@ -36,7 +36,7 @@ const scoreFunction = {
     const increment = 1;
     let initialValue = this.currentScore;
     let target = this.currentScore + points;
-    console.log(target);
+    console.log("initial value: ", initialValue, "ending value: ", target);
 
     const increaseCount = setInterval(() => {
       initialValue += increment;

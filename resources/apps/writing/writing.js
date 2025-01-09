@@ -251,6 +251,7 @@ class WritingApp {
   }
   increaseNumberCorrect() {
     ++this.numberCorrect;
+    console.log(this.numberCorrect);
   }
   increaseNumberIncorrect() {
     ++this.numberIncorrect;
@@ -271,6 +272,8 @@ class WritingApp {
     } else if (this.numberIncorrect > 0) {
       this.correctAnswerPoints = this.numberCorrect * 2;
     }
+    console.log("correct answer points: ", this.correctAnswerPoints);
+    console.log("max number of words: ", this.maxNumberOfWordsToWrite);
   }
   setGrid() {
     app.grid.appendChild(this.messageRow);
