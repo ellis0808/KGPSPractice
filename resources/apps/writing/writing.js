@@ -19,7 +19,7 @@ class WritingApp {
     this.numberCorrect = 0;
     this.numberIncorrect = 0;
     this.answerAttempts = 0;
-    this.correctAnswerPoints = null;
+    this.correctAnswerPoints = 0;
     this.maxNumberOfWordsToWrite = null;
     this.currentProblemNumber = 1;
     this.writingAppClass = ["writing-app"];
