@@ -266,6 +266,8 @@ class WritingApp {
     console.log("calculating points...");
 
     if (this.numberIncorrect === 0) {
+      console.log(this.correctAnswerPoints);
+
       this.correctAnswerPoints =
         this.numberCorrect * 2 +
         Math.floor(this.maxNumberOfWordsToWrite * 0.25);
