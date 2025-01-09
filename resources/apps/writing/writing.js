@@ -262,6 +262,8 @@ class WritingApp {
     this.currentProblemNumber = 1;
   }
   setCorrectAnswerPoints() {
+    console.log("calculating points...");
+
     if (this.numberIncorrect === 0) {
       this.correctAnswerPoints =
         this.numberCorrect * 2 +
@@ -387,7 +389,9 @@ class WritingApp {
         setTimeout(writingAudio.repeat, 700);
       }, 2000);
     }
-    this.increaseCurrentProblemNumber();
+    if (!timerFunction.goalMet) {
+      this.increaseCurrentProblemNumber();
+    }
   }
   endRound() {
     this.totalElapsedTime = timerFunction.time;
