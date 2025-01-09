@@ -400,12 +400,12 @@ class WritingApp {
     this.totalElapsedTime = timerFunction.time;
     console.log(this.totalElapsedTime);
 
-    timerFunction.goalCompleted();
-    this.correctAnswerPoints = this.numberCorrect;
-    // this.setCorrectAnswerPoints();
+    // this.correctAnswerPoints = this.numberCorrect;
+    this.setCorrectAnswerPoints();
     console.log(this.correctAnswerPoints);
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
     console.log(scoreFunction.currentScore);
+    timerFunction.goalCompleted();
   }
 }
 
