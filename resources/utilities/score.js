@@ -40,9 +40,9 @@ const scoreFunction = {
 
     const increaseCount = setInterval(() => {
       initialValue += increment;
+      console.log(this.display.textContent);
       if (initialValue > target) {
         this.display.textContent = this.currentScore + points;
-        console.log(this.display.textContent);
 
         clearInterval(increaseCount);
         return;
