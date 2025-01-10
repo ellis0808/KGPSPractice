@@ -198,10 +198,11 @@ class App {
     toggleBlur.removeAllBlur();
   }
   updateSessionInfoForDatabase() {
-    this.totalElapsedTime = `${this.currentApp}totalElapsedTime`;
-    this.correctAnswerCount = this.currentApp + "numberCorrect";
-    this.incorrectAnswerCount = this.currentApp + "numberIncorrect";
-    this.answerAttempts = this.currentApp + "answerAttempts";
+    let stats = {};
+    this.totalElapsedTime = stats[`${this.currentApp}totalElapsedTime`];
+    this.correctAnswerCount = stats[`${this.currentApp} numberCorrect`];
+    this.incorrectAnswerCount = stats[`${this.currentApp} numberIncorrect`];
+    this.answerAttempts = stats[`${this.currentApp} answerAttempts`];
     console.log(
       "activity id: ",
       app.activityId,
