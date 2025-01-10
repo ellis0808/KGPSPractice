@@ -38,8 +38,8 @@ const scoreFunction = {
     let target = this.currentScore + points;
     console.log("initial value: ", initialValue, "ending value: ", target);
     while (initialValue < target) {
+      initialValue += increment;
       setTimeout(() => {
-        initialValue += increment;
         this.display.textContent = initialValue;
       }, 200);
     }
