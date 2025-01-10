@@ -21,7 +21,7 @@ import { BASE_PATH } from "../../utilities/get-base-path.js";
 
 class MatchingApp {
   constructor() {
-    this.currentApp = ["matchingApp."];
+    this.currentApp = "matchingApp";
     this.activityId = null;
     this.correctAnswerPoints = 1;
     this.endDotId = null;
