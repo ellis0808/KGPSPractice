@@ -198,7 +198,7 @@ class App {
     toggleBlur.removeAllBlur();
   }
   updateSessionInfoForDatabase() {
-    this.totalElapsedTime = this.currentApp + "totalElapsedTime";
+    this.totalElapsedTime = `${this.currentApp}totalElapsedTime`;
     this.correctAnswerCount = this.currentApp + "numberCorrect";
     this.incorrectAnswerCount = this.currentApp + "numberIncorrect";
     this.answerAttempts = this.currentApp + "answerAttempts";
