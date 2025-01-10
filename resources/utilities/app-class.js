@@ -206,14 +206,31 @@ class App {
   endRound() {
     this.updateSessionInfoForDatabase();
     scoreFunction.updateUserTotalScore(
-      this.activityId,
+      app.activityId,
       user.id,
       user.access,
-      this.correctAnswerCount,
-      this.incorrectAnswerCount,
-      this.totalElapsedTime,
-      this.answerAttempts
+      app.correctAnswerCount,
+      app.incorrectAnswerCount,
+      app.totalElapsedTime,
+      app.answerAttempts
     );
+    console.log(
+      "activity id: ",
+      app.activityId,
+      "userid: ",
+      user.id,
+      "user access: ",
+      user.access,
+      "correctAnswerCount: ",
+      app.correctAnswerCount,
+      "incorrectAnswerCount: ",
+      app.incorrectAnswerCount,
+      "elapsed time: ",
+      app.totalElapsedTime,
+      "answer attempts: ",
+      app.answerAttempts
+    );
+
     console.log(user.cumulativeScore);
     scoreFunction.updateUserScore();
     console.log(user.cumulativeScore);

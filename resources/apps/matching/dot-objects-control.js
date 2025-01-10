@@ -59,24 +59,6 @@ class DotAndLineCommand {
   markAsIncorrect(dot1) {
     dot1.markAsIncorrect();
   }
-  // notifyEndToStart(action, startDot, endDot, line, event) {
-  //   if (action === "connectEndToStart") {
-  //     if (!endDot || !startDot) {
-  //       return;
-  //     } else {
-  //       this.connectEndToStart(startDot, endDot, line, event);
-  //     }
-  //   }
-  // }
-  // notifyStartToEnd(action, startDot, endDot, line, event) {
-  //   if (action === "connectStartToEnd") {
-  //     if (!endDot || !startDot) {
-  //       return;
-  //     } else {
-  //       this.connectStartToEnd(startDot, endDot, line, event);
-  //     }
-  //   }
-  // }
 }
 const dotAndLineCommand = new DotAndLineCommand();
 const startDot = [];

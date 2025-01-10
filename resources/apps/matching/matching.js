@@ -37,7 +37,7 @@ class MatchingApp {
     this.time = null;
     this.numberCorrect = 0;
     this.numberIncorrect = 0;
-    this.answerAttempts = 0;
+    this.answerAttempts = this.numberCorrect + this.numberIncorrect;
     this.endSessionItems = [
       ".startrow",
       ".line",
