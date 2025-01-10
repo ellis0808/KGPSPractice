@@ -24,7 +24,7 @@ try {
     $pdo = getDBConnection();
 
     $stmt = $pdo->prepare('INSERT INTO activity_stats (activity_id, user_id, user_type, correct_answer_count, incorrect_answer_count, total_elapsed_time, time_to_correct_answer_duration_in_seconds, answer_attempts, activity_score, date_time) VALUES (:activity_id, :user_id, :user_type, :correct_answer_count, :incorrect_answer_count, :total_elapsed_time, :time_to_correct_answer_duration_in_seconds, :answer_attempts, :activity_score, :date_time)');
-    $stmt->execute(['activity_id' => $activityId, 'user_id' => $userId, 'user_type' => $userType, 'correct_answer_count' => $correctAnswerCount, 'incorrect_answer_count' => $incorrectAnswerCount, 'total_elpased_time' => $totalElapsedTime, 'time_to_correct_answer_duration_in_seconds' => $timeToCorrectAnswerDurationInSeconds, 'answer_attempts' => $answerAttempts, 'activity_score' => $activityScore, 'date_time' => $timeStamp]);
+    $stmt->execute(['activity_id' => $activityId, 'user_id' => $userId, 'user_type' => $userType, 'correct_answer_count' => $correctAnswerCount, 'incorrect_answer_count' => $incorrectAnswerCount, 'total_elapsed_time' => $totalElapsedTime, 'time_to_correct_answer_duration_in_seconds' => $timeToCorrectAnswerDurationInSeconds, 'answer_attempts' => $answerAttempts, 'activity_score' => $activityScore, 'date_time' => $timeStamp]);
 
     echo     json_encode(['message' => 'record added successfully']);
 } catch (PDOException $e) {
