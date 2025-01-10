@@ -196,30 +196,16 @@ class App {
     }, 1000);
     toggleBlur.removeAllBlur();
   }
-  updateSessionInfoForDatabase() {
-    let stats = {};
-    this.totalElapsedTime = this.currentApp["totalElapsedTime"];
-    this.correctAnswerCount = stats[`${this.currentApp} numberCorrect`];
-    this.incorrectAnswerCount = stats[`${this.currentApp} numberIncorrect`];
-    this.answerAttempts = stats[`${this.currentApp} answerAttempts`];
-    console.log(this.currentApp);
-    console.log(this.currentApp["totalElapsedTime"]);
-
+  getStats(numberCorrect, numberIncorrect, answerAttempts, totalElapsedTime) {
+    this.correctAnswerCount = numberCorrect;
+    this.incorrectAnswerCount = numberIncorrect;
+    this.answerAttempts = answerAttempts;
+    this.totalElapsedTime = totalElapsedTime;
     console.log(
-      "activity id: ",
-      app.activityId,
-      "userid: ",
-      user.id,
-      "user access: ",
-      user.access,
-      "correctAnswerCount: ",
-      app.correctAnswerCount,
-      "incorrectAnswerCount: ",
-      app.incorrectAnswerCount,
-      "elapsed time: ",
-      app.totalElapsedTime,
-      "answer attempts: ",
-      app.answerAttempts
+      this.correctAnswerCount,
+      this.incorrectAnswerCount,
+      answerAttempts,
+      totalElapsedTime
     );
   }
   endRound() {

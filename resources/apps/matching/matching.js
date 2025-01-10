@@ -83,6 +83,14 @@ class MatchingApp {
       this.endSessionItems
     );
   }
+  sendStats() {
+    app.getStats(
+      this.numberCorrect,
+      this.numberIncorrect,
+      this.answerAttempts,
+      this.totalElapsedTime
+    );
+  }
   createAndSetStructure = () => {
     this.createGrid();
     this.setGrid();
