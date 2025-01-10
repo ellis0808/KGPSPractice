@@ -12,11 +12,11 @@ $data = json_decode(file_get_contents('php://input'), true);
 $activityId = $data['activity_id'] ?? '';
 $userId = $data['user_id'] ?? '';
 $userType = $data['user_type'] ?? '';
-$correctAnswerCount = $data['correct_answer_count'] ?? '';
-$incorrectAnswerCount = $data['incorrect_answer_count'] ?? '';
-$totalElapsedTime = $data['total_elapsed_time'] ?? '';
-$timeToCorrectAnswerDurationInSeconds = $data['time_to_correct_answer_duration_in_seconds'] ?? '';
-$answerAttempts = $data['answer_attempts'] ?? '';
+$correctAnswerCount = $data['correct_answer_count'] ?? null;
+$incorrectAnswerCount = $data['incorrect_answer_count'] ?? null;
+$totalElapsedTime = $data['total_elapsed_time'] ?? null;
+$timeToCorrectAnswerDurationInSeconds = $data['time_to_correct_answer_duration_in_seconds'] ?? null;
+$answerAttempts = $data['answer_attempts'] ?? null;
 $activityScore = $data['activity_score'] ?? '';
 $timeStamp = date('Y-m-d H:i:s');
 
