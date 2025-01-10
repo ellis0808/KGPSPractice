@@ -57,6 +57,14 @@ class WritingApp {
       this.endSessionItems
     );
   }
+  sendStats() {
+    app.getStats(
+      this.numberCorrect,
+      this.numberIncorrect,
+      this.answerAttempts,
+      this.totalElapsedTime
+    );
+  }
   createAndSetStructure = () => {
     this.createGrid();
     this.createCanvas();
@@ -402,9 +410,9 @@ class WritingApp {
     this.totalElapsedTime = timerFunction.time;
     console.log(this.totalElapsedTime);
 
-    // this.correctAnswerPoints = this.numberCorrect;
     this.setCorrectAnswerPoints();
     console.log(this.correctAnswerPoints);
+    this.sendStats();
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
     console.log(scoreFunction.currentScore);
     timerFunction.goalCompleted();
