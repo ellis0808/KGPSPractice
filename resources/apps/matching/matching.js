@@ -35,9 +35,10 @@ class MatchingApp {
     this.line = new Connector();
     this.styleSheet = `${BASE_PATH}resources/css/matching.css`;
     this.time = null;
-    this.numberCorrect = 0;
-    this.numberIncorrect = 0;
+    this.numberCorrect = null;
+    this.numberIncorrect = null;
     this.answerAttempts = this.numberCorrect + this.numberIncorrect;
+    this.totalElapsedTime = null;
     this.endSessionItems = [
       ".startrow",
       ".line",

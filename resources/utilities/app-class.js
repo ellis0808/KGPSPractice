@@ -199,7 +199,7 @@ class App {
   }
   updateSessionInfoForDatabase() {
     let stats = {};
-    this.totalElapsedTime = stats[`${this.currentApp}totalElapsedTime`];
+    this.totalElapsedTime = this.currentApp["totalElapsedTime"];
     this.correctAnswerCount = stats[`${this.currentApp} numberCorrect`];
     this.incorrectAnswerCount = stats[`${this.currentApp} numberIncorrect`];
     this.answerAttempts = stats[`${this.currentApp} answerAttempts`];
