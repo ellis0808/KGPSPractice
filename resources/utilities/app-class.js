@@ -209,7 +209,6 @@ class App {
     );
   }
   endRound() {
-    this.updateSessionInfoForDatabase();
     scoreFunction.updateUserTotalScore(
       app.activityId,
       user.id,

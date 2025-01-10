@@ -152,6 +152,7 @@ class MatchingApp {
       ".start-dot.pulse.white-ring"
     );
     if (allCorrectDots.length === this.numberOfItemsToBeDisplayed) {
+      this.sendStats();
       setTimeout(() => {
         scoreFunction.updatePositiveCount(
           allCorrectDots.length * this.correctAnswerPoints
