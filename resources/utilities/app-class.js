@@ -202,6 +202,22 @@ class App {
     this.correctAnswerCount = this.currentApp + "numberCorrect";
     this.incorrectAnswerCount = this.currentApp + "numberIncorrect";
     this.answerAttempts = this.currentApp + "answerAttempts";
+    console.log(
+      "activity id: ",
+      app.activityId,
+      "userid: ",
+      user.id,
+      "user access: ",
+      user.access,
+      "correctAnswerCount: ",
+      app.correctAnswerCount,
+      "incorrectAnswerCount: ",
+      app.incorrectAnswerCount,
+      "elapsed time: ",
+      app.totalElapsedTime,
+      "answer attempts: ",
+      app.answerAttempts
+    );
   }
   endRound() {
     this.updateSessionInfoForDatabase();

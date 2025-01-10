@@ -31,25 +31,12 @@ const scoreFunction = {
   },
   updatePositiveCount(amount) {
     const points = amount;
-    console.log(amount);
-
     const increment = 1;
     let initialValue = this.currentScore;
     let target = this.currentScore + points;
-    console.log("initial value: ", initialValue, "ending value: ", target);
-    // while (initialValue < target) {
-    //   initialValue += increment;
-    //   setTimeout(() => {
-    //     this.display.textContent = initialValue;
-    //   }, 200);
-    // }
-    // this.increaseScore(amount);
     const increaseCount = setInterval(() => {
       initialValue += increment;
-      console.log(this.display.textContent);
       if (initialValue > target) {
-        // this.display.textContent = this.currentScore + points;
-
         clearInterval(increaseCount);
         return;
       }
