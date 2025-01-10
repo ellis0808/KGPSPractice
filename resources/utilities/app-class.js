@@ -202,6 +202,7 @@ class App {
     this.correctAnswerCount = stats[`${this.currentApp} numberCorrect`];
     this.incorrectAnswerCount = stats[`${this.currentApp} numberIncorrect`];
     this.answerAttempts = stats[`${this.currentApp} answerAttempts`];
+    console.log(this.currentApp);
     console.log(this.currentApp["totalElapsedTime"]);
 
     console.log(
