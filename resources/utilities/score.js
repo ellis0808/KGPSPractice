@@ -129,6 +129,7 @@ const scoreFunction = {
       answer_attempts: answerAttempts,
       activity_score: scoreFunction.currentScore,
     };
+    console.log(newStats);
 
     try {
       const response = await fetch(
