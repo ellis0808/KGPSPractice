@@ -37,27 +37,27 @@ const scoreFunction = {
     let initialValue = this.currentScore;
     let target = this.currentScore + points;
     console.log("initial value: ", initialValue, "ending value: ", target);
-    while (initialValue < target) {
-      initialValue += increment;
-      setTimeout(() => {
-        this.display.textContent = initialValue;
-      }, 200);
-    }
-    this.increaseScore(amount);
-    // const increaseCount = setInterval(() => {
+    // while (initialValue < target) {
     //   initialValue += increment;
-    //   console.log(this.display.textContent);
-    //   if (initialValue > target) {
-    //     // this.display.textContent = this.currentScore + points;
+    //   setTimeout(() => {
+    //     this.display.textContent = initialValue;
+    //   }, 200);
+    // }
+    // this.increaseScore(amount);
+    const increaseCount = setInterval(() => {
+      initialValue += increment;
+      console.log(this.display.textContent);
+      if (initialValue > target) {
+        // this.display.textContent = this.currentScore + points;
 
-    //     clearInterval(increaseCount);
-    //     return;
-    //   }
-    //   this.display.textContent = initialValue;
-    // }, 80);
-    // setTimeout(() => {
-    //   this.increaseScore(amount);
-    // }, 600);
+        clearInterval(increaseCount);
+        return;
+      }
+      this.display.textContent = initialValue;
+    }, 80);
+    setTimeout(() => {
+      this.increaseScore(amount);
+    }, 300);
   },
   updateNegativeCount(amount) {
     if (this.currentScore === 0) {
