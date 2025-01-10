@@ -14,7 +14,6 @@ import { audio } from "./audio.js";
 import { menuItems } from "../apps/general/start-main-app.js";
 import { user } from "./user-object.js";
 import { sessionCheck, sessionData } from "../login/session-check.js";
-import { writingApp } from "../apps/writing/writing.js";
 import { BASE_PATH } from "./get-base-path.js";
 
 class App {
@@ -203,6 +202,8 @@ class App {
     this.correctAnswerCount = stats[`${this.currentApp} numberCorrect`];
     this.incorrectAnswerCount = stats[`${this.currentApp} numberIncorrect`];
     this.answerAttempts = stats[`${this.currentApp} answerAttempts`];
+    console.log(this.currentApp["totalElapsedTime"]);
+
     console.log(
       "activity id: ",
       app.activityId,
