@@ -176,6 +176,7 @@ body:not(:has(*)) {
   display: flex;
   font-size: 3rem;
   font-style: italic;
+  color: white;
   place-content: center;
 }
 .message-row {

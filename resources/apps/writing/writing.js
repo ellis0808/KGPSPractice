@@ -243,7 +243,13 @@ class WritingApp {
     app.btnContainer1.appendChild(this.bestTimeDisplay);
   }
   dispilayBestTime() {
-    this.bestTimeDisplay.textContent = this.bestTime;
+    const m = Math.floor(this.bestTime / 60);
+    const s = this.bestTime % 60;
+    if (s < 10) {
+      this.bestTimeDisplay.textContent = `${m}:0${s}`;
+    } else {
+      this.bestTimeDisplay.textContent = `${m}:${s}`;
+    }
   }
   displayNumberCorrect() {
     this.numberCorrectRow.innerText = `${this.numberCorrect}/${this.maxNumberOfWordsToWrite}`;
