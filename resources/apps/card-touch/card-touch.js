@@ -30,8 +30,6 @@ import {
   setStyle,
 } from "./card-touch-set-style-and-activity-id.js";
 import { audio } from "../../utilities/audio.js";
-import { endRoundScreen } from "../../utilities/end-round-screen.js";
-import { appContainer } from "../../utilities/app-container-class.js";
 import { pauseFunction } from "../../utilities/pause-functions.js";
 import { BASE_PATH } from "../../utilities/get-base-path.js";
 
@@ -47,11 +45,11 @@ function cardTouchApp(set) {
   // removeEndMessagesContainer()
   setTimeout(() => {
     timerFunction.clearTimer();
-    mainContainer.appendChild(appContainer);
-    appContainer.appendChild(btnContainer1);
-    appContainer.appendChild(btnContainer2);
-    appContainer.appendChild(btnContainer3);
-    appContainer.appendChild(btnContainer4);
+    mainContainer.appendChild(container);
+    container.appendChild(btnContainer1);
+    container.appendChild(btnContainer2);
+    container.appendChild(btnContainer3);
+    container.appendChild(btnContainer4);
   }, 0);
 
   stylesheet.setAttribute("href", `${BASE_PATH}resources/css/card-touch.css`);
@@ -63,7 +61,7 @@ function cardTouchApp(set) {
   finishBtn.addEventListener("pointerdown", endApp);
   scoreFunction.resetCurrentScore();
   scoreFunction.display.innerText = scoreFunction.currentScore;
-  appContainer.classList.remove("hide");
+  container.classList.remove("hide");
 
   setTimeout(setUser, 2000);
 }
@@ -75,8 +73,8 @@ function setUser() {
   user.id = sessionData.userId;
 }
 
-const appContainer = document.createElement("div");
-appContainer.classList.add("container", "card-touch-app");
+const container = document.createElement("div");
+container.classList.add("container", "card-touch-app");
 
 /* Main App Container */
 const homeBtnContainer = document.createElement("div");
@@ -89,7 +87,7 @@ const pauseBtn = document.createElement("div");
 pauseBtn.classList.add("pause-btn");
 pauseBtn.innerHTML = `<i class="fa-solid fa-pause fa-1x"></i>`;
 pauseBtn.addEventListener("click", pause);
-appContainer.appendChild(homeBtnContainer);
+container.appendChild(homeBtnContainer);
 const btnContainer4 = document.createElement("div");
 btnContainer4.classList.add("btn-container4");
 const reallyGoHomeContainer = document.createElement("div");
@@ -248,7 +246,7 @@ function startNewSession() {
   timerFunction.show();
 
   isSessionFinished = false;
-  appContainer.appendChild(grid);
+  container.appendChild(grid);
   scoreFunction.resetCurrentScore();
   scoreFunction.display.innerText = scoreFunction.currentScore;
   removeBlur();
@@ -283,7 +281,7 @@ function roundOver() {
   }
   // endRoundScreen.displayContainer();
   // btnContainer5.appendChild(endRoundScreen.endMessagesContainer);
-  // appContainer.appendChild(btnContainer5);
+  // container.appendChild(btnContainer5);
   displayEndMessagesContainer();
 }
 
@@ -338,7 +336,7 @@ function displayEndMessagesContainer() {
     "end-messages-container",
     "card-touch-app"
   );
-  appContainer.appendChild(btnContainer5);
+  container.appendChild(btnContainer5);
   btnContainer5.appendChild(endMessagesContainer);
   const finalScoreAssessment = document.createElement("div");
   finalScoreAssessment.classList.add("final-score-assessment");
@@ -647,7 +645,7 @@ function endSession() {
   unpause2();
   homeBtnReturnToNormal();
   resetNavigationBtns();
-  appContainer.classList.add("hide");
+  container.classList.add("hide");
   homeBtnContainer.classList.add("hide");
   document.querySelectorAll(".box, .card-touch-app").forEach((item) => {
     item.remove();
