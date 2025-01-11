@@ -636,7 +636,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.numberFluency41to60AppMenuItem.innerText = "21-40";
+    this.numberFluency41to60AppMenuItem.innerText = "41-60";
     this.numberFluency41to60AppMenuItem.addEventListener("click", () => {
       this.removeMenu();
       audio.navigationSfx.selectMenu.play();
@@ -653,7 +653,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.numberFluency61to80AppMenuItem.innerText = "21-40";
+    this.numberFluency61to80AppMenuItem.innerText = "61-80";
     this.numberFluency61to80AppMenuItem.addEventListener("click", () => {
       this.removeMenu();
       audio.navigationSfx.selectMenu.play();
@@ -670,7 +670,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.numberFluency81to100AppMenuItem.innerText = "21-40";
+    this.numberFluency81to100AppMenuItem.innerText = "81-100";
     this.numberFluency81to100AppMenuItem.addEventListener("click", () => {
       this.removeMenu();
       audio.navigationSfx.selectMenu.play();
@@ -705,7 +705,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.numberWriting51to100AppMenuItem.innerText = "1-50";
+    this.numberWriting51to100AppMenuItem.innerText = "51-100";
     this.numberWriting51to100AppMenuItem.addEventListener("click", () => {
       this.removeMenu();
       audio.navigationSfx.selectMenu.play();
@@ -722,7 +722,7 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.numberWriting1to100AppMenuItem.innerText = "1-50";
+    this.numberWriting1to100AppMenuItem.innerText = "1-100";
     this.numberWriting1to100AppMenuItem.addEventListener("click", () => {
       this.removeMenu();
       audio.navigationSfx.selectMenu.play();
@@ -860,7 +860,13 @@ class MenuItems {
         this.fluencyMenu.appendChild(this.numberFluency81to100AppMenuItem);
         this.writingMenu.appendChild(this.numberWriting1to10AppMenuItem);
         this.writingMenu.appendChild(this.numberWriting11to20AppMenuItem);
+        this.writingMenu.appendChild(this.numberWriting21to40AppMenuItem);
+        this.writingMenu.appendChild(this.numberWriting41to60AppMenuItem);
+        this.writingMenu.appendChild(this.numberWriting61to80AppMenuItem);
+        this.writingMenu.appendChild(this.numberWriting81to100AppMenuItem);
         this.writingMenu.appendChild(this.numberWriting1to50AppMenuItem);
+        this.writingMenu.appendChild(this.numberWriting51to100AppMenuItem);
+        this.writingMenu.appendChild(this.numberWriting1to100AppMenuItem);
         document.querySelectorAll("[app-content='numbers']").forEach((item) => {
           // if (this.touchMenu
 
@@ -880,12 +886,12 @@ class MenuItems {
           this.letterSoundsTouchAMSFLettersAppMenuItem
         );
         this.touchMenu.appendChild(this.letterSoundsTouchAMSFWordsAppMenuItem);
-        // this.writingMenu.appendChild(
-        //   this.letterSoundsWritingAMSFLettersAppMenuItem
-        // );
-        // this.writingMenu.appendChild(
-        //   this.letterSoundsWritingAMSFWordsAppMenuItem
-        // );
+        this.writingMenu.appendChild(
+          this.letterSoundsWritingAMSFLettersAppMenuItem
+        );
+        this.writingMenu.appendChild(
+          this.letterSoundsWritingAMSFWordsAppMenuItem
+        );
         document
           .querySelectorAll("[app-content='letter-sounds']")
           .forEach((item) => {
