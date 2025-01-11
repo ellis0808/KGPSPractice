@@ -1,5 +1,5 @@
 import { homeBtnFunction } from "./go-home-function";
-import { app } from "./app-container-class.js";
+import { appContainer } from "./app-container-class.js";
 
 const elements = {
   structureElements: null,
@@ -12,8 +12,8 @@ const elements = {
 };
 const toggleTouchFunction = {
   disableTouch() {
-    if (!app.grid.classList.contains("no-touch")) {
-      app.grid.classList.add("no-touch");
+    if (!appContainer.grid.classList.contains("no-touch")) {
+      appContainer.grid.classList.add("no-touch");
     }
     // if (elements.structureElements || elements.interactiveElements) {
     //   elements.structureElements.forEach((item) => {
@@ -22,8 +22,8 @@ const toggleTouchFunction = {
     // }
   },
   enableTouch() {
-    if (app.grid.classList.contains("no-touch")) {
-      app.grid.classList.remove("no-touch");
+    if (appContainer.grid.classList.contains("no-touch")) {
+      appContainer.grid.classList.remove("no-touch");
     }
     // if (elements.structureElements) {
     //   elements.structureElements.forEach((item) => {
@@ -48,18 +48,18 @@ const toggleBlur = {
     }
   },
   addStrongBlur() {
-    if (!app.grid.classList.contains("strong-blur")) {
-      app.grid.classList.add("strong-blur");
+    if (!appContainer.grid.classList.contains("strong-blur")) {
+      appContainer.grid.classList.add("strong-blur");
     }
   },
   removeStrongBlur() {
-    if (app.grid.classList.contains("strong-blur")) {
-      app.grid.classList.remove("strong-blur");
+    if (appContainer.grid.classList.contains("strong-blur")) {
+      appContainer.grid.classList.remove("strong-blur");
     }
   },
   removeAllBlur() {
-    if (app.grid.classList.contains("blur", "strong-blur")) {
-      app.grid.classList.remove("blur", "strong-blur");
+    if (appContainer.grid.classList.contains("blur", "strong-blur")) {
+      appContainer.grid.classList.remove("blur", "strong-blur");
     }
   },
 };
