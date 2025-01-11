@@ -31,7 +31,7 @@ import {
 } from "./card-touch-set-style-and-activity-id.js";
 import { audio } from "../../utilities/audio.js";
 import { endRoundScreen } from "../../utilities/end-round-screen.js";
-import { app } from "../../utilities/app-class.js";
+import { appContainer } from "../../utilities/app-container-class.js";
 import { pauseFunction } from "../../utilities/pause-functions.js";
 import { BASE_PATH } from "../../utilities/get-base-path.js";
 

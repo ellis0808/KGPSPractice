@@ -1,5 +1,5 @@
 import { homeBtnFunction } from "./go-home-function";
-import { app } from "./app-class.js";
+import { app } from "./app-container-class.js";
 
 const elements = {
   structureElements: null,

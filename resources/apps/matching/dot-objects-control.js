@@ -1,6 +1,6 @@
 import { matchingApp } from "./matching.js";
 import { audio } from "../../utilities/audio.js";
-import { app } from "../../utilities/app-class.js";
+import { appContainer } from "../../utilities/app-container-class.js";
 
 class DotAndLineCommand {
   constructor() {
@@ -299,7 +299,7 @@ class Connector {
     newLine.style.width = `${this.distance}px`;
     newLine.style.transformOrigin = `-0%`;
     newLine.style.transform = `rotate(${this.slope}deg)`;
-    app.grid.appendChild(newLine);
+    appContainer.grid.appendChild(newLine);
     this.element = newLine;
     newLine.setAttribute("startDotId", matchingApp.startDotId);
     newLine.setAttribute("endDotId", matchingApp.endDotId);

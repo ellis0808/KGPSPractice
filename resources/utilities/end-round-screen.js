@@ -1,4 +1,4 @@
-import { app } from "./app-class.js";
+import { app } from "./app-container-class.js";
 import { scoreFunction, scoreAssessment } from "./score.js";
 import { timerFunction } from "./timer.js";
 

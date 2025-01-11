@@ -313,57 +313,57 @@ class MenuItems {
     });
 
     // 1. Letter Sounds Letters (ASMF) Writing App Menu Item
-    // this.letterSoundsWritingAMSFLettersAppMenuItem.setAttribute(
-    //   "id",
-    //   "letter-sounds-amsf-app-menu-item"
-    // );
-    // this.letterSoundsWritingAMSFLettersAppMenuItem.setAttribute(
-    //   "app-type",
-    //   "touch"
-    // );
-    // this.letterSoundsWritingAMSFLettersAppMenuItem.setAttribute(
-    //   "app-content",
-    //   "letter-sounds"
-    // );
-    // this.letterSoundsWritingAMSFLettersAppMenuItem.classList.add(
-    //   "secondary-menu-div",
-    //   "secondary-menu-item"
-    // );
-    // this.letterSoundsWritingAMSFLettersAppMenuItem.innerText = "a s m f";
-    // this.letterSoundsWritingAMSFLettersAppMenuItem.addEventListener(
-    //   "click",
-    //   () => {
-    //     audio.navigationSfx.selectMenu.play();
-    //     writingApp.run("letter-sounds-asmf-letters", 0);
-    //     this.removeMenu();
-    //   }
-    // );
-    // // 2. Letter Sounds Words (ASMF) Writing App Menu Item
-    // this.letterSoundsWritingAMSFWordsAppMenuItem.setAttribute(
-    //   "id",
-    //   "letter-sounds-amsf-app-menu-item"
-    // );
-    // this.letterSoundsWritingAMSFWordsAppMenuItem.setAttribute(
-    //   "app-type",
-    //   "touch"
-    // );
-    // this.letterSoundsWritingAMSFWordsAppMenuItem.setAttribute(
-    //   "app-content",
-    //   "letter-sounds"
-    // );
-    // this.letterSoundsWritingAMSFWordsAppMenuItem.classList.add(
-    //   "secondary-menu-div",
-    //   "secondary-menu-item"
-    // );
-    // this.letterSoundsWritingAMSFWordsAppMenuItem.innerText = "am, aff...";
-    // this.letterSoundsWritingAMSFWordsAppMenuItem.addEventListener(
-    //   "click",
-    //   () => {
-    //     audio.navigationSfx.selectMenu.play();
-    //     writingApp.run("letter-sounds-asmf-words", 0);
-    //     this.removeMenu();
-    //   }
-    // );
+    this.letterSoundsWritingAMSFLettersAppMenuItem.setAttribute(
+      "id",
+      "letter-sounds-amsf-app-menu-item"
+    );
+    this.letterSoundsWritingAMSFLettersAppMenuItem.setAttribute(
+      "app-type",
+      "touch"
+    );
+    this.letterSoundsWritingAMSFLettersAppMenuItem.setAttribute(
+      "app-content",
+      "letter-sounds"
+    );
+    this.letterSoundsWritingAMSFLettersAppMenuItem.classList.add(
+      "secondary-menu-div",
+      "secondary-menu-item"
+    );
+    this.letterSoundsWritingAMSFLettersAppMenuItem.innerText = "a s m f";
+    this.letterSoundsWritingAMSFLettersAppMenuItem.addEventListener(
+      "click",
+      () => {
+        this.removeMenu();
+        audio.navigationSfx.selectMenu.play();
+        writingApp.run("letter-sounds-asmf-letters", 0);
+      }
+    );
+    // 2. Letter Sounds Words (ASMF) Writing App Menu Item
+    this.letterSoundsWritingAMSFWordsAppMenuItem.setAttribute(
+      "id",
+      "letter-sounds-amsf-app-menu-item"
+    );
+    this.letterSoundsWritingAMSFWordsAppMenuItem.setAttribute(
+      "app-type",
+      "touch"
+    );
+    this.letterSoundsWritingAMSFWordsAppMenuItem.setAttribute(
+      "app-content",
+      "letter-sounds"
+    );
+    this.letterSoundsWritingAMSFWordsAppMenuItem.classList.add(
+      "secondary-menu-div",
+      "secondary-menu-item"
+    );
+    this.letterSoundsWritingAMSFWordsAppMenuItem.innerText = "am, aff...";
+    this.letterSoundsWritingAMSFWordsAppMenuItem.addEventListener(
+      "click",
+      () => {
+        this.removeMenu();
+        audio.navigationSfx.selectMenu.play();
+        writingApp.run("letter-sounds-asmf-words", 0);
+      }
+    );
 
     // 1. Sight Words 1 Touch App Menu Item
     this.sightWords1AppMenuItem.setAttribute(

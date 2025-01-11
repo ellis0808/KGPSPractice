@@ -1,4 +1,4 @@
-import { app } from "./app-class.js";
+import { app } from "./app-container-class.js";
 const startScreen = {
   startBtn: document.createElement("button"),
   exitBtn: document.createElement("div"),

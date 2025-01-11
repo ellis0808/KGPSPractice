@@ -1,6 +1,6 @@
 import { writingAudio } from "./writing-audio.js";
 import { audio } from "../../utilities/audio.js";
-import { app } from "../../utilities/app-class.js";
+import { appContainer } from "../../utilities/app-container-class.js";
 import { scoreFunction } from "../../utilities/score.js";
 import { timerFunction } from "../../utilities/timer.js";
 import { BASE_PATH } from "../../utilities/get-base-path.js";
@@ -40,7 +40,7 @@ class WritingApp {
     setTimeout(() => {
       this.setTime(time);
       this.setUpApp();
-      app.startApp();
+      appContainer.startApp();
       this.setCanvasFunctionality();
     }, 200);
   }
@@ -48,7 +48,7 @@ class WritingApp {
     this.time = time;
   }
   setUpApp() {
-    app.setAppVariables(
+    appContainer.setAppVariables(
       this.currentApp[0],
       this.time,
       this.clearBoard,
@@ -60,7 +60,7 @@ class WritingApp {
     );
   }
   sendStats() {
-    app.getStats(
+    appContainer.getStats(
       this.numberCorrect,
       this.numberIncorrect,
       this.answerAttempts,
@@ -74,7 +74,7 @@ class WritingApp {
     this.setGridandElements();
   };
   setStyleSheet() {
-    app.applyAppStyleSheet(this.stylesheet);
+    appContainer.applyAppStyleSheet(this.stylesheet);
   }
   setStyle(set) {
     switch (set) {
@@ -239,10 +239,10 @@ class WritingApp {
   setBestTimeDisplay() {
     this.bestTimeDisplay = document.createElement("div");
     this.bestTimeDisplay.classList.add("best-time-display");
-    this.dispilayBestTime();
-    app.btnContainer1.appendChild(this.bestTimeDisplay);
+    this.displayBestTime();
+    appContainer.btnContainer1.appendChild(this.bestTimeDisplay);
   }
-  dispilayBestTime() {
+  displayBestTime() {
     const m = Math.floor(this.bestTime / 60);
     const s = this.bestTime % 60;
     if (s < 10) {
@@ -303,10 +303,10 @@ class WritingApp {
     console.log("max number of words: ", this.maxNumberOfWordsToWrite);
   }
   setGrid() {
-    app.grid.appendChild(this.messageRow);
-    app.grid.appendChild(this.numberCorrectRow);
-    app.grid.appendChild(this.canvasRow);
-    app.grid.appendChild(this.controlsRow);
+    appContainer.grid.appendChild(this.messageRow);
+    appContainer.grid.appendChild(this.numberCorrectRow);
+    appContainer.grid.appendChild(this.canvasRow);
+    appContainer.grid.appendChild(this.controlsRow);
   }
   setGridElements() {
     this.messageRow.appendChild(this.questionDisplay);

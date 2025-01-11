@@ -14,7 +14,7 @@ import {
 } from "./matching-set-style-and-activity-id.js";
 import { audio } from "../../utilities/audio.js";
 import { toggleTouchFunction } from "../../utilities/pause-functions.js";
-import { app } from "../../utilities/app-class.js";
+import { appContainer } from "../../utilities/app-container-class.js";
 import { gridItems, itemArrays } from "./generate-grid-items.js";
 import { alphabet } from "../card-touch/card-data.js";
 import { BASE_PATH } from "../../utilities/get-base-path.js";
@@ -65,14 +65,14 @@ class MatchingApp {
     setTimeout(() => {
       this.setTime(time);
       this.setUpApp();
-      app.startApp();
+      appContainer.startApp();
     }, 200);
   }
   setTime(time) {
     this.time = time;
   }
   setUpApp() {
-    app.setAppVariables(
+    appContainer.setAppVariables(
       this.currentApp,
       this.time,
       this.clearBoard,
@@ -84,7 +84,7 @@ class MatchingApp {
     );
   }
   sendStats() {
-    app.getStats(
+    appContainer.getStats(
       this.numberCorrect,
       this.numberIncorrect,
       this.answerAttempts,
@@ -96,7 +96,7 @@ class MatchingApp {
     this.setGrid();
   };
   setStyleSheet() {
-    app.applyAppStyleSheet(this.styleSheet);
+    appContainer.applyAppStyleSheet(this.styleSheet);
   }
   setActivityId() {
     setActivityId(1);
@@ -113,13 +113,13 @@ class MatchingApp {
     this.endDotsContainer.classList.add("end-dot-div");
   }
   setGrid() {
-    app.grid.appendChild(this.startRowContainer);
-    app.grid.appendChild(this.endRowContainer);
-    app.grid.appendChild(this.startDotsContainer);
-    app.grid.appendChild(this.endDotsContainer);
+    appContainer.grid.appendChild(this.startRowContainer);
+    appContainer.grid.appendChild(this.endRowContainer);
+    appContainer.grid.appendChild(this.startDotsContainer);
+    appContainer.grid.appendChild(this.endDotsContainer);
   }
   removeGrid() {
-    app.grid.childNodes().forEach((item) => {
+    appContainer.grid.childNodes().forEach((item) => {
       item.remove();
     });
   }
@@ -133,7 +133,7 @@ class MatchingApp {
   }
   clearBoard() {
     setTimeout(() => {
-      app.gridHideAdd();
+      appContainer.gridHideAdd();
     }, 50);
     setTimeout(() => {
       matchingApp.currentDotIdArray.length = 0;
@@ -163,33 +163,33 @@ class MatchingApp {
       }, 200);
       setTimeout(() => {
         toggleTouchFunction.disableTouch();
-        app.startRound();
+        appContainer.startRound();
       }, 800);
     }
   }
   randomFeedback() {
     Object.keys(audio.feedbackAudioObject.positiveFeedback).forEach(
       (object) => {
-        if (!app.positiveFeedbackAudioObjects.includes(object)) {
+        if (!appContainer.positiveFeedbackAudioObjects.includes(object)) {
           if (object === "greatJob" || object === "goodJob") {
-            app.positiveFeedbackAudioObjects.push(object);
+            appContainer.positiveFeedbackAudioObjects.push(object);
           }
         }
       }
     );
     Object.keys(audio.feedbackAudioObject.positiveFeedback).forEach(
       (object) => {
-        if (!app.negativeFeedbackAudioObjects.includes(object)) {
-          app.negativeFeedbackAudioObjects.push(object);
+        if (!appContainer.negativeFeedbackAudioObjects.includes(object)) {
+          appContainer.negativeFeedbackAudioObjects.push(object);
         }
       }
     );
 
     let randomFeedbackNumber = Math.floor(
-      Math.random() * app.positiveFeedbackAudioObjects.length
+      Math.random() * appContainer.positiveFeedbackAudioObjects.length
     );
     audio.feedbackAudioObject.positiveFeedback[
-      app.positiveFeedbackAudioObjects[randomFeedbackNumber]
+      appContainer.positiveFeedbackAudioObjects[randomFeedbackNumber]
     ].sound.play();
   }
   activateEventListeners() {

@@ -16,7 +16,7 @@ import { user } from "./user-object.js";
 import { sessionCheck, sessionData } from "../login/session-check.js";
 import { BASE_PATH } from "./get-base-path.js";
 
-class App {
+class AppContainer {
   constructor() {
     this.homeStyleSheet = `${BASE_PATH}resources/css/styles.css`;
     this.positiveFeedbackAudioObjects = [];
@@ -393,6 +393,6 @@ class App {
   }
 }
 
-const app = new App();
+const appContainer = new AppContainer();
 
-export { app };
+export { appContainer };
