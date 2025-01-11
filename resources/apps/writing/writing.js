@@ -424,7 +424,7 @@ class WritingApp {
   async getBestTime(id) {
     try {
       const response = await fetch(
-        `${BASE_PATH}api/get_best_score.php?id=${id}`
+        `${BASE_PATH}api/get_best_time.php?id=${id}`
       );
 
       if (!response.ok) {
