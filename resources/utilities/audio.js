@@ -108,6 +108,7 @@ class Audio {
         throw new Error("Network response was not okay");
       }
       const audioData = await response.json();
+      console.log(audioData);
 
       this.loadAudio(audioData);
     } catch (error) {
