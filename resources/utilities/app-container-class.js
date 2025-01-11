@@ -210,29 +210,29 @@ class AppContainer {
   }
   endRound() {
     scoreFunction.updateUserTotalScore(
-      app.activityId,
+      appContainer.activityId,
       user.id,
       user.access,
-      app.correctAnswerCount,
-      app.incorrectAnswerCount,
-      app.totalElapsedTime,
-      app.answerAttempts
+      appContainer.correctAnswerCount,
+      appContainer.incorrectAnswerCount,
+      appContainer.totalElapsedTime,
+      appContainer.answerAttempts
     );
     console.log(
       "activity id: ",
-      app.activityId,
+      appContainer.activityId,
       "userid: ",
       user.id,
       "user access: ",
       user.access,
       "correctAnswerCount: ",
-      app.correctAnswerCount,
+      appContainer.correctAnswerCount,
       "incorrectAnswerCount: ",
-      app.incorrectAnswerCount,
+      appContainer.incorrectAnswerCount,
       "elapsed time: ",
-      app.totalElapsedTime,
+      appContainer.totalElapsedTime,
       "answer attempts: ",
-      app.answerAttempts
+      appContainer.answerAttempts
     );
 
     console.log(user.cumulativeScore);
