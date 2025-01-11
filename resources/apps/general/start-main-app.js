@@ -199,7 +199,12 @@ class MenuItems {
     this.numberWriting1to10AppMenuItem = document.createElement("div");
     this.numberWriting11to20AppMenuItem = document.createElement("div");
     this.numberWriting21to40AppMenuItem = document.createElement("div");
+    this.numberWriting41to60AppMenuItem = document.createElement("div");
+    this.numberWriting61to80AppMenuItem = document.createElement("div");
+    this.numberWriting81to100AppMenuItem = document.createElement("div");
     this.numberWriting1to50AppMenuItem = document.createElement("div");
+    this.numberWriting51to100AppMenuItem = document.createElement("div");
+    this.numberWriting1to100AppMenuItem = document.createElement("div");
     // 1. Alphabet Capitals Touch App Menu Item
     this.alphabetCapitalsCardTouchAppMenuItem.setAttribute(
       "id",
@@ -620,6 +625,58 @@ class MenuItems {
       audio.navigationSfx.selectMenu.play();
       writingApp.run("numbers21-40", 0);
     });
+    // 8. Number Writing 41-60 App Menu Item
+    this.numberFluency41to60AppMenuItem.setAttribute(
+      "id",
+      "number-writing-21-to-40-app-menu-item"
+    );
+    this.numberFluency41to60AppMenuItem.setAttribute("app-type", "writing");
+    this.numberFluency41to60AppMenuItem.setAttribute("app-content", "numbers");
+    this.numberFluency41to60AppMenuItem.classList.add(
+      "secondary-menu-div",
+      "secondary-menu-item"
+    );
+    this.numberFluency41to60AppMenuItem.innerText = "21-40";
+    this.numberFluency41to60AppMenuItem.addEventListener("click", () => {
+      this.removeMenu();
+      audio.navigationSfx.selectMenu.play();
+      writingApp.run("numbers21-40", 0);
+    });
+    // 8. Number Writing 61-80 App Menu Item
+    this.numberFluency61to80AppMenuItem.setAttribute(
+      "id",
+      "number-writing-21-to-40-app-menu-item"
+    );
+    this.numberFluency61to80AppMenuItem.setAttribute("app-type", "writing");
+    this.numberFluency61to80AppMenuItem.setAttribute("app-content", "numbers");
+    this.numberFluency61to80AppMenuItem.classList.add(
+      "secondary-menu-div",
+      "secondary-menu-item"
+    );
+    this.numberFluency61to80AppMenuItem.innerText = "21-40";
+    this.numberFluency61to80AppMenuItem.addEventListener("click", () => {
+      this.removeMenu();
+      audio.navigationSfx.selectMenu.play();
+      writingApp.run("numbers21-40", 0);
+    });
+    // 8. Number Writing 81-100 App Menu Item
+    this.numberFluency81to100AppMenuItem.setAttribute(
+      "id",
+      "number-writing-21-to-40-app-menu-item"
+    );
+    this.numberFluency81to100AppMenuItem.setAttribute("app-type", "writing");
+    this.numberFluency81to100AppMenuItem.setAttribute("app-content", "numbers");
+    this.numberFluency81to100AppMenuItem.classList.add(
+      "secondary-menu-div",
+      "secondary-menu-item"
+    );
+    this.numberFluency81to100AppMenuItem.innerText = "21-40";
+    this.numberFluency81to100AppMenuItem.addEventListener("click", () => {
+      this.removeMenu();
+      audio.navigationSfx.selectMenu.play();
+      writingApp.run("numbers21-40", 0);
+    });
+
     // 9. Number Writing 1-50 App Menu Item
     this.numberWriting1to50AppMenuItem.setAttribute(
       "id",
@@ -636,6 +693,40 @@ class MenuItems {
       this.removeMenu();
       audio.navigationSfx.selectMenu.play();
       writingApp.run("numbers1-50", 0);
+    });
+    // 9. Number Writing 51-100 App Menu Item
+    this.numberWriting51to100AppMenuItem.setAttribute(
+      "id",
+      "number-writing-1-to-50-app-menu-item"
+    );
+    this.numberWriting51to100AppMenuItem.setAttribute("app-type", "writing");
+    this.numberWriting51to100AppMenuItem.setAttribute("app-content", "numbers");
+    this.numberWriting51to100AppMenuItem.classList.add(
+      "secondary-menu-div",
+      "secondary-menu-item"
+    );
+    this.numberWriting51to100AppMenuItem.innerText = "1-50";
+    this.numberWriting51to100AppMenuItem.addEventListener("click", () => {
+      this.removeMenu();
+      audio.navigationSfx.selectMenu.play();
+      writingApp.run("numbers51-100", 0);
+    });
+    // 9. Number Writing 1-100 App Menu Item
+    this.numberWriting1to100AppMenuItem.setAttribute(
+      "id",
+      "number-writing-1-to-100-app-menu-item"
+    );
+    this.numberWriting1to100AppMenuItem.setAttribute("app-type", "writing");
+    this.numberWriting1to100AppMenuItem.setAttribute("app-content", "numbers");
+    this.numberWriting1to100AppMenuItem.classList.add(
+      "secondary-menu-div",
+      "secondary-menu-item"
+    );
+    this.numberWriting1to100AppMenuItem.innerText = "1-50";
+    this.numberWriting1to100AppMenuItem.addEventListener("click", () => {
+      this.removeMenu();
+      audio.navigationSfx.selectMenu.play();
+      writingApp.run("numbers1-100", 0);
     });
 
     // "this" Bindings

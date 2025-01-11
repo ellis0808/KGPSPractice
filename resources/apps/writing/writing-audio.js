@@ -36,51 +36,81 @@ class WritingAudio {
     let grouping;
     let grouping2 = null;
     switch (style) {
-      case 1:
+      case "numbers1-10":
         category = "numbers";
         grouping = 1;
         audio.getAudio(category, grouping, grouping2);
         break;
-      case 2:
-        category = "numbers";
+      case "numbers11-20":
+        category = "numbers11-20";
         grouping = 2;
         audio.getAudio(category, grouping, grouping2);
         break;
-      case 3:
+      case "numbers21-40":
         category = "numbers";
         grouping = 3;
         grouping = 4;
         audio.getAudio(category, grouping, grouping2);
         break;
-      case 7:
+      case "numbers41-60":
+        category = "numbers";
+        grouping = 5;
+        grouping = 6;
+        audio.getAudio(category, grouping, grouping2);
+        break;
+      case "numbers61-80":
+        category = "numbers";
+        grouping = 7;
+        grouping = 8;
+        audio.getAudio(category, grouping, grouping2);
+        break;
+      case "numbers81-100":
+        category = "numbers";
+        grouping = 9;
+        grouping = 10;
+        audio.getAudio(category, grouping, grouping2);
+        break;
+      case "numbers1-50":
         category = "numbers";
         grouping = 1;
         grouping2 = 5;
         audio.getAudio(category, grouping, grouping2);
         break;
-      case 9:
+      case "numbers51-100":
+        category = "numbers";
+        grouping = 6;
+        grouping2 = 10;
+        audio.getAudio(category, grouping, grouping2);
+        break;
+      case "numbers1-100":
+        category = "numbers";
+        grouping = 1;
+        grouping2 = 10;
+        audio.getAudio(category, grouping, grouping2);
+        break;
+      case "sightwords1":
         category = "sight-words";
         grouping = 1;
         audio.getAudio(category, grouping, grouping2);
         break;
-      case 10:
+      case "sightwords2":
         category = "sight-words";
         grouping = 1;
         grouping2 = 2;
         audio.getAudio(category, grouping, grouping2);
         break;
-      case 11:
+      case "sightwords3":
         category = "sight-words";
         grouping = 1;
         grouping2 = 3;
         audio.getAudio(category, grouping, grouping2);
         break;
-      case 20:
+      case "letter-sounds-asmf-letters":
         category = "letter-sounds-letters";
         grouping = 1;
         audio.getAudio(category, grouping, grouping2);
         break;
-      case 21:
+      case "letter-sounds-asmf-words":
         category = "letter-sounds-words";
         grouping = 1;
         audio.getAudio(category, grouping, grouping2);

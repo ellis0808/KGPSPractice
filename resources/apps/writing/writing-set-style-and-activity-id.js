@@ -1,4 +1,5 @@
 import { writingAudio } from "./writing-audio.js";
+import { writingApp } from "./writing.js";
 
 let style;
 let activityId;
@@ -8,77 +9,47 @@ function setStyle(set) {
   switch (set) {
     // Numbers
     case "numbers1-10":
-      style = 1;
-      writingAudio.startAudioFetch(style);
-      setActivityId(style);
-      return style;
+      writingAudio.startAudioFetch(1);
+      writingApp.activityId = 2;
     case "numbers11-20":
-      style = 2;
-      writingAudio.startAudioFetch(style);
-      setActivityId(style);
-      return style;
+      writingAudio.startAudioFetch(2);
+      writingApp.activityId = 4;
     case "numbers21-40":
-      style = 3;
-      writingAudio.startAudioFetch(style);
-      setActivityId(style);
-      return style;
+      writingAudio.startAudioFetch(3);
+      writingApp.activityId = 5;
     case "numbers41-60":
-      style = 4;
-      writingAudio.startAudioFetch(style);
-      setActivityId(style);
-      return style;
+      writingAudio.startAudioFetch(4);
+      writingApp.activityId = 6;
     case "numbers61-80":
-      style = 5;
-      writingAudio.startAudioFetch(style);
-      setActivityId(style);
-      return style;
+      writingAudio.startAudioFetch(5);
+      writingApp.activityId = 16;
     case "numbers81-100":
-      style = 6;
-      writingAudio.startAudioFetch(style);
-      setActivityId(style);
-      return style;
+      writingAudio.startAudioFetch(6);
+      writingApp.activityId = 8;
     case "numbers1-50":
-      style = 7;
-      writingAudio.startAudioFetch(style);
-      setActivityId(style);
-      return style;
+      writingAudio.startAudioFetch(7);
+      writingApp.activityId = 9;
     case "numbers1-100":
-      style = 8;
-      writingAudio.startAudioFetch(style);
-      setActivityId(style);
-      return style;
-    // Math
+      writingAudio.startAudioFetch(8);
+      writingApp.activityId = 15;
+    // Sight Words
     case "sightwords1":
-      style = 9;
-      writingAudio.startAudioFetch(style);
-      setActivityId(style);
-      return style;
+      writingAudio.startAudioFetch(9);
+      writingApp.activityId = 4;
     case "sightwords2":
-      style = 10;
-      writingAudio.startAudioFetch(style);
-      setActivityId(style);
-      return style;
+      writingAudio.startAudioFetch(10);
+      writingApp.activityId = 5;
     case "sightwords3":
-      style = 11;
-      writingAudio.startAudioFetch(style);
-      setActivityId(style);
-      return style;
-    case "numbers1-100":
-      style = 5;
-      writingAudio.startAudioFetch(style);
-      setActivityId(style);
-      return style;
+      writingAudio.startAudioFetch(11);
+      writingApp.activityId = 6;
+
     // Letter Sounds
     case "letter-sounds-asmf-letters":
-      style = 20;
-      writingAudio.startAudioFetch(style);
-      setActivityId(style);
-      return style;
+      writingAudio.startAudioFetch(20);
+      writingApp.activityId = 20;
     case "letter-sounds-asmf-words":
-      style = 21;
-      writingAudio.startAudioFetch(style);
-      setActivityId(style);
-      return style;
+      writingAudio.startAudioFetch(21);
+      writingApp.activityId = 20;
   }
 }
 
@@ -88,35 +59,15 @@ function setActivityId(style) {
     activityId = 1;
     return activityId;
   } else if (style === 1) {
-    activityId = 2;
-    return activityId;
   } else if (style === 2) {
-    activityId = 4;
-    return activityId;
   } else if (style === 3) {
-    activityId = 5;
-    return activityId;
   } else if (style === 4) {
-    activityId = 6;
-    return activityId;
   } else if (style === 5) {
-    activityId = 16;
-    return activityId;
   } else if (style === 6) {
-    activityId = 8;
-    return activityId;
   } else if (style === 7) {
-    activityId = 9;
-    return activityId;
   } else if (style === 9) {
-    activityId = 4;
-    return activityId;
   } else if (style === 20) {
-    activityId = 20;
-    return activityId;
   } else if (style === 21) {
-    activityId = 20;
-    return activityId;
   }
 }
 export { style, activityId, setStyle, setActivityId };

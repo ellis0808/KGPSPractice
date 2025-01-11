@@ -35,7 +35,6 @@ class WritingApp {
   run(set, time) {
     this.setStyleSheet();
     this.setStyle(set);
-    this.setActivityId(this.style);
     this.getBestTime(user.id);
     setTimeout(() => {
       this.setTime(time);
@@ -80,95 +79,73 @@ class WritingApp {
     switch (set) {
       // Numbers
       case "numbers1-10":
-        this.style = 1;
         this.maxNumberOfWordsToWrite = 5;
-        writingAudio.startAudioFetch(this.style);
+        this.activityId = 2;
+        writingAudio.startAudioFetch("numbers1-10");
         break;
       case "numbers11-20":
-        this.style = 2;
         this.maxNumberOfWordsToWrite = 5;
-        writingAudio.startAudioFetch(this.style);
+        this.activityId = 4;
+        writingAudio.startAudioFetch("numbers11-20");
         break;
       case "numbers21-40":
-        this.style = 3;
         this.maxNumberOfWordsToWrite = 8;
-        writingAudio.startAudioFetch(this.style);
+        this.activityId = 5;
+        writingAudio.startAudioFetch("numbers21-40");
         break;
       case "numbers41-60":
-        this.style = 4;
         this.maxNumberOfWordsToWrite = 8;
-        writingAudio.startAudioFetch(this.style);
+        this.activityId = 6;
+        writingAudio.startAudioFetch("numbers41-60");
         break;
       case "numbers61-80":
         this.style = 5;
         this.maxNumberOfWordsToWrite = 8;
-        writingAudio.startAudioFetch(this.style);
+        this.activityId = 16;
+        writingAudio.startAudioFetch("numbers61-80");
         break;
       case "numbers81-100":
-        this.style = 6;
+        this.activityId = 8;
         this.maxNumberOfWordsToWrite = 8;
-        writingAudio.startAudioFetch(this.style);
+        writingAudio.startAudioFetch("numbers81-100");
         break;
       case "numbers1-50":
-        this.style = 7;
+        this.activityId = 9;
         this.maxNumberOfWordsToWrite = 10;
-        writingAudio.startAudioFetch(this.style);
+        writingAudio.startAudioFetch(this.activityId);
+        break;
+      case "numbers51-100":
+        this.activityId = 9;
+        this.maxNumberOfWordsToWrite = 10;
+        writingAudio.startAudioFetch(this.activityId);
         break;
       case "numbers1-100":
-        this.style = 8;
         this.maxNumberOfWordsToWrite = 15;
-        writingAudio.startAudioFetch(this.style);
+        writingAudio.startAudioFetch(this.activityId);
         break;
       case "sightwords1":
-        this.style = 9;
+        this.activityId = 4;
         this.maxNumberOfWordsToWrite = 5;
-        writingAudio.startAudioFetch(this.style);
+        writingAudio.startAudioFetch(this.activityId);
         break;
       case "sightwords2":
-        this.style = 10;
         this.maxNumberOfWordsToWrite = 8;
-        writingAudio.startAudioFetch(this.style);
+        writingAudio.startAudioFetch(this.activityId);
         break;
       case "sightwords3":
-        this.style = 11;
         this.maxNumberOfWordsToWrite = 10;
-        writingAudio.startAudioFetch(this.style);
+        writingAudio.startAudioFetch(this.activityId);
         break;
       case "letter-sounds-asmf-letters":
-        this.style = 20;
+        this.activityId = 20;
         this.maxNumberOfWordsToWrite = 5;
-        writingAudio.startAudioFetch(this.style);
+        writingAudio.startAudioFetch(this.activityId);
         break;
       case "letter-sounds-asmf-words":
-        this.style = 21;
+        this.activityId = 21;
         this.maxNumberOfWordsToWrite = 5;
-        writingAudio.startAudioFetch(this.style);
+        writingAudio.startAudioFetch(this.activityId);
         break;
-    }
-  }
-  setActivityId(style) {
-    if (style === 0) {
-      this.activityId = 1;
-    } else if (style === 1) {
-      this.activityId = 2;
-    } else if (style === 2) {
-      this.activityId = 4;
-    } else if (style === 3) {
-      this.activityId = 5;
-    } else if (style === 4) {
-      this.activityId = 6;
-    } else if (style === 5) {
-      this.activityId = 16;
-    } else if (style === 6) {
-      this.activityId = 8;
-    } else if (style === 7) {
-      this.activityId = 9;
-    } else if (style === 9) {
-      this.activityId = 4;
-    } else if (style === 20) {
-      this.activityId = 20;
-    } else if (style === 21) {
-      this.activityId = 21;
     }
   }
   createGrid() {
