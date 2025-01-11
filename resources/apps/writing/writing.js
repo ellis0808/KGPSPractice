@@ -112,39 +112,39 @@ class WritingApp {
       case "numbers1-50":
         this.activityId = 9;
         this.maxNumberOfWordsToWrite = 10;
-        writingAudio.startAudioFetch(this.activityId);
+        writingAudio.startAudioFetch("numbers1-50");
         break;
       case "numbers51-100":
         this.activityId = 9;
         this.maxNumberOfWordsToWrite = 10;
-        writingAudio.startAudioFetch(this.activityId);
+        writingAudio.startAudioFetch("numbers51-100");
         break;
       case "numbers1-100":
         this.maxNumberOfWordsToWrite = 15;
-        writingAudio.startAudioFetch(this.activityId);
+        writingAudio.startAudioFetch("numbers1-100");
         break;
       case "sightwords1":
         this.activityId = 4;
         this.maxNumberOfWordsToWrite = 5;
-        writingAudio.startAudioFetch(this.activityId);
+        writingAudio.startAudioFetch("sightwords1");
         break;
       case "sightwords2":
         this.maxNumberOfWordsToWrite = 8;
-        writingAudio.startAudioFetch(this.activityId);
+        writingAudio.startAudioFetch("sightwords2");
         break;
       case "sightwords3":
         this.maxNumberOfWordsToWrite = 10;
-        writingAudio.startAudioFetch(this.activityId);
+        writingAudio.startAudioFetch("sightwords3");
         break;
       case "letter-sounds-asmf-letters":
         this.activityId = 20;
         this.maxNumberOfWordsToWrite = 5;
-        writingAudio.startAudioFetch(this.activityId);
+        writingAudio.startAudioFetch("letter-sounds-asmf-letters");
         break;
       case "letter-sounds-asmf-words":
         this.activityId = 21;
         this.maxNumberOfWordsToWrite = 5;
-        writingAudio.startAudioFetch(this.activityId);
+        writingAudio.startAudioFetch("letter-sounds-asmf-words");
         break;
     }
   }
