@@ -35,6 +35,7 @@ class WritingApp {
     this.setStyleSheet();
     this.setStyle(set);
     this.setActivityId(this.style);
+    this.getBestTime();
     setTimeout(() => {
       this.setTime(time);
       this.setUpApp();
