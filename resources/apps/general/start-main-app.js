@@ -320,7 +320,7 @@ class MenuItems {
     // 1. Letter Sounds Letters (ASMF) Writing App Menu Item
     this.letterSoundsWritingAMSFLettersAppMenuItem.setAttribute(
       "id",
-      "letter-sounds-amsf-app-menu-item"
+      "letter-sounds-amsf-letters-app-menu-item"
     );
     this.letterSoundsWritingAMSFLettersAppMenuItem.setAttribute(
       "app-type",
@@ -346,7 +346,7 @@ class MenuItems {
     // 2. Letter Sounds Words (ASMF) Writing App Menu Item
     this.letterSoundsWritingAMSFWordsAppMenuItem.setAttribute(
       "id",
-      "letter-sounds-amsf-app-menu-item"
+      "letter-sounds-amsf-words-app-menu-item"
     );
     this.letterSoundsWritingAMSFWordsAppMenuItem.setAttribute(
       "app-type",
@@ -625,10 +625,10 @@ class MenuItems {
       audio.navigationSfx.selectMenu.play();
       writingApp.run("numbers21-40", 0);
     });
-    // 8. Number Writing 41-60 App Menu Item
+    // 9. Number Writing 41-60 App Menu Item
     this.numberFluency41to60AppMenuItem.setAttribute(
       "id",
-      "number-writing-21-to-40-app-menu-item"
+      "number-writing-41-to-60-app-menu-item"
     );
     this.numberFluency41to60AppMenuItem.setAttribute("app-type", "writing");
     this.numberFluency41to60AppMenuItem.setAttribute("app-content", "numbers");
@@ -642,10 +642,10 @@ class MenuItems {
       audio.navigationSfx.selectMenu.play();
       writingApp.run("numbers21-40", 0);
     });
-    // 8. Number Writing 61-80 App Menu Item
+    // 10. Number Writing 61-80 App Menu Item
     this.numberFluency61to80AppMenuItem.setAttribute(
       "id",
-      "number-writing-21-to-40-app-menu-item"
+      "number-writing-61-to-80-app-menu-item"
     );
     this.numberFluency61to80AppMenuItem.setAttribute("app-type", "writing");
     this.numberFluency61to80AppMenuItem.setAttribute("app-content", "numbers");
@@ -659,10 +659,10 @@ class MenuItems {
       audio.navigationSfx.selectMenu.play();
       writingApp.run("numbers21-40", 0);
     });
-    // 8. Number Writing 81-100 App Menu Item
+    // 11. Number Writing 81-100 App Menu Item
     this.numberFluency81to100AppMenuItem.setAttribute(
       "id",
-      "number-writing-21-to-40-app-menu-item"
+      "number-writing-81-to-100-app-menu-item"
     );
     this.numberFluency81to100AppMenuItem.setAttribute("app-type", "writing");
     this.numberFluency81to100AppMenuItem.setAttribute("app-content", "numbers");
@@ -677,7 +677,7 @@ class MenuItems {
       writingApp.run("numbers21-40", 0);
     });
 
-    // 9. Number Writing 1-50 App Menu Item
+    // 12. Number Writing 1-50 App Menu Item
     this.numberWriting1to50AppMenuItem.setAttribute(
       "id",
       "number-writing-1-to-50-app-menu-item"
@@ -694,10 +694,10 @@ class MenuItems {
       audio.navigationSfx.selectMenu.play();
       writingApp.run("numbers1-50", 0);
     });
-    // 9. Number Writing 51-100 App Menu Item
+    // 13. Number Writing 51-100 App Menu Item
     this.numberWriting51to100AppMenuItem.setAttribute(
       "id",
-      "number-writing-1-to-50-app-menu-item"
+      "number-writing-51-to-100-app-menu-item"
     );
     this.numberWriting51to100AppMenuItem.setAttribute("app-type", "writing");
     this.numberWriting51to100AppMenuItem.setAttribute("app-content", "numbers");
@@ -711,7 +711,7 @@ class MenuItems {
       audio.navigationSfx.selectMenu.play();
       writingApp.run("numbers51-100", 0);
     });
-    // 9. Number Writing 1-100 App Menu Item
+    // 14. Number Writing 1-100 App Menu Item
     this.numberWriting1to100AppMenuItem.setAttribute(
       "id",
       "number-writing-1-to-100-app-menu-item"
