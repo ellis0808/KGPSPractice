@@ -238,6 +238,7 @@ class WritingApp {
   }
   setBestTimeDisplay() {
     this.bestTimeDisplay = document.createElement("div");
+    this.bestTimeDisplay.classList.add("best-time-display");
     this.dispilayBestTime();
     app.btnContainer1.appendChild(this.bestTimeDisplay);
   }
