@@ -236,6 +236,14 @@ class WritingApp {
     this.questionDisplay = document.createElement("div");
     this.questionDisplay.classList.add("question-display");
   }
+  setBestTimeDisplay() {
+    this.bestTimeDisplay = document.createElement("div");
+    this.dispilayBestTime();
+    app.btnContainer1.appendChild(this.bestTimeDisplay);
+  }
+  dispilayBestTime() {
+    this.bestTimeDisplay.textContent = this.bestTime;
+  }
   displayNumberCorrect() {
     this.numberCorrectRow.innerText = `${this.numberCorrect}/${this.maxNumberOfWordsToWrite}`;
   }
@@ -300,7 +308,8 @@ class WritingApp {
     this.controlsRow.appendChild(this.undoBtn);
     this.controlsRow.appendChild(this.clearBtn);
     this.controlsRow.appendChild(this.skipBtn);
-    app.btnContainer1.appendChild(this.repeatBtn);
+    this.controlsRow.appendChild(this.repeatBtn);
+    this.setBestTimeDisplay();
   }
   setGridandElements() {
     this.setGridElements();

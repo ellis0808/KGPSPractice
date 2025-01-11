@@ -231,9 +231,9 @@ body:not(:has(*)) {
   height: 100px;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr;
-  grid-template-areas: "skip-btn clear-btn  undo-btn  check-btn";
+  grid-template-areas: "repeat-btn skip-btn clear-btn  undo-btn  check-btn";
   place-content: center;
   place-items: center;
   z-index: 10;
