@@ -1,4 +1,4 @@
-import { app } from "./app-container-class.js";
+import { appContainer } from "./app-container-class.js";
 import { scoreFunction, scoreAssessment } from "./score.js";
 import { timerFunction } from "./timer.js";
 
@@ -25,8 +25,8 @@ const endRoundScreen = {
     this.scoreMessage.classList.add("final-score-alert-score");
   },
   setBtnLinks() {
-    this.tryAgainBtn.addEventListener("pointerdown", app.startSession);
-    this.finishBtn.addEventListener("pointerdown", app.endApp);
+    this.tryAgainBtn.addEventListener("pointerdown", appContainer.startSession);
+    this.finishBtn.addEventListener("pointerdown", appContainer.endApp);
   },
   displayContainer() {
     if (timerFunction.timerFinished) {
@@ -36,13 +36,13 @@ const endRoundScreen = {
       this.endMessagesContainer.appendChild(this.assessmentMessage);
       this.endMessagesContainer.appendChild(this.scoreMessage);
       scoreAssessment.matching(); // needs to be changed to be dynamic based on the activity id and set!
-      app.setBtnContainer5(endRoundScreen.endMessagesContainer);
-      app.showBtnContainer5();
+      appContainer.setBtnContainer5(endRoundScreen.endMessagesContainer);
+      appContainer.showBtnContainer5();
     }
   },
   removeContainer() {
     if (endRoundScreen.endMessagesContainer) {
-      app.hideBtnContainer5();
+      appContainer.hideBtnContainer5();
     }
   },
   setAssessmentMessage(message) {

@@ -1,4 +1,4 @@
-import { app } from "./app-container-class.js";
+import { appContainer } from "./app-container-class.js";
 const startScreen = {
   startBtn: document.createElement("button"),
   exitBtn: document.createElement("div"),
@@ -11,13 +11,13 @@ const startScreen = {
     this.exitBtn.innerHTML = `<i class="fa-solid fa-house fa-1x"></i>`;
   },
   setStartScreen() {
-    app.setBtnContainer2(this.startBtn, this.exitBtn);
+    appContainer.setBtnContainer2(this.startBtn, this.exitBtn);
     this.exitBtn.classList.remove("hide");
-    app.showBtnContainer2();
+    appContainer.showBtnContainer2();
   },
   setStartEndAppBtnFunctions() {
-    this.startBtn.addEventListener("pointerdown", app.startSession);
-    this.exitBtn.addEventListener("pointerdown", app.endApp);
+    this.startBtn.addEventListener("pointerdown", appContainer.startSession);
+    this.exitBtn.addEventListener("pointerdown", appContainer.endApp);
   },
   initializeContainer() {
     this.createStartScreen();

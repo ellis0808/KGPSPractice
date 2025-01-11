@@ -1,4 +1,4 @@
-import { app } from "./app-container-class.js";
+import { appContainer } from "./app-container-class.js";
 import { pauseFunction } from "./pause-functions.js";
 
 class HomeBtnFunction {
@@ -69,24 +69,24 @@ class HomeBtnFunction {
     });
   }
   setBtnLinks() {
-    this.goHomeBtn.addEventListener("pointerdown", app.endApp);
+    this.goHomeBtn.addEventListener("pointerdown", appContainer.endApp);
     this.cancelBtn.addEventListener("pointerdown", this.returnToApp.bind(this));
   }
   displayContainer() {
     this.goHomeContainerIsDisplayed = true;
-    if (app.btnContainer4.childNodes.length === 0) {
+    if (appContainer.btnContainer4.childNodes.length === 0) {
       this.goHomeContainer.appendChild(this.goHomeMessage);
       this.goHomeContainer.appendChild(this.goHomeBtn);
       this.goHomeContainer.appendChild(this.cancelBtn);
-      app.setBtnContainer4(this.goHomeContainer);
+      appContainer.setBtnContainer4(this.goHomeContainer);
     }
 
-    if (app.btnContainer4.classList.contains("hide")) {
-      app.showBtnContainer4();
+    if (appContainer.btnContainer4.classList.contains("hide")) {
+      appContainer.showBtnContainer4();
     }
   }
   removeContainer() {
-    app.hideBtnContainer4();
+    appContainer.hideBtnContainer4();
     this.goHomeContainerIsDisplayed = false;
   }
   returnToApp() {
