@@ -407,7 +407,9 @@ class WritingApp {
     }
   }
   endRound() {
-    this.totalElapsedTime = timerFunction.time;
+    if (this.numberCorrect === this.maxNumberOfWordsToWrite) {
+      this.totalElapsedTime = timerFunction.time;
+    }
     console.log(this.totalElapsedTime);
 
     this.setCorrectAnswerPoints();
@@ -416,6 +418,27 @@ class WritingApp {
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
     console.log(scoreFunction.currentScore);
     timerFunction.goalCompleted();
+  }
+  async getBestTime() {
+    try {
+      const response = await fetch(`${BASE_PATH}api/get_best_core.php`);
+
+      if (!response.ok) {
+        throw new Error("Network response was not okay");
+      }
+      const data = await response.json();
+      console.log(data);
+
+      if (data) {
+        writingApp.bestTime = data.best_time;
+        console.log(this.bestTime);
+      }
+    } catch (error) {
+      console.error(
+        "Error retrieving best time from activity records: ",
+        error
+      );
+    }
   }
 }
 
