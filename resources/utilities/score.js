@@ -91,7 +91,7 @@ const scoreFunction = {
   updateUserScore: async function (id) {
     try {
       const response = await fetch(
-        `${BASE_PATH}api/read_and_calculate_total_score.php?id=${id}`
+        `${BASE_PATH}api/get_total_score.php?id=${id}`
       );
 
       if (!response.ok) {
