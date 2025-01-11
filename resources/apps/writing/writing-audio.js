@@ -11,6 +11,8 @@ class WritingAudio {
     ++this.arrayItemNumber;
   };
   resetArrayItemNumber() {
+    console.log(audio.audioObject);
+
     this.arrayItemNumber = 0;
     console.log(this.arrayItemNumber);
   }
