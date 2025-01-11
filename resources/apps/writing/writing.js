@@ -4,6 +4,7 @@ import { app } from "../../utilities/app-class.js";
 import { scoreFunction } from "../../utilities/score.js";
 import { timerFunction } from "../../utilities/timer.js";
 import { BASE_PATH } from "../../utilities/get-base-path.js";
+import { user } from "../../utilities/user-object.js";
 
 class WritingApp {
   constructor() {
@@ -35,7 +36,7 @@ class WritingApp {
     this.setStyleSheet();
     this.setStyle(set);
     this.setActivityId(this.style);
-    this.getBestTime();
+    this.getBestTime(user.id);
     setTimeout(() => {
       this.setTime(time);
       this.setUpApp();
@@ -420,7 +421,7 @@ class WritingApp {
     console.log(scoreFunction.currentScore);
     timerFunction.goalCompleted();
   }
-  async getBestTime() {
+  async getBestTime(id) {
     try {
       const response = await fetch(
         `${BASE_PATH}api/get_best_score.php?id=${id}`
