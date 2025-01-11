@@ -422,7 +422,9 @@ class WritingApp {
   }
   async getBestTime() {
     try {
-      const response = await fetch(`${BASE_PATH}api/get_best_score.php`);
+      const response = await fetch(
+        `${BASE_PATH}api/get_best_score.php?id=${id}`
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not okay");
