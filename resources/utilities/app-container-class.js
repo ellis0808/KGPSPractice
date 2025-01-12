@@ -43,7 +43,7 @@ class AppContainer {
     this.appEventListeners = null;
     this.appStructure = null;
     this.gridPopulator = null;
-    this.activityId = null;
+    this.activityName = null;
     this.stats = this.initializeStats();
     this.endSessionItems = null;
     this.endApp = this.endApp.bind(this);
@@ -64,7 +64,7 @@ class AppContainer {
     eventListeners,
     appStructure,
     gridPopulator,
-    activityId,
+    activityName,
     endSessionItems
   ) {
     this.currentApp = currentApp;
@@ -73,7 +73,7 @@ class AppContainer {
     this.appEventListeners = eventListeners;
     this.appStructure = appStructure;
     this.gridPopulator = gridPopulator;
-    this.activityId = activityId;
+    this.activityName = activityName;
     this.endSessionItems = endSessionItems;
   }
   resetAppVariables() {
@@ -204,12 +204,7 @@ class AppContainer {
           newStats[key] !== undefined ? newStats[key] : this.stats[key];
       }
     }
-    console.log(
-      this.correctAnswerCount,
-      this.incorrectAnswerCount,
-      answerAttempts,
-      totalElapsedTime
-    );
+    console.log(newStats);
   }
   initializeStats() {
     return {
@@ -244,7 +239,7 @@ class AppContainer {
     scoreFunction.updateUserTotalScore(this.stats);
     console.log(
       "activity id: ",
-      appContainer.activityId,
+      appContainer.activityName,
       "userid: ",
       user.id,
       "user access: ",

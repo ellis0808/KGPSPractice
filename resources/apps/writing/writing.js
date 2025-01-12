@@ -398,10 +398,10 @@ class WritingApp {
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
     timerFunction.goalCompleted();
   }
-  async getBestTime(id, id2) {
+  async getBestTime(id1, id2) {
     try {
       const response = await fetch(
-        `${BASE_PATH}api/get_best_time.php?id=${id}&?id=${id2}`
+        `${BASE_PATH}api/get_best_time.php?id1=${id1}&?id2=${id2}`
       );
 
       if (!response.ok) {
