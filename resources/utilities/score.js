@@ -112,6 +112,8 @@ const scoreFunction = {
     //  For student users; teachers will differ on user type, etc
 
     stats.questionsShort = stats.questionsShort.join(", ");
+    stats.questionsMedium = stats.questionsMedium.join(", ");
+    stats.questionsLong = stats.questionsLong.join(", ");
     stats.correctAnswersShort = stats.correctAnswersShort.join(", ");
     stats.correctAnswersMedium = stats.correctAnswersMedium.join(", ");
     stats.correctAnswersLong = stats.correctAnswersLong.join(", ");
