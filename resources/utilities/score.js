@@ -108,26 +108,29 @@ const scoreFunction = {
     }
     return this.userScore;
   },
-  async updateUserTotalScore(
-    activityId,
-    userID,
-    userAccess,
-    correctAnswerCount,
-    incorrectAnswerCount,
-    totalElapsedTime,
-    answerAttempts
-  ) {
+  async updateUserTotalScore(stats) {
     //  For student users; teachers will differ on user type, etc
 
     const newStats = {
-      activity_id: activityId,
-      user_id: userID,
-      user_type: userAccess,
-      correct_answer_count: correctAnswerCount,
-      incorrect_answer_count: incorrectAnswerCount,
-      total_elapsed_time: totalElapsedTime,
-      answer_attempts: answerAttempts,
-      activity_score: scoreFunction.currentScore,
+      user_id: stats.userID,
+      user_type: stats.userAccess,
+      activity_type: stats.activityType,
+      activity_name: stats.activityName,
+      score: scoreFunction.currentScore,
+      total_elapsed_time: stats.totalElapsedTime,
+      question_count: stats.questionCount,
+      correct_answer_count: stats.correctAnswerCount,
+      incorrect_answer_count: stats.incorrectAnswerCount,
+      answer_attempts: stats.answerAttempts,
+      questions_short: stats.questionsShort,
+      questions_medium: stats.questionsMedium,
+      questions_long: stats.questionsLong,
+      correct_answers_short: stats.correctAnswersShort,
+      correct_answers_medium: stats.correctAnswersMedium,
+      correct_answers_long: stats.correctAnswersLong,
+      inorrect_answers_short: stats.incorrectAnswersShort,
+      inorrect_answers_medium: stats.incorrectAnswersMedium,
+      inorrect_answers_long: stats.incorrectAnswersLong,
     };
     console.log(newStats);
 

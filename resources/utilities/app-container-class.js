@@ -44,6 +44,7 @@ class AppContainer {
     this.appStructure = null;
     this.gridPopulator = null;
     this.activityId = null;
+    this.stats = initializeStats();
     this.endSessionItems = null;
     this.endApp = this.endApp.bind(this);
     this.startSession = this.startSession.bind(this);
@@ -196,11 +197,13 @@ class AppContainer {
     }, 1000);
     toggleBlur.removeAllBlur();
   }
-  getStats(numberCorrect, numberIncorrect, answerAttempts, totalElapsedTime) {
-    this.correctAnswerCount = numberCorrect;
-    this.incorrectAnswerCount = numberIncorrect;
-    this.answerAttempts = answerAttempts;
-    this.totalElapsedTime = totalElapsedTime;
+  getStats(newStats) {
+    for (let key in this.stats) {
+      if (this.stats.hasOwnProperty(key)) {
+        this.stats[key] =
+          newStats[key] !== undefined ? newStats[key] : this.stats[key];
+      }
+    }
     console.log(
       this.correctAnswerCount,
       this.incorrectAnswerCount,
@@ -208,16 +211,37 @@ class AppContainer {
       totalElapsedTime
     );
   }
+  initializeStats() {
+    return {
+      userID: null,
+      userAccess: null,
+      activityType: null,
+      activityName: null,
+      correctAnswerCount: null,
+      incorrectAnswerCount: null,
+      totalElapsedTime: 0,
+      correctAnswerCount: 0,
+      incorrectAnswerCount: 0,
+      answerAttempts: 0,
+      correctAnswerCount: 0,
+      incorrectAnswerCount: 0,
+      answerAttempts: 0,
+      questionsShort: 0,
+      questionsMedium: 0,
+      questionsLong: 0,
+      correctAnswersShort: 0,
+      correctAnswersMedium: 0,
+      correctAnswersLong: 0,
+      incorrectAnswersShort: 0,
+      incorrectAnswersMedium: 0,
+      incorrectAnswersLong: 0,
+    };
+  }
+  resetStats() {
+    this.stats = this.initializeStats();
+  }
   endRound() {
-    scoreFunction.updateUserTotalScore(
-      appContainer.activityId,
-      user.id,
-      user.access,
-      appContainer.correctAnswerCount,
-      appContainer.incorrectAnswerCount,
-      appContainer.totalElapsedTime,
-      appContainer.answerAttempts
-    );
+    scoreFunction.updateUserTotalScore(this.stats);
     console.log(
       "activity id: ",
       appContainer.activityId,

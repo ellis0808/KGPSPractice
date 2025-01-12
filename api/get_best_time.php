@@ -12,8 +12,8 @@ try {
     $pdo = getDBConnection();
     if (isset($_GET['id'])) {
 
-        $stmt = $pdo->prepare('SELECT MIN(total_elapsed_time) AS best_time FROM activity_stats WHERE user_id = :user_id');
-        $stmt->execute(['user_id' => $_GET['id']]);
+        $stmt = $pdo->prepare('SELECT MIN(time_duration_in_seconds) AS best_time FROM activity_stats WHERE user_id = :user_id AND activity_id =  :activity_id');
+        $stmt->execute(['user_id' => $_GET['id'], 'activity_id' => $_GET['activity']]);
         $bestTime = $stmt->fetch(PDO::FETCH_ASSOC)['best_time'];
         if ($bestTime !== null) {
             echo json_encode(['best_time' => $bestTime]);

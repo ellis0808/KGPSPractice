@@ -8,20 +8,31 @@ import { user } from "../../utilities/user-object.js";
 
 class WritingApp {
   constructor() {
-    this.activityId = null;
+    this.activityType = "writing";
+    this.activityName = null;
     this.style = null;
     this.stylesheet = `${BASE_PATH}resources/css/writing.css`;
     this.currentApp = ["writingApp."];
     this.time = null;
     this.randomItemArray = [];
     this.items = [];
+    this.stats = initializeStats();
     this.totalElapsedTime = null;
     this.bestTime = null;
     this.numberCorrect = 0;
     this.numberIncorrect = 0;
     this.answerAttempts = 0;
+    this.shortQuestionsArray = [];
+    this.mediumQuestionsArray = [];
+    this.longQuestionsArray = [];
+    this.correctShortAnswersArray = [];
+    this.correctMediumAnswersArray = [];
+    this.correctLongAnswersArray = [];
+    this.incorrectShortAnswersArray = [];
+    this.incorrectMediumAnswersArray = [];
+    this.incorrectLongAnswersArray = [];
     this.correctAnswerPoints = 0;
-    this.maxNumberOfWordsToWrite = null;
+    this.maxNumberOfWordsToWrite = 5;
     this.currentProblemNumber = 1;
     this.writingAppClass = ["writing-app"];
     this.endSessionItems = [
@@ -34,14 +45,16 @@ class WritingApp {
   }
   run(set, time) {
     this.setStyleSheet();
-    this.setStyle(set);
-    this.getBestTime(user.id);
+    this.activityName = set;
+    this.getBestTime(user.id, writingApp.activityName);
+    writingAudio.startAudioFetch(set);
     setTimeout(() => {
       this.setTime(time);
       this.setUpApp();
       appContainer.startApp();
       this.setCanvasFunctionality();
     }, 200);
+    console.log(this.stats);
   }
   setTime(time) {
     this.time = time;
@@ -54,17 +67,49 @@ class WritingApp {
       null,
       this.createAndSetStructure,
       this.generateItems,
-      this.activityId,
+      this.activityName,
       this.endSessionItems
     );
   }
-  sendStats() {
-    appContainer.getStats(
-      this.numberCorrect,
-      this.numberIncorrect,
-      this.answerAttempts,
-      this.totalElapsedTime
-    );
+  sendStats(stats) {
+    appContainer.getStats(stats);
+  }
+  initializeStats() {
+    return {
+      userID: null,
+      userAccess: null,
+      activityType: this.activityType,
+      activityName: this.activityName,
+      correctAnswerCount: null,
+      incorrectAnswerCount: null,
+      totalElapsedTime: 0,
+      correctAnswerCount: 0,
+      incorrectAnswerCount: 0,
+      answerAttempts: 0,
+      correctAnswerCount: 0,
+      incorrectAnswerCount: 0,
+      answerAttempts: 0,
+      questionsShort: 0,
+      questionsMedium: 0,
+      questionsLong: 0,
+      correctAnswersShort: 0,
+      correctAnswersMedium: 0,
+      correctAnswersLong: 0,
+      incorrectAnswersShort: 0,
+      incorrectAnswersMedium: 0,
+      incorrectAnswersLong: 0,
+    };
+  }
+  resetStats() {
+    this.stats = this.initializeStats();
+  }
+  updateStats() {
+    this.stats.correctAnswerCount = this.numberCorrect;
+    this.stats.incorrectAnswerCount = this.numberIncorrect;
+    this.stats.answerAttempts = this.answerAttempts;
+    this.stats.questionsShort = this.shortQuestionsArray;
+    this.stats.correctAnswersShort = this.correctShortAnswersArray;
+    this.stats.incorrectAnswersShort = this.incorrectShortAnswersArray;
   }
   createAndSetStructure = () => {
     this.createGrid();
@@ -74,79 +119,6 @@ class WritingApp {
   };
   setStyleSheet() {
     appContainer.applyAppStyleSheet(this.stylesheet);
-  }
-  setStyle(set) {
-    switch (set) {
-      // Numbers
-      case "numbers1-10":
-        this.maxNumberOfWordsToWrite = 5;
-        this.activityId = 2;
-        writingAudio.startAudioFetch("numbers1-10");
-        break;
-      case "numbers11-20":
-        this.maxNumberOfWordsToWrite = 5;
-        this.activityId = 4;
-        writingAudio.startAudioFetch("numbers11-20");
-        break;
-      case "numbers21-40":
-        this.maxNumberOfWordsToWrite = 8;
-        this.activityId = 5;
-        writingAudio.startAudioFetch("numbers21-40");
-        break;
-      case "numbers41-60":
-        this.maxNumberOfWordsToWrite = 8;
-        this.activityId = 6;
-        writingAudio.startAudioFetch("numbers41-60");
-        break;
-      case "numbers61-80":
-        this.style = 5;
-        this.maxNumberOfWordsToWrite = 8;
-        this.activityId = 16;
-        writingAudio.startAudioFetch("numbers61-80");
-        break;
-      case "numbers81-100":
-        this.activityId = 8;
-        this.maxNumberOfWordsToWrite = 8;
-        writingAudio.startAudioFetch("numbers81-100");
-        break;
-      case "numbers1-50":
-        this.activityId = 9;
-        this.maxNumberOfWordsToWrite = 10;
-        writingAudio.startAudioFetch("numbers1-50");
-        break;
-      case "numbers51-100":
-        this.activityId = 9;
-        this.maxNumberOfWordsToWrite = 10;
-        writingAudio.startAudioFetch("numbers51-100");
-        break;
-      case "numbers1-100":
-        this.maxNumberOfWordsToWrite = 15;
-        writingAudio.startAudioFetch("numbers1-100");
-        break;
-      case "sightwords1":
-        this.activityId = 4;
-        this.maxNumberOfWordsToWrite = 5;
-        writingAudio.startAudioFetch("sightwords1");
-        break;
-      case "sightwords2":
-        this.maxNumberOfWordsToWrite = 8;
-        writingAudio.startAudioFetch("sightwords2");
-        break;
-      case "sightwords3":
-        this.maxNumberOfWordsToWrite = 10;
-        writingAudio.startAudioFetch("sightwords3");
-        break;
-      case "letter-sounds-asmf-letters":
-        this.activityId = 20;
-        this.maxNumberOfWordsToWrite = 5;
-        writingAudio.startAudioFetch("letter-sounds-asmf-letters");
-        break;
-      case "letter-sounds-asmf-words":
-        this.activityId = 21;
-        this.maxNumberOfWordsToWrite = 5;
-        writingAudio.startAudioFetch("letter-sounds-asmf-words");
-        break;
-    }
   }
   createGrid() {
     this.messageRow = document.createElement("div");
@@ -264,6 +236,12 @@ class WritingApp {
   resetCurrentProblemNumber() {
     this.currentProblemNumber = 1;
   }
+  increaseAnswerAttempts() {
+    ++this.answerAttempts;
+  }
+  resetAnswerAttempts() {
+    this.answerAttempts = 0;
+  }
   setCorrectAnswerPoints() {
     console.log("calculating points...");
 
@@ -335,6 +313,9 @@ class WritingApp {
 
       this.randomItemArray.push(randomItem);
     }
+    this.shortQuestionsArray.push(randomItem);
+    console.log(this.shortQuestionsArray);
+
     this.getNewWord();
     this.displayNumberCorrect();
   }
@@ -365,6 +346,7 @@ class WritingApp {
     timerFunction.goalIncomplete();
     writingApp.resetNumberCorrect();
     writingApp.resetNumberIncorrect();
+    writingApp.resetAnswerAttempts();
     writingApp.resetCurrentProblemNumber();
     writingApp.resetArrays();
     writingApp.clearCanvas();
@@ -374,12 +356,13 @@ class WritingApp {
     this.canvasController.erase();
   }
   checkAnswer(input) {
+    this.increaseAnswerAttempts();
     if (input[0] === writingAudio.randomWord) {
       this.addBorderCorrect();
       audio.appSfx.correct.play();
       this.increaseNumberCorrect();
       this.displayNumberCorrect();
-      console.log(this.currentProblemNumber);
+      this.correctShortAnswersArray.push(input);
 
       setTimeout(() => {
         if (this.currentProblemNumber > this.maxNumberOfWordsToWrite) {
@@ -392,6 +375,7 @@ class WritingApp {
       audio.appSfx.incorrect.play();
       this.addBorderIncorrect();
       this.increaseNumberIncorrect();
+      this.incorrectShortAnswersArray.push(input);
       setTimeout(() => {
         this.clearCanvas();
         setTimeout(writingAudio.repeat, 700);
@@ -403,21 +387,21 @@ class WritingApp {
   }
   endRound() {
     if (this.numberCorrect === this.maxNumberOfWordsToWrite) {
-      this.totalElapsedTime = timerFunction.time;
+      this.stats.totalElapsedTime = timerFunction.time;
     }
-    console.log(this.totalElapsedTime);
+
+    this.updateStats();
+    console.log(this.stats);
 
     this.setCorrectAnswerPoints();
-    console.log(this.correctAnswerPoints);
-    this.sendStats();
+    this.sendStats(this.stats);
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
-    console.log(scoreFunction.currentScore);
     timerFunction.goalCompleted();
   }
-  async getBestTime(id) {
+  async getBestTime(id, id2) {
     try {
       const response = await fetch(
-        `${BASE_PATH}api/get_best_time.php?id=${id}`
+        `${BASE_PATH}api/get_best_time.php?id=${id}&?id=${id2}`
       );
 
       if (!response.ok) {
