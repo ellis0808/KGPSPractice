@@ -112,8 +112,12 @@ const scoreFunction = {
     //  For student users; teachers will differ on user type, etc
 
     stats.questionsShort = stats.questionsShort.join(", ");
-    stats.correct_answers_short = stats.correct_answers_short.join(", ");
+    stats.correctAnswersShort = stats.correctAnswersShort.join(", ");
+    stats.correctAnswersMedium = stats.correctAnswersMedium.join(", ");
+    stats.correctAnswersLong = stats.correctAnswersLong.join(", ");
     stats.incorrectAnswersShort = stats.incorrectAnswersShort.join(", ");
+    stats.incorrectAnswersMedium = stats.incorrectAnswersMedium.join(", ");
+    stats.incorrectAnswersLong = stats.incorrectAnswersLong.join(", ");
     const newStats = {
       user_id: stats.userID,
       user_type: stats.userAccess,
