@@ -117,7 +117,7 @@ const scoreFunction = {
       activity_type: stats.activityType,
       activity_name: stats.activityName,
       score: scoreFunction.currentScore,
-      total_elapsed_time: stats.totalElapsedTime,
+      time_duration_in_seconds: stats.totalElapsedTime,
       question_count: stats.questionCount,
       correct_answer_count: stats.correctAnswerCount,
       incorrect_answer_count: stats.incorrectAnswerCount,
