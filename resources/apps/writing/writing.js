@@ -16,7 +16,7 @@ class WritingApp {
     this.time = null;
     this.randomItemArray = [];
     this.items = [];
-    this.stats = initializeStats();
+    this.stats = this.initializeStats();
     this.totalElapsedTime = null;
     this.bestTime = null;
     this.numberCorrect = 0;

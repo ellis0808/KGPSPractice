@@ -44,7 +44,7 @@ class AppContainer {
     this.appStructure = null;
     this.gridPopulator = null;
     this.activityId = null;
-    this.stats = initializeStats();
+    this.stats = this.initializeStats();
     this.endSessionItems = null;
     this.endApp = this.endApp.bind(this);
     this.startSession = this.startSession.bind(this);
