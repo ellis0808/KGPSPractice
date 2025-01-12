@@ -45,8 +45,8 @@ class WritingApp {
   }
   run(set, time) {
     this.setStyleSheet();
-    this.activityName = set;
-    this.getBestTime(user.id, writingApp.activityName);
+    this.setActivityName(set);
+    this.getBestTime(user.id, writingApp.activityType, writingApp.activityName);
     writingAudio.startAudioFetch(set);
     setTimeout(() => {
       this.setTime(time);
@@ -71,13 +71,17 @@ class WritingApp {
       this.endSessionItems
     );
   }
+  setActivityName(set) {
+    this.activityName = set;
+    console.log(this.activityName);
+  }
   sendStats(stats) {
     appContainer.getStats(stats);
   }
   initializeStats() {
     return {
-      userID: null,
-      userAccess: null,
+      userID: user.id,
+      userAccess: user.access,
       activityType: this.activityType,
       activityName: this.activityName,
       correctAnswerCount: null,
@@ -225,7 +229,6 @@ class WritingApp {
   }
   increaseNumberCorrect() {
     ++this.numberCorrect;
-    console.log(this.numberCorrect);
   }
   increaseNumberIncorrect() {
     ++this.numberIncorrect;
@@ -243,19 +246,13 @@ class WritingApp {
     this.answerAttempts = 0;
   }
   setCorrectAnswerPoints() {
-    console.log("calculating points...");
-
     if (this.numberIncorrect === 0) {
-      console.log(this.correctAnswerPoints);
-
       this.correctAnswerPoints =
         this.numberCorrect * 2 +
         Math.floor(this.maxNumberOfWordsToWrite * 0.25);
     } else if (this.numberIncorrect > 0) {
       this.correctAnswerPoints = this.numberCorrect * 2;
     }
-    console.log("correct answer points: ", this.correctAnswerPoints);
-    console.log("max number of words: ", this.maxNumberOfWordsToWrite);
   }
   setGrid() {
     appContainer.grid.appendChild(this.messageRow);
@@ -312,8 +309,8 @@ class WritingApp {
         writingApp.items[Math.floor(Math.random() * writingApp.items.length)];
 
       this.randomItemArray.push(randomItem);
+      this.shortQuestionsArray.push(randomItem);
     }
-    this.shortQuestionsArray.push(randomItem);
     console.log(this.shortQuestionsArray);
 
     this.getNewWord();
@@ -398,10 +395,10 @@ class WritingApp {
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
     timerFunction.goalCompleted();
   }
-  async getBestTime(id1, id2) {
+  async getBestTime(id1, id2, id3) {
     try {
       const response = await fetch(
-        `${BASE_PATH}api/get_best_time.php?id1=${id1}&?id2=${id2}`
+        `${BASE_PATH}api/get_best_time.php?id1=${id1}&id2=${id2}&id3=${id3}`
       );
 
       if (!response.ok) {

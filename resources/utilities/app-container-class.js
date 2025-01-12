@@ -237,26 +237,7 @@ class AppContainer {
   }
   endRound() {
     scoreFunction.updateUserTotalScore(this.stats);
-    console.log(
-      "activity id: ",
-      appContainer.activityName,
-      "userid: ",
-      user.id,
-      "user access: ",
-      user.access,
-      "correctAnswerCount: ",
-      appContainer.correctAnswerCount,
-      "incorrectAnswerCount: ",
-      appContainer.incorrectAnswerCount,
-      "elapsed time: ",
-      appContainer.totalElapsedTime,
-      "answer attempts: ",
-      appContainer.answerAttempts
-    );
-
-    console.log(user.cumulativeScore);
-    scoreFunction.updateUserScore();
-    console.log(user.cumulativeScore);
+    console.log(this.stats);
     endRoundScreen.displayContainer();
   }
   initializeEventListeners() {
