@@ -150,7 +150,10 @@ const scoreFunction = {
           body: JSON.stringify(newStats),
         }
       );
-      const data = await response.json();
+      const responseText = await response.text();
+      console.log(responseText);
+
+      const data = await JSON.parse(responseText);
       console.log(data);
 
       if (!response.ok) {
