@@ -108,12 +108,16 @@ class WritingApp {
     this.stats = this.initializeStats();
   }
   updateStats() {
+    this.stats.userID = user.id;
+    this.stats.userAccess = user.access;
+    this.stats.activityName = this.activityName;
     this.stats.correctAnswerCount = this.numberCorrect;
     this.stats.incorrectAnswerCount = this.numberIncorrect;
     this.stats.answerAttempts = this.answerAttempts;
     this.stats.questionsShort = this.shortQuestionsArray;
     this.stats.correctAnswersShort = this.correctShortAnswersArray;
     this.stats.incorrectAnswersShort = this.incorrectShortAnswersArray;
+    console.log(this.stats);
   }
   createAndSetStructure = () => {
     this.createGrid();
