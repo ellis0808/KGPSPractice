@@ -153,7 +153,7 @@ const scoreFunction = {
       const responseText = await response.text();
       console.log(responseText);
 
-      const data = await JSON.parse(responseText);
+      const data = JSON.parse(responseText);
       console.log(data);
 
       if (!response.ok) {
