@@ -111,6 +111,9 @@ const scoreFunction = {
   async updateUserTotalScore(stats) {
     //  For student users; teachers will differ on user type, etc
 
+    stats.questionsShort = stats.questionsShort.join(", ");
+    stats.correct_answers_short = stats.correct_answers_short.join(", ");
+    stats.incorrectAnswersShort = stats.incorrectAnswersShort.join(", ");
     const newStats = {
       user_id: stats.userID,
       user_type: stats.userAccess,
