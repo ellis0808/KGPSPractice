@@ -128,9 +128,9 @@ const scoreFunction = {
       correct_answers_short: stats.correctAnswersShort,
       correct_answers_medium: stats.correctAnswersMedium,
       correct_answers_long: stats.correctAnswersLong,
-      inorrect_answers_short: stats.incorrectAnswersShort,
-      inorrect_answers_medium: stats.incorrectAnswersMedium,
-      inorrect_answers_long: stats.incorrectAnswersLong,
+      incorrect_answers_short: stats.incorrectAnswersShort,
+      incorrect_answers_medium: stats.incorrectAnswersMedium,
+      incorrect_answers_long: stats.incorrectAnswersLong,
     };
     console.log(newStats);
 
