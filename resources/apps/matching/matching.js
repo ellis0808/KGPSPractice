@@ -13,6 +13,7 @@ import { gridItems, itemArrays } from "./generate-grid-items.js";
 import { alphabet } from "../card-touch/card-data.js";
 import { BASE_PATH } from "../../utilities/get-base-path.js";
 import { user } from "../../utilities/user-object.js";
+import { matchingAudio } from "./matching-audio.js";
 
 class MatchingApp {
   constructor() {
@@ -68,7 +69,7 @@ class MatchingApp {
   run(set, time) {
     this.setStyleSheet();
     this.setActivityName(set);
-    writingAudio.startAudioFetch(set);
+    matchingAudio.startAudioFetch(set);
     this.setActivityId();
     setTimeout(() => {
       this.setTime(time);
