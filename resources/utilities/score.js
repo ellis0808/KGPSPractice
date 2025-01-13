@@ -197,7 +197,7 @@ const scoreAssessment = {
         this.assessmentAudio =
           audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
         break;
-      case scoreFunction.currentScore > 13:
+      case scoreFunction.currentScore > 12:
         this.assessmentMessage = "Good Job!";
         this.assessmentAudio =
           audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
@@ -233,7 +233,7 @@ const scoreAssessment = {
         this.assessmentAudio =
           audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
         break;
-      case scoreFunction.currentScore > 10:
+      case scoreFunction.currentScore > 2:
         this.assessmentMessage = "Good Job!";
         this.assessmentAudio =
           audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();

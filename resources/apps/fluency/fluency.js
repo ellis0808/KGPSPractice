@@ -42,25 +42,33 @@ function restoreHeartSFX() {
 GENERAL VARIABLES
 *****************
 */
-const stats = {
-  userID: user.id,
-  userAccess: user.access,
-  activityType: "fluency",
-  activityName: null,
-  totalElapsedTime: 0,
-  questionCount: 0,
-  correctAnswerCount: 0,
-  incorrectAnswerCount: 0,
-  answerAttempts: 0,
-  questionsShort: [],
-  questionsMedium: [],
-  questionsLong: [],
-  correctAnswersShort: [],
-  correctAnswersMedium: [],
-  correctAnswersLong: [],
-  incorrectAnswersShort: [],
-  incorrectAnswersMedium: [],
-  incorrectAnswersLong: [],
+let stats;
+const initializeStats = () => {
+  stats = {
+    userID: user.id,
+    userAccess: user.access,
+    activityType: "card touch",
+    activityName: null,
+    totalElapsedTime: 0,
+    questionCount: 0,
+    correctAnswerCount: 0,
+    incorrectAnswerCount: 0,
+    answerAttempts: 0,
+    questionsShort: [],
+    questionsMedium: [],
+    questionsLong: [],
+    correctAnswersShort: [],
+    correctAnswersMedium: [],
+    correctAnswersLong: [],
+    incorrectAnswersShort: [],
+    incorrectAnswersMedium: [],
+    incorrectAnswersLong: [],
+  };
+  return stats;
+};
+stats = initializeStats();
+const resetStats = () => {
+  initializeStats();
 };
 const setActivityName = (set) => {
   return (stats.activityName = set);
@@ -373,8 +381,10 @@ function endSession() {
   resetCorrectAnswerPoints();
   resetNavigationBtns();
   grid.remove();
+  resetStats();
 }
 function startSession() {
+  resetStats();
   audio.navigationSfx.startApp.play();
   startBtn.classList.add("no-touch");
   startBtn.classList.remove("intro");

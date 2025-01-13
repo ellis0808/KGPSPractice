@@ -404,7 +404,7 @@ function displayEndMessagesContainer() {
       finalScoreAssessment.innerText = "Great Job!";
 
       break;
-    case scoreFunction.currentScore > 13:
+    case scoreFunction.currentScore > 5:
       finalScoreAssessment.innerText = "Good Job!";
       break;
   }
@@ -417,7 +417,7 @@ function displayEndMessagesContainer() {
   scoreFunction.updateUserScore();
   setTimeout(() => {
     switch (true) {
-      case scoreFunction.currentScore < 5:
+      case scoreFunction.currentScore <= 8:
         audio.feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
         break;
       case scoreFunction.currentScore > 31:
@@ -432,7 +432,7 @@ function displayEndMessagesContainer() {
       case scoreFunction.currentScore > 18:
         audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
         break;
-      case scoreFunction.currentScore > 13:
+      case scoreFunction.currentScore > 8:
         audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
         break;
     }
