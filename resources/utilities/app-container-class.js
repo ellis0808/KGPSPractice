@@ -46,6 +46,7 @@ class AppContainer {
     this.activityName = null;
     this.stats = this.initializeStats();
     this.endSessionItems = null;
+    this.endSessionFeedback = null;
     this.endApp = this.endApp.bind(this);
     this.startSession = this.startSession.bind(this);
     this.endSession = this.endSession.bind(this);
@@ -65,7 +66,8 @@ class AppContainer {
     appStructure,
     gridPopulator,
     activityName,
-    endSessionItems
+    endSessionItems,
+    endSessionFeedback
   ) {
     this.currentApp = currentApp;
     this.time = time;
@@ -75,6 +77,7 @@ class AppContainer {
     this.gridPopulator = gridPopulator;
     this.activityName = activityName;
     this.endSessionItems = endSessionItems;
+    this.endSessionFeedback = endSessionFeedback;
   }
   resetAppVariables() {
     this.currentApp = null;
@@ -228,7 +231,7 @@ class AppContainer {
     this.stats = this.initializeStats();
   }
   endRound() {
-    scoreAssessment.setFeedbackApp(this.activityType);
+    scoreAssessment.setFeedbackApp(this.endSessionFeedback);
     console.log(scoreAssessment.feedback);
 
     scoreFunction.updateUserTotalScore(this.stats);

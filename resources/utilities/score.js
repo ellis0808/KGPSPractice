@@ -168,7 +168,7 @@ const scoreAssessment = {
   finalScore: null,
   feedback: null,
   setFeedbackApp(app) {
-    this.feedback = `scoreAssessment.${app}()`;
+    this.feedback = app;
   },
   matching() {
     switch (true) {

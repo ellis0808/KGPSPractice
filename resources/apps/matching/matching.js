@@ -1,4 +1,4 @@
-import { scoreFunction } from "../../utilities/score.js";
+import { scoreAssessment, scoreFunction } from "../../utilities/score.js";
 import { mainContainer, body } from "../../utilities/variables.js";
 import {
   dotAndLineCommand,
@@ -60,6 +60,7 @@ class MatchingApp {
       ".unconnected",
       ".final",
     ];
+    this.endSessionFeedback = scoreAssessment.matching;
     this.getStartDotID = this.getStartDotID.bind(this);
     this.onPointerDown = this.onPointerDown.bind(this);
     this.onPointerMove = this.onPointerMove.bind(this);
@@ -88,7 +89,8 @@ class MatchingApp {
       this.createAndSetStructure,
       this.populateGrid,
       this.activityName,
-      this.endSessionItems
+      this.endSessionItems,
+      this.endSessionFeedback
     );
   }
   setActivityName(set) {
