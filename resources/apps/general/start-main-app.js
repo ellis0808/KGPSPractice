@@ -502,7 +502,7 @@ class MenuItems {
     this.numberFluency1to20AppMenuItem.addEventListener("click", () => {
       this.removeMenu();
       audio.navigationSfx.selectMenu.play();
-      startFluencyApp("numbers1-20");
+      fluencyApp("numbers1-20");
     });
 
     // 2. Number Fluency 21-40 App Menu Item
@@ -520,7 +520,7 @@ class MenuItems {
     this.numberFluency21to40AppMenuItem.addEventListener("click", () => {
       this.removeMenu();
       audio.navigationSfx.selectMenu.play();
-      appLauncher.startFluencyApp("numbers21-40");
+      fluencyApp("numbers21-40");
     });
 
     // 3. Number Fluency 41-60 App Menu Item
@@ -538,7 +538,7 @@ class MenuItems {
     this.numberFluency41to60AppMenuItem.addEventListener("click", () => {
       this.removeMenu();
       audio.navigationSfx.selectMenu.play();
-      appLauncher.startFluencyApp("numbers41-60");
+      fluencyApp("numbers41-60");
     });
 
     // 4. Number Fluency 61-80 App Menu Item
@@ -556,7 +556,7 @@ class MenuItems {
     this.numberFluency61to80AppMenuItem.addEventListener("click", () => {
       this.removeMenu();
       audio.navigationSfx.selectMenu.play();
-      appLauncher.startFluencyApp("numbers61-80");
+      fluencyApp("numbers61-80");
     });
 
     // 5. Number Fluency 81-100 App Menu Item
@@ -574,7 +574,7 @@ class MenuItems {
     this.numberFluency81to100AppMenuItem.addEventListener("click", () => {
       this.removeMenu();
       audio.navigationSfx.selectMenu.play();
-      appLauncher.startFluencyApp("numbers81-100");
+      fluencyApp("numbers81-100");
     });
     // 6. Number Writing 1-10 App Menu Item
     this.numberWriting1to10AppMenuItem.setAttribute(
