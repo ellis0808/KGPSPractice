@@ -618,7 +618,6 @@ function userTouch(event) {
 }
 
 function checkAnswer(currentAnswer, event) {
-  stats.questionsShort.push(currentItem);
   if (currentAnswer === currentItem) {
     audio.appSfx.correct.play();
     scoreFunction.updatePositiveCount(correctAnswerPoints);
@@ -727,7 +726,8 @@ function speakingInterval() {
       if (!isPaused) {
         enableTouch(boxes);
         fluencyAudio.speak(currentItem);
-
+        ++stats.questionCount;
+        stats.questionsLong.push(currentItem);
         ++loop;
 
         //stop interval
