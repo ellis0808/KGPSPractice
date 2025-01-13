@@ -364,7 +364,8 @@ async function getCumulativeUserScore() {
 function displayEndMessagesContainer() {
   sendStats(stats);
   getCumulativeUserScore();
-  disableTouch();
+  setTimeout(disableTouch, 500);
+  setTimeout(disableTouch, 1000);
   const btnContainer5 = document.createElement("div");
   btnContainer5.classList.add("btn-container5");
   const endMessagesContainer = document.createElement("div");
