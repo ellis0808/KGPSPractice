@@ -5,12 +5,12 @@ let activityId;
 // This function sets the style based on what the activity is. The "set" is retrieved from 'start-main-app', which is the main page that the user sees upon loging in.
 function setStyle(set) {
   switch (set) {
-    case "capitals":
+    case "alphabet-capitals":
       style = 1;
       cardTouchAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
-    case "lowercase":
+    case "alphabet-lowercase":
       style = 2;
       cardTouchAudio.startAudioFetch(style);
       setActivityId(style);

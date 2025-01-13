@@ -5,27 +5,27 @@ let activityId;
 
 function setStyle(set) {
   switch (set) {
-    case 1:
+    case "numbers21-40":
       style = 1;
       fluencyAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
-    case 2:
+    case "numbers21-40":
       style = 2;
       fluencyAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
-    case 3:
+    case "numbers41-60":
       style = 3;
       fluencyAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
-    case 4:
+    case "numbers61-80":
       style = 4;
       fluencyAudio.startAudioFetch(style);
       setActivityId(style);
       return style;
-    case 5:
+    case "numbers81-100":
       style = 5;
       fluencyAudio.startAudioFetch(style);
       setActivityId(style);
