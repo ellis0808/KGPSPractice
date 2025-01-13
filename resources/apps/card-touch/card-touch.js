@@ -32,17 +32,41 @@ import {
 import { audio } from "../../utilities/audio.js";
 import { pauseFunction } from "../../utilities/pause-functions.js";
 import { BASE_PATH } from "../../utilities/get-base-path.js";
+import { appContainer } from "../../utilities/app-container-class.js";
 
 /* SCORING */
+
 const correctAnswerPoints = 2;
 const incorrectAnswerPoints = 1;
+const stats = {
+  userID: user.id,
+  userAccess: user.access,
+  activityType: "card touch",
+  activityName: null,
+  totalElapsedTime: 0,
+  questionCount: 0,
+  correctAnswerCount: 0,
+  incorrectAnswerCount: 0,
+  answerAttempts: 0,
+  questionsShort: [],
+  questionsMedium: [],
+  questionsLong: [],
+  correctAnswersShort: [],
+  correctAnswersMedium: [],
+  correctAnswersLong: [],
+  incorrectAnswersShort: [],
+  incorrectAnswersMedium: [],
+  incorrectAnswersLong: [],
+};
+const setActivityName = (set) => {
+  return (stats.activityName = set);
+};
 
 function cardTouchApp(set) {
   sessionCheck();
+  setActivityName(set);
   setStyle(set);
   setGridStyle(style);
-  // setRoundTime(style);
-  // removeEndMessagesContainer()
   setTimeout(() => {
     timerFunction.clearTimer();
     mainContainer.appendChild(container);
@@ -327,7 +351,7 @@ async function getCumulativeUserScore() {
 }
 
 function displayEndMessagesContainer() {
-  updateUserTotalScore();
+  sendStats(stats);
   getCumulativeUserScore();
   const btnContainer5 = document.createElement("div");
   btnContainer5.classList.add("btn-container5");
@@ -537,6 +561,7 @@ function createBoard() {
       btnContainer1.appendChild(scoreFunction.display);
       if (!isSessionFinished) {
         if (!isPaused) {
+          ++stats.questionCount;
           cardTouchAudio.speak();
         }
       }
@@ -550,10 +575,19 @@ let currentCardID;
 
 // functions
 function touchCard(e) {
+  ++stats.answerAttempts;
   currentCardID = this.getAttribute("contentId");
   if (currentCardID === cardText[cardTouchAudio.correctCardID]) {
     correctCard(e);
     scoreFunction.updatePositiveCount(correctAnswerPoints);
+    ++stats.correctAnswerCount;
+    if (currentCardID.length > 1) {
+      stats.questionsShort.push(cardText[cardTouchAudio.correctCardID]);
+      stats.correctAnswersShort.push(currentCardID);
+    } else {
+      stats.questionsMedium.push(cardText[cardTouchAudio.correctCardID]);
+      stats.correctAnswersMedium.push(currentCardID);
+    }
     let delay = 300;
     setTimeout(() => {
       switch (scoreFunction.currentScore) {
@@ -581,6 +615,7 @@ function touchCard(e) {
     disableTouch();
   } else {
     wobble(e);
+    ++stats.incorrectAnswerCount;
   }
 }
 
@@ -610,6 +645,9 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+const sendStats = () => {
+  appContainer.getStats(stats);
+};
 async function updateUserTotalScore() {
   //  For student users; teachers will differ on user type, etc
 
