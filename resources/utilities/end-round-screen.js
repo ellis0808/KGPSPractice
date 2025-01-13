@@ -35,7 +35,7 @@ const endRoundScreen = {
       this.endMessagesContainer.appendChild(this.finishBtn);
       this.endMessagesContainer.appendChild(this.assessmentMessage);
       this.endMessagesContainer.appendChild(this.scoreMessage);
-      scoreAssessment.feedback(); // needs to be changed to be dynamic based on the activity id and set!
+      scoreAssessment.feedback; // needs to be changed to be dynamic based on the activity id and set!
       appContainer.setBtnContainer5(endRoundScreen.endMessagesContainer);
       appContainer.showBtnContainer5();
     }
