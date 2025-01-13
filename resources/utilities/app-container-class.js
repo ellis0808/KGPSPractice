@@ -229,6 +229,8 @@ class AppContainer {
   }
   endRound() {
     scoreAssessment.setApp(this.activityType);
+    console.log(scoreAssessment.feedback());
+
     scoreFunction.updateUserTotalScore(this.stats);
     endRoundScreen.displayContainer();
   }
