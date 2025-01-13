@@ -298,6 +298,8 @@ function startNewRound() {
 }
 
 function roundOver() {
+  console.log("round over function firing...");
+
   if (!btnContainer5) {
     btnContainer5 = document.createElement("div");
     btnContainer5.classList.add("btn-container5");
@@ -353,6 +355,8 @@ async function getCumulativeUserScore() {
 }
 
 function displayEndMessagesContainer() {
+  console.log("test...");
+
   sendStats(stats);
   getCumulativeUserScore();
   const btnContainer5 = document.createElement("div");
@@ -718,7 +722,6 @@ function endApp() {
     setTimeout(() => {
       stylesheet.setAttribute("href", `${BASE_PATH}resources/css/styles.css`);
       setTimeout(() => {
-        // menuItems.displayMainPage();
         menuItems.restoreMainMenu();
       }, 100);
     }, 500);
