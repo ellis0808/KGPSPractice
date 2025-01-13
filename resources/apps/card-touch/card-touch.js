@@ -43,7 +43,7 @@ const initializeStats = () => {
     userID: user.id,
     userAccess: user.access,
     activityType: "card touch",
-    activityName: set,
+    activityName: null,
     totalElapsedTime: 0,
     questionCount: 0,
     correctAnswerCount: 0,
