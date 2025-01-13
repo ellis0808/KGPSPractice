@@ -42,7 +42,29 @@ function restoreHeartSFX() {
 GENERAL VARIABLES
 *****************
 */
-
+const stats = {
+  userID: user.id,
+  userAccess: user.access,
+  activityType: "fluency",
+  activityName: null,
+  totalElapsedTime: 0,
+  questionCount: 0,
+  correctAnswerCount: 0,
+  incorrectAnswerCount: 0,
+  answerAttempts: 0,
+  questionsShort: [],
+  questionsMedium: [],
+  questionsLong: [],
+  correctAnswersShort: [],
+  correctAnswersMedium: [],
+  correctAnswersLong: [],
+  incorrectAnswersShort: [],
+  incorrectAnswersMedium: [],
+  incorrectAnswersLong: [],
+};
+const setActivityName = (set) => {
+  return (stats.activityName = set);
+};
 /* SCORING */
 function determineCorrectAnswerPoints() {
   if (round >= 1 && round < 10) {
@@ -142,56 +164,11 @@ const gridSize = 20;
 Main App
 *****************
 */
-// async function getAudio(style) {
-//   let category;
-//   let grouping;
-//   if (style === 1) {
-//     category = "numbers";
-//     grouping = 1;
-//   }
-//   if (style === 2) {
-//     category = "numbers";
-//     grouping = 2;
-//   }
-//   if (style === 3) {
-//     category = "numbers";
-//     grouping = 3;
-//   }
-//   if (style === 4) {
-//     category = "numbers";
-//     grouping = 4;
-//   }
-//   if (style === 5) {
-//     category = "numbers";
-//     grouping = 5;
-//   }
-//   try {
-//     const response = await fetch(
-//       `/KGPSEnglishPractice-test/api/load_audio.php?id1=${category}&id2=${grouping}`
-//     );
-//     if (!response.ok) {
-//       throw new Error("Network response was not okay");
-//     }
-//     const audioData = await response.json();
-//   } catch (error) {
-//     console.log("There was an error ", error);
-//   }
-// }
-// function loadAudio(audioData) {
-//   const audioObject = audioData.map((item) => {
-//     return (audioObject[item.content] = {
-//       content: item.content,
-//       sound: new Howl({
-//         src: [item.link],
-//         volume: 0.5,
-//       }),
-//     });
-//   });
-// }
 
 /* Starts Main App (exported to resources/js/general/app-launcher.js) */
 function fluencyApp(set) {
   sessionCheck();
+  setActivityName(set);
   setStyle(set);
   setTimeout(() => {
     mainContainer.appendChild(appContainer);
@@ -222,38 +199,12 @@ function setUser() {
   user.lastName = sessionData.lastName;
   user.access = sessionData.access;
   user.id = sessionData.userId;
+  stats.userID = user.id;
+  stats.userAccess = user.access;
 }
-
-async function updateUserTotalScore() {
-  //  For student users; teachers will differ on user type, etc
-  const newScore = {
-    activity_id: activityId,
-    user_id: user.id,
-    user_type: user.access,
-    correct_answer_count: 0,
-    incorrect_answer_count: 0,
-    time_to_correct_answer_duration_in_seconds: 0,
-    answer_attempts: 0,
-    activity_score: scoreFunction.currentScore,
-  };
-  try {
-    const response = await fetch(
-      `${BASE_PATH}api/add_user_activity_record.php`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newScore),
-      }
-    );
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error("Network response was not okay");
-    }
-  } catch (error) {
-    console.error("Error adding record:", error);
-  }
-}
+const sendStats = () => {
+  scoreFunction.updateUserTotalScore(stats);
+};
 
 /* Removes Main App and Returns to Main Menu*/
 function endApp() {
@@ -554,7 +505,7 @@ function gameOver() {
 
 function displayEndMessagesContainer() {
   scoreFunction.updateUserScore();
-  updateUserTotalScore();
+  sendStats(stats);
   const btnContainer5 = document.createElement("div");
   btnContainer5.classList.add("btn-container5");
   const endMessagesContainer = document.createElement("div");
@@ -667,15 +618,20 @@ function userTouch(event) {
 }
 
 function checkAnswer(currentAnswer, event) {
+  stats.questionsShort.push(currentItem);
   if (currentAnswer === currentItem) {
     audio.appSfx.correct.play();
     scoreFunction.updatePositiveCount(correctAnswerPoints);
     ++numberOfRightAnswers;
+    ++stats.correctAnswerCount;
+    stats.correctAnswersLong.push(currentAnswer);
     disableTouch(boxes);
   } else {
     audio.appSfx.cancel.play();
     heartsArray.pop();
     displayHeartsArray();
+    ++stats.incorrectAnswerCount;
+    stats.incorrectAnswersMedium.push(currentAnswer);
     gameOver();
   }
 }
