@@ -148,7 +148,7 @@ class StartDot {
   }
   markAsIncorrect() {
     audio.appSfx.cancel.play();
-    matchingApp.correctShortAnswersArray.push(this.contentId);
+    matchingApp.incorrectShortAnswersArray.push(this.contentId);
   }
 }
 class EndDot {
@@ -227,10 +227,11 @@ class EndDot {
 
   markAsCorrect() {
     this.addCorrectPulse();
+    matchingApp.correctShortAnswersArray.push(this.contentId);
   }
   markAsIncorrect() {
-    // this.disconnect();
     this.removeCorrectPulse();
+    matchingApp.incorrectShortAnswersArray.push(this.contentId);
   }
 }
 
