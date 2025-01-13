@@ -95,6 +95,8 @@ function setUser() {
   user.lastName = sessionData.lastName;
   user.access = sessionData.access;
   user.id = sessionData.userId;
+  stats.userID = user.id;
+  stats.userAccess = user.access;
 }
 
 const container = document.createElement("div");
