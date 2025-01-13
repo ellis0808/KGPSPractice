@@ -232,6 +232,7 @@ class EndDot {
   markAsIncorrect() {
     this.removeCorrectPulse();
     matchingApp.incorrectShortAnswersArray.push(this.contentId);
+    matchingApp.incorrectShortAnswersArray.push(this.connectedTo.contentId);
   }
 }
 
