@@ -627,6 +627,9 @@ function touchCard(e) {
     } else {
       stats.incorrectAnswersMedium.push(currentCardID);
     }
+    setTimeout(() => {
+      cardTouchAudio.repeat();
+    }, 200);
   }
   console.log(stats);
 }
