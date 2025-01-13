@@ -583,7 +583,7 @@ function touchCard(e) {
     correctCard(e);
     scoreFunction.updatePositiveCount(correctAnswerPoints);
     ++stats.correctAnswerCount;
-    if (currentCardID.length > 1) {
+    if (currentCardID.length === 1) {
       stats.questionsShort.push(cardText[cardTouchAudio.correctCardID]);
       stats.correctAnswersShort.push(currentCardID);
     } else {
@@ -618,6 +618,11 @@ function touchCard(e) {
   } else {
     wobble(e);
     ++stats.incorrectAnswerCount;
+    if (currentCardID.length === 1) {
+      stats.incorrectAnswersShort.push(currentCardID);
+    } else {
+      stats.incorrectAnswersMedium.push(currentCardID);
+    }
   }
   console.log(stats);
 }
