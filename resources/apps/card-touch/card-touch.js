@@ -38,25 +38,32 @@ import { appContainer } from "../../utilities/app-container-class.js";
 
 const correctAnswerPoints = 2;
 const incorrectAnswerPoints = 1;
-const stats = {
-  userID: user.id,
-  userAccess: user.access,
-  activityType: "card touch",
-  activityName: null,
-  totalElapsedTime: 0,
-  questionCount: 0,
-  correctAnswerCount: 0,
-  incorrectAnswerCount: 0,
-  answerAttempts: 0,
-  questionsShort: [],
-  questionsMedium: [],
-  questionsLong: [],
-  correctAnswersShort: [],
-  correctAnswersMedium: [],
-  correctAnswersLong: [],
-  incorrectAnswersShort: [],
-  incorrectAnswersMedium: [],
-  incorrectAnswersLong: [],
+const stats = initializeStats();
+const initializeStats = () => {
+  stats = {
+    userID: user.id,
+    userAccess: user.access,
+    activityType: "card touch",
+    activityName: set,
+    totalElapsedTime: 0,
+    questionCount: 0,
+    correctAnswerCount: 0,
+    incorrectAnswerCount: 0,
+    answerAttempts: 0,
+    questionsShort: [],
+    questionsMedium: [],
+    questionsLong: [],
+    correctAnswersShort: [],
+    correctAnswersMedium: [],
+    correctAnswersLong: [],
+    incorrectAnswersShort: [],
+    incorrectAnswersMedium: [],
+    incorrectAnswersLong: [],
+  };
+  return stats;
+};
+const resetStats = () => {
+  initializeStats();
 };
 const setActivityName = (set) => {
   return (stats.activityName = set);
@@ -228,6 +235,7 @@ function displayStartBtn() {
 
 // Start Round
 function startSession() {
+  resetStats();
   audio.navigationSfx.startApp.play();
   removeEndMessagesContainer();
   startBtn.classList.add("no-touch");
@@ -678,6 +686,7 @@ function endSession() {
   appStarted = false;
   removeBlur();
   grid.remove();
+  resetStats();
   return style;
 }
 
