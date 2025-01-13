@@ -229,7 +229,7 @@ class AppContainer {
   }
   endRound() {
     scoreAssessment.setFeedbackApp(this.activityType);
-    console.log(scoreAssessment.feedback());
+    console.log(scoreAssessment.feedback);
 
     scoreFunction.updateUserTotalScore(this.stats);
     endRoundScreen.displayContainer();
