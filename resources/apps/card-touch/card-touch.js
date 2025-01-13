@@ -38,6 +38,7 @@ import { appContainer } from "../../utilities/app-container-class.js";
 
 const correctAnswerPoints = 2;
 const incorrectAnswerPoints = 1;
+let stats;
 const initializeStats = () => {
   stats = {
     userID: user.id,
@@ -61,7 +62,7 @@ const initializeStats = () => {
   };
   return stats;
 };
-const stats = initializeStats();
+stats = initializeStats();
 const resetStats = () => {
   initializeStats();
 };
