@@ -198,7 +198,7 @@ class MatchingApp {
     );
     if (allCorrectDots.length === this.numberOfItemsToBeDisplayed) {
       this.updateStats();
-      this.sendStats();
+      this.sendStats(this.stats);
       setTimeout(() => {
         scoreFunction.updatePositiveCount(
           allCorrectDots.length * this.correctAnswerPoints
