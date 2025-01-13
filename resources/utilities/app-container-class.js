@@ -228,7 +228,7 @@ class AppContainer {
     this.stats = this.initializeStats();
   }
   endRound() {
-    scoreAssessment.setApp(this.activityType);
+    scoreAssessment.setFeedbackApp(this.activityType);
     console.log(scoreAssessment.feedback());
 
     scoreFunction.updateUserTotalScore(this.stats);

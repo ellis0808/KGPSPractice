@@ -167,8 +167,8 @@ const scoreAssessment = {
   assessmentAudio: null,
   finalScore: null,
   feedback: null,
-  setApp(app) {
-    this.feedback = `this.${app}`;
+  setFeedbackApp(app) {
+    this.feedback = `scoreAssessment.${app}`;
   },
   matching() {
     switch (true) {
