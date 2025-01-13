@@ -5,7 +5,7 @@ let activityId;
 
 function setStyle(set) {
   switch (set) {
-    case "numbers21-40":
+    case "numbers1-20":
       style = 1;
       fluencyAudio.startAudioFetch(style);
       setActivityId(style);

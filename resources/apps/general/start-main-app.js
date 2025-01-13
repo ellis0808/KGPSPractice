@@ -7,7 +7,6 @@ import {
   topContainer,
   // parentsInfo,
 } from "../../utilities/variables.js";
-import { appLauncher } from "./app-launcher.js";
 import { logout } from "../../utilities/logout.js";
 import { sessionCheck, sessionData } from "../../login/session-check.js";
 import { user } from "../../utilities/user-object.js";
@@ -292,7 +291,7 @@ class MenuItems {
       () => {
         this.removeMenu();
         audio.navigationSfx.selectMenu.play();
-        appLauncher.startCardTouchApp("letter-sounds-asmf-letters");
+        cardTouchApp("letter-sounds-asmf-letters");
       }
     );
     // 2. Letter Sounds AMSF Words Touch App Menu Item
@@ -316,7 +315,7 @@ class MenuItems {
     this.letterSoundsTouchAMSFWordsAppMenuItem.addEventListener("click", () => {
       this.removeMenu();
       audio.navigationSfx.selectMenu.play();
-      appLauncher.startCardTouchApp("letter-sounds-asmf-words");
+      cardTouchApp("letter-sounds-asmf-words");
     });
 
     // 1. Letter Sounds Letters (ASMF) Writing App Menu Item
@@ -387,7 +386,7 @@ class MenuItems {
     this.sightWords1AppMenuItem.addEventListener("click", () => {
       this.removeMenu();
       audio.navigationSfx.selectMenu.play();
-      appLauncher.startCardTouchApp("sightwords1");
+      cardTouchApp("sightwords1");
     });
 
     // 2. Sight Words 2 Touch App Menu Item
@@ -405,7 +404,7 @@ class MenuItems {
     this.sightWords2AppMenuItem.addEventListener("click", () => {
       this.removeMenu();
       audio.navigationSfx.selectMenu.play();
-      appLauncher.startCardTouchApp("sightwords2");
+      cardTouchApp("sightwords2");
     });
 
     // 3. Sight Words 3 Touch App Menu Item
@@ -423,7 +422,7 @@ class MenuItems {
     this.sightWords3AppMenuItem.addEventListener("click", () => {
       this.removeMenu();
       audio.navigationSfx.selectMenu.play();
-      appLauncher.startCardTouchApp("sightwords3");
+      cardTouchApp("sightwords3");
     });
 
     // 4. Sight Words 1 Writing App Menu Item
