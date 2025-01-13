@@ -1,7 +1,7 @@
 import { writingAudio } from "./writing-audio.js";
 import { audio } from "../../utilities/audio.js";
 import { appContainer } from "../../utilities/app-container-class.js";
-import { scoreFunction } from "../../utilities/score.js";
+import { scoreAssessment, scoreFunction } from "../../utilities/score.js";
 import { timerFunction } from "../../utilities/timer.js";
 import { BASE_PATH } from "../../utilities/get-base-path.js";
 import { user } from "../../utilities/user-object.js";
@@ -42,6 +42,7 @@ class WritingApp {
       ".controls-row",
       ".repeat-btn",
     ];
+    this.endSessionFeedback = scoreAssessment.writing;
   }
   run(set, time) {
     this.setStyleSheet();
@@ -67,7 +68,8 @@ class WritingApp {
       this.createAndSetStructure,
       this.generateItems,
       this.activityName,
-      this.endSessionItems
+      this.endSessionItems,
+      this.endSessionFeedback
     );
   }
   setActivityName(set) {
