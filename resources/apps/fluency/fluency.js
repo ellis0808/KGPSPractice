@@ -509,6 +509,12 @@ function gameOver() {
     clearInterval(run);
     setTimeout(() => {
       displayEndMessagesContainer();
+      setTimeout(disableTouch, 500);
+      setTimeout(disableTouch, 1000);
+      grid.classList.add("blur");
+      btnContainer1.classList.add("blur");
+      homeBtnContainer.classList.add("blur");
+      homeBtnContainer.classList.add("no-touch");
     }, 500);
   }
 }
