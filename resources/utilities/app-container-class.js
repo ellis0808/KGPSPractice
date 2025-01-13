@@ -6,7 +6,7 @@ import {
   toggleBlur,
   toggleTouchFunction,
 } from "./pause-functions.js";
-import { scoreFunction } from "./score.js";
+import { scoreAssessment, scoreFunction } from "./score.js";
 import { startScreen } from "./start-screen.js";
 import { homeBtnFunction } from "./go-home-function.js";
 import { endRoundScreen } from "./end-round-screen.js";
@@ -150,7 +150,6 @@ class AppContainer {
     setTimeout(() => {
       timerFunction.startTimer(this.time);
     }, 1000);
-    console.log(user);
   }
   endSession() {
     pauseFunction.unpause();
@@ -181,8 +180,6 @@ class AppContainer {
     this.gridHideRemove();
   }
   startRound() {
-    console.log("round started");
-
     this.prepareForNewRound();
     setTimeout(() => {
       this.gridPopulator();
@@ -204,7 +201,6 @@ class AppContainer {
           newStats[key] !== undefined ? newStats[key] : this.stats[key];
       }
     }
-    console.log(newStats);
   }
   initializeStats() {
     return {
@@ -232,8 +228,8 @@ class AppContainer {
     this.stats = this.initializeStats();
   }
   endRound() {
+    scoreAssessment.setApp(this.activityType);
     scoreFunction.updateUserTotalScore(this.stats);
-    console.log(this.stats);
     endRoundScreen.displayContainer();
   }
   initializeEventListeners() {
@@ -328,7 +324,6 @@ class AppContainer {
     this.appStructure();
   }
   createAndSetAppStructureThenHideGrid() {
-    // this.createMainAppStructure();
     this.setMainAppStructure();
     this.gridHideAdd();
   }
@@ -339,12 +334,7 @@ class AppContainer {
       }
     });
   }
-  // resetAppContainterContents() {
-  //   document.querySelector(".container").childNodes.forEach((container) => {
-  //     console.log(container);
-  //     container.textContent = "";
-  //   });
-  // }
+
   gridHideAdd() {
     if (!this.grid.classList.contains("gridHide")) {
       this.grid.classList.add("gridHide");

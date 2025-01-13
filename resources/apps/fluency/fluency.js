@@ -634,7 +634,6 @@ function checkAnswer(currentAnswer, event) {
     stats.incorrectAnswersMedium.push(currentAnswer);
     gameOver();
   }
-  console.log(stats);
 }
 function addWrongAnswerRed(event) {
   event.target.classList.add("red");

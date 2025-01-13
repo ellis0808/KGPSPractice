@@ -54,7 +54,6 @@ class WritingApp {
       appContainer.startApp();
       this.setCanvasFunctionality();
     }, 200);
-    console.log(this.stats);
   }
   setTime(time) {
     this.time = time;
@@ -73,7 +72,6 @@ class WritingApp {
   }
   setActivityName(set) {
     this.activityName = set;
-    console.log(this.activityName);
   }
   sendStats(stats) {
     appContainer.getStats(stats);
@@ -113,7 +111,6 @@ class WritingApp {
     this.stats.questionsShort = this.shortQuestionsArray;
     this.stats.correctAnswersShort = this.correctShortAnswersArray;
     this.stats.incorrectAnswersShort = this.incorrectShortAnswersArray;
-    console.log(this.stats);
   }
   createAndSetStructure = () => {
     this.createGrid();
@@ -320,8 +317,6 @@ class WritingApp {
       this.randomItemArray.push(randomItem);
       this.shortQuestionsArray.push(randomItem);
     }
-    console.log(this.shortQuestionsArray);
-
     this.getNewWord();
     this.displayNumberCorrect();
   }
@@ -396,10 +391,7 @@ class WritingApp {
     if (this.numberCorrect === this.maxNumberOfWordsToWrite) {
       this.stats.totalElapsedTime = timerFunction.time;
     }
-
     this.updateStats();
-    console.log(this.stats);
-
     this.setCorrectAnswerPoints();
     this.sendStats(this.stats);
     scoreFunction.updatePositiveCount(this.correctAnswerPoints);
@@ -415,11 +407,8 @@ class WritingApp {
         throw new Error("Network response was not okay");
       }
       const data = await response.json();
-      console.log(data);
-
       if (data) {
         writingApp.bestTime = data.best_time;
-        console.log(this.bestTime);
       }
     } catch (error) {
       console.error(

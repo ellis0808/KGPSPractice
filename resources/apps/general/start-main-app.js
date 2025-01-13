@@ -1083,11 +1083,11 @@ class MenuItems {
       throw error;
     }
   }
-  setUser() {
+  async setUser() {
     const maxRetries = 3;
     for (let attempt = 1; attempt <= maxRetries; ++attempt) {
       try {
-        this.getUserInfo();
+        await this.getUserInfo();
         return;
       } catch (error) {
         console.error(
@@ -1096,7 +1096,7 @@ class MenuItems {
         );
         if (attempt < maxRetries) {
           console.log("Beginning next attempt.");
-          new Promise((resolve) => setTimeout(resolve, 1000));
+          await new Promise((resolve) => setTimeout(resolve, 1000));
         } else {
           console.error(
             `Attempted to get user info ${maxRetries}, but all attempts failed.`

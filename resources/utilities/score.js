@@ -141,7 +141,6 @@ const scoreFunction = {
       incorrect_answers_medium: stats.incorrectAnswersMedium,
       incorrect_answers_long: stats.incorrectAnswersLong,
     };
-    console.log(newStats);
 
     try {
       const response = await fetch(
@@ -152,11 +151,7 @@ const scoreFunction = {
           body: JSON.stringify(newStats),
         }
       );
-      const responseText = await response.text();
-      console.log(responseText);
-
-      const data = JSON.parse(responseText);
-      console.log(data);
+      const data = await response.json();
 
       if (!response.ok) {
         throw new Error("Network response was not okay");
@@ -171,10 +166,49 @@ const scoreAssessment = {
   assessmentMessage: null,
   assessmentAudio: null,
   finalScore: null,
-  determineApp(set) {},
+  feedback: null,
+  setApp(app) {
+    this.feedback = this[app];
+  },
   matching() {
     switch (true) {
       case scoreFunction.currentScore <= 12:
+        this.assessmentMessage = "Better Luck\r\nNext Time!";
+        this.assessmentAudio =
+          audio.feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();
+        break;
+      case scoreFunction.currentScore > 31:
+        this.assessmentMessage = "Outstanding!";
+        this.assessmentAudio =
+          audio.feedbackAudioObject.positiveFeedback.outstanding.sound.play();
+        break;
+      case scoreFunction.currentScore > 27:
+        this.assessmentMessage = "Amazing!";
+        this.assessmentAudio =
+          audio.feedbackAudioObject.positiveFeedback.amazing.sound.play();
+        break;
+      case scoreFunction.currentScore > 23:
+        this.assessmentMessage = "Excellent!";
+        this.assessmentAudio =
+          audio.feedbackAudioObject.positiveFeedback.excellent.sound.play();
+        break;
+      case scoreFunction.currentScore > 18:
+        this.assessmentMessage = "Great Job!";
+        this.assessmentAudio =
+          audio.feedbackAudioObject.positiveFeedback.greatJob.sound.play();
+        break;
+      case scoreFunction.currentScore > 13:
+        this.assessmentMessage = "Good Job!";
+        this.assessmentAudio =
+          audio.feedbackAudioObject.positiveFeedback.goodJob.sound.play();
+        break;
+    }
+    endRoundScreen.setAssessmentMessage(this.assessmentMessage);
+    endRoundScreen.setAssessmentAudio(this.assessmentAudio);
+  },
+  writing() {
+    switch (true) {
+      case scoreFunction.currentScore <= 2:
         this.assessmentMessage = "Better Luck\r\nNext Time!";
         this.assessmentAudio =
           audio.feedbackAudioObject.negativeFeedback.betterLuckNextTime.sound.play();

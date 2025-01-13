@@ -93,7 +93,6 @@ class MatchingApp {
   }
   setActivityName(set) {
     this.activityName = set;
-    console.log(this.activityName);
   }
   sendStats(stats) {
     appContainer.getStats(stats);
@@ -133,7 +132,6 @@ class MatchingApp {
     this.stats.questionsShort = this.shortQuestionsArray;
     this.stats.correctAnswersShort = this.correctShortAnswersArray;
     this.stats.incorrectAnswersShort = this.incorrectShortAnswersArray;
-    console.log(this.stats);
   }
   createAndSetStructure = () => {
     this.createGrid();

@@ -298,8 +298,6 @@ function startNewRound() {
 }
 
 function roundOver() {
-  console.log("round over function firing...");
-
   if (!btnContainer5) {
     btnContainer5 = document.createElement("div");
     btnContainer5.classList.add("btn-container5");
@@ -355,8 +353,6 @@ async function getCumulativeUserScore() {
 }
 
 function displayEndMessagesContainer() {
-  console.log("test...");
-
   sendStats(stats);
   getCumulativeUserScore();
   const btnContainer5 = document.createElement("div");
@@ -631,7 +627,6 @@ function touchCard(e) {
       cardTouchAudio.repeat();
     }, 200);
   }
-  console.log(stats);
 }
 
 function correctCard(e) {
