@@ -70,7 +70,6 @@ class MatchingApp {
     this.setStyleSheet();
     this.setActivityName(set);
     matchingAudio.startAudioFetch(set);
-    this.setActivityId();
     setTimeout(() => {
       this.setTime(time);
       this.setUpApp();
