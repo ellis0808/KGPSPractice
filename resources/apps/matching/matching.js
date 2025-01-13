@@ -18,6 +18,7 @@ import { appContainer } from "../../utilities/app-container-class.js";
 import { gridItems, itemArrays } from "./generate-grid-items.js";
 import { alphabet } from "../card-touch/card-data.js";
 import { BASE_PATH } from "../../utilities/get-base-path.js";
+import { user } from "../../utilities/user-object.js";
 
 class MatchingApp {
   constructor() {
