@@ -364,6 +364,7 @@ async function getCumulativeUserScore() {
 function displayEndMessagesContainer() {
   sendStats(stats);
   getCumulativeUserScore();
+  disableTouch();
   const btnContainer5 = document.createElement("div");
   btnContainer5.classList.add("btn-container5");
   const endMessagesContainer = document.createElement("div");
@@ -636,6 +637,7 @@ function touchCard(e) {
       cardTouchAudio.repeat();
     }, 200);
   }
+  console.log(stats);
 }
 
 function correctCard(e) {
