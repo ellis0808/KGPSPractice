@@ -630,6 +630,7 @@ function checkAnswer(currentAnswer, event) {
     heartsArray.pop();
     displayHeartsArray();
     ++stats.incorrectAnswerCount;
+    stats.incorrectAnswersMedium.push(currentItem);
     stats.incorrectAnswersMedium.push(currentAnswer);
     gameOver();
   }
