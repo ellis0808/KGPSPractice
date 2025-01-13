@@ -1096,7 +1096,7 @@ class MenuItems {
         );
         if (attempt < maxRetries) {
           console.log("Beginning next attempt.");
-          await new Promise((resolve) => setTimeout(resolve, 1000));
+          await new Promise((resolve) => setTimeout(resolve, 200));
         } else {
           console.error(
             `Attempted to get user info ${maxRetries}, but all attempts failed.`
