@@ -35,10 +35,21 @@ class MatchingApp {
     this.line = new Connector();
     this.styleSheet = `${BASE_PATH}resources/css/matching.css`;
     this.time = null;
-    this.numberCorrect = null;
-    this.numberIncorrect = null;
-    this.answerAttempts = this.numberCorrect + this.numberIncorrect;
+    this.stats = this.initializeStats();
     this.totalElapsedTime = null;
+    this.bestTime = null;
+    this.numberCorrect = 0;
+    this.numberIncorrect = 0;
+    this.answerAttempts = 0;
+    this.shortQuestionsArray = [];
+    this.mediumQuestionsArray = [];
+    this.longQuestionsArray = [];
+    this.correctShortAnswersArray = [];
+    this.correctMediumAnswersArray = [];
+    this.correctLongAnswersArray = [];
+    this.incorrectShortAnswersArray = [];
+    this.incorrectMediumAnswersArray = [];
+    this.incorrectLongAnswersArray = [];
     this.endSessionItems = [
       ".startrow",
       ".line",
@@ -83,13 +94,45 @@ class MatchingApp {
       this.endSessionItems
     );
   }
-  sendStats() {
-    appContainer.getStats(
-      this.numberCorrect,
-      this.numberIncorrect,
-      this.answerAttempts,
-      this.totalElapsedTime
-    );
+  sendStats(stats) {
+    appContainer.getStats(stats);
+  }
+  initializeStats() {
+    return {
+      userID: user.id,
+      userAccess: user.access,
+      activityType: this.activityType,
+      activityName: this.activityName,
+      totalElapsedTime: 0,
+      questionCount: 0,
+      correctAnswerCount: 0,
+      incorrectAnswerCount: 0,
+      answerAttempts: 0,
+      questionsShort: [],
+      questionsMedium: [],
+      questionsLong: [],
+      correctAnswersShort: [],
+      correctAnswersMedium: [],
+      correctAnswersLong: [],
+      incorrectAnswersShort: [],
+      incorrectAnswersMedium: [],
+      incorrectAnswersLong: [],
+    };
+  }
+  resetStats() {
+    this.stats = this.initializeStats();
+  }
+  updateStats() {
+    this.stats.userID = user.id;
+    this.stats.userAccess = user.access;
+    this.stats.activityName = this.activityName;
+    this.stats.correctAnswerCount = this.numberCorrect;
+    this.stats.incorrectAnswerCount = this.numberIncorrect;
+    this.stats.answerAttempts = this.answerAttempts;
+    this.stats.questionsShort = this.shortQuestionsArray;
+    this.stats.correctAnswersShort = this.correctShortAnswersArray;
+    this.stats.incorrectAnswersShort = this.incorrectShortAnswersArray;
+    console.log(this.stats);
   }
   createAndSetStructure = () => {
     this.createGrid();
@@ -143,8 +186,9 @@ class MatchingApp {
       dotsAndLines.forEach((item) => {
         item.remove();
       });
-      matchingApp.clearArrays();
-      dotAndLineCommand.clearArrays();
+      matchingApp.resetArrays();
+      matchingApp.initializeStats();
+      dotAndLineCommand.resetArrays();
     }, 400);
   }
   checkAllCorrect() {
@@ -152,6 +196,7 @@ class MatchingApp {
       ".start-dot.pulse.white-ring"
     );
     if (allCorrectDots.length === this.numberOfItemsToBeDisplayed) {
+      this.updateStats();
       this.sendStats();
       setTimeout(() => {
         scoreFunction.updatePositiveCount(
@@ -166,6 +211,13 @@ class MatchingApp {
         appContainer.startRound();
       }, 800);
     }
+  }
+
+  increaseAnswerAttempts() {
+    ++this.answerAttempts;
+  }
+  resetAnswerAttempts() {
+    this.answerAttempts = 0;
   }
   randomFeedback() {
     Object.keys(audio.feedbackAudioObject.positiveFeedback).forEach(
@@ -549,9 +601,18 @@ class MatchingApp {
       line.remove();
     });
   }
-  clearArrays() {
+  resetArrays() {
     this.currentDotId = null;
     this.currentDotIdArray.length = 0;
+    this.shortQuestionsArray = [];
+    this.mediumQuestionsArray = [];
+    this.longQuestionsArray = [];
+    this.correctShortAnswersArray = [];
+    this.correctMediumAnswersArray = [];
+    this.correctLongAnswersArray = [];
+    this.incorrectShortAnswersArray = [];
+    this.incorrectMediumAnswersArray = [];
+    this.incorrectLongAnswersArray = [];
   }
 }
 

@@ -225,6 +225,15 @@ class WritingApp {
   resetArrays() {
     this.randomItemArray.length = 0;
     this.items.length = 0;
+    this.shortQuestionsArray = [];
+    this.mediumQuestionsArray = [];
+    this.longQuestionsArray = [];
+    this.correctShortAnswersArray = [];
+    this.correctMediumAnswersArray = [];
+    this.correctLongAnswersArray = [];
+    this.incorrectShortAnswersArray = [];
+    this.incorrectMediumAnswersArray = [];
+    this.incorrectLongAnswersArray = [];
     writingAudio.resetArrayItemNumber();
   }
   increaseNumberCorrect() {
@@ -347,6 +356,7 @@ class WritingApp {
     writingApp.resetCurrentProblemNumber();
     writingApp.resetArrays();
     writingApp.clearCanvas();
+    this.resetStats();
   }
   clearCanvas() {
     this.removeCorrectIncorrectBorder();

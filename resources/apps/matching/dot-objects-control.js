@@ -8,7 +8,7 @@ class DotAndLineCommand {
     this.endDots = [];
     this.connectors = [];
   }
-  clearArrays() {
+  resetArrays() {
     this.startDots.length = 0;
     this.endDots.length = 0;
   }
@@ -143,11 +143,12 @@ class StartDot {
     setTimeout(() => {
       audio.audioObject[this.contentId.toLowerCase()].sound.play();
     }, 200);
-
+    matchingApp.correctShortAnswersArray.push(this.contentId);
     matchingApp.checkAllCorrect();
   }
   markAsIncorrect() {
     audio.appSfx.cancel.play();
+    matchingApp.correctShortAnswersArray.push(this.contentId);
   }
 }
 class EndDot {
