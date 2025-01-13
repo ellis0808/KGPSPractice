@@ -318,6 +318,12 @@ function roundOver() {
   // btnContainer5.appendChild(endRoundScreen.endMessagesContainer);
   // container.appendChild(btnContainer5);
   displayEndMessagesContainer();
+  setTimeout(disableTouch, 500);
+  setTimeout(disableTouch, 1000);
+  grid.classList.add("blur");
+  btnContainer1.classList.add("blur");
+  homeBtnContainer.classList.add("blur");
+  homeBtnContainer.classList.add("no-touch");
 }
 
 // Clear away all cards
@@ -364,8 +370,7 @@ async function getCumulativeUserScore() {
 function displayEndMessagesContainer() {
   sendStats(stats);
   getCumulativeUserScore();
-  setTimeout(disableTouch, 500);
-  setTimeout(disableTouch, 1000);
+
   const btnContainer5 = document.createElement("div");
   btnContainer5.classList.add("btn-container5");
   const endMessagesContainer = document.createElement("div");
