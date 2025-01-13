@@ -8,11 +8,11 @@ import { user } from "../../utilities/user-object.js";
 
 class WritingApp {
   constructor() {
+    this.currentApp = ["writingApp."];
     this.activityType = "writing";
     this.activityName = null;
     this.style = null;
     this.stylesheet = `${BASE_PATH}resources/css/writing.css`;
-    this.currentApp = ["writingApp."];
     this.time = null;
     this.randomItemArray = [];
     this.items = [];

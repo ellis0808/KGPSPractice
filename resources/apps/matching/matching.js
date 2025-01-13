@@ -6,12 +6,6 @@ import {
   endDot,
   Connector,
 } from "./dot-objects-control.js";
-import {
-  style,
-  activityId,
-  setStyle,
-  setActivityId,
-} from "./matching-set-style-and-activity-id.js";
 import { audio } from "../../utilities/audio.js";
 import { toggleTouchFunction } from "../../utilities/pause-functions.js";
 import { appContainer } from "../../utilities/app-container-class.js";
@@ -22,8 +16,9 @@ import { user } from "../../utilities/user-object.js";
 
 class MatchingApp {
   constructor() {
-    this.currentApp = "matchingApp";
-    this.activityId = null;
+    this.currentApp = ["matchingApp."];
+    this.activityType = "matching";
+    this.activityName = null;
     this.correctAnswerPoints = 1;
     this.endDotId = null;
     this.startDotId = null;
@@ -72,7 +67,8 @@ class MatchingApp {
   }
   run(set, time) {
     this.setStyleSheet();
-    setStyle(set);
+    this.setActivityName(set);
+    writingAudio.startAudioFetch(set);
     this.setActivityId();
     setTimeout(() => {
       this.setTime(time);
@@ -85,15 +81,19 @@ class MatchingApp {
   }
   setUpApp() {
     appContainer.setAppVariables(
-      this.currentApp,
+      this.currentApp[0],
       this.time,
       this.clearBoard,
       this.activateEventListeners,
       this.createAndSetStructure,
       this.populateGrid,
-      this.activityId,
+      this.activityName,
       this.endSessionItems
     );
+  }
+  setActivityName(set) {
+    this.activityName = set;
+    console.log(this.activityName);
   }
   sendStats(stats) {
     appContainer.getStats(stats);
@@ -141,10 +141,6 @@ class MatchingApp {
   };
   setStyleSheet() {
     appContainer.applyAppStyleSheet(this.styleSheet);
-  }
-  setActivityId() {
-    setActivityId(1);
-    this.activityId = activityId;
   }
   createGrid() {
     this.startRowContainer = document.createElement("div");
