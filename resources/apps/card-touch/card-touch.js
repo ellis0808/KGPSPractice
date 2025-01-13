@@ -617,6 +617,7 @@ function touchCard(e) {
     wobble(e);
     ++stats.incorrectAnswerCount;
   }
+  console.log(stats);
 }
 
 function correctCard(e) {
