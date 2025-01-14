@@ -1132,7 +1132,7 @@ class MenuItems {
       if (i > 0) {
         clearInterval(interval);
       }
-    });
+    }, 2);
   }
 }
 
