@@ -1130,7 +1130,7 @@ class MenuItems {
     let interval = setInterval(() => {
       this.sectionColumn.scrollLeft += 4;
 
-      if (i > 800) {
+      if (i > 250) {
         clearInterval(interval);
         return;
       }
