@@ -1121,16 +1121,11 @@ class MenuItems {
     }, 300);
   }
   scrollRight() {
-    // let i = 0;
-    // while (i < 500) {
-    //   this.sectionColumn.scrollLeft += 1;
-    //   ++i;
-    // }
     let i = 0;
     let interval = setInterval(() => {
       this.sectionColumn.scrollLeft += 4;
 
-      if (i > 250) {
+      if (i > 200) {
         clearInterval(interval);
         return;
       }
