@@ -52,9 +52,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     this.redo_trace = [];
     this.allowUndo = false;
     this.allowRedo = false;
-    cvs.addEventListener("mousedown", this.mouseDown.bind(this));
-    cvs.addEventListener("mousemove", this.mouseMove.bind(this));
-    cvs.addEventListener("mouseup", this.mouseUp.bind(this));
+    cvs.addEventListener("pointerdown", this.pointerdown.bind(this));
+    cvs.addEventListener("pointermove", this.pointermove.bind(this));
+    cvs.addEventListener("pointerup", this.pointerup.bind(this));
     cvs.addEventListener("touchstart", this.touchStart.bind(this));
     cvs.addEventListener("touchmove", this.touchMove.bind(this));
     cvs.addEventListener("touchend", this.touchEnd.bind(this));
@@ -87,7 +87,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     this.options = options;
   };
 
-  handwriting.Canvas.prototype.mouseDown = function (e) {
+  handwriting.Canvas.prototype.pointerdown = function (e) {
     // new stroke
     this.cxt.lineWidth = this.lineWidth;
     this.handwritingX = [];
@@ -102,7 +102,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     this.handwritingY.push(y);
   };
 
-  handwriting.Canvas.prototype.mouseMove = function (e) {
+  handwriting.Canvas.prototype.pointermove = function (e) {
     if (this.drawing) {
       var rect = this.canvas.getBoundingClientRect();
       var x = e.clientX - rect.left;
@@ -114,7 +114,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     }
   };
 
-  handwriting.Canvas.prototype.mouseUp = function () {
+  handwriting.Canvas.prototype.pointerup = function () {
     var w = [];
     w.push(this.handwritingX);
     w.push(this.handwritingY);
