@@ -111,7 +111,7 @@ class MenuItems {
     this.moveMenuLeftBtn = document.createElement("button");
     this.moveMenuLeftBtn.classList.add("move-menu-left-btn", "hide");
     this.moveMenuLeftBtn.addEventListener("pointerdown", () => {
-      this.sectionColumn.scrollLeft += 500;
+      this.sectionColumn.scrollLeft += -500;
       setTimeout(() => {
         this.displayMovementArrows();
       }, 500);
