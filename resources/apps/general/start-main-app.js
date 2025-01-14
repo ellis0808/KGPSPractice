@@ -1130,6 +1130,7 @@ class MenuItems {
     console.log(this.sectionColumn.scrollLeft);
   }
   scrollLeft() {
+    console.log(this.sectionColumn.scrollLeft);
     let i = 0;
     let interval = setInterval(() => {
       this.sectionColumn.scrollLeft += -5;
@@ -1140,7 +1141,6 @@ class MenuItems {
       }
       i += 2;
     }, 1);
-    console.log(this.sectionColumn.scrollLeft);
   }
 }
 
