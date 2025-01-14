@@ -337,7 +337,7 @@ body:not(:has(*)) {
   transition: 0.5s;
 }
 .secondary-menu-row {
-  width: 5000px;
+  width: 10000px;
   height: 180px;
   margin: auto;
   display: grid;
