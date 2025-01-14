@@ -1121,11 +1121,18 @@ class MenuItems {
     }, 300);
   }
   scrollRight() {
-    let i = 0;
-    while (i < 500) {
+    // let i = 0;
+    // while (i < 500) {
+    //   this.sectionColumn.scrollLeft += 1;
+    //   ++i;
+    // }
+    let interval = setInterval(() => {
+      let i = 0;
       this.sectionColumn.scrollLeft += 1;
-      ++i;
-    }
+      if (i > 0) {
+        clearInterval(interval);
+      }
+    });
   }
 }
 
