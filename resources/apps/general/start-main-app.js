@@ -942,7 +942,6 @@ class MenuItems {
         this.moveMenuLeftBtn.classList.add("hide");
       }
     }, 20);
-    console.log(this.sectionColumn.scrollLeft);
   }
 
   /******
@@ -1128,6 +1127,7 @@ class MenuItems {
       }
       i += 2;
     }, 1);
+    console.log(this.sectionColumn.scrollLeft);
   }
   scrollLeft() {
     let i = 0;
@@ -1140,6 +1140,7 @@ class MenuItems {
       }
       i += 2;
     }, 1);
+    console.log(this.sectionColumn.scrollLeft);
   }
 }
 
