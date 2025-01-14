@@ -195,13 +195,15 @@ class WritingApp {
     appContainer.btnContainer1.appendChild(this.bestTimeDisplay);
   }
   displayBestTime() {
-    const m = Math.floor(this.bestTime / 60);
-    const s = this.bestTime % 60;
-    if (s < 10) {
-      this.bestTimeDisplay.textContent = `${m}:0${s}`;
-    } else {
-      this.bestTimeDisplay.textContent = `${m}:${s}`;
-    }
+    if (this.bestTime) {
+      const m = Math.floor(this.bestTime / 60);
+      const s = this.bestTime % 60;
+      if (s < 10) {
+        this.bestTimeDisplay.textContent = `${m}:0${s}`;
+      } else {
+        this.bestTimeDisplay.textContent = `${m}:${s}`;
+      }
+    } else this.bestTime = 0;
   }
   displayNumberCorrect() {
     this.numberCorrectRow.innerText = `${this.numberCorrect}/${this.maxNumberOfWordsToWrite}`;
