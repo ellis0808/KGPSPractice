@@ -104,13 +104,13 @@ class MenuItems {
     this.moveMenuRightBtn.classList.add("move-menu-right-btn");
     this.moveMenuRightBtn.addEventListener("pointerdown", () => {
       this.scrollRight();
-      this.displayMovementArrows();
+      // this.displayMovementArrows();
     });
     this.moveMenuLeftBtn = document.createElement("button");
     this.moveMenuLeftBtn.classList.add("move-menu-left-btn", "hide");
     this.moveMenuLeftBtn.addEventListener("pointerdown", () => {
       this.scrollLeft();
-      this.displayMovementArrows();
+      // this.displayMovementArrows();
     });
     this.secondaryMenuContainer = document.createElement("div");
     this.secondaryMenuContainer.classList.add(
@@ -938,7 +938,7 @@ class MenuItems {
       if (this.sectionColumn.scrollLeft !== 0) {
         this.moveMenuLeftBtn.classList.remove("hide");
       }
-      if (this.sectionColumn.scrollLeft < 250) {
+      if (this.sectionColumn.scrollLeft < 300) {
         this.moveMenuLeftBtn.classList.add("hide");
       }
     }, 20);
@@ -1127,10 +1127,16 @@ class MenuItems {
       }
       i += 2;
     }, 1);
-    console.log(this.sectionColumn.scrollLeft);
+    setTimeout(() => {
+      if (this.sectionColumn.scrollLeft !== 0) {
+        this.moveMenuLeftBtn.classList.remove("hide");
+      }
+      if (this.sectionColumn.scrollLeft < 300) {
+        this.moveMenuLeftBtn.classList.add("hide");
+      }
+    }, 20);
   }
   scrollLeft() {
-    console.log(this.sectionColumn.scrollLeft);
     let i = 0;
     let interval = setInterval(() => {
       this.sectionColumn.scrollLeft += -5;
@@ -1141,6 +1147,11 @@ class MenuItems {
       }
       i += 2;
     }, 1);
+    setTimeout(() => {
+      if (this.sectionColumn.scrollLeft < 300) {
+        this.moveMenuLeftBtn.classList.add("hide");
+      }
+    }, 20);
   }
 }
 
