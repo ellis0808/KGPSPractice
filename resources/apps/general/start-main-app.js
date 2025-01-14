@@ -940,10 +940,10 @@ class MenuItems {
   displayMovementArrows() {
     this.getSectionColumnXPosition();
 
-    if (this.rect.left !== 0) {
+    if (this.sectionColumn.scrollLeft !== 0) {
       this.moveMenuLeftBtn.classList.remove("hide");
     }
-    if (this.rect.left === 0) {
+    if (this.sectionColumn.scrollLeft === 0) {
       this.moveMenuLeftBtn.classList.add("hide");
     }
   }
