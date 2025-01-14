@@ -1124,6 +1124,7 @@ class MenuItems {
     let i = 0;
     while (i < 500) {
       this.sectionColumn.scrollLeft += 1;
+      ++i;
     }
   }
 }
