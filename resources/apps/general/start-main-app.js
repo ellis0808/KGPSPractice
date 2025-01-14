@@ -104,17 +104,13 @@ class MenuItems {
     this.moveMenuRightBtn.classList.add("move-menu-right-btn");
     this.moveMenuRightBtn.addEventListener("pointerdown", () => {
       this.scrollRight();
-      setTimeout(() => {
-        this.displayMovementArrows();
-      }, 500);
+      this.displayMovementArrows();
     });
     this.moveMenuLeftBtn = document.createElement("button");
     this.moveMenuLeftBtn.classList.add("move-menu-left-btn", "hide");
     this.moveMenuLeftBtn.addEventListener("pointerdown", () => {
       this.scrollLeft();
-      setTimeout(() => {
-        this.displayMovementArrows();
-      }, 500);
+      this.displayMovementArrows();
     });
     this.secondaryMenuContainer = document.createElement("div");
     this.secondaryMenuContainer.classList.add(
