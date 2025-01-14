@@ -197,7 +197,10 @@ class WritingApp {
   displayBestTime() {
     if (!this.bestTime) {
       this.bestTime = 0;
+      console.log(this.bestTime);
     }
+    console.log(this.bestTime);
+
     const m = Math.floor(this.bestTime / 60);
     const s = this.bestTime % 60;
     if (s < 10) {
@@ -414,6 +417,7 @@ class WritingApp {
       const data = await response.json();
       if (data) {
         writingApp.bestTime = data.best_time;
+        console.log(this.bestTime);
       }
     } catch (error) {
       console.error(
