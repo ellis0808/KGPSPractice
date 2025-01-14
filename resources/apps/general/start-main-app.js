@@ -103,7 +103,7 @@ class MenuItems {
     this.moveMenuRightBtn = document.createElement("button");
     this.moveMenuRightBtn.classList.add("move-menu-right-btn");
     this.moveMenuRightBtn.addEventListener("pointerdown", () => {
-      this.sectionColumn.scrollLeft += 500;
+      this.scrollRight();
       setTimeout(() => {
         this.displayMovementArrows();
       }, 500);
@@ -1119,6 +1119,12 @@ class MenuItems {
       topContainer.appendChild(greetingDisplay);
       topContainer.appendChild(pointsDisplay);
     }, 300);
+  }
+  scrollRight() {
+    let i = 0;
+    while (i < 500) {
+      this.sectionColumn.scrollLeft += 1;
+    }
   }
 }
 
