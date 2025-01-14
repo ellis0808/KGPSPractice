@@ -111,7 +111,7 @@ class MenuItems {
     this.moveMenuLeftBtn = document.createElement("button");
     this.moveMenuLeftBtn.classList.add("move-menu-left-btn", "hide");
     this.moveMenuLeftBtn.addEventListener("pointerdown", () => {
-      this.sectionColumn.scrollLeft += -500;
+      this.scrollLeft();
       setTimeout(() => {
         this.displayMovementArrows();
       }, 500);
@@ -1124,6 +1124,18 @@ class MenuItems {
     let i = 0;
     let interval = setInterval(() => {
       this.sectionColumn.scrollLeft += 5;
+
+      if (i > 275) {
+        clearInterval(interval);
+        return;
+      }
+      i += 2;
+    }, 1);
+  }
+  scrollLeft() {
+    let i = 0;
+    let interval = setInterval(() => {
+      this.sectionColumn.scrollLeft += -5;
 
       if (i > 275) {
         clearInterval(interval);
