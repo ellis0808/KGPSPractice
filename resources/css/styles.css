@@ -335,6 +335,7 @@ body:not(:has(*)) {
   grid-template-columns: 1fr;
   grid-template-rows: 4fr;
   transition: 0.5s;
+  overflow-x: scroll;
 }
 .secondary-menu-row {
   width: 5000px;
