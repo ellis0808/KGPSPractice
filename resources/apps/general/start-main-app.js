@@ -1135,7 +1135,7 @@ class MenuItems {
         return;
       }
       ++i;
-    }, 2);
+    }, 1);
   }
 }
 
