@@ -1128,13 +1128,13 @@ class MenuItems {
     // }
     let i = 0;
     let interval = setInterval(() => {
-      this.sectionColumn.scrollLeft += 2;
+      this.sectionColumn.scrollLeft += 1;
 
       if (i > 500) {
         clearInterval(interval);
         return;
       }
-      ++i;
+      i += 2;
     }, 1);
   }
 }
