@@ -934,14 +934,14 @@ class MenuItems {
     return this.rect;
   }
   displayMovementArrows() {
-    this.getSectionColumnXPosition();
-
-    if (this.sectionColumn.scrollLeft !== 0) {
-      this.moveMenuLeftBtn.classList.remove("hide");
-    }
-    if (this.sectionColumn.scrollLeft === 0) {
-      this.moveMenuLeftBtn.classList.add("hide");
-    }
+    setTimeout(() => {
+      if (this.sectionColumn.scrollLeft !== 0) {
+        this.moveMenuLeftBtn.classList.remove("hide");
+      }
+      if (this.sectionColumn.scrollLeft === 0) {
+        this.moveMenuLeftBtn.classList.add("hide");
+      }
+    }, 20);
   }
 
   /******
