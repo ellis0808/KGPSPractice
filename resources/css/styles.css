@@ -336,9 +336,14 @@ body:not(:has(*)) {
   grid-template-rows: 4fr;
   transition: 0.5s;
   overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.menu-apps-container::-webkit-scrollbar {
+  display: none;
 }
 .secondary-menu-row {
-  width: 5000px;
+  width: 2500px;
   height: 180px;
   margin: auto;
   display: grid;
