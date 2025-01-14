@@ -938,7 +938,7 @@ class MenuItems {
       if (this.sectionColumn.scrollLeft !== 0) {
         this.moveMenuLeftBtn.classList.remove("hide");
       }
-      if (this.sectionColumn.scrollLeft === 0) {
+      if (this.sectionColumn.scrollLeft < 250) {
         this.moveMenuLeftBtn.classList.add("hide");
       }
     }, 20);
