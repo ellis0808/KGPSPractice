@@ -942,6 +942,7 @@ class MenuItems {
         this.moveMenuLeftBtn.classList.add("hide");
       }
     }, 20);
+    console.log(this.sectionColumn.scrollLeft);
   }
 
   /******
