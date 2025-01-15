@@ -1123,7 +1123,7 @@ class MenuItems {
     const step = () => {
       this.sectionColumn.scrollLeft += 10;
 
-      if (i < 100) {
+      if (i < 140) {
         i += 2;
         requestAnimationFrame(step);
       } else {
@@ -1142,7 +1142,7 @@ class MenuItems {
     const step = () => {
       this.sectionColumn.scrollLeft += -10;
 
-      if (i < 100) {
+      if (i < 140) {
         i += 2;
         requestAnimationFrame(step);
       } else {
