@@ -46,6 +46,58 @@ body {
   place-content: center;
   place-items: center;
 }
+@media (max-height: 500px) and (orientation: landscape) {
+  .container {
+    grid-area: container;
+    width: 90vw;
+    /* background: rgb(100 200 50 / 0.3); */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "login-container";
+    place-content: center;
+    place-items: center;
+  }
+}
+@media (orientation: portrait) and (min-width: 600px) {
+  .container {
+    grid-area: container;
+    width: 90vw;
+    /* background: rgb(100 200 50 / 0.3); */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "login-container";
+    place-content: center;
+    place-items: center;
+  }
+}
+@media (orientation: landscape) and (min-width: 600px) {
+  .container {
+    grid-area: container;
+    width: 90vw;
+    /* background: rgb(100 200 50 / 0.3); */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "login-container";
+    place-content: center;
+    place-items: center;
+  }
+}
+@media (min-width: 2000px) {
+  .container {
+    grid-area: container;
+    width: 90vw;
+    /* background: rgb(100 200 50 / 0.3); */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "login-container";
+    place-content: center;
+    place-items: center;
+  }
+}
 .login-container {
   grid-area: login-container;
   width: 100%;
@@ -75,6 +127,7 @@ body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: auto;
+  place-content: center;
   /* column-gap: 20px; */
 }
 
