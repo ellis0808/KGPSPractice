@@ -1120,49 +1120,41 @@ class MenuItems {
   }
   scrollRight() {
     let i = 0;
-    // let interval = setInterval(() => {
     const step = () => {
       this.sectionColumn.scrollLeft += 5;
 
       if (i > 275) {
-        // clearInterval(interval);
-        // return;
+        i += 2;
+        requestAnimationFrame(step);
+      } else {
+        if (this.sectionColumn.scrollLeft !== 0) {
+          this.moveMenuLeftBtn.classList.remove("hide");
+        }
+        if (this.sectionColumn.scrollLeft < 300) {
+          this.moveMenuLeftBtn.classList.add("hide");
+        }
       }
-      i += 2;
-      requestAnimationFrame(step);
     };
-    // }, 1);
-    // setTimeout(() => {
-    //   if (this.sectionColumn.scrollLeft !== 0) {
-    //     this.moveMenuLeftBtn.classList.remove("hide");
-    //   }
-    //   if (this.sectionColumn.scrollLeft < 300) {
-    //     this.moveMenuLeftBtn.classList.add("hide");
-    //   }
-    // }, 20);
+    requestAnimationFrame(step);
   }
-  scrollLeft() {
+  scrollRight() {
     let i = 0;
-    // let interval = setInterval(() => {
     const step = () => {
-      this.sectionColumn.scrollLeft += -5;
+      this.sectionColumn.scrollLeft += 5;
 
       if (i > 275) {
-        // clearInterval(interval);
-        // return;
+        i += 2;
+        requestAnimationFrame(step);
+      } else {
+        if (this.sectionColumn.scrollLeft !== 0) {
+          this.moveMenuLeftBtn.classList.remove("hide");
+        }
+        if (this.sectionColumn.scrollLeft < 300) {
+          this.moveMenuLeftBtn.classList.add("hide");
+        }
       }
-      i += 2;
-      requestAnimationFrame(step);
     };
-    // }, 1);
-    // setTimeout(() => {
-    //   if (this.sectionColumn.scrollLeft !== 0) {
-    //     this.moveMenuLeftBtn.classList.remove("hide");
-    //   }
-    //   if (this.sectionColumn.scrollLeft < 300) {
-    //     this.moveMenuLeftBtn.classList.add("hide");
-    //   }
-    // }, 20);
+    requestAnimationFrame(step);
   }
   resetSecondaryMenuHorizontalScroll() {
     this.sectionColumn.scrollLeft = 0;
