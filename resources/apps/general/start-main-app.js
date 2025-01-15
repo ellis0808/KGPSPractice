@@ -1120,40 +1120,49 @@ class MenuItems {
   }
   scrollRight() {
     let i = 0;
-    let interval = setInterval(() => {
+    // let interval = setInterval(() => {
+    const step = () => {
       this.sectionColumn.scrollLeft += 5;
 
       if (i > 275) {
-        clearInterval(interval);
-        return;
+        // clearInterval(interval);
+        // return;
       }
       i += 2;
-    }, 1);
-    setTimeout(() => {
-      if (this.sectionColumn.scrollLeft !== 0) {
-        this.moveMenuLeftBtn.classList.remove("hide");
-      }
-      if (this.sectionColumn.scrollLeft < 300) {
-        this.moveMenuLeftBtn.classList.add("hide");
-      }
-    }, 20);
+      requestAnimationFrame(step);
+    };
+    // }, 1);
+    // setTimeout(() => {
+    //   if (this.sectionColumn.scrollLeft !== 0) {
+    //     this.moveMenuLeftBtn.classList.remove("hide");
+    //   }
+    //   if (this.sectionColumn.scrollLeft < 300) {
+    //     this.moveMenuLeftBtn.classList.add("hide");
+    //   }
+    // }, 20);
   }
   scrollLeft() {
     let i = 0;
-    let interval = setInterval(() => {
+    // let interval = setInterval(() => {
+    const step = () => {
       this.sectionColumn.scrollLeft += -5;
 
       if (i > 275) {
-        clearInterval(interval);
-        return;
+        // clearInterval(interval);
+        // return;
       }
       i += 2;
-    }, 1);
-    setTimeout(() => {
-      if (this.sectionColumn.scrollLeft < 300) {
-        this.moveMenuLeftBtn.classList.add("hide");
-      }
-    }, 20);
+      requestAnimationFrame(step);
+    };
+    // }, 1);
+    // setTimeout(() => {
+    //   if (this.sectionColumn.scrollLeft !== 0) {
+    //     this.moveMenuLeftBtn.classList.remove("hide");
+    //   }
+    //   if (this.sectionColumn.scrollLeft < 300) {
+    //     this.moveMenuLeftBtn.classList.add("hide");
+    //   }
+    // }, 20);
   }
   resetSecondaryMenuHorizontalScroll() {
     this.sectionColumn.scrollLeft = 0;
