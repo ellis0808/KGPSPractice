@@ -123,7 +123,7 @@ body {
 .teacher-name-container {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 0.005fr 1fr 1fr 1fr 0.005fr;
   grid-template-rows: auto;
   place-items: center;
 }
