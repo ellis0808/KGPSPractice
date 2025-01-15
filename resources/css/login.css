@@ -130,7 +130,7 @@ body {
 @media (max-height: 500px) and (orientation: landscape) {
   .student-name-container,
   .teacher-name-container {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 @media (orientation: portrait) and (min-width: 600px) {
@@ -174,6 +174,39 @@ body {
   justify-content: center;
   /* border: 1px solid red; */
 }
+@media (max-height: 500px) and (orientation: landscape) {
+  .user-container {
+    width: 6.5rem;
+    height: 6rem;
+    margin: 1rem;
+    display: grid;
+    align-content: start;
+    justify-content: center;
+    /* border: 1px solid red; */
+  }
+}
+@media (orientation: portrait) and (min-width: 600px) {
+  .user-container {
+    width: 6.5rem;
+    height: 6rem;
+    margin: 1rem;
+    display: grid;
+    align-content: start;
+    justify-content: center;
+    /* border: 1px solid red; */
+  }
+}
+@media (orientation: landscape) and (min-width: 600px) {
+  .user-container {
+    width: 6.5rem;
+    height: 6rem;
+    margin: 1rem;
+    display: grid;
+    align-content: start;
+    justify-content: center;
+    /* border: 1px solid red; */
+  }
+}
 
 .user-initials-container {
   width: 6rem;
@@ -190,6 +223,78 @@ body {
   border-radius: 8px;
   transition: var(--transition);
   --stagger-delay: 0.1s;
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .user-initials-container {
+    width: 6rem;
+    height: 4.3rem;
+    background: #006747;
+    color: var(--clr-wht);
+    /* border: 1px solid blue; */
+    display: grid;
+    align-self: start;
+    justify-self: center;
+    place-content: center;
+    font-family: var(--font-fam);
+    font-size: 2rem;
+    border-radius: 8px;
+    transition: var(--transition);
+    --stagger-delay: 0.1s;
+  }
+}
+@media (orientation: portrait) and (min-width: 600px) {
+  .user-initials-container {
+    width: 6rem;
+    height: 4.3rem;
+    background: #006747;
+    color: var(--clr-wht);
+    /* border: 1px solid blue; */
+    display: grid;
+    align-self: start;
+    justify-self: center;
+    place-content: center;
+    font-family: var(--font-fam);
+    font-size: 2rem;
+    border-radius: 8px;
+    transition: var(--transition);
+    --stagger-delay: 0.1s;
+  }
+}
+@media (orientation: landscape) and (min-width: 600px) {
+  .user-initials-container {
+    width: 6rem;
+    height: 4.3rem;
+    background: #006747;
+    color: var(--clr-wht);
+    /* border: 1px solid blue; */
+    display: grid;
+    align-self: start;
+    justify-self: center;
+    place-content: center;
+    font-family: var(--font-fam);
+    font-size: 2rem;
+    border-radius: 8px;
+    transition: var(--transition);
+    --stagger-delay: 0.1s;
+  }
+}
+@media (min-width: 1200px) {
+  .user-initials-container {
+    width: 6rem;
+    height: 4.3rem;
+    background: #006747;
+    color: var(--clr-wht);
+    /* border: 1px solid blue; */
+    display: grid;
+    align-self: start;
+    justify-self: center;
+    place-content: center;
+    font-family: var(--font-fam);
+    font-size: 2rem;
+    border-radius: 8px;
+    transition: var(--transition);
+    --stagger-delay: 0.1s;
+  }
 }
 .user-initials-container:hover {
   scale: 1.08;
