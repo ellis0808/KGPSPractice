@@ -1121,7 +1121,7 @@ class MenuItems {
   scrollRight() {
     let i = 0;
     let interval = setInterval(() => {
-      this.sectionColumn.scrollLeft += 5;
+      this.sectionColumn.scrollLeft += 200;
 
       if (i > 275) {
         clearInterval(interval);
@@ -1141,7 +1141,7 @@ class MenuItems {
   scrollLeft() {
     let i = 0;
     let interval = setInterval(() => {
-      this.sectionColumn.scrollLeft += -5;
+      this.sectionColumn.scrollLeft += -200;
 
       if (i > 275) {
         clearInterval(interval);
