@@ -1127,12 +1127,7 @@ class MenuItems {
         i += 2;
         requestAnimationFrame(step);
       } else {
-        if (this.sectionColumn.scrollLeft !== 0) {
-          this.moveMenuLeftBtn.classList.remove("hide");
-        }
-        if (this.sectionColumn.scrollLeft < 300) {
-          this.moveMenuLeftBtn.classList.add("hide");
-        }
+        this.updateArrowButtonVisibility();
       }
     };
     requestAnimationFrame(step);
@@ -1146,18 +1141,21 @@ class MenuItems {
         i += 2;
         requestAnimationFrame(step);
       } else {
-        if (this.sectionColumn.scrollLeft !== 0) {
-          this.moveMenuLeftBtn.classList.remove("hide");
-        }
-        if (this.sectionColumn.scrollLeft < 300) {
-          this.moveMenuLeftBtn.classList.add("hide");
-        }
+        this.updateArrowButtonVisibility();
       }
     };
     requestAnimationFrame(step);
   }
   resetSecondaryMenuHorizontalScroll() {
     this.sectionColumn.scrollLeft = 0;
+  }
+  updateArrowButtonVisibility() {
+    if (this.sectionColumn.scrollLeft !== 0) {
+      this.moveMenuLeftBtn.classList.remove("hide");
+    }
+    if (this.sectionColumn.scrollLeft < 300) {
+      this.moveMenuLeftBtn.classList.add("hide");
+    }
   }
 }
 
