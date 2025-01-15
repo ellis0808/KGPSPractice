@@ -1046,6 +1046,7 @@ class MenuItems {
     this.resetSecondaryMenuPosition();
     this.resetTopContainer();
     this.displayGreeting();
+    this.sectionColumn.scrollLeft = 0;
   }
   returnToMainMenuToggle() {
     if (!this.isPrimaryMenu) {
