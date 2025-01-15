@@ -1121,7 +1121,7 @@ class MenuItems {
   scrollRight() {
     let i = 0;
     const step = () => {
-      this.sectionColumn.scrollLeft += 30;
+      this.sectionColumn.scrollLeft += 22;
 
       if (i < 150) {
         i += 2;
@@ -1140,7 +1140,7 @@ class MenuItems {
   scrollLeft() {
     let i = 0;
     const step = () => {
-      this.sectionColumn.scrollLeft += -30;
+      this.sectionColumn.scrollLeft += -22;
 
       if (i < 150) {
         i += 2;
