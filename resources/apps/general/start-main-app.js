@@ -1137,7 +1137,7 @@ class MenuItems {
     };
     requestAnimationFrame(step);
   }
-  scrollRight() {
+  scrollLeft() {
     let i = 0;
     const step = () => {
       this.sectionColumn.scrollLeft += -5;
