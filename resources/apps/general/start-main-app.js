@@ -746,6 +746,7 @@ class MenuItems {
   startMainApp() {
     sessionCheck();
     setTimeout(() => {
+      this.resetSecondaryMenuHorizontalScroll();
       stylesheet.setAttribute("href", `${BASE_PATH}resources/css/styles.css`);
       menuItems.displayMainMenuItems();
       this.setUser();
@@ -1046,7 +1047,7 @@ class MenuItems {
     this.resetSecondaryMenuPosition();
     this.resetTopContainer();
     this.displayGreeting();
-    this.sectionColumn.scrollLeft = 0;
+    this.resetSecondaryMenuHorizontalScroll();
   }
   returnToMainMenuToggle() {
     if (!this.isPrimaryMenu) {
@@ -1153,6 +1154,9 @@ class MenuItems {
         this.moveMenuLeftBtn.classList.add("hide");
       }
     }, 20);
+  }
+  resetSecondaryMenuHorizontalScroll() {
+    this.sectionColumn.scrollLeft = 0;
   }
 }
 
