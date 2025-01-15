@@ -89,15 +89,14 @@ body {
 .teacher-name-container {
   width: 100%;
   display: grid;
-  grid-template-columns: 0.005fr 1fr 1fr 1fr 0.005fr;
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
   place-items: center;
 }
 @media (max-height: 500px) and (orientation: landscape) {
   .student-name-container,
   .teacher-name-container {
-    grid-template-columns: 0.005fr 1fr 1fr 1fr 0.005fr;
-    grid-template-areas: "..... a  b  c  .....";
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 @media (orientation: portrait) and (min-width: 600px) {
@@ -517,7 +516,6 @@ body {
   justify-content: center;
   margin-top: 0.5rem;
   font-size: 1.08rem;
-  /* border: 1px solid orange; */
   animation: fadeIn 0.3s ease-out;
   animation-fill-mode: backwards;
   transition: var(--transition);
@@ -534,7 +532,6 @@ body {
 .student-selected-password-images {
   width: 10rem;
   height: 5rem;
-  /* margin-top: 1rem; */
   display: grid;
   column-gap: 10px;
   justify-self: center;
@@ -554,7 +551,6 @@ body {
   width: 4rem;
   height: 4rem;
   display: grid;
-  /* border: 1px red solid; */
   fill: black;
   top: 0;
   left: 0;
@@ -566,7 +562,6 @@ body {
   width: 4.3rem;
   height: 4.3rem;
   display: grid;
-  /* border: 1px red solid; */
   top: 0;
   left: 0;
   place-content: center;
