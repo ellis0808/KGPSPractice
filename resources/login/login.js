@@ -309,6 +309,7 @@ const studentPasswordEntry = () => {
         }
         if (studentPasswordEntryArray.length > 2) {
           studentPasswordEntryArray.splice(0, 1);
+          displaySelectedPasswordImages(item);
           console.log("condition 2c");
         }
         studentPasswordEntryArray.forEach((item) => {
