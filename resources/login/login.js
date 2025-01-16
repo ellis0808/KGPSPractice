@@ -291,18 +291,18 @@ const studentPasswordEntry = () => {
           null
         );
 
-        displaySelectedPasswordImages();
+        displaySelectedPasswordImages(event);
       } else {
         if (
           studentPasswordEntryArray[0] !== null &&
           studentPasswordEntryArray[1] === null
         ) {
           studentPasswordEntryArray.splice(1, 1, content);
-          displaySelectedPasswordImages();
+          displaySelectedPasswordImages(event);
         }
         if (studentPasswordEntryArray[0] === null) {
           studentPasswordEntryArray.splice(0, 1, content);
-          displaySelectedPasswordImages();
+          displaySelectedPasswordImages(event);
         }
 
         if (studentPasswordEntryArray.length > 2) {
@@ -381,29 +381,16 @@ function loadStudentLoginImageGrid() {
 }
 studentPasswordGridContainer.appendChild(studentPasswordGrid);
 
-function displaySelectedPasswordImages() {
+function displaySelectedPasswordImages(event) {
   if (studentPasswordEntryArray[0] !== null) {
-    studentSelectedPasswordImage1.style.backgroundImage = `url(${
-      images.imageObject[
-        Object.keys(images.imageObject).filter((image) =>
-          image.includes(studentPasswordEntryArray[0])
-        )
-      ].link
-    })`;
-    // }
+    studentSelectedPasswordImage1.src = `${event.src}`;
   } else {
-    studentSelectedPasswordImage1.style.backgroundImage = ``;
+    studentSelectedPasswordImage1.src = `${event.src}`;
   }
   if (studentPasswordEntryArray[1] !== null) {
-    studentSelectedPasswordImage2.style.backgroundImage = `url(${
-      images.imageObject[
-        Object.keys(images.imageObject).filter((image) =>
-          image.includes(studentPasswordEntryArray[1])
-        )
-      ].link
-    })`;
+    studentSelectedPasswordImage2.src = `${event.src}`;
   } else {
-    studentSelectedPasswordImage2.style.backgroundImage = ``;
+    studentSelectedPasswordImage2.src = `${event.src}`;
   }
 }
 
