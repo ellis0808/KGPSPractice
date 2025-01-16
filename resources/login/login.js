@@ -329,7 +329,7 @@ function loadStudentLoginImageGrid() {
   passwordImageNamesArray.forEach((image) => {
     const gridImage = document.createElement("img");
     gridImage.classList.add("grid-image");
-    if (images.imageObject[image].id) {
+    if (images.imageObject[image]) {
       setImages();
     } else {
       setTimeout(setImages, 500);
