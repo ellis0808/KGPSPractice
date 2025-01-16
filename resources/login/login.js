@@ -277,56 +277,63 @@ function resetStudentPasswordEntryArray() {
   }
 }
 
+const setImages = () => {
+  gridImage.setAttribute("id", images.imageObject[image].id);
+  gridImage.setAttribute("content", images.imageObject[image].content);
+  gridImage.src = `${images.imageObject[image].link}`;
+  gridImage.addEventListener("click", (event) => {
+    // deselects previously selected grid image
+    const content = gridImage.getAttribute("content");
+    if (studentPasswordEntryArray.includes(content)) {
+      document
+        .querySelector(`[content='${content}']`)
+        .classList.remove("selected");
+      studentPasswordEntryArray.splice(
+        studentPasswordEntryArray.indexOf(content),
+        1,
+        null
+      );
+
+      displaySelectedPasswordImages();
+    } else {
+      if (
+        studentPasswordEntryArray[0] !== null &&
+        studentPasswordEntryArray[1] === null
+      ) {
+        studentPasswordEntryArray.splice(1, 1, content);
+        displaySelectedPasswordImages();
+      }
+      if (studentPasswordEntryArray[0] === null) {
+        studentPasswordEntryArray.splice(0, 1, content);
+        displaySelectedPasswordImages();
+      }
+
+      if (studentPasswordEntryArray.length > 2) {
+        // document
+        //   .querySelector(`[content='${studentPasswordEntryArray[0]}']`)
+        //   .classList.remove("selected");
+        studentPasswordEntryArray.splice(0, 1);
+      }
+      studentPasswordEntryArray.forEach((item) => {
+        if (item !== null) {
+          document
+            .querySelector(`[content = '${item}']`)
+            .classList.add("selected");
+        }
+      });
+    }
+  });
+};
 // Generate student login grid with images
 function loadStudentLoginImageGrid() {
   passwordImageNamesArray.forEach((image) => {
     const gridImage = document.createElement("img");
     gridImage.classList.add("grid-image");
-    gridImage.setAttribute("id", images.imageObject[image].id);
-    gridImage.setAttribute("content", images.imageObject[image].content);
-    gridImage.src = `${images.imageObject[image].link}`;
-    gridImage.addEventListener("click", (event) => {
-      // deselects previously selected grid image
-      const content = gridImage.getAttribute("content");
-      if (studentPasswordEntryArray.includes(content)) {
-        document
-          .querySelector(`[content='${content}']`)
-          .classList.remove("selected");
-        studentPasswordEntryArray.splice(
-          studentPasswordEntryArray.indexOf(content),
-          1,
-          null
-        );
-
-        displaySelectedPasswordImages();
-      } else {
-        if (
-          studentPasswordEntryArray[0] !== null &&
-          studentPasswordEntryArray[1] === null
-        ) {
-          studentPasswordEntryArray.splice(1, 1, content);
-          displaySelectedPasswordImages();
-        }
-        if (studentPasswordEntryArray[0] === null) {
-          studentPasswordEntryArray.splice(0, 1, content);
-          displaySelectedPasswordImages();
-        }
-
-        if (studentPasswordEntryArray.length > 2) {
-          // document
-          //   .querySelector(`[content='${studentPasswordEntryArray[0]}']`)
-          //   .classList.remove("selected");
-          studentPasswordEntryArray.splice(0, 1);
-        }
-        studentPasswordEntryArray.forEach((item) => {
-          if (item !== null) {
-            document
-              .querySelector(`[content = '${item}']`)
-              .classList.add("selected");
-          }
-        });
-      }
-    });
+    if (images.imageObject[image].id) {
+      setImages();
+    } else {
+      setTimeout(setImages, 500);
+    }
 
     studentPasswordGrid.appendChild(gridImage);
   });
