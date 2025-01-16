@@ -407,9 +407,9 @@ window.addEventListener("DOMContentLoaded", () => {
   images.getImages("login", 1, null);
   getUsersForLogin();
   try {
-    setTimeout(loadStudentLoginImageGrid, 600);
+    setTimeout(loadStudentLoginImageGrid, 400);
   } catch {
-    setTimeout(loadStudentLoginImageGrid, 200);
+    setTimeout(loadStudentLoginImageGrid, 300);
   } finally {
     setTimeout(loadStudentLoginImageGrid, 400);
   }
