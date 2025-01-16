@@ -276,24 +276,7 @@ function resetStudentPasswordEntryArray() {
     displaySelectedPasswordImages();
   }
 }
-// const imgRabbit = document.createElement('img')
-// const imgDuck = document.createElement('img')
-// const imgFish = document.createElement('img')
-// const imgTurtle = document.createElement('img')
-// const imgCat = document.createElement('img')
-// const imgLizard = document.createElement('img')
-// const imgCar = document.createElement('img')
-// const imgTruck = document.createElement('img')
-// const imgRocket = document.createElement('img')
-// const imgTrain = document.createElement('img')
-// const imgAirplane = document.createElement('img')
-// const imgBoat = document.createElement('img')
-// const imgStrawberry = document.createElement('img')
-// const imgApple = document.createElement('img')
-// const imgCarrot = document.createElement('img')
-// const imgBanana = document.createElement('img')
-// const imgWatermelon = document.createElement('img')
-// const imgSpoon = document.createElement('img')
+
 // Generate student login grid with images
 function loadStudentLoginImageGrid() {
   passwordImageNamesArray.forEach((image) => {
@@ -424,7 +407,7 @@ window.addEventListener("DOMContentLoaded", () => {
   images.getImages("login", 1, null);
   getUsersForLogin();
 
-  loadStudentLoginImageGrid();
+  setTimeout(loadStudentLoginImageGrid, 200);
 });
 closeStudentLoginModalBtn.addEventListener("click", (event) => {
   // event.preventDefault();
@@ -436,7 +419,26 @@ closeTeacherLoginModalBtn.addEventListener("click", (event) => {
   teacherPasswordEntryForm.close();
   // teacherPasswordEntryForm.reset();
 });
-
+const getImages = () => {
+  const imgRabbit = document.createElement("img");
+  const imgDuck = document.createElement("img");
+  const imgFish = document.createElement("img");
+  const imgTurtle = document.createElement("img");
+  const imgCat = document.createElement("img");
+  const imgLizard = document.createElement("img");
+  const imgCar = document.createElement("img");
+  const imgTruck = document.createElement("img");
+  const imgRocket = document.createElement("img");
+  const imgTrain = document.createElement("img");
+  const imgAirplane = document.createElement("img");
+  const imgBoat = document.createElement("img");
+  const imgStrawberry = document.createElement("img");
+  const imgApple = document.createElement("img");
+  const imgCarrot = document.createElement("img");
+  const imgBanana = document.createElement("img");
+  const imgWatermelon = document.createElement("img");
+  const imgSpoon = document.createElement("img");
+};
 function routing(userData) {
   if (userData.access === "teacher") {
     window.location.href = `${BASE_PATH}resources/teacher-interface/user-management.html`;
