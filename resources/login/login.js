@@ -331,8 +331,7 @@ function displaySelectedPasswordImages(item) {
   if (studentPasswordEntryArray[0] === null) {
     console.log("display 1");
     studentSelectedPasswordImage1.src = `${item.src}`;
-  }
-  if (studentPasswordEntryArray[1] === null) {
+  } else {
     console.log("display 2");
     studentSelectedPasswordImage2.src = `${item.src}`;
   }
