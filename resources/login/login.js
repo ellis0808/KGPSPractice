@@ -296,14 +296,14 @@ const studentPasswordEntry = () => {
           studentPasswordEntryArray[0] !== null &&
           studentPasswordEntryArray[1] === null
         ) {
-          studentPasswordEntryArray.splice(1, 1, content);
           displaySelectedPasswordImages(item);
+          studentPasswordEntryArray.splice(1, 1, content);
           console.log(event.target);
           console.log("condition 2a");
         }
         if (studentPasswordEntryArray[0] === null) {
-          studentPasswordEntryArray.splice(0, 1, content);
           displaySelectedPasswordImages(item);
+          studentPasswordEntryArray.splice(0, 1, content);
           console.log(event.target);
           console.log("condition 2b");
         }
@@ -331,7 +331,8 @@ function displaySelectedPasswordImages(item) {
   if (studentPasswordEntryArray[0] === null) {
     console.log("display 1");
     studentSelectedPasswordImage1.src = `${item.src}`;
-  } else if (studentPasswordEntryArray[1] !== null) {
+  }
+  if (studentPasswordEntryArray[1] === null) {
     console.log("display 2");
     studentSelectedPasswordImage2.src = `${item.src}`;
   }
