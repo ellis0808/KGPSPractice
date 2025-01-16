@@ -410,16 +410,10 @@ async function loginUser() {
     console.error("Error loging in: ", error);
   }
 }
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("loaded", () => {
   images.getImages("login", 1, null);
   getUsersForLogin();
-  try {
-    setTimeout(loadStudentLoginImageGrid, 400);
-  } catch {
-    setTimeout(loadStudentLoginImageGrid, 300);
-  } finally {
-    setTimeout(loadStudentLoginImageGrid, 400);
-  }
+  setTimeout(loadStudentLoginImageGrid, 400);
 });
 closeStudentLoginModalBtn.addEventListener("click", (event) => {
   // event.preventDefault();
