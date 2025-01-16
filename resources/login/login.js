@@ -382,12 +382,12 @@ function displaySelectedPasswordImages(event) {
   if (studentPasswordEntryArray[0] !== null) {
     studentSelectedPasswordImage1.src = `${event.target.src}`;
   } else {
-    studentSelectedPasswordImage1.src = `${event.target.src}`;
+    studentSelectedPasswordImage1.src = "";
   }
   if (studentPasswordEntryArray[1] !== null) {
     studentSelectedPasswordImage2.src = `${event.target.src}`;
   } else {
-    studentSelectedPasswordImage2.src = `${event.target.src}`;
+    studentSelectedPasswordImage2.src = "";
   }
 }
 
