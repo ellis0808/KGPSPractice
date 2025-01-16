@@ -406,8 +406,13 @@ async function loginUser() {
 window.addEventListener("DOMContentLoaded", () => {
   images.getImages("login", 1, null);
   getUsersForLogin();
-
-  setTimeout(loadStudentLoginImageGrid, 600);
+  try {
+    setTimeout(loadStudentLoginImageGrid, 600);
+  } catch {
+    setTimeout(loadStudentLoginImageGrid, 200);
+  } finally {
+    setTimeout(loadStudentLoginImageGrid, 400);
+  }
 });
 closeStudentLoginModalBtn.addEventListener("click", (event) => {
   // event.preventDefault();
