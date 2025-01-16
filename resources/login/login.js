@@ -280,11 +280,11 @@ function resetStudentPasswordEntryArray() {
 // Generate student login grid with images
 function loadStudentLoginImageGrid() {
   passwordImageNamesArray.forEach((image) => {
-    const gridImage = document.createElement("div");
+    const gridImage = document.createElement("img");
     gridImage.classList.add("grid-image");
     gridImage.setAttribute("id", images.imageObject[image].id);
     gridImage.setAttribute("content", images.imageObject[image].content);
-    gridImage.style.backgroundImage = `url(${images.imageObject[image].link})`;
+    gridImage.src = `${images.imageObject[image].link}`;
     gridImage.addEventListener("click", (event) => {
       // deselects previously selected grid image
       const content = gridImage.getAttribute("content");
@@ -407,7 +407,7 @@ window.addEventListener("DOMContentLoaded", () => {
   images.getImages("login", 1, null);
   getUsersForLogin();
 
-  setTimeout(loadStudentLoginImageGrid, 100);
+  setTimeout(loadStudentLoginImageGrid, 200);
 });
 closeStudentLoginModalBtn.addEventListener("click", (event) => {
   // event.preventDefault();
@@ -420,6 +420,7 @@ closeTeacherLoginModalBtn.addEventListener("click", (event) => {
   // teacherPasswordEntryForm.reset();
 });
 const getImages = () => {
+  const ref = "http://orchidpony8.sakura.ne.jp/images/clipart/";
   const imgRabbit = document.createElement("img");
   const imgDuck = document.createElement("img");
   const imgFish = document.createElement("img");
@@ -438,6 +439,60 @@ const getImages = () => {
   const imgBanana = document.createElement("img");
   const imgWatermelon = document.createElement("img");
   const imgSpoon = document.createElement("img");
+  imgRabbit.src = `${ref}animal-rabbit-silhouette-1.svg`;
+  imgRabbit.role = "img";
+  imgRabbit;
+  imgDuck.src = `${ref}animal-duck-silhouette-2.svg`;
+  imgDuck.role = "img";
+  imgDuck;
+  imgFish.src = `${ref}animal-fish-silhouette-3.svg`;
+  imgFish.role = "img";
+  imgFish;
+  imgTurtle.src = `${ref}animal-turtle-silhouette-2.svg`;
+  imgTurtle.role = "img";
+  imgTurtle;
+  imgCat.src = `${ref}animal-cat-silhouette-1.svg`;
+  imgCat.role = "img";
+  imgCat;
+  imgLizard.src = `${ref}animal-lizard-silhouette-2.svg`;
+  imgLizard.role = "img";
+  imgLizard;
+  imgCar.src = `${ref}transportation-car-silhouette-1.svg`;
+  imgCar.role = "img";
+  imgCar;
+  imgTruck.src = `${ref}transportation-truck-silhouette-1.svg`;
+  imgTruck.role = "img";
+  imgTruck;
+  imgRocket.src = `${ref}transportation-rocket-silhouette-1.svg`;
+  imgRocket.role = "img";
+  imgRocket;
+  imgTrain.src = `${ref}transportation-train-silhouette-1.svg`;
+  imgTrain.role = "img";
+  imgTrain;
+  imgAirplane.src = `${ref}transportation-airplane-silhouette-2.svg`;
+  imgAirplane.role = "img";
+  imgAirplane;
+  imgBoat.src = `${ref}transportation-sailboat-silhouette-1.svg`;
+  imgBoat.role = "img";
+  imgBoat;
+  imgStrawberry.src = `${ref}food-strawberry-silhouette-2.svg`;
+  imgStrawberry.role = "img";
+  imgStrawberry;
+  imgApple.src = `${ref}food-apple-silhouette-2.svg`;
+  imgApple.role = "img";
+  imgApple;
+  imgCarrot.src = `${ref}food-carrot-silhouette-1.svg`;
+  imgCarrot.role = "img";
+  imgCarrot;
+  imgBanana.src = `${ref}food-banana-silhouette-2.svg`;
+  imgBanana.role = "img";
+  imgBanana;
+  imgWatermelon.src = `${ref}food-watermelon-silhouette-2.svg`;
+  imgWatermelon.role = "img";
+  imgWatermelon;
+  imgSpoon.src = `${ref}object-spoon-silhouette-1.svg`;
+  imgSpoon.role = "img";
+  imgSpoon;
 };
 function routing(userData) {
   if (userData.access === "teacher") {
