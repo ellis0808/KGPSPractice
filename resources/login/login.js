@@ -297,14 +297,11 @@ const studentPasswordEntry = () => {
           studentPasswordEntryArray.splice(1, 1, content);
           displaySelectedPasswordImages(event);
           console.log(event.target);
-        }
-        if (studentPasswordEntryArray[0] === null) {
+        } else if (studentPasswordEntryArray[0] === null) {
           studentPasswordEntryArray.splice(0, 1, content);
           displaySelectedPasswordImages(event);
           console.log(event.target);
-        }
-
-        if (studentPasswordEntryArray.length > 2) {
+        } else if (studentPasswordEntryArray.length > 2) {
           studentPasswordEntryArray.splice(0, 1);
         }
         studentPasswordEntryArray.forEach((item) => {
