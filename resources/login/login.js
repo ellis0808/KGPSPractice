@@ -424,7 +424,7 @@ window.addEventListener("DOMContentLoaded", () => {
   images.getImages("login", 1, null);
   getUsersForLogin();
 
-  loadStudentLoginImageGrid, 500;
+  loadStudentLoginImageGrid();
 });
 closeStudentLoginModalBtn.addEventListener("click", (event) => {
   // event.preventDefault();
