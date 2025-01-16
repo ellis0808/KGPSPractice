@@ -276,7 +276,24 @@ function resetStudentPasswordEntryArray() {
     displaySelectedPasswordImages();
   }
 }
-
+// const imgRabbit = document.createElement('img')
+// const imgDuck = document.createElement('img')
+// const imgFish = document.createElement('img')
+// const imgTurtle = document.createElement('img')
+// const imgCat = document.createElement('img')
+// const imgLizard = document.createElement('img')
+// const imgCar = document.createElement('img')
+// const imgTruck = document.createElement('img')
+// const imgRocket = document.createElement('img')
+// const imgTrain = document.createElement('img')
+// const imgAirplane = document.createElement('img')
+// const imgBoat = document.createElement('img')
+// const imgStrawberry = document.createElement('img')
+// const imgApple = document.createElement('img')
+// const imgCarrot = document.createElement('img')
+// const imgBanana = document.createElement('img')
+// const imgWatermelon = document.createElement('img')
+// const imgSpoon = document.createElement('img')
 // Generate student login grid with images
 function loadStudentLoginImageGrid() {
   passwordImageNamesArray.forEach((image) => {
@@ -403,11 +420,11 @@ async function loginUser() {
     console.error("Error loging in: ", error);
   }
 }
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
   images.getImages("login", 1, null);
   getUsersForLogin();
 
-  setTimeout(loadStudentLoginImageGrid, 500);
+  loadStudentLoginImageGrid, 500;
 });
 closeStudentLoginModalBtn.addEventListener("click", (event) => {
   // event.preventDefault();
