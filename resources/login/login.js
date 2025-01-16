@@ -308,7 +308,7 @@ const studentPasswordEntry = () => {
           console.log("condition 2b");
         }
         if (studentPasswordEntryArray.length > 2) {
-          studentPasswordEntryArray.splice(0, 1);
+          studentPasswordEntryArray.splice(0, 1, content);
           displaySelectedPasswordImages(item);
           console.log("condition 2c");
         }
