@@ -286,7 +286,7 @@ const studentPasswordEntry = () => {
           1,
           null
         );
-        console.log(event);
+        console.log(event.target);
 
         displaySelectedPasswordImages(event);
       } else {
@@ -296,12 +296,12 @@ const studentPasswordEntry = () => {
         ) {
           studentPasswordEntryArray.splice(1, 1, content);
           displaySelectedPasswordImages(event);
-          console.log(event);
+          console.log(event.target);
         }
         if (studentPasswordEntryArray[0] === null) {
           studentPasswordEntryArray.splice(0, 1, content);
           displaySelectedPasswordImages(event);
-          console.log(event);
+          console.log(event.target);
         }
 
         if (studentPasswordEntryArray.length > 2) {
@@ -381,16 +381,16 @@ function loadStudentLoginImageGrid() {
 studentPasswordGridContainer.appendChild(studentPasswordGrid);
 
 function displaySelectedPasswordImages(event) {
-  console.log(event);
+  console.log(event.target);
   if (studentPasswordEntryArray[0] !== null) {
-    studentSelectedPasswordImage1.src = `${event.src}`;
+    studentSelectedPasswordImage1.src = `${event.target.src}`;
   } else {
-    studentSelectedPasswordImage1.src = `${event.src}`;
+    studentSelectedPasswordImage1.src = `${event.target.src}`;
   }
   if (studentPasswordEntryArray[1] !== null) {
-    studentSelectedPasswordImage2.src = `${event.src}`;
+    studentSelectedPasswordImage2.src = `${event.target.src}`;
   } else {
-    studentSelectedPasswordImage2.src = `${event.src}`;
+    studentSelectedPasswordImage2.src = `${event.target.src}`;
   }
 }
 
