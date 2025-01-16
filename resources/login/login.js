@@ -277,7 +277,48 @@ function resetStudentPasswordEntryArray() {
   }
 }
 const gridImage = document.createElement("img");
+const studentPasswordEntry = () => {
+  document.querySelectorAll(".grid-image").forEach((item) => {
+    item.addEventListener("pointerdown", (event) => {
+      const content = item.getAttribute("content");
+      if (studentPasswordEntryArray.includes(content)) {
+        document
+          .querySelector(`[content='${content}']`)
+          .classList.remove("selected");
+        studentPasswordEntryArray.splice(
+          studentPasswordEntryArray.indexOf(content),
+          1,
+          null
+        );
 
+        displaySelectedPasswordImages();
+      } else {
+        if (
+          studentPasswordEntryArray[0] !== null &&
+          studentPasswordEntryArray[1] === null
+        ) {
+          studentPasswordEntryArray.splice(1, 1, content);
+          displaySelectedPasswordImages();
+        }
+        if (studentPasswordEntryArray[0] === null) {
+          studentPasswordEntryArray.splice(0, 1, content);
+          displaySelectedPasswordImages();
+        }
+
+        if (studentPasswordEntryArray.length > 2) {
+          studentPasswordEntryArray.splice(0, 1);
+        }
+        studentPasswordEntryArray.forEach((item) => {
+          if (item !== null) {
+            document
+              .querySelector(`[content = '${item}']`)
+              .classList.add("selected");
+          }
+        });
+      }
+    });
+  });
+};
 const setImages = () => {
   gridImage.setAttribute("id", images.imageObject[image].id);
   gridImage.setAttribute("content", images.imageObject[image].content);
@@ -412,9 +453,8 @@ async function loginUser() {
 }
 window.addEventListener("DOMContentLoaded", () => {
   getImages();
-  // images.getImages("login", 1, null);
   getUsersForLogin();
-  // setTimeout(loadStudentLoginImageGrid, 1000);
+  studentPasswordEntry();
 });
 closeStudentLoginModalBtn.addEventListener("click", (event) => {
   // event.preventDefault();
@@ -449,74 +489,92 @@ const getImages = () => {
   imgRabbit.src = `${ref}animal-rabbit-silhouette-1.svg`;
   imgRabbit.classList.add("grid-image");
   imgRabbit.role = "img";
+  imgRabbit.setAttribute("content", "rabbit");
   studentPasswordGrid.appendChild(imgRabbit);
   imgDuck.src = `${ref}animal-duck-silhouette-2.svg`;
   imgDuck.classList.add("grid-image");
   imgDuck.role = "img";
+  imgDuck.setAttribute("content", "duck");
   studentPasswordGrid.appendChild(imgDuck);
   imgFish.src = `${ref}animal-fish-silhouette-3.svg`;
   imgFish.classList.add("grid-image");
   imgFish.role = "img";
+  imgFish.setAttribute("content", "fish");
   studentPasswordGrid.appendChild(imgFish);
   imgTurtle.src = `${ref}animal-turtle-silhouette-2.svg`;
   imgTurtle.classList.add("grid-image");
   imgTurtle.role = "img";
+  imgTurtle.setAttribute("content", "turtle");
   studentPasswordGrid.appendChild(imgTurtle);
   imgCat.src = `${ref}animal-cat-silhouette-1.svg`;
   imgCat.classList.add("grid-image");
   imgCat.role = "img";
+  imgCat.setAttribute("content", "cat");
   studentPasswordGrid.appendChild(imgCat);
   imgLizard.src = `${ref}animal-lizard-silhouette-2.svg`;
   imgLizard.classList.add("grid-image");
   imgLizard.role = "img";
+  imgLizard.setAttribute("content", "lizard");
   studentPasswordGrid.appendChild(imgLizard);
   imgCar.src = `${ref}transportation-car-silhouette-1.svg`;
   imgCar.classList.add("grid-image");
   imgCar.role = "img";
+  imgCar.setAttribute("content", "car");
   studentPasswordGrid.appendChild(imgCar);
   imgTruck.src = `${ref}transportation-truck-silhouette-1.svg`;
   imgTruck.classList.add("grid-image");
   imgTruck.role = "img";
+  imgTruck.setAttribute("content", "truck");
   studentPasswordGrid.appendChild(imgTruck);
   imgRocket.src = `${ref}transportation-rocket-silhouette-1.svg`;
   imgRocket.classList.add("grid-image");
   imgRocket.role = "img";
+  imgRocket.setAttribute("content", "rocket");
   studentPasswordGrid.appendChild(imgRocket);
   imgTrain.src = `${ref}transportation-train-silhouette-1.svg`;
   imgTrain.classList.add("grid-image");
   imgTrain.role = "img";
+  imgTrain.setAttribute("content", "train");
   studentPasswordGrid.appendChild(imgTrain);
   imgAirplane.src = `${ref}transportation-airplane-silhouette-2.svg`;
   imgAirplane.classList.add("grid-image");
   imgAirplane.role = "img";
+  imgAirplane.setAttribute("content", "airplane");
   studentPasswordGrid.appendChild(imgAirplane);
   imgBoat.src = `${ref}transportation-sailboat-silhouette-1.svg`;
   imgBoat.classList.add("grid-image");
   imgBoat.role = "img";
+  imgBoat.setAttribute("content", "boat");
   studentPasswordGrid.appendChild(imgBoat);
   imgStrawberry.src = `${ref}food-strawberry-silhouette-2.svg`;
   imgStrawberry.classList.add("grid-image");
   imgStrawberry.role = "img";
+  imgStrawberry.setAttribute("content", "strawberry");
   studentPasswordGrid.appendChild(imgStrawberry);
   imgApple.src = `${ref}food-apple-silhouette-2.svg`;
   imgApple.classList.add("grid-image");
   imgApple.role = "img";
+  imgApple.setAttribute("content", "apple");
   studentPasswordGrid.appendChild(imgApple);
   imgCarrot.src = `${ref}food-carrot-silhouette-1.svg`;
   imgCarrot.classList.add("grid-image");
   imgCarrot.role = "img";
+  imgCarrot.setAttribute("content", "carrot");
   studentPasswordGrid.appendChild(imgCarrot);
   imgBanana.src = `${ref}food-banana-silhouette-2.svg`;
   imgBanana.classList.add("grid-image");
   imgBanana.role = "img";
+  imgBanana.setAttribute("content", "banana");
   studentPasswordGrid.appendChild(imgBanana);
   imgWatermelon.src = `${ref}food-watermelon-silhouette-2.svg`;
   imgWatermelon.classList.add("grid-image");
   imgWatermelon.role = "img";
+  imgWatermelon.setAttribute("content", "watermelon");
   studentPasswordGrid.appendChild(imgWatermelon);
   imgSpoon.src = `${ref}object-spoon-silhouette-1.svg`;
   imgSpoon.classList.add("grid-image");
   imgSpoon.role = "img";
+  imgSpoon.setAttribute("content", "spoon");
   studentPasswordGrid.appendChild(imgSpoon);
 };
 function routing(userData) {
