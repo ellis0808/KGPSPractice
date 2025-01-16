@@ -276,6 +276,7 @@ function resetStudentPasswordEntryArray() {
     displaySelectedPasswordImages();
   }
 }
+const gridImage = document.createElement("img");
 
 const setImages = () => {
   gridImage.setAttribute("id", images.imageObject[image].id);
@@ -327,7 +328,6 @@ const setImages = () => {
 // Generate student login grid with images
 function loadStudentLoginImageGrid() {
   passwordImageNamesArray.forEach((image) => {
-    const gridImage = document.createElement("img");
     gridImage.classList.add("grid-image");
     if (images.imageObject[image]) {
       setImages();
