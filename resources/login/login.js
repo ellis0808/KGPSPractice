@@ -277,7 +277,7 @@ const studentPasswordEntry = () => {
   document.querySelectorAll(".grid-image").forEach((item) => {
     item.addEventListener("pointerdown", (event) => {
       const content = item.getAttribute("content");
-      studentPasswordEntryArray.push(content);
+
       if (studentPasswordEntryArray.includes(content)) {
         document
           .querySelector(`[content='${content}']`)
