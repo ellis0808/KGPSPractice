@@ -410,7 +410,7 @@ async function loginUser() {
     console.error("Error loging in: ", error);
   }
 }
-window.addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
   getImages();
   // images.getImages("login", 1, null);
   getUsersForLogin();
