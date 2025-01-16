@@ -410,7 +410,7 @@ async function loginUser() {
     console.error("Error loging in: ", error);
   }
 }
-window.addEventListener("loaded", () => {
+window.addEventListener("load", () => {
   images.getImages("login", 1, null);
   getUsersForLogin();
   setTimeout(loadStudentLoginImageGrid, 400);
