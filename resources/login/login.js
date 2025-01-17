@@ -290,6 +290,7 @@ const selectImage = (item) => {
   console.log(studentSelectedPasswordImage1);
   console.log(studentSelectedPasswordImage2);
   console.log(studentPasswordEntryArray);
+  console.log(item.content);
   if (studentSelectedPasswordImage1.getAttribute("content") === item.content) {
     studentSelectedPasswordImage1.src = "";
     console.log("test 5");
