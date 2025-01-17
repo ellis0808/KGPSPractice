@@ -277,13 +277,16 @@ const studentPasswordEntry = () => {
   document.querySelectorAll(".grid-image").forEach((item) => {
     item.addEventListener("pointerdown", (event) => {
       const content = item.getAttribute("content");
-      console.log(studentSelectedPasswordImage1);
-      console.log(studentSelectedPasswordImage2);
-      console.log(studentPasswordEntryArray);
+      selectImage();
     });
   });
 };
-
+const selectImage = () => {
+  console.log(studentSelectedPasswordImage1);
+  console.log(studentSelectedPasswordImage2);
+  console.log(studentPasswordEntryArray);
+  studentSelectedPasswordImage1.src = item.src;
+};
 studentPasswordGridContainer.appendChild(studentPasswordGrid);
 
 function displaySelectedPasswordImages(item) {
