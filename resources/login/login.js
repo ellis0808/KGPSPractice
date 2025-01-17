@@ -286,7 +286,10 @@ const selectImage = (item) => {
   console.log(studentSelectedPasswordImage1);
   console.log(studentSelectedPasswordImage2);
   console.log(studentPasswordEntryArray);
-  studentSelectedPasswordImage1.src = item.src;
+  if (!studentSelectedPasswordImage1.src) {
+    studentSelectedPasswordImage1.src = item.src;
+    console.log("test");
+  }
 };
 studentPasswordGridContainer.appendChild(studentPasswordGrid);
 
