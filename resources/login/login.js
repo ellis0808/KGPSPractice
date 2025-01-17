@@ -287,13 +287,13 @@ const selectImage = (item) => {
   console.log(studentSelectedPasswordImage2);
   console.log(studentPasswordEntryArray);
   if (
-    !studentSelectedPasswordImage1.src ||
+    !studentSelectedPasswordImage1.src &&
     !studentSelectedPasswordImage2.src
   ) {
     studentSelectedPasswordImage1.src = item.src;
     console.log("test");
   }
-  if (!studentSelectedPasswordImage2.src) {
+  if (studentSelectedPasswordImage1.src && !studentSelectedPasswordImage2.src) {
     studentSelectedPasswordImage2.src = item.src;
     console.log("test2");
   }
