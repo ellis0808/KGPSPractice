@@ -309,8 +309,8 @@ const studentPasswordEntry = () => {
           console.log("condition 2b");
         }
         if (
-          studentSelectedPasswordImage1.src ||
-          studentSelectedPasswordImage2.src
+          studentSelectedPasswordImage1.src.length > 0 ||
+          studentSelectedPasswordImage2.src.length > 0
         ) {
           studentPasswordEntryArray.splice(0, 1);
           // displaySelectedPasswordImages(item);
