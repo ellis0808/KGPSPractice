@@ -290,26 +290,28 @@ const studentPasswordEntry = () => {
         console.log(event.target);
         console.log("condition 1");
 
-        displaySelectedPasswordImages(item);
+        // displaySelectedPasswordImages(item);
       } else {
         if (
           studentPasswordEntryArray[0] !== null &&
           studentPasswordEntryArray[1] === null
         ) {
-          displaySelectedPasswordImages(item);
+          // displaySelectedPasswordImages(item);
+          studentSelectedPasswordImage2.src = `${item.src}`;
           studentPasswordEntryArray.splice(1, 1, content);
           console.log(event.target);
           console.log("condition 2a");
         }
         if (studentPasswordEntryArray[0] === null) {
-          displaySelectedPasswordImages(item);
+          studentSelectedPasswordImage1.src = `${item.src}`;
           studentPasswordEntryArray.splice(0, 1, content);
           console.log(event.target);
           console.log("condition 2b");
         }
         if (studentPasswordEntryArray.length > 2) {
-          studentPasswordEntryArray.splice(0, 1, content);
-          displaySelectedPasswordImages(item);
+          studentPasswordEntryArray.splice(0, 1);
+          // displaySelectedPasswordImages(item);
+          studentSelectedPasswordImage1.src = `${item.src}`;
           console.log("condition 2c");
         }
         studentPasswordEntryArray.forEach((item) => {
@@ -332,14 +334,14 @@ function displaySelectedPasswordImages(item) {
   if (studentPasswordEntryArray[0] === null) {
     console.log("display 1a");
     studentSelectedPasswordImage1.src = `${item.src}`;
-  } else {
+  } else if (studentPasswordEntryArray[0] === item.content) {
     console.log("display 1b");
     studentSelectedPasswordImage1.classList.add("hide");
   }
   if (studentPasswordEntryArray[1] === null) {
     console.log("display 2a");
     studentSelectedPasswordImage2.src = `${item.src}`;
-  } else {
+  } else if (studentPasswordEntryArray[1] === item.content) {
     console.log("display 2b");
     studentSelectedPasswordImage2.classList.add("hide");
   }
