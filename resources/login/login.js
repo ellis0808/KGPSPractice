@@ -329,12 +329,19 @@ studentPasswordGridContainer.appendChild(studentPasswordGrid);
 
 function displaySelectedPasswordImages(item) {
   console.log("displaying selected password images...");
-  if (studentPasswordEntryArray[0] === null) {
-    console.log("display 1");
+  if (studentPasswordEntryArray[0] !== null) {
+    console.log("display 1a");
     studentSelectedPasswordImage1.src = `${item.src}`;
   } else {
-    console.log("display 2");
+    console.log("display 1b");
+    studentSelectedPasswordImage1.classList.add("hide");
+  }
+  if (studentPasswordEntryArray[1] !== null) {
+    console.log("display 2a");
     studentSelectedPasswordImage2.src = `${item.src}`;
+  } else {
+    console.log("display 2b");
+    studentSelectedPasswordImage2.classList.add("hide");
   }
 }
 
