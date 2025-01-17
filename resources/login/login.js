@@ -280,6 +280,8 @@ const studentPasswordEntry = () => {
     item.addEventListener("pointerdown", (event) => {
       const content = item.getAttribute("content");
       event.preventDefault();
+      console.log(item);
+
       selectImage(item);
     });
   });
