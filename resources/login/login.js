@@ -277,6 +277,7 @@ const studentPasswordEntry = () => {
   document.querySelectorAll(".grid-image").forEach((item) => {
     item.addEventListener("pointerdown", (event) => {
       const content = item.getAttribute("content");
+      event.preventDefault();
       selectImage(item);
     });
   });
