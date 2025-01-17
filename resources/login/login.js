@@ -290,19 +290,28 @@ const selectImage = (item) => {
   console.log(studentSelectedPasswordImage1);
   console.log(studentSelectedPasswordImage2);
   console.log(studentPasswordEntryArray);
-  console.log(item.content);
-  if (studentSelectedPasswordImage1.getAttribute("content") === item.content) {
+  console.log(item.getAttribute("content"));
+  if (
+    studentSelectedPasswordImage1.getAttribute("content") ===
+    item.getAttribute("content")
+  ) {
     studentSelectedPasswordImage1.src = "";
     console.log("test 5");
   }
   console.log(studentPasswordEntryArray);
-  if (studentSelectedPasswordImage2.getAttribute("content") === item.content) {
+  if (
+    studentSelectedPasswordImage2.getAttribute("content") ===
+    item.getAttribute("content")
+  ) {
     studentSelectedPasswordImage2.src = "";
     console.log("test 4");
   }
   if (studentSelectedPasswordImage1.src && !studentSelectedPasswordImage2.src) {
     studentSelectedPasswordImage2.src = item.src;
-    studentSelectedPasswordImage2.setAttribute("content", item.content);
+    studentSelectedPasswordImage2.setAttribute(
+      "content",
+      item.getAttribute("content")
+    );
 
     console.log("test 2");
   } else if (
@@ -310,7 +319,10 @@ const selectImage = (item) => {
     !studentSelectedPasswordImage2.src
   ) {
     studentSelectedPasswordImage1.src = item.src;
-    studentSelectedPasswordImage1.setAttribute("content", item.content);
+    studentSelectedPasswordImage1.setAttribute(
+      "content",
+      item.getAttribute("content")
+    );
     console.log("test 1");
   }
 };
