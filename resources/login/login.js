@@ -279,59 +279,6 @@ const studentPasswordEntry = () => {
       const content = item.getAttribute("content");
       console.log(studentSelectedPasswordImage1);
       console.log(studentSelectedPasswordImage2);
-
-      if (studentPasswordEntryArray.includes(content)) {
-        document
-          .querySelector(`[content='${content}']`)
-          .classList.remove("selected");
-        studentPasswordEntryArray.splice(
-          studentPasswordEntryArray.indexOf(content),
-          1,
-          null
-        );
-        console.log(event.target);
-        console.log("condition 1");
-
-        // displaySelectedPasswordImages(item);
-      } else {
-        if (
-          studentPasswordEntryArray[0] !== null &&
-          studentPasswordEntryArray[1] === null
-        ) {
-          // displaySelectedPasswordImages(item);
-          studentSelectedPasswordImage2.src = `${item.src}`;
-          studentPasswordEntryArray.splice(1, 1, content);
-          console.log(event.target);
-          console.log("condition 2a");
-        }
-        if (studentPasswordEntryArray[0] === null) {
-          console.log(studentSelectedPasswordImage1);
-
-          studentSelectedPasswordImage1.src = `${item.src}`;
-          studentPasswordEntryArray.splice(0, 1, content);
-          console.log(event.target);
-          console.log("condition 2b");
-        }
-        if (
-          studentSelectedPasswordImage1.src.length > 0 ||
-          studentSelectedPasswordImage2.src.length > 0
-        ) {
-          console.log(studentSelectedPasswordImage1.src.length);
-
-          studentPasswordEntryArray.splice(0, 1);
-          // displaySelectedPasswordImages(item);
-          studentSelectedPasswordImage2.src = studentSelectedPasswordImage1.src;
-          studentSelectedPasswordImage1.src = `${item.src}`;
-          console.log("condition 2c");
-        }
-        studentPasswordEntryArray.forEach((item) => {
-          if (item !== null) {
-            document
-              .querySelector(`[content = '${item}']`)
-              .classList.add("selected");
-          }
-        });
-      }
       console.log(studentPasswordEntryArray);
     });
   });
