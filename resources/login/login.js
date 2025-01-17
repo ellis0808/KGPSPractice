@@ -303,6 +303,8 @@ const studentPasswordEntry = () => {
           console.log("condition 2a");
         }
         if (studentPasswordEntryArray[0] === null) {
+          console.log(studentSelectedPasswordImage1);
+
           studentSelectedPasswordImage1.src = `${item.src}`;
           studentPasswordEntryArray.splice(0, 1, content);
           console.log(event.target);
@@ -312,6 +314,8 @@ const studentPasswordEntry = () => {
           studentSelectedPasswordImage1.src.length > 0 ||
           studentSelectedPasswordImage2.src.length > 0
         ) {
+          console.log(studentSelectedPasswordImage1.src.length);
+
           studentPasswordEntryArray.splice(0, 1);
           // displaySelectedPasswordImages(item);
           studentSelectedPasswordImage2.src = studentSelectedPasswordImage1.src;
