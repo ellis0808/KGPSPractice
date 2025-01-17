@@ -290,12 +290,12 @@ const selectImage = (item) => {
   console.log(studentSelectedPasswordImage1);
   console.log(studentSelectedPasswordImage2);
   console.log(studentPasswordEntryArray);
-  if (studentSelectedPasswordImage1.content === item.content) {
+  if (studentSelectedPasswordImage1.getAttribute("content") === item.content) {
     studentSelectedPasswordImage1.src = "";
     console.log("test 5");
   }
   console.log(studentPasswordEntryArray);
-  if (studentSelectedPasswordImage2.content === item.content) {
+  if (studentSelectedPasswordImage2.getAttribute("content") === item.content) {
     studentSelectedPasswordImage2.src = "";
     console.log("test 4");
   }
