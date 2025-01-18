@@ -799,8 +799,8 @@ class MenuItems {
       });
     });
   }
-  appendToTarget(target, item) {
-    document.querySelectorAll(item).forEach((item) => {
+  appendToTarget(target, items) {
+    document.querySelectorAll(items).forEach((item) => {
       target.appendChild(item);
     });
   }
