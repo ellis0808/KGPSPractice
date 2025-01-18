@@ -56,11 +56,11 @@ const studentSelectedPasswordImage1 = document.querySelector(
   ".student-selected-password-image-1"
 );
 studentSelectedPasswordImage1.setAttribute("content", "empty");
-studentSelectedPasswordImage1.classList.add("chosen-image");
+studentSelectedPasswordImage1.classList.add("chosen-image", "hide");
 const studentSelectedPasswordImage2 = document.querySelector(
   ".student-selected-password-image-2"
 );
-studentSelectedPasswordImage2.classList.add("chosen-image");
+studentSelectedPasswordImage2.classList.add("chosen-image", "hide");
 studentSelectedPasswordImage2.setAttribute("content", "empty");
 
 const studentPasswordEntryArray = [null, null];
@@ -304,8 +304,7 @@ const selectImage = (item) => {
     studentSelectedPasswordImage2.getAttribute("content") ===
     item.getAttribute("content")
   ) {
-    studentSelectedPasswordImage1.classList.add("hide");
-    studentSelectedPasswordImage2.src = null;
+    studentSelectedPasswordImage2.classList.add("hide");
     studentSelectedPasswordImage2.setAttribute("content", "");
     console.log("test 4");
   }
@@ -324,8 +323,8 @@ const selectImage = (item) => {
     !studentSelectedPasswordImage1.src &&
     !studentSelectedPasswordImage2.src
   ) {
-    if (studentSelectedPasswordImage2.classList.contains("hide")) {
-      studentSelectedPasswordImage2.classList.remove("hide");
+    if (studentSelectedPasswordImage1.classList.contains("hide")) {
+      studentSelectedPasswordImage1.classList.remove("hide");
     }
     studentSelectedPasswordImage1.src = item.src;
     studentSelectedPasswordImage1.setAttribute(
