@@ -304,7 +304,7 @@ const selectImage = (item) => {
       item.getAttribute("content")
     ) {
       item.classList.remove("selected");
-      studentSelectedPasswordImage1.classList.add("hide");
+      studentSelectedPasswordImage2.classList.add("hide");
       console.log("test 7");
     }
   }
