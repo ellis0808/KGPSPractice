@@ -825,6 +825,7 @@ class MenuItems {
     this.headersColumn.appendChild(this.fluencyMenuHeader);
     this.headersColumn.appendChild(this.writingMenuHeader);
     this.appendToTarget(this.sectionColumn, ".secondary-menu-row");
+    console.log(document.querySelectorAll(".secondary-menu-row"));
     console.log(this.sectionColumn);
 
     // this.sectionColumn.appendChild(this.touchMenu);
