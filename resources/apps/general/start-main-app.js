@@ -804,6 +804,32 @@ class MenuItems {
       target.appendChild(item);
     });
   }
+  createMenuRows() {
+    this.touchMenu = document.createElement("div");
+    this.touchMenu.classList.add(
+      "secondary-menu-row",
+      "secondary-menu",
+      "touch-menu"
+    );
+    this.matchingMenu = document.createElement("div");
+    this.matchingMenu.classList.add(
+      "secondary-menu-row",
+      "secondary-menu",
+      "matching-menu"
+    );
+    this.fluencyMenu = document.createElement("div");
+    this.fluencyMenu.classList.add(
+      "secondary-menu-row",
+      "secondary-menu",
+      "fluency-menu"
+    );
+    this.writingMenu = document.createElement("div");
+    this.writingMenu.classList.add(
+      "secondary-menu-row",
+      "secondary-menu",
+      "writing-menu"
+    );
+  }
   displaySecondaryMenu(section) {
     this.removeSectionColumnMenuItems();
     this.hidePrimaryMenu();
@@ -824,6 +850,7 @@ class MenuItems {
     this.headersColumn.appendChild(this.matchingMenuHeader);
     this.headersColumn.appendChild(this.fluencyMenuHeader);
     this.headersColumn.appendChild(this.writingMenuHeader);
+    this.createMenuRows();
     this.appendToTarget(this.sectionColumn, ".secondary-menu-row");
     console.log(document.querySelectorAll(".secondary-menu-row"));
     console.log(this.sectionColumn);
