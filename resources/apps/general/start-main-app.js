@@ -800,6 +800,7 @@ class MenuItems {
     });
   }
   appendToTarget(target, items) {
+    console.log(items);
     document.querySelectorAll(items).forEach((item) => {
       target.appendChild(item);
     });
