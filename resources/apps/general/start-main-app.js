@@ -801,9 +801,11 @@ class MenuItems {
   }
   appendToTarget(target, items) {
     console.log(items);
-    document.querySelectorAll(`"${items}"`).forEach((item) => {
-      target.appendChild(item);
-    });
+    document
+      .querySelectorAll("data-name=" + CSS.escape(items))
+      .forEach((item) => {
+        target.appendChild(item);
+      });
   }
   createMenuRows() {
     this.touchMenu = document.createElement("div");
