@@ -295,7 +295,7 @@ const selectImage = (item) => {
     studentSelectedPasswordImage1.getAttribute("content") ===
     item.getAttribute("content")
   ) {
-    studentSelectedPasswordImage1.src = "";
+    studentSelectedPasswordImage1.src = null;
     studentSelectedPasswordImage1.setAttribute("content", "");
     console.log("test 5");
   }
@@ -304,7 +304,7 @@ const selectImage = (item) => {
     studentSelectedPasswordImage2.getAttribute("content") ===
     item.getAttribute("content")
   ) {
-    studentSelectedPasswordImage2.src = "";
+    studentSelectedPasswordImage2.src = null;
     studentSelectedPasswordImage2.setAttribute("content", "");
     console.log("test 4");
   }
