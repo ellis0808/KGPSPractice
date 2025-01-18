@@ -299,6 +299,7 @@ const selectImage = (item) => {
       item.classList.remove("selected");
       studentSelectedPasswordImage1.classList.add("hide");
       console.log("test 6");
+      return;
     } else if (
       studentSelectedPasswordImage2.getAttribute("content") ===
       item.getAttribute("content")
@@ -306,6 +307,7 @@ const selectImage = (item) => {
       item.classList.remove("selected");
       studentSelectedPasswordImage2.classList.add("hide");
       console.log("test 7");
+      return;
     }
   }
   // if (
@@ -338,7 +340,7 @@ const selectImage = (item) => {
       "content",
       item.getAttribute("content")
     );
-
+    studentPasswordEntryArray[1] = item.getAttribute("content");
     console.log("test 2");
   } else if (
     studentSelectedPasswordImage1.classList.contains("hide") &&
@@ -353,6 +355,7 @@ const selectImage = (item) => {
       item.getAttribute("content")
     );
     console.log("test 1");
+    studentPasswordEntryArray[0] = item.getAttribute("content");
   }
 };
 studentPasswordGridContainer.appendChild(studentPasswordGrid);
