@@ -310,11 +310,11 @@ const selectImage = (item) => {
   }
   if (
     !studentSelectedPasswordImage1.classList.contains("hide") &&
-    studentSelectedPasswordImage2.contains("hide")
+    studentSelectedPasswordImage2.classList.contains("hide")
   ) {
     studentSelectedPasswordImage2.classList.remove("hide");
     studentSelectedPasswordImage2.src = item.src;
-    studentSelectedPasswordImage2.classList.add("selected");
+    item.classList.add("selected");
     studentSelectedPasswordImage2.setAttribute(
       "content",
       item.getAttribute("content")
@@ -328,7 +328,7 @@ const selectImage = (item) => {
     studentSelectedPasswordImage1.classList.remove("hide");
 
     studentSelectedPasswordImage1.src = item.src;
-    studentSelectedPasswordImage1.classList.add("selected");
+    item.classList.add("selected");
     studentSelectedPasswordImage1.setAttribute(
       "content",
       item.getAttribute("content")
