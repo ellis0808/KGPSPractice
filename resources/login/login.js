@@ -310,25 +310,6 @@ const selectImage = (item) => {
       return;
     }
   }
-  // if (
-  //   studentSelectedPasswordImage1.getAttribute("content") ===
-  //   item.getAttribute("content")
-  // ) {
-  //   studentSelectedPasswordImage1.classList.add("hide");
-  //   studentSelectedPasswordImage1.setAttribute("content", "");
-  //   item.classList.remove("selected");
-  //   console.log("test 5");
-  // }
-  // console.log(studentPasswordEntryArray);
-  // if (
-  //   studentSelectedPasswordImage2.getAttribute("content") ===
-  //   item.getAttribute("content")
-  // ) {
-  //   studentSelectedPasswordImage2.classList.add("hide");
-  //   studentSelectedPasswordImage2.setAttribute("content", "");
-  //   item.classList.remove("selected");
-  //   console.log("test 4");
-  // }
   if (
     !studentSelectedPasswordImage1.classList.contains("hide") &&
     studentSelectedPasswordImage2.classList.contains("hide")
