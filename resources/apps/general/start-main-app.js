@@ -802,7 +802,7 @@ class MenuItems {
   appendToTarget(target, items) {
     console.log(items);
     document
-      .querySelectorAll("data-name=" + CSS.escape(items))
+      .querySelectorAll(`[data-name=${CSS.escape(items)}]`)
       .forEach((item) => {
         target.appendChild(item);
       });
