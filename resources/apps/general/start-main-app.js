@@ -836,6 +836,7 @@ class MenuItems {
       "secondary-menu",
       "writing-menu"
     );
+    console.log(this.writingMenu);
   }
   displaySecondaryMenu(section) {
     this.removeSectionColumnMenuItems();
