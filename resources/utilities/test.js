@@ -28,8 +28,8 @@ const object = {
           "writing-menu"
         );
     }
-    appendToTarget(target, item) {
-document.querySelectorAll(item).forEach((item) => {
+    appendToTarget(target, items) {
+document.querySelectorAll(items).forEach((item) => {
     this.target.appendChild(item)
 })
     }
