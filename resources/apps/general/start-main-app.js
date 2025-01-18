@@ -50,6 +50,10 @@ class MenuItems {
     this.numbersMenu = document.createElement("div");
     this.sightWordsMenu = document.createElement("div");
     this.letterSoundsMenu = document.createElement("div");
+    this.touchMenu = null;
+    this.matchingMenu = null;
+    this.fluencyMenu = null;
+    this.writingMenu = null;
 
     // Alphabet
     this.abcMenu.setAttribute("id", "div1");
