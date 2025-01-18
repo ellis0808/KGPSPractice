@@ -843,6 +843,7 @@ class MenuItems {
     this.setSecondaryMenuTrue();
     this.returnToMainMenuToggle();
     this.displayMovementArrows();
+    this.createMenuRows();
     // this.appendToTarget(
     //   this.secondaryMenuContainer,
     //   ".secondary-menu-structure"
@@ -857,7 +858,6 @@ class MenuItems {
     this.headersColumn.appendChild(this.matchingMenuHeader);
     this.headersColumn.appendChild(this.fluencyMenuHeader);
     this.headersColumn.appendChild(this.writingMenuHeader);
-    this.createMenuRows();
     this.appendToTarget(this.sectionColumn, ".secondary-menu-row");
     console.log(document.querySelectorAll(".secondary-menu-row"));
     console.log(this.sectionColumn);
