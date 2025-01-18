@@ -297,6 +297,7 @@ const selectImage = (item) => {
   ) {
     studentSelectedPasswordImage1.classList.add("hide");
     studentSelectedPasswordImage1.setAttribute("content", "");
+    item.classList.remove("selected");
     console.log("test 5");
   }
   console.log(studentPasswordEntryArray);
@@ -306,6 +307,7 @@ const selectImage = (item) => {
   ) {
     studentSelectedPasswordImage2.classList.add("hide");
     studentSelectedPasswordImage2.setAttribute("content", "");
+    item.classList.remove("selected");
     console.log("test 4");
   }
   if (
