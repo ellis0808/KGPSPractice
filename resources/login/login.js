@@ -291,25 +291,42 @@ const selectImage = (item) => {
   console.log(studentSelectedPasswordImage2);
   console.log(studentPasswordEntryArray);
   console.log(item.getAttribute("content"));
-  if (
-    studentSelectedPasswordImage1.getAttribute("content") ===
-    item.getAttribute("content")
-  ) {
-    studentSelectedPasswordImage1.classList.add("hide");
-    studentSelectedPasswordImage1.setAttribute("content", "");
-    item.classList.remove("selected");
-    console.log("test 5");
+  if (item.classList.contains("selected")) {
+    if (
+      studentSelectedPasswordImage1.getAttribute("content") ===
+      item.getAttribute("content")
+    ) {
+      item.classList.remove("selected");
+      studentSelectedPasswordImage1.classList.add("hide");
+      console.log("test 6");
+    } else if (
+      studentSelectedPasswordImage2.getAttribute("content") ===
+      item.getAttribute("content")
+    ) {
+      item.classList.remove("selected");
+      studentSelectedPasswordImage1.classList.add("hide");
+      console.log("test 7");
+    }
   }
-  console.log(studentPasswordEntryArray);
-  if (
-    studentSelectedPasswordImage2.getAttribute("content") ===
-    item.getAttribute("content")
-  ) {
-    studentSelectedPasswordImage2.classList.add("hide");
-    studentSelectedPasswordImage2.setAttribute("content", "");
-    item.classList.remove("selected");
-    console.log("test 4");
-  }
+  // if (
+  //   studentSelectedPasswordImage1.getAttribute("content") ===
+  //   item.getAttribute("content")
+  // ) {
+  //   studentSelectedPasswordImage1.classList.add("hide");
+  //   studentSelectedPasswordImage1.setAttribute("content", "");
+  //   item.classList.remove("selected");
+  //   console.log("test 5");
+  // }
+  // console.log(studentPasswordEntryArray);
+  // if (
+  //   studentSelectedPasswordImage2.getAttribute("content") ===
+  //   item.getAttribute("content")
+  // ) {
+  //   studentSelectedPasswordImage2.classList.add("hide");
+  //   studentSelectedPasswordImage2.setAttribute("content", "");
+  //   item.classList.remove("selected");
+  //   console.log("test 4");
+  // }
   if (
     !studentSelectedPasswordImage1.classList.contains("hide") &&
     studentSelectedPasswordImage2.classList.contains("hide")
