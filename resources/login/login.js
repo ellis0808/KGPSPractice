@@ -295,7 +295,7 @@ const selectImage = (item) => {
     studentSelectedPasswordImage1.getAttribute("content") ===
     item.getAttribute("content")
   ) {
-    studentSelectedPasswordImage1.src = null;
+    studentSelectedPasswordImage1.classList.add("hide");
     studentSelectedPasswordImage1.setAttribute("content", "");
     console.log("test 5");
   }
@@ -304,11 +304,15 @@ const selectImage = (item) => {
     studentSelectedPasswordImage2.getAttribute("content") ===
     item.getAttribute("content")
   ) {
+    studentSelectedPasswordImage1.classList.add("hide");
     studentSelectedPasswordImage2.src = null;
     studentSelectedPasswordImage2.setAttribute("content", "");
     console.log("test 4");
   }
   if (studentSelectedPasswordImage1.src && !studentSelectedPasswordImage2.src) {
+    if (studentSelectedPasswordImage2.classList.contains("hide")) {
+      studentSelectedPasswordImage2.classList.remove("hide");
+    }
     studentSelectedPasswordImage2.src = item.src;
     studentSelectedPasswordImage2.setAttribute(
       "content",
@@ -320,6 +324,9 @@ const selectImage = (item) => {
     !studentSelectedPasswordImage1.src &&
     !studentSelectedPasswordImage2.src
   ) {
+    if (studentSelectedPasswordImage2.classList.contains("hide")) {
+      studentSelectedPasswordImage2.classList.remove("hide");
+    }
     studentSelectedPasswordImage1.src = item.src;
     studentSelectedPasswordImage1.setAttribute(
       "content",
