@@ -595,8 +595,8 @@ body {
   display: none;
 }
 .selected {
-  width: 105%;
-  height: 105%;
+  /* width: 105%;
+  height: 105%; */
   scale: 1.05;
   background-color: var(--clr-blu2);
   border: 5px solid var(--clr-blu1);
