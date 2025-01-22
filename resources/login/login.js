@@ -1,4 +1,3 @@
-import { images } from "../utilities/images.js";
 import { BASE_PATH } from "../utilities/get-base-path.js";
 
 const passwordImageNamesArray = [
@@ -261,16 +260,13 @@ function removeSelectedClassFromPasswordEntryArrayImage() {
   });
 }
 function resetStudentPasswordEntryArray() {
-  if (
-    studentPasswordEntryArray[0] !== null ||
-    studentPasswordEntryArray[1] !== null
-  ) {
-    removeSelectedClassFromPasswordEntryArrayImage();
-    studentPasswordEntryArray[0] = null;
-    studentPasswordEntryArray[1] = null;
-  }
+  removeSelectedClassFromPasswordEntryArrayImage();
+  studentSelectedPasswordImage1.classList.add("hide");
+  studentSelectedPasswordImage2.classList.add("hide");
+
+  studentPasswordEntryArray[0] = null;
+  studentPasswordEntryArray[1] = null;
 }
-const gridImage = document.createElement("img");
 const studentPasswordEntry = () => {
   document.querySelectorAll(".grid-image").forEach((item) => {
     item.addEventListener("pointerdown", (event) => {
@@ -339,24 +335,6 @@ const selectImage = (item) => {
   console.log(studentPasswordEntryArray);
 };
 studentPasswordGridContainer.appendChild(studentPasswordGrid);
-
-function displaySelectedPasswordImages(item) {
-  console.log("displaying selected password images...");
-  if (studentPasswordEntryArray[0] === null) {
-    console.log("display 1a");
-    studentSelectedPasswordImage1.src = `${item.src}`;
-  } else if (studentPasswordEntryArray[0] === item.content) {
-    console.log("display 1b");
-    studentSelectedPasswordImage1.classList.add("hide");
-  }
-  if (studentPasswordEntryArray[1] === null) {
-    console.log("display 2a");
-    studentSelectedPasswordImage2.src = `${item.src}`;
-  } else if (studentPasswordEntryArray[1] === item.content) {
-    console.log("display 2b");
-    studentSelectedPasswordImage2.classList.add("hide");
-  }
-}
 
 // Student login submission Event Listener
 document
