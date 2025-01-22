@@ -771,7 +771,7 @@ class MenuItems {
     // 1. Our World Unit 1 Vocabulary Menu Item
     this.unit1VocabularyMenuItem.setAttribute(
       "id",
-      "number-writing-1-to-100-app-menu-item"
+      "unit-1-vocabulary-app-menu-item"
     );
     this.unit1VocabularyMenuItem.setAttribute("app-type", "touch");
     this.unit1VocabularyMenuItem.setAttribute("app-content", "vocabulary");
@@ -779,11 +779,11 @@ class MenuItems {
       "secondary-menu-div",
       "secondary-menu-item"
     );
-    this.unit1VocabularyMenuItem.innerText = "1-100";
+    this.unit1VocabularyMenuItem.innerText = "Unit 1";
     this.unit1VocabularyMenuItem.addEventListener("click", () => {
       this.removeMenu();
       audio.navigationSfx.selectMenu.play();
-      writingApp.run("vocabulary-unit1", 0);
+      cardTouchApp("vocabulary-unit1");
     });
 
     // "this" Bindings
