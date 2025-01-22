@@ -48,12 +48,35 @@ class MenuItems {
     // Primary Menu
     this.abcMenu = document.createElement("div");
     this.numbersMenu = document.createElement("div");
-    this.sightWordsMenu = document.createElement("div");
     this.letterSoundsMenu = document.createElement("div");
-    this.touchMenu = null;
-    this.matchingMenu = null;
-    this.fluencyMenu = null;
-    this.writingMenu = null;
+    this.sightWordsMenu = document.createElement("div");
+    this.vocabularyMenu = document.createElement("div");
+
+    //  Secondary Menu
+    this.touchMenu = document.createElement("div");
+    this.touchMenu.classList.add(
+      "secondary-menu-row",
+      "secondary-menu",
+      "touch-menu"
+    );
+    this.matchingMenu = document.createElement("div");
+    this.matchingMenu.classList.add(
+      "secondary-menu-row",
+      "secondary-menu",
+      "matching-menu"
+    );
+    this.fluencyMenu = document.createElement("div");
+    this.fluencyMenu.classList.add(
+      "secondary-menu-row",
+      "secondary-menu",
+      "fluency-menu"
+    );
+    this.writingMenu = document.createElement("div");
+    this.writingMenu.classList.add(
+      "secondary-menu-row",
+      "secondary-menu",
+      "writing-menu"
+    );
 
     // Alphabet
     this.abcMenu.setAttribute("id", "div1");
@@ -76,19 +99,6 @@ class MenuItems {
       menuItems.displaySecondaryMenu(this.section);
     });
 
-    // Sight Words
-    this.sightWordsMenu.setAttribute("id", "div3");
-    this.sightWordsMenu.classList.add(
-      "div",
-      "div-start-menu4",
-      "primary-menu-div"
-    );
-    this.sightWordsMenu.addEventListener("click", () => {
-      this.section = "sight-words";
-      menuItems.displaySecondaryMenu(this.section);
-    });
-    this.sightWordsMenu.innerText = "Sight Words";
-
     // Letter Sounds
     this.letterSoundsMenu.setAttribute("id", "div3");
     this.letterSoundsMenu.classList.add(
@@ -102,6 +112,32 @@ class MenuItems {
     });
     this.letterSoundsMenu.innerText = "Letter Sounds";
 
+    // Sight Words
+    this.sightWordsMenu.setAttribute("id", "div4");
+    this.sightWordsMenu.classList.add(
+      "div",
+      "div-start-menu4",
+      "primary-menu-div"
+    );
+    this.sightWordsMenu.addEventListener("click", () => {
+      this.section = "sight-words";
+      menuItems.displaySecondaryMenu(this.section);
+    });
+    this.sightWordsMenu.innerText = "Sight Words";
+
+    // Vocabulary
+
+    this.vocabularyMenu.setAttribute("id", "div5");
+    this.vocabularyMenu.classList.add(
+      "div",
+      "div-start-menu5",
+      "primary-menu-div"
+    );
+    this.vocabularyMenu.addEventListener("click", () => {
+      this.section = "vocabulary";
+      menuItems.displaySecondaryMenu(this.section);
+    });
+    this.vocabularyMenu.innerText = "Vocabulary";
     // Seondary Menu
 
     this.moveMenuRightBtn = document.createElement("button");
@@ -199,6 +235,15 @@ class MenuItems {
     this.numberWriting1to50AppMenuItem = document.createElement("div");
     this.numberWriting51to100AppMenuItem = document.createElement("div");
     this.numberWriting1to100AppMenuItem = document.createElement("div");
+    this.unit1VocabularyMenuItem = document.createElement("div");
+    this.unit2VocabularyMenuItem = document.createElement("div");
+    this.unit3VocabularyMenuItem = document.createElement("div");
+    this.unit4VocabularyMenuItem = document.createElement("div");
+    this.unit5VocabularyMenuItem = document.createElement("div");
+    this.unit6VocabularyMenuItem = document.createElement("div");
+    this.unit7VocabularyMenuItem = document.createElement("div");
+    this.unit8VocabularyMenuItem = document.createElement("div");
+    this.unit9VocabularyMenuItem = document.createElement("div");
     // 1. Alphabet Capitals Touch App Menu Item
     this.alphabetCapitalsCardTouchAppMenuItem.setAttribute(
       "id",
@@ -723,6 +768,24 @@ class MenuItems {
       writingApp.run("numbers1-100", 0);
     });
 
+    // 1. Our World Unit 1 Vocabulary Menu Item
+    this.unit1VocabularyMenuItem.setAttribute(
+      "id",
+      "number-writing-1-to-100-app-menu-item"
+    );
+    this.unit1VocabularyMenuItem.setAttribute("app-type", "touch");
+    this.unit1VocabularyMenuItem.setAttribute("app-content", "vocabulary");
+    this.unit1VocabularyMenuItem.classList.add(
+      "secondary-menu-div",
+      "secondary-menu-item"
+    );
+    this.unit1VocabularyMenuItem.innerText = "1-100";
+    this.unit1VocabularyMenuItem.addEventListener("click", () => {
+      this.removeMenu();
+      audio.navigationSfx.selectMenu.play();
+      writingApp.run("vocabulary-unit1", 0);
+    });
+
     // "this" Bindings
     this.restoreMainMenu = this.restoreMainMenu.bind(this);
     this.returnToMainMenu = this.returnToMainMenu.bind(this);
@@ -811,40 +874,13 @@ class MenuItems {
         target.appendChild(item);
       });
   }
-  createMenuRows() {
-    this.touchMenu = document.createElement("div");
-    this.touchMenu.classList.add(
-      "secondary-menu-row",
-      "secondary-menu",
-      "touch-menu"
-    );
-    this.matchingMenu = document.createElement("div");
-    this.matchingMenu.classList.add(
-      "secondary-menu-row",
-      "secondary-menu",
-      "matching-menu"
-    );
-    this.fluencyMenu = document.createElement("div");
-    this.fluencyMenu.classList.add(
-      "secondary-menu-row",
-      "secondary-menu",
-      "fluency-menu"
-    );
-    this.writingMenu = document.createElement("div");
-    this.writingMenu.classList.add(
-      "secondary-menu-row",
-      "secondary-menu",
-      "writing-menu"
-    );
-    console.log(this.writingMenu);
-  }
+
   displaySecondaryMenu(section) {
     this.removeSectionColumnMenuItems();
     this.hidePrimaryMenu();
     this.setSecondaryMenuTrue();
     this.returnToMainMenuToggle();
     this.displayMovementArrows();
-    this.createMenuRows();
     // this.appendToTarget(
     //   this.secondaryMenuContainer,
     //   ".secondary-menu-structure"
@@ -859,14 +895,10 @@ class MenuItems {
     this.headersColumn.appendChild(this.matchingMenuHeader);
     this.headersColumn.appendChild(this.fluencyMenuHeader);
     this.headersColumn.appendChild(this.writingMenuHeader);
-    this.appendToTarget(this.sectionColumn, ".secondary-menu-row");
-    console.log(document.querySelectorAll(".secondary-menu-row"));
-    console.log(this.sectionColumn);
-
-    // this.sectionColumn.appendChild(this.touchMenu);
-    // this.sectionColumn.appendChild(this.matchingMenu);
-    // this.sectionColumn.appendChild(this.fluencyMenu);
-    // this.sectionColumn.appendChild(this.writingMenu);
+    this.sectionColumn.appendChild(this.touchMenu);
+    this.sectionColumn.appendChild(this.matchingMenu);
+    this.sectionColumn.appendChild(this.fluencyMenu);
+    this.sectionColumn.appendChild(this.writingMenu);
     this.showSecondaryMenu();
 
     switch (section) {
@@ -956,6 +988,24 @@ class MenuItems {
         this.writingMenu.appendChild(this.sightWords3WritingAppMenuItem);
         document
           .querySelectorAll("[app-content='sight-words']")
+          .forEach((item) => {
+            // if (this.touchMenu
+
+            // )
+            // this.touchMenu.appendChild(item);
+            if (item.classList.contains("hidden")) {
+              item.classList.remove("hidden");
+            }
+            if (item.classList.contains("hide")) {
+              item.classList.remove("hide");
+            }
+          });
+        break;
+      case "vocabulary":
+        greetingDisplay.innerText = "Sight Words";
+        this.touchMenu.appendChild(this.unit1VocabularyMenuItem);
+        document
+          .querySelectorAll("[app-content='vocabulary']")
           .forEach((item) => {
             // if (this.touchMenu
 
