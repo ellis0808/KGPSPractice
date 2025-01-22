@@ -601,7 +601,6 @@ body {
   background-color: var(--clr-blu2);
   border: 5px solid var(--clr-blu1);
   border-radius: 5px;
-  filter: hue-rotate(180deg);
 }
 
 @keyframes userItemEntrance {

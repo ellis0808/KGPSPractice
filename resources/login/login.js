@@ -175,7 +175,7 @@ function displayUsersForLogin() {
         students[studentIds[i]].firstName
       } ${students[studentIds[i]].lastName.slice(0, 1)}.`;
       studentNameContainer.appendChild(userContainer);
-      userContainer.addEventListener("click", (event) => {
+      userContainer.addEventListener("pointerdown", (event) => {
         selectedUser = {
           id: event.target.getAttribute("userId"),
           firstName: event.target.getAttribute("userfirstname"),
@@ -232,7 +232,7 @@ function displayUsersForLogin() {
       userNameContainer.innerText = `${teachers[teacherIds[q]].title} ${
         teachers[teacherIds[q]].lastName
       }`;
-      userContainer.addEventListener("click", (event) => {
+      userContainer.addEventListener("pointerdown", (event) => {
         selectedUser = {
           id: event.target.getAttribute("userId"),
           title: event.target.getAttribute("userfirstname"),
@@ -255,23 +255,19 @@ function displayUsersForLogin() {
   }
 }
 
-function removeSelectedClassFromPasswordEntryArrayImage(item) {
-  document.querySelector(`[content='${item}']`).classList.remove("selected");
+function removeSelectedClassFromPasswordEntryArrayImage() {
+  document.querySelectorAll(".selected").forEach((item) => {
+    item.classList.remove("selected");
+  });
 }
 function resetStudentPasswordEntryArray() {
   if (
     studentPasswordEntryArray[0] !== null ||
     studentPasswordEntryArray[1] !== null
   ) {
-    studentPasswordEntryArray.forEach((item) => {
-      if (item) {
-        removeSelectedClassFromPasswordEntryArrayImage(item);
-      }
-    });
-
+    removeSelectedClassFromPasswordEntryArrayImage();
     studentPasswordEntryArray[0] = null;
     studentPasswordEntryArray[1] = null;
-    displaySelectedPasswordImages();
   }
 }
 const gridImage = document.createElement("img");
@@ -411,12 +407,12 @@ window.addEventListener("DOMContentLoaded", () => {
   getUsersForLogin();
   studentPasswordEntry();
 });
-closeStudentLoginModalBtn.addEventListener("click", (event) => {
+closeStudentLoginModalBtn.addEventListener("pointerdown", (event) => {
   // event.preventDefault();
   resetStudentPasswordEntryArray();
   studentPasswordEntryForm.close();
 });
-closeTeacherLoginModalBtn.addEventListener("click", (event) => {
+closeTeacherLoginModalBtn.addEventListener("pointerdown", (event) => {
   // event.preventDefault();
   teacherPasswordEntryForm.close();
   // teacherPasswordEntryForm.reset();
