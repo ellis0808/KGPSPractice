@@ -854,6 +854,7 @@ class MenuItems {
     primaryMenuContainer.appendChild(this.numbersMenu);
     primaryMenuContainer.appendChild(this.sightWordsMenu);
     primaryMenuContainer.appendChild(this.letterSoundsMenu);
+    primaryMenuContainer.appendChild(this.vocabularyMenu);
   }
 
   /******
@@ -1002,7 +1003,7 @@ class MenuItems {
           });
         break;
       case "vocabulary":
-        greetingDisplay.innerText = "Sight Words";
+        greetingDisplay.innerText = "Vocabulary";
         this.touchMenu.appendChild(this.unit1VocabularyMenuItem);
         document
           .querySelectorAll("[app-content='vocabulary']")
