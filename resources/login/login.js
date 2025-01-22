@@ -298,6 +298,7 @@ const selectImage = (item) => {
     ) {
       item.classList.remove("selected");
       studentSelectedPasswordImage1.classList.add("hide");
+      studentPasswordEntryArray[0] = null;
       console.log("test 6");
       return;
     } else if (
@@ -306,6 +307,7 @@ const selectImage = (item) => {
     ) {
       item.classList.remove("selected");
       studentSelectedPasswordImage2.classList.add("hide");
+      studentPasswordEntryArray[1] = null;
       console.log("test 7");
       return;
     }
@@ -338,6 +340,7 @@ const selectImage = (item) => {
     console.log("test 1");
     studentPasswordEntryArray[0] = item.getAttribute("content");
   }
+  console.log(studentPasswordEntryArray);
 };
 studentPasswordGridContainer.appendChild(studentPasswordGrid);
 
