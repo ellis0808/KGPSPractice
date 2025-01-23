@@ -575,7 +575,7 @@ function createBoard() {
           cardText.push(newCardText);
           ++i;
         });
-      } else if (style >= 6 && style <= 7) {
+      } else if (style === 6 || style === 7) {
         targetItemArray.forEach((item) => {
           const card = document.createElement("div");
           card.setAttribute("contentID", item);
