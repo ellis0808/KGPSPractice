@@ -41,7 +41,7 @@ try {
 
             echo json_encode($images);
         } else {
-            echo json_encode(['message' => 'No images match the search criteria (a(']);
+            echo json_encode(['message' => 'No images match the search criteria (a)']);
         }
     } else {
         // Get all images with the indicated filename
