@@ -590,6 +590,7 @@ function createBoard() {
         });
       } else if (style === 8) {
         targetItemArray.forEach((item) => {
+          console.log(item);
           const card = document.createElement("div");
           card.setAttribute("contentID", item);
           newCardText = card.getAttribute("contentID");
@@ -598,7 +599,9 @@ function createBoard() {
           grid.append(card);
           card.addEventListener("pointerdown", touchCard);
           cardText.push(newCardText);
+          console.log(card);
         });
+        console.log(cardText);
       }
       btnContainer3.appendChild(repeatBtn);
       btnContainer1.appendChild(scoreFunction.display);
