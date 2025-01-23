@@ -339,7 +339,7 @@ body:not(:has(*)) {
   width: 10rem;
   font-size: 2.5rem;
 }
-.vocabulary-image {
+.vocabulary-image-small {
   width: 8rem;
   height: 8rem;
 }
@@ -385,6 +385,10 @@ body:not(:has(*)) {
   }
   .sight-word {
     width: 20rem;
+  }
+  .vocabulary-image-small {
+    width: 15rem;
+    height: 15rem;
   }
 }
 @media (width > 2000px) {

@@ -613,7 +613,7 @@ function createBoard() {
           });
 
           card.src = link;
-          card.classList.add("card", "vocabulary-image");
+          card.classList.add("card", "vocabulary-image-small");
           grid.append(card);
           card.addEventListener("pointerdown", touchCard);
           cardText.push(newCardText);
