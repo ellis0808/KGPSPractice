@@ -600,10 +600,17 @@ function createBoard() {
 
         targetItemArray.forEach((item) => {
           console.log(item);
+          let link;
           const card = document.createElement("img");
           card.setAttribute("contentID", item);
           newCardText = card.getAttribute("contentID");
-          card.src = images.imageObject[item].link;
+          images.imageObject.forEach((image) => {
+            if (image.content === item) {
+              link = image.link;
+            }
+          });
+
+          card.src = link;
           card.classList.add("card", "vocabulary-image");
           grid.append(card);
           card.addEventListener("pointerdown", touchCard);
