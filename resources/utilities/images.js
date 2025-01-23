@@ -14,7 +14,7 @@ class Images {
         response = await fetch(
           `${BASE_PATH}api/load_images.php?id1=${unit}&id2=${grouping}&id3=${grouping2}`
         );
-      } else if (unit && grouping && grouping2 === null) {
+      } else if ((unit && grouping && grouping2 === null) || !grouping2) {
         response = await fetch(
           `${BASE_PATH}api/load_images.php?id1=${unit}&id2=${grouping}`
         );

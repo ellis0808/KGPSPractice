@@ -470,15 +470,15 @@ function createBoard() {
         }
       }
     } else if (style === 3 || style === 4 || style === 5) {
-      grid.classList.add("sight-word-grid");
+      grid.classList.add("word-grid");
       let sightWord;
       if (style === 3) {
-        grid.classList.add("sight-word-grid-4x4");
+        grid.classList.add("word-grid-4x4");
         sightWords1.forEach((item) => {
           targetItemArray.push(item);
         });
       } else if (style === 4 || style === 5) {
-        grid.classList.remove("sight-word-grid-4x4");
+        grid.classList.remove("word-grid-4x4");
         for (let i = 0; targetItemArray.length < 6; ++i) {
           if (style === 4) {
             sightWord = `${
@@ -496,14 +496,14 @@ function createBoard() {
       }
     } else if (style === 6) {
       if (style === 6) {
-        grid.classList.add("sight-word-grid-4x4");
+        grid.classList.add("word-grid-4x4");
         letterSoundsASMFLetters.forEach((item) => {
           targetItemArray.push(item);
         });
       }
     } else if (style === 7 || style === 9) {
       let letterSoundWord;
-      grid.classList.add("sight-word-grid");
+      grid.classList.add("word-grid");
       for (let i = 0; targetItemArray.length < 6; ++i) {
         if (style === 7) {
           const randomItem =

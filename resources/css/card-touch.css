@@ -219,7 +219,7 @@ body:not(:has(*)) {
   --stagger-delaay: 0.1s;
   z-index: 10;
 }
-.sight-word-grid {
+.word-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -232,7 +232,12 @@ body:not(:has(*)) {
   --stagger-delaay: 0.1s;
   z-index: 10;
 }
-.sight-word-grid-4x4 {
+.word-grid-4x4 {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas: "a b" "c d";
+}
+.vocabulary-grid-4x4 {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   grid-template-areas: "a b" "c d";
