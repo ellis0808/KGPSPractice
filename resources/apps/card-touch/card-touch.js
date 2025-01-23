@@ -596,6 +596,7 @@ function createBoard() {
         });
       } else if (style === 8) {
         console.log("logic for style 8...");
+        console.log(images.imageObject);
 
         targetItemArray.forEach((item) => {
           console.log(item);
