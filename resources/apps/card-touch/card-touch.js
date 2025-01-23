@@ -602,7 +602,7 @@ function createBoard() {
           const card = document.createElement("img");
           card.setAttribute("contentID", item);
           newCardText = card.getAttribute("contentID");
-          card.src = images.imageObject.link;
+          card.src = images.imageObject[item].link;
           card.classList.add("card", "vocabulary-image");
           grid.append(card);
           card.addEventListener("pointerdown", touchCard);
