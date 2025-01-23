@@ -607,8 +607,8 @@ function createBoard() {
           Object.keys(images.imageObject).forEach((image) => {
             console.log(image);
 
-            if (image.content === item) {
-              link = image.link;
+            if (images.imageObject[image].content === item) {
+              link = images.imageObject[image].link;
             }
           });
 
