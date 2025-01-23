@@ -1,4 +1,5 @@
 import { cardTouchAudio } from "./card-touch-audio.js";
+import { images } from "../../utilities/images.js";
 let style;
 let activityId;
 
