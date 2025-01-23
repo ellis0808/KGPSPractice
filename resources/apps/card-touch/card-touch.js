@@ -533,7 +533,7 @@ function createBoard() {
       let vocabularyWord;
       grid.classList.add("vocabulary-grid-4x4");
       for (let i = 0; targetItemArray.length < 4; ++i) {
-        const randomItem =
+        vocabularyWord =
           tbVocabulary.unit1[
             Math.floor(Math.random() * tbVocabulary.unit1.length)
           ];
