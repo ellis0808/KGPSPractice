@@ -77,6 +77,8 @@ function cardTouchApp(set) {
   setActivityName(set);
   setStyle(set);
   setGridStyle(style);
+  console.log(images.imageObject);
+
   setTimeout(() => {
     timerFunction.clearTimer();
     mainContainer.appendChild(container);
@@ -462,6 +464,8 @@ function createBoard() {
 
   let targetItemArray = [];
   function cardGenerator() {
+    console.log("card generator started...");
+
     if (style === 1 || style === 2) {
       for (let i = 0; targetItemArray.length < 9; ++i) {
         let letter = `${alphabet[Math.floor(Math.random() * alphabet.length)]}`;
@@ -501,7 +505,7 @@ function createBoard() {
           targetItemArray.push(item);
         });
       }
-    } else if (style === 7 || style === 9) {
+    } else if (style === 7) {
       let letterSoundWord;
       grid.classList.add("word-grid");
       for (let i = 0; targetItemArray.length < 6; ++i) {
@@ -524,8 +528,10 @@ function createBoard() {
         }
       }
     } else if (style === 8) {
+      console.log("generating words...");
+
       let vocabularyWord;
-      grid.classList.add("vocabulary-grid");
+      grid.classList.add("vocabulary-grid-4x4");
       for (let i = 0; targetItemArray.length < 4; ++i) {
         const randomItem =
           tbVocabulary.unit1[
