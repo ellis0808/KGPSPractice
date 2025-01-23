@@ -593,7 +593,7 @@ function createBoard() {
 
         targetItemArray.forEach((item) => {
           console.log(item);
-          const card = document.createElement("div");
+          const card = document.createElement("img");
           card.setAttribute("contentID", item);
           newCardText = card.getAttribute("contentID");
           card.src = images.imageObject.link;
