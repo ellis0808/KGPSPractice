@@ -14,6 +14,7 @@ import {
   letterSoundsASMFLetters,
   letterSoundsITRPLetters,
   letterSoundsASMFWords,
+  tbVocabulary,
 } from "./card-data.js";
 import { wobble, spinfade, newRoundCardFlip, particles } from "./fx.js";
 import { scoreFunction } from "../../utilities/score.js";
@@ -30,6 +31,7 @@ import {
   setStyle,
 } from "./card-touch-set-style-and-activity-id.js";
 import { audio } from "../../utilities/audio.js";
+import { images } from "../../utilities/images.js";
 import { pauseFunction } from "../../utilities/pause-functions.js";
 import { BASE_PATH } from "../../utilities/get-base-path.js";
 import { appContainer } from "../../utilities/app-container-class.js";
@@ -492,7 +494,7 @@ function createBoard() {
           }
         }
       }
-    } else if (style === 6 || style === 8) {
+    } else if (style === 6) {
       if (style === 6) {
         grid.classList.add("sight-word-grid-4x4");
         letterSoundsASMFLetters.forEach((item) => {
@@ -521,6 +523,18 @@ function createBoard() {
           targetItemArray.push(letterSoundWord);
         }
       }
+    } else if (style === 8) {
+      let vocabularyWord;
+      grid.classList.add("vocabulary-grid");
+      for (let i = 0; targetItemArray.length < 4; ++i) {
+        const randomItem =
+          tbVocabulary.unit1[
+            Math.floor(Math.random() * tbVocabulary.unit1.length)
+          ];
+        if (!targetItemArray.includes(vocabularyWord)) {
+          targetItemArray.push(vocabularyWord);
+        }
+      }
     }
   }
   if (!isSessionFinished) {
@@ -540,7 +554,7 @@ function createBoard() {
           card.textContent = newCardText;
           card.classList.add("card", "letter");
           grid.append(card);
-          card.addEventListener("click", touchCard);
+          card.addEventListener("pointerdown", touchCard);
           if (style === 1) {
             cardText.push(newCardText.toLowerCase());
           } else {
@@ -557,22 +571,33 @@ function createBoard() {
           card.textContent = newCardText;
           card.classList.add("card", "sight-word");
           grid.append(card);
-          card.addEventListener("click", touchCard);
+          card.addEventListener("pointerdown", touchCard);
           cardText.push(newCardText);
           ++i;
         });
-      } else if (style >= 6 && style <= 15) {
-        targetItemArray.forEach(() => {
+      } else if (style >= 6 && style <= 7) {
+        targetItemArray.forEach((item) => {
           const card = document.createElement("div");
-          card.setAttribute("contentID", targetItemArray[i]);
+          card.setAttribute("contentID", item);
           card.setAttribute("data-id", i);
           newCardText = card.getAttribute("contentID");
           card.textContent = newCardText;
           card.classList.add("card", "sight-word");
           grid.append(card);
-          card.addEventListener("click", touchCard);
+          card.addEventListener("pointerdown", touchCard);
           cardText.push(newCardText);
           ++i;
+        });
+      } else if (style === 8) {
+        targetItemArray.forEach((item) => {
+          const card = document.createElement("div");
+          card.setAttribute("contentID", item);
+          newCardText = card.getAttribute("contentID");
+          card.style.backgroundImage = `url(${images.imageObject[item]})`;
+          card.classList.add("card", "vocabulary-image");
+          grid.append(card);
+          card.addEventListener("pointerdown", touchCard);
+          cardText.push(newCardText);
         });
       }
       btnContainer3.appendChild(repeatBtn);

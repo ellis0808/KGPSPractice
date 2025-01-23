@@ -131,6 +131,35 @@ const letterSoundsASMFWords = [
   "amf",
   "ams",
 ];
+
+const tbVocabulary = {
+  unit1: [
+    "board",
+    "classroom",
+    "clock",
+    "computer",
+    "crayon",
+    "map",
+    "paper",
+    "pen",
+    "pencil",
+    "table",
+    "book",
+    "chair",
+    "desk",
+    "eraser",
+    "picture",
+  ],
+  unit2: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  unit3: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  unit4: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  unit5: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  unit6: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  unit7: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  unit8: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+  unit9: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
+};
+
 export {
   alphabet,
   sightWords1,
@@ -141,4 +170,5 @@ export {
   letterSoundsITRPLetters,
   sightWordsNumbers,
   sightWordsAll,
+  tbVocabulary,
 };

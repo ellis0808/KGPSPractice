@@ -70,6 +70,11 @@ class CardTouchAudio {
       grouping = 1;
       audio.getAudio(category, grouping, grouping2);
     }
+    if (style === 8) {
+      category = "vocabulary";
+      grouping = 1;
+      audio.getAudio(category, grouping, grouping2);
+    }
   }
 }
 

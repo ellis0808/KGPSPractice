@@ -334,6 +334,9 @@ body:not(:has(*)) {
   width: 10rem;
   font-size: 2.5rem;
 }
+.vocabulary-image {
+  width: 5rem;
+}
 @media (min-width: 600px) {
   .card {
     width: 9.3rem;

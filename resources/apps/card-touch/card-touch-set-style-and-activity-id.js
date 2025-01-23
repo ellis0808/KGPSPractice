@@ -8,37 +8,35 @@ function setStyle(set) {
     case "alphabet-capitals":
       style = 1;
       cardTouchAudio.startAudioFetch(style);
-      setActivityId(style);
       return style;
     case "alphabet-lowercase":
       style = 2;
       cardTouchAudio.startAudioFetch(style);
-      setActivityId(style);
       return style;
     case "sightwords1":
       style = 3;
       cardTouchAudio.startAudioFetch(style);
-      setActivityId(style);
       return style;
     case "sightwords2":
       style = 4;
       cardTouchAudio.startAudioFetch(style);
-      setActivityId(style);
       return style;
     case "sightwords3":
       style = 5;
       cardTouchAudio.startAudioFetch(style);
-      setActivityId(style);
       return style;
     case "letter-sounds-asmf-letters":
       style = 6;
       cardTouchAudio.startAudioFetch(style);
-      setActivityId(style);
       return style;
     case "letter-sounds-asmf-words":
       style = 7;
       cardTouchAudio.startAudioFetch(style);
-      setActivityId(style);
+      return style;
+    case "vocabulary-unit1":
+      style = 8;
+      cardTouchAudio.startAudioFetch(style);
+      images.getImages("my_classroom", 2);
       return style;
   }
 }
