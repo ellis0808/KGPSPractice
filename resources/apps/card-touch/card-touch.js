@@ -89,8 +89,6 @@ function cardTouchApp(set) {
   stylesheet.setAttribute("href", `${BASE_PATH}resources/css/card-touch.css`);
   menuItems.removeMenuPage();
 
-  console.log("stylesheet set...awaiting start button display...");
-
   setTimeout(displayStartBtn, 200);
   timerFunction.setEndRoundFunction(roundOver);
   tryAgainBtn.addEventListener("pointerdown", startSession);
@@ -596,7 +594,7 @@ function createBoard() {
           const card = document.createElement("div");
           card.setAttribute("contentID", item);
           newCardText = card.getAttribute("contentID");
-          card.style.backgroundImage = `url(${images.imageObject[item]})`;
+          card.style.backgroundImage = `url(${images.imageObject.link})`;
           card.classList.add("card", "vocabulary-image");
           grid.append(card);
           card.addEventListener("pointerdown", touchCard);
