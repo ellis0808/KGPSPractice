@@ -604,7 +604,9 @@ function createBoard() {
           const card = document.createElement("img");
           card.setAttribute("contentID", item);
           newCardText = card.getAttribute("contentID");
-          images.imageObject.forEach((image) => {
+          Object.keys(images.imageObject).forEach((image) => {
+            console.log(image);
+
             if (image.content === item) {
               link = image.link;
             }
