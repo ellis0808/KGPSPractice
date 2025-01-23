@@ -37,7 +37,7 @@ function setStyle(set) {
     case "vocabulary-unit1":
       style = 8;
       cardTouchAudio.startAudioFetch(style);
-      images.getImages("my_classroom", 2);
+      images.getImages("my_classroom", 1);
       return style;
   }
 }
