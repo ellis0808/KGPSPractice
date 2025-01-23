@@ -589,12 +589,14 @@ function createBoard() {
           ++i;
         });
       } else if (style === 8) {
+        console.log("logic for style 8...");
+
         targetItemArray.forEach((item) => {
           console.log(item);
           const card = document.createElement("div");
           card.setAttribute("contentID", item);
           newCardText = card.getAttribute("contentID");
-          card.style.backgroundImage = `url(${images.imageObject.link})`;
+          card.src = images.imageObject.link;
           card.classList.add("card", "vocabulary-image");
           grid.append(card);
           card.addEventListener("pointerdown", touchCard);
