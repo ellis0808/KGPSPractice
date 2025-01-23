@@ -33,6 +33,8 @@ class Images {
   }
   loadImages(imageData) {
     this.imageObject = {};
+    console.log("load images test");
+
     imageData.map((item) => {
       return (this.imageObject[item.filename] = {
         id: item.image_id,

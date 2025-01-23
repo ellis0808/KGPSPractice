@@ -89,6 +89,8 @@ function cardTouchApp(set) {
   stylesheet.setAttribute("href", `${BASE_PATH}resources/css/card-touch.css`);
   menuItems.removeMenuPage();
 
+  console.log("stylesheet set...awaiting start button display...");
+
   setTimeout(displayStartBtn, 200);
   timerFunction.setEndRoundFunction(roundOver);
   tryAgainBtn.addEventListener("pointerdown", startSession);
