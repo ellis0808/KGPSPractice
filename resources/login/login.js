@@ -584,16 +584,17 @@ const getImages = () => {
   // const loginImages = [imgRabbit, imgDuck,imgFish,imgTurtle,imgCat,imgLizard,imgCar,imgTruck,imgRocket,imgTrain,imgAirplane,imgBoat,imgStrawberry,imgApple,imgCarrot,imgBanana,imgWatermelon,imgSpoon]
 
   console.log(loginImages);
-  // .forEach((image) => {
-  //   console.log(image.src.replace(/^.*?-/, ""));
+  loginImages.forEach((element) => {
+    console.log(element[0]);
+    // console.log(element[0].src.replace(/^.*?-/, ""));
 
-  //   image.classList.add("grid-image");
-  //   image.role = "img";
-  //   image.setAttribute("content", `test`);
-  //   console.log(image);
+    element[0].classList.add("grid-image");
+    element[0].role = "img";
+    element[0].setAttribute("content", `test`);
+    console.log(element[0]);
 
-  //   studentPasswordGrid.appendChild(image);
-  // });
+    studentPasswordGrid.appendChild(element[0]);
+  });
 };
 function routing(userData) {
   if (userData.access === "teacher") {
