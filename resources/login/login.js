@@ -584,16 +584,16 @@ const getImages = () => {
   // const loginImages = [imgRabbit, imgDuck,imgFish,imgTurtle,imgCat,imgLizard,imgCar,imgTruck,imgRocket,imgTrain,imgAirplane,imgBoat,imgStrawberry,imgApple,imgCarrot,imgBanana,imgWatermelon,imgSpoon]
 
   console.log(loginImages);
-  Object.keys(loginImages).forEach((element) => {
-    console.log(element[0]);
+  Object.keys(loginImages).forEach((item) => {
+    console.log(item[0]);
     // console.log(element[0].src.replace(/^.*?-/, ""));
 
-    element[0].classList.add("grid-image");
-    element[0].role = "img";
-    element[0].setAttribute("content", `test`);
-    console.log(element[0]);
+    item[0].element.classList.add("grid-image");
+    item[0].element.role = "img";
+    item[0].element.setAttribute("content", `test`);
+    console.log(item[0].element);
 
-    studentPasswordGrid.appendChild(element[0]);
+    studentPasswordGrid.appendChild(item[0].element);
   });
 };
 function routing(userData) {
