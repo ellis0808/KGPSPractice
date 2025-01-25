@@ -584,8 +584,10 @@ const getImages = () => {
   // const loginImages = [imgRabbit, imgDuck,imgFish,imgTurtle,imgCat,imgLizard,imgCar,imgTruck,imgRocket,imgTrain,imgAirplane,imgBoat,imgStrawberry,imgApple,imgCarrot,imgBanana,imgWatermelon,imgSpoon]
 
   console.log(loginImages);
-  for (const [key, value] of Object.entries(loginImages)) {
-    console.log(key, value[0]);
+  for (const [key1, value1] of Object.entries(loginImages)) {
+    for (const [key2, value2] of Object.entries(value1)) {
+      console.log(key1, key2, value2);
+    }
   }
   // .forEach((entry) => {
   //   Object.entries(entry).forEach((item) => {
