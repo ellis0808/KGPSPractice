@@ -507,13 +507,11 @@ const getImages = () => {
   // imgSpoon.setAttribute("content", "spoon");
   // studentPasswordGrid.appendChild(imgSpoon);
   const regex = document.querySelectorAll("img").forEach((image) => {
-    console.log(Object.keys({ image })[0]);
-
     console.log(image.src.replace(/^.*?-/, ""));
 
     image.classList.add("grid-image");
     image.role = "img";
-    image.setAttribute("content", `${image.src.replace(/^.*?-/, "")}`);
+    // image.setAttribute("content", `${image.src.replace(/^.*?-/, "")}`);
     studentPasswordGrid.appendChild(image);
   });
 };
