@@ -585,15 +585,15 @@ const getImages = () => {
 
   console.log(loginImages);
   Object.keys(loginImages).forEach((item) => {
-    console.log(item[0]);
+    console.log(item);
     // console.log(element[0].src.replace(/^.*?-/, ""));
 
-    item[0].element.classList.add("grid-image");
-    item[0].element.role = "img";
-    item[0].element.setAttribute("content", `test`);
-    console.log(item[0].element);
+    item.element.classList.add("grid-image");
+    item.element.role = "img";
+    item.element.setAttribute("content", `test`);
+    console.log(item.element);
 
-    studentPasswordGrid.appendChild(item[0].element);
+    studentPasswordGrid.appendChild(item.element);
   });
 };
 function routing(userData) {
