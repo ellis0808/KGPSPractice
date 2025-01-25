@@ -585,7 +585,7 @@ const getImages = () => {
 
   console.log(loginImages);
   Object.keys(loginImages).forEach((key) => {
-    key.forEach((item) => {
+    Object.keys(key).forEach((item) => {
       console.log(item);
       // console.log(element[0].src.replace(/^.*?-/, ""));
 
