@@ -400,77 +400,78 @@ const getImages = () => {
   const loginImages = {
     imgRabbit: {
       rabbit: document.createElement("img"),
-      src: (rabbit.element.src = `${ref}animal-rabbit-silhouette-1.svg`),
+      src: `${ref}animal-rabbit-silhouette-1.svg`,
     },
     imgDuck: {
       duck: document.createElement("img"),
-      src: (this.duck.element.src = `${ref}animal-duck-silhouette-2.svg`),
+      src: `${ref}animal-duck-silhouette-2.svg`,
     },
     imgFish: {
       fish: document.createElement("img"),
-      src: (this.imgRabbit.element.src = `${ref}animal-fish-silhouette-3.svg`),
+      src: `${ref}animal-fish-silhouette-3.svg`,
     },
     imgTurtle: {
       turtle: document.createElement("img"),
-      src: (this.imgRabbit.element.src = `${ref}animal-turtle-silhouette-2.svg`),
+      src: `${ref}animal-turtle-silhouette-2.svg`,
     },
     imgCat: {
       cat: document.createElement("img"),
-      src: (this.imgRabbit.element.src = `${ref}animal-cat-silhouette-1.svg`),
+      src: `${ref}animal-cat-silhouette-1.svg`,
     },
     imgLizard: {
       lizard: document.createElement("img"),
-      src: (this.imgRabbit.element.src = `${ref}animal-lizard-silhouette-2.svg`),
+      src: `${ref}animal-lizard-silhouette-2.svg`,
     },
     imgCar: {
       car: document.createElement("img"),
-      src: (this.imgRabbit.element.src = `${ref}transportation-car-silhouette-1.svg`),
+      src: `${ref}transportation-car-silhouette-1.svg`,
     },
     imgTruck: {
       truck: document.createElement("img"),
-      src: (this.imgRabbit.element.src = `${ref}transportation-truck-silhouette-1.svg`),
+      src: `${ref}transportation-truck-silhouette-1.svg`,
     },
     imgRocket: {
       rocket: document.createElement("img"),
-      src: (this.imgRabbit.element.src = `${ref}transportation-rocket-silhouette-1.svg`),
+      src: `${ref}transportation-rocket-silhouette-1.svg`,
     },
     imgTrain: {
       train: document.createElement("img"),
-      src: (this.imgRabbit.element.src = `${ref}transportation-train-silhouette-1.svg`),
-      imgAirplane: {
-        airplane: document.createElement("img"),
-        src: (this.imgRabbit.element.src = `${ref}transportation-airplane-silhouette-2.svg`),
-      },
-      imgBoat: {
-        boat: document.createElement("img"),
-        src: (this.imgRabbit.element.src = `${ref}transportation-sailboat-silhouette-1.svg`),
-      },
-      imgStrawberry: {
-        strawberry: document.createElement("img"),
-        src: (this.imgRabbit.element.src = `${ref}food-strawberry-silhouette-2.svg`),
-      },
-      imgApple: {
-        apple: document.createElement("img"),
-        src: (this.imgRabbit.element.src = `${ref}food-apple-silhouette-2.svg`),
-      },
-      imgCarrot: {
-        carrot: document.createElement("img"),
-        src: (this.imgRabbit.element.src = `${ref}food-carrot-silhouette-1.svg`),
-      },
-      imgBanana: {
-        banana: document.createElement("img"),
-        src: (this.imgRabbit.element.src = `${ref}food-banana-silhouette-2.svg`),
-      },
-      imgWatermelon: {
-        watermelon: document.createElement("img"),
-        src: (this.imgRabbit.element.src = `${ref}food-watermelon-silhouette-2.svg`),
-      },
-      imgSpoon: {
-        spoon: document.createElement("img"),
-        src: (this.imgRabbit.element.src = `${ref}object-spoon-silhouette-1.svg`),
-      },
+      src: `${ref}transportation-train-silhouette-1.svg`,
+    },
+    imgAirplane: {
+      airplane: document.createElement("img"),
+      src: `${ref}transportation-airplane-silhouette-2.svg`,
+    },
+    imgBoat: {
+      boat: document.createElement("img"),
+      src: `${ref}transportation-sailboat-silhouette-1.svg`,
+    },
+    imgStrawberry: {
+      strawberry: document.createElement("img"),
+      src: `${ref}food-strawberry-silhouette-2.svg`,
+    },
+    imgApple: {
+      apple: document.createElement("img"),
+      src: `${ref}food-apple-silhouette-2.svg`,
+    },
+    imgCarrot: {
+      carrot: document.createElement("img"),
+      src: `${ref}food-carrot-silhouette-1.svg`,
+    },
+    imgBanana: {
+      banana: document.createElement("img"),
+      src: `${ref}food-banana-silhouette-2.svg`,
+    },
+    imgWatermelon: {
+      watermelon: document.createElement("img"),
+      src: `${ref}food-watermelon-silhouette-2.svg`,
+    },
+    imgSpoon: {
+      spoon: document.createElement("img"),
+      src: `${ref}object-spoon-silhouette-1.svg`,
     },
   };
+
   // const imgRabbit = document.createElement("img");
   // const imgDuck = document.createElement("img");
   // const imgFish = document.createElement("img");
