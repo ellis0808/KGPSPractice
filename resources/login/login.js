@@ -506,15 +506,14 @@ const getImages = () => {
   // imgSpoon.role = "img";
   // imgSpoon.setAttribute("content", "spoon");
   // studentPasswordGrid.appendChild(imgSpoon);
-  document.querySelectorAll("img").forEach((image) => {
+  const regex = document.querySelectorAll("img").forEach((image) => {
     console.log(Object.keys({ image })[0]);
+
+    console.log(image.src.replace(/^.*?-/, ""));
 
     image.classList.add("grid-image");
     image.role = "img";
-    image.setAttribute(
-      "content",
-      `${Object.keys({ image })[0].toLowerCase.slice(4)}`
-    );
+    image.setAttribute("content", `${image.src.replace(/^.*?-/, "")}`);
     studentPasswordGrid.appendChild(image);
   });
 };
