@@ -396,7 +396,7 @@ closeTeacherLoginModalBtn.addEventListener("pointerdown", (event) => {
   // teacherPasswordEntryForm.reset();
 });
 const getImages = () => {
-  const ref = "/images/clipart/";
+  const ref = "http://orchidpony8.sakura.ne.jp/images/clipart/";
   const imgRabbit = document.createElement("img");
   const imgDuck = document.createElement("img");
   const imgFish = document.createElement("img");
