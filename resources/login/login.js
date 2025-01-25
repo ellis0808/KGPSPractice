@@ -506,9 +506,10 @@ const getImages = () => {
   // imgSpoon.role = "img";
   // imgSpoon.setAttribute("content", "spoon");
   // studentPasswordGrid.appendChild(imgSpoon);
-  document.querySelectorAll("img").forEach((image) => {
-    if (image.src.length !== 0) {
-      // console.log(image.src.replace(/^.*?-/, ""));
+  Array.from(loginImages)
+    .filter((img) => img.src.legnth > 0)
+    .forEach((image) => {
+      console.log(image.src.replace(/^.*?-/, ""));
 
       image.classList.add("grid-image");
       image.role = "img";
@@ -516,8 +517,7 @@ const getImages = () => {
       console.log(image);
 
       studentPasswordGrid.appendChild(image);
-    }
-  });
+    });
 };
 function routing(userData) {
   if (userData.access === "teacher") {
