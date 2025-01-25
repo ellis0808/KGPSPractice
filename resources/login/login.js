@@ -584,14 +584,16 @@ const getImages = () => {
   // const loginImages = [imgRabbit, imgDuck,imgFish,imgTurtle,imgCat,imgLizard,imgCar,imgTruck,imgRocket,imgTrain,imgAirplane,imgBoat,imgStrawberry,imgApple,imgCarrot,imgBanana,imgWatermelon,imgSpoon]
 
   console.log(loginImages);
-  Object.keys(loginImages).forEach((item) => {
-    console.log(item);
-    // console.log(element[0].src.replace(/^.*?-/, ""));
+  Object.keys(loginImages).forEach((key) => {
+    key.forEach((item) => {
+      console.log(item);
+      // console.log(element[0].src.replace(/^.*?-/, ""));
 
-    item.element.classList.add("grid-image");
-    item.element.role = "img";
-    item.element.setAttribute("content", `test`);
-    console.log(item.element);
+      item.element.classList.add("grid-image");
+      item.element.role = "img";
+      item.element.setAttribute("content", `test`);
+      console.log(item.element);
+    });
 
     studentPasswordGrid.appendChild(item.element);
   });
