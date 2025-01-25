@@ -584,7 +584,7 @@ const getImages = () => {
   // const loginImages = [imgRabbit, imgDuck,imgFish,imgTurtle,imgCat,imgLizard,imgCar,imgTruck,imgRocket,imgTrain,imgAirplane,imgBoat,imgStrawberry,imgApple,imgCarrot,imgBanana,imgWatermelon,imgSpoon]
 
   console.log(loginImages);
-  loginImages.forEach((element) => {
+  Object.keys(loginImages).forEach((element) => {
     console.log(element[0]);
     // console.log(element[0].src.replace(/^.*?-/, ""));
 
