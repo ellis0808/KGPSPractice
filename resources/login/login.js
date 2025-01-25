@@ -396,7 +396,7 @@ closeTeacherLoginModalBtn.addEventListener("pointerdown", (event) => {
   // teacherPasswordEntryForm.reset();
 });
 const getImages = () => {
-  const ref = "http://orchidpony8.sakura.ne.jp/images/clipart/";
+  const ref = "/images/clipart/";
   const imgRabbit = document.createElement("img");
   const imgDuck = document.createElement("img");
   const imgFish = document.createElement("img");
@@ -507,7 +507,7 @@ const getImages = () => {
   // imgSpoon.setAttribute("content", "spoon");
   // studentPasswordGrid.appendChild(imgSpoon);
   document.querySelectorAll("img").forEach((image) => {
-    console.log(image.src.replace(/^.*?-/, ""));
+    // console.log(image.src.replace(/^.*?-/, ""));
 
     image.classList.add("grid-image");
     image.role = "img";
