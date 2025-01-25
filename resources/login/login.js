@@ -400,7 +400,7 @@ const getImages = () => {
   const loginImages = {
     imgRabbit: {
       rabbit: document.createElement("img"),
-      src: (this.rabbit.element.src = `${ref}animal-rabbit-silhouette-1.svg`),
+      src: (this.element.src = `${ref}animal-rabbit-silhouette-1.svg`),
     },
     imgDuck: {
       duck: document.createElement("img"),
