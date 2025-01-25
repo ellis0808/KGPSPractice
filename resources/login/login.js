@@ -511,7 +511,9 @@ const getImages = () => {
 
     image.classList.add("grid-image");
     image.role = "img";
-    // image.setAttribute("content", `${image.src.replace(/^.*?-/, "")}`);
+    image.setAttribute("content", `${image.src.replace(/^.*?-/, "")}`);
+    console.log(image);
+
     studentPasswordGrid.appendChild(image);
   });
 };
