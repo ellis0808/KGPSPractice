@@ -586,7 +586,7 @@ const getImages = () => {
   console.log(loginImages);
   for (const [key1, value1] of Object.entries(loginImages)) {
     for (const [key2, value2] of Object.entries(value1)) {
-      console.log(key1, key2, value2);
+      console.log(key1, value1, key2, value2);
     }
   }
   // .forEach((entry) => {
