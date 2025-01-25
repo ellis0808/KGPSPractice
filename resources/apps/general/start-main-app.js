@@ -813,7 +813,7 @@ class MenuItems {
       getCumulativeUserScore();
       setTimeout(this.displayGreeting, 500);
       menuItems.displayMainPage();
-    }, 1500);
+    }, 500);
   }
   displayMainPage() {
     this.hideSecondaryMenu();
