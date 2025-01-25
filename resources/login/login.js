@@ -507,6 +507,8 @@ const getImages = () => {
   // imgSpoon.setAttribute("content", "spoon");
   // studentPasswordGrid.appendChild(imgSpoon);
   document.querySelectorAll("img").forEach((image) => {
+    console.log(Object.keys({ image })[0]);
+
     image.classList.add("grid-image");
     image.role = "img";
     image.setAttribute(
