@@ -507,14 +507,16 @@ const getImages = () => {
   // imgSpoon.setAttribute("content", "spoon");
   // studentPasswordGrid.appendChild(imgSpoon);
   document.querySelectorAll("img").forEach((image) => {
-    console.log(image.src.replace(/^.*?-/, ""));
+    if (image.src.length !== 0) {
+      console.log(image.src.replace(/^.*?-/, ""));
 
-    image.classList.add("grid-image");
-    image.role = "img";
-    image.setAttribute("content", `test`);
-    console.log(image);
+      image.classList.add("grid-image");
+      image.role = "img";
+      image.setAttribute("content", `test`);
+      console.log(image);
 
-    studentPasswordGrid.appendChild(image);
+      studentPasswordGrid.appendChild(image);
+    }
   });
 };
 function routing(userData) {
