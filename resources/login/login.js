@@ -506,18 +506,18 @@ const getImages = () => {
   // imgSpoon.role = "img";
   // imgSpoon.setAttribute("content", "spoon");
   // studentPasswordGrid.appendChild(imgSpoon);
-  Array.from(loginImages)
-    .filter((img) => img.src.legnth > 0)
-    .forEach((image) => {
-      console.log(image.src.replace(/^.*?-/, ""));
+  // const loginImages = [imgRabbit, imgDuck,imgFish,imgTurtle,imgCat,imgLizard,imgCar,imgTruck,imgRocket,imgTrain,imgAirplane,imgBoat,imgStrawberry,imgApple,imgCarrot,imgBanana,imgWatermelon,imgSpoon]
 
-      image.classList.add("grid-image");
-      image.role = "img";
-      image.setAttribute("content", `test`);
-      console.log(image);
+  document.querySelectorAll('img[src]:not([src=""])').forEach((image) => {
+    console.log(image.src.replace(/^.*?-/, ""));
 
-      studentPasswordGrid.appendChild(image);
-    });
+    image.classList.add("grid-image");
+    image.role = "img";
+    image.setAttribute("content", `test`);
+    console.log(image);
+
+    studentPasswordGrid.appendChild(image);
+  });
 };
 function routing(userData) {
   if (userData.access === "teacher") {
