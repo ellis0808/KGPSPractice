@@ -506,7 +506,7 @@ const getImages = () => {
   // imgSpoon.role = "img";
   // imgSpoon.setAttribute("content", "spoon");
   // studentPasswordGrid.appendChild(imgSpoon);
-  const regex = document.querySelectorAll("img").forEach((image) => {
+  document.querySelectorAll("img").forEach((image) => {
     console.log(image.src.replace(/^.*?-/, ""));
 
     image.classList.add("grid-image");
